@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqhna6sp0j81h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_symyc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abrql"]
+albedo_color = Color(0.383399, 0.910084, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sglur"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldbi2"]
+albedo_color = Color(1, 0.326298, 0.995412, 1)
+
+[node name="skin" type="Node3D"]
+
+[node name="body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_symyc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_abrql")
+
+[node name="pointer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.270346, 0, 0, 0, 0.267144, 0, 0, 0, 0.815171, 0, 1.39046, 0.594137)
+mesh = SubResource("BoxMesh_sglur")
+surface_material_override/0 = SubResource("StandardMaterial3D_ldbi2")

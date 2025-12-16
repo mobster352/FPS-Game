@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://br82d65qlha22"]
+
+[ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
+[ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_abrql")
+camera_pivot = NodePath("skin/pointer")
+shotRaycast = NodePath("skin/pointer/Camera3D/ShotRaycast")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sfv1e")
+
+[node name="skin" parent="." instance=ExtResource("1_symyc")]
+
+[node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
+transform = Transform3D(-3.69896, 0, -3.23374e-07, 0, 3.7433, 0, 1.07245e-07, 0, -1.22674, 0, 1.81657, -0.341938)
+
+[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer/Camera3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.001, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 571.0
+offset_top = 319.0
+offset_right = 581.0
+offset_bottom = 329.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer"]
+layout_mode = 2
+color = Color(0.996924, 0.000213893, 0.000117824, 1)
+
+[editable path="skin"]
