@@ -5,10 +5,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abrql"]
 albedo_color = Color(0.383399, 0.910084, 1, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_sglur"]
+[sub_resource type="SphereMesh" id="SphereMesh_ldbi2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldbi2"]
-albedo_color = Color(1, 0.326298, 0.995412, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksru8"]
+albedo_color = Color(0.999305, 0.529249, 0.753939, 1)
 
 [node name="skin" type="Node3D"]
 
@@ -18,7 +18,10 @@ mesh = SubResource("CapsuleMesh_symyc")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_abrql")
 
-[node name="pointer" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.270346, 0, 0, 0, 0.267144, 0, 0, 0, 0.815171, 0, 1.39046, 0.594137)
-mesh = SubResource("BoxMesh_sglur")
-surface_material_override/0 = SubResource("StandardMaterial3D_ldbi2")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body"]
+transform = Transform3D(0.867106, 0, 0, 0, 1.02591, 0, 0, 0, 1.00026, 0, 0.318727, 0.0828568)
+mesh = SubResource("SphereMesh_ldbi2")
+surface_material_override/0 = SubResource("StandardMaterial3D_ksru8")
+
+[node name="pointer" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85434, 0)

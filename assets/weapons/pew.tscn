@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://duowqwgxey3gs"]
+
+[ext_resource type="PackedScene" uid="uid://csr01dxydyrxj" path="res://assets/styloo/pew_edited.glb" id="1_sqm2m"]
+[ext_resource type="Script" uid="uid://bngtodrpytder" path="res://assets/weapons/pew.gd" id="2_48531"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqm2m"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_48531"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hv23d"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_khj2o"]
+graph_offset = Vector2(-630.522, -14.0605)
+nodes/ShootAnimation/node = SubResource("AnimationNodeAnimation_sqm2m")
+nodes/ShootAnimation/position = Vector2(-220, 140)
+nodes/ShootOneShot/node = SubResource("AnimationNodeOneShot_48531")
+nodes/ShootOneShot/position = Vector2(80, 80)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_hv23d")
+nodes/StateMachine/position = Vector2(-260, -80)
+node_connections = [&"ShootOneShot", 0, &"StateMachine", &"ShootOneShot", 1, &"ShootAnimation", &"output", 0, &"ShootOneShot"]
+
+[node name="pew" node_paths=PackedStringArray("animationTree") instance=ExtResource("1_sqm2m")]
+script = ExtResource("2_48531")
+animationTree = NodePath("AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_khj2o")
+anim_player = NodePath("../AnimationPlayer")
+parameters/ShootOneShot/active = false
+parameters/ShootOneShot/internal_active = false
+parameters/ShootOneShot/request = 0

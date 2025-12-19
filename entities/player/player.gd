@@ -3,10 +3,13 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export var mouse_sensitivity: float = 0.002 # Adjust sensitivity as needed
-@export var camera_pivot: Node3D # Drag your Node3D (Head) here in the Inspector
+@export var mouse_sensitivity: float = 0.002
+@export var camera_pivot: Node3D
 
 @export var shotRaycast: RayCast3D
+@export var reticle: ColorRect
+
+@export var weapon: Node3D
 
 var is_paused := false
 var invert := -1
@@ -21,14 +24,13 @@ func _process(delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_process_rayCast()
 	_process_movement()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	_process_jump()
-	#_process_movement()
 	_process_shot()
 
 func _process_jump() -> void:
@@ -71,16 +73,27 @@ func _process_shot() -> void:
 
 func shoot() -> void:
 	if shotRaycast.is_colliding():
-		#var collider = shotRaycast.get_collider()
-		var target = shotRaycast.get_collider() # A CollisionObject2D.
+		var target = shotRaycast.get_collider() as Node3D # A CollisionObject2D.
 		#var shape_id = shotRaycast.get_collider_shape() # The shape index in the collider.
 		#var owner_id = target.shape_find_owner(shape_id) # The owner ID in the collider.
 		#var shape = target.shape_owner_get_owner(owner_id)
 		#print(shape.name)
+		
 		if target.is_in_group("enemy_hitboxes"):
-			print("Hit!")
-		else:
-			print("Missed!")
-			#collider.take_damage(10) # Call a method on the enemy
+			var parent = target.get_parent()
+			if parent:
+				if parent.has_method("take_damage"):
+					parent.call("take_damage")
 	else:
 		print("Missed!")
+	if weapon and weapon.has_method("shoot_animation"):
+		weapon.call("shoot_animation")
+
+func _process_rayCast() -> void:
+	if shotRaycast.is_colliding():
+		var target = shotRaycast.get_collider()
+		if target:
+			if target.is_in_group("enemy_hitboxes"):
+				reticle.color = Color(255,0,0)
+	else:
+		reticle.color = Color(1,1,1)

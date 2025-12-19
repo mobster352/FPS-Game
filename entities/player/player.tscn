@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=5 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="3_sglur"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast", "reticle", "weapon")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
 camera_pivot = NodePath("skin/pointer")
-shotRaycast = NodePath("skin/pointer/Camera3D/ShotRaycast")
+shotRaycast = NodePath("skin/pointer/ShotRaycast")
+reticle = NodePath("Control/MarginContainer/Reticle")
+weapon = NodePath("skin/pointer/pew")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -18,11 +21,17 @@ shape = SubResource("CapsuleShape3D_sfv1e")
 
 [node name="skin" parent="." instance=ExtResource("1_symyc")]
 
-[node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
-transform = Transform3D(-3.69896, 0, -3.23374e-07, 0, 3.7433, 0, 1.07245e-07, 0, -1.22674, 0, 1.81657, -0.341938)
+[node name="pointer" parent="skin" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187561, 1.38268, 0)
 
-[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer/Camera3D"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.001, 0)
+[node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.0426661)
+
+[node name="pew" parent="skin/pointer" index="1" instance=ExtResource("3_sglur")]
+transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.195, -0.275, 0.732)
+
+[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
+transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, 100)
 collision_mask = 2
 hit_from_inside = true
@@ -51,7 +60,7 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer"]
+[node name="Reticle" type="ColorRect" parent="Control/MarginContainer"]
 layout_mode = 2
 color = Color(0.996924, 0.000213893, 0.000117824, 1)
 
