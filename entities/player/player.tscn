@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=6 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="3_sglur"]
+[ext_resource type="Script" uid="uid://5kjon8bbiwui" path="res://entities/player/ui.gd" id="4_bls4j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast", "reticle", "weapon")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast", "reticle", "weapon", "shotTimer", "ui", "pew")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
 camera_pivot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
-reticle = NodePath("Control/MarginContainer/Reticle")
+reticle = NodePath("UI/ReticleMarginContainer/Reticle")
 weapon = NodePath("skin/pointer/pew")
+shotTimer = NodePath("Timers/ShotTimer")
+ui = NodePath("UI")
+pew = NodePath("skin/pointer/pew")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -38,15 +42,17 @@ hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 571.0
 offset_top = 319.0
 offset_right = 581.0
 offset_bottom = 329.0
+script = ExtResource("4_bls4j")
+ammo_label = NodePath("AmmoMarginContainer/AmmoLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="ReticleMarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,8 +66,28 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Reticle" type="ColorRect" parent="Control/MarginContainer"]
+[node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer"]
 layout_mode = 2
 color = Color(0.996924, 0.000213893, 0.000117824, 1)
+
+[node name="AmmoMarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_left = -539.0
+offset_top = 252.0
+offset_right = -445.0
+offset_bottom = 298.0
+
+[node name="AmmoLabel" type="RichTextLabel" parent="UI/AmmoMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "10 / 10"
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ShotTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
 
 [editable path="skin"]

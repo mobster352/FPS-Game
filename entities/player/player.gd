@@ -1,4 +1,7 @@
 extends CharacterBody3D
+class_name Player
+
+signal weapon_fired
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -10,14 +13,32 @@ const JUMP_VELOCITY = 4.5
 @export var reticle: ColorRect
 
 @export var weapon: Node3D
+@export var shotTimer: Timer
+
+@export var ui: Control
+@export var pew:Pew
 
 var is_paused := false
 var invert := -1
 
+var max_ammo: int
+var ammo_count: int:
+	set(value):
+		ammo_count = value
+		ui.update_ammo(value, ammo_reserves)
+
+var ammo_reserves: int:
+	set(value):
+		ammo_reserves = value
+		ui.update_ammo(ammo_count, value)
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	ammo_count = 10
+	max_ammo = 10
+	ammo_reserves = 20
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		is_paused = not is_paused
 		if is_paused:
@@ -26,12 +47,12 @@ func _process(delta: float) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_process_rayCast()
 	_process_movement()
+	_process_shot()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	_process_jump()
-	_process_shot()
 
 func _process_jump() -> void:
 	# Handle jump.
@@ -68,8 +89,20 @@ func _input(event: InputEvent) -> void:
 		camera_pivot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
 
 func _process_shot() -> void:
-	if Input.is_action_just_pressed("shoot") and not is_paused:
-		shoot()
+	if not is_paused:
+		if Input.is_action_just_pressed("shoot") and ammo_count - 1 >= 0:
+			shoot()
+			ammo_count -= 1
+			weapon_fired.emit()
+			pew.add_muzzle_flash()
+		if Input.is_action_just_pressed("reload") and ammo_reserves > 0 and ammo_count < max_ammo:
+			var ammo_needed = max_ammo - ammo_count
+			if ammo_reserves >= ammo_needed:
+				ammo_count += ammo_needed
+				ammo_reserves -= ammo_needed
+			else:
+				ammo_count += ammo_reserves
+				ammo_reserves = 0
 
 func shoot() -> void:
 	if shotRaycast.is_colliding():
@@ -83,11 +116,12 @@ func shoot() -> void:
 			var parent = target.get_parent()
 			if parent:
 				if parent.has_method("take_damage"):
-					parent.call("take_damage")
+					parent.call("take_damage", 1)
 	else:
 		print("Missed!")
 	if weapon and weapon.has_method("shoot_animation"):
 		weapon.call("shoot_animation")
+		#shotTimer.start()
 
 func _process_rayCast() -> void:
 	if shotRaycast.is_colliding():
