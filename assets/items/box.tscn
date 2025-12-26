@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cct1cty0q7mys"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vqwdp"]
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sab4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqwdp"]
+albedo_color = Color(0, 0.568627, 1, 1)
+
+[node name="Box" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_mask = 5
+mass = 3.0
+physics_material_override = SubResource("PhysicsMaterial_vqwdp")
+lock_rotation = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012207, -0.00250244, -0.00012207)
+shape = SubResource("BoxShape3D_sab4n")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
+material = SubResource("StandardMaterial3D_vqwdp")
+
+[node name="Area3D" type="Area3D" parent="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012207, -0.00250244, -0.00012207)
+shape = SubResource("BoxShape3D_sab4n")

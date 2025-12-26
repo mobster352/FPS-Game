@@ -7,17 +7,18 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera_pivot", "shotRaycast", "reticle", "weapon", "shotTimer", "ui", "pew")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "reticle", "pew", "ammo_label", "shotTimer", "ui", "item_slot")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
-camera_pivot = NodePath("skin/pointer")
+pointer_slot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
 reticle = NodePath("UI/ReticleMarginContainer/Reticle")
-weapon = NodePath("skin/pointer/pew")
+pew = NodePath("skin/pointer/pew")
+ammo_label = NodePath("UI/AmmoMarginContainer/AmmoLabel")
 shotTimer = NodePath("Timers/ShotTimer")
 ui = NodePath("UI")
-pew = NodePath("skin/pointer/pew")
+item_slot = NodePath("skin/pointer/ItemSlot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -25,22 +26,22 @@ shape = SubResource("CapsuleShape3D_sfv1e")
 
 [node name="skin" parent="." instance=ExtResource("1_symyc")]
 
-[node name="pointer" parent="skin" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.187561, 1.38268, 0)
-
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.0426661)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.47833, 0.393415)
 
 [node name="pew" parent="skin/pointer" index="1" instance=ExtResource("3_sglur")]
-transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.195, -0.275, 0.732)
+transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.232073, -0.746408, 1.06583)
+visible = false
 
 [node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
-transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
-target_position = Vector3(0, 0, 100)
-collision_mask = 2
-hit_from_inside = true
+transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, -0.474211, 0.589557)
+target_position = Vector3(0, 0, 1000)
+collision_mask = 13
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.232073, -0.746408, 1.06583)
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label")]
 layout_mode = 3
@@ -68,7 +69,6 @@ grow_vertical = 2
 
 [node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer"]
 layout_mode = 2
-color = Color(0.996924, 0.000213893, 0.000117824, 1)
 
 [node name="AmmoMarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 0
@@ -78,6 +78,7 @@ offset_right = -445.0
 offset_bottom = 298.0
 
 [node name="AmmoLabel" type="RichTextLabel" parent="UI/AmmoMarginContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

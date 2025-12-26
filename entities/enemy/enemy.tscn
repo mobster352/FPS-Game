@@ -34,13 +34,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p7g5j")
 surface_material_override/0 = SubResource("StandardMaterial3D_pqhw6")
 
 [node name="pointer" parent="skin" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31043, 1.23312, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3508, 0)
 
 [node name="pew" parent="skin/pointer" index="0" instance=ExtResource("3_3fvr7")]
-transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.195, -0.275, 0.732)
+transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, -0.195, -0.275, 0.974938)
 
 [node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="1"]
-transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+visible = false
 target_position = Vector3(0, 0, 100)
 collision_mask = 2
 hit_from_inside = true
@@ -48,7 +48,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Hitbox" type="Area3D" parent="." groups=["enemy_hitboxes"]]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]

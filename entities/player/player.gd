@@ -7,16 +7,19 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var mouse_sensitivity: float = 0.002
-@export var camera_pivot: Node3D
+@export var pointer_slot: Node3D
 
 @export var shotRaycast: RayCast3D
 @export var reticle: ColorRect
 
-@export var weapon: Node3D
+@export var pew: Pew
+var weapon: Weapon
+@export var ammo_label: RichTextLabel
 @export var shotTimer: Timer
 
 @export var ui: Control
-@export var pew:Pew
+
+@export var item_slot: Node3D
 
 var is_paused := false
 var invert := -1
@@ -48,11 +51,15 @@ func _process(_delta: float) -> void:
 	_process_rayCast()
 	_process_movement()
 	_process_shot()
+	_process_draw_weapon()
+	_process_crouch()
+	_process_drop_item()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	_process_jump()
+	_physics_logic()
 
 func _process_jump() -> void:
 	# Handle jump.
@@ -81,20 +88,20 @@ func _input(event: InputEvent) -> void:
 
 		# Vertical rotation (X-axis) applied to the Camera Pivot node
 		var vertical_change = -event.relative.y * mouse_sensitivity
-		camera_pivot.rotate_x(invert * vertical_change)
+		pointer_slot.rotate_x(invert * vertical_change)
 
 		# Clamp vertical rotation to prevent the camera from flipping over
-		var current_rotation_x = camera_pivot.rotation.x
+		var current_rotation_x = pointer_slot.rotation.x
 		# Clamp between -90 and 90 degrees (converted to radians)
-		camera_pivot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
+		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
 
 func _process_shot() -> void:
-	if not is_paused:
+	if not is_paused and weapon:
 		if Input.is_action_just_pressed("shoot") and ammo_count - 1 >= 0:
 			shoot()
 			ammo_count -= 1
 			weapon_fired.emit()
-			pew.add_muzzle_flash()
+			weapon.add_muzzle_flash()
 		if Input.is_action_just_pressed("reload") and ammo_reserves > 0 and ammo_count < max_ammo:
 			var ammo_needed = max_ammo - ammo_count
 			if ammo_reserves >= ammo_needed:
@@ -117,17 +124,67 @@ func shoot() -> void:
 			if parent:
 				if parent.has_method("take_damage"):
 					parent.call("take_damage", 1)
-	else:
-		print("Missed!")
-	if weapon and weapon.has_method("shoot_animation"):
-		weapon.call("shoot_animation")
-		#shotTimer.start()
+	weapon.shoot_animation()
 
 func _process_rayCast() -> void:
-	if shotRaycast.is_colliding():
-		var target = shotRaycast.get_collider()
-		if target:
-			if target.is_in_group("enemy_hitboxes"):
-				reticle.color = Color(255,0,0)
+	if weapon:
+		if shotRaycast.is_colliding():
+			var target = shotRaycast.get_collider()
+			if target:
+				if target.is_in_group("enemy_hitboxes"):
+					reticle.color = Color(255,0,0)
+				else:
+					reticle.color = Color(255,255,255)
+		else:
+			reticle.color = Color(255,255,255)
 	else:
-		reticle.color = Color(1,1,1)
+		if shotRaycast.is_colliding():
+			var target = shotRaycast.get_collider()
+			if target:
+				var obj = target.get_parent() as Node3D
+				if obj.is_in_group("items"):
+					if Input.is_action_just_pressed("shoot"):
+						if obj.position.distance_to(position) < 1.5:
+							if obj.get_parent():
+								obj.get_parent().remove_child(obj)
+							item_slot.add_child(obj)
+							obj.position = Vector3.ZERO
+							obj.rotation = Vector3.ZERO
+		
+func _process_draw_weapon() -> void:
+	if Input.is_action_just_pressed("draw_weapon_1"):
+		if weapon:
+			weapon = null
+			pew.hide()
+			ammo_label.hide()
+			reticle.color = Color(255,255,255)
+		else:
+			weapon = pew
+			pew.show()
+			ammo_label.show()
+			if item_slot.get_child_count() > 0:
+				drop_item()
+
+func _physics_logic() -> void:
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider is RigidBody3D:
+			collider.apply_central_impulse(-get_slide_collision(i).get_normal())
+
+func _process_crouch() -> void:
+	if Input.is_action_pressed("crouch"):
+		scale = Vector3(.5,.5,.5)
+	else:
+		scale = Vector3(1,1,1)
+
+func _process_drop_item() -> void:
+	if item_slot.get_child_count() > 0 and Input.is_action_just_pressed("drop"):
+		drop_item()
+
+func drop_item() -> void:
+	var child = item_slot.get_child(0)
+	item_slot.remove_child(child)
+	get_parent().add_child(child)
+	child.position = position + basis.z + Vector3(0,.5,0)
+	child.look_at(position)
+	child.rotation.x = 0

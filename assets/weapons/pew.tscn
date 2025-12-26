@@ -50,16 +50,13 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_2r0tm"]
 material = SubResource("StandardMaterial3D_qka00")
-size = Vector2(0.1, 0.1)
+size = Vector2(0.2, 0.2)
 
 [node name="pew" node_paths=PackedStringArray("animationTree", "light", "emitter") instance=ExtResource("1_sqm2m")]
 script = ExtResource("2_48531")
 animationTree = NodePath("AnimationTree")
 light = NodePath("MuzzleFlash/OmniLight3D")
 emitter = NodePath("MuzzleFlash/GPUParticles3D")
-
-[node name="pew" parent="." index="0"]
-transform = Transform3D(1, 7.45058e-09, -1.17549e-08, -7.45058e-09, 1, -5.13226e-10, 1.17549e-08, 5.13226e-10, 1, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_khj2o")

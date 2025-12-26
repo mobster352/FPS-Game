@@ -1,4 +1,4 @@
-extends Node3D
+extends Weapon
 class_name Pew
 
 @export var animationTree: AnimationTree

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl2tap3b4bh4i"]
+[gd_scene load_steps=10 format=3 uid="uid://bl2tap3b4bh4i"]
 
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="1_hjwoo"]
 [ext_resource type="PackedScene" uid="uid://cluhuyjg8gco4" path="res://entities/enemy/enemy.tscn" id="2_vfqff"]
+[ext_resource type="PackedScene" uid="uid://cct1cty0q7mys" path="res://assets/items/box.tscn" id="3_alcuw"]
+[ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="4_3dj58"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hjwoo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -55,5 +57,11 @@ transform = Transform3D(0.999954, 0, -0.00963399, 0, 1, 0, 0.00963399, 0, 0.9999
 [node name="Enemy4" parent="Entities" instance=ExtResource("2_vfqff")]
 transform = Transform3D(-0.0761621, 0, -0.997095, 0, 1, 0, 0.997095, 0, -0.0761621, 2.71515, 0, 3.45431)
 
+[node name="Box" parent="Entities" instance=ExtResource("3_alcuw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564629, 2)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.826639, 0.562733, 0, -0.562733, 0.826639, 0, 3.79609, 6.78297)
+
+[node name="Coin_A" parent="." instance=ExtResource("4_3dj58")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.298, 0.5, 1.375)
