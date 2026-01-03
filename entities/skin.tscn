@@ -11,6 +11,7 @@ albedo_color = Color(0.383399, 0.910084, 1, 1)
 albedo_color = Color(0.999305, 0.529249, 0.753939, 1)
 
 [node name="skin" type="Node3D"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

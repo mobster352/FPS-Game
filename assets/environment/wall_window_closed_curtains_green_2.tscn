@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi5k48kiifr8r"]
+
+[ext_resource type="PackedScene" uid="uid://jsabx7i2v3ei" path="res://assets/kaykit/restaurant/wall_window_closed_curtains_green.gltf" id="1_7rovj"]
+[ext_resource type="Shape3D" uid="uid://cnpqqnonxe7t0" path="res://assets/environment/wall.tres" id="2_07rty"]
+
+[node name="wall_window_closed_curtains_green2" instance=ExtResource("1_7rovj")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_window_closed_curtains_green" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_window_closed_curtains_green/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = ExtResource("2_07rty")

@@ -2,6 +2,7 @@ extends Control
 
 @export var ammo_label: RichTextLabel
 @export var hp_bar: TextureProgressBar
+@export var damage_overlay: ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,5 +22,16 @@ func update_hp(current:int, target:int) -> void:
 	var tween = create_tween()
 	tween.tween_method(_update_hp, current, target, 0.25)
 
+
 func _update_hp(value:int) -> void:
 	hp_bar.value = value
+
+
+func take_damage() -> void:
+	var tween = create_tween()
+	tween.tween_method(_take_damage, Color(0.0, 0.0, 0.0, 0.0), Color(1.0, 0.0, 0.0, 0.733), 0.2)
+	tween.tween_method(_take_damage, Color(1.0, 0.0, 0.0, 0.733), Color(0.0, 0.0, 0.0, 0.0), 0.2)
+	
+	
+func _take_damage(color: Color) -> void:
+	damage_overlay.color = color

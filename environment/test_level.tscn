@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnegw0uworysw"]
+
+[ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/floor_kitchen_style_b.tscn" id="1_t8m5e"]
+[ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="2_5vm83"]
+[ext_resource type="PackedScene" uid="uid://cuhfmnffgwpjx" path="res://assets/environment/wall.tscn" id="2_nfqdm"]
+[ext_resource type="PackedScene" uid="uid://cr4jxf8d7khnr" path="res://assets/environment/wall_doorway.tscn" id="4_a5u7v"]
+[ext_resource type="PackedScene" uid="uid://ddniayrggxp1c" path="res://assets/environment/door_a.tscn" id="5_g2m4r"]
+[ext_resource type="PackedScene" uid="uid://bi5k48kiifr8r" path="res://assets/environment/wall_window_closed_curtains_green_2.tscn" id="5_sodpf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nfqdm"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_vfqff"]
+sky_material = SubResource("ProceduralSkyMaterial_nfqdm")
+
+[sub_resource type="Environment" id="Environment_sodpf"]
+background_mode = 2
+sky = SubResource("Sky_vfqff")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Test_Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sodpf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660253, -0.4330129, 0.2500001, 0, 0.49999994, 0.86602545, -0.50000024, 0.74999994, -0.43301257, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Restaurant" type="Node3D" parent="Environment"]
+
+[node name="floor_kitchen_styleB" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+
+[node name="floor_kitchen_styleB2" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_kitchen_styleB3" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_kitchen_styleB12" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="floor_kitchen_styleB4" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_kitchen_styleB11" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_kitchen_styleB5" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_kitchen_styleB10" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+
+[node name="floor_kitchen_styleB6" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_kitchen_styleB7" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="floor_kitchen_styleB8" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="floor_kitchen_styleB9" parent="Environment/Restaurant" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="wall" parent="Environment/Restaurant" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="wall3" parent="Environment/Restaurant" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 0, 4)
+
+[node name="wall_window_closed_curtains_green2" parent="Environment/Restaurant" instance=ExtResource("5_sodpf")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, 6)
+
+[node name="wall_doorway" parent="Environment/Restaurant" instance=ExtResource("4_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
+
+[node name="door_A" parent="Environment/Restaurant" instance=ExtResource("5_g2m4r")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.1987395, 0, 6)
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("2_5vm83")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)

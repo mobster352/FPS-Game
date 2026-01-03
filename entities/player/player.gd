@@ -24,6 +24,7 @@ var weapon: Weapon
 @export var item_slot: Node3D
 
 @export var throw_strength: int = 3
+@export var camera: Camera3D
 
 var is_paused := false
 var invert := -1
@@ -215,8 +216,8 @@ func drop_item() -> void:
 	item_slot.remove_child(child)
 	get_parent().add_child(child)
 	
-	var forward = global_transform.basis.z
-	child.position = position + forward + Vector3(0,1,0)
+	var forward = -camera.global_transform.basis.z.normalized()
+	child.position = camera.global_position + forward
 	
 	child.set_monitoring(true)
 	child.set_z_scale(false)
@@ -237,6 +238,7 @@ func remove_item_in_range(item: Node3D) -> void:
 
 func take_damage(value: int) -> void:
 	hp -= value
+	ui.take_damage()
 	#print("Player took ", value, " damage.")
 	#print("HP: ", hp)
 	if hp <= 0:

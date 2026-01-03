@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://dpxgsuoxjgihj" path="res://assets/weapons/pew_enemy.tres" id="3_qj7bw"]
 
 [node name="Dummy" instance=ExtResource("1_026v1")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("2_qj7bw")
 
 [node name="Skeleton3D" parent="Rig" index="0"]
@@ -71,7 +70,7 @@ transform = Transform3D(0.9999657, 5.9604645e-08, 0.008278251, -7.4505806e-08, 0
 transform = Transform3D(0.8191519, -4.4703484e-08, 0.5735767, 0.14845258, 0.96592575, -0.21201207, -0.55403256, 0.25881898, 0.79124, -2.8678599e-08, 0.9646364, 0.06448255)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rig/Skeleton3D" index="8"]
-transform = Transform3D(0.023088984, 0.0021159872, -0.9997307, 0.012681862, 0.9999163, 0.0024092458, 0.9996519, -0.012734088, 0.023060422, -0.26693565, 0.99777985, 0.69262356)
+transform = Transform3D(0.023089051, 0.0021159798, -0.9997311, 0.012681862, 0.99991655, 0.0024092384, 0.9996526, -0.012734132, 0.023060396, -0.26693574, 0.99777985, 0.6926239)
 bone_name = "handslot.r"
 bone_idx = 13
 

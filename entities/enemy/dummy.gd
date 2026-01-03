@@ -34,3 +34,7 @@ func aiming_animation() -> void:
 
 func idle_animation() -> void:
 	animation_state_machine.travel("Idle")
+
+
+func walk_animation() -> void:
+	animation_state_machine.travel("Walking_C")
