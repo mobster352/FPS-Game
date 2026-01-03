@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg4kikonypadt"
-path.s3tc="res://.godot/imported/pew_edited_pewfinal_normal.png-f06cae1ae70e8e2a2e0f519c02195c95.s3tc.ctex"
+uid="uid://cstlp0qnxncv0"
+path.s3tc="res://.godot/imported/Dummy_prototypebits_texture.png-7c7978239a03ec93aef871e27925af9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5145df06e3fcd188861caa11c02b81e2"
+"md5": "92cda2648e3fa642c614ab53b4df778f"
 }
 
 [deps]
 
-source_file="res://assets/styloo/pew_edited_pewfinal_normal.png"
-dest_files=["res://.godot/imported/pew_edited_pewfinal_normal.png-f06cae1ae70e8e2a2e0f519c02195c95.s3tc.ctex"]
+source_file="res://assets/kaykit/Dummy_prototypebits_texture.png"
+dest_files=["res://.godot/imported/Dummy_prototypebits_texture.png-7c7978239a03ec93aef871e27925af9f.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

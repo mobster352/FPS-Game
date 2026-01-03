@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl2tap3b4bh4i"]
+[gd_scene load_steps=15 format=3 uid="uid://bl2tap3b4bh4i"]
 
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="1_hjwoo"]
 [ext_resource type="PackedScene" uid="uid://cluhuyjg8gco4" path="res://entities/enemy/enemy.tscn" id="2_vfqff"]
 [ext_resource type="PackedScene" uid="uid://cct1cty0q7mys" path="res://assets/items/box.tscn" id="3_alcuw"]
 [ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="4_3dj58"]
+[ext_resource type="Texture2D" uid="uid://cstlp0qnxncv0" path="res://assets/kaykit/Dummy_prototypebits_texture.png" id="4_78a7o"]
+[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a_2.tscn" id="5_xafsa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hjwoo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,6 +24,17 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_hjwoo"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78a7o"]
+albedo_texture = ExtResource("4_78a7o")
+z_clip_scale = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32bfo"]
+albedo_texture = ExtResource("4_78a7o")
+z_clip_scale = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntmsj"]
+albedo_texture = ExtResource("4_78a7o")
+
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,6 +47,7 @@ shadow_enabled = true
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("WorldBoundaryShape3D_xafjm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
@@ -44,24 +58,33 @@ skeleton = NodePath("../..")
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("1_hjwoo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0211422, 0, -3.5699458)
 
 [node name="Enemy" parent="Entities" instance=ExtResource("2_vfqff")]
 transform = Transform3D(-0.605377, 0, 0.795939, 0, 1, 0, -0.795939, 0, -0.605377, -2, 0, 3)
 
-[node name="Enemy2" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(0.9976, 0, -0.0692341, 0, 1, 0, 0.0692341, 0, 0.9976, -2, 0, -3.03452)
-
-[node name="Enemy3" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(0.999954, 0, -0.00963399, 0, 1, 0, 0.00963399, 0, 0.999954, 2.71515, 0, -3.03452)
-
 [node name="Enemy4" parent="Entities" instance=ExtResource("2_vfqff")]
 transform = Transform3D(-0.0761621, 0, -0.997095, 0, 1, 0, 0.997095, 0, -0.0761621, 2.71515, 0, 3.45431)
 
-[node name="Box" parent="Entities" instance=ExtResource("3_alcuw")]
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Coin_A" parent="Environment" instance=ExtResource("4_3dj58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.298, 0.24599051, 1.375)
+standardMaterial3D = SubResource("StandardMaterial3D_78a7o")
+
+[node name="Coin_A2" parent="Environment" instance=ExtResource("4_3dj58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3499019, 0.24599051, 0.6321411)
+standardMaterial3D = SubResource("StandardMaterial3D_32bfo")
+
+[node name="Coin_A3" parent="Environment" instance=ExtResource("4_3dj58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8060973, 0.24599051, 0.57117844)
+standardMaterial3D = SubResource("StandardMaterial3D_ntmsj")
+
+[node name="table_round_A2" parent="Environment" instance=ExtResource("5_xafsa")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.196896, 0.184194, -2.69565)
+
+[node name="Box" parent="Environment" instance=ExtResource("3_alcuw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564629, 2)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.826639, 0.562733, 0, -0.562733, 0.826639, 0, 3.79609, 6.78297)
-
-[node name="Coin_A" parent="." instance=ExtResource("4_3dj58")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 2.298, 0.5, 1.375)

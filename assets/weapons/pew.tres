@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cpnqqh2gdy1bj"]
+
+[ext_resource type="Texture2D" uid="uid://dk00ohmamcmtv" path="res://assets/styloo/pew_edited_pewfinal_color.png" id="1_7n67l"]
+[ext_resource type="Texture2D" uid="uid://dg4kikonypadt" path="res://assets/styloo/pew_edited_pewfinal_normal.png" id="2_ufc7v"]
+
+[resource]
+albedo_texture = ExtResource("1_7n67l")
+normal_enabled = true
+normal_texture = ExtResource("2_ufc7v")
+use_z_clip_scale = true
+z_clip_scale = 0.1

@@ -10,6 +10,8 @@ const JUMP_VELOCITY = 4.5
 @export var pointer_slot: Node3D
 
 @export var shotRaycast: RayCast3D
+@export var itemRaycast: RayCast3D
+
 @export var reticle: ColorRect
 
 @export var pew: Pew
@@ -20,6 +22,8 @@ var weapon: Weapon
 @export var ui: Control
 
 @export var item_slot: Node3D
+
+@export var throw_strength: int = 3
 
 var is_paused := false
 var invert := -1
@@ -34,6 +38,14 @@ var ammo_reserves: int:
 	set(value):
 		ammo_reserves = value
 		ui.update_ammo(ammo_count, value)
+
+var items_in_range: Array[Node3D]
+
+var max_hp := 10
+var hp := 10:
+	set(value):
+		ui.update_hp(hp, value)
+		hp = value
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -138,19 +150,36 @@ func _process_rayCast() -> void:
 		else:
 			reticle.color = Color(255,255,255)
 	else:
-		if shotRaycast.is_colliding():
-			var target = shotRaycast.get_collider()
+		if itemRaycast.is_colliding():
+			var target = itemRaycast.get_collider()
 			if target:
-				var obj = target.get_parent() as Node3D
-				if obj.is_in_group("items"):
+				var obj = target.get_parent() as Item
+				if items_in_range.has(obj):
+					reticle.color = Color(0.0, 1.0, 0.0, 1.0)
 					if Input.is_action_just_pressed("shoot"):
-						if obj.position.distance_to(position) < 1.5:
-							if obj.get_parent():
-								obj.get_parent().remove_child(obj)
-							item_slot.add_child(obj)
-							obj.position = Vector3.ZERO
-							obj.rotation = Vector3.ZERO
-		
+						if item_slot.get_child_count() > 0:
+							drop_item()
+						if obj.get_parent():
+							obj.get_parent().remove_child(obj)
+						item_slot.add_child(obj)
+						obj.position = Vector3.ZERO
+						obj.rotation = Vector3.ZERO
+						
+						if target is RigidBody3D:
+							target.freeze = true
+							target.position = Vector3.ZERO
+							target.rotation = Vector3.ZERO
+						
+						obj.set_monitoring(false)
+						obj.set_z_scale(true)
+				else:
+					reticle.color = Color(255,255,255)
+			else:
+				reticle.color = Color(255,255,255)
+		else:
+			reticle.color = Color(255,255,255)
+
+
 func _process_draw_weapon() -> void:
 	if Input.is_action_just_pressed("draw_weapon_1"):
 		if weapon:
@@ -182,9 +211,33 @@ func _process_drop_item() -> void:
 		drop_item()
 
 func drop_item() -> void:
-	var child = item_slot.get_child(0)
+	var child = item_slot.get_child(0) as Item
 	item_slot.remove_child(child)
 	get_parent().add_child(child)
-	child.position = position + basis.z + Vector3(0,.5,0)
-	child.look_at(position)
-	child.rotation.x = 0
+	
+	var forward = global_transform.basis.z
+	child.position = position + forward + Vector3(0,1,0)
+	
+	child.set_monitoring(true)
+	child.set_z_scale(false)
+	for c in child.get_children():
+		if c is RigidBody3D:
+			c.freeze = false
+			c.apply_central_impulse(forward * (throw_strength / c.mass))
+
+
+func append_item_in_range(item: Node3D) -> void:
+	items_in_range.append(item)
+	
+	
+func remove_item_in_range(item: Node3D) -> void:
+	var index = items_in_range.find(item)
+	items_in_range.remove_at(index)
+
+
+func take_damage(value: int) -> void:
+	hp -= value
+	#print("Player took ", value, " damage.")
+	#print("HP: ", hp)
+	if hp <= 0:
+		get_tree().reload_current_scene()

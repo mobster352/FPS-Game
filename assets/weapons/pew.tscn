@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://duowqwgxey3gs"]
+[gd_scene load_steps=13 format=3 uid="uid://duowqwgxey3gs"]
 
 [ext_resource type="PackedScene" uid="uid://csr01dxydyrxj" path="res://assets/styloo/pew_edited.glb" id="1_sqm2m"]
 [ext_resource type="Script" uid="uid://bngtodrpytder" path="res://assets/weapons/pew.gd" id="2_48531"]
+[ext_resource type="Material" uid="uid://cpnqqh2gdy1bj" path="res://assets/weapons/pew.tres" id="3_hv23d"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sqm2m"]
 animation = &"Shoot"
@@ -19,7 +20,7 @@ nodes/ShootOneShot/node = SubResource("AnimationNodeOneShot_48531")
 nodes/ShootOneShot/position = Vector2(80, 80)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_hv23d")
 nodes/StateMachine/position = Vector2(-260, -80)
-node_connections = [&"ShootOneShot", 0, &"StateMachine", &"ShootOneShot", 1, &"ShootAnimation", &"output", 0, &"ShootOneShot"]
+node_connections = [&"output", 0, &"ShootOneShot", &"ShootOneShot", 0, &"StateMachine", &"ShootOneShot", 1, &"ShootAnimation"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_48531"]
 angle_min = -80.0
@@ -57,6 +58,18 @@ script = ExtResource("2_48531")
 animationTree = NodePath("AnimationTree")
 light = NodePath("MuzzleFlash/OmniLight3D")
 emitter = NodePath("MuzzleFlash/GPUParticles3D")
+
+[node name="pew" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_hv23d")
+
+[node name="pewhaut" parent="pew" index="0"]
+surface_material_override/0 = ExtResource("3_hv23d")
+
+[node name="pewmagazine" parent="pew" index="1"]
+surface_material_override/0 = ExtResource("3_hv23d")
+
+[node name="pewtrigger" parent="pew" index="2"]
+surface_material_override/0 = ExtResource("3_hv23d")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeBlendTree_khj2o")

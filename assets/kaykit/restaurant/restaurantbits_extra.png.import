@@ -2,28 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk00ohmamcmtv"
-path.s3tc="res://.godot/imported/pew_edited_pewfinal_color.png-e22b4d252ed6b71d851e94718ee65ece.s3tc.ctex"
+uid="uid://cruxwxefv2v1j"
+path.s3tc="res://.godot/imported/restaurantbits_extra.png-2db7618ff223cc19f921eb568700df02.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "21dc9f97e9057c7018b08f724904f0a2"
-}
 
 [deps]
 
-source_file="res://assets/styloo/pew_edited_pewfinal_color.png"
-dest_files=["res://.godot/imported/pew_edited_pewfinal_color.png-e22b4d252ed6b71d851e94718ee65ece.s3tc.ctex"]
+source_file="res://assets/kaykit/restaurant/restaurantbits_extra.png"
+dest_files=["res://.godot/imported/restaurantbits_extra.png-2db7618ff223cc19f921eb568700df02.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -31,10 +26,6 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/channel_remap/red=0
-process/channel_remap/green=1
-process/channel_remap/blue=2
-process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

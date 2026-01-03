@@ -1,18 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=9 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="3_sglur"]
 [ext_resource type="Script" uid="uid://5kjon8bbiwui" path="res://entities/player/ui.gd" id="4_bls4j"]
+[ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
+[ext_resource type="Texture2D" uid="uid://0oy35q6x2j7" path="res://assets/ui/Health_01_t.png" id="7_wvtmh"]
+[ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "reticle", "pew", "ammo_label", "shotTimer", "ui", "item_slot")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "pew", "ammo_label", "shotTimer", "ui", "item_slot") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
 pointer_slot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
+itemRaycast = NodePath("skin/pointer/ItemRaycast")
 reticle = NodePath("UI/ReticleMarginContainer/Reticle")
 pew = NodePath("skin/pointer/pew")
 ammo_label = NodePath("UI/AmmoMarginContainer/AmmoLabel")
@@ -26,32 +30,48 @@ shape = SubResource("CapsuleShape3D_sfv1e")
 
 [node name="skin" parent="." instance=ExtResource("1_symyc")]
 
+[node name="body" parent="skin" index="0"]
+visible = false
+
+[node name="MeshInstance3D" parent="skin/body" index="0"]
+layers = 2
+
+[node name="pointer" parent="skin" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33498, 0.4942)
+
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.47833, 0.393415)
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+cull_mask = 1048573
 
 [node name="pew" parent="skin/pointer" index="1" instance=ExtResource("3_sglur")]
-transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.232073, -0.746408, 1.06583)
+transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.172, -0.366, 0.751)
 visible = false
 
 [node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
-transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, -0.474211, 0.589557)
+transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, 1000)
-collision_mask = 13
+collision_mask = 5
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.232073, -0.746408, 1.06583)
+[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
+transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1000)
+collision_mask = 9
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label")]
+[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.3, 0.989)
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar")]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 571.0
-offset_top = 319.0
-offset_right = 581.0
-offset_bottom = 329.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_bls4j")
 ammo_label = NodePath("AmmoMarginContainer/AmmoLabel")
+hp_bar = NodePath("MarginContainer/HpBar")
 
 [node name="ReticleMarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
@@ -71,11 +91,20 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="AmmoMarginContainer" type="MarginContainer" parent="UI"]
-layout_mode = 0
-offset_left = -539.0
-offset_top = 252.0
-offset_right = -445.0
-offset_bottom = 298.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="AmmoLabel" type="RichTextLabel" parent="UI/AmmoMarginContainer"]
 visible = false
@@ -84,6 +113,38 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 text = "10 / 10"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+offset_right = 74.0
+offset_bottom = 26.0
+scale = Vector2(2.5, 2.5)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HpBar" type="TextureProgressBar" parent="UI/MarginContainer"]
+layout_mode = 2
+max_value = 10.0
+value = 10.0
+texture_over = ExtResource("7_wvtmh")
+texture_progress = ExtResource("8_7thud")
+texture_progress_offset = Vector2(16, 4.5)
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+layout_mode = 1
+offset_right = 26.0
+offset_bottom = 26.0
+scale = Vector2(2.5, 2.5)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Heart" type="TextureRect" parent="UI/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("6_8fjmc")
 
 [node name="Timers" type="Node" parent="."]
 
