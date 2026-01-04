@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch6palebd5two"]
+[gd_scene load_steps=17 format=3 uid="uid://ch6palebd5two"]
 
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="1_yjup0"]
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="2_e4dcw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bno6lju5ofern" path="res://assets/kaykit/prototype/target_wall_small.gltf" id="9_npqbb"]
 [ext_resource type="PackedScene" uid="uid://c54iu72reep2q" path="res://assets/kaykit/prototype/Weaponrack_Decorated.gltf" id="10_wgoyl"]
 [ext_resource type="PackedScene" uid="uid://d1takqi3xxwop" path="res://assets/environment/prototype/workbench_decorated.tscn" id="11_qv2or"]
+[ext_resource type="PackedScene" uid="uid://y53has5o3ig0" path="res://assets/environment/prototype/pallet_small.tscn" id="13_hqy04"]
 [ext_resource type="PackedScene" uid="uid://cluhuyjg8gco4" path="res://entities/enemy/enemy.tscn" id="14_w3o1y"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_y22a0"]
@@ -219,11 +220,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
 [node name="Wall_Doorway" parent="Environment/Walls" index="22" instance=ExtResource("5_7h58o")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2)
 
-[node name="Door_A_Decorated" parent="Environment/Walls" index="23" instance=ExtResource("6_y22a0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80013955, 0, 2)
-
 [node name="Coin_A" parent="Environment/Items" index="0" instance=ExtResource("4_qx8f8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36770284, -2.0806599)
+transform = Transform3D(1, 0, 0, 0, 0.20423976, 0.9789209, 0, -0.9789209, 0.20423976, -3.6608186, 1.1010444, -4.4928737)
 standardMaterial3D = ExtResource("5_l1mq6")
 
 [node name="Dummy_Base" parent="Environment/Decoration" index="0" instance=ExtResource("5_cny48")]
@@ -237,6 +235,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2067966, 2.3841858e-07, -5.
 
 [node name="Workbench_Decorated" parent="Environment/Decoration" index="3" instance=ExtResource("11_qv2or")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8018835, -0.0012205839, -4.9999995)
+
+[node name="Goals" type="Node3D" parent="Environment" index="6"]
+
+[node name="Door 1" type="Node3D" parent="Environment/Goals" index="0"]
+
+[node name="Door_A_Decorated" parent="Environment/Goals/Door 1" index="0" instance=ExtResource("6_y22a0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80013955, 0, 2)
+is_locked = true
+
+[node name="Pallet_Small" parent="Environment/Goals/Door 1" index="1" node_paths=PackedStringArray("door") instance=ExtResource("13_hqy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1134453, 0, 0.90396786)
+door = NodePath("../Door_A_Decorated")
+
+[node name="Pallet_Small2" parent="Environment/Goals/Door 1" index="2" node_paths=PackedStringArray("door") instance=ExtResource("13_hqy04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93612, 0, 3.0986276)
+door = NodePath("../Door_A_Decorated")
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_e4dcw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

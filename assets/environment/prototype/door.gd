@@ -2,11 +2,14 @@ extends Node3D
 class_name Door
 
 @export var speed := 1.5
+@export var is_locked := false
+@export var number_required := 1
 
 var in_range := false
 var is_open := false
 var interact_door := false
 var elapsed := 0.0
+var count := 0
 
 
 func _process(delta: float) -> void:
@@ -33,5 +36,10 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func door_interact() -> void:
-	if in_range and not interact_door:
+	if in_range and not interact_door and not is_locked:
+		interact_door = true
+
+
+func close_door() -> void:
+	if is_open:
 		interact_door = true
