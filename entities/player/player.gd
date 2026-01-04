@@ -14,8 +14,10 @@ const JUMP_VELOCITY = 4.5
 
 @export var reticle: ColorRect
 
-@export var pew: Pew
+#@export var pew: Pew
+@export var gun_pistol: GunPistol
 var weapon: Weapon
+
 @export var ammo_label: RichTextLabel
 @export var shotTimer: Timer
 
@@ -23,8 +25,9 @@ var weapon: Weapon
 
 @export var item_slot: Node3D
 
-@export var throw_strength: int = 3
+@export var throw_strength: int = 4
 @export var camera: Camera3D
+#@export var player_skin: PlayerSkin
 
 var is_paused := false
 var invert := -1
@@ -127,16 +130,18 @@ func _process_shot() -> void:
 func shoot() -> void:
 	if shotRaycast.is_colliding():
 		var target = shotRaycast.get_collider() as Node3D # A CollisionObject2D.
-		#var shape_id = shotRaycast.get_collider_shape() # The shape index in the collider.
-		#var owner_id = target.shape_find_owner(shape_id) # The owner ID in the collider.
-		#var shape = target.shape_owner_get_owner(owner_id)
+		var shape_id = shotRaycast.get_collider_shape() # The shape index in the collider.
+		var owner_id = target.shape_find_owner(shape_id) # The owner ID in the collider.
+		var shape = target.shape_owner_get_owner(owner_id)
 		#print(shape.name)
-		
-		if target.is_in_group("enemy_hitboxes"):
+		if target.is_in_group("enemies"):
+			if target.has_method("take_damage"):
+				target.call("take_damage", 1, shape)
+		elif target.get_parent().is_in_group("enemies"):
 			var parent = target.get_parent()
 			if parent:
 				if parent.has_method("take_damage"):
-					parent.call("take_damage", 1)
+					parent.call("take_damage", 1, shape)
 	weapon.shoot_animation()
 
 func _process_rayCast() -> void:
@@ -144,7 +149,9 @@ func _process_rayCast() -> void:
 		if shotRaycast.is_colliding():
 			var target = shotRaycast.get_collider()
 			if target:
-				if target.is_in_group("enemy_hitboxes"):
+				if target.is_in_group("enemies"):
+					reticle.color = Color(255,0,0)
+				elif target.get_parent().is_in_group("enemies"):
 					reticle.color = Color(255,0,0)
 				else:
 					reticle.color = Color(255,255,255)
@@ -154,25 +161,36 @@ func _process_rayCast() -> void:
 		if itemRaycast.is_colliding():
 			var target = itemRaycast.get_collider()
 			if target:
-				var obj = target.get_parent() as Item
-				if items_in_range.has(obj):
-					reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-					if Input.is_action_just_pressed("shoot"):
-						if item_slot.get_child_count() > 0:
-							drop_item()
-						if obj.get_parent():
-							obj.get_parent().remove_child(obj)
-						item_slot.add_child(obj)
-						obj.position = Vector3.ZERO
-						obj.rotation = Vector3.ZERO
-						
-						if target is RigidBody3D:
-							target.freeze = true
-							target.position = Vector3.ZERO
-							target.rotation = Vector3.ZERO
-						
-						obj.set_monitoring(false)
-						obj.set_z_scale(true)
+				if target.get_parent() is Item:
+					var obj = target.get_parent() as Item
+					if items_in_range.has(obj):
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+						if Input.is_action_just_pressed("shoot"):
+							if item_slot.get_child_count() > 0:
+								drop_item()
+							if obj.get_parent():
+								obj.get_parent().remove_child(obj)
+							item_slot.add_child(obj)
+							obj.position = Vector3.ZERO
+							obj.rotation = Vector3.ZERO
+							
+							if target is RigidBody3D:
+								target.freeze = true
+								target.position = Vector3.ZERO
+								target.rotation = Vector3.ZERO
+							
+							obj.set_monitoring(false)
+							obj.set_z_scale(true)
+					else:
+						reticle.color = Color(255,255,255)
+				elif target.get_parent() is Door:
+					var door = target.get_parent() as Door
+					if door.in_range:
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+					else:
+						reticle.color = Color(255,255,255)
+					if Input.is_action_just_pressed("interact"):
+						door.door_interact()
 				else:
 					reticle.color = Color(255,255,255)
 			else:
@@ -185,15 +203,19 @@ func _process_draw_weapon() -> void:
 	if Input.is_action_just_pressed("draw_weapon_1"):
 		if weapon:
 			weapon = null
-			pew.hide()
+			#pew.hide()
+			gun_pistol.hide()
 			ammo_label.hide()
 			reticle.color = Color(255,255,255)
 		else:
-			weapon = pew
-			pew.show()
+			#weapon = pew
+			weapon = gun_pistol
+			#pew.show()
+			gun_pistol.show()
 			ammo_label.show()
 			if item_slot.get_child_count() > 0:
 				drop_item()
+			#player_skin.aiming_animation()
 
 func _physics_logic() -> void:
 	for i in get_slide_collision_count():

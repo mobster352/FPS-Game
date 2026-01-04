@@ -1,111 +1,47 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl2tap3b4bh4i"]
+[gd_scene load_steps=5 format=3 uid="uid://dbylqid1806nq"]
 
-[ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="1_hjwoo"]
-[ext_resource type="PackedScene" uid="uid://cluhuyjg8gco4" path="res://entities/enemy/enemy.tscn" id="2_vfqff"]
-[ext_resource type="PackedScene" uid="uid://cct1cty0q7mys" path="res://assets/items/box.tscn" id="3_alcuw"]
-[ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="4_3dj58"]
-[ext_resource type="Texture2D" uid="uid://cstlp0qnxncv0" path="res://assets/kaykit/Dummy_prototypebits_texture.png" id="4_78a7o"]
-[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a_2.tscn" id="5_xafsa"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hjwoo"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
 [sub_resource type="Sky" id="Sky_vfqff"]
-sky_material = SubResource("ProceduralSkyMaterial_hjwoo")
+sky_material = SubResource("ProceduralSkyMaterial_xafjm")
 
-[sub_resource type="Environment" id="Environment_alcuw"]
+[sub_resource type="Environment" id="Environment_hjwoo"]
 background_mode = 2
+background_energy_multiplier = 1.25
 sky = SubResource("Sky_vfqff")
 tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78a7o"]
-albedo_texture = ExtResource("4_78a7o")
-z_clip_scale = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32bfo"]
-albedo_texture = ExtResource("4_78a7o")
-z_clip_scale = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntmsj"]
-albedo_texture = ExtResource("4_78a7o")
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_78a7o"]
-vertices = PackedVector3Array(-0.75, 0.02, -4.25, 0, 0.02, -4.25, 0, 0.02, -4.5, -4.5, 0.02, -4.5, -1.25, 0.02, -1.75, -4.5, 0.02, 4.5, 0, 0.02, 4.5, -1.5, 0.02, -3.25, 0, 0.02, -1, 1, 0.02, -4.25, 4.5, 0.02, -4.5, 1.75, 0.02, -1.75, 4.5, 0.02, 4.5, 1.75, 0.02, -3.5, -0.25, 0.84, -2.25, 0.75, 0.84, -2.25, 0.5, 0.84, -3.25, -0.25, 0.84, -3.25)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 5, 3), PackedInt32Array(3, 0, 7), PackedInt32Array(3, 7, 4), PackedInt32Array(4, 8, 6), PackedInt32Array(1, 2, 9), PackedInt32Array(9, 2, 10), PackedInt32Array(6, 11, 12), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 9, 10), PackedInt32Array(11, 13, 10), PackedInt32Array(6, 8, 11), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15)]
-cell_height = 0.01
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 
 [node name="Level" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_alcuw")
+environment = SubResource("Environment_hjwoo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Entities" type="Node3D" parent="."]
-
-[node name="Player" parent="Entities" instance=ExtResource("1_hjwoo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.874112, 0, -7.479412)
-
-[node name="Enemy" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.605377, 0, 0.795939, 0, 1, 0, -0.795939, 0, -0.605377, -2, 0, 3)
-
-[node name="Enemy4" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 2.71515, 0, 3.45431)
-
-[node name="Enemy5" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 2.1986268, 0, 0.63114166)
-
-[node name="Enemy6" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 0.6853173, 0, -0.73163414)
-
-[node name="Enemy7" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 2.6286614, 0, -2.8749132)
-
-[node name="Enemy8" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, -2.5789106, 0, 0.97025204)
-
-[node name="Enemy9" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, -2.886067, 0, -2.6607776)
-
-[node name="Enemy10" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, -0.477911, 0, 1.0068235)
-
-[node name="Enemy11" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 3.4522252, 0, 1.4579101)
-
-[node name="Enemy12" parent="Entities" instance=ExtResource("2_vfqff")]
-transform = Transform3D(-0.076161265, 0.004694919, -0.99708414, 0.00035757487, 0.999989, 0.00468128, 0.9970951, 0, -0.07616211, 3.0191712, 0, -0.9601877)
-
 [node name="Environment" type="Node3D" parent="."]
 
-[node name="Coin_A" parent="Environment" instance=ExtResource("4_3dj58")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.298, 0.24599051, 1.375)
-standardMaterial3D = SubResource("StandardMaterial3D_78a7o")
+[node name="World" type="StaticBody3D" parent="Environment"]
 
-[node name="Coin_A2" parent="Environment" instance=ExtResource("4_3dj58")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3499019, 0.24599051, 0.6321411)
-standardMaterial3D = SubResource("StandardMaterial3D_32bfo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/World"]
+shape = SubResource("WorldBoundaryShape3D_xafjm")
 
-[node name="Coin_A3" parent="Environment" instance=ExtResource("4_3dj58")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8060973, 0.24599051, 0.57117844)
-standardMaterial3D = SubResource("StandardMaterial3D_ntmsj")
+[node name="Ceiling" type="Node3D" parent="Environment"]
 
-[node name="Box" parent="Environment" instance=ExtResource("3_alcuw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.914212, 0.56462854, -7.617996)
+[node name="Floor" type="Node3D" parent="Environment"]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
-navigation_mesh = SubResource("NavigationMesh_78a7o")
+[node name="Walls" type="Node3D" parent="Environment"]
 
-[node name="floor" type="CSGBox3D" parent="Environment/NavigationRegion3D"]
-use_collision = true
-size = Vector3(20, 0, 20)
+[node name="Items" type="Node3D" parent="Environment"]
 
-[node name="table_round_A2" parent="Environment/NavigationRegion3D" instance=ExtResource("5_xafsa")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.196896, 0.184194, -2.69565)
+[node name="Decoration" type="Node3D" parent="Environment"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1.0000002, 0, -1.0000002, -4.37114e-08, 0, 9.506, 0.473)
+[node name="Entities" type="Node3D" parent="."]

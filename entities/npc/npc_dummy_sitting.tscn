@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxnl4jurpfddl"]
+
+[ext_resource type="PackedScene" uid="uid://btlcpec1pk0f4" path="res://entities/enemy/dummy.tscn" id="1_svb3k"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr2yx"]
+animation = &"Sit_Chair_Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wfx4m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kfvlc"]
+states/Sit_Chair_Idle/node = SubResource("AnimationNodeAnimation_kr2yx")
+states/Sit_Chair_Idle/position = Vector2(450, 100)
+transitions = ["Start", "Sit_Chair_Idle", SubResource("AnimationNodeStateMachineTransition_wfx4m")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k0m3b"]
+graph_offset = Vector2(-736.81006, 34.90526)
+nodes/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_kfvlc")
+nodes/MovementStateMachine/position = Vector2(-240, 140)
+node_connections = [&"output", 0, &"MovementStateMachine"]
+
+[node name="NpcDummySitting" type="Node3D"]
+
+[node name="Dummy" parent="." node_paths=PackedStringArray("animationTree", "animationPlayer") instance=ExtResource("1_svb3k")]
+animationTree = NodePath("AnimationTree")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Skeleton3D" parent="Dummy/Rig" index="0"]
+bones/0/rotation = Quaternion(0, 1.19209275e-07, 0, 1)
+bones/1/position = Vector3(0, 0.40566343, 0)
+bones/1/rotation = Quaternion(0, -1.19209275e-07, 0, 1)
+bones/2/rotation = Quaternion(0, 7.1054274e-15, 0, 1)
+bones/3/rotation = Quaternion(0, -4.2351647e-22, 0, 1)
+bones/4/position = Vector3(0.21200736, 0.13413227, 8.487841e-08)
+bones/4/rotation = Quaternion(-0.5141243, -0.4854648, -0.4854649, 0.51412445)
+bones/5/rotation = Quaternion(1.4945549e-09, -6.2281146e-08, -0.05529649, 0.99846995)
+bones/7/rotation = Quaternion(-2.6429235e-18, -1.6690676e-16, 1.8626418e-09, 1)
+bones/8/position = Vector3(5.138494e-10, 0.096125126, -0.057500005)
+bones/8/rotation = Quaternion(1.6806132e-09, 1.6806123e-09, -0.7071069, 0.70710665)
+bones/9/position = Vector3(-0.21200736, 0.13413227, 8.487841e-08)
+bones/9/rotation = Quaternion(-0.5141243, 0.4854648, 0.4854649, 0.51412445)
+bones/10/rotation = Quaternion(1.4945549e-09, 6.2281146e-08, 0.05529649, 0.99846995)
+bones/12/rotation = Quaternion(-2.6429235e-18, 1.6690676e-16, -1.8626418e-09, 1)
+bones/13/position = Vector3(-5.138494e-10, 0.096125126, -0.057500005)
+bones/13/rotation = Quaternion(1.6805931e-09, -1.6805922e-09, 0.7071069, 0.70710665)
+bones/14/rotation = Quaternion(0, 4.2351647e-22, 0, 1)
+bones/15/position = Vector3(0.17094506, 0.11358726, 1.3923272e-08)
+bones/15/rotation = Quaternion(0.9998491, -6.6969065e-08, -7.698225e-08, 0.01737395)
+bones/16/rotation = Quaternion(0.10622716, 6.8652234e-08, -7.3771346e-08, 0.99434185)
+bones/17/rotation = Quaternion(-0.45524007, 7.683185e-10, 1.5024094e-09, 0.89036876)
+bones/18/rotation = Quaternion(-3.0479264e-08, 0.9203548, -0.39108446, 6.948485e-08)
+bones/19/position = Vector3(-0.17094506, 0.11358726, 1.3923272e-08)
+bones/19/rotation = Quaternion(0.9998491, 6.6969065e-08, 7.698225e-08, 0.01737395)
+bones/20/rotation = Quaternion(0.10622716, -6.865225e-08, 7.3771346e-08, 0.99434185)
+bones/21/rotation = Quaternion(-0.45524007, -7.683188e-10, -1.5023961e-09, 0.89036876)
+bones/22/rotation = Quaternion(3.0479253e-08, 0.9203548, -0.39108446, -6.948484e-08)
+bones/23/position = Vector3(0.1709449, 0.29231027, 0.57581246)
+bones/23/rotation = Quaternion(0.70710677, -2.2930233e-07, -4.6055167e-08, 0.70710677)
+bones/24/position = Vector3(0.17094497, 0.025990263, 0.24578938)
+bones/24/rotation = Quaternion(-0.70710677, -7.05285e-08, -7.052848e-08, 0.70710677)
+bones/25/rotation = Quaternion(7.1054375e-15, -1.3832117e-22, 1, -1.1600865e-34)
+bones/26/position = Vector3(3.7529446e-09, 0.21343614, 0)
+bones/26/rotation = Quaternion(-1.0403526e-07, 0.39108434, 0.92035484, -2.9526056e-08)
+bones/27/position = Vector3(8.589882e-09, 0.16565004, -5.0913656e-09)
+bones/28/rotation = Quaternion(1, -1.3322704e-15, 1.947072e-07, 0)
+bones/30/position = Vector3(-0.17094517, 0.29231027, 0.57581234)
+bones/30/rotation = Quaternion(0.70710677, -3.8238497e-08, 1.4500866e-07, 0.70710677)
+bones/31/position = Vector3(-0.1709451, 0.025990263, 0.24578929)
+bones/31/rotation = Quaternion(-0.70710677, -7.052851e-08, -7.052849e-08, 0.70710677)
+bones/32/position = Vector3(1.9458106e-08, 0.36283267, 2.4286129e-15)
+bones/32/rotation = Quaternion(7.1054375e-15, -1.3832107e-22, 1, -1.1600871e-34)
+bones/33/position = Vector3(3.7529415e-09, 0.21343614, 0)
+bones/33/rotation = Quaternion(-1.0403522e-07, 0.39108434, 0.92035484, -2.9526062e-08)
+bones/34/position = Vector3(8.589886e-09, 0.16565004, 1.3660824e-09)
+bones/35/rotation = Quaternion(1, 4.4408654e-16, 1.947072e-07, 0)
+bones/37/rotation = Quaternion(-0.70710677, -7.279511e-08, -7.279509e-08, 0.70710677)
+bones/38/position = Vector3(0.71318156, 1.1067611, 2.5491414e-07)
+bones/38/rotation = Quaternion(-0.49999994, -0.5, -0.50000006, 0.5)
+bones/39/rotation = Quaternion(-0.70710677, -7.279511e-08, -7.279509e-08, 0.70710677)
+bones/40/position = Vector3(-0.71318156, 1.1067611, -8.515731e-08)
+bones/40/rotation = Quaternion(-0.50000006, 0.49999994, 0.5, 0.5)
+
+[node name="head" parent="Dummy/Rig/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 1.4210855e-14, 0, 0.99999994, 0, -1.4210855e-14, 0, 1, 0, 1.2414254, 0)
+
+[node name="chest" parent="Dummy/Rig/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 1.4210854e-14, 0, 0.99999994, 0, -1.4210854e-14, 0, 1, 0, 0.9726289, 0)
+
+[node name="BoneAttachment3D" parent="Dummy/Rig/Skeleton3D" index="8"]
+transform = Transform3D(-0.99999964, 3.799795e-07, 6.76825e-08, 1.1172336e-07, -1.494363e-07, 0.9999999, 3.9115534e-07, 0.9999995, 1.7284917e-07, -0.88313246, 1.0492611, 9.713093e-08)
+visible = false
+
+[node name="AnimationTree" type="AnimationTree" parent="Dummy"]
+tree_root = SubResource("AnimationNodeBlendTree_k0m3b")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Dummy"]
+[editable path="Dummy/Rig/Skeleton3D/BoneAttachment3D/pointer/pew"]

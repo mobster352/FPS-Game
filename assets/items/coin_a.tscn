@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://dpndx244uxnbh"]
+[gd_scene load_steps=10 format=4 uid="uid://dpndx244uxnbh"]
 
-[ext_resource type="PackedScene" uid="uid://cnv1awokbjf51" path="res://assets/kaykit/Coin_A.gltf" id="1_vd16q"]
+[ext_resource type="PackedScene" uid="uid://cnv1awokbjf51" path="res://assets/kaykit/misc/Coin_A.gltf" id="1_vd16q"]
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="2_hvsjc"]
+[ext_resource type="Material" uid="uid://b6rk7v1mrkar8" path="res://assets/items/prototype_material.tres" id="3_i1qav"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asuwi"]
 resource_name = "prototype_texture"
@@ -42,7 +43,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nr58h")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hvsjc"]
-rough = true
 bounce = 0.25
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hvsjc"]
@@ -69,6 +69,7 @@ physics_material_override = SubResource("PhysicsMaterial_hvsjc")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ka23m")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_i1qav")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body" index="1"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

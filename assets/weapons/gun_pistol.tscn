@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://c2loq3sxxai7g"]
+
+[ext_resource type="PackedScene" uid="uid://dygfc7byrjxev" path="res://assets/kaykit/prototype/Gun_Pistol.gltf" id="1_62x6k"]
+[ext_resource type="Script" uid="uid://jkpi6w0tbg3i" path="res://assets/weapons/gun.gd" id="2_ka14h"]
+[ext_resource type="Texture2D" uid="uid://dc8ip7ta33dki" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="3_ka14h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6044r"]
+albedo_texture = ExtResource("3_ka14h")
+use_z_clip_scale = true
+z_clip_scale = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ka14h"]
+albedo_texture = ExtResource("3_ka14h")
+use_z_clip_scale = true
+z_clip_scale = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6044r"]
+angle_min = -80.0
+angle_max = 80.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_hv23d"]
+colors = PackedColorArray(1, 0.798472, 0.370863, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bcnw0"]
+gradient = SubResource("Gradient_hv23d")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qka00"]
+transparency = 1
+albedo_texture = SubResource("GradientTexture2D_bcnw0")
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 16.0
+emission_texture = SubResource("GradientTexture2D_bcnw0")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ondu3"]
+material = SubResource("StandardMaterial3D_qka00")
+size = Vector2(0.3, 0.3)
+
+[node name="Gun_Pistol" node_paths=PackedStringArray("light", "emitter") instance=ExtResource("1_62x6k")]
+script = ExtResource("2_ka14h")
+light = NodePath("MuzzleFlash/OmniLight3D")
+emitter = NodePath("MuzzleFlash/GPUParticles3D")
+
+[node name="Gun_Pistol" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6044r")
+
+[node name="Gun_Pistol_Magazine" parent="Gun_Pistol" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ka14h")
+
+[node name="MuzzleFlash" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003068041, 0.13505591, 0.7447735)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MuzzleFlash" index="0"]
+visible = false
+light_color = Color(0.962964, 0.881282, 0.83919, 1)
+omni_range = 2.5
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MuzzleFlash" index="1"]
+emitting = false
+lifetime = 0.05
+one_shot = true
+explosiveness = 0.9
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_6044r")
+draw_pass_1 = SubResource("QuadMesh_ondu3")

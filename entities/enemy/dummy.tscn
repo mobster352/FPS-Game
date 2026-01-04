@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://btlcpec1pk0f4"]
+[gd_scene load_steps=9 format=3 uid="uid://btlcpec1pk0f4"]
 
-[ext_resource type="PackedScene" uid="uid://dkabcoifiupav" path="res://assets/kaykit/Dummy.glb" id="1_026v1"]
+[ext_resource type="PackedScene" uid="uid://dkabcoifiupav" path="res://assets/kaykit/misc/Dummy.glb" id="1_026v1"]
 [ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="2_ay4of"]
 [ext_resource type="Script" uid="uid://7iy6573sjk0f" path="res://entities/enemy/dummy.gd" id="2_qj7bw"]
 [ext_resource type="Material" uid="uid://dpxgsuoxjgihj" path="res://assets/weapons/pew_enemy.tres" id="3_qj7bw"]
+[ext_resource type="PackedScene" uid="uid://c2loq3sxxai7g" path="res://assets/weapons/gun_pistol.tscn" id="5_kauxl"]
+[ext_resource type="Texture2D" uid="uid://dc8ip7ta33dki" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="6_2vm3u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kauxl"]
+albedo_texture = ExtResource("6_2vm3u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_un4hm"]
+albedo_texture = ExtResource("6_2vm3u")
 
 [node name="Dummy" instance=ExtResource("1_026v1")]
 script = ExtResource("2_qj7bw")
@@ -79,6 +87,7 @@ transform = Transform3D(0.99619615, 0, 0.087155744, 0, 1.0000013, 0, -0.08715586
 
 [node name="pew" parent="Rig/Skeleton3D/BoneAttachment3D/pointer" index="0" instance=ExtResource("2_ay4of")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+visible = false
 
 [node name="pew" parent="Rig/Skeleton3D/BoneAttachment3D/pointer/pew" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
@@ -93,10 +102,20 @@ surface_material_override/0 = ExtResource("3_qj7bw")
 [node name="pewtrigger" parent="Rig/Skeleton3D/BoneAttachment3D/pointer/pew/pew" index="2"]
 surface_material_override/0 = ExtResource("3_qj7bw")
 
-[node name="ShotRaycast" type="RayCast3D" parent="Rig/Skeleton3D/BoneAttachment3D/pointer" index="1"]
+[node name="Gun_Pistol" parent="Rig/Skeleton3D/BoneAttachment3D/pointer" index="1" instance=ExtResource("5_kauxl")]
+transform = Transform3D(0.00015436113, 0.008917229, 0.99996024, 0.015927969, 0.9998338, -0.008918557, -0.9998731, 0.0159287, 1.2300909e-05, -0.1559664, 0.071588874, 0.0035512447)
+
+[node name="Gun_Pistol" parent="Rig/Skeleton3D/BoneAttachment3D/pointer/Gun_Pistol" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kauxl")
+
+[node name="Gun_Pistol_Magazine" parent="Rig/Skeleton3D/BoneAttachment3D/pointer/Gun_Pistol/Gun_Pistol" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_un4hm")
+
+[node name="ShotRaycast" type="RayCast3D" parent="Rig/Skeleton3D/BoneAttachment3D/pointer" index="2"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 target_position = Vector3(0, 0, 100)
 collision_mask = 2
 hit_from_inside = true
 
 [editable path="Rig/Skeleton3D/BoneAttachment3D/pointer/pew"]
+[editable path="Rig/Skeleton3D/BoneAttachment3D/pointer/Gun_Pistol"]

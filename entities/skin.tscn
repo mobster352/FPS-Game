@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqhna6sp0j81h"]
+[gd_scene load_steps=6 format=3 uid="uid://cqhna6sp0j81h"]
+
+[ext_resource type="PackedScene" uid="uid://bxl5a26rxyixl" path="res://entities/player/player_dummy.tscn" id="1_ksru8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_symyc"]
 
@@ -15,6 +17,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_symyc")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_abrql")
@@ -23,6 +26,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_abrql")
 transform = Transform3D(0.867106, 0, 0, 0, 1.02591, 0, 0, 0, 1.00026, 0, 0.318727, 0.0828568)
 mesh = SubResource("SphereMesh_ldbi2")
 surface_material_override/0 = SubResource("StandardMaterial3D_ksru8")
+
+[node name="PlayerDummy" parent="." instance=ExtResource("1_ksru8")]
 
 [node name="pointer" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85434, 0)

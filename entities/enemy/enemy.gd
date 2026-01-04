@@ -1,14 +1,14 @@
 extends CharacterBody3D
 
 @export var dummy: Dummy
-@export var hitbox: CollisionShape3D
 @export var enemyBody: CollisionShape3D
-#@export var detectionArea: Area3D
 @export var shootTimer: Timer
 @export var ray: RayCast3D
 @export var weapon: Weapon
 @export var navigation_agent: NavigationAgent3D
 @export var walkTimer: Timer
+@export var loot: Node3D
+@export var throw_strength := 4
 
 @onready var player: Player
 
@@ -16,10 +16,16 @@ var isAlive: bool
 var health := 3
 var player_detected := false
 
+var item: Item
+
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	isAlive = true
-
+	item = preload("res://assets/items/coin_a.tscn").instantiate()
+	var material = StandardMaterial3D.new()
+	material.albedo_texture = preload("res://assets/kaykit/misc/Dummy_prototypebits_texture.png")
+	item.standardMaterial3D = material
+	
 
 func _process(_delta: float) -> void:
 	if shootTimer.time_left > 0:
@@ -42,18 +48,26 @@ func _physics_process(delta: float) -> void:
 				if walkTimer.time_left <= 0:
 					walkTimer.start()
 
-func take_damage(damage:int) -> void:
+func take_damage(damage:int, _target:CollisionShape3D) -> void:
 	health -= damage
 	if health <= 0:
 		#queue_free()
 		dummy.death_animation()
 		enemyBody.disabled = true
-		hitbox.disabled = true
 		shootTimer.stop()
 		walkTimer.stop()
 		isAlive = false
+		spawn_coin()
 	else:
 		dummy.hit_animation()
+
+
+func spawn_coin() -> void:
+	loot.add_child(item)
+	var forward = global_transform.basis.z.normalized()
+	for c in item.get_children():
+		if c is RigidBody3D:
+			c.apply_central_impulse(forward * (throw_strength / c.mass))
 
 
 func _on_shoot_timer_timeout() -> void:
@@ -91,7 +105,4 @@ func look_at_target(pos: Vector3) -> void:
 func _on_walk_timer_timeout() -> void:
 	if not player_detected:
 		walkTimer.stop()
-		var random_position := Vector3.ZERO
-		random_position.x = randf_range(-5.0,5.0)
-		random_position.z = randf_range(-5.0,5.0)
-		navigation_agent.set_target_position(random_position)
+		navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))

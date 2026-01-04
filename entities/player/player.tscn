@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=11 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://c2loq3sxxai7g" path="res://assets/weapons/gun_pistol.tscn" id="3_26q78"]
+[ext_resource type="Script" uid="uid://cwigg8qu0824m" path="res://entities/player/player_skin.gd" id="3_bectd"]
 [ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="3_sglur"]
 [ext_resource type="Script" uid="uid://5kjon8bbiwui" path="res://entities/player/ui.gd" id="4_bls4j"]
 [ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
@@ -10,7 +12,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "pew", "ammo_label", "shotTimer", "ui", "item_slot", "camera") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
@@ -18,25 +20,30 @@ pointer_slot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
 itemRaycast = NodePath("skin/pointer/ItemRaycast")
 reticle = NodePath("UI/ReticleMarginContainer/Reticle")
-pew = NodePath("skin/pointer/pew")
+gun_pistol = NodePath("skin/pointer/Gun_Pistol")
 ammo_label = NodePath("UI/AmmoMarginContainer/AmmoLabel")
 shotTimer = NodePath("Timers/ShotTimer")
 ui = NodePath("UI")
 item_slot = NodePath("skin/pointer/ItemSlot")
-throw_strength = 4
 camera = NodePath("skin/pointer/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_sfv1e")
 
-[node name="skin" parent="." instance=ExtResource("1_symyc")]
+[node name="skin" parent="." node_paths=PackedStringArray("animationTree", "animationPlayer") instance=ExtResource("1_symyc")]
+script = ExtResource("3_bectd")
+animationTree = NodePath("PlayerDummy/AnimationTree")
+animationPlayer = NodePath("PlayerDummy/AnimationPlayer")
 
 [node name="MeshInstance3D" parent="skin/body" index="0"]
 layers = 2
 
-[node name="pointer" parent="skin" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33498, 0.4942)
+[node name="PlayerDummy" parent="skin" index="1"]
+visible = false
+
+[node name="pointer" parent="skin" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.422, 0)
 
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
@@ -46,19 +53,21 @@ cull_mask = 1048573
 transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.172, -0.366, 0.751)
 visible = false
 
-[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
+[node name="Gun_Pistol" parent="skin/pointer" index="2" instance=ExtResource("3_26q78")]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999996, 0, 0, 0, 0.99999994, -0.385, -0.473, 0.4)
+visible = false
+
+[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, 1000)
 collision_mask = 5
-collide_with_areas = true
-collide_with_bodies = false
 
-[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
+[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="4"]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, 1000)
 collision_mask = 9
 
-[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4"]
+[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.3, 0.989)
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay")]
