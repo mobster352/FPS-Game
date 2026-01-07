@@ -72,9 +72,10 @@ func take_damage(damage:int, _target:CollisionShape3D) -> void:
 func spawn_coin() -> void:
 	loot.add_child(item)
 	var forward = global_transform.basis.z.normalized()
+	var up = global_transform.basis.y.normalized()
 	for c in item.get_children():
 		if c is RigidBody3D:
-			c.apply_central_impulse(forward * (throw_strength / c.mass))
+			c.apply_central_impulse(forward + (up * (throw_strength / c.mass)))
 
 
 func _on_shoot_timer_timeout() -> void:

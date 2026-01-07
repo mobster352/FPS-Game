@@ -8,7 +8,7 @@ size = Vector3(1, 1.055542, 0.33276367)
 [sub_resource type="SphereShape3D" id="SphereShape3D_mah83"]
 radius = 1.5
 
-[node name="Item" type="Node3D"]
+[node name="Item" type="Node3D" groups=["items"]]
 script = ExtResource("1_w3e1j")
 
 [node name="body" type="RigidBody3D" parent="."]

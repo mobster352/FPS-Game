@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ddonkbdmc5uhv"]
+
+[node name="MarginContainer" type="MarginContainer"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Table 1: Pep"

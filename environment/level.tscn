@@ -25,6 +25,7 @@ script = ExtResource("1_vfqff")
 sun_pivot = NodePath("SunPivot")
 sun = NodePath("SunPivot/DirectionalLight3D")
 world_environment = NodePath("WorldEnvironment")
+day_length_minutes = 40.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vfqff")

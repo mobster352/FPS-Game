@@ -11,13 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
-radius = 0.6064453
-height = 2.4829102
+radius = 0.47509766
+height = 2.1817627
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
+JUMP_VELOCITY = 5.0
 pointer_slot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
 itemRaycast = NodePath("skin/pointer/ItemRaycast")
@@ -30,7 +31,7 @@ item_slot = NodePath("skin/pointer/ItemSlot")
 camera = NodePath("skin/pointer/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2414551, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0908813, 0)
 shape = SubResource("CapsuleShape3D_sfv1e")
 
 [node name="skin" parent="." node_paths=PackedStringArray("animationTree", "animationPlayer") instance=ExtResource("1_symyc")]
@@ -50,7 +51,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.422, 0)
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 cull_mask = 1048573
-fov = 80.0
 
 [node name="pew" parent="skin/pointer" index="1" instance=ExtResource("3_sglur")]
 transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.172, -0.366, 0.751)

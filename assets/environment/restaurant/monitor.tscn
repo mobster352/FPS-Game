@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfqpenmvwlnw6"]
+
+[ext_resource type="Script" uid="uid://dvjo82hfu0jbl" path="res://assets/environment/restaurant/monitor.gd" id="1_0x8q3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gy7ns"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0x8q3"]
+viewport_path = NodePath("CSGMesh3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atatw"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_0x8q3")
+
+[node name="Monitor" type="Node3D" node_paths=PackedStringArray("v_box")]
+script = ExtResource("1_0x8q3")
+v_box = NodePath("CSGMesh3D/SubViewport/GUI/VBoxContainer")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_gy7ns")
+material = SubResource("StandardMaterial3D_atatw")
+
+[node name="SubViewport" type="SubViewport" parent="CSGMesh3D"]
+own_world_3d = true
+size = Vector2i(1024, 512)
+
+[node name="GUI" type="Control" parent="CSGMesh3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CSGMesh3D/SubViewport/GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

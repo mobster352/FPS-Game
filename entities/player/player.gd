@@ -43,7 +43,7 @@ var ammo_reserves: int:
 		ammo_reserves = value
 		ui.update_ammo(ammo_count, value)
 
-var items_in_range: Array[Node3D]
+var items_in_range: Array[Item]
 
 var max_hp := 10
 var hp := 10:
@@ -165,9 +165,9 @@ func _process_rayCast() -> void:
 			if target:
 				if target.get_parent() is Item:
 					var obj = target.get_parent() as Item
-					if items_in_range.has(obj):
+					if items_in_range.has(obj) and not obj.disabled:
 						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("shoot"):
+						if Input.is_action_just_pressed("interact"):
 							if item_slot.get_child_count() > 0:
 								drop_item()
 							if obj.get_parent():

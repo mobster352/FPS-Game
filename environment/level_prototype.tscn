@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ch6palebd5two"]
+[gd_scene load_steps=29 format=3 uid="uid://ch6palebd5two"]
 
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="1_yjup0"]
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="2_e4dcw"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://kvhd2v2ocjy1" path="res://assets/environment/city/road_straight.tscn" id="4_ev0hu"]
 [ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="4_qx8f8"]
 [ext_resource type="PackedScene" uid="uid://0nkm1q5qtcrl" path="res://assets/environment/prototype/wall.tscn" id="4_t0dy2"]
-[ext_resource type="NavigationMesh" uid="uid://bsb022rjh4rig" path="res://environment/level_prototype_nav_mesh.tres" id="4_x63et"]
 [ext_resource type="PackedScene" uid="uid://cghb3y2r3vfpb" path="res://assets/environment/prototype/wall_doorway.tscn" id="5_7h58o"]
 [ext_resource type="PackedScene" uid="uid://dmla2xeqaebbj" path="res://assets/environment/city/base.tscn" id="5_cb765"]
 [ext_resource type="PackedScene" uid="uid://bn1nnmveigfxq" path="res://assets/environment/prototype/dummy_base.tscn" id="5_cny48"]
@@ -26,6 +25,18 @@
 [ext_resource type="PackedScene" uid="uid://vpt84oiayql3" path="res://assets/environment/city/firehydrant.tscn" id="19_1ntup"]
 [ext_resource type="PackedScene" uid="uid://7tdbbai16mmq" path="res://assets/environment/city/bush.tscn" id="20_acoea"]
 [ext_resource type="PackedScene" uid="uid://c8de12s7t4gv7" path="res://assets/environment/city/car_taxi.tscn" id="26_hmoe1"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1ntup"]
+vertices = PackedVector3Array(-2.802794, 0.015959024, 9.496744, -2.802794, 0.015959024, 4.696744, -3.402794, 0.015959024, 4.396744, -9.402794, 0.015959024, 2.5967436, -9.402794, 0.015959024, 9.496744, -3.402794, 0.015959024, 2.5967436, 1.3972063, 0.015959024, 2.5967436, -0.40279388, 0.015959024, 2.5967436, -0.7027941, 0.015959024, 4.696744, 1.6972065, 0.015959024, 6.4967437, 9.497206, 0.015959024, 9.496744, 9.497206, 0.015959024, 6.4967437, -2.202794, 0.38595903, 2.8967438, -2.202794, 0.38595903, 3.4967437, -1.6027937, 0.38595903, 3.4967437, -1.6027937, 0.38595903, 2.8967438)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(2, 3, 5), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 10, 0), PackedInt32Array(8, 9, 1), PackedInt32Array(1, 9, 0), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
+cell_size = 0.3
+cell_height = 0.01
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_hmoe1"]
+vertices = PackedVector3Array(2.6, -1.98, 12.8983555, 2.6, -1.98, 13.798355, 5.3, -1.98, 13.798355, 5.3, -1.98, 12.8983555)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_size = 0.3
+cell_height = 0.01
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jgr34"]
 vertices = PackedVector3Array(-16.5, 0.109999985, -4.5, -16.5, 0.109999985, 4.5, 12.5, 0.109999985, 4.5, 12.5, 0.109999985, -4.5, -16.5, -0.02000001, 3.2142859, 12.5, -0.02000001, 3.2142859, -15.525, -0.030000031, -3.525, 11.505217, -0.030000031, -3.4772315)
@@ -141,7 +152,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 12)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 12)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment/Floor/Spawn Building" index="11"]
-navigation_mesh = ExtResource("4_x63et")
+navigation_mesh = SubResource("NavigationMesh_1ntup")
 
 [node name="Floor_Prototype10" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="0" instance=ExtResource("2_hwqnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
@@ -150,7 +161,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="Floor_Prototype12" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="2" instance=ExtResource("2_hwqnh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00016, 0.0021138191, 7.998432)
 
 [node name="Floor_Prototype13" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="3" instance=ExtResource("2_hwqnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
@@ -164,26 +175,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 [node name="Floor_Prototype8" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="6" instance=ExtResource("2_hwqnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
-[node name="Floor_Prototype9" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="7" instance=ExtResource("2_hwqnh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
-
-[node name="Floor_Prototype14" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="8" instance=ExtResource("2_hwqnh")]
+[node name="Floor_Prototype14" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="7" instance=ExtResource("2_hwqnh")]
 transform = Transform3D(0.999998, -0.0013729202, 0.0014680685, 0.0013738606, 0.99999887, -0.00064689433, -0.0014671884, 0.0006488877, 0.9999987, -8, 0, 4)
 
-[node name="Floor_Prototype15" parent="Environment/Floor/Spawn Building/NavigationRegion3D" index="9" instance=ExtResource("2_hwqnh")]
+[node name="Floor_Prototype9" parent="Environment/Floor/Spawn Building" index="12" instance=ExtResource("2_hwqnh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="Floor_Prototype15" parent="Environment/Floor/Spawn Building" index="13" instance=ExtResource("2_hwqnh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
 
-[node name="TopFloor" type="Node3D" parent="Environment/Floor/Spawn Building" index="12"]
+[node name="TopFloor" type="Node3D" parent="Environment/Floor/Spawn Building" index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -10)
 
 [node name="Floor_Prototype23" parent="Environment/Floor/Spawn Building/TopFloor" index="0" instance=ExtResource("2_hwqnh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.088047, -2.1173775, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 8.088, -3, 13.212404)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment/Floor/Spawn Building/TopFloor" index="1"]
-navigation_mesh = ExtResource("4_x63et")
+navigation_mesh = SubResource("NavigationMesh_hmoe1")
 
 [node name="Floor_Prototype22" parent="Environment/Floor/Spawn Building/TopFloor/NavigationRegion3D" index="0" instance=ExtResource("2_hwqnh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 4, -2, 13.298355)
 
 [node name="City" type="Node3D" parent="Environment/Floor" index="1"]
 
@@ -566,6 +577,8 @@ door = NodePath("../Door_A_Decorated")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93612, 0, 1.0986276)
 door = NodePath("../Door_A_Decorated")
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="Environment/Goals/Door 1/Pallet_Small2" index="1"]
+
 [node name="Door 2" type="Node3D" parent="Environment/Goals" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14)
 
@@ -575,7 +588,7 @@ is_locked = false
 number_required = 0
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_e4dcw")]
-transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, -1.2239191e-06, 0, 11)
+transform = Transform3D(-1, 0, -2.6226832e-07, 0, 1, 0, 2.6226832e-07, 0, -1, 7.5749886e-06, 0, 44.54926)
 
 [node name="car_taxi" parent="Entities" index="1" instance=ExtResource("26_hmoe1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 0.15, 24.5)
@@ -584,8 +597,14 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, 
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24, 0.15, 21.5)
 
 [node name="Enemy" parent="Entities" index="3" instance=ExtResource("14_w3o1y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.1265407, 3.2960317)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.0026743, 3.2960317)
 detection_radius = 10.0
+
+[node name="Enemy2" parent="Entities" index="4" instance=ExtResource("14_w3o1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.734942, 0.17135596, 7.723721)
+
+[node name="Enemy3" parent="Entities" index="5" instance=ExtResource("14_w3o1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0023365, 0.17939508, 4.789353)
 
 [node name="Camera3D" type="Camera3D" parent="." index="5"]
 transform = Transform3D(-1, -8.6673666e-08, -1.142004e-08, -6.181724e-08, 0.60867834, 0.793417, -6.181723e-08, 0.79341704, -0.6086783, 3, 7.285009, 2.5348763)

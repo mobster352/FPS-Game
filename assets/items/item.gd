@@ -7,6 +7,7 @@ var standardMaterial3D: StandardMaterial3D
 @export var albedo_texture: Texture2D
 
 @onready var player: Player
+var disabled := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
