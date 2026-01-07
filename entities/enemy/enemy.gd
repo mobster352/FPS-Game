@@ -8,7 +8,11 @@ extends CharacterBody3D
 @export var navigation_agent: NavigationAgent3D
 @export var walkTimer: Timer
 @export var loot: Node3D
-@export var throw_strength := 4
+@export var throw_strength := 8
+@export var walk_speed := 150.0
+@export var can_move := true
+@export var detection_area_collision : CollisionShape3D
+@export var detection_radius := 5.0
 
 @onready var player: Player
 
@@ -25,11 +29,13 @@ func _ready() -> void:
 	var material = StandardMaterial3D.new()
 	material.albedo_texture = preload("res://assets/kaykit/misc/Dummy_prototypebits_texture.png")
 	item.standardMaterial3D = material
+	var shape = detection_area_collision.shape as SphereShape3D
+	shape.radius = detection_radius
 	
 
 func _process(_delta: float) -> void:
 	if shootTimer.time_left > 0:
-		look_at_target(player.position)
+		look_at_target(player.global_position)
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +45,7 @@ func _physics_process(delta: float) -> void:
 			var local_destination = destination - global_position
 			var direction = local_destination.normalized()
 			if global_position.distance_to(navigation_agent.get_final_position()) > 0.5:
-				velocity = direction * 80.0 * delta
+				velocity = direction * walk_speed * delta
 				move_and_slide()
 				look_at_target(navigation_agent.get_next_path_position())
 				dummy.walk_animation()
@@ -50,17 +56,18 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(damage:int, _target:CollisionShape3D) -> void:
 	health -= damage
-	if health <= 0:
+	if health <= 0 and isAlive:
 		#queue_free()
-		dummy.death_animation()
 		enemyBody.disabled = true
+		#set_collision_layer_value(3, false)
+		#set_collision_mask_value(2, false)
 		shootTimer.stop()
 		walkTimer.stop()
 		isAlive = false
 		spawn_coin()
+		dummy.death_animation()
 	else:
 		dummy.hit_animation()
-
 
 func spawn_coin() -> void:
 	loot.add_child(item)
@@ -97,12 +104,12 @@ func _on_detection_area_body_exited(body: Node3D) -> void:
 
 
 func look_at_target(pos: Vector3) -> void:
-	var direction: Vector3 = position.direction_to(pos)
+	var direction: Vector3 = global_position.direction_to(pos)
 	var target: Basis = Basis.looking_at(direction, Vector3.UP, true)
 	basis = basis.slerp(target, 0.05).orthonormalized()
 
 
 func _on_walk_timer_timeout() -> void:
-	if not player_detected:
+	if not player_detected and can_move:
 		walkTimer.stop()
 		navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))

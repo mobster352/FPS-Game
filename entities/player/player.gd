@@ -4,7 +4,7 @@ class_name Player
 signal weapon_fired
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+@export var JUMP_VELOCITY := 6.0
 
 @export var mouse_sensitivity: float = 0.002
 @export var pointer_slot: Node3D
