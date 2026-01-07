@@ -2,15 +2,19 @@ extends Node3D
 class_name Item
 
 @export var area: Area3D
-@export var meshInstance: MeshInstance3D
-@export var standardMaterial3D: StandardMaterial3D
+@export var meshInstanceArray: Array[MeshInstance3D]
+var standardMaterial3D: StandardMaterial3D
+@export var albedo_texture: Texture2D
 
 @onready var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
-	meshInstance.set_surface_override_material(0,standardMaterial3D)
+	standardMaterial3D = StandardMaterial3D.new()
+	standardMaterial3D.albedo_texture = albedo_texture
+	for m in meshInstanceArray:
+		m.set_surface_override_material(0,standardMaterial3D)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,8 +37,26 @@ func set_monitoring(value: bool) -> void:
 
 
 func set_z_scale(value: bool) -> void:
-	var material = meshInstance.get_surface_override_material(0)
-	if material is BaseMaterial3D:
-		material.use_z_clip_scale = value
-		if value and material.z_clip_scale == 1.0:
-			material.z_clip_scale = 0.1
+	for m in meshInstanceArray:
+		var material = m.get_surface_override_material(0)
+		if material is BaseMaterial3D:
+			material.use_z_clip_scale = value
+			if value and material.z_clip_scale == 1.0:
+				material.z_clip_scale = 0.1
+
+
+func pickup(new_rotation: Vector3) -> void:
+	position = Vector3.ZERO
+	rotation = new_rotation
+
+	var body = get_child(0)
+	if body is RigidBody3D:
+		body.freeze = true
+		body.position = Vector3.ZERO
+		body.rotation = Vector3.ZERO
+		var shape = body.get_child(0)
+		if shape is CollisionShape3D:
+			shape.disabled = true
+
+	set_monitoring(false)
+	set_z_scale(true)

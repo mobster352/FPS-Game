@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://6af2dvrggti"]
+
+[ext_resource type="PackedScene" uid="uid://cxa2ce4icsu1l" path="res://assets/kaykit/restaurant/food_pizza_pepperoni_slice.gltf" id="1_gs8rt"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_5t1id"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vw0o3"]
+albedo_texture = ExtResource("2_5t1id")
+
+[node name="food_pizza_pepperoni_slice" instance=ExtResource("1_gs8rt")]
+
+[node name="food_pizza_pepperoni_slice" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vw0o3")

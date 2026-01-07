@@ -77,7 +77,7 @@ func _on_shoot_timer_timeout() -> void:
 func calculate_damage() -> void:
 	if ray.is_colliding():
 		var target = ray.get_collider()
-		if target:
+		if target.is_in_group("player"):
 			#player.take_damage(randi() % 2 + 1) # player takes 1 or 2 damage
 			player.take_damage(1)
 

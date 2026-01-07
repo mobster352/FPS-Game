@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxflb6heaetxd"]
+
+[ext_resource type="PackedScene" uid="uid://cpulw2n2h8hsx" path="res://assets/kaykit/restaurant/pizzabox_open.gltf" id="1_vephd"]
+
+[node name="pizzabox_open" instance=ExtResource("1_vephd")]
+
+[node name="pizzabox_lid" parent="pizzabox_open" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.25, -1)

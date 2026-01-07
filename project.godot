@@ -8,9 +8,14 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+
 [application]
 
-config/name="FPS Game"
+config/name="Pizza Boy"
+config/version="0.01"
 run/main_scene="uid://ch6palebd5two"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=120
@@ -18,7 +23,7 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/vsync/vsync_mode=0
+window/stretch/mode="canvas_items"
 
 [global_group]
 
@@ -91,3 +96,9 @@ interact={
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Items"
 3d_physics/layer_5="Detection"
+
+[physics]
+
+common/physics_ticks_per_second=120
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true

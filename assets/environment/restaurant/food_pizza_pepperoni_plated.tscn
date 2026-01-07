@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://l61n53l0emyl"]
+
+[ext_resource type="PackedScene" uid="uid://cok864qhetikl" path="res://assets/kaykit/restaurant/food_pizza_pepperoni_plated.gltf" id="1_gkiai"]
+
+[node name="food_pizza_pepperoni_plated" instance=ExtResource("1_gkiai")]

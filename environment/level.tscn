@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbylqid1806nq"]
+[gd_scene load_steps=7 format=3 uid="uid://dbylqid1806nq"]
+
+[ext_resource type="Script" uid="uid://d0hbgov4fd43j" path="res://environment/level.gd" id="1_vfqff"]
+[ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -7,9 +10,8 @@ ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 [sub_resource type="Sky" id="Sky_vfqff"]
 sky_material = SubResource("ProceduralSkyMaterial_xafjm")
 
-[sub_resource type="Environment" id="Environment_hjwoo"]
+[sub_resource type="Environment" id="Environment_vfqff"]
 background_mode = 2
-background_energy_multiplier = 1.25
 sky = SubResource("Sky_vfqff")
 tonemap_mode = 2
 ssr_enabled = true
@@ -18,13 +20,18 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("sun_pivot", "sun", "world_environment")]
+script = ExtResource("1_vfqff")
+sun_pivot = NodePath("SunPivot")
+sun = NodePath("SunPivot/DirectionalLight3D")
+world_environment = NodePath("WorldEnvironment")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hjwoo")
+environment = SubResource("Environment_vfqff")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+[node name="SunPivot" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
 shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="."]
@@ -44,4 +51,30 @@ shape = SubResource("WorldBoundaryShape3D_xafjm")
 
 [node name="Decoration" type="Node3D" parent="Environment"]
 
+[node name="Buildings" type="Node3D" parent="Environment"]
+
 [node name="Entities" type="Node3D" parent="."]
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("time", "level")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vfqff")
+time = NodePath("MarginContainer/Time")
+level = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Time" type="Label" parent="UI/MarginContainer"]
+layout_mode = 2
+text = "00:00"

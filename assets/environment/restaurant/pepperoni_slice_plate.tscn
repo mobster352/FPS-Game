@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://s6frxyp5at7j"]
+
+[ext_resource type="PackedScene" uid="uid://co274lm1j67je" path="res://assets/environment/restaurant/plate.tscn" id="1_f20gr"]
+[ext_resource type="PackedScene" uid="uid://6af2dvrggti" path="res://assets/environment/restaurant/food_pizza_pepperoni_slice.tscn" id="2_n4twm"]
+
+[node name="pepperoni_slice_plate" type="Node3D"]
+
+[node name="plate" parent="." instance=ExtResource("1_f20gr")]
+
+[node name="food_pizza_pepperoni_slice" parent="plate" instance=ExtResource("2_n4twm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10001755, 0.5475824)

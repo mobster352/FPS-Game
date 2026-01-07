@@ -110,6 +110,8 @@ func _input(event: InputEvent) -> void:
 		var current_rotation_x = pointer_slot.rotation.x
 		# Clamp between -90 and 90 degrees (converted to radians)
 		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
+		
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process_shot() -> void:
 	if not is_paused and weapon:
@@ -171,16 +173,7 @@ func _process_rayCast() -> void:
 							if obj.get_parent():
 								obj.get_parent().remove_child(obj)
 							item_slot.add_child(obj)
-							obj.position = Vector3.ZERO
-							obj.rotation = Vector3.ZERO
-							
-							if target is RigidBody3D:
-								target.freeze = true
-								target.position = Vector3.ZERO
-								target.rotation = Vector3.ZERO
-							
-							obj.set_monitoring(false)
-							obj.set_z_scale(true)
+							obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
 					else:
 						reticle.color = Color(255,255,255)
 				elif target.get_parent() is Door:
@@ -191,6 +184,18 @@ func _process_rayCast() -> void:
 						reticle.color = Color(255,255,255)
 					if Input.is_action_just_pressed("interact"):
 						door.door_interact()
+				elif target.get_parent() is Pizza:
+					var pizza = target.get_parent() as Pizza
+					if pizza.in_range:
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+					else:
+						reticle.color = Color(255,255,255)
+					if Input.is_action_just_pressed("interact"):
+						if item_slot.get_child_count() > 0:
+							drop_item()
+						var obj = pizza.get_slice()
+						item_slot.add_child(obj)
+						obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
 				else:
 					reticle.color = Color(255,255,255)
 			else:
@@ -246,7 +251,10 @@ func drop_item() -> void:
 	for c in child.get_children():
 		if c is RigidBody3D:
 			c.freeze = false
-			c.apply_central_impulse(forward * (throw_strength / c.mass))
+			c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+			var shape = c.get_child(0)
+			if shape is CollisionShape3D:
+				shape.disabled = false
 
 
 func append_item_in_range(item: Node3D) -> void:

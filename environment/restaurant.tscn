@@ -1,0 +1,260 @@
+[gd_scene load_steps=17 format=3 uid="uid://bnegw0uworysw"]
+
+[ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
+[ext_resource type="PackedScene" uid="uid://cuhfmnffgwpjx" path="res://assets/environment/misc/wall.tscn" id="2_nfqdm"]
+[ext_resource type="PackedScene" uid="uid://cglpa65swebo" path="res://assets/environment/restaurant/floor_kitchen.tscn" id="3_2ugwu"]
+[ext_resource type="PackedScene" uid="uid://cr4jxf8d7khnr" path="res://assets/environment/misc/wall_doorway.tscn" id="4_a5u7v"]
+[ext_resource type="PackedScene" uid="uid://otk1cl8ngm85" path="res://assets/environment/prototype/door_a.tscn" id="5_5dcbl"]
+[ext_resource type="PackedScene" uid="uid://qciotp2lgm5w" path="res://assets/environment/misc/wall_window_open.tscn" id="5_a5u7v"]
+[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a_2.tscn" id="6_a5u7v"]
+[ext_resource type="PackedScene" uid="uid://68jcexu6pnr4" path="res://assets/environment/misc/chair_a.tscn" id="6_g2m4r"]
+[ext_resource type="PackedScene" uid="uid://boiuip26h4cdl" path="res://assets/environment/restaurant/door_a.tscn" id="7_2es7e"]
+[ext_resource type="PackedScene" uid="uid://n7dx1a844sgn" path="res://assets/environment/restaurant/wall_orderwindow.tscn" id="7_7v2r2"]
+[ext_resource type="PackedScene" uid="uid://c474lmnv4l5" path="res://assets/environment/restaurant/kitchentable_b.tscn" id="8_1nokp"]
+[ext_resource type="PackedScene" uid="uid://dxnl4jurpfddl" path="res://entities/npc/npc_dummy_sitting.tscn" id="8_kel38"]
+[ext_resource type="PackedScene" uid="uid://cwwv8y56y0uve" path="res://assets/items/pepperoni_pizza_boxed.tscn" id="9_nd13t"]
+[ext_resource type="PackedScene" uid="uid://dfdmutnaw0g3g" path="res://assets/items/pepperoni_slice_plate_item.tscn" id="11_nawl3"]
+[ext_resource type="PackedScene" uid="uid://dkiofm17g8u20" path="res://assets/environment/restaurant/menu.tscn" id="12_nawl3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
+
+[node name="Restaurant" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_08apq")
+
+[node name="Restaurant" type="Node3D" parent="Environment"]
+
+[node name="Ceiling" type="Node3D" parent="Environment/Restaurant"]
+
+[node name="wall12" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, 2)
+
+[node name="wall13" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, 2)
+
+[node name="wall14" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, 2)
+
+[node name="wall15" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, -2)
+
+[node name="wall16" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, -2)
+
+[node name="wall17" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -2)
+
+[node name="wall18" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, -6)
+
+[node name="wall19" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, -6)
+
+[node name="wall20" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -6)
+
+[node name="wall21" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, -10)
+
+[node name="wall24" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, 2)
+
+[node name="wall25" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, -2)
+
+[node name="wall26" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, -6)
+
+[node name="wall27" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, -10)
+
+[node name="wall22" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, -10)
+
+[node name="wall23" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -10)
+
+[node name="Floors" type="Node3D" parent="Environment/Restaurant"]
+
+[node name="floor_kitchen_styleB" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+
+[node name="floor_kitchen_styleB4" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_kitchen_styleB11" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="floor_kitchen_styleB5" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_kitchen_styleB10" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+
+[node name="floor_kitchen_styleB6" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_kitchen_styleB9" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_kitchen_styleB13" parent="Environment/Restaurant/Floors" instance=ExtResource("1_t8m5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_kitchen" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_kitchen4" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="floor_kitchen5" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="floor_kitchen2" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_kitchen6" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="floor_kitchen7" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="floor_kitchen8" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="floor_kitchen9" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
+
+[node name="Decorations" type="Node3D" parent="Environment/Restaurant"]
+
+[node name="table_round_A2" parent="Environment/Restaurant/Decorations" instance=ExtResource("6_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9614687, 0, 0.6698928)
+
+[node name="chair_A" parent="Environment/Restaurant/Decorations" instance=ExtResource("6_g2m4r")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.9195313, -0.0018999577, 3.1794276)
+
+[node name="table_round_A3" parent="Environment/Restaurant/Decorations" instance=ExtResource("6_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9221916, 0, 0.6698928)
+
+[node name="chair_A2" parent="Environment/Restaurant/Decorations" instance=ExtResource("6_g2m4r")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.964129, -0.0018999577, 3.1794276)
+
+[node name="Door_A2" parent="Environment/Restaurant/Decorations" instance=ExtResource("5_5dcbl")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.8, 0, -10)
+is_locked = false
+number_required = 0
+
+[node name="door_A" parent="Environment/Restaurant/Decorations" instance=ExtResource("7_2es7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79999995, 0, -2)
+number_required = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7890625, 3.0848804, 2.6542923)
+omni_range = 17.402536
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0920153, 3.0848804, 2.6542923)
+omni_range = 17.402536
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, 2.6542923)
+omni_range = 17.402536
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7890625, 3.0848804, -6.032819)
+omni_range = 17.402536
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0920153, 3.0848804, -6.032819)
+omni_range = 17.402536
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, -6.032819)
+omni_range = 17.402536
+
+[node name="kitchentable_B" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -3.7422605)
+
+[node name="Pepperoni_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B" instance=ExtResource("9_nd13t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+
+[node name="Pepperoni_Slice_Plate_Item2" parent="Environment/Restaurant/Decorations" instance=ExtResource("11_nawl3")]
+transform = Transform3D(0.5416935, 0, 0.84057605, 0, 1, 0, -0.84057605, 0, 0.5416935, -4.6125793, 1.1999999, -2.1120849)
+
+[node name="menu" parent="Environment/Restaurant/Decorations" instance=ExtResource("12_nawl3")]
+transform = Transform3D(0.9458647, 0, -0.32456136, 0, 1, 0, 0.32456136, 0, 0.9458647, -3.0896463, 1.1999998, -2.0508785)
+
+[node name="Walls" type="Node3D" parent="Environment/Restaurant"]
+
+[node name="wall3" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 4)
+
+[node name="wall7" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="wall8" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -4)
+
+[node name="wall9" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -8)
+
+[node name="wall12" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -2)
+
+[node name="wall11" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -2)
+
+[node name="wall16" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -10)
+
+[node name="wall17" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -10)
+
+[node name="wall18" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -10)
+
+[node name="wall4" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 4)
+
+[node name="wall5" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 0)
+
+[node name="wall6" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -4)
+
+[node name="wall15" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -8)
+
+[node name="wall_doorway" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
+
+[node name="wall_window_open" parent="Environment/Restaurant/Walls" instance=ExtResource("5_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="wall_window_open3" parent="Environment/Restaurant/Walls" instance=ExtResource("5_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="wall_window_open2" parent="Environment/Restaurant/Walls" instance=ExtResource("5_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 6)
+
+[node name="wall_orderwindow" parent="Environment/Restaurant/Walls" instance=ExtResource("7_7v2r2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="wall_doorway2" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall_doorway3" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="NPCs" type="Node3D" parent="Entities"]
+
+[node name="NpcDummySitting" parent="Entities/NPCs" instance=ExtResource("8_kel38")]
+transform = Transform3D(-0.99959385, 0, 0.028497456, 0, 1, 0, -0.028497456, 0, -0.99959385, -6.91008, 0.0437997, 2.534782)
+
+[node name="NpcDummySitting2" parent="Entities/NPCs" instance=ExtResource("8_kel38")]
+transform = Transform3D(-0.99959385, 0, 0.028497456, 0, 1, 0, -0.028497456, 0, -0.99959385, 3.9735804, 0.0437997, 2.534782)

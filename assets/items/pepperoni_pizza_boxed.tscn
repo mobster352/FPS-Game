@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwwv8y56y0uve"]
+
+[ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pepperoni_pizza_controller.gd" id="1_7k71h"]
+[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="2_r0nnx"]
+[ext_resource type="PackedScene" uid="uid://l61n53l0emyl" path="res://assets/environment/restaurant/food_pizza_pepperoni_plated.tscn" id="3_uqrnx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7k71h"]
+radius = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7k71h"]
+size = Vector3(1.9978027, 0.31506348, 2.0152588)
+
+[node name="Pepperoni_Pizza_Boxed" type="Node3D"]
+script = ExtResource("1_7k71h")
+
+[node name="pizzabox_open" parent="." instance=ExtResource("2_r0nnx")]
+transform = Transform3D(-0.005166143, 0, 0.9999866, 0, 1, 0, -0.9999866, 0, -0.005166143, 0, 0, 0)
+
+[node name="food_pizza_pepperoni_plated" parent="pizzabox_open" instance=ExtResource("3_uqrnx")]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_7k71h")
+
+[node name="PizzaBody" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008178711, 0.1428833, 0.006164551)
+shape = SubResource("BoxShape3D_7k71h")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
