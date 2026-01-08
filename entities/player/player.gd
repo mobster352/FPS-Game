@@ -196,6 +196,14 @@ func _process_rayCast() -> void:
 						var obj = pizza.get_slice()
 						item_slot.add_child(obj)
 						obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
+				elif target is NPC_Dummy:
+					var npc_dummy = target as NPC_Dummy
+					if npc_dummy.in_range:
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+					else:
+						reticle.color = Color(255,255,255)
+					if Input.is_action_just_pressed("interact"):
+						npc_dummy.interact()
 				else:
 					reticle.color = Color(255,255,255)
 			else:

@@ -5,7 +5,7 @@ class_name Menu
 @export var order_label: Label
 
 @onready var table_id = get_parent().get_meta("table_id") as int
-var food_id: int
+var food_id := -1
 
 func _ready() -> void:
 	table_label.text = "Table " + str(table_id)
@@ -20,4 +20,6 @@ func _add_order(_table_id:int, _food_id:int) -> void:
 				food_id = _food_id
 
 func _remove_order_from_list(_table_id:int) -> void:
-	order_label.text = ""
+	if table_id == _table_id:
+		order_label.text = ""
+		food_id = -1
