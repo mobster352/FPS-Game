@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://da55hwcky2dj6"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_i6x27"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_t7ys6"]
+[ext_resource type="PackedScene" uid="uid://c2aga13mlir14" path="res://assets/environment/restaurant/mushroom_slice_plate.tscn" id="3_i6x27"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
+rough = true
+
+[node name="Mushroom_Slice_Plate_Item" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/mushroom_slice_plate/plate/plate"), NodePath("body/mushroom_slice_plate/plate/food_pizza_mushroom_slice/food_pizza_mushroom_slice")]
+albedo_texture = ExtResource("2_t7ys6")
+disposable = true
+metadata/food_id = 2
+
+[node name="body" parent="." index="0"]
+physics_material_override = SubResource("PhysicsMaterial_glgut")
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.027770996, -0.16418457)
+
+[node name="mushroom_slice_plate" parent="body" index="1" instance=ExtResource("3_i6x27")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[editable path="body/mushroom_slice_plate"]
+[editable path="body/mushroom_slice_plate/plate"]
+[editable path="body/mushroom_slice_plate/plate/food_pizza_mushroom_slice"]

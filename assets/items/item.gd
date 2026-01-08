@@ -5,9 +5,11 @@ class_name Item
 @export var meshInstanceArray: Array[MeshInstance3D]
 var standardMaterial3D: StandardMaterial3D
 @export var albedo_texture: Texture2D
+@export var disposable: bool
 
 @onready var player: Player
 var disabled := false
+var kill := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,3 +63,13 @@ func pickup(new_rotation: Vector3) -> void:
 
 	set_monitoring(false)
 	set_z_scale(true)
+
+
+func shrink_and_free() -> void:
+	var body = get_child(0)
+	if body is RigidBody3D:
+		body.freeze = true
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3(0.001,0.001,0.001), 0.25).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "position:y", 0, 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_callback(queue_free)

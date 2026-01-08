@@ -7,10 +7,11 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
 
-[node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("area", "meshInstanceArray") groups=["items"] instance=ExtResource("1_t1y86")]
+[node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/pepperoni_slice_plate/plate/plate"), NodePath("body/pepperoni_slice_plate/plate/food_pizza_pepperoni_slice/food_pizza_pepperoni_slice")]
 albedo_texture = ExtResource("2_qgjt0")
+disposable = true
 metadata/food_id = 0
 
 [node name="body" parent="." index="0"]

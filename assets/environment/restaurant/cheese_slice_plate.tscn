@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://darfhdcchislb"]
+
+[ext_resource type="PackedScene" uid="uid://co274lm1j67je" path="res://assets/environment/restaurant/plate.tscn" id="1_uowgi"]
+[ext_resource type="PackedScene" uid="uid://bj6xbs15gtdh8" path="res://assets/environment/restaurant/food_pizza_cheese_slice.tscn" id="2_uowgi"]
+
+[node name="cheese_slice_plate" type="Node3D"]
+
+[node name="plate" parent="." instance=ExtResource("1_uowgi")]
+
+[node name="food_pizza_cheese_slice" parent="plate" instance=ExtResource("2_uowgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10001755, 0.5475824)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://uhtjc4t5adhe"]
+
+[ext_resource type="PackedScene" uid="uid://wjyws151ogau" path="res://assets/kaykit/restaurant/food_pizza_mushroom_plated.gltf" id="1_cvvak"]
+
+[node name="food_pizza_mushroom_plated" instance=ExtResource("1_cvvak")]

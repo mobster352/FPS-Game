@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=13 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
@@ -9,12 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://0oy35q6x2j7" path="res://assets/ui/Health_01_t.png" id="7_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
+[ext_resource type="PackedScene" uid="uid://w7i8t1diden8" path="res://assets/ui/pause_menu.tscn" id="10_wvtmh"]
+[ext_resource type="PackedScene" uid="uid://cbqgh01rgobi6" path="res://assets/ui/game_over.tscn" id="11_7thud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 radius = 0.47509766
 height = 2.1817627
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
@@ -29,6 +31,9 @@ shotTimer = NodePath("Timers/ShotTimer")
 ui = NodePath("UI")
 item_slot = NodePath("skin/pointer/ItemSlot")
 camera = NodePath("skin/pointer/Camera3D")
+pause_menu = NodePath("UI/PauseMenu")
+game_over = NodePath("UI/GameOver")
+death_timer = NodePath("Timers/DeathTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0908813, 0)
@@ -57,7 +62,7 @@ transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0
 visible = false
 
 [node name="Gun_Pistol" parent="skin/pointer" index="2" instance=ExtResource("3_26q78")]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.9999996, 0, 0, 0, 0.99999994, -0.385, -0.473, 0.4)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999996, 0, 0, 0, 0.99999994, -0.385, -0.473, 0.505)
 visible = false
 
 [node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
@@ -72,9 +77,9 @@ target_position = Vector3(0, 0, 1000)
 collision_mask = 41
 
 [node name="ItemSlot" type="Node3D" parent="skin/pointer" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.3, 0.989)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,6 +90,7 @@ script = ExtResource("4_bls4j")
 ammo_label = NodePath("AmmoMarginContainer/AmmoLabel")
 hp_bar = NodePath("MarginContainer/HpBar")
 damage_overlay = NodePath("DamageOverlay")
+money_label = NodePath("MarginContainer3/Money")
 
 [node name="ReticleMarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
@@ -168,10 +174,44 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 0)
 
+[node name="MarginContainer3" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -163.0
+offset_top = 43.0
+offset_bottom = 83.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 10
+
+[node name="Money" type="RichTextLabel" parent="UI/MarginContainer3"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0.9127585, 7.70092e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "$0"
+horizontal_alignment = 2
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("10_wvtmh")]
+visible = false
+layout_mode = 1
+
+[node name="GameOver" parent="UI" instance=ExtResource("11_7thud")]
+visible = false
+layout_mode = 1
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="ShotTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
 one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
 
 [editable path="skin"]

@@ -3,6 +3,7 @@ extends Control
 @export var ammo_label: RichTextLabel
 @export var hp_bar: TextureProgressBar
 @export var damage_overlay: ColorRect
+@export var money_label: RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,3 +36,7 @@ func take_damage() -> void:
 	
 func _take_damage(color: Color) -> void:
 	damage_overlay.color = color
+
+
+func update_money(_money:int) -> void:
+	money_label.text = "$" + str(_money)

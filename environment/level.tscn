@@ -21,6 +21,7 @@ glow_enabled = true
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("sun_pivot", "sun", "world_environment")]
+process_mode = 1
 script = ExtResource("1_vfqff")
 sun_pivot = NodePath("SunPivot")
 sun = NodePath("SunPivot/DirectionalLight3D")

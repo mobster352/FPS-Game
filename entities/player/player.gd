@@ -28,8 +28,10 @@ var weapon: Weapon
 @export var throw_strength: int = 4
 @export var camera: Camera3D
 #@export var player_skin: PlayerSkin
+@export var pause_menu: PauseMenu
+@export var game_over: Control
+@export var death_timer: Timer
 
-var is_paused := false
 var invert := -1
 
 var max_ammo: int
@@ -50,32 +52,40 @@ var hp := 10:
 	set(value):
 		ui.update_hp(hp, value)
 		hp = value
+		
+var money := 0:
+	set(value):
+		money = value
+		ui.update_money(money)
+		
+var spawn_position: Vector3
+var is_alive := true
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	ammo_count = 10
 	max_ammo = 10
 	ammo_reserves = 20
+	spawn_position = global_position
 	
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		is_paused = not is_paused
-		if is_paused:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	_process_rayCast()
-	_process_movement()
-	_process_shot()
-	_process_draw_weapon()
-	_process_crouch()
-	_process_drop_item()
+	if is_alive:
+		if Input.is_action_just_pressed("pause"):
+			pause_menu.show()
+			get_tree().paused = true
+		_process_rayCast()
+		_process_movement()
+		_process_shot()
+		_process_draw_weapon()
+		_process_crouch()
+		_process_drop_item()
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	_process_jump()
-	_physics_logic()
+	if is_alive:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		_process_jump()
+		_physics_logic()
 
 func _process_jump() -> void:
 	# Handle jump.
@@ -97,7 +107,7 @@ func _process_movement() -> void:
 	
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and not is_paused:
+	if event is InputEventMouseMotion and is_alive:
 		# Horizontal rotation (Y-axis) applied to the main Player node
 		# Rotate around the global up vector
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -114,7 +124,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process_shot() -> void:
-	if not is_paused and weapon:
+	if weapon:
 		if Input.is_action_just_pressed("shoot") and ammo_count - 1 >= 0:
 			shoot()
 			ammo_count -= 1
@@ -193,7 +203,9 @@ func _process_rayCast() -> void:
 					if Input.is_action_just_pressed("interact"):
 						if item_slot.get_child_count() > 0:
 							drop_item()
-						var obj = pizza.get_slice()
+						var obj
+						if pizza.type == GlobalVar.PIZZA_TYPE.PEPPERONI: 
+							obj = pizza.get_slice()
 						item_slot.add_child(obj)
 						obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
 				elif target is NPC_Dummy:
@@ -275,9 +287,26 @@ func remove_item_in_range(item: Node3D) -> void:
 
 
 func take_damage(value: int) -> void:
-	hp -= value
-	ui.take_damage()
-	#print("Player took ", value, " damage.")
-	#print("HP: ", hp)
-	if hp <= 0:
-		get_tree().reload_current_scene()
+	if is_alive:
+		hp -= value
+		ui.take_damage()
+		#print("Player took ", value, " damage.")
+		#print("HP: ", hp)
+		if hp <= 0:
+			is_alive = false
+			game_over.show()
+			death_timer.start()
+
+
+func update_money(_money:int) -> void:
+	money += _money
+
+func _respawn() -> void:
+	hp = max_hp
+	global_position = spawn_position
+	is_alive = true
+	game_over.hide()
+
+
+func _on_death_timer_timeout() -> void:
+	_respawn()

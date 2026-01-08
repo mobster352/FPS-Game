@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwwv8y56y0uve"]
+[gd_scene load_steps=6 format=3 uid="uid://bomyc4si50787"]
 
-[ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_7k71h"]
-[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="2_r0nnx"]
-[ext_resource type="PackedScene" uid="uid://l61n53l0emyl" path="res://assets/environment/restaurant/food_pizza_pepperoni_plated.tscn" id="3_uqrnx"]
+[ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_ngcrb"]
+[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="2_0s2q5"]
+[ext_resource type="PackedScene" uid="uid://uhtjc4t5adhe" path="res://assets/environment/restaurant/food_pizza_mushroom_plated.tscn" id="3_ngcrb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7k71h"]
 radius = 3.0
@@ -10,13 +10,14 @@ radius = 3.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_7k71h"]
 size = Vector3(1.9978027, 0.31506348, 2.0152588)
 
-[node name="Pepperoni_Pizza_Boxed" type="Node3D"]
-script = ExtResource("1_7k71h")
+[node name="Mushroom_Pizza_Boxed" type="Node3D"]
+script = ExtResource("1_ngcrb")
+pizza_type = 2
 
-[node name="pizzabox_open" parent="." instance=ExtResource("2_r0nnx")]
+[node name="pizzabox_open" parent="." instance=ExtResource("2_0s2q5")]
 transform = Transform3D(-0.005166143, 0, 0.9999866, 0, 1, 0, -0.9999866, 0, -0.005166143, 0, 0, 0)
 
-[node name="food_pizza_pepperoni_plated" parent="pizzabox_open" instance=ExtResource("3_uqrnx")]
+[node name="food_pizza_mushroom_plated" parent="pizzabox_open" instance=ExtResource("3_ngcrb")]
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8

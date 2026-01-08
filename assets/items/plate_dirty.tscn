@@ -8,6 +8,7 @@
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/plate_dirty/plate_dirty")]
 albedo_texture = ExtResource("3_uqbfs")
+disposable = true
 
 [node name="plate_dirty" parent="body" index="2" instance=ExtResource("1_kv4sn")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

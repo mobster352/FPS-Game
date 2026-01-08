@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=20 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -13,7 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://n7dx1a844sgn" path="res://assets/environment/restaurant/wall_orderwindow.tscn" id="7_7v2r2"]
 [ext_resource type="PackedScene" uid="uid://c474lmnv4l5" path="res://assets/environment/restaurant/kitchentable_b.tscn" id="8_1nokp"]
 [ext_resource type="PackedScene" uid="uid://cwwv8y56y0uve" path="res://assets/items/pepperoni_pizza_boxed.tscn" id="9_nd13t"]
+[ext_resource type="PackedScene" uid="uid://bomyc4si50787" path="res://assets/items/mushroom_pizza_boxed.tscn" id="11_nawl3"]
+[ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
+[ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
+[ext_resource type="PackedScene" uid="uid://bvxmwk63a2k37" path="res://assets/items/plate_dirty.tscn" id="15_lussy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
 
@@ -189,8 +193,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -3.7422605)
 [node name="Pepperoni_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B" instance=ExtResource("9_nd13t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
 
+[node name="kitchentable_B2" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -6.0937595)
+
+[node name="Mushroom_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B2" instance=ExtResource("11_nawl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+
+[node name="kitchentable_B3" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -8.5213585)
+
+[node name="Cheese_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B3" instance=ExtResource("12_lussy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+
 [node name="Monitor" parent="Environment/Restaurant/Decorations" instance=ExtResource("12_w3jle")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.695827, 2.4897282, -6.7363157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9450831, 2.4897282, -9.736316)
+
+[node name="kitchencounter_sink" parent="Environment/Restaurant/Decorations" instance=ExtResource("14_w3jle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="plate_dirty" parent="Environment/Restaurant/Decorations/kitchencounter_sink" instance=ExtResource("15_lussy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 
