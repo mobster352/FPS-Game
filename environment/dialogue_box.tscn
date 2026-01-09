@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6vlhijuot8ks"]
+
+[ext_resource type="Texture2D" uid="uid://clyd2ttdle8nf" path="res://assets/ui/TextBox_Middle.png" id="1_6pom7"]
+[ext_resource type="Script" uid="uid://cdj8cxqk21bo2" path="res://environment/dialogue_box.gd" id="1_o17fb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_getx4"]
+viewport_path = NodePath("CSGBox3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pom7"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_getx4")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_o17fb"]
+resource_local_to_scene = true
+font_size = 64
+
+[node name="DialogueBox" type="Node3D"]
+script = ExtResource("1_o17fb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+flip_faces = true
+size = Vector3(0.2, 0.1, 0)
+material = SubResource("StandardMaterial3D_6pom7")
+
+[node name="SubViewport" type="SubViewport" parent="CSGBox3D"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1159, 637)
+
+[node name="Control" type="Control" parent="CSGBox3D/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CSGBox3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051000003
+anchor_top = 0.022000002
+anchor_right = 0.95100003
+anchor_bottom = 0.938
+offset_left = 1037.248
+offset_top = 593.744
+offset_right = 1152.448
+offset_bottom = 660.17596
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-0.9, -0.9)
+
+[node name="TextureRect" type="TextureRect" parent="CSGBox3D/SubViewport/Control/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_6pom7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CSGBox3D/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.074
+anchor_right = 1.0
+anchor_bottom = 1.074
+offset_left = 1152.0
+offset_top = 648.048
+offset_right = 1152.0
+offset_bottom = 648.048
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, -1)
+
+[node name="Label" type="Label" parent="CSGBox3D/SubViewport/Control/MarginContainer"]
+layout_mode = 2
+text = "I want a Test Slice."
+label_settings = SubResource("LabelSettings_o17fb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DisplayTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="Timers/DisplayTimer" to="." method="_on_display_timer_timeout"]

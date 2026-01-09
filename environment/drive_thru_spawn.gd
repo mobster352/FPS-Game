@@ -4,6 +4,7 @@ extends Marker3D
 @export var area_col: CollisionShape3D
 @export var drive_thru_menu: DriveThruMenu
 @export var drive_thru_timer: Timer
+@export var dialogue_box: DialogueBox
 
 var food_item: Item
 
@@ -13,8 +14,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		var money: int
 		if obj.get_meta("food_id") == drive_thru_menu.food_id:
 			money = randi_range(6,10)
+			dialogue_box.text = dialogue_box.get_good_order_delivered_text()
 		else:
 			money = randi_range(1,3)
+			dialogue_box.text = dialogue_box.get_bad_order_delivered_text()
+		dialogue_box.show()
 		food_item = obj as Item
 		food_item.disabled = true
 		food_item.shrink_and_free(money)

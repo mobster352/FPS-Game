@@ -14,7 +14,10 @@ func _add_order(table_id:int, food_id: int) -> void:
 	var child = monitor_order.get_child(0) as Label
 	
 	var food = GlobalVar.get_food(food_id) as Food
-	child.text = "Table " + str(table_id) + ": " + food.food_name
+	if table_id == 0:
+		child.text = "Drive-Thru: " + food.food_name
+	else:
+		child.text = "Table " + str(table_id) + ": " + food.food_name
 	
 	v_box.add_child(monitor_order)
 	var order = {"table_id": table_id, "food_id": food_id, "monitor_order": monitor_order}

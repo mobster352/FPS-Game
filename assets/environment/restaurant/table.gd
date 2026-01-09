@@ -6,6 +6,8 @@ class_name Table
 @export var plate_timer: Timer
 @export var chair: Chair
 @export var is_empty: bool
+@export var dialogue_box: DialogueBox
+@export var npc: NPC_Dummy
 
 @onready var player: Player
 
@@ -20,8 +22,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if obj.is_in_group("items") and obj.has_meta("food_id") and menu.food_id != -1:
 		if obj.get_meta("food_id") == menu.food_id:
 			money = randi_range(6,10)
+			dialogue_box.text = dialogue_box.get_good_order_delivered_text()
 		else:
 			money = randi_range(1,3)
+			dialogue_box.text = dialogue_box.get_bad_order_delivered_text()
+		dialogue_box.show()
 		area_col.set_deferred("disabled", true)
 		food_item = obj as Item
 		food_item.disabled = true
@@ -36,7 +41,7 @@ func _on_plate_timer_timeout() -> void:
 	food_item.queue_free()
 	
 	# remove npc
-	chair.sitting_marker.get_child(0).queue_free()
+	npc.queue_free()
 	GlobalSignal.table_empty.emit(get_meta("table_id"))
 	
 	area_col.set_deferred("disabled", false)

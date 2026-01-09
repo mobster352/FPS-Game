@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ch6palebd5two"]
+[gd_scene load_steps=34 format=3 uid="uid://ch6palebd5two"]
 
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="1_yjup0"]
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="2_e4dcw"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://5efmqcu0cev4" path="res://environment/drive_thru_spawn.gd" id="27_acoea"]
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="28_as0rt"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="29_cl1yb"]
+[ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="30_ddq2e"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ntup"]
 vertices = PackedVector3Array(1.3972063, 0.015959024, 2.5967436, 0.49720573, 0.015959024, 2.5967436, 0.1972065, 0.015959024, 4.696744, 1.6972065, 0.015959024, 6.4967437, -2.202794, 0.015959024, 4.696744, -9.402794, 0.015959024, 2.5967436, -9.402794, 0.015959024, 9.496744, -2.5027938, 0.015959024, 2.5967436, 9.497206, 0.015959024, 9.496744, 9.497206, 0.015959024, 6.4967437, -1.3027935, 0.38595903, 2.8967438, -1.3027935, 0.38595903, 3.4967437, -0.7027941, 0.38595903, 3.4967437, -0.7027941, 0.38595903, 2.8967438)
@@ -777,20 +778,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.734942, 0.17135596, 7.72372
 [node name="Enemy3" parent="Entities" index="5" instance=ExtResource("14_w3o1y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0023365, 0.17939508, 4.789353)
 
-[node name="DriveThruSpawn" type="Marker3D" parent="Entities" index="6" node_paths=PackedStringArray("area", "area_col", "drive_thru_menu", "drive_thru_timer")]
+[node name="DriveThruSpawn" type="Marker3D" parent="Entities" index="6" node_paths=PackedStringArray("area", "area_col", "drive_thru_menu", "drive_thru_timer", "dialogue_box")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.87569, 0.15, 41.88442)
 script = ExtResource("27_acoea")
 area = NodePath("DriveThruMenu/DriveThruCustomer/Area3D")
 area_col = NodePath("DriveThruMenu/DriveThruCustomer/Area3D/CollisionShape3D")
 drive_thru_menu = NodePath("DriveThruMenu")
 drive_thru_timer = NodePath("Timers/DriveThruTimer")
+dialogue_box = NodePath("DialogueBox")
 
-[node name="DriveThruMenu" type="Node3D" parent="Entities/DriveThruSpawn" index="0"]
+[node name="DialogueBox" parent="Entities/DriveThruSpawn" index="0" instance=ExtResource("30_ddq2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5560074, 2.385805, 0.17222977)
+visible = false
+
+[node name="DriveThruMenu" type="Node3D" parent="Entities/DriveThruSpawn" index="1"]
 script = ExtResource("28_as0rt")
 
-[node name="DriveThruCustomer" parent="Entities/DriveThruSpawn/DriveThruMenu" index="0" instance=ExtResource("29_cl1yb")]
+[node name="DriveThruCustomer" parent="Entities/DriveThruSpawn/DriveThruMenu" index="0" node_paths=PackedStringArray("dialogue_box") instance=ExtResource("29_cl1yb")]
+dialogue_box = NodePath("../../DialogueBox")
 
-[node name="Timers" type="Node" parent="Entities/DriveThruSpawn" index="1"]
+[node name="Timers" type="Node" parent="Entities/DriveThruSpawn" index="2"]
 
 [node name="DriveThruTimer" type="Timer" parent="Entities/DriveThruSpawn/Timers" index="0"]
 wait_time = 5.0

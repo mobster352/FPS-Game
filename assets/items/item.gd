@@ -72,9 +72,9 @@ func shrink_and_free(money:int) -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector3(0.001,0.001,0.001), 0.25).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self, "position:y", 0, 0.5).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_callback(queue_free)
 	if money:
 		tween.tween_callback(_pay_player.bind(money))
+	tween.tween_callback(queue_free)
 
 func _pay_player(money:int) -> void:
 	player.update_money(money)

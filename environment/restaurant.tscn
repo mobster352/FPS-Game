@@ -136,21 +136,256 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
 
 [node name="Decorations" type="Node3D" parent="Environment/Restaurant"]
 
-[node name="table_round_A2" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("chair") instance=ExtResource("6_a5u7v")]
+[node name="table_round_A2" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("chair", "dialogue_box", "npc") instance=ExtResource("6_a5u7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9614687, 0, 0.6698928)
 chair = NodePath("chair_A")
+dialogue_box = NodePath("chair_A/SittingMarker/NpcDummySitting/DialogueBox")
+npc = NodePath("chair_A/SittingMarker/NpcDummySitting")
 metadata/table_id = 1
 
 [node name="chair_A" parent="Environment/Restaurant/Decorations/table_round_A2" instance=ExtResource("6_g2m4r")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.04193735, -0.0018999577, 2.5095348)
 
-[node name="table_round_A3" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("chair") instance=ExtResource("6_a5u7v")]
+[node name="Skeleton3D" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig" index="0"]
+bones/2/rotation = Quaternion(0.01871915, -3.1603292e-10, 4.524262e-05, 0.99982476)
+bones/3/rotation = Quaternion(0.05227064, 0.0009987549, 0.02193617, 0.9983915)
+bones/4/rotation = Quaternion(-0.33661732, -0.16739863, -0.81210417, 0.44626606)
+bones/5/rotation = Quaternion(2.4795023e-08, -4.1990873e-08, -0.47245285, 0.881356)
+bones/7/rotation = Quaternion(-0.14934035, -0.4152482, -0.18673699, 0.8777219)
+bones/9/rotation = Quaternion(-0.4906776, 0.1252075, 0.7227443, 0.4703185)
+bones/10/rotation = Quaternion(4.972871e-08, 5.1479255e-08, 0.6358038, 0.7718508)
+bones/12/rotation = Quaternion(-0.034631867, -0.0451291, 0.114904344, 0.9917464)
+bones/13/rotation = Quaternion(0.12899932, 0.2667716, 0.4627923, 0.8354732)
+bones/14/rotation = Quaternion(-3.2942415e-07, -0.0018980176, 0.0005496379, 0.9999981)
+bones/38/rotation = Quaternion(-0.5352818, -0.18008755, -0.778494, -0.2738413)
+
+[node name="head" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="0"]
+transform = Transform3D(0.99900323, -0.04454307, 0.0028988712, 0.04462041, 0.99830365, -0.037400156, -0.0012280366, 0.037492216, 0.9992961, -0.011677834, 1.3147016, -0.4320885)
+
+[node name="chest" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.9990334, -0.04344487, 0.0066912165, 0.043664627, 0.9983521, -0.03723325, -0.005062597, 0.037489414, 0.99928415, -2.946934e-09, 1.046348, -0.44216552)
+
+[node name="BoneAttachment3D" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="8"]
+transform = Transform3D(-0.062320784, 0.4097991, -0.91004395, -0.94237673, 0.27613288, 0.18887985, 0.32869565, 0.86937577, 0.36897683, -0.38042742, 0.7145641, -0.22630446)
+
+[node name="Physical Bone root" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(0.9659258, -0.25881907, -3.846098e-09, -1.5694203e-08, -4.3711378e-08, -1, 0.25881907, 0.9659258, -4.6283905e-08, 0, 0, 0)
+body_offset = Transform3D(0.96592575, -0.2588193, -3.846087e-09, -1.5694203e-08, -4.3711378e-08, -1, 0.2588193, 0.96592575, -4.6283905e-08, 0, 0, 0)
+
+[node name="Physical Bone hips" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(0.9999971, 0.0024168412, 9.123804e-10, -0.00025262623, 0.104527496, -0.994522, -0.0024036018, 0.99451905, 0.10452781, -0.0030097961, 0.57663834, -0.40689635)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030093195, -7.0891833e-06, 0.09587945)
+body_offset = Transform3D(1, -6.798655e-08, -2.6775524e-09, -2.6193447e-09, -6.7800283e-07, -0.99999994, 6.775372e-08, 1, -6.631017e-07, -0.0030093193, 0.095879436, 7.1525574e-06)
+
+[node name="Physical Bone spine" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="2"]
+transform = Transform3D(0.9999971, 0.0024114759, 5.1770677e-10, -0.00016211765, 0.06722759, -0.99773765, -0.00240602, 0.99773484, 0.06722778, -0.009836197, 0.8589844, -0.4295218)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00983572, 4.8362767e-06, 0.1871982)
+body_offset = Transform3D(1.0000001, -5.4328702e-06, -3.1286618e-09, -3.085006e-09, -6.482005e-07, -1.0000001, 5.4328702e-06, 1.0000001, -6.482005e-07, -0.00983572, 0.18719822, -4.7683716e-06)
+
+[node name="Physical Bone chest" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="3"]
+transform = Transform3D(0.006691231, -0.5721704, -0.8201075, -0.03723334, 0.8194147, -0.5719907, 0.9992842, 0.03436267, -0.015820922, 0.09142494, 1.1181256, -0.44023275)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012922913, -0.006571099, 0.1160654)
+body_offset = Transform3D(1.0244548e-08, -0.5360118, -0.84421057, -8.940697e-08, 0.84421057, -0.5360118, 1, 9.685755e-08, -4.8428774e-08, 0.09446144, 0.06775981, -0.00012922287)
+
+[node name="Physical Bone upperarm_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="4"]
+transform = Transform3D(-0.34281886, 0.37709433, -0.86039245, -0.6532078, 0.5625424, 0.50681925, 0.67512596, 0.7357622, 0.053470816, 0.29777384, 1.1281223, -0.44489956)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004116588, 0.004841571, 0.110456884)
+body_offset = Transform3D(1.0000002, -0.0007480681, 0.0004131645, 0.00041311607, -4.8071146e-05, -1.0000004, 0.0007479489, 1, -4.7717243e-05, 0.0040745735, 0.11045885, -0.0048332214)
+
+[node name="Physical Bone lowerarm_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="5"]
+transform = Transform3D(-0.9067909, 0.3764503, -0.18977699, 0.060813114, 0.5622501, 0.82472825, 0.41717133, 0.73631513, -0.5327364, 0.4261856, 0.95888877, -0.38130045)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011553961, 0.0047513917, 0.12851384)
+body_offset = Transform3D(1.0000001, 0.00042310357, -0.00053727627, -0.00053706765, -0.00023645163, -1.0000005, -0.00042319298, 1.0000001, -0.0002361536, 0.011620998, 0.1285088, -0.004725933)
+
+[node name="Physical Bone wrist_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="6"]
+transform = Transform3D(-0.8949803, 0.37712124, -0.23830615, 0.016759247, 0.56223834, 0.8268054, 0.44579077, 0.73598075, -0.5095125, 0.4596777, 0.82144856, -0.29359078)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114162555, 0.0047844914, 0.034338076)
+body_offset = Transform3D(1.0000004, -0.00033974648, -1.3321638e-05, -1.3276935e-05, -0.00025945902, -1.0000006, 0.00033983588, 1.0000001, -0.0002592802, 0.011418343, 0.03433919, -0.0047717094)
+
+[node name="Physical Bone hand_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="7"]
+transform = Transform3D(-0.27626383, 0.6804128, 0.67876124, 0.61942476, -0.41393864, 0.6670591, 0.73484105, 0.6047257, -0.30710825, 0.43015957, 0.75384694, -0.25783944)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035319694, 0.008754605, 0.064840674)
+body_offset = Transform3D(1.0000001, -0.00031259656, -0.000464648, -0.0002387762, 0.5127349, -0.8585476, 0.00050634146, 0.85854745, 0.51273465, 0.0035648346, 0.05117917, -0.040760517)
+
+[node name="Physical Bone upperarm_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="8"]
+transform = Transform3D(-0.1077235, -0.61551386, 0.7807294, 0.5856238, 0.59531087, 0.5501362, -0.8033931, 0.51647633, 0.29633057, -0.32497168, 1.1044468, -0.46568394)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003616158, -0.011150776, 0.12919664)
+body_offset = Transform3D(0.99999464, -0.0034048855, -0.00013181567, -0.00013047457, 0.000383839, -1.0000002, 0.003404975, 0.9999944, 0.000383541, -0.0036370754, 0.12920141, 0.011088848)
+
+[node name="Physical Bone lowerarm_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="9"]
+transform = Transform3D(-0.7872476, -0.61490315, 0.046210114, -0.42744535, 0.5981888, 0.6778353, -0.4444454, 0.5138719, -0.73376024, -0.42483377, 0.94947684, -0.4055972)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006857683, -0.010770806, 0.13572216)
+body_offset = Transform3D(1.0000001, -0.00082944334, -0.00016909838, -0.00016951561, -0.00047439337, -1.0000005, 0.0008292645, 0.99999976, -0.00047451258, 0.0068717003, 0.13571596, 0.010840893)
+
+[node name="Physical Bone wrist_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="10"]
+transform = Transform3D(-0.7836187, -0.61494565, 0.08822573, -0.3905012, 0.5980269, 0.6999091, -0.4831674, 0.5140096, -0.70876193, -0.4342518, 0.83576745, -0.28411508)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006645502, -0.011101252, 0.04274413)
+body_offset = Transform3D(1.0000001, -0.0007728636, -0.00049489737, -0.0004951656, -0.00030326843, -1.0000004, 0.0007725805, 0.9999998, -0.00030368567, 0.0066580772, 0.042737484, 0.011119366)
+
+[node name="Physical Bone hand_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="11"]
+transform = Transform3D(-0.82961905, -0.39190185, -0.3976747, -0.492334, 0.1775722, 0.8521006, -0.2633238, 0.90270764, -0.3402639, -0.41532803, 0.76206344, -0.2389481)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008882605, -0.010868392, 0.053354677)
+body_offset = Transform3D(1.0000004, 0.00052016973, -0.00013376027, -0.000382334, 0.51464826, -0.857402, -0.0003772378, 0.8574016, 0.5146481, 0.008895397, 0.051336408, -0.018143654)
+
+[node name="Physical Bone upperleg_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="12"]
+transform = Transform3D(0.96465015, -0.18039705, -0.19211203, -0.16739054, -0.98247105, 0.0820435, -0.20354488, -0.046985533, -0.97793764, 0.16914701, 0.5582061, -0.27237415)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64841e-06, -3.1506179e-06, 0.11354087)
+body_offset = Transform3D(0.99999994, 4.7124922e-07, -9.834766e-07, -9.983778e-07, 3.6135316e-07, -1.0000001, -4.9266964e-07, 0.99999946, 4.5076013e-07, -9.536743e-06, 0.11354089, 3.0994415e-06)
+
+[node name="Physical Bone lowerleg_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="13"]
+transform = Transform3D(0.9646503, -0.23793945, 0.113290586, -0.16739048, -0.22118361, 0.9607592, -0.20354448, -0.94576037, -0.2531936, 0.18246508, 0.47711074, -0.14242816)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7189682e-05, -1.0013581e-05, 0.07471781)
+body_offset = Transform3D(0.9999999, 0, 4.8428774e-08, -3.7252903e-09, -2.0861626e-07, -0.99999934, 0, 0.9999999, 0, -3.71933e-05, 0.07471776, 1.001358e-05)
+
+[node name="Physical Bone foot_l" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="14"]
+transform = Transform3D(0.9930793, 0.00109728, -0.11744093, -4.4889745e-07, -0.99995637, -0.009346639, -0.11744606, 0.009282006, -0.9930359, 0.18376493, 0.4064209, -0.041268826)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1392045e-09, 0.00032737464, 0.08281874)
+body_offset = Transform3D(0.9999999, 1.648441e-07, 3.7252903e-08, 0, 9.685755e-08, -1.0000001, 0, 0.9999995, 4.8428774e-08, 0, 0.08281875, -0.0003273785)
+
+[node name="Physical Bone upperleg_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="15"]
+transform = Transform3D(0.9859755, 0.06689944, 0.15289472, 0.05599403, -0.9956436, 0.074556254, 0.1572164, -0.06494945, -0.9854261, -0.16651249, 0.5591434, -0.2699926)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00010757146, 3.025121e-05, 0.11387251)
+body_offset = Transform3D(0.9999999, 5.7462603e-06, -1.92374e-05, -1.9207597e-05, 9.134412e-06, -1.0000001, -5.765818e-06, 0.99999976, 9.149313e-06, -0.00010538101, 0.11387253, -3.129244e-05)
+
+[node name="Physical Bone lowerleg_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="16"]
+transform = Transform3D(0.9859604, 0.16592935, -0.018693807, 0.056381196, -0.22544289, 0.9726236, 0.15717241, -0.9600224, -0.23163305, -0.18235826, 0.4779991, -0.14111257)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6967795e-05, 8.360393e-06, 0.07472326)
+body_offset = Transform3D(0.9999998, 3.054738e-05, -0.00039901212, -0.00039901584, 2.7865171e-06, -0.9999996, -3.056228e-05, 1, 2.9951334e-06, -7.1525574e-06, 0.07472324, -8.583069e-06)
+
+[node name="Physical Bone foot_r" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="17"]
+transform = Transform3D(0.9900604, -0.0013102272, 0.1406369, 2.4040812e-08, -0.99995667, -0.009316148, 0.140643, 0.009223552, -0.9900174, -0.19263077, 0.40609896, -0.041820288)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.879448e-07, -2.0083135e-08, 0.08282517)
+body_offset = Transform3D(1.0000001, -1.8044375e-07, -1.3411045e-07, -1.1920929e-07, -9.033829e-08, -1.0000002, 1.322478e-07, 0.9999998, -1.17346644e-07, -4.7683716e-07, 0.082825184, 2.9802322e-08)
+
+[node name="Physical Bone head" parent="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="18"]
+transform = Transform3D(0.9990033, -0.04454321, 0.002899497, 0.04462057, 0.9983036, -0.037402276, -0.001228561, 0.03749437, 0.9992961, -0.024371624, 1.3143226, -0.43169737)
+joint_offset = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0.0126981735, -0.00020170464, -0.00036811113)
+body_offset = Transform3D(1, -1.4185571e-07, 5.309703e-07, 1.391054e-07, 1.0000001, -2.1457672e-06, -5.2992254e-07, 2.1532178e-06, 1, -0.0126981735, 0.00020170212, 0.0003681183)
+
+[node name="table_round_A3" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("chair", "dialogue_box", "npc") instance=ExtResource("6_a5u7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9221916, 0, 0.6698928)
 chair = NodePath("chair_A2")
+dialogue_box = NodePath("chair_A2/SittingMarker/NpcDummySitting/DialogueBox")
+npc = NodePath("chair_A2/SittingMarker/NpcDummySitting")
 metadata/table_id = 2
 
 [node name="chair_A2" parent="Environment/Restaurant/Decorations/table_round_A3" instance=ExtResource("6_g2m4r")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.04193735, -0.0018999577, 2.5095348)
+
+[node name="Skeleton3D" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig" index="0"]
+bones/2/rotation = Quaternion(0.01871915, -3.1603292e-10, 4.524262e-05, 0.99982476)
+bones/3/rotation = Quaternion(0.05227064, 0.0009987549, 0.02193617, 0.9983915)
+bones/4/rotation = Quaternion(-0.33661732, -0.16739863, -0.81210417, 0.44626606)
+bones/5/rotation = Quaternion(2.4795023e-08, -4.1990873e-08, -0.47245285, 0.881356)
+bones/7/rotation = Quaternion(-0.14934035, -0.4152482, -0.18673699, 0.8777219)
+bones/9/rotation = Quaternion(-0.4906776, 0.1252075, 0.7227443, 0.4703185)
+bones/10/rotation = Quaternion(4.972871e-08, 5.1479255e-08, 0.6358038, 0.7718508)
+bones/12/rotation = Quaternion(-0.034631867, -0.0451291, 0.114904344, 0.9917464)
+bones/13/rotation = Quaternion(0.12899932, 0.2667716, 0.4627923, 0.8354732)
+bones/14/rotation = Quaternion(-3.2942415e-07, -0.0018980176, 0.0005496379, 0.9999981)
+bones/38/rotation = Quaternion(-0.5352818, -0.18008755, -0.778494, -0.2738413)
+
+[node name="head" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="0"]
+transform = Transform3D(0.99900323, -0.04454307, 0.0028988712, 0.04462041, 0.99830365, -0.037400156, -0.0012280366, 0.037492216, 0.9992961, -0.011677834, 1.3147016, -0.4320885)
+
+[node name="chest" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.9990334, -0.04344487, 0.0066912165, 0.043664627, 0.9983521, -0.03723325, -0.005062597, 0.037489414, 0.99928415, -2.946934e-09, 1.046348, -0.44216552)
+
+[node name="BoneAttachment3D" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D" index="8"]
+transform = Transform3D(-0.062320784, 0.4097991, -0.91004395, -0.94237673, 0.27613288, 0.18887985, 0.32869565, 0.86937577, 0.36897683, -0.38042742, 0.7145641, -0.22630446)
+
+[node name="Physical Bone root" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="0"]
+transform = Transform3D(0.9659258, -0.25881907, -3.846098e-09, -1.5694203e-08, -4.3711378e-08, -1, 0.25881907, 0.9659258, -4.6283905e-08, 0, 0, 0)
+body_offset = Transform3D(0.96592575, -0.2588193, -3.846087e-09, -1.5694203e-08, -4.3711378e-08, -1, 0.2588193, 0.96592575, -4.6283905e-08, 0, 0, 0)
+
+[node name="Physical Bone hips" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="1"]
+transform = Transform3D(0.9999971, 0.0024168412, 9.123804e-10, -0.00025262623, 0.104527496, -0.994522, -0.0024036018, 0.99451905, 0.10452781, 9.775162e-06, 0.5767553, -0.4068942)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.774906e-06, -2.8784993e-05, 0.09599556)
+body_offset = Transform3D(1, -6.798655e-08, -2.6775524e-09, -2.6193447e-09, -6.7800283e-07, -0.99999994, 6.775372e-08, 1, -6.631017e-07, 9.775162e-06, 0.095995545, 2.8848648e-05)
+
+[node name="Physical Bone spine" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="2"]
+transform = Transform3D(0.9999971, 0.0024114759, 5.1770677e-10, -0.00016211765, 0.06722759, -0.99773765, -0.00240602, 0.99773484, 0.06722778, -0.00095009804, 0.8589786, -0.42951655)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009500984, -2.1341493e-05, 0.18719213)
+body_offset = Transform3D(1.0000001, -5.4328702e-06, -3.1286618e-09, -3.085006e-09, -6.482005e-07, -1.0000001, 5.4328702e-06, 1.0000001, -6.482005e-07, -0.00095009804, 0.18719214, 2.1457672e-05)
+
+[node name="Physical Bone chest" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="3"]
+transform = Transform3D(0.006691231, -0.5721704, -0.8201075, -0.03723334, 0.8194147, -0.5719907, 0.9992842, 0.03436267, -0.015820922, 0.104305744, 1.1184148, -0.44022512)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.625929e-05, 0.0005613044, 0.12679408)
+body_offset = Transform3D(1.0244548e-08, -0.5360118, -0.84421057, -8.940697e-08, 0.84421057, -0.5360118, 1, 9.685755e-08, -4.8428774e-08, 0.10734177, 0.06748927, -4.6253204e-05)
+
+[node name="Physical Bone upperarm_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="4"]
+transform = Transform3D(-0.3428168, 0.37709698, -0.8603921, -0.6532065, 0.5625436, 0.5068196, 0.6751282, 0.7357599, 0.053472824, 0.3105421, 1.127869, -0.44459057)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00011368883, -5.8232457e-05, 0.12155405)
+body_offset = Transform3D(1.0000002, -0.00075110793, 0.00041417778, 0.00041413307, -4.625693e-05, -1.0000004, 0.0007510781, 0.9999999, -4.589185e-05, 6.330013e-05, 0.12155414, 6.389618e-05)
+
+[node name="Physical Bone lowerarm_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="5"]
+transform = Transform3D(-0.90678775, 0.37645766, -0.189778, 0.060815673, 0.5622477, 0.8247297, 0.41717806, 0.7363133, -0.53273386, 0.43897176, 0.9591671, -0.38144708)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.391447e-05, -0.000110563255, 0.13063256)
+body_offset = Transform3D(1.0000001, 0.0004155934, -0.0005352497, -0.0005349964, -0.00023409724, -1.0000005, -0.0004156232, 1, -0.00023382902, -1.3947487e-05, 0.13063264, 0.0001411438)
+
+[node name="Physical Bone wrist_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="6"]
+transform = Transform3D(-0.89497924, 0.3771258, -0.23830295, 0.016761716, 0.56223273, 0.8268093, 0.4457928, 0.7359827, -0.5095079, 0.47234726, 0.8216923, -0.2937019)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2396634e-05, -4.879714e-05, 0.03709911)
+body_offset = Transform3D(1.0000004, -0.00034305453, -1.4066696e-05, -1.4036894e-05, -0.0002527535, -1.0000006, 0.00034311414, 1, -0.00025245547, 3.2901764e-05, 0.037099123, 5.8174133e-05)
+
+[node name="Physical Bone hand_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="7"]
+transform = Transform3D(-0.27626368, 0.68040746, 0.67876667, 0.6194307, -0.41393915, 0.6670533, 0.734836, 0.6047315, -0.3071089, 0.4428866, 0.7538301, -0.25782633)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4787258e-05, 7.9877675e-05, 0.056217425)
+body_offset = Transform3D(1, -0.00030720234, -0.00047022104, -0.000246346, 0.5127398, -0.85854465, 0.0005045533, 0.85854447, 0.5127396, 4.1246414e-05, 0.04822421, -0.02889347)
+
+[node name="Physical Bone upperarm_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="8"]
+transform = Transform3D(-0.10772506, -0.615511, 0.78073144, 0.58560985, 0.5953211, 0.55013996, -0.8034031, 0.5164679, 0.2963183, -0.31244588, 1.1044414, -0.4656875)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049644127, -0.0034352827, 0.119421475)
+body_offset = Transform3D(0.9999947, -0.0033923388, -0.00011983514, -0.00011858344, 0.000378415, -1.0000002, 0.0033924282, 0.9999945, 0.00037813187, -0.004961729, 0.11942339, 0.0033732653)
+
+[node name="Physical Bone lowerarm_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="9"]
+transform = Transform3D(-0.7872544, -0.61489487, 0.046204545, -0.42743948, 0.59818816, 0.6778395, -0.44443914, 0.51388246, -0.7337566, -0.412174, 0.9494893, -0.40576696)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0030381589, -0.0029077346, 0.13500412)
+body_offset = Transform3D(1, -0.0008403957, -0.0001681447, -0.00016859174, -0.00046661496, -1.0000005, 0.0008401722, 0.9999997, -0.00046673417, -0.0030179024, 0.13500333, 0.002968192)
+
+[node name="Physical Bone wrist_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="10"]
+transform = Transform3D(-0.7836168, -0.6149473, 0.08823073, -0.39049593, 0.5980237, 0.6999148, -0.48317477, 0.51401114, -0.7087558, -0.42153144, 0.8358349, -0.28438258)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0032198895, -0.0031818876, 0.04138496)
+body_offset = Transform3D(1.0000001, -0.0007711351, -0.0005040169, -0.0005042553, -0.00029981136, -1.0000005, 0.00077082217, 0.9999998, -0.0003001988, -0.0032014847, 0.04138565, 0.0031918287)
+
+[node name="Physical Bone hand_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="11"]
+transform = Transform3D(-0.8296173, -0.39190587, -0.39767432, -0.4923356, 0.17757346, 0.8520994, -0.26332638, 0.90270567, -0.34026724, -0.40270543, 0.76204544, -0.23895407)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015786784, -0.005912818, 0.058387607)
+body_offset = Transform3D(1.0000004, 0.0005234331, -0.00013262033, -0.00038301945, 0.51464546, -0.85740364, -0.00038065016, 0.8574033, 0.51464534, -0.0015678406, 0.053105354, -0.024978638)
+
+[node name="Physical Bone upperleg_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="12"]
+transform = Transform3D(0.96465015, -0.18039705, -0.19211203, -0.16739054, -0.98247105, 0.0820435, -0.20354488, -0.046985533, -0.97793764, 0.16915679, 0.55820763, -0.27237797)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2675562e-07, -5.117893e-08, 0.113538966)
+body_offset = Transform3D(0.99999994, 4.7124922e-07, -9.834766e-07, -9.983778e-07, 3.6135316e-07, -1.0000001, -4.9266964e-07, 0.99999946, 4.5076013e-07, 2.3841858e-07, 0.11353898, 0)
+
+[node name="Physical Bone lowerleg_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="13"]
+transform = Transform3D(0.9646503, -0.23793945, 0.113290586, -0.16739048, -0.22118361, 0.9607592, -0.20354448, -0.94576037, -0.2531936, 0.18250346, 0.47710603, -0.14242601)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3480008e-07, 0, 0.07471859)
+body_offset = Transform3D(0.9999999, 0, 4.8428774e-08, -3.7252903e-09, -2.0861626e-07, -0.99999934, 0, 0.9999999, 0, -2.3841858e-07, 0.074718535, 0)
+
+[node name="Physical Bone foot_l" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="14"]
+transform = Transform3D(0.9930793, 0.00109728, -0.11744093, -4.4889745e-07, -0.99995637, -0.009346639, -0.11744606, 0.009282006, -0.9930359, 0.18375754, 0.40609363, -0.041272163)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9110547e-06, 1.7480356e-07, 0.08281135)
+body_offset = Transform3D(0.9999999, 1.648441e-07, 3.7252903e-08, 0, 9.685755e-08, -1.0000001, 0, 0.9999995, 4.8428774e-08, -6.914139e-06, 0.082811356, -1.7881393e-07)
+
+[node name="Physical Bone upperleg_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="15"]
+transform = Transform3D(0.9859755, 0.06689944, 0.15289472, 0.05599403, -0.9956436, 0.074556254, 0.1572164, -0.06494945, -0.9854261, -0.16635346, 0.5591433, -0.27030396)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9994117e-07, -7.408035e-07, 0.11354135)
+body_offset = Transform3D(0.9999999, 5.7462603e-06, -1.92374e-05, -1.9207597e-05, 9.134412e-06, -1.0000001, -5.765818e-06, 0.99999976, 9.149313e-06, 2.3841858e-06, 0.113541365, -2.9802322e-07)
+
+[node name="Physical Bone lowerleg_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="16"]
+transform = Transform3D(0.9859604, 0.16592935, -0.018693807, 0.056381196, -0.22544289, 0.9726236, 0.15717241, -0.9600224, -0.23163305, -0.18234229, 0.47799888, -0.14111924)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.266253e-05, -6.9994746e-07, 0.074722186)
+body_offset = Transform3D(0.9999998, 3.054738e-05, -0.00039901212, -0.00039901584, 2.7865171e-06, -0.9999996, -3.056228e-05, 1, 2.9951334e-06, 7.1525574e-06, 0.07472217, 4.7683716e-07)
+
+[node name="Physical Bone foot_r" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="17"]
+transform = Transform3D(0.9900604, -0.0013102272, 0.1406369, 2.4040812e-08, -0.99995667, -0.009316148, 0.140643, 0.009223552, -0.9900174, -0.19263005, 0.40609896, -0.041820526)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1107683e-08, -2.0083101e-08, 0.08282493)
+body_offset = Transform3D(1.0000001, -1.8044375e-07, -1.3411045e-07, -1.1920929e-07, -9.033829e-08, -1.0000002, 1.322478e-07, 0.9999998, -1.17346644e-07, 0, 0.082824945, 2.9802322e-08)
+
+[node name="Physical Bone head" parent="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/PhysicalBoneSimulator3D" index="18"]
+transform = Transform3D(0.9990033, -0.04454321, 0.002899497, 0.04462057, 0.9983036, -0.037402276, -0.001228561, 0.03749437, 0.9992961, -0.011677742, 1.3147016, -0.43208838)
+body_offset = Transform3D(1, -1.4185571e-07, 5.309703e-07, 1.391054e-07, 1.0000001, -2.1457672e-06, -5.2992254e-07, 2.1532178e-06, 1, 0, 0, 0)
 
 [node name="Door_A2" parent="Environment/Restaurant/Decorations" instance=ExtResource("5_5dcbl")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.8, 0, -10)
@@ -270,3 +505,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="NPCs" type="Node3D" parent="Entities"]
+
+[editable path="Environment/Restaurant/Decorations/table_round_A2/chair_A"]
+[editable path="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting"]
+[editable path="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy"]
+[editable path="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/BoneAttachment3D/pointer/pew"]
+[editable path="Environment/Restaurant/Decorations/table_round_A2/chair_A/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/BoneAttachment3D/pointer/Gun_Pistol"]
+[editable path="Environment/Restaurant/Decorations/table_round_A3/chair_A2"]
+[editable path="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting"]
+[editable path="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy"]
+[editable path="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/BoneAttachment3D/pointer/pew"]
+[editable path="Environment/Restaurant/Decorations/table_round_A3/chair_A2/SittingMarker/NpcDummySitting/Dummy/Rig/Skeleton3D/BoneAttachment3D/pointer/Gun_Pistol"]
