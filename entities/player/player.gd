@@ -21,7 +21,7 @@ var weapon: Weapon
 @export var ammo_label: RichTextLabel
 @export var shotTimer: Timer
 
-@export var ui: Control
+@export var ui: UI
 
 @export var item_slot: Node3D
 
@@ -31,6 +31,7 @@ var weapon: Weapon
 @export var pause_menu: PauseMenu
 @export var game_over: Control
 @export var death_timer: Timer
+@export var hit_timer: Timer
 
 var invert := -1
 
@@ -86,6 +87,7 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 		_process_jump()
 		_physics_logic()
+		
 
 func _process_jump() -> void:
 	# Handle jump.
@@ -121,7 +123,8 @@ func _input(event: InputEvent) -> void:
 		# Clamp between -90 and 90 degrees (converted to radians)
 		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
 		
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if OS.has_feature("web"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process_shot() -> void:
 	if weapon:
@@ -216,6 +219,14 @@ func _process_rayCast() -> void:
 						reticle.color = Color(255,255,255)
 					if Input.is_action_just_pressed("interact"):
 						npc_dummy.interact()
+				elif target is DriveThruCustomer:
+					var customer = target as DriveThruCustomer
+					if customer.in_range:
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+					else:
+						reticle.color = Color(255,255,255)
+					if Input.is_action_just_pressed("interact"):
+						customer.interact()
 				else:
 					reticle.color = Color(255,255,255)
 			else:
@@ -232,6 +243,7 @@ func _process_draw_weapon() -> void:
 			gun_pistol.hide()
 			ammo_label.hide()
 			reticle.color = Color(255,255,255)
+			ui.show_hp(false)
 		else:
 			#weapon = pew
 			weapon = gun_pistol
@@ -240,6 +252,7 @@ func _process_draw_weapon() -> void:
 			ammo_label.show()
 			if item_slot.get_child_count() > 0:
 				drop_item()
+			ui.show_hp(true)
 			#player_skin.aiming_animation()
 
 func _physics_logic() -> void:
@@ -290,8 +303,9 @@ func take_damage(value: int) -> void:
 	if is_alive:
 		hp -= value
 		ui.take_damage()
-		#print("Player took ", value, " damage.")
-		#print("HP: ", hp)
+		if not ui.is_hp_visible():
+			ui.show_hp(true)
+			hit_timer.start()
 		if hp <= 0:
 			is_alive = false
 			game_over.show()
@@ -310,3 +324,8 @@ func _respawn() -> void:
 
 func _on_death_timer_timeout() -> void:
 	_respawn()
+
+
+func _on_hit_timer_timeout() -> void:
+	if not weapon:
+		ui.show_hp(false)

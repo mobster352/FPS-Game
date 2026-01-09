@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://f8w2c515y7jy"]
+
+[ext_resource type="Texture2D" uid="uid://cns7bajkyywpf" path="res://assets/ui/Box_WhiteOutline_Rounded.png" id="1_am1yp"]
+[ext_resource type="Script" uid="uid://cuo1x8hibb33f" path="res://assets/ui/options_menu.gd" id="1_meqhi"]
+[ext_resource type="PackedScene" uid="uid://dotla25fifw5p" path="res://assets/ui/title.tscn" id="3_0t508"]
+[ext_resource type="PackedScene" uid="uid://bxwis5gpctryk" path="res://assets/ui/button_small_round.tscn" id="4_kudt6"]
+[ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="5_0t508"]
+[ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="5_sm5ln"]
+
+[node name="OptionsMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meqhi")
+
+[node name="Background" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.185
+anchor_right = 0.66400003
+anchor_bottom = 0.77300006
+offset_left = 0.3840027
+offset_top = 0.11999512
+offset_right = 1143.072
+offset_bottom = 1143.096
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 2
+texture = ExtResource("1_am1yp")
+
+[node name="Title" parent="." instance=ExtResource("3_0t508")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.123
+anchor_right = 0.61700004
+anchor_bottom = 0.29700002
+offset_left = 0.25598145
+offset_top = 0.29599762
+offset_right = 311.21594
+offset_bottom = 112.54399
+grow_horizontal = 1
+title = &"OPTIONS"
+
+[node name="Window Size" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer4" type="MarginContainer" parent="Window Size"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.000001
+anchor_top = 6.6000004
+anchor_right = 13.6
+anchor_bottom = 7.2000003
+offset_left = -3.0517578e-05
+offset_right = 104.0
+offset_bottom = 24.0
+scale = Vector2(0.5, 0.5)
+
+[node name="WindowSizeLabel" type="RichTextLabel" parent="Window Size/MarginContainer4"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Window Size"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Window Size"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.000001
+anchor_top = 6.4
+anchor_right = 16.900002
+anchor_bottom = 7.4000006
+offset_left = -6.1035156e-05
+offset_right = -6.1035156e-05
+offset_bottom = -3.0517578e-05
+
+[node name="WindowSizeButton" type="OptionButton" parent="Window Size/MarginContainer3"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Maximized"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="BackButton" parent="." node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kudt6")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36800003
+anchor_top = 0.59300005
+anchor_right = 0.48400003
+anchor_bottom = 0.689
+offset_left = 0.063964844
+offset_top = -0.2640381
+offset_right = 401.43195
+offset_bottom = 186.52798
+button_label = &"BACK"
+normal_texture = ExtResource("5_sm5ln")
+pressed_texture = ExtResource("5_0t508")
+label = NodePath("Label")
+button = NodePath("TextureButton")
+
+[connection signal="item_selected" from="Window Size/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_texture_button_pressed"]
+
+[editable path="BackButton"]

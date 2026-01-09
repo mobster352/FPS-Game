@@ -1,20 +1,21 @@
 extends Control
 class_name PauseMenu
 
+@export var options_menu: Control
 @export var timer: Timer
 var can_pause := false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and can_pause:
-		hide()
 		can_pause = false
+		hide()
 
 
 func _on_visibility_changed() -> void:
 	if is_node_ready():
 		if visible:
 			timer.start()
-		elif not visible:
+		elif not visible and not can_pause:
 			get_tree().paused = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -33,3 +34,8 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_options_pressed() -> void:
+	hide()
+	options_menu.show()

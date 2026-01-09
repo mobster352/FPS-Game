@@ -65,7 +65,7 @@ func pickup(new_rotation: Vector3) -> void:
 	set_z_scale(true)
 
 
-func shrink_and_free() -> void:
+func shrink_and_free(money:int) -> void:
 	var body = get_child(0)
 	if body is RigidBody3D:
 		body.freeze = true
@@ -73,3 +73,8 @@ func shrink_and_free() -> void:
 	tween.tween_property(self, "scale", Vector3(0.001,0.001,0.001), 0.25).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(self, "position:y", 0, 0.5).set_trans(Tween.TRANS_LINEAR)
 	tween.tween_callback(queue_free)
+	if money:
+		tween.tween_callback(_pay_player.bind(money))
+
+func _pay_player(money:int) -> void:
+	player.update_money(money)

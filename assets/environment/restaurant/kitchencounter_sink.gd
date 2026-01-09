@@ -7,4 +7,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if obj.is_in_group("items"):
 		obj = obj as Item
 		if obj.disposable:
-			obj.shrink_and_free()
+			if obj.name == "plate_dirty":
+				obj.shrink_and_free(2)
+			else:
+				obj.shrink_and_free(0)

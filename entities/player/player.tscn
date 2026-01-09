@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=15 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
@@ -9,14 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://0oy35q6x2j7" path="res://assets/ui/Health_01_t.png" id="7_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
+[ext_resource type="Texture2D" uid="uid://dw7frynfr6830" path="res://assets/ui/Icon_Small_Blank_Dollar_G.png" id="10_a1qjk"]
 [ext_resource type="PackedScene" uid="uid://w7i8t1diden8" path="res://assets/ui/pause_menu.tscn" id="10_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://cbqgh01rgobi6" path="res://assets/ui/game_over.tscn" id="11_7thud"]
+[ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="13_j3ovn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 radius = 0.47509766
 height = 2.1817627
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
@@ -34,6 +36,7 @@ camera = NodePath("skin/pointer/Camera3D")
 pause_menu = NodePath("UI/PauseMenu")
 game_over = NodePath("UI/GameOver")
 death_timer = NodePath("Timers/DeathTimer")
+hit_timer = NodePath("Timers/HitTimer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0908813, 0)
@@ -79,7 +82,7 @@ collision_mask = 41
 [node name="ItemSlot" type="Node3D" parent="skin/pointer" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label")]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,9 +91,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_bls4j")
 ammo_label = NodePath("AmmoMarginContainer/AmmoLabel")
-hp_bar = NodePath("MarginContainer/HpBar")
+hp_bar = NodePath("HP/MarginContainer/HpBar")
 damage_overlay = NodePath("DamageOverlay")
 money_label = NodePath("MarginContainer3/Money")
+hp = NodePath("HP")
 
 [node name="ReticleMarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
@@ -133,7 +137,13 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 text = "10 / 10"
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="HP" type="Control" parent="UI"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HP"]
 layout_mode = 1
 offset_right = 74.0
 offset_bottom = 26.0
@@ -143,7 +153,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HpBar" type="TextureProgressBar" parent="UI/MarginContainer"]
+[node name="HpBar" type="TextureProgressBar" parent="UI/HP/MarginContainer"]
 layout_mode = 2
 max_value = 10.0
 value = 10.0
@@ -151,7 +161,7 @@ texture_over = ExtResource("7_wvtmh")
 texture_progress = ExtResource("8_7thud")
 texture_progress_offset = Vector2(16, 4.5)
 
-[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HP"]
 layout_mode = 1
 offset_right = 26.0
 offset_bottom = 26.0
@@ -161,7 +171,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Heart" type="TextureRect" parent="UI/MarginContainer2"]
+[node name="Heart" type="TextureRect" parent="UI/HP/MarginContainer2"]
 layout_mode = 2
 texture = ExtResource("6_8fjmc")
 
@@ -176,31 +186,55 @@ color = Color(1, 0, 0, 0)
 
 [node name="MarginContainer3" type="MarginContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.92100006
+anchor_top = 0.066
 anchor_right = 1.0
-offset_left = -163.0
-offset_top = 43.0
-offset_bottom = 83.0
+anchor_bottom = 0.128
+offset_left = 0.00793457
+offset_top = 0.23199844
+offset_bottom = 0.055999756
 grow_horizontal = 0
 theme_override_constants/margin_right = 10
 
 [node name="Money" type="RichTextLabel" parent="UI/MarginContainer3"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0.9127585, 7.70092e-07, 1)
+theme_override_colors/default_color = Color(0.07058824, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
-text = "$0"
-horizontal_alignment = 2
+text = "0"
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("10_wvtmh")]
+[node name="MarginContainer4" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.90800005
+anchor_top = 0.07700001
+anchor_right = 0.919
+anchor_bottom = 0.113000005
+offset_left = -0.016113281
+offset_top = 0.10399628
+offset_right = 80.31201
+offset_bottom = 138.776
+scale = Vector2(0.14, 0.14)
+
+[node name="DollarSign" type="TextureRect" parent="UI/MarginContainer4"]
+layout_mode = 2
+texture = ExtResource("10_a1qjk")
+
+[node name="PauseMenu" parent="UI" node_paths=PackedStringArray("options_menu") instance=ExtResource("10_wvtmh")]
 visible = false
 layout_mode = 1
+options_menu = NodePath("../OptionsMenu")
 
 [node name="GameOver" parent="UI" instance=ExtResource("11_7thud")]
 visible = false
 layout_mode = 1
+
+[node name="OptionsMenu" parent="UI" node_paths=PackedStringArray("pause_menu") instance=ExtResource("13_j3ovn")]
+visible = false
+layout_mode = 1
+pause_menu = NodePath("../PauseMenu")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -212,6 +246,10 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="HitTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timers/HitTimer" to="." method="_on_hit_timer_timeout"]
 
 [editable path="skin"]
