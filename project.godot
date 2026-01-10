@@ -35,6 +35,7 @@ window/stretch/mode="canvas_items"
 enemies=""
 items=""
 player=""
+nav_road=""
 
 [input]
 
@@ -103,7 +104,9 @@ order_test={
 [layer_names]
 
 3d_physics/layer_1="Environment"
+3d_navigation/layer_1="Sidewalk"
 3d_physics/layer_2="Player"
+3d_navigation/layer_2="Restaurant"
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Items"
 3d_physics/layer_5="Detection"

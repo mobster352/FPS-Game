@@ -20,6 +20,7 @@ func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.remove_customer.connect(_remove_customer)
 	NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
+	navigation_agent.target_reached.connect(_target_reached)
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
@@ -101,3 +102,7 @@ func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 		position = table.chair.position + Vector3(0,0,-0.5)
 		table = null
 		sitting = false
+
+
+func _target_reached() -> void:
+	pass
