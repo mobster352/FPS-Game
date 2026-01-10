@@ -10,3 +10,12 @@ signal remove_order_from_list(table_id:int)
 
 @warning_ignore("unused_signal")
 signal table_empty(table_id:int)
+
+@warning_ignore("unused_signal")
+signal get_open_table(npc_dummy:NPC_Dummy)
+
+@warning_ignore("unused_signal")
+signal assign_customer_to_table(table:Table, npc_dummy:NPC_Dummy)
+
+@warning_ignore("unused_signal")
+signal remove_customer(npc_dummy:NPC_Dummy)

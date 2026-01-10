@@ -263,9 +263,9 @@ func _physics_logic() -> void:
 
 func _process_crouch() -> void:
 	if Input.is_action_pressed("crouch"):
-		scale = Vector3(.5,.5,.5)
+		scale = scale.slerp(Vector3(.5,.5,.5), 0.15)
 	else:
-		scale = Vector3(1,1,1)
+		scale = scale.slerp(Vector3(1,1,1), 0.15)
 
 func _process_drop_item() -> void:
 	if item_slot.get_child_count() > 0 and Input.is_action_just_pressed("drop"):

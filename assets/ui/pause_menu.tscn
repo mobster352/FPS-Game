@@ -57,12 +57,12 @@ anchor_left = 0.41000003
 anchor_top = 0.34600002
 anchor_right = 0.59900004
 anchor_bottom = 0.661
-offset_left = -16.320038
+offset_left = 15.679993
 offset_top = -0.20800781
-offset_right = 1024.9519
-offset_bottom = 871.672
+offset_right = 1056.9519
+offset_bottom = 1367.672
 grow_horizontal = 2
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.15, 0.15)
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
@@ -74,6 +74,14 @@ theme_override_constants/separation = 30
 [node name="Resume" parent="MarginContainer3/VBoxContainer" node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
 layout_mode = 2
 button_label = &"RESUME"
+normal_texture = ExtResource("5_yhety")
+pressed_texture = ExtResource("6_r37c0")
+label = NodePath("Label")
+button = NodePath("TextureButton")
+
+[node name="Controls" parent="MarginContainer3/VBoxContainer" node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
+layout_mode = 2
+button_label = &"CONTROLS"
 normal_texture = ExtResource("5_yhety")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
@@ -103,10 +111,12 @@ one_shot = true
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Resume/TextureButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/Controls/TextureButton" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Options/TextureButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Exit/TextureButton" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="MarginContainer3/VBoxContainer/Resume"]
+[editable path="MarginContainer3/VBoxContainer/Controls"]
 [editable path="MarginContainer3/VBoxContainer/Options"]
 [editable path="MarginContainer3/VBoxContainer/Exit"]

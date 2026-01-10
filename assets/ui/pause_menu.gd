@@ -2,6 +2,7 @@ extends Control
 class_name PauseMenu
 
 @export var options_menu: Control
+@export var controls_menu: Control
 @export var timer: Timer
 var can_pause := false
 
@@ -39,3 +40,8 @@ func _on_quit_pressed() -> void:
 func _on_options_pressed() -> void:
 	hide()
 	options_menu.show()
+
+
+func _on_controls_pressed() -> void:
+	hide()
+	controls_menu.show()

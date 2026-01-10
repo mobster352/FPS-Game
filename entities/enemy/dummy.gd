@@ -66,3 +66,10 @@ func enter_ragdoll():
 			#bone.sleeping = false
 			
 	#physical_bones.active = true
+
+
+func sit_chair_animation():
+	movement_state_machine.travel("Sit_Chair_Down")
+
+func sit_chair_stand_up():
+	movement_state_machine.travel("Sit_Chair_StandUp")

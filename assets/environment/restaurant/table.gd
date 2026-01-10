@@ -5,7 +5,7 @@ class_name Table
 @export var area_col: CollisionShape3D
 @export var plate_timer: Timer
 @export var chair: Chair
-@export var is_empty: bool
+@export var is_empty := true
 @export var dialogue_box: DialogueBox
 @export var npc: NPC_Dummy
 
@@ -13,9 +13,12 @@ class_name Table
 
 var food_item: Item
 var money: int
+var table_id: int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
+	table_id = get_meta("table_id")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var obj = body.get_parent()
@@ -41,10 +44,17 @@ func _on_plate_timer_timeout() -> void:
 	food_item.queue_free()
 	
 	# remove npc
-	npc.queue_free()
-	GlobalSignal.table_empty.emit(get_meta("table_id"))
+	GlobalSignal.remove_customer.emit(npc)
+	npc = null
+	dialogue_box = null
+	GlobalSignal.table_empty.emit(table_id)
 	
 	area_col.set_deferred("disabled", false)
 	is_empty = true
 	
 	player.update_money(money)
+
+
+func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
+	if self == _table:
+		is_empty = false

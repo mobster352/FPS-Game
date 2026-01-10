@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyerpcqr0dhve"]
 
 [ext_resource type="Script" uid="uid://drqxxnnvrlx6m" path="res://environment/drive_thru_customer.gd" id="1_2q675"]
-[ext_resource type="PackedScene" uid="uid://c8de12s7t4gv7" path="res://assets/environment/city/car_taxi.tscn" id="2_roemc"]
+[ext_resource type="PackedScene" uid="uid://b5e5d5rwjarrn" path="res://assets/environment/city/car_taxi_edited.tscn" id="2_roemc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_roemc"]
 size = Vector3(1.8862915, 2.161621, 4.4296875)
@@ -18,7 +18,7 @@ script = ExtResource("1_2q675")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005218506, 0.810791, 0.026367188)
 shape = SubResource("BoxShape3D_roemc")
 
-[node name="car_taxi" parent="." instance=ExtResource("2_roemc")]
+[node name="car_taxi_edited" parent="." instance=ExtResource("2_roemc")]
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_mask = 10

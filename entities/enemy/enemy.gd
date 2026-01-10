@@ -33,21 +33,21 @@ func _ready() -> void:
 	shape.radius = detection_radius
 	
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if shootTimer.time_left > 0:
-		look_at_target(player.global_position)
+		look_at_target(player.global_position, delta)
 
 
 func _physics_process(delta: float) -> void:
 	if not player_detected and isAlive:
-		if global_position.distance_to(navigation_agent.get_next_path_position()) > 0.0:
-			var destination = navigation_agent.get_next_path_position()
+		var destination = navigation_agent.get_next_path_position()
+		if global_position.distance_to(destination) > 0.0:
 			var local_destination = destination - global_position
 			var direction = local_destination.normalized()
-			if global_position.distance_to(navigation_agent.get_final_position()) > 0.5:
+			if global_position.distance_to(navigation_agent.get_final_position()) > navigation_agent.target_desired_distance:
 				velocity = direction * walk_speed * delta
 				move_and_slide()
-				look_at_target(navigation_agent.get_next_path_position())
+				look_at_target(destination, delta)
 				dummy.walk_animation()
 			else:
 				dummy.idle_animation()
@@ -104,10 +104,10 @@ func _on_detection_area_body_exited(body: Node3D) -> void:
 		player_detected = false
 
 
-func look_at_target(pos: Vector3) -> void:
+func look_at_target(pos: Vector3, delta: float) -> void:
 	var direction: Vector3 = global_position.direction_to(pos)
 	var target: Basis = Basis.looking_at(direction, Vector3.UP, true)
-	basis = basis.slerp(target, 0.05).orthonormalized()
+	basis = basis.slerp(target, 5 * delta).orthonormalized()
 
 
 func _on_walk_timer_timeout() -> void:

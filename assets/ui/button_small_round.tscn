@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxwis5gpctryk"]
+[gd_scene load_steps=4 format=3 uid="uid://bxwis5gpctryk"]
 
 [ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="1_tq6sn"]
+[ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="2_u14k3"]
 [ext_resource type="LabelSettings" uid="uid://cngfht34mu0ln" path="res://assets/ui/button_label.tres" id="4_srhcr"]
 
 [node name="Button" type="MarginContainer"]
@@ -11,6 +12,7 @@ script = ExtResource("1_tq6sn")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 2
+texture_hover = ExtResource("2_u14k3")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

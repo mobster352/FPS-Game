@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cok864qhetikl" path="res://assets/kaykit/restaurant/food_pizza_pepperoni_plated.gltf" id="1_gkiai"]
 
 [node name="food_pizza_pepperoni_plated" instance=ExtResource("1_gkiai")]
+
+[node name="food_pizza_pepperoni_plated" parent="." index="0"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)

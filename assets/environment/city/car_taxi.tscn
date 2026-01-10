@@ -14,3 +14,9 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="car_taxi/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_12rm3")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="car_taxi" index="5"]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.1367591, 0.06510671, 0.4467342)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="car_taxi" index="6"]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.13585672, 0.06510671, 0.4467342)
