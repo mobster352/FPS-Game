@@ -61,6 +61,7 @@ var money := 0:
 		
 var spawn_position: Vector3
 var is_alive := true
+var freeze_camera := false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -75,18 +76,20 @@ func _process(_delta: float) -> void:
 			pause_menu.show()
 			get_tree().paused = true
 		_process_rayCast()
-		_process_movement()
-		_process_shot()
-		_process_draw_weapon()
-		_process_crouch()
-		_process_drop_item()
+		if not freeze_camera:
+			_process_movement()
+			_process_shot()
+			_process_draw_weapon()
+			_process_crouch()
+			_process_drop_item()
 
 func _physics_process(delta: float) -> void:
 	if is_alive:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
-		_process_jump()
-		_physics_logic()
+		if not freeze_camera:
+			_process_jump()
+			_physics_logic()
 		
 
 func _process_jump() -> void:
@@ -109,7 +112,7 @@ func _process_movement() -> void:
 	
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive:
+	if event is InputEventMouseMotion and is_alive and not freeze_camera:
 		# Horizontal rotation (Y-axis) applied to the main Player node
 		# Rotate around the global up vector
 		rotate_y(-event.relative.x * mouse_sensitivity)
@@ -176,6 +179,7 @@ func _process_rayCast() -> void:
 		if itemRaycast.is_colliding():
 			var target = itemRaycast.get_collider()
 			if target:
+				#print(target)
 				if target.get_parent() is Item:
 					var obj = target.get_parent() as Item
 					if items_in_range.has(obj) and not obj.disabled:
@@ -225,6 +229,15 @@ func _process_rayCast() -> void:
 						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
 						if Input.is_action_just_pressed("interact"):
 							customer.interact()
+					else:
+						reticle.color = Color(255,255,255)
+				elif target.get_parent() is Billboard:
+					var billboard = target.get_parent() as Billboard
+					if billboard.in_range:
+						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+						if Input.is_action_just_pressed("interact"):
+							billboard.show_billboard_ui()
+							freeze_camera = true
 					else:
 						reticle.color = Color(255,255,255)
 				else:

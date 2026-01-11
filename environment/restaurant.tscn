@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=23 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
 [ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
+[ext_resource type="PackedScene" uid="uid://to2ahd3uam2y" path="res://assets/ui/billboard.tscn" id="16_nawl3"]
+[ext_resource type="Script" uid="uid://dp7d5nqog8hm2" path="res://environment/billboard.gd" id="16_w3jle"]
+[ext_resource type="Script" uid="uid://c0dt2w4i1qg53" path="res://assets/ui/billboard_ui.gd" id="18_lussy"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
 
@@ -25,6 +28,12 @@ geometry_source_geometry_mode = 1
 geometry_source_group_name = &"nav_restaurant"
 cell_height = 0.01
 agent_radius = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3jle"]
+size = Vector3(4.0740356, 1.4918213, 0.12036133)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w3jle"]
+radius = 5.149076
 
 [node name="Restaurant" type="Node3D" node_paths=PackedStringArray("chair1", "chair2", "table1", "table2")]
 script = ExtResource("1_nd13t")
@@ -270,11 +279,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="wall_doorway3" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
 
+[node name="Billboard" type="CSGBox3D" parent="Environment/Restaurant" node_paths=PackedStringArray("billboard_ui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0025635, 3.874876, 6.304)
+size = Vector3(4.0822754, 1.5, 0.1)
+script = ExtResource("16_w3jle")
+billboard_ui = NodePath("Billboard")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Restaurant/Billboard"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Restaurant/Billboard/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0517578e-05, 0.004211426, 0.0020751953)
+shape = SubResource("BoxShape3D_w3jle")
+
+[node name="BillboardLabel" type="Label3D" parent="Environment/Restaurant/Billboard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.06)
+text = "Pizzeria"
+font_size = 72
+
+[node name="Area3D" type="Area3D" parent="Environment/Restaurant/Billboard"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Restaurant/Billboard/Area3D"]
+shape = SubResource("SphereShape3D_w3jle")
+
+[node name="Billboard" parent="Environment/Restaurant/Billboard" node_paths=PackedStringArray("name_input", "size_input", "billboard_label") instance=ExtResource("16_nawl3")]
+visible = false
+script = ExtResource("18_lussy")
+name_input = NodePath("Options/VBoxContainer/ShopName/MarginContainer2/NameInput")
+size_input = NodePath("Options/VBoxContainer/Name Size/MarginContainer2/SizeInput")
+billboard_label = NodePath("../BillboardLabel")
+
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="NPCs" type="Node3D" parent="Entities"]
+
+[connection signal="body_entered" from="Environment/Restaurant/Billboard/Area3D" to="Environment/Restaurant/Billboard" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Environment/Restaurant/Billboard/Area3D" to="Environment/Restaurant/Billboard" method="_on_area_3d_body_exited"]
+[connection signal="text_changed" from="Environment/Restaurant/Billboard/Billboard/Options/VBoxContainer/ShopName/MarginContainer2/NameInput" to="Environment/Restaurant/Billboard/Billboard" method="_on_name_input_text_changed"]
+[connection signal="value_changed" from="Environment/Restaurant/Billboard/Billboard/Options/VBoxContainer/Name Size/MarginContainer2/SizeInput" to="Environment/Restaurant/Billboard/Billboard" method="_on_size_input_value_changed"]
+[connection signal="pressed" from="Environment/Restaurant/Billboard/Billboard/Button/TextureButton" to="Environment/Restaurant/Billboard/Billboard" method="_on_save_button_pressed"]
 
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1/chair_A"]
+[editable path="Environment/Restaurant/Billboard/Billboard"]
+[editable path="Environment/Restaurant/Billboard/Billboard/Button"]

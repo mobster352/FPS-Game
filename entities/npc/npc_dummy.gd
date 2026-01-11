@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name NPC_Dummy
 
 @export var dialogue_box: DialogueBox
-@export var speed := 2.0
+@export var speed := 1.5
 @export var area_col: CollisionShape3D
 @export var navigation_agent: NavigationAgent3D
 @export var start_target: Marker3D

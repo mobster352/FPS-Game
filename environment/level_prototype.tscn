@@ -791,7 +791,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2.99
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.7711391, 0, 29.510372)
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_e4dcw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5686755, -2.3841858e-07, 33.43638)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4630194, -2.3841858e-07, 29.038559)
 
 [node name="car_taxi_edited2" parent="Entities" index="1" instance=ExtResource("26_pwpgx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0712576, 0, 24.5)
