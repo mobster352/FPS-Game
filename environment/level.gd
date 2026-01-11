@@ -10,6 +10,7 @@ class_name Level
 @export var day_length_minutes := 60.0 # real minutes for a full 24h cycle
 @export var sun_max_energy := 1.0
 @export var sun_min_energy := 0.0
+@export var level_ui: Level_UI
 
 # Internal state
 var time_of_day := 0.0 # 0–24
@@ -38,7 +39,7 @@ func advance_time(delta: float):
 	time_of_day += delta * hours_per_second
 	time_of_day = fmod(time_of_day, 24.0)
 
-func update_sun():	
+func update_sun():
 	# Shift time so sunrise happens at 6.0
 	var shifted_time := time_of_day - 12
 

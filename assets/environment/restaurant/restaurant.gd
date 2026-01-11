@@ -1,7 +1,5 @@
 extends Node3D
 
-@export var nav_region_sidewalk: NavigationRegion3D
-@export var nav_region_restaurant: NavigationRegion3D
 @export var chair1: Chair
 @export var chair2: Chair
 @export var table1: Table
@@ -12,12 +10,13 @@ func _ready() -> void:
 	GlobalSignal.table_empty.connect(_table_empty)
 	GlobalSignal.get_open_table.connect(_get_open_table)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _table_empty(_table_id:int) -> void:
-	var table_1_id = table1.get_meta("table_id") as int
-	var table_2_id = table2.get_meta("table_id") as int
+	pass
+	#var table_1_id = table1.get_meta("table_id") as int
+	#var table_2_id = table2.get_meta("table_id") as int
 	#match _table_id:
 		#table_1_id:
 			#await get_tree().create_timer(5.0, false).timeout

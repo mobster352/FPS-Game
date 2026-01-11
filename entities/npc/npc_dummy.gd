@@ -2,14 +2,15 @@ extends CharacterBody3D
 class_name NPC_Dummy
 
 @export var dialogue_box: DialogueBox
-@export var target: Marker3D
-@export var outside: Marker3D
-@export var speed := 100.0
+@export var speed := 2.0
 @export var area_col: CollisionShape3D
 @export var navigation_agent: NavigationAgent3D
+@export var start_target: Marker3D
 
 @onready var dummy = $Dummy
+@export var level_ui: Level_UI
 
+var target: Marker3D
 var table: Table
 var in_range := false
 var has_order := false
@@ -20,10 +21,10 @@ func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.remove_customer.connect(_remove_customer)
 	NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
-	navigation_agent.target_reached.connect(_target_reached)
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
+	target = start_target
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
 func _physics_process(delta: float) -> void:
@@ -34,22 +35,41 @@ func _physics_process(delta: float) -> void:
 		var local_destination = destination - global_position
 		var direction = local_destination.normalized()
 		if global_position.distance_to(navigation_agent.get_final_position()) > navigation_agent.target_desired_distance:
-			velocity = direction * speed * delta
-			look_at_target(destination, delta)
-			dummy.walk_animation()
-			move_and_slide()
-		else:
-			rotate_to_target(target.rotation, delta)
-			if area_col.disabled:
-				area_col.disabled = false
-			if table and not sitting:
-				get_parent().remove_child(self)
-				table.chair.sitting_marker.add_child(self)
-				position = Vector3.ZERO
-				dummy.sit_chair_animation()
-				sitting = true
-			if not sitting:
+			velocity = direction * speed
+			if test_move(transform, velocity) and target == GlobalMarker.queue_marker:
 				dummy.idle_animation()
+			else:
+				look_at_target(destination, delta)
+				dummy.walk_animation()
+				move_and_slide()
+		else:
+			velocity = Vector3.ZERO
+			if target:
+				if target == GlobalMarker.queue_marker and area_col.disabled:
+					area_col.disabled = false
+				if table and not sitting:
+					rotate_to_target(target.rotation)
+					dummy.sit_chair_animation()
+					sitting = true
+				if not sitting:
+					dummy.idle_animation()
+				if target == GlobalMarker.outside_marker:
+					navigation_agent.set_navigation_layer_value(1,true)
+					navigation_agent.set_navigation_layer_value(2,false)
+					navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))
+					target = null
+				elif target == GlobalMarker.restaurant_marker:
+					navigation_agent.set_navigation_layer_value(1,false)
+					navigation_agent.set_navigation_layer_value(2,true)
+					target = GlobalMarker.queue_marker
+					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+			else:
+				var go_to_restaurant_chance = randi_range(0,3)
+				if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
+					target = GlobalMarker.restaurant_marker
+					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+				else:
+					navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -85,24 +105,16 @@ func look_at_target(pos: Vector3, delta: float) -> void:
 		var _target: Basis = Basis.looking_at(direction, Vector3.UP)
 		basis = basis.slerp(_target, 5 * delta).orthonormalized()
 		
-func rotate_to_target(rot: Vector3, delta: float) -> void:
-	basis = basis.slerp(Basis.from_euler(rot), 5 * delta).orthonormalized()
+func rotate_to_target(rot: Vector3) -> void:
+	basis = basis.slerp(Basis.from_euler(rot), 1).orthonormalized()
 
 func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 	if self == _npc_dummy:
 		has_order = false
 		dummy.sit_chair_stand_up()
 		await get_tree().create_timer(0.5).timeout
-		target = outside
+		target = GlobalMarker.outside_marker
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 		area_col.disabled = true
-		var new_parent = get_parent().get_parent().get_parent()
-		table.chair.sitting_marker.remove_child(self)
-		new_parent.add_child(self)
-		position = table.chair.position + Vector3(0,0,-0.5)
 		table = null
 		sitting = false
-
-
-func _target_reached() -> void:
-	pass

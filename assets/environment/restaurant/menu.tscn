@@ -86,6 +86,8 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_tsxuh")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_tsxuh")

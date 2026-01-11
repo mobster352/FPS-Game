@@ -25,6 +25,7 @@ config/icon="res://icon.svg"
 
 GlobalSignal="*res://scripts/global_signal.gd"
 GlobalVar="*res://scripts/global_var.gd"
+GlobalMarker="*res://environment/markers.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=18 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -15,22 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
 [ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
-[ext_resource type="PackedScene" uid="uid://dxnl4jurpfddl" path="res://entities/npc/npc_dummy.tscn" id="17_w3jle"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w3jle"]
 vertices = PackedVector3Array(-8.5, 0.01999998, -0.5, -6.75, 0.01999998, -0.25, -6.5, 0.01999998, -1.75, -9.75, 0.01999998, -1.75, -9.5, 0.01999998, 2.25, -9.5, 0.01999998, 0.5, -9.75, 0.01999998, 5.75, -7.25, 0.01999998, 5.75, -7.25, 0.01999998, 3.25, -8.25, 0.01999998, 3.25, 5, 0.01999998, -0.5, 5.75, 0.01999998, 0.25, 5.75, 0.01999998, -1.75, -6, 0.01999998, 0.25, 2.25, 0.01999998, 0.75, 3.5, 0.01999998, -0.5, 5.75, 0.01999998, 5.75, 5.75, 0.01999998, 2.5, 4.75, 0.01999998, 3.25, 3, 0.01999998, 3, -5.75, 0.01999998, 1.75, 2.25, 0.01999998, 2, -8.5, 1.02, 0, -9, 1.02, 0.5, -8.25, 1.02, 1, -7.5, 1.02, 0.75, -7, 1.02, 0, -9, 1.02, 2.25, -8.25, 1.02, 2.75, -8, 1.02, 2, -7.25, 1.02, 2.75, -6.25, 1.02, 1.75, -7.25, 1.02, 1.75, -6.5, 1.02, 0.25, 3.5, 1.02, 0, 2.75, 1.02, 0.75, 3.75, 1.02, 1, 4.25, 1.02, 0.75, 5, 1.02, 0, 4.5, 1.15, 1.75, 3.75, 1.02, 1.75, 2.75, 1.02, 2, 3.5, 1.02, 2.75, 4.75, 1.02, 2.75, 5.5, 1.02, 2, 5.5, 1.02, 0.5)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 4, 6), PackedInt32Array(3, 0, 5), PackedInt32Array(9, 8, 7), PackedInt32Array(4, 9, 6), PackedInt32Array(6, 9, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(1, 2, 13), PackedInt32Array(13, 2, 14), PackedInt32Array(14, 2, 15), PackedInt32Array(10, 15, 12), PackedInt32Array(12, 15, 2), PackedInt32Array(18, 17, 16), PackedInt32Array(18, 16, 19), PackedInt32Array(8, 20, 7), PackedInt32Array(7, 20, 19), PackedInt32Array(7, 19, 16), PackedInt32Array(21, 20, 14), PackedInt32Array(14, 20, 13), PackedInt32Array(20, 21, 19), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(25, 22, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 24), PackedInt32Array(24, 27, 23), PackedInt32Array(28, 29, 30), PackedInt32Array(30, 29, 32), PackedInt32Array(30, 32, 31), PackedInt32Array(26, 33, 25), PackedInt32Array(25, 33, 32), PackedInt32Array(32, 33, 31), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 34), PackedInt32Array(37, 34, 38), PackedInt32Array(44, 43, 39), PackedInt32Array(39, 43, 40), PackedInt32Array(40, 43, 42), PackedInt32Array(40, 42, 41), PackedInt32Array(40, 41, 36), PackedInt32Array(36, 41, 35), PackedInt32Array(38, 45, 37), PackedInt32Array(37, 45, 39), PackedInt32Array(39, 45, 44)]
-geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"nav_restaurant"
 cell_height = 0.01
 agent_radius = 0.1
 
-[node name="Restaurant" type="Node3D" node_paths=PackedStringArray("nav_region_restaurant", "chair1", "chair2", "table1", "table2")]
+[node name="Restaurant" type="Node3D" node_paths=PackedStringArray("chair1", "chair2", "table1", "table2")]
 script = ExtResource("1_nd13t")
-nav_region_restaurant = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant")
 chair1 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table1/chair_A")
 chair2 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A")
 table1 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table1")
@@ -131,16 +128,6 @@ metadata/table_id = 2
 [node name="Table1" parent="Environment/Restaurant/Floors/NavRegionRestaurant" groups=["nav_restaurant"] instance=ExtResource("6_a5u7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.71665, 0, 1.3360162)
 metadata/table_id = 1
-
-[node name="NpcDummy" parent="Environment/Restaurant/Floors/NavRegionRestaurant" node_paths=PackedStringArray("target", "outside") instance=ExtResource("17_w3jle")]
-transform = Transform3D(0.715839, 0, -0.6982654, 0, 1, 0, 0.6982654, 0, 0.715839, -3.9497383, 0, 2.0398192)
-target = NodePath("../../../../../Entities/NPCs/Queue")
-outside = NodePath("../../../../../Entities/NPCs/Outside")
-
-[node name="NpcDummy2" parent="Environment/Restaurant/Floors/NavRegionRestaurant" node_paths=PackedStringArray("target", "outside") instance=ExtResource("17_w3jle")]
-transform = Transform3D(0.715839, 0, -0.6982654, 0, 1, 0, 0.6982654, 0, 0.715839, -4.045763, 2.3841858e-07, 4.418345)
-target = NodePath("../../../../../Entities/NPCs/Queue")
-outside = NodePath("../../../../../Entities/NPCs/Outside")
 
 [node name="floor_kitchen" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
@@ -286,12 +273,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="NPCs" type="Node3D" parent="Entities"]
-
-[node name="Queue" type="Marker3D" parent="Entities/NPCs"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -0.3666215)
-
-[node name="Outside" type="Marker3D" parent="Entities/NPCs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7.686958)
 
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A"]
