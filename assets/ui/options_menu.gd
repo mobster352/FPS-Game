@@ -21,3 +21,7 @@ func _on_window_size_button_item_selected(index: int) -> void:
 func _on_texture_button_pressed() -> void:
 	hide()
 	pause_menu.show()
+
+
+func _on_show_tips_check_box_pressed() -> void:
+	GlobalSignal.toggle_pointer_ui.emit()

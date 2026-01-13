@@ -62,6 +62,7 @@ var money := 0:
 var spawn_position: Vector3
 var is_alive := true
 var freeze_camera := false
+var restaurant: Restaurant
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -69,6 +70,7 @@ func _ready():
 	max_ammo = 10
 	ammo_reserves = 20
 	spawn_position = global_position
+	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	
 func _process(_delta: float) -> void:
 	if is_alive:
@@ -205,16 +207,14 @@ func _process_rayCast() -> void:
 					var pizza = target.get_parent() as Pizza
 					if pizza.in_range:
 						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+						if Input.is_action_just_pressed("interact"):
+							if item_slot.get_child_count() > 0:
+								drop_item()
+							var obj = pizza.get_slice()
+							item_slot.add_child(obj)
+							obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
 					else:
 						reticle.color = Color(255,255,255)
-					if Input.is_action_just_pressed("interact"):
-						if item_slot.get_child_count() > 0:
-							drop_item()
-						var obj
-						if pizza.type == GlobalVar.PIZZA_TYPE.PEPPERONI: 
-							obj = pizza.get_slice()
-						item_slot.add_child(obj)
-						obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
 				elif target is NPC_Dummy:
 					var npc_dummy = target as NPC_Dummy
 					if npc_dummy.in_range and not npc_dummy.has_order:
@@ -301,6 +301,15 @@ func drop_item() -> void:
 			var shape = c.get_child(0)
 			if shape is CollisionShape3D:
 				shape.disabled = false
+	
+	if child.has_meta("food_id"):
+		var food_id = child.get_meta("food_id")
+		if food_id:
+			GlobalSignal.drop_food.emit(food_id)
+			GlobalSignal.check_restaurant_food.emit(food_id)
+	elif child.has_meta("plate_dirty"):
+		child.pointer.show()
+		GlobalSignal.toggle_pointer.emit("sink", false)
 
 
 func append_item_in_range(item: Node3D) -> void:
@@ -342,3 +351,6 @@ func _on_death_timer_timeout() -> void:
 func _on_hit_timer_timeout() -> void:
 	if not weapon:
 		ui.show_hp(false)
+
+func _init_restaurant(_restaurant:Restaurant) -> void:
+	restaurant = _restaurant

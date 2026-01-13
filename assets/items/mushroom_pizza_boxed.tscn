@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bomyc4si50787"]
+[gd_scene load_steps=7 format=3 uid="uid://bomyc4si50787"]
 
 [ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_ngcrb"]
 [ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="2_0s2q5"]
 [ext_resource type="PackedScene" uid="uid://uhtjc4t5adhe" path="res://assets/environment/restaurant/food_pizza_mushroom_plated.tscn" id="3_ngcrb"]
+[ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_0s2q5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7k71h"]
 radius = 3.0
@@ -10,9 +11,10 @@ radius = 3.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_7k71h"]
 size = Vector3(1.9978027, 0.31506348, 2.0152588)
 
-[node name="Mushroom_Pizza_Boxed" type="Node3D"]
+[node name="Mushroom_Pizza_Boxed" type="Node3D" node_paths=PackedStringArray("pointer")]
 script = ExtResource("1_ngcrb")
-pizza_type = 2
+pointer = NodePath("Pointer")
+pizza_type = 3
 
 [node name="pizzabox_open" parent="." instance=ExtResource("2_0s2q5")]
 transform = Transform3D(-0.005166143, 0, 0.9999866, 0, 1, 0, -0.9999866, 0, -0.005166143, 0, 0, 0)
@@ -31,6 +33,10 @@ shape = SubResource("SphereShape3D_7k71h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008178711, 0.1428833, 0.006164551)
 shape = SubResource("BoxShape3D_7k71h")
+
+[node name="Pointer" parent="." instance=ExtResource("4_0s2q5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2068269, 0)
+visible = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

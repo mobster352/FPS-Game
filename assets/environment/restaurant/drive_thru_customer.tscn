@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyerpcqr0dhve"]
+[gd_scene load_steps=6 format=3 uid="uid://dyerpcqr0dhve"]
 
 [ext_resource type="Script" uid="uid://drqxxnnvrlx6m" path="res://environment/drive_thru_customer.gd" id="1_2q675"]
 [ext_resource type="PackedScene" uid="uid://b5e5d5rwjarrn" path="res://assets/environment/city/car_taxi_edited.tscn" id="2_roemc"]
+[ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_d8lpq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_roemc"]
 size = Vector3(1.8862915, 2.161621, 4.4296875)
@@ -9,10 +10,11 @@ size = Vector3(1.8862915, 2.161621, 4.4296875)
 [sub_resource type="SphereShape3D" id="SphereShape3D_roemc"]
 radius = 2.0258462
 
-[node name="DriveThruCustomer" type="StaticBody3D"]
+[node name="DriveThruCustomer" type="StaticBody3D" node_paths=PackedStringArray("pointer")]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_2q675")
+pointer = NodePath("Pointer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005218506, 0.810791, 0.026367188)
@@ -26,6 +28,9 @@ collision_mask = 10
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.334611, 0, 0)
 shape = SubResource("SphereShape3D_roemc")
+
+[node name="Pointer" parent="." instance=ExtResource("3_d8lpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4403276, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

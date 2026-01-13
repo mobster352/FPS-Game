@@ -60,9 +60,10 @@ geometry_source_group_name = &"nav_sidewalk_restaurant"
 cell_height = 0.01
 agent_radius = 0.75
 
-[node name="Level_Prototype" instance=ExtResource("1_yjup0")]
+[node name="Level_Prototype" node_paths=PackedStringArray("restaurant") instance=ExtResource("1_yjup0")]
 start_time = 10.0
 day_length_minutes = 10.0
+restaurant = NodePath("Environment/Buildings/Restaurant")
 
 [node name="SunPivot" parent="." index="1"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -750,8 +751,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4781499, 0, 31.143368)
 [node name="bush2" parent="Environment/Decoration/City" index="5" groups=["nav_sidewalk_restaurant"] instance=ExtResource("20_acoea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.559395, 0, 31.143368)
 
-[node name="Restaurant" parent="Environment/Buildings" index="0" instance=ExtResource("18_jgr34")]
+[node name="Restaurant" parent="Environment/Buildings" index="0" node_paths=PackedStringArray("drive_thru_menu") instance=ExtResource("18_jgr34")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.99832773, 0.0037984848, 38.0071)
+drive_thru_menu = NodePath("../../../Entities/DriveThruSpawn/DriveThruMenu")
 
 [node name="Goals" type="Node3D" parent="Environment" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -809,7 +811,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.734942, 0.17135596, 7.72372
 [node name="Enemy3" parent="Entities" index="5" instance=ExtResource("14_w3o1y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0023365, 0.17939508, 4.789353)
 
-[node name="DriveThruSpawn" type="Marker3D" parent="Entities" index="6" node_paths=PackedStringArray("area", "area_col", "drive_thru_menu", "drive_thru_timer", "dialogue_box", "customer_collider")]
+[node name="DriveThruSpawn" type="Marker3D" parent="Entities" index="6" node_paths=PackedStringArray("area", "area_col", "drive_thru_menu", "drive_thru_timer", "dialogue_box", "customer_collider", "drive_thru_customer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.87569, 0.15, 41.88442)
 script = ExtResource("27_acoea")
 area = NodePath("DriveThruMenu/DriveThruCustomer/Area3D")
@@ -818,6 +820,7 @@ drive_thru_menu = NodePath("DriveThruMenu")
 drive_thru_timer = NodePath("Timers/DriveThruTimer")
 dialogue_box = NodePath("DialogueBox")
 customer_collider = NodePath("DriveThruMenu/DriveThruCustomer/car_taxi_edited/car_taxi_edited/car_taxi/StaticBody3D/CollisionShape3D")
+drive_thru_customer = NodePath("DriveThruMenu/DriveThruCustomer")
 
 [node name="DialogueBox" parent="Entities/DriveThruSpawn" index="0" instance=ExtResource("30_ddq2e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5560074, 2.385805, 0.17222977)
@@ -826,7 +829,8 @@ visible = false
 [node name="DriveThruMenu" type="Node3D" parent="Entities/DriveThruSpawn" index="1"]
 script = ExtResource("28_as0rt")
 
-[node name="DriveThruCustomer" parent="Entities/DriveThruSpawn/DriveThruMenu" index="0" node_paths=PackedStringArray("dialogue_box") instance=ExtResource("29_cl1yb")]
+[node name="DriveThruCustomer" parent="Entities/DriveThruSpawn/DriveThruMenu" index="0" node_paths=PackedStringArray("drive_thru_menu", "dialogue_box") instance=ExtResource("29_cl1yb")]
+drive_thru_menu = NodePath("..")
 dialogue_box = NodePath("../../DialogueBox")
 
 [node name="car_taxi_edited" parent="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer" index="1" groups=["nav_sidewalk_restaurant"]]
@@ -838,12 +842,12 @@ wait_time = 5.0
 
 [node name="NpcDummy" parent="Entities" index="7" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4562817, 0, 29.756702)
-start_target = NodePath("../../Environment/Markers/Outside")
+start_target = NodePath("../../Environment/Markers/RestaurantMarker")
 level_ui = NodePath("../../UI")
 
 [node name="NpcDummy2" parent="Entities" index="8" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.739437, 0, 29.756702)
-start_target = NodePath("../../Environment/Markers/Outside")
+start_target = NodePath("../../Environment/Markers/RestaurantMarker")
 level_ui = NodePath("../../UI")
 
 [node name="UI" parent="." index="4"]

@@ -6,6 +6,7 @@ class_name Item
 var standardMaterial3D: StandardMaterial3D
 @export var albedo_texture: Texture2D
 @export var disposable: bool
+@export var pointer: Node3D
 
 @onready var player: Player
 var disabled := false
@@ -18,6 +19,7 @@ func _ready() -> void:
 	standardMaterial3D.albedo_texture = albedo_texture
 	for m in meshInstanceArray:
 		m.set_surface_override_material(0,standardMaterial3D)
+	GlobalSignal.toggle_pointer_by_food.connect(_toggle_pointer_by_food)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,9 +65,17 @@ func pickup(new_rotation: Vector3) -> void:
 
 	set_monitoring(false)
 	set_z_scale(true)
+	
+	if has_meta("food_id"):
+		GlobalSignal.pickup_food.emit(get_meta("food_id"))
+		pointer.hide()
+	elif has_meta("plate_dirty"):
+		pointer.hide()
+		GlobalSignal.toggle_pointer.emit("sink", true)
 
 
 func shrink_and_free(money:int) -> void:
+	pointer.hide()
 	var body = get_child(0)
 	if body is RigidBody3D:
 		body.freeze = true
@@ -78,3 +88,8 @@ func shrink_and_free(money:int) -> void:
 
 func _pay_player(money:int) -> void:
 	player.update_money(money)
+
+func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
+	if has_meta("food_id"):
+		if get_meta("food_id") == food_id:
+			pointer.visible = value

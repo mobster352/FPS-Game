@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://f8w2c515y7jy"]
+[gd_scene load_steps=8 format=3 uid="uid://f8w2c515y7jy"]
 
 [ext_resource type="Texture2D" uid="uid://cns7bajkyywpf" path="res://assets/ui/Box_WhiteOutline_Rounded.png" id="1_am1yp"]
 [ext_resource type="Script" uid="uid://cuo1x8hibb33f" path="res://assets/ui/options_menu.gd" id="1_meqhi"]
 [ext_resource type="PackedScene" uid="uid://dotla25fifw5p" path="res://assets/ui/title.tscn" id="3_0t508"]
+[ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_08tyc"]
 [ext_resource type="PackedScene" uid="uid://bxwis5gpctryk" path="res://assets/ui/button_small_round.tscn" id="4_kudt6"]
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="5_0t508"]
 [ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="5_sm5ln"]
@@ -48,40 +49,55 @@ offset_bottom = 112.54399
 grow_horizontal = 1
 title = &"OPTIONS"
 
-[node name="Window Size" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer4" type="MarginContainer" parent="Window Size"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 11.000001
-anchor_top = 6.6000004
-anchor_right = 13.6
-anchor_bottom = 7.2000003
-offset_left = -3.0517578e-05
-offset_right = 104.0
-offset_bottom = 24.0
-scale = Vector2(0.5, 0.5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -124.0
+offset_right = 176.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="WindowSizeLabel" type="RichTextLabel" parent="Window Size/MarginContainer4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 32
-text = "Window Size"
+theme_override_constants/separation = 40
 
-[node name="MarginContainer3" type="MarginContainer" parent="Window Size"]
+[node name="WindowSize" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/WindowSize"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 14.000001
-anchor_top = 6.4
-anchor_right = 16.900002
-anchor_bottom = 7.4000006
-offset_left = -6.1035156e-05
-offset_right = -6.1035156e-05
-offset_bottom = -3.0517578e-05
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[node name="WindowSizeButton" type="OptionButton" parent="Window Size/MarginContainer3"]
+[node name="WindowSizeLabel" type="Label" parent="MarginContainer/VBoxContainer/WindowSize/MarginContainer4"]
+layout_mode = 2
+text = "Window Size"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/WindowSize"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 148.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="WindowSizeButton" type="OptionButton" parent="MarginContainer/VBoxContainer/WindowSize/MarginContainer3"]
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -91,6 +107,40 @@ popup/item_1/text = "Maximized"
 popup/item_1/id = 1
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
+
+[node name="Show Tips" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/Show Tips"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="ShowTipsLabel" type="Label" parent="MarginContainer/VBoxContainer/Show Tips/MarginContainer4"]
+layout_mode = 2
+text = "Show Tips"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Show Tips"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 148.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="ShowTipsCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/Show Tips/MarginContainer3"]
+layout_mode = 2
+button_pressed = true
 
 [node name="BackButton" parent="." node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kudt6")]
 layout_mode = 1
@@ -109,7 +159,8 @@ pressed_texture = ExtResource("5_0t508")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
-[connection signal="item_selected" from="Window Size/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Show Tips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
 [connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_texture_button_pressed"]
 
 [editable path="BackButton"]

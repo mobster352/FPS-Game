@@ -11,6 +11,7 @@ class_name Level
 @export var sun_max_energy := 1.0
 @export var sun_min_energy := 0.0
 @export var level_ui: Level_UI
+@export var restaurant: Restaurant
 
 # Internal state
 var time_of_day := 0.0 # 0–24
@@ -24,6 +25,7 @@ func _ready():
 	update_environment()
 	update_sun()
 	update_sun_light()
+	GlobalSignal.init_restaurant.emit(restaurant)
 
 func _process(delta):
 	advance_time(delta)

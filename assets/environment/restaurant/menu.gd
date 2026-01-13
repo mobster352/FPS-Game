@@ -22,4 +22,6 @@ func _add_order(_table_id:int, _food_id:int) -> void:
 func _remove_order_from_list(_table_id:int) -> void:
 	if table_id == _table_id:
 		order_label.text = ""
+		var old_food_id = food_id
 		food_id = -1
+		GlobalSignal.check_restaurant_food.emit(old_food_id)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://br82d65qlha22"]
+[gd_scene load_steps=17 format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cbqgh01rgobi6" path="res://assets/ui/game_over.tscn" id="11_7thud"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="13_j3ovn"]
 [ext_resource type="PackedScene" uid="uid://gsqk2fguvuxm" path="res://assets/ui/controls.tscn" id="14_afbqv"]
+[ext_resource type="PackedScene" uid="uid://chcflrh8r1fb2" path="res://assets/ui/tutorial.tscn" id="15_gx6sm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 radius = 0.47509766
@@ -247,6 +248,9 @@ process_mode = 2
 visible = false
 layout_mode = 1
 pause_menu = NodePath("../PauseMenu")
+
+[node name="Tutorial" parent="UI" instance=ExtResource("15_gx6sm")]
+layout_mode = 1
 
 [node name="Timers" type="Node" parent="."]
 

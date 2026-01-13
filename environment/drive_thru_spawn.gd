@@ -6,6 +6,7 @@ extends Marker3D
 @export var drive_thru_timer: Timer
 @export var dialogue_box: DialogueBox
 @export var customer_collider: CollisionShape3D
+@export var drive_thru_customer: DriveThruCustomer
 
 var food_item: Item
 
@@ -24,6 +25,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		food_item.disabled = true
 		food_item.shrink_and_free(money)
 		GlobalSignal.remove_order_from_list.emit(drive_thru_menu.table_id)
+		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 		area_col.set_deferred("disabled", true)
 		await get_tree().create_timer(2).timeout
 		drive_thru_menu.hide()
@@ -36,3 +38,4 @@ func _on_drive_thru_timer_timeout() -> void:
 	drive_thru_menu.show()
 	area_col.set_deferred("disabled", false)
 	customer_collider.set_deferred("disabled", false)
+	drive_thru_customer.pointer.show()

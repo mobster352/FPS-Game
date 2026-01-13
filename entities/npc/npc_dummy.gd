@@ -6,6 +6,7 @@ class_name NPC_Dummy
 @export var area_col: CollisionShape3D
 @export var navigation_agent: NavigationAgent3D
 @export var start_target: Marker3D
+@export var pointer: Node3D
 
 @onready var dummy = $Dummy
 @export var level_ui: Level_UI
@@ -47,6 +48,7 @@ func _physics_process(delta: float) -> void:
 			if target:
 				if target == GlobalMarker.queue_marker and area_col.disabled:
 					area_col.disabled = false
+					pointer.show()
 				if table and not sitting:
 					rotate_to_target(target.rotation)
 					dummy.sit_chair_animation()
@@ -88,8 +90,9 @@ func interact() -> void:
 func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
 	if _npc_dummy == self:
 		table = _table
-		var random_food = randi_range(0,2)
+		var random_food = randi_range(1,3)
 		GlobalSignal.add_order.emit(table.get_meta("table_id"), random_food)
+		GlobalSignal.check_restaurant_food.emit(random_food)
 		has_order = true
 		dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
 		dialogue_box.show()
@@ -97,7 +100,7 @@ func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
 		table.dialogue_box = dialogue_box
 		target = table.chair.sitting_marker
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-
+		pointer.hide()
 
 func look_at_target(pos: Vector3, delta: float) -> void:
 	var direction: Vector3 = global_position.direction_to(pos)

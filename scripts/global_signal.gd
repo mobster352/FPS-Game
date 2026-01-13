@@ -19,3 +19,24 @@ signal assign_customer_to_table(table:Table, npc_dummy:NPC_Dummy)
 
 @warning_ignore("unused_signal")
 signal remove_customer(npc_dummy:NPC_Dummy)
+
+@warning_ignore("unused_signal")
+signal pickup_food(food_id:int)
+
+@warning_ignore("unused_signal")
+signal drop_food(food_id:int)
+
+@warning_ignore("unused_signal")
+signal init_restaurant(restaurant:Restaurant)
+
+@warning_ignore("unused_signal")
+signal check_restaurant_food(food_id:int)
+
+@warning_ignore("unused_signal")
+signal toggle_pointer_by_food(food_id:int, value:bool)
+
+@warning_ignore("unused_signal")
+signal toggle_pointer(meta: StringName, value: bool)
+
+@warning_ignore("unused_signal")
+signal toggle_pointer_ui()

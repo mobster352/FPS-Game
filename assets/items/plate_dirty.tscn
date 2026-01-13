@@ -1,16 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvxmwk63a2k37"]
+[gd_scene load_steps=5 format=3 uid="uid://bvxmwk63a2k37"]
 
 [ext_resource type="PackedScene" uid="uid://xcfqb031pcvj" path="res://assets/kaykit/restaurant/plate_dirty.gltf" id="1_kv4sn"]
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_uqbfs"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="3_uqbfs"]
+[ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_hygbd"]
 
-[node name="plate_dirty" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("1_uqbfs")]
+[node name="plate_dirty" node_paths=PackedStringArray("area", "meshInstanceArray", "pointer") instance=ExtResource("1_uqbfs")]
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/plate_dirty/plate_dirty")]
 albedo_texture = ExtResource("3_uqbfs")
 disposable = true
+pointer = NodePath("body/Pointer")
+metadata/plate_dirty = true
 
 [node name="plate_dirty" parent="body" index="2" instance=ExtResource("1_kv4sn")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Pointer" parent="body" index="3" instance=ExtResource("4_hygbd")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -2.965782e-08, -0.67849183)
 
 [editable path="body/plate_dirty"]

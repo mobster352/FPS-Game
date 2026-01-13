@@ -1,6 +1,7 @@
 extends Node
 
 enum PIZZA_TYPE {
+	NONE,
 	PEPPERONI,
 	CHEESE,
 	MUSHROOM
@@ -11,6 +12,8 @@ var food_items: Array[Food] = [
 	Food.new(PIZZA_TYPE.CHEESE,"Cheese Pizza Slice"),
 	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice")
 ]
+
+var show_tips := true
 
 func get_food(food_id:int) -> Food:
 	for food in food_items:

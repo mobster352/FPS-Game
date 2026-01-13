@@ -8,6 +8,7 @@ class_name Table
 @export var is_empty := true
 @export var dialogue_box: DialogueBox
 @export var npc: NPC_Dummy
+@export var pointer: Node3D
 
 @onready var player: Player
 
@@ -18,6 +19,8 @@ var table_id: int
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
+	GlobalSignal.pickup_food.connect(_pickup_food)
+	GlobalSignal.drop_food.connect(_drop_food)
 	table_id = get_meta("table_id")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -35,7 +38,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		food_item.disabled = true
 		plate_timer.start()
 		GlobalSignal.remove_order_from_list.emit(menu.table_id)
-
+		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 
 func _on_plate_timer_timeout() -> void:
 	var plate_dirty = preload("res://assets/items/plate_dirty.tscn").instantiate()
@@ -58,3 +61,13 @@ func _on_plate_timer_timeout() -> void:
 func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
 	if self == _table:
 		is_empty = false
+
+
+func _pickup_food(food_id:int) -> void:
+	if menu.food_id and menu.food_id == food_id:
+		pointer.show()
+
+
+func _drop_food(food_id:int) -> void:
+	if menu.food_id and menu.food_id == food_id:
+		pointer.hide()

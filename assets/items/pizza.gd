@@ -1,6 +1,8 @@
 extends Node
 class_name Pizza
 
+@export var pizza_type: GlobalVar.PIZZA_TYPE
+
 var in_range := false
 var type: int
 

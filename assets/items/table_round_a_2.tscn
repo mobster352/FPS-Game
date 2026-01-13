@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx648bisbnt5"]
+[gd_scene load_steps=10 format=3 uid="uid://cx648bisbnt5"]
 
 [ext_resource type="PackedScene" uid="uid://dn67wskbummsf" path="res://assets/kaykit/restaurant/table_round_A.gltf" id="1_t2akc"]
 [ext_resource type="Script" uid="uid://crv6lttieia1l" path="res://assets/environment/restaurant/table.gd" id="2_dqk40"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_go8x5"]
 [ext_resource type="PackedScene" uid="uid://dkiofm17g8u20" path="res://assets/environment/restaurant/menu.tscn" id="3_go8x5"]
 [ext_resource type="PackedScene" uid="uid://68jcexu6pnr4" path="res://assets/environment/misc/chair_a.tscn" id="5_vppnb"]
+[ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="6_nm6bs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqk40"]
 albedo_texture = ExtResource("2_go8x5")
@@ -15,12 +16,13 @@ data = PackedVector3Array(-0.7122, 0.05, 0.4758, -0.8401, 0, 0.1671, -0.8401, 0.
 [sub_resource type="SphereShape3D" id="SphereShape3D_vppnb"]
 radius = 1.1609389
 
-[node name="table_round_A2" node_paths=PackedStringArray("menu", "area_col", "plate_timer", "chair") instance=ExtResource("1_t2akc")]
+[node name="table_round_A2" node_paths=PackedStringArray("menu", "area_col", "plate_timer", "chair", "pointer") instance=ExtResource("1_t2akc")]
 script = ExtResource("2_dqk40")
 menu = NodePath("menu")
 area_col = NodePath("Area3D/CollisionShape3D")
 plate_timer = NodePath("Timers/PlateTimer")
 chair = NodePath("chair_A")
+pointer = NodePath("Pointer")
 metadata/table_id = 0
 
 [node name="table_round_A" parent="." index="0"]
@@ -50,6 +52,10 @@ one_shot = true
 
 [node name="chair_A" parent="." index="4" instance=ExtResource("5_vppnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04193735, -0.0018999577, 2.527521)
+
+[node name="Pointer" parent="." index="5" instance=ExtResource("6_nm6bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0977116, 0)
+visible = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timers/PlateTimer" to="." method="_on_plate_timer_timeout"]
