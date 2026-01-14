@@ -41,6 +41,9 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 				if body is RigidBody3D:
 					body.freeze = true
 				parent.shrink_and_free(0)
+				if not parent.disabled:
+					add_object()
+					parent.disabled = true
 			else:
 				parent.queue_free()
-			add_object()
+				add_object()

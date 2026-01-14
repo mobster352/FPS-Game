@@ -9,6 +9,7 @@ var standardMaterial3D: StandardMaterial3D
 @export var albedo_texture: Texture2D
 @export var disposable: bool
 @export var pointer: Node3D
+@export var mesh_has_children: bool
 
 var player: Player
 var disabled := false
@@ -43,6 +44,7 @@ func set_monitoring(value: bool) -> void:
 func set_z_scale(value: bool) -> void:
 	for m in meshInstanceArray:
 		var material = m.get_surface_override_material(0)
+		material.albedo_texture = albedo_texture
 		if material is BaseMaterial3D:
 			material.use_z_clip_scale = value
 			if value and material.z_clip_scale == 1.0:
@@ -54,6 +56,7 @@ func set_z_scale_children(value: bool, new_mesh: Node3D) -> void:
 			var m_child = m.get_child(0) as MeshInstance3D
 			m_child.set_surface_override_material(0, StandardMaterial3D.new())
 			var material = m_child.get_surface_override_material(0)
+			material.albedo_texture = albedo_texture
 			if material is BaseMaterial3D:
 				material.use_z_clip_scale = value
 				if value and material.z_clip_scale == 1.0:
@@ -67,6 +70,8 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	
 	if has_meta("count"):
 		new_mesh.set_meta("count", get_meta("count"))
+		
+	if mesh_has_children:
 		set_z_scale_children(true, new_mesh)
 	
 	player.item_slot.add_child(new_mesh)
@@ -82,7 +87,7 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 		GlobalSignal.toggle_pointer.emit("sink", true)
 
 
-func shrink_and_free(money:int) -> void:
+func shrink_and_free(money:int, delay := 1.0) -> void:
 	if pointer:
 		pointer.hide()
 	var tween = create_tween()
@@ -91,7 +96,7 @@ func shrink_and_free(money:int) -> void:
 	tween.tween_property(rigid_body, "position:y", position.y - 5.0, 0.75).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	if money:
 		tween.tween_callback(_pay_player.bind(money))
-	tween.tween_callback(queue_free).set_delay(5.0)
+	tween.tween_callback(queue_free).set_delay(delay)
 
 func _pay_player(money:int) -> void:
 	player.update_money(money)

@@ -21,7 +21,7 @@ var mesh_to_item_array: Array[Dictionary] = [
 		"item": "res://assets/items/mushroom_slice_plate_item.tscn"
 	},
 	{
-		"mesh": "pizza_slice_plate_mesh",
+		"mesh": "pepperoni_slice_plate_mesh",
 		"item": "res://assets/items/pepperoni_slice_plate_item.tscn"
 	},
 	{

@@ -311,12 +311,14 @@ func drop_item() -> void:
 	if child_mesh.has_meta("name"):
 		var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
 		child_mesh.queue_free()
-		if child_mesh.has_meta("count"):
-			item.set_meta("count", child_mesh.get_meta("count"))
-		get_parent().add_child(item)
 		
 		var forward = -camera.global_transform.basis.z.normalized()
-		item.position = camera.global_position + forward
+		if child_mesh.has_meta("count"):
+			item.set_meta("count", child_mesh.get_meta("count"))
+			item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
+		else:
+			item.position = camera.global_position + forward
+		get_parent().add_child(item)
 		
 		item.set_monitoring(true)
 		item.set_z_scale(false)

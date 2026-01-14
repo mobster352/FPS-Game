@@ -56,6 +56,9 @@ meshInstanceArray = [NodePath("body/food_ingredient_dough")]
 albedo_texture = ExtResource("3_2qqog")
 metadata/name = &"dough"
 
+[node name="body" parent="." index="0"]
+collision_mask = 5
+
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016403198, 0.29387152, -0.0026276112)
 shape = SubResource("BoxShape3D_kcmtp")

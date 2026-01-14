@@ -7,5 +7,7 @@
 
 [node name="plate" parent="." instance=ExtResource("1_f20gr")]
 
-[node name="food_pizza_pepperoni_slice" parent="plate" instance=ExtResource("2_n4twm")]
+[node name="food_pizza_pepperoni_slice" parent="plate/plate" index="0" instance=ExtResource("2_n4twm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10001755, 0.5475824)
+
+[editable path="plate"]
