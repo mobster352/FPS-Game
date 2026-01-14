@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://da55hwcky2dj6"]
+[gd_scene load_steps=6 format=3 uid="uid://da55hwcky2dj6"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_i6x27"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_t7ys6"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i6x27"]
+size = Vector3(1, 0.30718994, 1)
 
 [node name="Mushroom_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
 rigid_body = NodePath("body")
@@ -19,7 +22,8 @@ metadata/food_id = 3
 physics_material_override = SubResource("PhysicsMaterial_glgut")
 
 [node name="CollisionShape3D" parent="body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15346336, 0.039966583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15501976, 0.039966583)
+shape = SubResource("BoxShape3D_i6x27")
 
 [node name="mushroom_slice_plate" parent="body" index="1" instance=ExtResource("3_i6x27")]
 

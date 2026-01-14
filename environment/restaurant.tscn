@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=26 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -14,9 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bomyc4si50787" path="res://assets/items/mushroom_pizza_boxed.tscn" id="11_nawl3"]
 [ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
+[ext_resource type="PackedScene" uid="uid://dy7xax75cix75" path="res://assets/environment/restaurant/kitchentable_b_large.tscn" id="13_ggvsq"]
 [ext_resource type="PackedScene" uid="uid://vc1artee7vt4" path="res://assets/environment/restaurant/food_ingredient_dough.tscn" id="13_omk0r"]
-[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="14_ggvsq"]
 [ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
+[ext_resource type="PackedScene" uid="uid://dwe8l4fxju48f" path="res://assets/environment/restaurant/crate_dough.tscn" id="15_66x4a"]
 [ext_resource type="PackedScene" uid="uid://to2ahd3uam2y" path="res://assets/ui/billboard.tscn" id="16_nawl3"]
 [ext_resource type="Script" uid="uid://dp7d5nqog8hm2" path="res://environment/billboard.gd" id="16_w3jle"]
 [ext_resource type="Script" uid="uid://c0dt2w4i1qg53" path="res://assets/ui/billboard_ui.gd" id="18_lussy"]
@@ -54,6 +55,7 @@ shape = SubResource("WorldBoundaryShape3D_08apq")
 [node name="Restaurant" type="Node3D" parent="Environment"]
 
 [node name="Ceiling" type="Node3D" parent="Environment/Restaurant"]
+visible = false
 
 [node name="wall12" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, 2)
@@ -102,6 +104,30 @@ transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.3711
 
 [node name="wall23" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -10)
+
+[node name="wall28" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, -14)
+
+[node name="wall29" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, -14)
+
+[node name="wall30" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, -14)
+
+[node name="wall31" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -14)
+
+[node name="wall32" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, -18)
+
+[node name="wall33" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 4, 4, -18)
+
+[node name="wall34" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -4, 4, -18)
+
+[node name="wall35" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -8, 4, -18)
 
 [node name="Floors" type="Node3D" parent="Environment/Restaurant"]
 
@@ -164,10 +190,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 [node name="floor_kitchen9" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
 
+[node name="floor_kitchen10" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+
+[node name="floor_kitchen11" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -12)
+
+[node name="floor_kitchen12" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -12)
+
+[node name="floor_kitchen13" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -12)
+
+[node name="floor_kitchen14" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="floor_kitchen15" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16)
+
+[node name="floor_kitchen16" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
+
+[node name="floor_kitchen17" parent="Environment/Restaurant/Floors" instance=ExtResource("3_2ugwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
+
 [node name="Decorations" type="Node3D" parent="Environment/Restaurant"]
 
 [node name="Door_A2" parent="Environment/Restaurant/Decorations" instance=ExtResource("5_5dcbl")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.8, 0, -10)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.8, 0, -18)
 is_locked = false
 number_required = 0
 
@@ -196,34 +246,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, -6.0328
 omni_range = 17.402536
 
 [node name="kitchentable_B" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -3.7422605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -11.74226)
 
 [node name="Pepperoni_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B" instance=ExtResource("9_nd13t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
 
 [node name="kitchentable_B2" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -6.0937595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -14.09376)
 
 [node name="Mushroom_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B2" instance=ExtResource("11_nawl3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
 
 [node name="kitchentable_B3" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -8.5213585)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6489434, 0, -16.521358)
 
 [node name="Cheese_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B3" instance=ExtResource("12_lussy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
 
 [node name="Monitor" parent="Environment/Restaurant/Decorations" instance=ExtResource("12_w3jle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9450831, 2.4897282, -9.736316)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9450831, 2.4897282, -17.736317)
 
 [node name="kitchencounter_sink" parent="Environment/Restaurant/Decorations" instance=ExtResource("14_w3jle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17)
 
-[node name="food_ingredient_dough" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("13_omk0r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.415332)
-area = NodePath("body/Area3D")
-meshInstanceArray = [NodePath("body/food_ingredient_dough2")]
-albedo_texture = ExtResource("14_ggvsq")
+[node name="kitchentable_B_large" parent="Environment/Restaurant/Decorations" instance=ExtResource("13_ggvsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84944296, 0, -8.499873)
+
+[node name="food_ingredient_dough" parent="Environment/Restaurant/Decorations" instance=ExtResource("13_omk0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0224094, -8.79206)
+
+[node name="crate_dough" parent="Environment/Restaurant/Decorations" instance=ExtResource("15_66x4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.014203, 0, -8.624677)
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 
@@ -236,6 +289,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0
 [node name="wall9" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -8)
 
+[node name="wall10" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -12)
+
+[node name="wall13" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, -16)
+
 [node name="wall12" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0, -2)
 
@@ -243,13 +302,13 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 0
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -2)
 
 [node name="wall16" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -10)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 0, -18)
 
 [node name="wall17" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -10)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -18)
 
 [node name="wall18" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -10)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -18)
 
 [node name="wall4" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 4)
@@ -262,6 +321,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10,
 
 [node name="wall15" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -8)
+
+[node name="wall19" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -12)
+
+[node name="wall20" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, -16)
 
 [node name="wall_doorway" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
@@ -285,7 +350,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="wall_doorway3" parent="Environment/Restaurant/Walls" instance=ExtResource("4_a5u7v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -18)
 
 [node name="Billboard" type="CSGBox3D" parent="Environment/Restaurant" node_paths=PackedStringArray("billboard_ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0025635, 3.874876, 6.304)
@@ -331,6 +396,5 @@ billboard_label = NodePath("../BillboardLabel")
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1/chair_A"]
-[editable path="Environment/Restaurant/Decorations/food_ingredient_dough"]
 [editable path="Environment/Restaurant/Billboard/Billboard"]
 [editable path="Environment/Restaurant/Billboard/Billboard/Button"]

@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dailpqyk5qdk4"]
+[gd_scene load_steps=4 format=3 uid="uid://dailpqyk5qdk4"]
 
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="1_w3e1j"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="2_smh0g"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w3e1j"]
-size = Vector3(0.9159546, 0.32729053, 1.0016842)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mah83"]
 radius = 1.5
@@ -19,7 +16,6 @@ collision_mask = 13
 angular_damp = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body"]
-shape = SubResource("BoxShape3D_w3e1j")
 
 [node name="Area3D" type="Area3D" parent="body"]
 collision_layer = 8

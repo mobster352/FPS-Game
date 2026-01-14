@@ -37,6 +37,8 @@ enemies=""
 items=""
 player=""
 nav_road=""
+static=""
+spawner=""
 
 [input]
 

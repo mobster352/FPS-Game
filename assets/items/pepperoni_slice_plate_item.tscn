@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfdmutnaw0g3g"]
+[gd_scene load_steps=6 format=3 uid="uid://dfdmutnaw0g3g"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_t1y86"]
 [ext_resource type="PackedScene" uid="uid://s6frxyp5at7j" path="res://assets/environment/restaurant/pepperoni_slice_plate.tscn" id="2_glgut"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glgut"]
+size = Vector3(1, 0.30847168, 1)
 
 [node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
 rigid_body = NodePath("body")
@@ -19,7 +22,8 @@ metadata/food_id = 1
 physics_material_override = SubResource("PhysicsMaterial_glgut")
 
 [node name="CollisionShape3D" parent="body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0058898926, 0.16172028, 0.027053833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008029938, 0.14899889, 0.03597337)
+shape = SubResource("BoxShape3D_glgut")
 
 [node name="pepperoni_slice_plate" parent="body" index="1" instance=ExtResource("2_glgut")]
 

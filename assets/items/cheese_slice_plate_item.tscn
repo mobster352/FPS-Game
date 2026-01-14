@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c07meb4qmjeqc"]
+[gd_scene load_steps=6 format=3 uid="uid://c07meb4qmjeqc"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_s2p2d"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_twasl"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s2p2d"]
+size = Vector3(1, 0.31555176, 1.0125732)
 
 [node name="Cheese_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_s2p2d")]
 rigid_body = NodePath("body")
@@ -19,7 +22,8 @@ metadata/food_id = 2
 physics_material_override = SubResource("PhysicsMaterial_glgut")
 
 [node name="CollisionShape3D" parent="body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14684057, 0.033215523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15117407, 0.039502144)
+shape = SubResource("BoxShape3D_s2p2d")
 
 [node name="cheese_slice_plate" parent="body" index="1" instance=ExtResource("3_s2p2d")]
 

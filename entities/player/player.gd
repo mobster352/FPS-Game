@@ -179,10 +179,25 @@ func _process_rayCast() -> void:
 			reticle.color = Color(255,255,255)
 	else:
 		if itemRaycast.is_colliding():
-			var target = itemRaycast.get_collider()
+			var target = itemRaycast.get_collider() as Node3D
 			if target:
 				#print(target)
-				if target.get_parent() is Item:
+				if target.is_in_group("spawner"):
+					for child in target.get_children():
+						if items_in_range.has(target.get_parent()) and child is ObjectSpawner:
+							reticle.color = Color(0.0, 1.0, 0.0, 1.0)
+							if Input.is_action_just_pressed("interact"):
+								var obj = child.remove_object()
+								if obj:
+									if item_slot.get_child_count() > 0:
+										drop_item()
+									if obj.get_parent():
+										obj.get_parent().remove_child(obj)
+									item_slot.add_child(obj)
+									obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+						else:
+							reticle.color = Color(255,255,255)
+				elif target.get_parent() is Item:
 					var obj = target.get_parent() as Item
 					if items_in_range.has(obj) and not obj.disabled:
 						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
@@ -271,7 +286,7 @@ func _process_draw_weapon() -> void:
 func _physics_logic() -> void:
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
-		if collider is RigidBody3D:
+		if collider is RigidBody3D and not collider.get_parent().is_in_group("static"):
 			collider.apply_central_impulse(-get_slide_collision(i).get_normal())
 
 func _process_crouch() -> void:
