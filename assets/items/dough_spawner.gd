@@ -37,13 +37,19 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent.has_meta("name"):
 		if parent.get_meta("name") == "dough":
-			if parent is Item:
-				if body is RigidBody3D:
-					body.freeze = true
-				parent.shrink_and_free(0)
-				if not parent.disabled:
+			if object_array.size() < 8:
+				if parent is Item:
+					if body is RigidBody3D:
+						body.freeze = true
+					parent.shrink_and_free(0)
+					if not parent.disabled:
+						add_object()
+						parent.disabled = true
+				else:
+					parent.queue_free()
 					add_object()
-					parent.disabled = true
 			else:
-				parent.queue_free()
-				add_object()
+				if body is RigidBody3D:
+					var forward = body.global_transform.basis.z.normalized()
+					var throw_strength: float = 1.0
+					body.apply_impulse(forward * (throw_strength / body.mass), body.global_position + forward)

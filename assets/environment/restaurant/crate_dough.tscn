@@ -27,7 +27,7 @@ area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/StaticBody3D/crate/crate")]
 albedo_texture = ExtResource("2_u4joo")
 mesh_has_children = true
-metadata/count = 4
+metadata/count = 8
 
 [node name="body" parent="." index="0"]
 collision_mask = 5

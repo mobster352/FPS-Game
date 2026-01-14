@@ -55,7 +55,6 @@ shape = SubResource("WorldBoundaryShape3D_08apq")
 [node name="Restaurant" type="Node3D" parent="Environment"]
 
 [node name="Ceiling" type="Node3D" parent="Environment/Restaurant"]
-visible = false
 
 [node name="wall12" parent="Environment/Restaurant/Ceiling" instance=ExtResource("2_nfqdm")]
 transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, 0, 4, 2)
@@ -243,6 +242,18 @@ omni_range = 17.402536
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, -6.032819)
+omni_range = 17.402536
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7890625, 3.0848804, -12.574826)
+omni_range = 17.402536
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0920153, 3.0848804, -12.574826)
+omni_range = 17.402536
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, -12.574826)
 omni_range = 17.402536
 
 [node name="kitchentable_B" parent="Environment/Restaurant/Decorations" instance=ExtResource("8_1nokp")]
