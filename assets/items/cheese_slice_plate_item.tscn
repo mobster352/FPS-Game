@@ -10,13 +10,15 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2p2d"]
 size = Vector3(1, 0.31555176, 1.0125732)
 
-[node name="Cheese_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_s2p2d")]
+[node name="Cheese_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_s2p2d")]
+mesh = NodePath("body/cheese_slice_plate/plate/food_pizza_cheese_slice/food_pizza_cheese_slice")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/cheese_slice_plate/plate/plate"), NodePath("body/cheese_slice_plate/plate/food_pizza_cheese_slice/food_pizza_cheese_slice")]
 albedo_texture = ExtResource("2_twasl")
 disposable = true
 metadata/food_id = 2
+metadata/name = &"cheese_slice_plate_mesh"
 
 [node name="body" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
@@ -26,6 +28,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15117407, 0.039502144)
 shape = SubResource("BoxShape3D_s2p2d")
 
 [node name="cheese_slice_plate" parent="body" index="1" instance=ExtResource("3_s2p2d")]
+
+[node name="food_pizza_cheese_slice" parent="body/cheese_slice_plate/plate/food_pizza_cheese_slice" index="0"]
+metadata/name = &"cheese_slice_plate_mesh"
 
 [editable path="body/cheese_slice_plate"]
 [editable path="body/cheese_slice_plate/plate"]

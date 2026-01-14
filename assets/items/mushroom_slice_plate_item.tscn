@@ -10,13 +10,15 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_i6x27"]
 size = Vector3(1, 0.30718994, 1)
 
-[node name="Mushroom_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
+[node name="Mushroom_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
+mesh = NodePath("body/mushroom_slice_plate/plate/food_pizza_mushroom_slice/food_pizza_mushroom_slice")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/mushroom_slice_plate/plate/plate"), NodePath("body/mushroom_slice_plate/plate/food_pizza_mushroom_slice/food_pizza_mushroom_slice")]
 albedo_texture = ExtResource("2_t7ys6")
 disposable = true
 metadata/food_id = 3
+metadata/name = &"mushroom_slice_plate_mesh"
 
 [node name="body" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
@@ -26,6 +28,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15501976, 0.039966583)
 shape = SubResource("BoxShape3D_i6x27")
 
 [node name="mushroom_slice_plate" parent="body" index="1" instance=ExtResource("3_i6x27")]
+
+[node name="food_pizza_mushroom_slice" parent="body/mushroom_slice_plate/plate/food_pizza_mushroom_slice" index="0"]
+metadata/name = &"mushroom_slice_plate_mesh"
 
 [editable path="body/mushroom_slice_plate"]
 [editable path="body/mushroom_slice_plate/plate"]

@@ -48,9 +48,11 @@ shadow_mesh = SubResource("ArrayMesh_6q1m2")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcmtp"]
 albedo_texture = ExtResource("3_2qqog")
 
-[node name="food_ingredient_dough" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("1_kcmtp")]
+[node name="food_ingredient_dough" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_kcmtp")]
+mesh = NodePath("body/food_ingredient_dough")
+rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
-meshInstanceArray = [NodePath("body/food_ingredient_dough2")]
+meshInstanceArray = [NodePath("body/food_ingredient_dough")]
 albedo_texture = ExtResource("3_2qqog")
 metadata/name = &"dough"
 
@@ -58,7 +60,8 @@ metadata/name = &"dough"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0016403198, 0.29387152, -0.0026276112)
 shape = SubResource("BoxShape3D_kcmtp")
 
-[node name="food_ingredient_dough2" type="MeshInstance3D" parent="body" index="1"]
+[node name="food_ingredient_dough" type="MeshInstance3D" parent="body" index="1"]
 mesh = SubResource("ArrayMesh_gfrph")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_kcmtp")
+metadata/name = &"dough_mesh"

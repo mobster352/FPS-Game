@@ -40,3 +40,6 @@ signal toggle_pointer(meta: StringName, value: bool)
 
 @warning_ignore("unused_signal")
 signal toggle_pointer_ui()
+
+@warning_ignore("unused_signal")
+signal init_player(player: Player)

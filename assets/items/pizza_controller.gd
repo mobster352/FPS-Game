@@ -23,13 +23,19 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func get_slice() -> Item:
 	if pizza_type == GlobalVar.PIZZA_TYPE.PEPPERONI:
 		pointer.hide()
-		return preload("res://assets/items/pepperoni_slice_plate_item.tscn").instantiate() as Item
+		var pizza =  preload("res://assets/items/pepperoni_slice_plate_item.tscn").instantiate() as Item
+		add_child(pizza)
+		return pizza
 	if pizza_type == GlobalVar.PIZZA_TYPE.CHEESE:
 		pointer.hide()
-		return preload("res://assets/items/cheese_slice_plate_item.tscn").instantiate() as Item
+		var pizza =  preload("res://assets/items/cheese_slice_plate_item.tscn").instantiate() as Item
+		add_child(pizza)
+		return pizza
 	if pizza_type == GlobalVar.PIZZA_TYPE.MUSHROOM:
 		pointer.hide()
-		return preload("res://assets/items/mushroom_slice_plate_item.tscn").instantiate() as Item
+		var pizza =  preload("res://assets/items/mushroom_slice_plate_item.tscn").instantiate() as Item
+		add_child(pizza)
+		return pizza
 	return null
 
 

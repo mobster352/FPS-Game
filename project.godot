@@ -114,6 +114,7 @@ order_test={
 3d_physics/layer_4="Items"
 3d_physics/layer_5="Detection"
 3d_physics/layer_6="Customer"
+3d_physics/layer_7="Static"
 
 [physics]
 

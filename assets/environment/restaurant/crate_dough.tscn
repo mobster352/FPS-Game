@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwe8l4fxju48f"]
+[gd_scene load_steps=10 format=3 uid="uid://dwe8l4fxju48f"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_6la8k"]
 [ext_resource type="PackedScene" uid="uid://dgayf051oh1wt" path="res://assets/kaykit/restaurant/crate.gltf" id="1_r2ko0"]
@@ -14,16 +14,19 @@ size = Vector3(1.9931641, 1, 0.23071289)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vu3v1"]
 size = Vector3(1.6470947, 0.068847656, 1.6153564)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ukq3"]
+size = Vector3(1.5092773, 0.2871704, 1.522583)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4joo"]
 radius = 1.209547
 
-[node name="crate_dough" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_6la8k")]
+[node name="crate_dough" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_6la8k")]
+mesh = NodePath("body/StaticBody3D/crate/crate")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
-meshInstanceArray = [NodePath("body/crate/crate")]
+meshInstanceArray = [NodePath("body/StaticBody3D/crate/crate")]
 albedo_texture = ExtResource("2_u4joo")
-
-[node name="body" parent="." index="0" groups=["spawner"]]
+metadata/count = 4
 
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86865234, 0.40222967, 0.004852295)
@@ -49,17 +52,29 @@ shape = SubResource("BoxShape3D_vu3v1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 1.2399716)
 visible = true
 
-[node name="crate" parent="body" index="7" instance=ExtResource("1_r2ko0")]
-script = ExtResource("4_u4joo")
+[node name="StaticBody3D" type="StaticBody3D" parent="body" index="7" groups=["spawner"]]
+collision_layer = 64
 
-[node name="DoughRadius" type="Area3D" parent="body/crate" index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0041503906, 0.88778687, 0.010803223)
+shape = SubResource("BoxShape3D_1ukq3")
+
+[node name="crate" parent="body/StaticBody3D" index="1" node_paths=PackedStringArray("item", "mesh") instance=ExtResource("1_r2ko0")]
+script = ExtResource("4_u4joo")
+item = NodePath("../../..")
+mesh = NodePath("crate")
+
+[node name="crate" parent="body/StaticBody3D/crate" index="0"]
+metadata/name = &"crate_mesh"
+
+[node name="DoughRadius" type="Area3D" parent="body/StaticBody3D/crate" index="1"]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/crate/DoughRadius" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/StaticBody3D/crate/DoughRadius" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348359, 0)
 shape = SubResource("SphereShape3D_u4joo")
 
-[connection signal="body_entered" from="body/crate/DoughRadius" to="body/crate" method="_on_dough_radius_body_entered"]
+[connection signal="body_entered" from="body/StaticBody3D/crate/DoughRadius" to="body/StaticBody3D/crate" method="_on_dough_radius_body_entered"]
 
-[editable path="body/crate"]
+[editable path="body/StaticBody3D/crate"]

@@ -184,7 +184,7 @@ func _process_rayCast() -> void:
 				#print(target)
 				if target.is_in_group("spawner"):
 					for child in target.get_children():
-						if items_in_range.has(target.get_parent()) and child is ObjectSpawner:
+						if items_in_range.has(target.get_parent().get_parent()) and child is ObjectSpawner:
 							reticle.color = Color(0.0, 1.0, 0.0, 1.0)
 							if Input.is_action_just_pressed("interact"):
 								var obj = child.remove_object()
@@ -193,8 +193,8 @@ func _process_rayCast() -> void:
 										drop_item()
 									if obj.get_parent():
 										obj.get_parent().remove_child(obj)
-									item_slot.add_child(obj)
-									obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+									obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+									obj.queue_free()
 						else:
 							reticle.color = Color(255,255,255)
 				elif target.get_parent() is Item:
@@ -206,8 +206,11 @@ func _process_rayCast() -> void:
 								drop_item()
 							if obj.get_parent():
 								obj.get_parent().remove_child(obj)
-							item_slot.add_child(obj)
-							obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+							if obj.has_meta("count"):
+								obj.pickup(Vector3(0,-0.5,1.0), Vector3(-0.25,0,0))
+							else:
+								obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+							obj.queue_free()
 					else:
 						reticle.color = Color(255,255,255)
 				elif target.get_parent() is Door:
@@ -226,8 +229,10 @@ func _process_rayCast() -> void:
 							if item_slot.get_child_count() > 0:
 								drop_item()
 							var obj = pizza.get_slice()
-							item_slot.add_child(obj)
-							obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+							if obj.get_parent():
+								obj.get_parent().remove_child(obj)
+							obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+							obj.queue_free()
 					else:
 						reticle.color = Color(255,255,255)
 				elif target is NPC_Dummy:
@@ -300,34 +305,41 @@ func _process_drop_item() -> void:
 		drop_item()
 
 func drop_item() -> void:
-	var child = item_slot.get_child(0) as Item
-	item_slot.remove_child(child)
-	get_parent().add_child(child)
+	var child_mesh = item_slot.get_child(0) as MeshInstance3D
+	item_slot.remove_child(child_mesh)
 	
-	var forward = -camera.global_transform.basis.z.normalized()
-	child.position = camera.global_position + forward
-	
-	child.set_monitoring(true)
-	child.set_z_scale(false)
-	for c in child.get_children():
-		if c is RigidBody3D:
-			c.freeze = false
-			c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
-			c.look_at(camera.global_position)
-			c.rotate(Vector3.UP, deg_to_rad(130))
-			c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-			var shape = c.get_child(0)
-			if shape is CollisionShape3D:
-				shape.disabled = false
-	
-	if child.has_meta("food_id"):
-		var food_id = child.get_meta("food_id")
-		if food_id:
-			GlobalSignal.drop_food.emit(food_id)
-			GlobalSignal.check_restaurant_food.emit(food_id)
-	elif child.has_meta("plate_dirty"):
-		child.pointer.show()
-		GlobalSignal.toggle_pointer.emit("sink", false)
+	if child_mesh.has_meta("name"):
+		var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
+		child_mesh.queue_free()
+		if child_mesh.has_meta("count"):
+			item.set_meta("count", child_mesh.get_meta("count"))
+		get_parent().add_child(item)
+		
+		var forward = -camera.global_transform.basis.z.normalized()
+		item.position = camera.global_position + forward
+		
+		item.set_monitoring(true)
+		item.set_z_scale(false)
+		for c in item.get_children():
+			if c is RigidBody3D:
+				c.freeze = false
+				c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+				c.look_at(camera.global_position)
+				if not item.has_meta("count"):
+					c.rotate(Vector3.UP, deg_to_rad(130))
+					c.rotate(Vector3.RIGHT, deg_to_rad(-20))
+				var shape = c.get_child(0)
+				if shape is CollisionShape3D:
+					shape.disabled = false
+		
+		if item.has_meta("food_id"):
+			var food_id = item.get_meta("food_id")
+			if food_id:
+				GlobalSignal.drop_food.emit(food_id)
+				GlobalSignal.check_restaurant_food.emit(food_id)
+		elif item.has_meta("plate_dirty"):
+			item.pointer.show()
+			GlobalSignal.toggle_pointer.emit("sink", false)
 
 
 func append_item_in_range(item: Node3D) -> void:

@@ -10,7 +10,8 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_glgut"]
 size = Vector3(1, 0.30847168, 1)
 
-[node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
+[node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
+mesh = NodePath("body/pepperoni_slice_plate/plate/food_pizza_pepperoni_slice/food_pizza_pepperoni_slice")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/pepperoni_slice_plate/plate/plate"), NodePath("body/pepperoni_slice_plate/plate/food_pizza_pepperoni_slice/food_pizza_pepperoni_slice")]
@@ -26,6 +27,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008029938, 0.14899889, 0.0
 shape = SubResource("BoxShape3D_glgut")
 
 [node name="pepperoni_slice_plate" parent="body" index="1" instance=ExtResource("2_glgut")]
+
+[node name="food_pizza_pepperoni_slice" parent="body/pepperoni_slice_plate/plate/food_pizza_pepperoni_slice" index="0"]
+metadata/name = &"pizza_slice_plate_mesh"
 
 [node name="Pointer" parent="body" index="3"]
 visible = true

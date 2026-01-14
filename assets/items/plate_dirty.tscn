@@ -7,7 +7,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqbfs"]
 size = Vector3(1, 0.10205078, 1)
 
-[node name="plate_dirty" node_paths=PackedStringArray("rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_uqbfs")]
+[node name="plate_dirty" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_uqbfs")]
+mesh = NodePath("body/plate_dirty/plate_dirty")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/plate_dirty/plate_dirty")]
@@ -20,6 +21,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05018866, 0)
 shape = SubResource("BoxShape3D_uqbfs")
 
 [node name="plate_dirty" parent="body" index="2" instance=ExtResource("1_kv4sn")]
+
+[node name="plate_dirty" parent="body/plate_dirty" index="0"]
+metadata/name = &"plate_dirty_mesh"
 
 [node name="Pointer" parent="body" index="3"]
 visible = true
