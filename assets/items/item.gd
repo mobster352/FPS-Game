@@ -1,6 +1,7 @@
 extends Node3D
 class_name Item
 
+@export var rigid_body: RigidBody3D
 @export var area: Area3D
 @export var meshInstanceArray: Array[MeshInstance3D]
 var standardMaterial3D: StandardMaterial3D
@@ -75,13 +76,14 @@ func pickup(new_rotation: Vector3) -> void:
 
 
 func shrink_and_free(money:int) -> void:
-	pointer.hide()
-	var body = get_child(0)
-	if body is RigidBody3D:
-		body.freeze = true
+	if pointer:
+		pointer.hide()
+	if rigid_body is RigidBody3D:
+		rigid_body.freeze = true
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector3(0.001,0.001,0.001), 0.25).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(self, "position:y", 0, 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.set_parallel(true)
+	tween.tween_property(rigid_body, "scale", Vector3(0.001,0.001,0.001), 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(rigid_body, "position:y", position.y - 5.0, 0.75).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	if money:
 		tween.tween_callback(_pay_player.bind(money))
 	tween.tween_callback(queue_free).set_delay(5.0)

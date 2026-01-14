@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=25 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bomyc4si50787" path="res://assets/items/mushroom_pizza_boxed.tscn" id="11_nawl3"]
 [ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
+[ext_resource type="PackedScene" uid="uid://vc1artee7vt4" path="res://assets/environment/restaurant/food_ingredient_dough.tscn" id="13_omk0r"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="14_ggvsq"]
 [ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
 [ext_resource type="PackedScene" uid="uid://to2ahd3uam2y" path="res://assets/ui/billboard.tscn" id="16_nawl3"]
 [ext_resource type="Script" uid="uid://dp7d5nqog8hm2" path="res://environment/billboard.gd" id="16_w3jle"]
@@ -217,6 +219,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9450831, 2.4897282, -9.736
 [node name="kitchencounter_sink" parent="Environment/Restaurant/Decorations" instance=ExtResource("14_w3jle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
+[node name="food_ingredient_dough" parent="Environment/Restaurant/Decorations" node_paths=PackedStringArray("area", "meshInstanceArray") instance=ExtResource("13_omk0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.415332)
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/food_ingredient_dough2")]
+albedo_texture = ExtResource("14_ggvsq")
+
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 
 [node name="wall3" parent="Environment/Restaurant/Walls" instance=ExtResource("2_nfqdm")]
@@ -323,5 +331,6 @@ billboard_label = NodePath("../BillboardLabel")
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1"]
 [editable path="Environment/Restaurant/Floors/NavRegionRestaurant/Table1/chair_A"]
+[editable path="Environment/Restaurant/Decorations/food_ingredient_dough"]
 [editable path="Environment/Restaurant/Billboard/Billboard"]
 [editable path="Environment/Restaurant/Billboard/Billboard/Button"]

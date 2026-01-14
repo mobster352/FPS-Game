@@ -11,7 +11,6 @@ func _ready() -> void:
 func _process(delta):
 	# Move up/down
 	pointer.position.y += direction * SPEED * delta
-	
 	# Reverse direction at boundaries (example for 2D)
 	if pointer.position.y < 0: # If near top boundary
 		direction = 1

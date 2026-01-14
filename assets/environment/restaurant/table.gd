@@ -41,9 +41,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 
 func _on_plate_timer_timeout() -> void:
-	var plate_dirty = preload("res://assets/items/plate_dirty.tscn").instantiate()
-	plate_dirty.position = food_item.position
+	var plate_dirty = preload("res://assets/items/plate_dirty.tscn").instantiate() as Item
 	food_item.get_parent().add_child(plate_dirty)
+	plate_dirty.global_position = food_item.global_position
 	food_item.queue_free()
 	
 	# remove npc

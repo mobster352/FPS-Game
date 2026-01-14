@@ -25,7 +25,7 @@ var weapon: Weapon
 
 @export var item_slot: Node3D
 
-@export var throw_strength: int = 4
+@export var throw_strength: float = 5.0
 @export var camera: Camera3D
 #@export var player_skin: PlayerSkin
 @export var pause_menu: PauseMenu
@@ -192,7 +192,7 @@ func _process_rayCast() -> void:
 							if obj.get_parent():
 								obj.get_parent().remove_child(obj)
 							item_slot.add_child(obj)
-							obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
+							obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
 					else:
 						reticle.color = Color(255,255,255)
 				elif target.get_parent() is Door:
@@ -212,7 +212,7 @@ func _process_rayCast() -> void:
 								drop_item()
 							var obj = pizza.get_slice()
 							item_slot.add_child(obj)
-							obj.pickup(Vector3(deg_to_rad(110),deg_to_rad(150),deg_to_rad(20)))
+							obj.pickup(Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
 					else:
 						reticle.color = Color(255,255,255)
 				elif target is NPC_Dummy:
@@ -298,6 +298,9 @@ func drop_item() -> void:
 		if c is RigidBody3D:
 			c.freeze = false
 			c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+			c.look_at(camera.global_position)
+			c.rotate(Vector3.UP, deg_to_rad(130))
+			c.rotate(Vector3.RIGHT, deg_to_rad(-20))
 			var shape = c.get_child(0)
 			if shape is CollisionShape3D:
 				shape.disabled = false
