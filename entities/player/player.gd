@@ -3,6 +3,10 @@ class_name Player
 
 signal weapon_fired
 
+const RETICLE_WHITE := Color(255,255,255)
+const RETICLE_RED := Color(255,0,0)
+const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 1.0)
+
 const SPEED = 5.0
 @export var JUMP_VELOCITY := 6.0
 
@@ -165,107 +169,58 @@ func shoot() -> void:
 	weapon.shoot_animation()
 
 func _process_rayCast() -> void:
+	reticle.color = RETICLE_WHITE
+	
+	var ray: RayCast3D
 	if weapon:
-		if shotRaycast.is_colliding():
-			var target = shotRaycast.get_collider()
-			if target:
-				if target.is_in_group("enemies"):
-					reticle.color = Color(255,0,0)
-				elif target.get_parent().is_in_group("enemies"):
-					reticle.color = Color(255,0,0)
-				else:
-					reticle.color = Color(255,255,255)
-		else:
-			reticle.color = Color(255,255,255)
+		ray = shotRaycast
 	else:
-		if itemRaycast.is_colliding():
-			var target = itemRaycast.get_collider() as Node3D
-			if target:
-				#print(target)
-				if target.is_in_group("spawner"):
-					for child in target.get_children():
-						if items_in_range.has(target.get_parent().get_parent()) and child is ObjectSpawner:
-							reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-							if Input.is_action_just_pressed("interact"):
-								var obj = child.remove_object()
-								if obj:
-									if item_slot.get_child_count() > 0:
-										drop_item()
-									if obj.get_parent():
-										obj.get_parent().remove_child(obj)
-									obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
-									obj.queue_free()
-						else:
-							reticle.color = Color(255,255,255)
-				elif target.get_parent() is Item:
-					var obj = target.get_parent() as Item
-					if items_in_range.has(obj) and not obj.disabled:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("interact"):
-							if item_slot.get_child_count() > 0:
-								drop_item()
-							if obj.get_parent():
-								obj.get_parent().remove_child(obj)
-							if obj.has_meta("count"):
-								obj.pickup(Vector3(0,-0.5,1.0), Vector3(-0.25,0,0))
-							else:
-								obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
-							obj.queue_free()
-					else:
-						reticle.color = Color(255,255,255)
-				elif target.get_parent() is Door:
-					var door = target.get_parent() as Door
-					if door.in_range:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-					else:
-						reticle.color = Color(255,255,255)
-					if Input.is_action_just_pressed("interact"):
-						door.door_interact()
-				elif target.get_parent() is Pizza:
-					var pizza = target.get_parent() as Pizza
-					if pizza.in_range:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("interact"):
-							if item_slot.get_child_count() > 0:
-								drop_item()
-							var obj = pizza.get_slice()
-							if obj.get_parent():
-								obj.get_parent().remove_child(obj)
-							obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
-							obj.queue_free()
-					else:
-						reticle.color = Color(255,255,255)
-				elif target is NPC_Dummy:
-					var npc_dummy = target as NPC_Dummy
-					if npc_dummy.in_range and not npc_dummy.has_order:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("interact"):
-							npc_dummy.interact()
-					else:
-						reticle.color = Color(255,255,255)
-				elif target is DriveThruCustomer:
-					var customer = target as DriveThruCustomer
-					if customer.in_range and not customer.has_order:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("interact"):
-							customer.interact()
-					else:
-						reticle.color = Color(255,255,255)
-				elif target.get_parent() is Billboard:
-					var billboard = target.get_parent() as Billboard
-					if billboard.in_range:
-						reticle.color = Color(0.0, 1.0, 0.0, 1.0)
-						if Input.is_action_just_pressed("interact"):
-							billboard.show_billboard_ui()
-							freeze_camera = true
-					else:
-						reticle.color = Color(255,255,255)
-				else:
-					reticle.color = Color(255,255,255)
-			else:
-				reticle.color = Color(255,255,255)
-		else:
-			reticle.color = Color(255,255,255)
+		ray = itemRaycast
+		
+	if not ray.is_colliding():
+		return
+		
+	var target := ray.get_collider()
+	if not target:
+		return
+		
+	if weapon:
+		_handle_weapon_raycast(target)
+	else:
+		_handle_item_raycast(target)
+
+
+func _handle_weapon_raycast(target: Node3D) -> void:
+	if target.is_in_group("enemies") or target.get_parent().is_in_group("enemies"):
+		reticle.color = RETICLE_RED
+
+
+func _handle_item_raycast(target: Node3D) -> void:
+	var interact := Input.is_action_just_pressed("interact")
+	
+	var interactable := target as Interactable
+	if not interactable:
+		interactable = target.get_parent() as Interactable
+	if not interactable and target.has_node("Interactable"):
+		interactable = target.get_node("Interactable") as Interactable
+
+	if interactable:
+		if interactable.can_interact():
+			reticle.color = interactable.reticle_color()
+			if interact:
+				interactable.interact(self)
+
+	var cook_input := Input.is_action_just_pressed("cook")
+	
+	var cookable := target as Cookable
+	if not cookable and target.has_node("Cookable"):
+		cookable = target.get_node("Cookable")
+	
+	if cookable:
+		if cookable.can_cook():
+			reticle.color = cookable.reticle_color()
+			if cook_input:
+				cookable.cook(self)
 
 
 func _process_draw_weapon() -> void:
@@ -275,7 +230,7 @@ func _process_draw_weapon() -> void:
 			#pew.hide()
 			gun_pistol.hide()
 			ammo_label.hide()
-			reticle.color = Color(255,255,255)
+			reticle.color = RETICLE_WHITE
 			ui.show_hp(false)
 		else:
 			#weapon = pew
@@ -310,14 +265,13 @@ func drop_item() -> void:
 	
 	if child_mesh.has_meta("name"):
 		var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
-		child_mesh.queue_free()
-		
 		var forward = -camera.global_transform.basis.z.normalized()
 		if child_mesh.has_meta("count"):
 			item.set_meta("count", child_mesh.get_meta("count"))
 			item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
 		else:
 			item.position = camera.global_position + forward
+		child_mesh.queue_free()
 		get_parent().add_child(item)
 		
 		item.set_monitoring(true)

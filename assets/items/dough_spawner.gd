@@ -28,7 +28,7 @@ func remove_object() -> Item:
 	node.queue_free()
 	object_array.pop_back()
 	item.set_meta("count", object_array.size())
-	var new_node = preload("res://assets/environment/restaurant/food_ingredient_dough.tscn").instantiate()
+	var new_node = preload("res://assets/environment/restaurant/food_ingredient_dough.tscn").instantiate() as Item
 	mesh.add_child(new_node)
 	return new_node
 
@@ -53,3 +53,20 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 					var forward = body.global_transform.basis.z.normalized()
 					var throw_strength: float = 1.0
 					body.apply_impulse(forward * (throw_strength / body.mass), body.global_position + forward)
+
+
+func can_interact() -> bool:
+	return item.in_range
+	
+func interact(player: Player) -> void:
+	var obj = remove_object()
+	if obj:
+		if player.item_slot.get_child_count() > 0:
+			player.drop_item()
+		if obj.get_parent():
+			obj.get_parent().remove_child(obj)
+		obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+		obj.queue_free()
+	
+func reticle_color() -> Color:
+	return RETICLE_GREEN

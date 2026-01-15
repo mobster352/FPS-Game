@@ -31,6 +31,14 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"mesh": "crate_mesh",
 		"item": "res://assets/environment/restaurant/crate_dough.tscn"
+	},
+	{
+		"mesh": "dough_base_mesh",
+		"item": "res://assets/items/food_ingredient_dough_base.tscn"
+	},
+	{
+		"mesh": "rolling_pin_mesh",
+		"item": "res://assets/items/rolling_pin.tscn"
 	}
 ]
 

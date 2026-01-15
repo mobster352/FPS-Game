@@ -1,4 +1,4 @@
-extends Node
+extends Interactable
 class_name Pizza
 
 @export var pizza_type: GlobalVar.PIZZA_TYPE

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2f1gcqpluxwk"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_hupm6"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_k3mnl"]
+[ext_resource type="PackedScene" uid="uid://hpht055mwu6g" path="res://assets/environment/restaurant/food_ingredient_dough_base.gltf" id="2_m41i0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k3mnl"]
+size = Vector3(1.751709, 0.15185547, 1.734436)
+
+[node name="food_ingredient_dough_base" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_hupm6")]
+mesh = NodePath("body/mesh/food_ingredient_dough_base")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/mesh/food_ingredient_dough_base")]
+albedo_texture = ExtResource("2_k3mnl")
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017211914, 0.075927734, -0.00869751)
+shape = SubResource("BoxShape3D_k3mnl")
+
+[node name="mesh" parent="body" index="1" instance=ExtResource("2_m41i0")]
+
+[node name="food_ingredient_dough_base" parent="body/mesh" index="0"]
+metadata/name = &"dough_base_mesh"
+
+[editable path="body/mesh"]

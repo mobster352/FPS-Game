@@ -1,4 +1,4 @@
-extends Node3D
+extends Interactable
 class_name Item
 
 @export var mesh: MeshInstance3D
@@ -15,6 +15,8 @@ var player: Player
 var disabled := false
 var kill := false
 
+var in_range := false
+
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	standardMaterial3D = StandardMaterial3D.new()
@@ -30,11 +32,13 @@ func _process(_delta: float) -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player.append_item_in_range(self)
+		in_range = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player.remove_item_in_range(self)
+		in_range = false
 
 
 func set_monitoring(value: bool) -> void:
@@ -105,3 +109,23 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if has_meta("food_id"):
 		if get_meta("food_id") == food_id:
 			pointer.visible = value
+
+
+func can_interact() -> bool:
+	return in_range
+	
+func interact(_player: Player) -> void:
+	if disabled:
+		return
+	if player.item_slot.get_child_count() > 0:
+		player.drop_item()
+	if get_parent():
+		get_parent().remove_child(self)
+	if has_meta("count"):
+		pickup(Vector3(0,-0.5,1.0), Vector3(-0.25,0,0))
+	else:
+		pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+	queue_free()
+	
+func reticle_color() -> Color:
+	return RETICLE_GREEN

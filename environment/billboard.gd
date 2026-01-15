@@ -1,4 +1,4 @@
-extends Node3D
+extends Interactable
 class_name Billboard
 
 @export var billboard_ui: Control
@@ -19,3 +19,14 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 func show_billboard_ui() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	billboard_ui.show()
+
+
+func can_interact() -> bool:
+	return in_range
+	
+func interact(player: Player) -> void:
+	show_billboard_ui()
+	player.freeze_camera = true
+	
+func reticle_color() -> Color:
+	return RETICLE_GREEN

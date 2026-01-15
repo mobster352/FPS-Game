@@ -1,4 +1,4 @@
-extends Node
+extends Interactable
 class_name ObjectSpawner
 
 @export var item: Item
@@ -29,3 +29,12 @@ func _get_next_pos() -> Vector3:
 		3:
 			return BOTTOM_RIGHT_POS
 	return Vector3.ZERO
+
+func can_interact() -> bool:
+	return false
+	
+func interact(_player: Player) -> void:
+	pass
+	
+func reticle_color() -> Color:
+	return RETICLE_WHITE

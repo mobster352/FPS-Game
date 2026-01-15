@@ -56,3 +56,19 @@ func _init_restaurant(_restaurant:Restaurant) -> void:
 func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if pizza_type == food_id:
 		pointer.visible = value
+
+
+func can_interact() -> bool:
+	return in_range
+	
+func interact(player: Player) -> void:
+	if player.item_slot.get_child_count() > 0:
+		player.drop_item()
+	var obj = get_slice()
+	if obj.get_parent():
+		obj.get_parent().remove_child(obj)
+	obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+	obj.queue_free()
+	
+func reticle_color() -> Color:
+	return RETICLE_GREEN

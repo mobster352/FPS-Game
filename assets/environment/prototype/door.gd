@@ -1,4 +1,4 @@
-extends Node3D
+extends Interactable
 class_name Door
 
 @export var speed := 1.5
@@ -36,10 +36,20 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func door_interact() -> void:
-	if in_range and not interact_door and not is_locked:
+	if not interact_door and not is_locked:
 		interact_door = true
 
 
 func close_door() -> void:
 	if is_open:
 		interact_door = true
+
+
+func can_interact() -> bool:
+	return in_range
+	
+func interact(_player: Player) -> void:
+	door_interact()
+	
+func reticle_color() -> Color:
+	return RETICLE_GREEN

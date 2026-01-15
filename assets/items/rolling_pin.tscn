@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://5egw1id8hdbg"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_rei0x"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_gix2a"]
+[ext_resource type="PackedScene" uid="uid://c5mwmmts17sf" path="res://assets/kaykit/restaurant/rollingpin.gltf" id="2_o7hke"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gix2a"]
+size = Vector3(1.4467773, 0.44360352, 0.4329834)
+
+[node name="RollingPin" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_rei0x")]
+mesh = NodePath("body/rollingpin/rollingpin")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/rollingpin/rollingpin")]
+albedo_texture = ExtResource("2_gix2a")
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017089844, 0.003540039, 0.007019043)
+shape = SubResource("BoxShape3D_gix2a")
+
+[node name="rollingpin" parent="body" index="1" instance=ExtResource("2_o7hke")]
+
+[node name="rollingpin" parent="body/rollingpin" index="0"]
+metadata/name = &"rolling_pin_mesh"
+
+[editable path="body/rollingpin"]
