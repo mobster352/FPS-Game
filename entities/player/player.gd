@@ -261,8 +261,6 @@ func _process_drop_item() -> void:
 
 func drop_item() -> void:
 	var child_mesh = item_slot.get_child(0) as MeshInstance3D
-	item_slot.remove_child(child_mesh)
-	
 	if child_mesh.has_meta("name"):
 		var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
 		var forward = -camera.global_transform.basis.z.normalized()
@@ -271,9 +269,18 @@ func drop_item() -> void:
 			item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
 		else:
 			item.position = camera.global_position + forward
-		child_mesh.queue_free()
+		item.mesh = child_mesh.duplicate()
+		if item.has_node("body/mesh"):
+			var mesh_node = item.get_node("body/mesh")
+			mesh_node.remove_child(mesh_node.get_child(0))
+			mesh_node.add_child(item.mesh)
+		if item.mesh.get_child_count() > 0:
+			item.mesh_has_children = true
+			item.set_z_scale_children(false, item.mesh)
+		item.mesh.rotation = Vector3.ZERO
 		get_parent().add_child(item)
 		
+		item.meshInstanceArray.append(item.mesh)
 		item.set_monitoring(true)
 		item.set_z_scale(false)
 		for c in item.get_children():
@@ -297,6 +304,8 @@ func drop_item() -> void:
 			item.pointer.show()
 			GlobalSignal.toggle_pointer.emit("sink", false)
 
+	item_slot.remove_child(child_mesh)
+	child_mesh.queue_free()
 
 func append_item_in_range(item: Node3D) -> void:
 	items_in_range.append(item)
