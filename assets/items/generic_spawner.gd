@@ -11,6 +11,7 @@ func add_object() -> void:
 		obj.position += _get_next_pos() + Vector3(0,0.5,0)
 	object_array.append(obj)
 	mesh.add_child(obj)
+	item.mesh = mesh
 	item.set_meta("count", object_array.size())
 
 func remove_object() -> Item:
@@ -22,6 +23,7 @@ func remove_object() -> Item:
 	item.set_meta("count", object_array.size())
 	var new_node = load(scene_path).instantiate() as Item
 	mesh.add_child(new_node)
+	item.mesh = mesh
 	return new_node
 
 
