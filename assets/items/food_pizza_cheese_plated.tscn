@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnkhtq5kfk4ly"]
+[gd_scene load_steps=6 format=3 uid="uid://cnkhtq5kfk4ly"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_i0apj"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_faxge"]
 [ext_resource type="PackedScene" uid="uid://smnh78pa7hxs" path="res://assets/kaykit/restaurant/food_pizza_cheese_plated.gltf" id="3_24odq"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_faxge"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pmc5"]
 size = Vector3(1.9980469, 0.30615234, 1.980957)
@@ -22,5 +23,9 @@ shape = SubResource("BoxShape3D_4pmc5")
 
 [node name="food_pizza_cheese_plated" parent="body/food_pizza_cheese_plated" index="0"]
 metadata/name = &"food_ingredient_cheese_pizza_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_faxge")
+item = NodePath("../..")
 
 [editable path="body/food_pizza_cheese_plated"]

@@ -67,6 +67,10 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"mesh": "food_ingredient_cheese_pizza_mesh",
 		"item": "res://assets/items/food_pizza_cheese_plated.tscn"
+	},
+	{
+		"mesh": "pizza_box_open_mesh",
+		"item": "res://assets/environment/restaurant/pizzabox_open.tscn"
 	}
 ]
 

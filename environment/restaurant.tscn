@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnegw0uworysw"]
+[gd_scene load_steps=28 format=3 uid="uid://bnegw0uworysw"]
 
 [ext_resource type="Script" uid="uid://datwwhjp0c83d" path="res://assets/environment/restaurant/restaurant.gd" id="1_nd13t"]
 [ext_resource type="PackedScene" uid="uid://gvq2rf4prgae" path="res://assets/environment/misc/floor_kitchen_style_b.tscn" id="1_t8m5e"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://5egw1id8hdbg" path="res://assets/items/rolling_pin.tscn" id="16_0dg3b"]
 [ext_resource type="PackedScene" uid="uid://to2ahd3uam2y" path="res://assets/ui/billboard.tscn" id="16_nawl3"]
 [ext_resource type="Script" uid="uid://dp7d5nqog8hm2" path="res://environment/billboard.gd" id="16_w3jle"]
+[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="17_i0ceb"]
 [ext_resource type="Script" uid="uid://c0dt2w4i1qg53" path="res://assets/ui/billboard_ui.gd" id="18_lussy"]
 [ext_resource type="PackedScene" uid="uid://cbkf1v73rsogv" path="res://assets/environment/restaurant/crate_generic.tscn" id="21_4x4se"]
 [ext_resource type="PackedScene" uid="uid://dqh8oefwfrjdf" path="res://assets/environment/restaurant/pizza_oven.tscn" id="21_ac10s"]
@@ -322,6 +323,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -4.4462094)
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic5/body/StaticBody3D" index="1"]
 item_type = 5
+
+[node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1192927, -8.169336)
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 

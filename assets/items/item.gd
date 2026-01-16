@@ -1,4 +1,4 @@
-extends Interactable
+extends Node3D
 class_name Item
 
 @export var mesh: MeshInstance3D
@@ -56,15 +56,16 @@ func set_z_scale(value: bool) -> void:
 				
 func set_z_scale_children(value: bool, new_mesh: Node3D) -> void:
 	for m in new_mesh.get_children():
-		if m.get_child(0) is MeshInstance3D:
-			var m_child = m.get_child(0) as MeshInstance3D
-			m_child.set_surface_override_material(0, StandardMaterial3D.new())
-			var material = m_child.get_surface_override_material(0)
-			material.albedo_texture = albedo_texture
-			if material is BaseMaterial3D:
-				material.use_z_clip_scale = value
-				if value and material.z_clip_scale == 1.0:
-					material.z_clip_scale = 0.1
+		if m.get_child_count() > 0:
+			if m.get_child(0) is MeshInstance3D:
+				var m_child = m.get_child(0) as MeshInstance3D
+				m_child.set_surface_override_material(0, StandardMaterial3D.new())
+				var material = m_child.get_surface_override_material(0)
+				material.albedo_texture = albedo_texture
+				if material is BaseMaterial3D:
+					material.use_z_clip_scale = value
+					if value and material.z_clip_scale == 1.0:
+						material.z_clip_scale = 0.1
 
 
 func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
@@ -113,23 +114,3 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if has_meta("food_id"):
 		if get_meta("food_id") == food_id:
 			pointer.visible = value
-
-
-func can_interact() -> bool:
-	return in_range
-	
-func interact(_player: Player) -> void:
-	if disabled:
-		return
-	if player.item_slot.get_child_count() > 0:
-		player.drop_item()
-	if get_parent():
-		get_parent().remove_child(self)
-	if has_meta("count"):
-		pickup(Vector3(0,-0.5,1.0), Vector3(-0.25,0,0))
-	else:
-		pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
-	queue_free()
-	
-func reticle_color() -> Color:
-	return RETICLE_GREEN

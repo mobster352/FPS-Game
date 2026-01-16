@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c07meb4qmjeqc"]
+[gd_scene load_steps=7 format=3 uid="uid://c07meb4qmjeqc"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_s2p2d"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_twasl"]
 [ext_resource type="PackedScene" uid="uid://darfhdcchislb" path="res://assets/environment/restaurant/cheese_slice_plate.tscn" id="3_s2p2d"]
+[ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_twasl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
@@ -31,6 +32,10 @@ shape = SubResource("BoxShape3D_s2p2d")
 
 [node name="plate" parent="body/cheese_slice_plate/plate" index="0"]
 metadata/name = &"cheese_slice_plate_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_twasl")
+item = NodePath("../..")
 
 [editable path="body/cheese_slice_plate"]
 [editable path="body/cheese_slice_plate/plate"]

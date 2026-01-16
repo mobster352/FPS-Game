@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://rh40fw8vhtkc"]
+[gd_scene load_steps=6 format=3 uid="uid://rh40fw8vhtkc"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_soev4"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_hecch"]
 [ext_resource type="PackedScene" uid="uid://cf648ak1txq8v" path="res://assets/kaykit/restaurant/food_ingredient_cheese.gltf" id="2_yu1aq"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_hecch"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hecch"]
 size = Vector3(0.9729004, 0.50146484, 0.7219238)
@@ -23,5 +24,9 @@ shape = SubResource("BoxShape3D_hecch")
 
 [node name="food_ingredient_cheese" parent="body/food_ingredient_cheese" index="0"]
 metadata/name = &"food_ingredient_cheese_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_hecch")
+item = NodePath("../..")
 
 [editable path="body/food_ingredient_cheese"]

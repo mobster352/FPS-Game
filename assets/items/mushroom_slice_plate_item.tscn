@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://da55hwcky2dj6"]
+[gd_scene load_steps=7 format=3 uid="uid://da55hwcky2dj6"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_i6x27"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_t7ys6"]
 [ext_resource type="PackedScene" uid="uid://c2aga13mlir14" path="res://assets/environment/restaurant/mushroom_slice_plate.tscn" id="3_i6x27"]
+[ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_t7ys6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
@@ -31,6 +32,10 @@ shape = SubResource("BoxShape3D_i6x27")
 
 [node name="plate" parent="body/mushroom_slice_plate/plate" index="0"]
 metadata/name = &"mushroom_slice_plate_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_t7ys6")
+item = NodePath("../..")
 
 [editable path="body/mushroom_slice_plate"]
 [editable path="body/mushroom_slice_plate/plate"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqvbnoj3n72ox"]
+[gd_scene load_steps=6 format=3 uid="uid://dqvbnoj3n72ox"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_021o2"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_l7j4t"]
 [ext_resource type="PackedScene" uid="uid://dadmh5ktxy1s4" path="res://assets/kaykit/restaurant/food_ingredient_tomato.gltf" id="2_tsbu5"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_l7j4t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7j4t"]
 size = Vector3(0.74658203, 0.70983887, 0.7505493)
@@ -23,5 +24,9 @@ shape = SubResource("BoxShape3D_l7j4t")
 
 [node name="food_ingredient_tomato" parent="body/food_ingredient_tomato" index="0"]
 metadata/name = &"food_ingredient_tomato_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_l7j4t")
+item = NodePath("../..")
 
 [editable path="body/food_ingredient_tomato"]

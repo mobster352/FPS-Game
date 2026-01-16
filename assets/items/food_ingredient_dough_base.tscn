@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2f1gcqpluxwk"]
+[gd_scene load_steps=8 format=3 uid="uid://d2f1gcqpluxwk"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_hupm6"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_k3mnl"]
 [ext_resource type="PackedScene" uid="uid://hpht055mwu6g" path="res://assets/environment/restaurant/food_ingredient_dough_base.gltf" id="2_m41i0"]
 [ext_resource type="PackedScene" uid="uid://rsiv6wwd1xbg" path="res://assets/environment/restaurant/cookable.tscn" id="4_tkflo"]
 [ext_resource type="Script" uid="uid://he32eejacp52" path="res://assets/environment/restaurant/dough_base_cookable.gd" id="5_r5cdk"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="6_r5cdk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3mnl"]
 size = Vector3(1.751709, 0.15185547, 1.734436)
@@ -30,6 +31,10 @@ metadata/name = &"dough_base_mesh"
 
 [node name="Cookable" parent="body" index="4" node_paths=PackedStringArray("item") instance=ExtResource("4_tkflo")]
 script = ExtResource("5_r5cdk")
+item = NodePath("../..")
+
+[node name="Interactable" type="Node3D" parent="body" index="5" node_paths=PackedStringArray("item")]
+script = ExtResource("6_r5cdk")
 item = NodePath("../..")
 
 [editable path="body/mesh"]

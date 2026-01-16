@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfdmutnaw0g3g"]
+[gd_scene load_steps=7 format=3 uid="uid://dfdmutnaw0g3g"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_t1y86"]
 [ext_resource type="PackedScene" uid="uid://s6frxyp5at7j" path="res://assets/environment/restaurant/pepperoni_slice_plate.tscn" id="2_glgut"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_qgjt0"]
+[ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_qgjt0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
 rough = true
@@ -34,6 +35,10 @@ metadata/name = &"pepperoni_slice_plate_mesh"
 
 [node name="Pointer" parent="body" index="3"]
 visible = true
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_qgjt0")
+item = NodePath("../..")
 
 [editable path="body/pepperoni_slice_plate"]
 [editable path="body/pepperoni_slice_plate/plate"]

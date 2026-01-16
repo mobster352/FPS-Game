@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://y62cn7mthtdb"]
+[gd_scene load_steps=6 format=3 uid="uid://y62cn7mthtdb"]
 
 [ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_o8gni"]
-[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="2_5n3ts"]
 [ext_resource type="PackedScene" uid="uid://drufmktlfb0to" path="res://assets/environment/restaurant/food_pizza_cheese_plated.tscn" id="3_o8gni"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_5n3ts"]
 
@@ -16,10 +15,8 @@ script = ExtResource("1_o8gni")
 pointer = NodePath("Pointer")
 pizza_type = 2
 
-[node name="pizzabox_open" parent="." instance=ExtResource("2_5n3ts")]
+[node name="food_pizza_cheese_plated" parent="." instance=ExtResource("3_o8gni")]
 transform = Transform3D(-0.005166143, 0, 0.9999866, 0, 1, 0, -0.9999866, 0, -0.005166143, 0, 0, 0)
-
-[node name="food_pizza_cheese_plated" parent="pizzabox_open" instance=ExtResource("3_o8gni")]
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8

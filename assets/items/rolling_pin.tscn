@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://5egw1id8hdbg"]
+[gd_scene load_steps=6 format=3 uid="uid://5egw1id8hdbg"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_rei0x"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_gix2a"]
 [ext_resource type="PackedScene" uid="uid://c5mwmmts17sf" path="res://assets/kaykit/restaurant/rollingpin.gltf" id="2_o7hke"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_gix2a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gix2a"]
 size = Vector3(1.4467773, 0.44360352, 0.4329834)
@@ -22,5 +23,9 @@ shape = SubResource("BoxShape3D_gix2a")
 
 [node name="rollingpin" parent="body/mesh" index="0"]
 metadata/name = &"rolling_pin_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_gix2a")
+item = NodePath("../..")
 
 [editable path="body/mesh"]

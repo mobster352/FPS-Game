@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0s7w2lsdhspj"]
+[gd_scene load_steps=6 format=3 uid="uid://0s7w2lsdhspj"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_upofa"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_f31uj"]
 [ext_resource type="PackedScene" uid="uid://cok864qhetikl" path="res://assets/kaykit/restaurant/food_pizza_pepperoni_plated.gltf" id="3_1801u"]
+[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_f31uj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t44bs"]
 size = Vector3(2.0009766, 0.3017578, 1.9795532)
@@ -22,5 +23,9 @@ shape = SubResource("BoxShape3D_t44bs")
 
 [node name="food_pizza_pepperoni_plated" parent="body/food_pizza_pepperoni_plated" index="0"]
 metadata/name = &"food_ingredient_pepperoni_pizza_mesh"
+
+[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+script = ExtResource("4_f31uj")
+item = NodePath("../..")
 
 [editable path="body/food_pizza_pepperoni_plated"]
