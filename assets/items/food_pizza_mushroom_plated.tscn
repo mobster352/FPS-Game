@@ -9,23 +9,26 @@
 size = Vector3(1.9976196, 0.30664063, 1.9780884)
 
 [node name="food_pizza_mushroom_plated" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_j2v25")]
-mesh = NodePath("body/food_pizza_mushroom_plated/food_pizza_mushroom_plated")
+mesh = NodePath("body/mesh/food_pizza_mushroom_plated")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
-meshInstanceArray = [NodePath("body/food_pizza_mushroom_plated/food_pizza_mushroom_plated")]
+meshInstanceArray = [NodePath("body/mesh/food_pizza_mushroom_plated")]
 albedo_texture = ExtResource("2_rh6gc")
+
+[node name="body" parent="." index="0"]
+metadata/name = &"whole_pizza"
 
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022888184, 0.15332031, 0.0022888184)
 shape = SubResource("BoxShape3D_mh5sv")
 
-[node name="food_pizza_mushroom_plated" parent="body" index="1" instance=ExtResource("3_0ns7q")]
+[node name="mesh" parent="body" index="1" instance=ExtResource("3_0ns7q")]
 
-[node name="food_pizza_mushroom_plated" parent="body/food_pizza_mushroom_plated" index="0"]
+[node name="food_pizza_mushroom_plated" parent="body/mesh" index="0"]
 metadata/name = &"food_ingredient_mushroom_pizza_mesh"
 
 [node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
 script = ExtResource("4_rh6gc")
 item = NodePath("../..")
 
-[editable path="body/food_pizza_mushroom_plated"]
+[editable path="body/mesh"]

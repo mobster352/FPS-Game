@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://bxflb6heaetxd"]
+[gd_scene load_steps=13 format=4 uid="uid://bxflb6heaetxd"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_elc2u"]
 [ext_resource type="Script" uid="uid://bagcfjrbpigt7" path="res://assets/environment/restaurant/pizzabox.gd" id="2_506v3"]
+[ext_resource type="Script" uid="uid://kap8w5ootn4q" path="res://assets/environment/restaurant/pizza_box_interactable.gd" id="2_pppke"]
 [ext_resource type="Script" uid="uid://dn1sd0qae6ug7" path="res://assets/environment/restaurant/pizza_box_cookable.gd" id="3_506v3"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="3_mermk"]
-[ext_resource type="Script" uid="uid://d0wh0yankvra4" path="res://assets/items/food_ingredient_interactable.gd" id="4_g8wd8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elc2u"]
 size = Vector3(1.9990234, 0.30908203, 2.0576782)
@@ -78,10 +78,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_h4p0e")
 
-[node name="pizzabox_open" node_paths=PackedStringArray("lid", "mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_elc2u")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_elc2u"]
+radius = 1.3220484
+
+[node name="pizzabox_open" node_paths=PackedStringArray("lid", "pizza_slot", "mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_elc2u")]
 script = ExtResource("2_506v3")
 lid = NodePath("body/pizzabox_open/pizzabox_lid")
 speed = 1.5
+pizza_slot = NodePath("body/pizzabox_open/PizzaSlot")
 mesh = NodePath("body/pizzabox_open")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -102,11 +106,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1)
 mesh = SubResource("ArrayMesh_y4gpi")
 skeleton = NodePath("")
 
+[node name="PizzaSlot" type="Node3D" parent="body/pizzabox_open" index="1"]
+
 [node name="Cookable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("pizza_box")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1)
 script = ExtResource("3_506v3")
 pizza_box = NodePath("../..")
 
-[node name="Interactable" type="Node3D" parent="body" index="5" node_paths=PackedStringArray("item")]
-script = ExtResource("4_g8wd8")
-item = NodePath("../..")
+[node name="Interactable" type="Node3D" parent="body" index="5" node_paths=PackedStringArray("pizza_box")]
+script = ExtResource("2_pppke")
+pizza_box = NodePath("../..")
+
+[node name="PizzaDetectionArea" type="Area3D" parent="body" index="6"]
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/PizzaDetectionArea" index="0"]
+shape = SubResource("SphereShape3D_elc2u")
+
+[connection signal="body_entered" from="body/PizzaDetectionArea" to="." method="_on_pizza_detection_area_body_entered"]

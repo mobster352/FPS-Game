@@ -325,7 +325,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -4.4462094)
 item_type = 5
 
 [node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1192927, -8.169336)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, -0.004232526, -11.383381)
+
+[node name="pizzabox_open2" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.25327396, -11.383381)
+
+[node name="pizzabox_open3" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.5290446, -11.383381)
+
+[node name="pizzabox_open4" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.81601477, -11.383381)
+
+[node name="pizzabox_open5" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 1.0997875, -11.383381)
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 
