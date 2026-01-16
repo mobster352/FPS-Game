@@ -1,6 +1,6 @@
 extends ObjectSpawner
 
-const DOUGH_PATH = "res://assets/kaykit/restaurant/food_ingredient_dough.gltf"
+const PATH = "res://assets/kaykit/restaurant/food_ingredient_cheese.gltf"
 
 func _ready() -> void:
 	if item.has_meta("count"):
@@ -12,31 +12,31 @@ func _process(_delta: float) -> void:
 	pass
 
 func add_object() -> void:
-	var dough = preload(DOUGH_PATH).instantiate() as Node3D
+	var obj = preload(PATH).instantiate() as Node3D
 	if object_array.size() < 4:
-		dough.position += _get_next_pos()
+		obj.position += _get_next_pos()
 	else:
-		dough.position += _get_next_pos() + Vector3(0,0.5,0)
-	object_array.append(dough)
-	item.mesh.add_child(dough)
+		obj.position += _get_next_pos() + Vector3(0,0.5,0)
+	object_array.append(obj)
+	mesh.add_child(obj)
 	item.set_meta("count", object_array.size())
 
 func remove_object() -> Item:
-	if item.mesh.get_child_count() <= 0:
+	if mesh.get_child_count() <= 0:
 		return null
-	var node = item.mesh.get_children().pop_back() as Node3D
+	var node = mesh.get_children().pop_back() as Node3D
 	node.queue_free()
 	object_array.pop_back()
 	item.set_meta("count", object_array.size())
-	var new_node = preload("res://assets/environment/restaurant/food_ingredient_dough.tscn").instantiate() as Item
-	item.mesh.add_child(new_node)
+	var new_node = preload("res://assets/items/food_ingredient_cheese.tscn").instantiate() as Item
+	mesh.add_child(new_node)
 	return new_node
 
 
 func _on_dough_radius_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent.has_meta("name"):
-		if parent.get_meta("name") == "dough":
+		if parent.get_meta("name") == "cheese":
 			if object_array.size() < 8:
 				if parent is Item:
 					if body is RigidBody3D:

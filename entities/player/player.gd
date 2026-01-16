@@ -266,6 +266,8 @@ func drop_item() -> void:
 		var forward = -camera.global_transform.basis.z.normalized()
 		if child_mesh.has_meta("count"):
 			item.set_meta("count", child_mesh.get_meta("count"))
+			var object_spawner = item.get_node("body/StaticBody3D/Interactable") as ObjectSpawner
+			object_spawner.item_type = child_mesh.get_meta("item_type")
 			item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
 		else:
 			item.position = camera.global_position + forward
@@ -291,9 +293,9 @@ func drop_item() -> void:
 				if not item.has_meta("count"):
 					c.rotate(Vector3.UP, deg_to_rad(130))
 					c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-				var shape = c.get_child(0)
-				if shape is CollisionShape3D:
-					shape.disabled = false
+				#var shape = c.get_child(0)
+				#if shape is CollisionShape3D:
+					#shape.disabled = false
 		
 		if item.has_meta("food_id"):
 			var food_id = item.get_meta("food_id")

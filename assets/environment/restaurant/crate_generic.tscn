@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwe8l4fxju48f"]
+[gd_scene load_steps=10 format=3 uid="uid://cbkf1v73rsogv"]
 
-[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_6la8k"]
-[ext_resource type="PackedScene" uid="uid://dgayf051oh1wt" path="res://assets/kaykit/restaurant/crate.gltf" id="1_r2ko0"]
-[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_u4joo"]
-[ext_resource type="Script" uid="uid://ctkbat810d340" path="res://assets/items/dough_spawner.gd" id="4_u4joo"]
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_0wkgb"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_wl83s"]
+[ext_resource type="PackedScene" uid="uid://dgayf051oh1wt" path="res://assets/kaykit/restaurant/crate.gltf" id="3_ytnlp"]
+[ext_resource type="Script" uid="uid://dpebceury4kga" path="res://assets/items/generic_spawner.gd" id="4_0wkgb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u4joo"]
 size = Vector3(0.28295898, 0.8389282, 1.9929199)
@@ -20,12 +20,12 @@ size = Vector3(1.5092773, 0.2871704, 1.522583)
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4joo"]
 radius = 1.209547
 
-[node name="crate_dough" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_6la8k")]
+[node name="crate_generic" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_0wkgb")]
 mesh = NodePath("body/StaticBody3D/Interactable/crate")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/StaticBody3D/Interactable/crate")]
-albedo_texture = ExtResource("2_u4joo")
+albedo_texture = ExtResource("2_wl83s")
 mesh_has_children = true
 metadata/count = 8
 
@@ -59,10 +59,10 @@ collision_layer = 64
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0041503906, 0.88778687, 0.010803223)
 shape = SubResource("BoxShape3D_1ukq3")
 
-[node name="Interactable" parent="body/StaticBody3D" index="1" node_paths=PackedStringArray("item") instance=ExtResource("1_r2ko0")]
-script = ExtResource("4_u4joo")
+[node name="Interactable" parent="body/StaticBody3D" index="1" node_paths=PackedStringArray("item", "mesh") instance=ExtResource("3_ytnlp")]
+script = ExtResource("4_0wkgb")
 item = NodePath("../../..")
-item_type = 1
+mesh = NodePath("crate")
 
 [node name="crate" parent="body/StaticBody3D/Interactable" index="0"]
 metadata/name = &"crate_mesh"

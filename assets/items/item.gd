@@ -69,11 +69,15 @@ func set_z_scale_children(value: bool, new_mesh: Node3D) -> void:
 
 func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	var new_mesh = mesh.duplicate()
+	
 	new_mesh.position = new_pos
 	new_mesh.rotation = new_rotation
 	
 	if has_meta("count"):
 		new_mesh.set_meta("count", get_meta("count"))
+		var object_spawner = mesh.get_parent() as ObjectSpawner
+		if object_spawner:
+			new_mesh.set_meta("item_type", object_spawner.item_type)
 		
 	if mesh_has_children:
 		set_z_scale_children(true, new_mesh)

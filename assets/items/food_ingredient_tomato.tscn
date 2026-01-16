@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqvbnoj3n72ox"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_021o2"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_l7j4t"]
+[ext_resource type="PackedScene" uid="uid://dadmh5ktxy1s4" path="res://assets/kaykit/restaurant/food_ingredient_tomato.gltf" id="2_tsbu5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7j4t"]
+size = Vector3(0.74658203, 0.70983887, 0.7505493)
+
+[node name="food_ingredient_tomato" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_021o2")]
+mesh = NodePath("body/food_ingredient_tomato/food_ingredient_tomato")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/food_ingredient_tomato/food_ingredient_tomato")]
+albedo_texture = ExtResource("2_l7j4t")
+metadata/name = &"tomato"
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007324219, 0.35491943, 0.0008239746)
+shape = SubResource("BoxShape3D_l7j4t")
+
+[node name="food_ingredient_tomato" parent="body" index="1" instance=ExtResource("2_tsbu5")]
+
+[node name="food_ingredient_tomato" parent="body/food_ingredient_tomato" index="0"]
+metadata/name = &"food_ingredient_tomato_mesh"
+
+[editable path="body/food_ingredient_tomato"]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="2_smh0g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mah83"]
-radius = 1.5
+radius = 3.9701247
 
 [node name="Item" type="Node3D" node_paths=PackedStringArray("pointer") groups=["items"]]
 script = ExtResource("1_w3e1j")

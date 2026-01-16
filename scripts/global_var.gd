@@ -30,7 +30,7 @@ var mesh_to_item_array: Array[Dictionary] = [
 	},
 	{
 		"mesh": "crate_mesh",
-		"item": "res://assets/environment/restaurant/crate_dough.tscn"
+		"item": "res://assets/environment/restaurant/crate_generic.tscn"
 	},
 	{
 		"mesh": "dough_base_mesh",
@@ -39,6 +39,34 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"mesh": "rolling_pin_mesh",
 		"item": "res://assets/items/rolling_pin.tscn"
+	},
+	{
+		"mesh": "food_ingredient_tomato_mesh",
+		"item": "res://assets/items/food_ingredient_tomato.tscn"
+	},
+	{
+		"mesh": "food_ingredient_cheese_mesh",
+		"item": "res://assets/items/food_ingredient_cheese.tscn"
+	},
+	{
+		"mesh": "food_ingredient_mushroom_mesh",
+		"item": "res://assets/items/food_ingredient_mushroom.tscn"
+	},
+	{
+		"mesh": "food_ingredient_pepperoni_mesh",
+		"item": "res://assets/items/food_ingredient_pepperoni.tscn"
+	},
+	{
+		"mesh": "food_ingredient_pepperoni_pizza_mesh",
+		"item": "res://assets/items/food_pizza_pepperoni_plated.tscn"
+	},
+	{
+		"mesh": "food_ingredient_mushroom_pizza_mesh",
+		"item": "res://assets/items/food_pizza_mushroom_plated.tscn"
+	},
+	{
+		"mesh": "food_ingredient_cheese_pizza_mesh",
+		"item": "res://assets/items/food_pizza_cheese_plated.tscn"
 	}
 ]
 

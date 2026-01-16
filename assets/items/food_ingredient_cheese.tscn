@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://rh40fw8vhtkc"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_soev4"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_hecch"]
+[ext_resource type="PackedScene" uid="uid://cf648ak1txq8v" path="res://assets/kaykit/restaurant/food_ingredient_cheese.gltf" id="2_yu1aq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hecch"]
+size = Vector3(0.9729004, 0.50146484, 0.7219238)
+
+[node name="food_ingredient_cheese" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_soev4")]
+mesh = NodePath("body/food_ingredient_cheese/food_ingredient_cheese")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/food_ingredient_cheese/food_ingredient_cheese")]
+albedo_texture = ExtResource("2_hecch")
+metadata/name = &"cheese"
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1517334, 0.25073242, 0.0028076172)
+shape = SubResource("BoxShape3D_hecch")
+
+[node name="food_ingredient_cheese" parent="body" index="1" instance=ExtResource("2_yu1aq")]
+
+[node name="food_ingredient_cheese" parent="body/food_ingredient_cheese" index="0"]
+metadata/name = &"food_ingredient_cheese_mesh"
+
+[editable path="body/food_ingredient_cheese"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dldo317gvwies"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_vw06d"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_whkud"]
+[ext_resource type="PackedScene" uid="uid://bfox8iaiew11" path="res://assets/kaykit/restaurant/food_ingredient_mushroom.gltf" id="3_tvw18"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwepx"]
+size = Vector3(0.5171509, 0.56988525, 0.5249634)
+
+[node name="food_ingredient_mushroom" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_vw06d")]
+mesh = NodePath("body/food_ingredient_mushroom/food_ingredient_mushroom")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/food_ingredient_mushroom/food_ingredient_mushroom")]
+albedo_texture = ExtResource("2_whkud")
+metadata/name = &"mushroom"
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009124756, 0.071624756, 0.005218506)
+shape = SubResource("BoxShape3D_fwepx")
+
+[node name="food_ingredient_mushroom" parent="body" index="1" instance=ExtResource("3_tvw18")]
+
+[node name="food_ingredient_mushroom" parent="body/food_ingredient_mushroom" index="0"]
+metadata/name = &"food_ingredient_mushroom_mesh"
+
+[editable path="body/food_ingredient_mushroom"]

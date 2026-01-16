@@ -78,6 +78,7 @@ collision_mask = 5
 
 [node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="4"]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
 

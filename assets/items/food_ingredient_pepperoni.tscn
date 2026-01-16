@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwbi1l7xm1dqo"]
+
+[ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_rn882"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_7r5ds"]
+[ext_resource type="PackedScene" uid="uid://w2ijrgm1r0tm" path="res://assets/kaykit/restaurant/food_ingredient_pepperoni.gltf" id="3_xo4ov"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bl7p"]
+size = Vector3(1.4973145, 0.4050293, 0.40234375)
+
+[node name="food_ingredient_pepperoni" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_rn882")]
+mesh = NodePath("body/food_ingredient_pepperoni/food_ingredient_pepperoni")
+rigid_body = NodePath("body")
+area = NodePath("body/Area3D")
+meshInstanceArray = [NodePath("body/food_ingredient_pepperoni/food_ingredient_pepperoni")]
+albedo_texture = ExtResource("2_7r5ds")
+metadata/name = &"pepperoni"
+
+[node name="CollisionShape3D" parent="body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, 0.00012207031, 0.0029296875)
+shape = SubResource("BoxShape3D_0bl7p")
+
+[node name="food_ingredient_pepperoni" parent="body" index="1" instance=ExtResource("3_xo4ov")]
+
+[node name="food_ingredient_pepperoni" parent="body/food_ingredient_pepperoni" index="0"]
+metadata/name = &"food_ingredient_pepperoni_mesh"
+
+[editable path="body/food_ingredient_pepperoni"]
