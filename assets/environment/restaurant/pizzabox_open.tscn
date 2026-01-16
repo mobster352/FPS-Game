@@ -92,6 +92,9 @@ area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/pizzabox_open"), NodePath("body/pizzabox_open/pizzabox_lid")]
 albedo_texture = ExtResource("3_mermk")
 
+[node name="body" parent="." index="0"]
+can_sleep = false
+
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0063476563, 0.15454102, 0.023040771)
 shape = SubResource("BoxShape3D_elc2u")

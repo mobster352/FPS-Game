@@ -16,6 +16,9 @@ meshInstanceArray = [NodePath("body/food_ingredient_cheese/food_ingredient_chees
 albedo_texture = ExtResource("2_hecch")
 metadata/name = &"cheese"
 
+[node name="body" parent="." index="0"]
+can_sleep = false
+
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1517334, 0.25073242, 0.0028076172)
 shape = SubResource("BoxShape3D_hecch")

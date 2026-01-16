@@ -13,6 +13,7 @@ pointer = NodePath("body/Pointer")
 [node name="body" type="RigidBody3D" parent="."]
 collision_layer = 8
 collision_mask = 13
+can_sleep = false
 angular_damp = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body"]

@@ -65,6 +65,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 collision_layer = 8
 collision_mask = 13
 physics_material_override = SubResource("PhysicsMaterial_hvsjc")
+can_sleep = false
 angular_damp = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body" index="0"]

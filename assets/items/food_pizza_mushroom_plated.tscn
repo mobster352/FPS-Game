@@ -9,6 +9,7 @@
 size = Vector3(1.9976196, 0.30664063, 1.9780884)
 
 [node name="food_pizza_mushroom_plated" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_j2v25")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = NodePath("body/mesh/food_pizza_mushroom_plated")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -16,6 +17,7 @@ meshInstanceArray = [NodePath("body/mesh/food_pizza_mushroom_plated")]
 albedo_texture = ExtResource("2_rh6gc")
 
 [node name="body" parent="." index="0"]
+can_sleep = false
 metadata/name = &"whole_pizza"
 
 [node name="CollisionShape3D" parent="body" index="0"]

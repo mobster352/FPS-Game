@@ -16,15 +16,17 @@ meshInstanceArray = [NodePath("body/mesh/food_pizza_cheese_plated")]
 albedo_texture = ExtResource("2_faxge")
 
 [node name="body" parent="." index="0"]
+can_sleep = false
 metadata/name = &"whole_pizza"
 
 [node name="CollisionShape3D" parent="body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0029296875, 0.15307617, 0.0056152344)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0029296875, 0.15307617, 0.0056152344)
 shape = SubResource("BoxShape3D_4pmc5")
 
 [node name="mesh" parent="body" index="1" instance=ExtResource("3_24odq")]
 
 [node name="food_pizza_cheese_plated" parent="body/mesh" index="0"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 metadata/name = &"food_ingredient_cheese_pizza_mesh"
 
 [node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]

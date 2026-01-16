@@ -16,6 +16,9 @@ meshInstanceArray = [NodePath("body/food_ingredient_pepperoni/food_ingredient_pe
 albedo_texture = ExtResource("2_7r5ds")
 metadata/name = &"pepperoni"
 
+[node name="body" parent="." index="0"]
+can_sleep = false
+
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, 0.00012207031, 0.0029296875)
 shape = SubResource("BoxShape3D_0bl7p")

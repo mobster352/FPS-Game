@@ -23,6 +23,7 @@ metadata/food_id = 2
 
 [node name="body" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
+can_sleep = false
 
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15117407, 0.039502144)

@@ -90,10 +90,13 @@ func _on_cook_timer_timeout() -> void:
 		if pizza_slot_top.has_meta("pizza"):
 			if pizza_slot_top.get_meta("pizza") == GlobalVar.PIZZA_TYPE.PEPPERONI:
 				pizza = preload("res://assets/items/food_pizza_pepperoni_plated.tscn").instantiate() as Item
+				pizza.scale = Vector3(0.8,0.8,0.8)
 			elif pizza_slot_top.get_meta("pizza") == GlobalVar.PIZZA_TYPE.MUSHROOM:
 				pizza = preload("res://assets/items/food_pizza_mushroom_plated.tscn").instantiate() as Item
+				pizza.scale = Vector3(0.8,0.8,0.8)
 			elif pizza_slot_top.get_meta("pizza") == GlobalVar.PIZZA_TYPE.CHEESE:
 				pizza = preload("res://assets/items/food_pizza_cheese_plated.tscn").instantiate() as Item
+				pizza.scale = Vector3(0.8,0.8,0.8)
 
 			if pizza:
 				pizza.rigid_body.freeze = true
@@ -106,10 +109,13 @@ func _on_cook_timer_timeout() -> void:
 		if pizza_slot_bottom.has_meta("pizza"):
 			if pizza_slot_bottom.get_meta("pizza") == GlobalVar.PIZZA_TYPE.PEPPERONI:
 				pizza = preload("res://assets/items/food_pizza_pepperoni_plated.tscn").instantiate() as Item
+				pizza.scale = Vector3(0.8,0.8,0.8)
 			elif pizza_slot_bottom.get_meta("pizza") == GlobalVar.PIZZA_TYPE.MUSHROOM:
 				pizza = preload("res://assets/items/food_pizza_mushroom_plated.tscn").instantiate() as Item
+				pizza.scale = Vector3(0.8,0.8,0.8)
 			elif pizza_slot_bottom.get_meta("pizza") == GlobalVar.PIZZA_TYPE.CHEESE:
 					pizza = preload("res://assets/items/food_pizza_cheese_plated.tscn").instantiate() as Item
+					pizza.scale = Vector3(0.8,0.8,0.8)
 
 		if pizza:
 			pizza.rigid_body.freeze = true
