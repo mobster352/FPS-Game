@@ -71,6 +71,10 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"mesh": "pizza_box_open_mesh",
 		"item": "res://assets/environment/restaurant/pizzabox_open.tscn"
+	},
+	{
+		"mesh": "coin_a_mesh",
+		"item": "res://assets/items/coin_a.tscn"
 	}
 ]
 

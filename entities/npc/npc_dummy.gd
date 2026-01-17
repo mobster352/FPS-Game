@@ -26,7 +26,8 @@ func _ready() -> void:
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
 	target = start_target
-	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	if navigation_agent.get_navigation_map():
+		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
 func _physics_process(delta: float) -> void:
 	if not navigation_ready:

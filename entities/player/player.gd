@@ -290,7 +290,9 @@ func drop_item() -> void:
 				c.freeze = false
 				c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
 				c.look_at(camera.global_position)
-				if not item.has_meta("count") and not item is PizzaBox:
+				if item is PizzaBox:
+					c.rotate(Vector3.UP, deg_to_rad(180))
+				elif not item.has_meta("count"):
 					c.rotate(Vector3.UP, deg_to_rad(130))
 					c.rotate(Vector3.RIGHT, deg_to_rad(-20))
 				#var shape = c.get_child(0)

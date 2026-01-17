@@ -23,7 +23,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		dialogue_box.show()
 		food_item = obj as Item
 		food_item.disabled = true
-		food_item.shrink_and_free(money)
+		food_item.shrink_and_free(money, 0.25)
 		GlobalSignal.remove_order_from_list.emit(drive_thru_menu.table_id)
 		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 		area_col.set_deferred("disabled", true)

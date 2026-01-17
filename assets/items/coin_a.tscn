@@ -54,8 +54,10 @@ shadow_mesh = SubResource("ArrayMesh_i1qav")
 [sub_resource type="SphereShape3D" id="SphereShape3D_vd16q"]
 radius = 1.5
 
-[node name="Coin_A" node_paths=PackedStringArray("area", "meshInstanceArray") groups=["items"] instance=ExtResource("1_vd16q")]
+[node name="Coin_A" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["items"] instance=ExtResource("1_vd16q")]
 script = ExtResource("2_hvsjc")
+mesh = NodePath("body/Coin_A2")
+rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/Coin_A2")]
 albedo_texture = ExtResource("3_7ob58")
@@ -77,6 +79,7 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ka23m")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_i1qav")
+metadata/name = &"coin_a_mesh"
 
 [node name="Area3D" type="Area3D" parent="body" index="2"]
 collision_layer = 8

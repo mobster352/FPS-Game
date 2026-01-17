@@ -340,19 +340,25 @@ can_sleep = true
 item_type = 5
 
 [node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.727366, -0.004232526, -11.383381)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, -0.004232526, -11.383381)
 
 [node name="pizzabox_open2" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.727366, 0.25327396, -11.383381)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.25327396, -11.383381)
 
 [node name="pizzabox_open3" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.727366, 0.5290446, -11.383381)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.5290446, -11.383381)
 
 [node name="pizzabox_open4" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.727366, 0.81601477, -11.383381)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 0.81601477, -11.383381)
 
 [node name="pizzabox_open5" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.727366, 1.0997875, -11.383381)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.727366, 1.0997875, -11.383381)
+
+[node name="Label3D" type="Label3D" parent="Environment/Restaurant/Decorations"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.713505, 2.6730688, -5.9037666)
+modulate = Color(0.2627451, 1, 0.75686276, 1)
+text = "Every Pizza needs Cheese and Sauce"
+font_size = 48
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 

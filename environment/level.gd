@@ -28,6 +28,7 @@ func _ready():
 	update_sun_light()
 	GlobalSignal.init_restaurant.emit(restaurant)
 	GlobalSignal.init_player.emit(player)
+	GlobalMarker._ready()
 
 func _process(delta):
 	advance_time(delta)

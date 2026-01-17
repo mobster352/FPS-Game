@@ -52,8 +52,8 @@ geometry_source_group_name = &"nav_road"
 cell_height = 0.01
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ddq2e"]
-vertices = PackedVector3Array(-7.25, 0.00999999, 31.25, -5.25, 0.00999999, 31.25, -5, 0.00999999, 28.75, -7.75, 0.00999999, 31.75, -16.25, 0.00999999, 28.75, -16.25, 0.00999999, 42.5, -10.75, 0.00999999, 42.5, -10.75, 0.00999999, 39.25, -10, 0.00999999, 38.5, -7.75, 0.00999999, 38.5, -4.25, 0.00999999, 29.5, -4.25, 0.00999999, 28.75, 5.25, 0.00999999, 29.75, 6, 0.00999999, 30.5, 9.25, 0.00999999, 31.25, 12.25, 0.00999999, 28.75, -3.5, 0.00999999, 30.25, 3.25, 0.00999999, 32, 2.75, 0.00999999, 32, 1.75, 0.00999999, 32.5, 1.75, 0.00999999, 34, 4.25, 0.00999999, 34, 4.25, 0.00999999, 32.5, 6, 0.00999999, 31.25, 9.75, 0.00999999, 31.75, 12.25, 0.00999999, 33.75, -1.75, 0.00999999, 28.75, 4, 0.00999999, 29.75, 3.25, 0.00999999, 30.5, 2.75, 0.00999999, 30.25, 9.75, 0.00999999, 33.75, 2.25, 0.00999999, 29.75, -1.75, 0.00999999, 29.5, 0.75, 0.00999999, 29.75, -2.5, 0.00999999, 30.25, 0.25, 0.00999999, 31.25, 9.75, 0.00999999, 46.25, 12.25, 0.00999999, 46.25, -7.75, 0.00999999, 48.25, -7.75, 0.00999999, 45, -10.25, 0.00999999, 45, -10.75, 0.00999999, 44.5, -16.25, 0.00999999, 57.25, -5.25, 0.00999999, 57.25, -5.25, 0.00999999, 48.75, -7.25, 0.00999999, 48.75, 9.75, 0.00999999, 48.25, 9.25, 0.00999999, 48.75, 12.25, 0.00999999, 57.25)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(3, 9, 8), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(11, 10, 2), PackedInt32Array(2, 10, 1), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(1, 10, 16), PackedInt32Array(17, 22, 18), PackedInt32Array(18, 22, 19), PackedInt32Array(19, 22, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(14, 23, 13), PackedInt32Array(24, 14, 25), PackedInt32Array(25, 14, 15), PackedInt32Array(27, 26, 12), PackedInt32Array(12, 26, 15), PackedInt32Array(17, 18, 28), PackedInt32Array(28, 18, 29), PackedInt32Array(25, 30, 24), PackedInt32Array(29, 31, 28), PackedInt32Array(28, 31, 27), PackedInt32Array(32, 26, 33), PackedInt32Array(33, 26, 31), PackedInt32Array(16, 34, 1), PackedInt32Array(1, 34, 35), PackedInt32Array(27, 31, 26), PackedInt32Array(34, 32, 35), PackedInt32Array(35, 32, 33), PackedInt32Array(30, 25, 36), PackedInt32Array(36, 25, 37), PackedInt32Array(40, 39, 38), PackedInt32Array(40, 38, 41), PackedInt32Array(41, 38, 5), PackedInt32Array(5, 38, 42), PackedInt32Array(42, 38, 43), PackedInt32Array(5, 6, 41), PackedInt32Array(45, 44, 43), PackedInt32Array(38, 45, 43), PackedInt32Array(46, 36, 37), PackedInt32Array(46, 37, 47), PackedInt32Array(47, 37, 48), PackedInt32Array(44, 47, 43), PackedInt32Array(43, 47, 48)]
+vertices = PackedVector3Array(-7.25, 0.00999999, 31.25, -5.25, 0.00999999, 31.25, -5, 0.00999999, 28.75, -7.75, 0.00999999, 31.75, -16.25, 0.00999999, 28.75, -16.25, 0.00999999, 42.5, -10.75, 0.00999999, 42.5, -10.75, 0.00999999, 39.25, -10, 0.00999999, 38.5, -7.75, 0.00999999, 38.5, -4.25, 0.00999999, 29.5, -4.25, 0.00999999, 28.75, 5.25, 0.00999999, 29.75, 6, 0.00999999, 30.5, 9.25, 0.00999999, 31.25, 12.25, 0.00999999, 28.75, -3.5, 0.00999999, 30.25, 3.25, 0.00999999, 32, 2.75, 0.00999999, 32, 1.75, 0.00999999, 32.5, 1.75, 0.00999999, 34, 4.25, 0.00999999, 34, 4.25, 0.00999999, 32.5, 6, 0.00999999, 31.25, 9.75, 0.00999999, 31.75, 12.25, 0.00999999, 33.75, -1.75, 0.00999999, 28.75, 4, 0.00999999, 29.75, 3.25, 0.00999999, 30.5, 2.75, 0.00999999, 30.25, 9.75, 0.00999999, 33.75, 2.25, 0.00999999, 29.75, -1.75, 0.00999999, 29.5, 0.75, 0.00999999, 29.75, -2.5, 0.00999999, 30.25, 0.25, 0.00999999, 31.25, 9.25, 0.00999999, 56.75, 1, 0.00999999, 56.75, 1, 0.00999999, 57.25, 12.25, 0.00999999, 57.25, 9.75, 0.00999999, 56.25, -10.75, 0.00999999, 44.5, -10.25, 0.00999999, 45, -16.25, 0.00999999, 57.25, -7.75, 0.00999999, 56.25, -7.25, 0.00999999, 56.75, -7.75, 0.00999999, 45)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(3, 9, 8), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(11, 10, 2), PackedInt32Array(2, 10, 1), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(1, 10, 16), PackedInt32Array(17, 22, 18), PackedInt32Array(18, 22, 19), PackedInt32Array(19, 22, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(14, 23, 13), PackedInt32Array(24, 14, 25), PackedInt32Array(25, 14, 15), PackedInt32Array(27, 26, 12), PackedInt32Array(12, 26, 15), PackedInt32Array(17, 18, 28), PackedInt32Array(28, 18, 29), PackedInt32Array(25, 30, 24), PackedInt32Array(29, 31, 28), PackedInt32Array(28, 31, 27), PackedInt32Array(32, 26, 33), PackedInt32Array(33, 26, 31), PackedInt32Array(16, 34, 1), PackedInt32Array(1, 34, 35), PackedInt32Array(27, 31, 26), PackedInt32Array(34, 32, 35), PackedInt32Array(35, 32, 33), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(30, 25, 40), PackedInt32Array(40, 25, 39), PackedInt32Array(39, 36, 40), PackedInt32Array(5, 6, 41), PackedInt32Array(41, 42, 5), PackedInt32Array(5, 42, 44), PackedInt32Array(5, 44, 43), PackedInt32Array(37, 38, 45), PackedInt32Array(45, 38, 43), PackedInt32Array(42, 46, 44), PackedInt32Array(44, 45, 43)]
 geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"nav_sidewalk_restaurant"
@@ -316,131 +316,107 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 46)
 [node name="base54" parent="Environment/Floor/City/SidewalkRestaurant" index="7" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 50)
 
-[node name="base40" parent="Environment/Floor/City/SidewalkRestaurant" index="8" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 50)
-
-[node name="base41" parent="Environment/Floor/City/SidewalkRestaurant" index="9" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 50)
-
-[node name="base42" parent="Environment/Floor/City/SidewalkRestaurant" index="10" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 50)
-
-[node name="base43" parent="Environment/Floor/City/SidewalkRestaurant" index="11" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 50)
-
-[node name="base47" parent="Environment/Floor/City/SidewalkRestaurant" index="12" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base47" parent="Environment/Floor/City/SidewalkRestaurant" index="8" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 50)
 
-[node name="base64" parent="Environment/Floor/City/SidewalkRestaurant" index="13" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base64" parent="Environment/Floor/City/SidewalkRestaurant" index="9" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 54)
 
-[node name="base65" parent="Environment/Floor/City/SidewalkRestaurant" index="14" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 54)
-
-[node name="base66" parent="Environment/Floor/City/SidewalkRestaurant" index="15" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 54)
-
-[node name="base67" parent="Environment/Floor/City/SidewalkRestaurant" index="16" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 54)
-
-[node name="base68" parent="Environment/Floor/City/SidewalkRestaurant" index="17" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 54)
-
-[node name="base69" parent="Environment/Floor/City/SidewalkRestaurant" index="18" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base69" parent="Environment/Floor/City/SidewalkRestaurant" index="10" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 54)
 
-[node name="base49" parent="Environment/Floor/City/SidewalkRestaurant" index="19" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base49" parent="Environment/Floor/City/SidewalkRestaurant" index="11" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 46)
 
-[node name="base50" parent="Environment/Floor/City/SidewalkRestaurant" index="20" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base50" parent="Environment/Floor/City/SidewalkRestaurant" index="12" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 42)
 
-[node name="base51" parent="Environment/Floor/City/SidewalkRestaurant" index="21" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base51" parent="Environment/Floor/City/SidewalkRestaurant" index="13" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 38)
 
-[node name="base52" parent="Environment/Floor/City/SidewalkRestaurant" index="22" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base52" parent="Environment/Floor/City/SidewalkRestaurant" index="14" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 34)
 
-[node name="base48" parent="Environment/Floor/City/SidewalkRestaurant" index="23" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base48" parent="Environment/Floor/City/SidewalkRestaurant" index="15" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 46)
 
-[node name="base53" parent="Environment/Floor/City/SidewalkRestaurant" index="24" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base53" parent="Environment/Floor/City/SidewalkRestaurant" index="16" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 50)
 
-[node name="base63" parent="Environment/Floor/City/SidewalkRestaurant" index="25" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base63" parent="Environment/Floor/City/SidewalkRestaurant" index="17" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 54)
 
-[node name="base44" parent="Environment/Floor/City/SidewalkRestaurant" index="26" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base44" parent="Environment/Floor/City/SidewalkRestaurant" index="18" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 42)
 
-[node name="base45" parent="Environment/Floor/City/SidewalkRestaurant" index="27" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base45" parent="Environment/Floor/City/SidewalkRestaurant" index="19" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 38)
 
-[node name="base46" parent="Environment/Floor/City/SidewalkRestaurant" index="28" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base46" parent="Environment/Floor/City/SidewalkRestaurant" index="20" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 34)
 
-[node name="base7" parent="Environment/Floor/City/SidewalkRestaurant" index="29" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base7" parent="Environment/Floor/City/SidewalkRestaurant" index="21" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 30)
 
-[node name="base12" parent="Environment/Floor/City/SidewalkRestaurant" index="30" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base12" parent="Environment/Floor/City/SidewalkRestaurant" index="22" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 32.523617)
 visible = false
 
-[node name="base8" parent="Environment/Floor/City/SidewalkRestaurant" index="31" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base8" parent="Environment/Floor/City/SidewalkRestaurant" index="23" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 30)
 
-[node name="base9" parent="Environment/Floor/City/SidewalkRestaurant" index="32" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base9" parent="Environment/Floor/City/SidewalkRestaurant" index="24" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 30)
 
-[node name="base10" parent="Environment/Floor/City/SidewalkRestaurant" index="33" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base10" parent="Environment/Floor/City/SidewalkRestaurant" index="25" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 30)
 
-[node name="base11" parent="Environment/Floor/City/SidewalkRestaurant" index="34" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base11" parent="Environment/Floor/City/SidewalkRestaurant" index="26" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, 30)
 
-[node name="base55" parent="Environment/Floor/City/SidewalkRestaurant" index="35" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base55" parent="Environment/Floor/City/SidewalkRestaurant" index="27" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 30)
 
-[node name="base56" parent="Environment/Floor/City/SidewalkRestaurant" index="36" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base56" parent="Environment/Floor/City/SidewalkRestaurant" index="28" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 34)
 
-[node name="base57" parent="Environment/Floor/City/SidewalkRestaurant" index="37" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base57" parent="Environment/Floor/City/SidewalkRestaurant" index="29" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 38)
 
-[node name="base58" parent="Environment/Floor/City/SidewalkRestaurant" index="38" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base58" parent="Environment/Floor/City/SidewalkRestaurant" index="30" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 42)
 
-[node name="base59" parent="Environment/Floor/City/SidewalkRestaurant" index="39" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base59" parent="Environment/Floor/City/SidewalkRestaurant" index="31" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 46)
 
-[node name="base60" parent="Environment/Floor/City/SidewalkRestaurant" index="40" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base60" parent="Environment/Floor/City/SidewalkRestaurant" index="32" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 50)
 
-[node name="base61" parent="Environment/Floor/City/SidewalkRestaurant" index="41" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base61" parent="Environment/Floor/City/SidewalkRestaurant" index="33" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 54)
 
-[node name="base70" parent="Environment/Floor/City/SidewalkRestaurant" index="42" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base70" parent="Environment/Floor/City/SidewalkRestaurant" index="34" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, -13, 0, 57)
 
-[node name="base71" parent="Environment/Floor/City/SidewalkRestaurant" index="43" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base71" parent="Environment/Floor/City/SidewalkRestaurant" index="35" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, -9, 0, 57)
 
-[node name="base72" parent="Environment/Floor/City/SidewalkRestaurant" index="44" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base72" parent="Environment/Floor/City/SidewalkRestaurant" index="36" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, -5, 0, 57)
 
-[node name="base73" parent="Environment/Floor/City/SidewalkRestaurant" index="45" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base73" parent="Environment/Floor/City/SidewalkRestaurant" index="37" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, -1, 0, 57)
 
-[node name="base74" parent="Environment/Floor/City/SidewalkRestaurant" index="46" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base74" parent="Environment/Floor/City/SidewalkRestaurant" index="38" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, 3, 0, 57)
 
-[node name="base75" parent="Environment/Floor/City/SidewalkRestaurant" index="47" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base75" parent="Environment/Floor/City/SidewalkRestaurant" index="39" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, 7, 0, 57)
 
-[node name="base76" parent="Environment/Floor/City/SidewalkRestaurant" index="48" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base76" parent="Environment/Floor/City/SidewalkRestaurant" index="40" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(-2.1855694e-08, 0, 1, 0, 1, 0, -0.5, 0, -4.371139e-08, 11, 0, 57)
 
-[node name="base62" parent="Environment/Floor/City/SidewalkRestaurant" index="49" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
+[node name="base62" parent="Environment/Floor/City/SidewalkRestaurant" index="41" groups=["nav_sidewalk_restaurant"] instance=ExtResource("5_cb765")]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -16, 0, 57)
 
 [node name="base" parent="Environment/Floor/City" index="2" instance=ExtResource("5_cb765")]
@@ -794,7 +770,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2.99
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.7711391, 0, 29.510372)
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_e4dcw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4630194, -2.3841858e-07, 43.01851)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4630194, -2.3841858e-07, 16.961794)
 
 [node name="car_taxi_edited2" parent="Entities" index="1" instance=ExtResource("26_pwpgx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0712576, 0, 24.5)
@@ -842,13 +818,13 @@ dialogue_box = NodePath("../../DialogueBox")
 wait_time = 5.0
 
 [node name="NpcDummy" parent="Entities" index="7" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4562817, 0, 29.756702)
-start_target = NodePath("../../Environment/Markers/RestaurantMarker")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.967305, 0, 35.555977)
+start_target = NodePath("../../Environment/Markers/Outside")
 level_ui = NodePath("../../UI")
 
 [node name="NpcDummy2" parent="Entities" index="8" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.739437, 0, 29.756702)
-start_target = NodePath("../../Environment/Markers/RestaurantMarker")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.211401, 0, 35.271854)
+start_target = NodePath("../../Environment/Markers/Outside")
 level_ui = NodePath("../../UI")
 
 [node name="UI" parent="." index="4"]

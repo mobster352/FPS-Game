@@ -46,7 +46,8 @@ func interact() -> void:
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)
-	pickup(Vector3.ZERO, Vector3.ZERO)
+	lid.rotation = Vector3.ZERO
+	pickup(Vector3.ZERO, Vector3(deg_to_rad(0), deg_to_rad(90), deg_to_rad(0)))
 	if pizza_slot.has_meta("pizza"):
 		player.item_slot.get_child(0).set_meta("pizza", pizza_slot.get_meta("pizza"))
 	queue_free()
@@ -64,6 +65,7 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 				var _mesh = item.get_node("body/mesh")
 				_mesh.position = Vector3.ZERO
 				_mesh.rotation = Vector3.ZERO
+				_mesh.scale = Vector3(0.8,0.8,0.8)
 				if _mesh.get_parent():
 					_mesh.get_parent().remove_child(_mesh)
 				if item.mesh.has_meta("name"):
@@ -76,5 +78,5 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 					else:
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
-				mesh_has_children = true
-			item.shrink_and_free(0, 0.25)
+				#mesh_has_children = true
+				item.shrink_and_free(0, 0.25)
