@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://c2loq3sxxai7g" path="res://assets/weapons/gun_pistol.tscn" id="3_26q78"]
 [ext_resource type="Script" uid="uid://cwigg8qu0824m" path="res://entities/player/player_skin.gd" id="3_bectd"]
-[ext_resource type="PackedScene" uid="uid://duowqwgxey3gs" path="res://assets/weapons/pew.tscn" id="3_sglur"]
 [ext_resource type="Script" uid="uid://5kjon8bbiwui" path="res://entities/player/ui.gd" id="4_bls4j"]
+[ext_resource type="PackedScene" uid="uid://tcio735kfptw" path="res://assets/weapons/bat.tscn" id="5_gx6sm"]
 [ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://0oy35q6x2j7" path="res://assets/ui/Health_01_t.png" id="7_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
@@ -20,7 +20,7 @@
 radius = 0.47509766
 height = 2.1817627
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "bat", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
@@ -29,7 +29,8 @@ pointer_slot = NodePath("skin/pointer")
 shotRaycast = NodePath("skin/pointer/ShotRaycast")
 itemRaycast = NodePath("skin/pointer/ItemRaycast")
 reticle = NodePath("UI/ReticleMarginContainer/Reticle")
-gun_pistol = NodePath("skin/pointer/Gun_Pistol")
+gun_pistol = NodePath("skin/pointer/WeaponSlot/Gun_Pistol")
+bat = NodePath("skin/pointer/WeaponSlot/Bat")
 ammo_label = NodePath("UI/AmmoMarginContainer/AmmoLabel")
 shotTimer = NodePath("Timers/ShotTimer")
 ui = NodePath("UI")
@@ -61,28 +62,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.422, 0)
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 cull_mask = 1048573
+current = true
 
-[node name="pew" parent="skin/pointer" index="1" instance=ExtResource("3_sglur")]
-transform = Transform3D(0.522642, 0, -4.97261, 0, 5, 0, 4.97261, 0, 0.522642, -0.172, -0.366, 0.751)
+[node name="WeaponSlot" type="Node3D" parent="skin/pointer" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385, -0.473, 0.505)
+
+[node name="Gun_Pistol" parent="skin/pointer/WeaponSlot" node_paths=PackedStringArray("ui") instance=ExtResource("3_26q78")]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999994, 0, 0, 0)
 visible = false
+ui = NodePath("../../../../UI")
 
-[node name="Gun_Pistol" parent="skin/pointer" index="2" instance=ExtResource("3_26q78")]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.9999996, 0, 0, 0, 0.99999994, -0.385, -0.473, 0.505)
+[node name="Bat" parent="skin/pointer/WeaponSlot" node_paths=PackedStringArray("ui") instance=ExtResource("5_gx6sm")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0.125)
 visible = false
+ui = NodePath("../../../../UI")
 
-[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
+[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 5
 
-[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="4"]
+[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
 
-[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="5"]
+[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]

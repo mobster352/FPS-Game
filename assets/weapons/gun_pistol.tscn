@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c2loq3sxxai7g"]
 
 [ext_resource type="PackedScene" uid="uid://dygfc7byrjxev" path="res://assets/kaykit/prototype/Gun_Pistol.gltf" id="1_62x6k"]
-[ext_resource type="Script" uid="uid://jkpi6w0tbg3i" path="res://assets/weapons/gun.gd" id="2_ka14h"]
+[ext_resource type="Script" uid="uid://jkpi6w0tbg3i" path="res://assets/weapons/gun_pistol.gd" id="2_ka14h"]
 [ext_resource type="Texture2D" uid="uid://dc8ip7ta33dki" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="3_ka14h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6044r"]

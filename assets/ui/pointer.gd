@@ -9,6 +9,7 @@ func _ready() -> void:
 	GlobalSignal.add_order.connect(_add_order)
 
 func _process(delta):
+	#hide()
 	# Move up/down
 	pointer.position.y += direction * SPEED * delta
 	# Reverse direction at boundaries (example for 2D)

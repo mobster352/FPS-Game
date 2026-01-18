@@ -5,6 +5,12 @@ class_name GunPistol
 @export var light: OmniLight3D
 @export var emitter: GPUParticles3D
 
+func _ready() -> void:
+	ammo_count = 10
+	max_ammo = 10
+	ammo_reserves = 20
+	has_ammo = true
+
 func add_muzzle_flash() -> void:
 	light.visible = true
 	emitter.emitting = true

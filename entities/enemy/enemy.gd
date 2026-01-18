@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 				if walkTimer.time_left <= 0:
 					walkTimer.start()
 
-func take_damage(damage:int, _target:CollisionShape3D) -> void:
+func take_damage(damage:int, _target:CollisionShape3D = null) -> void:
 	health -= damage
 	if health <= 0 and isAlive:
 		#queue_free()

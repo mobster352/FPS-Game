@@ -18,8 +18,10 @@ const SPEED = 5.0
 
 @export var reticle: ColorRect
 
-#@export var pew: Pew
 @export var gun_pistol: GunPistol
+@export var bat: Bat
+@export var has_pistol: bool
+@export var has_bat: bool
 var weapon: Weapon
 
 @export var ammo_label: RichTextLabel
@@ -31,24 +33,12 @@ var weapon: Weapon
 
 @export var throw_strength: float = 5.0
 @export var camera: Camera3D
-#@export var player_skin: PlayerSkin
 @export var pause_menu: PauseMenu
 @export var game_over: Control
 @export var death_timer: Timer
 @export var hit_timer: Timer
 
 var invert := -1
-
-var max_ammo: int
-var ammo_count: int:
-	set(value):
-		ammo_count = value
-		ui.update_ammo(value, ammo_reserves)
-
-var ammo_reserves: int:
-	set(value):
-		ammo_reserves = value
-		ui.update_ammo(ammo_count, value)
 
 var items_in_range: Array[Item]
 
@@ -70,9 +60,6 @@ var restaurant: Restaurant
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	ammo_count = 10
-	max_ammo = 10
-	ammo_reserves = 20
 	spawn_position = global_position
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	
@@ -137,19 +124,21 @@ func _input(event: InputEvent) -> void:
 
 func _process_shot() -> void:
 	if weapon:
-		if Input.is_action_just_pressed("shoot") and ammo_count - 1 >= 0:
+		if Input.is_action_just_pressed("shoot") and weapon.ammo_count - 1 >= 0 and weapon.has_ammo:
 			shoot()
-			ammo_count -= 1
+			weapon.ammo_count -= 1
 			weapon_fired.emit()
 			weapon.add_muzzle_flash()
-		if Input.is_action_just_pressed("reload") and ammo_reserves > 0 and ammo_count < max_ammo:
-			var ammo_needed = max_ammo - ammo_count
-			if ammo_reserves >= ammo_needed:
-				ammo_count += ammo_needed
-				ammo_reserves -= ammo_needed
+		if Input.is_action_just_pressed("shoot") and not weapon.has_ammo:
+			weapon.shoot_animation()
+		if Input.is_action_just_pressed("reload") and weapon.ammo_reserves > 0 and weapon.ammo_count < weapon.max_ammo and weapon.has_ammo:
+			var ammo_needed = weapon.max_ammo - weapon.ammo_count
+			if weapon.ammo_reserves >= ammo_needed:
+				weapon.ammo_count += ammo_needed
+				weapon.ammo_reserves -= ammo_needed
 			else:
-				ammo_count += ammo_reserves
-				ammo_reserves = 0
+				weapon.ammo_count += weapon.ammo_reserves
+				weapon.ammo_reserves = 0
 
 func shoot() -> void:
 	if shotRaycast.is_colliding():
@@ -224,24 +213,40 @@ func _handle_item_raycast(target: Node3D) -> void:
 
 
 func _process_draw_weapon() -> void:
-	if Input.is_action_just_pressed("draw_weapon_1"):
-		if weapon:
+	if Input.is_action_just_pressed("draw_weapon_1") and has_bat:
+		if weapon == bat:
+			bat.unequip()
 			weapon = null
-			#pew.hide()
-			gun_pistol.hide()
-			ammo_label.hide()
-			reticle.color = RETICLE_WHITE
-			ui.show_hp(false)
-		else:
-			#weapon = pew
-			weapon = gun_pistol
-			#pew.show()
-			gun_pistol.show()
-			ammo_label.show()
+			reticle.show()
+		elif weapon == null:
+			bat.equip()
+			weapon = bat
 			if item_slot.get_child_count() > 0:
 				drop_item()
-			ui.show_hp(true)
-			#player_skin.aiming_animation()
+			reticle.hide()
+		else:
+			gun_pistol.unequip()
+			bat.equip()
+			weapon = bat
+			reticle.hide()
+		reticle.color = RETICLE_WHITE
+	if Input.is_action_just_pressed("draw_weapon_2") and has_pistol:
+		if weapon == gun_pistol:
+			gun_pistol.unequip()
+			weapon = null
+			reticle.show()
+		elif weapon == null:
+			gun_pistol.equip()
+			weapon = gun_pistol
+			if item_slot.get_child_count() > 0:
+				drop_item()
+			reticle.show()
+		else:
+			bat.unequip()
+			gun_pistol.equip()
+			weapon = gun_pistol
+			reticle.show()
+		reticle.color = RETICLE_WHITE
 
 func _physics_logic() -> void:
 	for i in get_slide_collision_count():
@@ -289,15 +294,15 @@ func drop_item() -> void:
 			if c is RigidBody3D:
 				c.freeze = false
 				c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
-				c.look_at(camera.global_position)
 				if item is PizzaBox:
+					c.look_at(camera.global_position)
 					c.rotate(Vector3.UP, deg_to_rad(180))
 				elif not item.has_meta("count"):
+					c.look_at(camera.global_position)
 					c.rotate(Vector3.UP, deg_to_rad(130))
 					c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-				#var shape = c.get_child(0)
-				#if shape is CollisionShape3D:
-					#shape.disabled = false
+				else:
+					c.look_at(camera.global_position - Vector3(0,1,0))
 		
 		if item.has_meta("food_id"):
 			var food_id = item.get_meta("food_id")

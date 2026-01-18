@@ -770,7 +770,7 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 2.99
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.7711391, 0, 29.510372)
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_e4dcw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4630194, -2.3841858e-07, 16.961794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13544679, -2.3841858e-07, 52.573624)
 
 [node name="car_taxi_edited2" parent="Entities" index="1" instance=ExtResource("26_pwpgx")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.0712576, 0, 24.5)
@@ -817,14 +817,32 @@ dialogue_box = NodePath("../../DialogueBox")
 [node name="DriveThruTimer" type="Timer" parent="Entities/DriveThruSpawn/Timers" index="0"]
 wait_time = 5.0
 
-[node name="NpcDummy" parent="Entities" index="7" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
+[node name="NpcDummy" parent="Entities" index="7" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.967305, 0, 35.555977)
-start_target = NodePath("../../Environment/Markers/Outside")
 level_ui = NodePath("../../UI")
 
-[node name="NpcDummy2" parent="Entities" index="8" node_paths=PackedStringArray("start_target", "level_ui") instance=ExtResource("31_pwpgx")]
+[node name="NpcDummy2" parent="Entities" index="8" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.211401, 0, 35.271854)
-start_target = NodePath("../../Environment/Markers/Outside")
+level_ui = NodePath("../../UI")
+
+[node name="NpcDummy3" parent="Entities" index="9" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.211401, 0, 44.552406)
+level_ui = NodePath("../../UI")
+
+[node name="NpcDummy4" parent="Entities" index="10" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.211401, 0, 30.488823)
+level_ui = NodePath("../../UI")
+
+[node name="NpcDummy5" parent="Entities" index="11" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.005465, 0, 30.488823)
+level_ui = NodePath("../../UI")
+
+[node name="NpcDummy6" parent="Entities" index="12" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.613641, 0, 54.548363)
+level_ui = NodePath("../../UI")
+
+[node name="NpcDummy7" parent="Entities" index="13" node_paths=PackedStringArray("level_ui") instance=ExtResource("31_pwpgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.613641, 0, 45.317074)
 level_ui = NodePath("../../UI")
 
 [node name="UI" parent="." index="4"]
