@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 					#set_collision_mask_value(6, true)
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			else:
-				var go_to_restaurant_chance = randi_range(0,8)
+				var go_to_restaurant_chance = randi_range(0,30)
 				if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
 					target = GlobalMarker.restaurant_marker
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
@@ -99,7 +99,7 @@ func interact() -> void:
 func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
 	if _npc_dummy == self:
 		table = _table
-		var random_food = randi_range(1,3)
+		var random_food = randi_range(1,6)
 		GlobalSignal.add_order.emit(table.get_meta("table_id"), random_food)
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		has_order = true

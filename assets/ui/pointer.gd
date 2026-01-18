@@ -31,3 +31,12 @@ func _add_order(_table_id:int, food_id: int) -> void:
 			GlobalVar.PIZZA_TYPE.MUSHROOM:
 				if pizza.pizza_type == food_id:
 					show()
+			GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
+				if pizza.pizza_type == food_id:
+					show()
+			GlobalVar.PIZZA_TYPE.CHEESE_PIE:
+				if pizza.pizza_type == food_id:
+					show()
+			GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				if pizza.pizza_type == food_id:
+					show()

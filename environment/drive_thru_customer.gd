@@ -41,7 +41,7 @@ func can_interact() -> bool:
 	
 func interact(_player: Player) -> void:
 	if not has_order:
-		var random_food = randi_range(1,3)
+		var random_food = randi_range(4,6)
 		GlobalSignal.add_order.emit(0, random_food)
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()

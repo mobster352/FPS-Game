@@ -14,9 +14,9 @@ rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/mesh/food_pizza_cheese_plated")]
 albedo_texture = ExtResource("2_faxge")
+metadata/food_id = 5
 
 [node name="body" parent="." index="0"]
-can_sleep = false
 metadata/name = &"whole_pizza"
 
 [node name="CollisionShape3D" parent="body" index="0"]

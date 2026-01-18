@@ -50,6 +50,7 @@ func interact() -> void:
 	pickup(Vector3.ZERO, Vector3(deg_to_rad(0), deg_to_rad(90), deg_to_rad(0)))
 	if pizza_slot.has_meta("pizza"):
 		player.item_slot.get_child(0).set_meta("pizza", pizza_slot.get_meta("pizza"))
+		player.item_slot.get_child(0).set_meta("food_id", pizza_slot.get_meta("food_id"))
 	queue_free()
 
 func cook() -> void:
@@ -71,12 +72,16 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 				if item.mesh.has_meta("name"):
 					if item.mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.PEPPERONI_PIE)
 					elif item.mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.MUSHROOM_PIE)
 					elif item.mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.CHEESE_PIE)
 					else:
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
 				#mesh_has_children = true
 				item.shrink_and_free(0, 0.25)

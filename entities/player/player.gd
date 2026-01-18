@@ -304,6 +304,9 @@ func drop_item() -> void:
 				else:
 					c.look_at(camera.global_position - Vector3(0,1,0))
 		
+		if child_mesh.has_meta("food_id"):
+			item.set_meta("food_id", child_mesh.get_meta("food_id"))
+		
 		if item.has_meta("food_id"):
 			var food_id = item.get_meta("food_id")
 			if food_id:

@@ -4,7 +4,10 @@ enum PIZZA_TYPE {
 	NONE,
 	PEPPERONI,
 	CHEESE,
-	MUSHROOM
+	MUSHROOM,
+	PEPPERONI_PIE,
+	CHEESE_PIE,
+	MUSHROOM_PIE
 }
 
 var mesh_to_item_array: Array[Dictionary] = [
@@ -81,7 +84,10 @@ var mesh_to_item_array: Array[Dictionary] = [
 var food_items: Array[Food] = [
 	Food.new(PIZZA_TYPE.PEPPERONI,"Pepperoni Pizza Slice"),
 	Food.new(PIZZA_TYPE.CHEESE,"Cheese Pizza Slice"),
-	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice")
+	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice"),
+	Food.new(PIZZA_TYPE.PEPPERONI_PIE, "Pepperoni Pizza"),
+	Food.new(PIZZA_TYPE.CHEESE_PIE, "Cheese Pizza"),
+	Food.new(PIZZA_TYPE.MUSHROOM_PIE, "Mushroom Pizza")
 ]
 
 var show_tips := true

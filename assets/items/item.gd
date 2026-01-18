@@ -88,6 +88,9 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	set_monitoring(false)
 	set_z_scale(true)
 	
+	if new_mesh.has_meta("food_id"):
+		set_meta("food_id", new_mesh.get_meta("food_id"))
+	
 	if has_meta("food_id"):
 		GlobalSignal.pickup_food.emit(get_meta("food_id"))
 		pointer.hide()
