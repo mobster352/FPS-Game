@@ -11,6 +11,8 @@ var standardMaterial3D: StandardMaterial3D
 @export var pointer: Node3D
 @export var mesh_has_children: bool
 
+@export var preview_scene: PackedScene
+
 var player: Player
 var disabled := false
 var kill := false
@@ -82,6 +84,13 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 		
 	if mesh_has_children:
 		set_z_scale_children(true, new_mesh)
+		
+	if has_meta("place"):
+		new_mesh.set_meta("place", true)
+		if new_mesh.has_meta("item_type"):
+			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"))
+		else:
+			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None)
 	
 	player.item_slot.add_child(new_mesh)
 

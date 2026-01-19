@@ -293,6 +293,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.849443, 0, -8.752365)
 
 [node name="RollingPin" parent="Environment/Restaurant/Decorations/kitchentable_B_large" instance=ExtResource("16_0dg3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8117424, 1.2056603, 0.3191681)
+disposable = null
+mesh_has_children = null
 
 [node name="kitchentable_B_large2" parent="Environment/Restaurant/Decorations" instance=ExtResource("13_ggvsq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.7636533, 0, -12.502429)
@@ -302,6 +304,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.01
 
 [node name="crate_generic" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5701246, 0, -8.27186)
+disposable = null
 
 [node name="body" parent="Environment/Restaurant/Decorations/crate_generic" index="0"]
 can_sleep = true
@@ -309,8 +312,12 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic/body/StaticBody3D" index="1"]
 item_type = 2
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic/body/StaticBody3D/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic2" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -5.9093275)
+disposable = null
 
 [node name="body" parent="Environment/Restaurant/Decorations/crate_generic2" index="0"]
 can_sleep = true
@@ -318,8 +325,12 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic2/body/StaticBody3D" index="1"]
 item_type = 3
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic2/body/StaticBody3D/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic3" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -8.317371)
+disposable = null
 
 [node name="body" parent="Environment/Restaurant/Decorations/crate_generic3" index="0"]
 can_sleep = true
@@ -327,8 +338,12 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic3/body/StaticBody3D" index="1"]
 item_type = 4
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic3/body/StaticBody3D/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic4" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -5.831866)
+disposable = null
 
 [node name="body" parent="Environment/Restaurant/Decorations/crate_generic4" index="0"]
 can_sleep = true
@@ -336,14 +351,21 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic4/body/StaticBody3D" index="1"]
 item_type = 5
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic4/body/StaticBody3D/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic5" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -3.7718027)
+disposable = null
 
 [node name="body" parent="Environment/Restaurant/Decorations/crate_generic5" index="0"]
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic5/body/StaticBody3D" index="1"]
 item_type = 6
+
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic5/body/StaticBody3D/Interactable" index="0"]
+surface_material_override/0 = null
 
 [node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, -0.004232526, -16.707561)

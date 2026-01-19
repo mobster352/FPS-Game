@@ -58,6 +58,13 @@ var is_alive := true
 var freeze_camera := false
 var restaurant: Restaurant
 
+@export var max_distance := 5.0
+
+var place_scene: PackedScene
+var preview_instance: Node3D
+var can_place := false
+var place_scene_item_type: GlobalVar.StoreItem
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
@@ -261,8 +268,121 @@ func _process_crouch() -> void:
 		scale = scale.slerp(Vector3(1,1,1), 0.15)
 
 func _process_drop_item() -> void:
-	if item_slot.get_child_count() > 0 and Input.is_action_just_pressed("drop"):
-		drop_item()
+	var drop_input = Input.is_action_just_pressed("drop")
+	if item_slot.get_child_count() > 0:
+		var item = item_slot.get_child(0)
+		if item.has_meta("place"):
+			#if item.has_meta("name"):
+				#if item.get_meta("name") == "crate_mesh":
+			if preview_instance:
+				update_preview()
+			if drop_input:
+				confirm_placement()
+		else:
+			if drop_input:
+				drop_item()
+
+func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem):
+	if preview_instance:
+		return
+
+	preview_instance = preview_scene.instantiate()
+	get_tree().current_scene.add_child(preview_instance)
+	
+	place_scene = load(place_scene_path)
+	place_scene_item_type = item_type
+
+	_make_preview_material(preview_instance)
+
+
+func update_preview():
+	var space_state = get_world_3d().direct_space_state
+
+	var from = camera.global_position
+	var forward = -camera.global_transform.basis.z
+	var to = from + forward * max_distance
+
+	# Forward ray
+	var forward_query = PhysicsRayQueryParameters3D.create(from, to)
+	var forward_hit = space_state.intersect_ray(forward_query)
+
+	var target_point = to
+	if forward_hit:
+		target_point = forward_hit.position
+
+	# Downward ray
+	var down_query = PhysicsRayQueryParameters3D.create(
+		target_point + Vector3.UP * 2.0,
+		target_point + Vector3.DOWN * 10.0
+	)
+
+	var down_hit = space_state.intersect_ray(down_query)
+
+	if down_hit:
+		can_place = true
+		preview_instance.global_position = down_hit.position
+		preview_instance.global_rotation.y = camera.global_rotation.y
+	else:
+		can_place = false
+
+	_update_preview_color(can_place)
+	
+func confirm_placement():
+	if not can_place or not preview_instance:
+		return
+
+	var instance = place_scene.instantiate() as Item
+	if instance.has_node("body/StaticBody3D/Interactable"):
+		var interactable = instance.get_node("body/StaticBody3D/Interactable")
+		if interactable is ObjectSpawner:
+			interactable.item_type = place_scene_item_type
+			
+	var child_mesh = item_slot.get_child(0) as MeshInstance3D
+	if child_mesh.has_meta("food_id"):
+			instance.set_meta("food_id", child_mesh.get_meta("food_id"))
+		
+	if instance.has_meta("food_id"):
+		var food_id = instance.get_meta("food_id")
+		if food_id:
+			GlobalSignal.drop_food.emit(food_id)
+			GlobalSignal.check_restaurant_food.emit(food_id)
+	elif instance.has_meta("plate_dirty"):
+		instance.pointer.show()
+		GlobalSignal.toggle_pointer.emit("sink", false)
+			
+	instance.global_transform = preview_instance.global_transform
+	get_tree().current_scene.add_child(instance)
+
+	cancel_placement()
+	
+func cancel_placement():
+	if preview_instance:
+		preview_instance.queue_free()
+		preview_instance = null
+		place_scene_item_type = GlobalVar.StoreItem.None
+		var child_mesh = item_slot.get_child(0) as MeshInstance3D
+		item_slot.remove_child(child_mesh)
+		child_mesh.queue_free()
+	
+func _make_preview_material(root: Node):
+	for child in root.get_children(true):
+		if child is MeshInstance3D:
+			var mat = StandardMaterial3D.new()
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			mat.albedo_color = Color(0, 1, 0, 0.35)
+			mat.no_depth_test = true
+			child.material_override = mat
+			
+func _update_preview_color(valid: bool):
+	var color
+	if valid:
+		color = Color(0, 1, 0, 0.35)
+	else:
+		color = Color(1, 0, 0, 0.35)
+
+	for child in preview_instance.find_children("*", "MeshInstance3D", true):
+		if child is MeshInstance3D:
+			child.material_override.albedo_color = color
 
 func drop_item() -> void:
 	var child_mesh = item_slot.get_child(0) as MeshInstance3D
