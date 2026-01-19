@@ -45,12 +45,13 @@ size = Vector3(4.0740356, 1.4918213, 0.12036133)
 [sub_resource type="SphereShape3D" id="SphereShape3D_w3jle"]
 radius = 5.149076
 
-[node name="Restaurant" type="Node3D" node_paths=PackedStringArray("chair1", "chair2", "table1", "table2")]
+[node name="Restaurant" type="Node3D" node_paths=PackedStringArray("chair1", "chair2", "table1", "table2", "order_spawn")]
 script = ExtResource("1_nd13t")
 chair1 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table1/chair_A")
 chair2 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table2/chair_A")
 table1 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table1")
 table2 = NodePath("Environment/Restaurant/Floors/NavRegionRestaurant/Table2")
+order_spawn = NodePath("Environment/Restaurant/OrderSpawn")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -306,7 +307,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5701246, 0, -8.27186)
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic/body/StaticBody3D" index="1"]
-item_type = 1
+item_type = 2
 
 [node name="crate_generic2" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -5.9093275)
@@ -315,7 +316,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -5.9093275)
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic2/body/StaticBody3D" index="1"]
-item_type = 2
+item_type = 3
 
 [node name="crate_generic3" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -8.317371)
@@ -324,7 +325,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.762791, 0, -8.317371)
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic3/body/StaticBody3D" index="1"]
-item_type = 3
+item_type = 4
 
 [node name="crate_generic4" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -5.831866)
@@ -333,7 +334,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -5.831866)
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic4/body/StaticBody3D" index="1"]
-item_type = 4
+item_type = 5
 
 [node name="crate_generic5" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -3.7718027)
@@ -342,7 +343,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.536477, 0, -3.7718027)
 can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic5/body/StaticBody3D" index="1"]
-item_type = 5
+item_type = 6
 
 [node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, -0.004232526, -16.707561)
@@ -496,6 +497,9 @@ script = ExtResource("18_lussy")
 name_input = NodePath("Options/VBoxContainer/ShopName/MarginContainer2/NameInput")
 size_input = NodePath("Options/VBoxContainer/Name Size/MarginContainer2/SizeInput")
 billboard_label = NodePath("../BillboardLabel")
+
+[node name="OrderSpawn" type="Marker3D" parent="Environment/Restaurant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4355373, 100, -20.277218)
 
 [node name="Entities" type="Node3D" parent="."]
 

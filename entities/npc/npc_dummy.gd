@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 					#set_collision_mask_value(6, true)
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			else:
-				var go_to_restaurant_chance = randi_range(0,30)
+				var go_to_restaurant_chance = randi_range(0,16)
 				if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
 					target = GlobalMarker.restaurant_marker
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))

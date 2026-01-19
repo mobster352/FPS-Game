@@ -43,3 +43,6 @@ signal toggle_pointer_ui()
 
 @warning_ignore("unused_signal")
 signal init_player(player: Player)
+
+@warning_ignore("unused_signal")
+signal order_inventory_items(store_items: Array[GlobalVar.StoreItem])

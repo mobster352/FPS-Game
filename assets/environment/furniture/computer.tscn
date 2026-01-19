@@ -339,6 +339,18 @@ texture = ExtResource("6_nj7n0")
 store_item = 6
 price = 10
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 375
+
+[node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer4" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+layout_mode = 2
+computer = NodePath("../../../../../../..")
+text = &"Pizza Box (5)"
+texture = ExtResource("6_nj7n0")
+store_item = 7
+price = 5
+
 [node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2

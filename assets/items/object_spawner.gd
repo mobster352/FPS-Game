@@ -3,20 +3,11 @@ class_name ObjectSpawner
 
 @export var item: Item
 @export var mesh: MeshInstance3D
-@export var item_type: ItemType
+@export var item_type: GlobalVar.StoreItem
 
 var mesh_path: StringName
 var scene_path: StringName
 var item_name: StringName
-
-enum ItemType {
-	None,
-	Dough,
-	Cheese,
-	Tomato,
-	Pepperoni,
-	Mushroom
-}
 
 const TOP_LEFT_POS = Vector3(0.35,0,0.3)
 const TOP_RIGHT_POS = Vector3(-0.35,0,0.3)
@@ -26,23 +17,23 @@ const BOTTOM_RIGHT_POS = Vector3(-0.35,0,-0.3)
 var object_array : Array[Node3D]
 
 func _ready() -> void:
-	if item_type == ItemType.Dough:
+	if item_type == GlobalVar.StoreItem.Dough:
 		mesh_path = "res://assets/kaykit/restaurant/food_ingredient_dough.gltf"
 		scene_path = "res://assets/environment/restaurant/food_ingredient_dough.tscn"
 		item_name = "dough"
-	elif item_type == ItemType.Cheese:
+	elif item_type == GlobalVar.StoreItem.Cheese:
 		mesh_path = "res://assets/kaykit/restaurant/food_ingredient_cheese.gltf"
 		scene_path = "res://assets/items/food_ingredient_cheese.tscn"
 		item_name = "cheese"
-	elif item_type == ItemType.Tomato:
+	elif item_type == GlobalVar.StoreItem.Tomato:
 		mesh_path = "res://assets/kaykit/restaurant/food_ingredient_tomato.gltf"
 		scene_path = "res://assets/items/food_ingredient_tomato.tscn"
 		item_name = "tomato"
-	elif item_type == ItemType.Pepperoni:
+	elif item_type == GlobalVar.StoreItem.Pepperoni:
 		mesh_path = "res://assets/kaykit/restaurant/food_ingredient_pepperoni.gltf"
 		scene_path = "res://assets/items/food_ingredient_pepperoni.tscn"
 		item_name = "pepperoni"
-	elif item_type == ItemType.Mushroom:
+	elif item_type == GlobalVar.StoreItem.Mushroom:
 		mesh_path = "res://assets/kaykit/restaurant/food_ingredient_mushroom.gltf"
 		scene_path = "res://assets/items/food_ingredient_mushroom.tscn"
 		item_name = "mushroom"

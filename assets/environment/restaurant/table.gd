@@ -27,7 +27,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var obj = body.get_parent()
 	if obj.is_in_group("items") and obj.has_meta("food_id") and menu.food_id != -1:
 		if obj.get_meta("food_id") == menu.food_id:
-			money = randi_range(6,10)
+			if menu.food_id in [1,2,3]:
+				money = randi_range(6,10)
+			elif menu.food_id in [4,5,6]:
+				money = randi_range(10,15)
+			else:
+				money = randi_range(6,10)
 			dialogue_box.text = dialogue_box.get_good_order_delivered_text()
 		else:
 			money = randi_range(1,3)

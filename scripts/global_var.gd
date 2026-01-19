@@ -10,6 +10,17 @@ enum PIZZA_TYPE {
 	MUSHROOM_PIE
 }
 
+enum StoreItem {
+	None,
+	RollingPin,
+	Dough,
+	Tomato,
+	Cheese,
+	Pepperoni,
+	Mushroom,
+	PizzaBox
+}
+
 var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"mesh": "dough_mesh",

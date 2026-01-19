@@ -16,7 +16,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		var money: int
 		if obj is PizzaBox:
 			if obj.get_meta("food_id") == drive_thru_menu.food_id:
-				money = randi_range(6,10)
+				money = randi_range(10,15)
 				dialogue_box.text = dialogue_box.get_good_order_delivered_text()
 			else:
 				money = randi_range(1,3)

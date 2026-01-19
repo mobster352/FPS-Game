@@ -1,7 +1,8 @@
 extends Node3D
 class_name Computer
 
-signal select_store_item(store_item: StoreItem, price: int, selected: bool)
+signal select_store_item(store_item: GlobalVar.StoreItem, price: int, selected: bool)
+signal remove_store_item(store_item: GlobalVar.StoreItem)
 
 @export var sub_viewport: SubViewportContainer
 @export var computer_camera: Camera3D
@@ -23,16 +24,8 @@ var cart_total := 0:
 		if player:
 			remaining_money_label.text = "$" + str(player.money - cart_total)
 			balance_label.text = "$" + str(player.money)
-
-enum StoreItem {
-	None,
-	RollingPin,
-	Dough,
-	Tomato,
-	Cheese,
-	Pepperoni,
-	Mushroom
-}
+			
+var order_items: Array[GlobalVar.StoreItem]
 
 func _ready() -> void:
 	sub_viewport.hide()
@@ -78,34 +71,40 @@ func _on_home_button_pressed() -> void:
 func _on_cart_button_pressed() -> void:
 	cart_items.visible = not cart_items.visible
 	
-func _select_store_item(store_item: StoreItem, price: int, selected: bool) -> void:
+func _select_store_item(store_item: GlobalVar.StoreItem, price: int, selected: bool) -> void:
 	if selected:
 		cart_total += price
 		var new_label : Label = Label.new()
 		new_label.text = get_store_item_name(store_item)
 		cart_vbox.add_child(new_label)
+		order_items.append(store_item)
 	else:
 		cart_total -= price
+		var i = 0
 		for label:Label in cart_vbox.get_children():
 			if label.text == get_store_item_name(store_item):
 				cart_vbox.remove_child(label)
+				order_items.remove_at(i)
 				return
+			i += 1
 
-func get_store_item_name(store_item:StoreItem) -> StringName:
-	if store_item == StoreItem.None:
+func get_store_item_name(store_item:GlobalVar.StoreItem) -> StringName:
+	if store_item == GlobalVar.StoreItem.None:
 		return "Invalid Item"
-	elif store_item == StoreItem.RollingPin:
+	elif store_item == GlobalVar.StoreItem.RollingPin:
 		return "Rolling Pin"
-	elif store_item == StoreItem.Dough:
+	elif store_item == GlobalVar.StoreItem.Dough:
 		return "Dough"
-	elif store_item == StoreItem.Tomato:
+	elif store_item == GlobalVar.StoreItem.Tomato:
 		return "Tomato"
-	elif store_item == StoreItem.Cheese:
+	elif store_item == GlobalVar.StoreItem.Cheese:
 		return "Cheese"
-	elif store_item == StoreItem.Pepperoni:
+	elif store_item == GlobalVar.StoreItem.Pepperoni:
 		return "Pepperoni"
-	elif store_item == StoreItem.Mushroom:
+	elif store_item == GlobalVar.StoreItem.Mushroom:
 		return "Mushroom"
+	elif store_item == GlobalVar.StoreItem.PizzaBox:
+		return "Pizza Box"
 	else:
 		return "Invalid Item"
 
@@ -116,3 +115,7 @@ func _on_purchase_button_pressed() -> void:
 		cart_total = 0
 		for label in cart_vbox.get_children():
 			cart_vbox.remove_child(label)
+		for store_item in order_items:
+			remove_store_item.emit(store_item)
+		GlobalSignal.order_inventory_items.emit(order_items)
+		order_items.clear()
