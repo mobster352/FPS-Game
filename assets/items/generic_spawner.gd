@@ -49,7 +49,7 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 					body.apply_impulse(forward * (throw_strength / body.mass), body.global_position + forward)
 
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return item.in_range
 	
 func interact(player: Player) -> void:

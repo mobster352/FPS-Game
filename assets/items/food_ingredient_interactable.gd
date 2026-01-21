@@ -2,7 +2,7 @@ extends Interactable
 
 @export var item: Item
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return item.in_range
 	
 func interact(player: Player) -> void:

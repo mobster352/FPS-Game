@@ -2,7 +2,7 @@ extends Interactable
 
 @export var weapon_rack: WeaponRack
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return weapon_rack.in_range
 	
 func interact(player: Player) -> void:

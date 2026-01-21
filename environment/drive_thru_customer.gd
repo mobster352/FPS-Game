@@ -36,7 +36,7 @@ func _drop_food(food_id:int) -> void:
 		pointer.hide()
 
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return in_range
 	
 func interact(_player: Player) -> void:

@@ -58,7 +58,7 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 		pointer.visible = value
 
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return in_range
 	
 func interact(player: Player) -> void:

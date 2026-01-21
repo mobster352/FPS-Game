@@ -90,11 +90,10 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 		
 	if has_meta("place"):
 		new_mesh.set_meta("place", true)
-		var collisionShape = get_node("body/CollisionShape3D") as CollisionShape3D
 		if new_mesh.has_meta("item_type"):
-			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"), count, collisionShape.shape, collisionShape.transform)
+			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"), count)
 		else:
-			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None, count, collisionShape.shape, collisionShape.transform)
+			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None, count)
 	
 	player.item_slot.add_child(new_mesh)
 

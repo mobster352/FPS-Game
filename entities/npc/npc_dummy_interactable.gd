@@ -2,7 +2,7 @@ extends Interactable
 
 @export var npc_dummy: NPC_Dummy
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return npc_dummy.in_range and not npc_dummy.has_order
 	
 func interact(_player: Player) -> void:

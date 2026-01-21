@@ -38,6 +38,8 @@ var weapon: Weapon
 @export var death_timer: Timer
 @export var hit_timer: Timer
 
+@export var inputs_ui: InputsUI
+
 var invert := -1
 
 var items_in_range: Array[Item]
@@ -65,7 +67,6 @@ var preview_instance: Node3D
 var can_place := false
 var place_scene_item_type: GlobalVar.StoreItem
 var item_shape: Shape3D
-var item_transform: Transform3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -202,6 +203,8 @@ func _handle_weapon_raycast(target: Node3D) -> void:
 func _handle_item_raycast(target: Node3D) -> void:
 	var interact := Input.is_action_just_pressed("interact")
 	
+	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object(), can_place)
+	
 	var interactable := target as Interactable
 	if not interactable:
 		interactable = target.get_parent() as Interactable
@@ -209,7 +212,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 		interactable = target.get_node("Interactable") as Interactable
 
 	if interactable:
-		if interactable.can_interact():
+		if interactable.can_interact(self):
 			reticle.color = interactable.reticle_color()
 			if interact:
 				interactable.interact(self)
@@ -280,7 +283,8 @@ func _process_crouch() -> void:
 
 func _process_drop_item() -> void:
 	var drop_input = Input.is_action_just_pressed("drop")
-	if item_slot.get_child_count() > 0:
+	can_place = false
+	if has_held_object():
 		var item = item_slot.get_child(0)
 		if item.has_meta("place"):
 			if preview_instance:
@@ -292,7 +296,7 @@ func _process_drop_item() -> void:
 				drop_item()
 
 
-func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem, count: int, _shape: Shape3D, _transform: Transform3D):
+func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem, count: int):
 	if preview_instance:
 		return
 
@@ -301,11 +305,11 @@ func start_placement(preview_scene: PackedScene, place_scene_path: StringName, i
 	
 	place_scene = load(place_scene_path)
 	place_scene_item_type = item_type
-	place_scene.set_meta("count", count)
+	if place_scene.has_meta("count"):
+		place_scene.set_meta("count", count)
 	
 	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
 	item_shape = collision_shape_preview_instance.shape
-	item_transform = preview_instance.transform
 
 	_make_preview_material(preview_instance)
 
@@ -350,12 +354,14 @@ func update_preview():
 		preview_instance.global_rotation.y = camera.global_rotation.y
 	else:
 		can_place = false
+		
+	#inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object(), can_place)
 
 	_update_preview_color(can_place)
 
 
 func confirm_placement():
-	if not can_place or not preview_instance:
+	if not can_place or not preview_instance or not has_held_object():
 		return
 
 	var instance = place_scene.instantiate() as Item
@@ -383,17 +389,18 @@ func confirm_placement():
 	instance.global_transform = preview_instance.global_transform
 	get_tree().current_scene.add_child(instance)
 
-	cancel_placement()
+	cancel_placement(true)
 
 
-func cancel_placement():
+func cancel_placement(remove_held_obj: bool):
 	if preview_instance:
 		preview_instance.queue_free()
 		preview_instance = null
 		place_scene_item_type = GlobalVar.StoreItem.None
-		var child_mesh = item_slot.get_child(0) as MeshInstance3D
-		item_slot.remove_child(child_mesh)
-		child_mesh.queue_free()
+		if has_held_object() and remove_held_obj:
+			var child_mesh = item_slot.get_child(0) as MeshInstance3D
+			item_slot.remove_child(child_mesh)
+			child_mesh.queue_free()
 
 
 func _make_preview_material(root: Node):
@@ -419,59 +426,61 @@ func _update_preview_color(valid: bool):
 
 
 func drop_item() -> void:
-	var child_mesh = item_slot.get_child(0) as MeshInstance3D
-	if child_mesh.has_meta("name"):
-		var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
-		var forward = -camera.global_transform.basis.z.normalized()
-		if child_mesh.has_meta("count"):
-			item.set_meta("count", child_mesh.get_meta("count"))
-			var object_spawner = item.get_node("body/StaticBody3D/Interactable") as ObjectSpawner
-			object_spawner.item_type = child_mesh.get_meta("item_type")
-			item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
-		else:
-			item.position = camera.global_position + forward
-		item.mesh = child_mesh.duplicate()
-		if item.has_node("body/mesh"):
-			var mesh_node = item.get_node("body/mesh")
-			mesh_node.remove_child(mesh_node.get_child(0))
-			mesh_node.add_child(item.mesh)
-		if item.mesh.get_child_count() > 0:
-			item.mesh_has_children = true
-			item.set_z_scale_children(false, item.mesh)
-		item.mesh.rotation = Vector3.ZERO
-		get_parent().add_child(item)
-		
-		item.meshInstanceArray.append(item.mesh)
-		item.set_monitoring(true)
-		item.set_z_scale(false)
-		for c in item.get_children():
-			if c is RigidBody3D:
-				c.freeze = false
-				c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
-				if item is PizzaBox:
-					c.look_at(camera.global_position)
-					c.rotate(Vector3.UP, deg_to_rad(180))
-				elif not item.has_meta("count"):
-					c.look_at(camera.global_position)
-					c.rotate(Vector3.UP, deg_to_rad(130))
-					c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-				else:
-					c.look_at(camera.global_position - Vector3(0,1,0))
-		
-		if child_mesh.has_meta("food_id"):
-			item.set_meta("food_id", child_mesh.get_meta("food_id"))
-		
-		if item.has_meta("food_id"):
-			var food_id = item.get_meta("food_id")
-			if food_id:
-				GlobalSignal.drop_food.emit(food_id)
-				GlobalSignal.check_restaurant_food.emit(food_id)
-		elif item.has_meta("plate_dirty"):
-			item.pointer.show()
-			GlobalSignal.toggle_pointer.emit("sink", false)
+	if has_held_object():
+		cancel_placement(false)
+		var child_mesh = item_slot.get_child(0) as MeshInstance3D
+		if child_mesh.has_meta("name"):
+			var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
+			var forward = -camera.global_transform.basis.z.normalized()
+			if child_mesh.has_meta("count"):
+				item.set_meta("count", child_mesh.get_meta("count"))
+				var object_spawner = item.get_node("body/StaticBody3D/Interactable") as ObjectSpawner
+				object_spawner.item_type = child_mesh.get_meta("item_type")
+				item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
+			else:
+				item.position = camera.global_position + forward
+			item.mesh = child_mesh.duplicate()
+			if item.has_node("body/mesh"):
+				var mesh_node = item.get_node("body/mesh")
+				mesh_node.remove_child(mesh_node.get_child(0))
+				mesh_node.add_child(item.mesh)
+			if item.mesh.get_child_count() > 0:
+				item.mesh_has_children = true
+				item.set_z_scale_children(false, item.mesh)
+			item.mesh.rotation = Vector3.ZERO
+			get_parent().add_child(item)
+			
+			item.meshInstanceArray.append(item.mesh)
+			item.set_monitoring(true)
+			item.set_z_scale(false)
+			for c in item.get_children():
+				if c is RigidBody3D:
+					c.freeze = false
+					c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+					if item is PizzaBox:
+						c.look_at(camera.global_position)
+						c.rotate(Vector3.UP, deg_to_rad(180))
+					elif not item.has_meta("count"):
+						c.look_at(camera.global_position)
+						c.rotate(Vector3.UP, deg_to_rad(130))
+						c.rotate(Vector3.RIGHT, deg_to_rad(-20))
+					else:
+						c.look_at(camera.global_position - Vector3(0,1,0))
+			
+			if child_mesh.has_meta("food_id"):
+				item.set_meta("food_id", child_mesh.get_meta("food_id"))
+			
+			if item.has_meta("food_id"):
+				var food_id = item.get_meta("food_id")
+				if food_id:
+					GlobalSignal.drop_food.emit(food_id)
+					GlobalSignal.check_restaurant_food.emit(food_id)
+			elif item.has_meta("plate_dirty"):
+				item.pointer.show()
+				GlobalSignal.toggle_pointer.emit("sink", false)
 
-	item_slot.remove_child(child_mesh)
-	child_mesh.queue_free()
+		item_slot.remove_child(child_mesh)
+		child_mesh.queue_free()
 
 
 func append_item_in_range(item: Node3D) -> void:
@@ -518,3 +527,7 @@ func _on_hit_timer_timeout() -> void:
 
 func _init_restaurant(_restaurant:Restaurant) -> void:
 	restaurant = _restaurant
+
+
+func has_held_object() -> bool:
+	return item_slot.get_child_count() > 0

@@ -2,7 +2,7 @@ extends Interactable
 
 @export var pizza_oven: PizzaOven
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return pizza_oven.in_range and not pizza_oven.is_locked
 	
 func interact(_player: Player) -> void:

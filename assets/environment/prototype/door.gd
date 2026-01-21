@@ -65,7 +65,7 @@ func close_door() -> void:
 		interact_door = true
 
 
-func can_interact() -> bool:
+func can_interact(player: Player) -> bool:
 	return in_range
 	
 func interact(_player: Player) -> void:
