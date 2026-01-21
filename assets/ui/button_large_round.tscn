@@ -6,7 +6,8 @@
 [ext_resource type="LabelSettings" uid="uid://ude03xnlv0t8" path="res://assets/ui/button_large_label.tres" id="3_mwk42"]
 
 [node name="Button" type="MarginContainer"]
-offset_right = 1159.0
+offset_top = 123.0
+offset_right = 696.0
 offset_bottom = 358.0
 script = ExtResource("1_748ql")
 
@@ -15,6 +16,8 @@ layout_mode = 2
 texture_normal = ExtResource("1_luvif")
 texture_pressed = ExtResource("2_748ql")
 texture_hover = ExtResource("2_748ql")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

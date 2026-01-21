@@ -64,12 +64,15 @@ var place_scene: PackedScene
 var preview_instance: Node3D
 var can_place := false
 var place_scene_item_type: GlobalVar.StoreItem
+var item_shape: Shape3D
+var item_transform: Transform3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
-	
+
+
 func _process(_delta: float) -> void:
 	if is_alive:
 		if Input.is_action_just_pressed("pause"):
@@ -83,6 +86,7 @@ func _process(_delta: float) -> void:
 			_process_crouch()
 			_process_drop_item()
 
+
 func _physics_process(delta: float) -> void:
 	if is_alive:
 		if not is_on_floor():
@@ -90,12 +94,13 @@ func _physics_process(delta: float) -> void:
 		if not freeze_camera:
 			_process_jump()
 			_physics_logic()
-		
+
 
 func _process_jump() -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
 
 func _process_movement() -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -109,8 +114,8 @@ func _process_movement() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-	
-	
+
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
 		# Horizontal rotation (Y-axis) applied to the main Player node
@@ -128,6 +133,7 @@ func _input(event: InputEvent) -> void:
 		
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 func _process_shot() -> void:
 	if weapon:
@@ -147,6 +153,7 @@ func _process_shot() -> void:
 				weapon.ammo_count += weapon.ammo_reserves
 				weapon.ammo_reserves = 0
 
+
 func shoot() -> void:
 	if shotRaycast.is_colliding():
 		var target = shotRaycast.get_collider() as Node3D # A CollisionObject2D.
@@ -163,6 +170,7 @@ func shoot() -> void:
 				if parent.has_method("take_damage"):
 					parent.call("take_damage", 1, shape)
 	weapon.shoot_animation()
+
 
 func _process_rayCast() -> void:
 	reticle.color = RETICLE_WHITE
@@ -255,11 +263,13 @@ func _process_draw_weapon() -> void:
 			reticle.show()
 		reticle.color = RETICLE_WHITE
 
+
 func _physics_logic() -> void:
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
 		if collider is RigidBody3D and not collider.get_parent().is_in_group("static"):
 			collider.apply_central_impulse(-get_slide_collision(i).get_normal())
+
 
 func _process_crouch() -> void:
 	if Input.is_action_pressed("crouch"):
@@ -267,13 +277,12 @@ func _process_crouch() -> void:
 	else:
 		scale = scale.slerp(Vector3(1,1,1), 0.15)
 
+
 func _process_drop_item() -> void:
 	var drop_input = Input.is_action_just_pressed("drop")
 	if item_slot.get_child_count() > 0:
 		var item = item_slot.get_child(0)
 		if item.has_meta("place"):
-			#if item.has_meta("name"):
-				#if item.get_meta("name") == "crate_mesh":
 			if preview_instance:
 				update_preview()
 			if drop_input:
@@ -282,7 +291,8 @@ func _process_drop_item() -> void:
 			if drop_input:
 				drop_item()
 
-func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem):
+
+func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem, count: int, _shape: Shape3D, _transform: Transform3D):
 	if preview_instance:
 		return
 
@@ -291,6 +301,11 @@ func start_placement(preview_scene: PackedScene, place_scene_path: StringName, i
 	
 	place_scene = load(place_scene_path)
 	place_scene_item_type = item_type
+	place_scene.set_meta("count", count)
+	
+	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
+	item_shape = collision_shape_preview_instance.shape
+	item_transform = preview_instance.transform
 
 	_make_preview_material(preview_instance)
 
@@ -317,16 +332,28 @@ func update_preview():
 	)
 
 	var down_hit = space_state.intersect_ray(down_query)
+	
+	var intersect_query = PhysicsShapeQueryParameters3D.new()
+	intersect_query.transform = preview_instance.transform
+	intersect_query.shape = item_shape
+	intersect_query.collision_mask = (1 << 1 - 1) | (1 << 4 - 1) | (1 << 6 - 1)
 
-	if down_hit:
-		can_place = true
+	var intersect_hit = space_state.get_rest_info(intersect_query)
+	#print(intersect_hit)
+
+	if down_hit and down_hit.position.y < 4.0:
+		if intersect_hit:
+			can_place = false
+		else:
+			can_place = true
 		preview_instance.global_position = down_hit.position
 		preview_instance.global_rotation.y = camera.global_rotation.y
 	else:
 		can_place = false
 
 	_update_preview_color(can_place)
-	
+
+
 func confirm_placement():
 	if not can_place or not preview_instance:
 		return
@@ -336,6 +363,9 @@ func confirm_placement():
 		var interactable = instance.get_node("body/StaticBody3D/Interactable")
 		if interactable is ObjectSpawner:
 			interactable.item_type = place_scene_item_type
+			
+	if place_scene.has_meta("count"):
+		instance.set_meta("count", place_scene.get_meta("count"))
 			
 	var child_mesh = item_slot.get_child(0) as MeshInstance3D
 	if child_mesh.has_meta("food_id"):
@@ -354,7 +384,8 @@ func confirm_placement():
 	get_tree().current_scene.add_child(instance)
 
 	cancel_placement()
-	
+
+
 func cancel_placement():
 	if preview_instance:
 		preview_instance.queue_free()
@@ -363,7 +394,8 @@ func cancel_placement():
 		var child_mesh = item_slot.get_child(0) as MeshInstance3D
 		item_slot.remove_child(child_mesh)
 		child_mesh.queue_free()
-	
+
+
 func _make_preview_material(root: Node):
 	for child in root.get_children(true):
 		if child is MeshInstance3D:
@@ -372,7 +404,8 @@ func _make_preview_material(root: Node):
 			mat.albedo_color = Color(0, 1, 0, 0.35)
 			mat.no_depth_test = true
 			child.material_override = mat
-			
+
+
 func _update_preview_color(valid: bool):
 	var color
 	if valid:
@@ -383,6 +416,7 @@ func _update_preview_color(valid: bool):
 	for child in preview_instance.find_children("*", "MeshInstance3D", true):
 		if child is MeshInstance3D:
 			child.material_override.albedo_color = color
+
 
 func drop_item() -> void:
 	var child_mesh = item_slot.get_child(0) as MeshInstance3D
@@ -439,10 +473,11 @@ func drop_item() -> void:
 	item_slot.remove_child(child_mesh)
 	child_mesh.queue_free()
 
+
 func append_item_in_range(item: Node3D) -> void:
 	items_in_range.append(item)
-	
-	
+
+
 func remove_item_in_range(item: Node3D) -> void:
 	var index = items_in_range.find(item)
 	items_in_range.remove_at(index)
@@ -464,6 +499,7 @@ func take_damage(value: int) -> void:
 func update_money(_money:int) -> void:
 	money += _money
 
+
 func _respawn() -> void:
 	hp = max_hp
 	global_position = spawn_position
@@ -478,6 +514,7 @@ func _on_death_timer_timeout() -> void:
 func _on_hit_timer_timeout() -> void:
 	if not weapon:
 		ui.show_hp(false)
+
 
 func _init_restaurant(_restaurant:Restaurant) -> void:
 	restaurant = _restaurant
