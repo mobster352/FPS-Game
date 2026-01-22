@@ -25,8 +25,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func interact(player: Player, weapon_type: WeaponType) -> void:
 	if weapon_type == WeaponType.Bat:
-		bat.hide()
+		bat.queue_free()
 		player.has_bat = true
 	elif weapon_type == WeaponType.Pistol:
-		pistol.hide()
+		pistol.queue_free()
 		player.has_pistol = true

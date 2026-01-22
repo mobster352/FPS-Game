@@ -13,3 +13,6 @@ func interact(_player: Player) -> void:
 	
 func reticle_color() -> Color:
 	return RETICLE_WHITE
+
+func interact2(_player: Player) -> void:
+	pass

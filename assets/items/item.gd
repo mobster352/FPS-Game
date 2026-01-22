@@ -76,11 +76,8 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	new_mesh.position = new_pos
 	new_mesh.rotation = new_rotation
 	
-	var count = 0
-	
 	if has_meta("count"):
-		count = get_meta("count")
-		new_mesh.set_meta("count", count)
+		new_mesh.set_meta("count", get_meta("count"))
 		var object_spawner = mesh.get_parent() as ObjectSpawner
 		if object_spawner:
 			new_mesh.set_meta("item_type", object_spawner.item_type)
@@ -91,9 +88,9 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	if has_meta("place"):
 		new_mesh.set_meta("place", true)
 		if new_mesh.has_meta("item_type"):
-			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"), count)
+			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"))
 		else:
-			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None, count)
+			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None)
 	
 	player.item_slot.add_child(new_mesh)
 

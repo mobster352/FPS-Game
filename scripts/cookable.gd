@@ -7,7 +7,7 @@ const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 1.0)
 
 var toppings: Array[StringName]
 
-func can_cook() -> bool:
+func can_cook(_player:Player) -> bool:
 	return false
 	
 func cook(_player: Player) -> void:

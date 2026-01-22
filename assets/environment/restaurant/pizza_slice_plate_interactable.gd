@@ -3,6 +3,8 @@ extends Interactable
 @export var item: Item
 
 func can_interact(player: Player) -> bool:
+	if item.in_range:
+		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object())
 	return item.in_range
 	
 func interact(player: Player) -> void:

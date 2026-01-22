@@ -15,7 +15,10 @@ enum Action {
 	PickUp,
 	PickOne,
 	Place,
-	Drop
+	Drop,
+	Interact,
+	Cook,
+	OpenLid
 }
 
 func _ready() -> void:
@@ -31,5 +34,11 @@ func get_text_from_action() -> StringName:
 		return "Place"
 	elif action == Action.Drop:
 		return "Drop"
+	elif action == Action.Interact:
+		return "Interact"
+	elif action == Action.Cook:
+		return "Cook"
+	elif action == Action.OpenLid:
+		return "Open Lid"
 	else:
 		return "N/A"

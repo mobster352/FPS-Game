@@ -76,6 +76,6 @@ func _order_inventory_items(order_items: Array[GlobalVar.StoreItem]) -> void:
 		
 func get_crate_item(order_item: GlobalVar.StoreItem) -> Item:
 		var crate = preload(crate_generic_item).instantiate()
-		var interactable = crate.get_node("body/StaticBody3D/Interactable") as ObjectSpawner
+		var interactable = crate.get_node("body/Interactable") as ObjectSpawner
 		interactable.item_type = order_item
 		return crate

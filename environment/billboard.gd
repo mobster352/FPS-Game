@@ -21,7 +21,7 @@ func show_billboard_ui() -> void:
 	billboard_ui.show()
 
 
-func can_interact(player: Player) -> bool:
+func can_interact(_player: Player) -> bool:
 	return in_range
 	
 func interact(player: Player) -> void:

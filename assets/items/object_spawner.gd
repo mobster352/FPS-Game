@@ -60,7 +60,7 @@ func _get_next_pos() -> Vector3:
 			return BOTTOM_RIGHT_POS
 	return Vector3.ZERO
 
-func can_interact(player: Player) -> bool:
+func can_interact(_player: Player) -> bool:
 	return false
 	
 func interact(_player: Player) -> void:

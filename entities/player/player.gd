@@ -3,9 +3,9 @@ class_name Player
 
 signal weapon_fired
 
-const RETICLE_WHITE := Color(255,255,255)
-const RETICLE_RED := Color(255,0,0)
-const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 1.0)
+const RETICLE_WHITE := Color(255,255,255,0.5)
+const RETICLE_RED := Color(255,0,0,0.5)
+const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 
 const SPEED = 5.0
 @export var JUMP_VELOCITY := 6.0
@@ -68,6 +68,9 @@ var can_place := false
 var place_scene_item_type: GlobalVar.StoreItem
 var item_shape: Shape3D
 
+var interact:bool
+var drop_input:bool
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
@@ -79,6 +82,8 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("pause"):
 			pause_menu.show()
 			get_tree().paused = true
+		interact = Input.is_action_just_pressed("interact")
+		drop_input = Input.is_action_just_pressed("drop")
 		_process_rayCast()
 		if not freeze_camera:
 			_process_movement()
@@ -201,7 +206,17 @@ func _handle_weapon_raycast(target: Node3D) -> void:
 
 
 func _handle_item_raycast(target: Node3D) -> void:
-	var interact := Input.is_action_just_pressed("interact")
+	can_place = false
+	
+	if has_held_object():
+		var item = item_slot.get_child(0)
+		if item.has_meta("place"):
+			if preview_instance:
+				update_preview()
+			if interact:
+				var is_placed = confirm_placement()
+				if is_placed:
+					interact = false
 	
 	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object(), can_place)
 	
@@ -213,9 +228,13 @@ func _handle_item_raycast(target: Node3D) -> void:
 
 	if interactable:
 		if interactable.can_interact(self):
-			reticle.color = interactable.reticle_color()
+			#reticle.color = interactable.reticle_color()
 			if interact:
 				interactable.interact(self)
+				interact = false
+			if drop_input:
+				interactable.interact2(self)
+				drop_input = false
 
 	var cook_input := Input.is_action_just_pressed("cook")
 	
@@ -224,8 +243,8 @@ func _handle_item_raycast(target: Node3D) -> void:
 		cookable = target.get_node("Cookable")
 	
 	if cookable:
-		if cookable.can_cook():
-			reticle.color = cookable.reticle_color()
+		if cookable.can_cook(self):
+			#reticle.color = cookable.reticle_color()
 			if cook_input:
 				cookable.cook(self)
 
@@ -248,6 +267,7 @@ func _process_draw_weapon() -> void:
 			weapon = bat
 			reticle.hide()
 		reticle.color = RETICLE_WHITE
+		inputs_ui.update_actions.emit(inputs_ui.InputAction.None)
 	if Input.is_action_just_pressed("draw_weapon_2") and has_pistol:
 		if weapon == gun_pistol:
 			gun_pistol.unequip()
@@ -265,6 +285,7 @@ func _process_draw_weapon() -> void:
 			weapon = gun_pistol
 			reticle.show()
 		reticle.color = RETICLE_WHITE
+		inputs_ui.update_actions.emit(inputs_ui.InputAction.None)
 
 
 func _physics_logic() -> void:
@@ -282,21 +303,12 @@ func _process_crouch() -> void:
 
 
 func _process_drop_item() -> void:
-	var drop_input = Input.is_action_just_pressed("drop")
-	can_place = false
 	if has_held_object():
-		var item = item_slot.get_child(0)
-		if item.has_meta("place"):
-			if preview_instance:
-				update_preview()
-			if drop_input:
-				confirm_placement()
-		else:
-			if drop_input:
-				drop_item()
+		if drop_input:
+			drop_item()
 
 
-func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem, count: int):
+func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem):
 	if preview_instance:
 		return
 
@@ -305,8 +317,6 @@ func start_placement(preview_scene: PackedScene, place_scene_path: StringName, i
 	
 	place_scene = load(place_scene_path)
 	place_scene_item_type = item_type
-	if place_scene.has_meta("count"):
-		place_scene.set_meta("count", count)
 	
 	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
 	item_shape = collision_shape_preview_instance.shape
@@ -360,20 +370,21 @@ func update_preview():
 	_update_preview_color(can_place)
 
 
-func confirm_placement():
+func confirm_placement() -> bool:
 	if not can_place or not preview_instance or not has_held_object():
-		return
+		return false
 
 	var instance = place_scene.instantiate() as Item
-	if instance.has_node("body/StaticBody3D/Interactable"):
-		var interactable = instance.get_node("body/StaticBody3D/Interactable")
+	if instance.has_node("body/Interactable"):
+		var interactable = instance.get_node("body/Interactable")
 		if interactable is ObjectSpawner:
 			interactable.item_type = place_scene_item_type
-			
-	if place_scene.has_meta("count"):
-		instance.set_meta("count", place_scene.get_meta("count"))
-			
+
 	var child_mesh = item_slot.get_child(0) as MeshInstance3D
+
+	if child_mesh.has_meta("count"):
+		instance.set_meta("count", child_mesh.get_meta("count"))
+
 	if child_mesh.has_meta("food_id"):
 			instance.set_meta("food_id", child_mesh.get_meta("food_id"))
 		
@@ -390,6 +401,7 @@ func confirm_placement():
 	get_tree().current_scene.add_child(instance)
 
 	cancel_placement(true)
+	return true
 
 
 func cancel_placement(remove_held_obj: bool):
@@ -434,7 +446,7 @@ func drop_item() -> void:
 			var forward = -camera.global_transform.basis.z.normalized()
 			if child_mesh.has_meta("count"):
 				item.set_meta("count", child_mesh.get_meta("count"))
-				var object_spawner = item.get_node("body/StaticBody3D/Interactable") as ObjectSpawner
+				var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
 				object_spawner.item_type = child_mesh.get_meta("item_type")
 				item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
 			else:

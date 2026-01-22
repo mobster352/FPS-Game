@@ -2,7 +2,11 @@ extends Cookable
 
 @export var item: Item
 
-func can_cook() -> bool:
+func can_cook(player:Player) -> bool:
+	if player.item_slot.get_child_count() == 1:
+		var held_item = player.item_slot.get_child(0)
+		if item.in_range and held_item.has_meta("name"):
+			player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.Cook, player.has_held_object())
 	return item.in_range
 	
 func cook(player: Player) -> void:
