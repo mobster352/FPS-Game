@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://f8w2c515y7jy"]
+[gd_scene load_steps=9 format=3 uid="uid://f8w2c515y7jy"]
 
 [ext_resource type="Texture2D" uid="uid://cns7bajkyywpf" path="res://assets/ui/Box_WhiteOutline_Rounded.png" id="1_am1yp"]
 [ext_resource type="Script" uid="uid://cuo1x8hibb33f" path="res://assets/ui/options_menu.gd" id="1_meqhi"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bxwis5gpctryk" path="res://assets/ui/button_small_round.tscn" id="4_kudt6"]
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="5_0t508"]
 [ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="5_sm5ln"]
+[ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_xhm57"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("menu_audio")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -17,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_meqhi")
+menu_audio = NodePath("Audio/MenuAudio")
 
 [node name="Background" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -108,10 +110,10 @@ popup/item_1/id = 1
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 
-[node name="Show Tips" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="ShowTips" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/Show Tips"]
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShowTips"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -122,12 +124,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="ShowTipsLabel" type="Label" parent="MarginContainer/VBoxContainer/Show Tips/MarginContainer4"]
+[node name="ShowTipsLabel" type="Label" parent="MarginContainer/VBoxContainer/ShowTips/MarginContainer4"]
 layout_mode = 2
 text = "Show Tips"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Show Tips"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShowTips"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -138,7 +140,41 @@ offset_right = 148.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="ShowTipsCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/Show Tips/MarginContainer3"]
+[node name="ShowTipsCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/ShowTips/MarginContainer3"]
+layout_mode = 2
+button_pressed = true
+
+[node name="BackgroundAudio" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/BackgroundAudio"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="ShowTipsLabel" type="Label" parent="MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer4"]
+layout_mode = 2
+text = "Background Music"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/BackgroundAudio"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 148.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="BackgroundAudioCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer3"]
 layout_mode = 2
 button_pressed = true
 
@@ -159,8 +195,16 @@ pressed_texture = ExtResource("5_0t508")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_xhm57")
+volume_db = -5.0
+
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Show Tips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ShowTips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
+[connection signal="mouse_entered" from="BackButton/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_texture_button_pressed"]
 
 [editable path="BackButton"]

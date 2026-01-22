@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://w7i8t1diden8" path="res://assets/ui/pause_menu.tscn" id="10_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://cbqgh01rgobi6" path="res://assets/ui/game_over.tscn" id="11_7thud"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="13_j3ovn"]
-[ext_resource type="PackedScene" uid="uid://gsqk2fguvuxm" path="res://assets/ui/controls.tscn" id="14_afbqv"]
+[ext_resource type="PackedScene" uid="uid://gsqk2fguvuxm" path="res://assets/ui/controls_menu.tscn" id="14_afbqv"]
 [ext_resource type="PackedScene" uid="uid://chcflrh8r1fb2" path="res://assets/ui/tutorial.tscn" id="15_gx6sm"]
 [ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="16_yqrof"]
 

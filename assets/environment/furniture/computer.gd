@@ -12,6 +12,7 @@ signal remove_store_item(store_item: GlobalVar.StoreItem)
 @export var total_price_label: Label
 @export var remaining_money_label: Label
 @export var balance_label: Label
+@export var hover_audio: AudioStreamPlayer
 
 var in_range := false
 var player: Player
@@ -119,3 +120,7 @@ func _on_purchase_button_pressed() -> void:
 			remove_store_item.emit(store_item)
 		GlobalSignal.order_inventory_items.emit(order_items)
 		order_items.clear()
+
+
+func _on_mouse_entered() -> void:
+	hover_audio.play()

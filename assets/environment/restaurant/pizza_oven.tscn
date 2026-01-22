@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://dqh8oefwfrjdf"]
+[gd_scene load_steps=15 format=4 uid="uid://dqh8oefwfrjdf"]
 
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="1_kbga2"]
 [ext_resource type="Script" uid="uid://dofjl6kd14dep" path="res://assets/environment/restaurant/pizza_oven.gd" id="1_ret6o"]
 [ext_resource type="Script" uid="uid://ivrk5udk6ppx" path="res://assets/environment/restaurant/pizza_oven_interactable.gd" id="3_0co8r"]
+[ext_resource type="AudioStream" uid="uid://d2m0dw11loprw" path="res://assets/audio/enginehum3.ogg" id="4_4rdd7"]
+[ext_resource type="AudioStream" uid="uid://oenvmdx2mhu5" path="res://assets/audio/sd_0_point_bell.wav" id="5_uvbxi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ll4l8"]
 resource_name = "restaurant"
@@ -85,12 +87,14 @@ radius = 3.1031852
 [sub_resource type="BoxShape3D" id="BoxShape3D_0co8r"]
 size = Vector3(2.2512817, 1.3842163, 0.19169617)
 
-[node name="pizza_oven" type="Node3D" node_paths=PackedStringArray("pizza_oven_door_mesh", "pizza_slot_top", "pizza_slot_bottom", "cook_timer")]
+[node name="pizza_oven" type="Node3D" node_paths=PackedStringArray("pizza_oven_door_mesh", "pizza_slot_top", "pizza_slot_bottom", "cook_timer", "oven_audio", "oven_ding_audio")]
 script = ExtResource("1_ret6o")
 pizza_oven_door_mesh = NodePath("pizza_oven_mesh/pizza_oven_door_mesh")
 pizza_slot_top = NodePath("PizzaSlotTop")
 pizza_slot_bottom = NodePath("PizzaSlotBottom")
 cook_timer = NodePath("Timers/CookTimer")
+oven_audio = NodePath("OvenAudio")
+oven_ding_audio = NodePath("OvenDingAudio")
 
 [node name="pizza_oven_mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_0r1ds")
@@ -140,6 +144,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17010117, 0.34892553, 0)
 [node name="CookTimer" type="Timer" parent="Timers"]
 wait_time = 8.0
 one_shot = true
+
+[node name="OvenAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_4rdd7")
+volume_db = -5.0
+
+[node name="OvenDingAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_uvbxi")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

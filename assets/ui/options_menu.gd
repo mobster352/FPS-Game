@@ -1,6 +1,7 @@
 extends Control
 
 @export var pause_menu: Control
+@export var menu_audio: AudioStreamPlayer
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -25,3 +26,11 @@ func _on_texture_button_pressed() -> void:
 
 func _on_show_tips_check_box_pressed() -> void:
 	GlobalSignal.toggle_pointer_ui.emit()
+
+
+func _on_texture_button_mouse_entered() -> void:
+	menu_audio.play()
+
+
+func _on_background_audio_check_box_pressed() -> void:
+	GlobalSignal.toggle_background_audio.emit()

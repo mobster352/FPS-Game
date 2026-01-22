@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdjhxs02iqaue"]
+[gd_scene load_steps=7 format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
+[ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="5_pdggx"]
 [ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="6_58nof"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82vaf"]
 font_size = 64
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("menu_audio")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pdggx")
+menu_audio = NodePath("Audio/MenuAudio")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -112,6 +114,15 @@ layout_mode = 2
 text = "Exit to Desktop"
 horizontal_alignment = 1
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_82vaf")
+volume_db = -5.0
+
+[connection signal="mouse_entered" from="MarginContainer/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/TextureButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer3/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer3/TextureButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer4/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer4/TextureButton" to="." method="_on_exit_button_pressed"]

@@ -46,3 +46,6 @@ signal init_player(player: Player)
 
 @warning_ignore("unused_signal")
 signal order_inventory_items(store_items: Array[GlobalVar.StoreItem])
+
+@warning_ignore("unused_signal")
+signal toggle_background_audio()

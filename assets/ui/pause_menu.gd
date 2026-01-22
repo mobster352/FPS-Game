@@ -4,6 +4,8 @@ class_name PauseMenu
 @export var options_menu: Control
 @export var controls_menu: Control
 @export var timer: Timer
+@export var menu_audio: AudioStreamPlayer
+
 var can_pause := false
 
 func _process(_delta: float) -> void:
@@ -46,3 +48,7 @@ func _on_options_pressed() -> void:
 func _on_controls_pressed() -> void:
 	hide()
 	controls_menu.show()
+
+
+func _on_texture_button_mouse_entered() -> void:
+	menu_audio.play()

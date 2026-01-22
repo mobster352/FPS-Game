@@ -16,7 +16,7 @@ warnings/check_invalid_track_paths=false
 
 config/name="Pizza Boy"
 config/version="0.01"
-run/main_scene="uid://ch6palebd5two"
+run/main_scene="uid://bdjhxs02iqaue"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=120
 config/icon="res://icon.svg"

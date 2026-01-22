@@ -6,6 +6,8 @@ class_name PizzaOven
 @export var pizza_slot_top: Node3D
 @export var pizza_slot_bottom: Node3D
 @export var cook_timer: Timer
+@export var oven_audio: AudioStreamPlayer3D
+@export var oven_ding_audio: AudioStreamPlayer3D
 
 var in_range := false
 var is_open := false
@@ -20,6 +22,7 @@ func _process(delta: float) -> void:
 		if not is_open:
 			is_locked = true
 			cook_timer.start()
+			oven_audio.play()
 		elapsed = 0.0
 	if interact_door:
 		if is_open:
@@ -62,6 +65,7 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
 					else:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						print(item.mesh.get_meta("toppings"))
 				pizza_slot_top.add_child(mesh)
 			elif pizza_slot_bottom.get_child_count() == 0:
 				var mesh = item.get_node("body/mesh")
@@ -78,11 +82,14 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
 					else:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						print(item.mesh.get_meta("toppings"))
 				pizza_slot_bottom.add_child(mesh)
 			item.shrink_and_free(0, 0.25)
 
 
 func _on_cook_timer_timeout() -> void:
+	oven_audio.stop()
+	oven_ding_audio.play()
 	if pizza_slot_top.get_child_count() == 1:
 		pizza_slot_top.get_child(0).queue_free()
 		

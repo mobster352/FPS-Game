@@ -15,6 +15,7 @@ extends Panel
 @export var selected_texture: Texture2D
 @export var not_selected_hover_texture: Texture2D
 @export var selected_hover_texture: Texture2D
+@export var hover_audio: AudioStreamPlayer
 
 const normal_color = Color(0.282, 0.282, 0.282, 1.0)
 const hover_color = Color(0.209, 0.209, 0.209, 1.0)
@@ -59,3 +60,8 @@ func _remove_store_item(_store_item: GlobalVar.StoreItem) -> void:
 		button_state = ButtonState.NotSelected
 		select_item_button.texture_normal = not_selected_texture
 		select_item_button.texture_hover = not_selected_hover_texture
+
+
+
+func _on_select_item_button_mouse_entered() -> void:
+	hover_audio.play()
