@@ -13,12 +13,9 @@ class_name Level
 @export var level_ui: Level_UI
 @export var restaurant: Restaurant
 @export var player: Player
-@export var background_audio: AudioStreamPlayer
 
 # Internal state
 var time_of_day := 0.0 # 0–24
-
-var is_background_audio_on := true
 
 const SUNRISE := 6.0
 const SUNSET  := 18.0
@@ -32,7 +29,6 @@ func _ready():
 	GlobalSignal.init_restaurant.emit(restaurant)
 	GlobalSignal.init_player.emit(player)
 	GlobalMarker._ready()
-	GlobalSignal.toggle_background_audio.connect(_toggle_background_audio)
 
 func _process(delta):
 	advance_time(delta)
@@ -84,10 +80,3 @@ func update_sun_light():
 	var f := get_sun_factor()
 	sun.light_energy = lerp(sun_min_energy, sun_max_energy, f)
 	sun.shadow_enabled = f > 0.15
-
-func _toggle_background_audio() -> void:
-	is_background_audio_on = not is_background_audio_on
-	if is_background_audio_on:
-		background_audio.play()
-	else:
-		background_audio.stop()

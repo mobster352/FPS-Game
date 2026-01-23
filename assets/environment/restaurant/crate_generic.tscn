@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dpebceury4kga" path="res://assets/items/generic_spawner.gd" id="4_0wkgb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wl83s"]
-size = Vector3(1.9973145, 0.80978394, 2.0046387)
+size = Vector3(0.9994049, 0.39873505, 1.007309)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mpos"]
 resource_name = "restaurant"
@@ -72,7 +72,7 @@ collision_layer = 40
 collision_mask = 45
 
 [node name="CollisionShape3D" parent="body" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0037841797, 0.40553284, 0.0018310547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035629272, 0.20000839, -0.00089263916)
 shape = SubResource("BoxShape3D_wl83s")
 
 [node name="Interactable" parent="body" index="3" node_paths=PackedStringArray("item", "mesh") instance=ExtResource("3_ytnlp")]
@@ -81,6 +81,7 @@ item = NodePath("../..")
 mesh = NodePath("crate2")
 
 [node name="crate2" type="MeshInstance3D" parent="body/Interactable" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_kq17r")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wl83s")

@@ -350,7 +350,7 @@ func update_preview():
 	var intersect_query = PhysicsShapeQueryParameters3D.new()
 	intersect_query.transform = preview_instance.transform
 	intersect_query.shape = item_shape
-	intersect_query.collision_mask = (1 << 1 - 1) | (1 << 4 - 1) | (1 << 6 - 1)
+	intersect_query.collision_mask =  (1 << 4 - 1) | (1 << 6 - 1)
 
 	var intersect_hit = space_state.get_rest_info(intersect_query)
 	#print(intersect_hit)
@@ -451,7 +451,9 @@ func drop_item() -> void:
 				item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
 			else:
 				item.position = camera.global_position + forward
+
 			item.mesh = child_mesh.duplicate()
+
 			if item.has_node("body/mesh"):
 				var mesh_node = item.get_node("body/mesh")
 				mesh_node.remove_child(mesh_node.get_child(0))
@@ -459,6 +461,11 @@ func drop_item() -> void:
 			if item.mesh.get_child_count() > 0:
 				item.mesh_has_children = true
 				item.set_z_scale_children(false, item.mesh)
+			if item.mesh.has_meta("toppings"):
+				if item.has_node("body/Cookable"):
+					var cookable = item.get_node("body/Cookable") as Cookable
+					cookable.toppings = item.mesh.get_meta("toppings")
+				
 			item.mesh.rotation = Vector3.ZERO
 			get_parent().add_child(item)
 			

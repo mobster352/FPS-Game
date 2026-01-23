@@ -65,7 +65,6 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
 					else:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
-						print(item.mesh.get_meta("toppings"))
 				pizza_slot_top.add_child(mesh)
 			elif pizza_slot_bottom.get_child_count() == 0:
 				var mesh = item.get_node("body/mesh")
@@ -82,7 +81,6 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
 					else:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
-						print(item.mesh.get_meta("toppings"))
 				pizza_slot_bottom.add_child(mesh)
 			item.shrink_and_free(0, 0.25)
 

@@ -5,7 +5,6 @@ signal select_store_item(store_item: GlobalVar.StoreItem, price: int, selected: 
 signal remove_store_item(store_item: GlobalVar.StoreItem)
 
 @export var sub_viewport: SubViewportContainer
-@export var computer_camera: Camera3D
 @export var cart_total_label: Label
 @export var cart_vbox: VBoxContainer
 @export var cart_items: Panel
@@ -43,7 +42,6 @@ func _process(_delta: float) -> void:
 func interact(_player: Player) -> void:
 	player = _player
 	sub_viewport.show()
-	computer_camera.current = true
 	player.freeze_camera = true
 	player.reticle.hide()
 	player.ui.hide()
@@ -62,7 +60,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_home_button_pressed() -> void:
 	sub_viewport.hide()
-	player.camera.current = true
 	player.freeze_camera = false
 	player.reticle.show()
 	player.ui.show()

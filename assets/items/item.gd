@@ -92,6 +92,9 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 		else:
 			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None)
 	
+	if mesh.has_meta("toppings"):
+		new_mesh.set_meta("toppings", mesh.get_meta("toppings"))
+	
 	player.item_slot.add_child(new_mesh)
 
 	set_monitoring(false)

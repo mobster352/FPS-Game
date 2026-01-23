@@ -60,10 +60,9 @@ outline_color = Color(0, 0, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Computer" type="Node3D" node_paths=PackedStringArray("sub_viewport", "computer_camera", "cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio")]
+[node name="Computer" type="Node3D" node_paths=PackedStringArray("sub_viewport", "cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio")]
 script = ExtResource("1_nj7n0")
 sub_viewport = NodePath("SubViewportContainer")
-computer_camera = NodePath("Camera3D")
 cart_total_label = NodePath("SubViewportContainer/SubViewport/Control/CartPanel/CartTotal")
 cart_vbox = NodePath("SubViewportContainer/SubViewport/Control/CartItems/ScrollContainer/CartVBox")
 cart_items = NodePath("SubViewportContainer/SubViewport/Control/CartItems")
@@ -85,6 +84,7 @@ computer = NodePath("../../../..")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="monitor/monitor" index="1"]
 transform = Transform3D(-1, 1.6540238e-08, 8.584383e-08, 0, 0.98193896, -0.18919826, -8.742278e-08, -0.18919826, -0.98193896, 0.0013427793, 0.6564952, 0.14626233)
+visible = false
 flip_faces = true
 size = Vector3(1.2990723, 0.74642944, 0)
 material = SubResource("StandardMaterial3D_6vl5r")
@@ -356,9 +356,6 @@ price = 5
 [node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9779183, 0.20898712, 0, -0.20898712, 0.9779183, 0, 0.7762244, 0.64537793)
 
 [node name="Audio" type="Node" parent="."]
 

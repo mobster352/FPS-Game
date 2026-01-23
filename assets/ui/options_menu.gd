@@ -2,6 +2,7 @@ extends Control
 
 @export var pause_menu: Control
 @export var menu_audio: AudioStreamPlayer
+var is_bg_audio_on := false
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -33,4 +34,9 @@ func _on_texture_button_mouse_entered() -> void:
 
 
 func _on_background_audio_check_box_pressed() -> void:
-	GlobalSignal.toggle_background_audio.emit()
+	if BackgroundMusic:
+		if is_bg_audio_on:
+			BackgroundMusic.bg_music_node.play()
+		else:
+			BackgroundMusic.bg_music_node.stop()
+		is_bg_audio_on = not is_bg_audio_on

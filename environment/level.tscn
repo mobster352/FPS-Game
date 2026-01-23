@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbylqid1806nq"]
+[gd_scene load_steps=7 format=3 uid="uid://dbylqid1806nq"]
 
 [ext_resource type="Script" uid="uid://d0hbgov4fd43j" path="res://environment/level.gd" id="1_vfqff"]
-[ext_resource type="AudioStream" uid="uid://ctli6brsj2as7" path="res://assets/audio/b423b42_loading_screen.wav" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
@@ -21,7 +20,7 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui", "background_audio")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
 process_mode = 1
 script = ExtResource("1_vfqff")
 sun_pivot = NodePath("SunPivot")
@@ -29,7 +28,6 @@ sun = NodePath("SunPivot/DirectionalLight3D")
 world_environment = NodePath("WorldEnvironment")
 day_length_minutes = 40.0
 level_ui = NodePath("UI")
-background_audio = NodePath("Environment/Audio/BackgroundAudio")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vfqff")
@@ -68,14 +66,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 
 
 [node name="Outside" type="Marker3D" parent="Environment/Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7.686958)
-
-[node name="Audio" type="Node3D" parent="Environment"]
-process_mode = 3
-
-[node name="BackgroundAudio" type="AudioStreamPlayer" parent="Environment/Audio"]
-stream = ExtResource("2_alcuw")
-volume_db = -5.0
-autoplay = true
 
 [node name="Entities" type="Node3D" parent="."]
 

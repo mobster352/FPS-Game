@@ -9,6 +9,7 @@ func add_object() -> void:
 		obj.position += _get_next_pos()
 	else:
 		obj.position += _get_next_pos() + Vector3(0,0.5,0)
+	obj.scale = Vector3(0.75,0.75,0.75)
 	object_array.append(obj)
 	mesh.add_child(obj)
 	item.mesh = mesh
@@ -74,5 +75,6 @@ func interact2(player: Player) -> void:
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)
-	item.pickup(Vector3(deg_to_rad(10),deg_to_rad(-15),deg_to_rad(45)), Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)))
+	#item.pickup(Vector3(deg_to_rad(10),deg_to_rad(-15),deg_to_rad(45)), Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)))
+	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)))
 	item.queue_free()

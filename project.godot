@@ -26,6 +26,7 @@ config/icon="res://icon.svg"
 GlobalSignal="*res://scripts/global_signal.gd"
 GlobalVar="*res://scripts/global_var.gd"
 GlobalMarker="*res://environment/global_markers.gd"
+BackgroundMusic="*res://scripts/background_music.gd"
 
 [display]
 
