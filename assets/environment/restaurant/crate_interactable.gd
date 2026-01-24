@@ -4,7 +4,7 @@ extends Interactable
 
 func can_interact(player: Player) -> bool:
 	if item.in_range:
-		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), player.can_place, true)
+		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), true)
 	return item.in_range
 	
 func interact(player: Player) -> void:

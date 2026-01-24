@@ -88,9 +88,9 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	if has_meta("place"):
 		new_mesh.set_meta("place", true)
 		if new_mesh.has_meta("item_type"):
-			player.start_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"))
+			player.setup_placement(preview_scene, get_meta("scene_path"), new_mesh.get_meta("item_type"))
 		else:
-			player.start_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None)
+			player.setup_placement(preview_scene, get_meta("scene_path"), GlobalVar.StoreItem.None)
 	
 	if mesh.has_meta("toppings"):
 		new_mesh.set_meta("toppings", mesh.get_meta("toppings"))

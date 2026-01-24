@@ -4,7 +4,7 @@ extends Interactable
 
 func can_interact(player: Player) -> bool:
 	if pizza_box.in_range:
-		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), player.can_place)
+		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object())
 	return pizza_box.in_range
 	
 func interact(_player: Player) -> void:

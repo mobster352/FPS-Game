@@ -50,7 +50,7 @@ var hp := 10:
 		ui.update_hp(hp, value)
 		hp = value
 		
-var money := 100:
+var money := 0:
 	set(value):
 		money = value
 		ui.update_money(money)
@@ -70,6 +70,10 @@ var item_shape: Shape3D
 
 var interact:bool
 var drop_input:bool
+
+var place_scene_path: StringName
+var item_type: GlobalVar.StoreItem
+var is_placing := false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -208,17 +212,32 @@ func _handle_weapon_raycast(target: Node3D) -> void:
 func _handle_item_raycast(target: Node3D) -> void:
 	can_place = false
 	
+	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object())
+	
 	if has_held_object():
 		var item = item_slot.get_child(0)
 		if item.has_meta("place"):
-			if preview_instance:
-				update_preview()
-			if interact:
-				var is_placed = confirm_placement()
-				if is_placed:
-					interact = false
-	
-	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object(), can_place)
+			if is_placing:
+				if preview_instance:
+					update_preview()
+					inputs_ui.update_actions.emit(inputs_ui.InputAction.Place)
+				if interact:
+					var is_placed = confirm_placement()
+					if is_placed:
+						interact = false
+						is_placing = false
+				elif drop_input:
+					is_placing = false
+					drop_input = false
+					get_tree().current_scene.remove_child(preview_instance)
+				return
+			else:
+				if interact and not target.has_node("Interactable"):
+					start_placement()
+					inputs_ui.update_actions.emit(inputs_ui.InputAction.Place)
+					is_placing = true
+				else:
+					inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -308,11 +327,16 @@ func _process_drop_item() -> void:
 			drop_item()
 
 
-func start_placement(preview_scene: PackedScene, place_scene_path: StringName, item_type: GlobalVar.StoreItem):
+func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, _item_type: GlobalVar.StoreItem) -> void:
 	if preview_instance:
 		return
 
 	preview_instance = preview_scene.instantiate()
+	place_scene_path = _place_scene_path
+	item_type = _item_type
+
+
+func start_placement():
 	get_tree().current_scene.add_child(preview_instance)
 	
 	place_scene = load(place_scene_path)
@@ -364,8 +388,6 @@ func update_preview():
 		preview_instance.global_rotation.y = camera.global_rotation.y
 	else:
 		can_place = false
-		
-	#inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object(), can_place)
 
 	_update_preview_color(can_place)
 
@@ -413,6 +435,8 @@ func cancel_placement(remove_held_obj: bool):
 			var child_mesh = item_slot.get_child(0) as MeshInstance3D
 			item_slot.remove_child(child_mesh)
 			child_mesh.queue_free()
+		place_scene_path = ""
+		item_type = GlobalVar.StoreItem.None
 
 
 func _make_preview_material(root: Node):

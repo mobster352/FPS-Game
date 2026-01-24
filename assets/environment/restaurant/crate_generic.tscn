@@ -53,7 +53,7 @@ grow_amount = 0.05
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytnlp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4joo"]
-radius = 1.209547
+radius = 0.7020078
 
 [node name="crate_generic" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_0wkgb")]
 mesh = NodePath("body/Interactable/crate2")

@@ -82,7 +82,7 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 					else:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot_bottom.add_child(mesh)
-			item.shrink_and_free(0, 0.25)
+			item.queue_free()
 
 
 func _on_cook_timer_timeout() -> void:
