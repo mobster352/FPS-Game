@@ -273,10 +273,10 @@ text = "Purchase"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control"]
 layout_mode = 1
-offset_left = 67.0
+offset_left = 24.0
 offset_top = 99.0
-offset_right = 817.0
-offset_bottom = 592.0
+offset_right = 840.0
+offset_bottom = 624.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer"]
 layout_mode = 2
@@ -284,7 +284,7 @@ theme_override_constants/separation = 125
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 375
+theme_override_constants/separation = 400
 
 [node name="RollingPin" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
@@ -303,7 +303,7 @@ price = 10
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 375
+theme_override_constants/separation = 400
 
 [node name="Tomato" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
@@ -323,7 +323,7 @@ price = 10
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 375
+theme_override_constants/separation = 400
 
 [node name="Pepperoni" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
@@ -343,15 +343,15 @@ price = 10
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 375
+theme_override_constants/separation = 400
 
 [node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer4" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
 computer = NodePath("../../../../../../..")
-text = &"Pizza Box (5)"
+text = &"Pizza Box"
 texture = ExtResource("6_nj7n0")
 store_item = 7
-price = 5
+price = 1
 
 [node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
 layout_mode = 2

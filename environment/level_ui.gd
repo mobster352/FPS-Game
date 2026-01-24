@@ -4,6 +4,7 @@ class_name Level_UI
 @export var time: Label
 @export var level: Level
 
+var show_clock: bool
 var hours: int
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +14,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not show_clock:
+		if time.visible:
+			time.hide()
+		return
+	else:
+		if not time.visible:
+			time.show()
 	var rounded_float = snappedf(level.time_of_day, 0.01)
 	var decimal = rounded_float - int(rounded_float)
 	var minutes = decimal * 100 * 0.6

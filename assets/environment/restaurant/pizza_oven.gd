@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if elapsed >= 1.0:
 		interact_door = false
 		is_open = not is_open
-		if not is_open:
+		if not is_open and (pizza_slot_top.get_child_count() > 0 or pizza_slot_bottom.get_child_count() > 0):
 			is_locked = true
 			cook_timer.start()
 			oven_audio.play()

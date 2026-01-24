@@ -2,18 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://cepkh1qbco7i1" path="res://assets/ui/SlimSlider_Green_Pointer.png" id="1_onmes"]
 [ext_resource type="Script" uid="uid://cr7t7087mw2lv" path="res://assets/environment/furniture/store_item.gd" id="1_xeoji"]
-[ext_resource type="Texture2D" uid="uid://cmewmaxhmw3nr" path="res://assets/ui/Icon_Small_Blank_X.png" id="2_0o2xl"]
-[ext_resource type="Texture2D" uid="uid://dgdshbrekgrfa" path="res://assets/ui/Icon_Small_Blank_Dollar.png" id="2_ser16"]
-[ext_resource type="Texture2D" uid="uid://c8mawarrw2iv0" path="res://assets/ui/Icon_Small_Blank_Check.png" id="3_ser16"]
-[ext_resource type="Texture2D" uid="uid://dw7frynfr6830" path="res://assets/ui/Icon_Small_Blank_Dollar_G.png" id="5_0o2xl"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="7_oab22"]
+[ext_resource type="Texture2D" uid="uid://cu5825fjfu321" path="res://assets/ui/tile_0694.png" id="7_p0ord"]
+[ext_resource type="Texture2D" uid="uid://tsygupy6jp3s" path="res://assets/ui/tile_0719.png" id="8_eln7i"]
+[ext_resource type="Texture2D" uid="uid://dxc4ndwp0hjdp" path="res://assets/ui/tile_0693.png" id="9_cu1lx"]
+[ext_resource type="Texture2D" uid="uid://b7nwls00umpt2" path="res://assets/ui/tile_0718.png" id="10_2xxud"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xeoji"]
 font_size = 24
-outline_size = 2
+outline_size = 3
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
 
-[node name="StoreItem" type="Panel" node_paths=PackedStringArray("item_name", "item_icon", "background", "item_price", "select_item_button", "hover_audio")]
+[node name="StoreItem" type="Panel" node_paths=PackedStringArray("item_name", "item_icon", "background", "item_price", "hover_audio", "increment_item_button", "decrement_item_button", "quantity_label")]
 offset_right = 0.37600708
 mouse_filter = 2
 script = ExtResource("1_xeoji")
@@ -21,16 +22,14 @@ item_name = NodePath("Name")
 item_icon = NodePath("Icon")
 background = NodePath("Background")
 item_price = NodePath("Price")
-select_item_button = NodePath("SelectItemButton")
-not_selected_texture = ExtResource("2_ser16")
-selected_texture = ExtResource("3_ser16")
-not_selected_hover_texture = ExtResource("5_0o2xl")
-selected_hover_texture = ExtResource("2_0o2xl")
 hover_audio = NodePath("Audio/HoverAudio")
+increment_item_button = NodePath("IncrementItem")
+decrement_item_button = NodePath("DecrementItem")
+quantity_label = NodePath("Quantity")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 353.0
+offset_right = 384.0
 offset_bottom = 100.0
 color = Color(0.28118682, 0.28118688, 0.28118682, 1)
 
@@ -67,16 +66,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SelectItemButton" type="TextureButton" parent="."]
+[node name="Quantity" type="Label" parent="."]
 layout_mode = 0
-offset_left = 304.0
+offset_left = 328.0
 offset_top = 24.0
-offset_right = 339.0
-offset_bottom = 54.0
-texture_normal = ExtResource("2_ser16")
-texture_hover = ExtResource("5_0o2xl")
-ignore_texture_size = true
-stretch_mode = 5
+offset_right = 344.0
+offset_bottom = 58.0
+text = "0"
+label_settings = SubResource("LabelSettings_xeoji")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncrementItem" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 32.0
+offset_right = 360.0
+offset_bottom = 48.0
+texture_normal = ExtResource("7_p0ord")
+texture_hover = ExtResource("8_eln7i")
+stretch_mode = 0
+
+[node name="DecrementItem" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 48.0
+texture_normal = ExtResource("9_cu1lx")
+texture_hover = ExtResource("10_2xxud")
+stretch_mode = 0
 
 [node name="Audio" type="Node" parent="."]
 
@@ -86,5 +105,5 @@ volume_db = -5.0
 
 [connection signal="mouse_entered" from="Background" to="." method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="Background" to="." method="_on_color_rect_mouse_exited"]
-[connection signal="mouse_entered" from="SelectItemButton" to="." method="_on_select_item_button_mouse_entered"]
-[connection signal="pressed" from="SelectItemButton" to="." method="_on_select_item_button_pressed"]
+[connection signal="pressed" from="IncrementItem" to="." method="_on_increment_item_pressed"]
+[connection signal="pressed" from="DecrementItem" to="." method="_on_decrement_item_pressed"]

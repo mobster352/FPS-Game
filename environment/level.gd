@@ -13,6 +13,8 @@ class_name Level
 @export var level_ui: Level_UI
 @export var restaurant: Restaurant
 @export var player: Player
+@export var can_advance_time := true
+@export var show_clock := true
 
 # Internal state
 var time_of_day := 0.0 # 0–24
@@ -29,13 +31,15 @@ func _ready():
 	GlobalSignal.init_restaurant.emit(restaurant)
 	GlobalSignal.init_player.emit(player)
 	GlobalMarker._ready()
+	level_ui.show_clock = show_clock
 
 func _process(delta):
-	advance_time(delta)
-	update_sun()
-	update_sun_light()
-	update_environment()
-	#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
+	if can_advance_time:
+		advance_time(delta)
+		update_sun()
+		update_sun_light()
+		update_environment()
+		#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
 
 func advance_time(delta: float):
 	var seconds_per_day = day_length_minutes * 60.0

@@ -50,7 +50,7 @@ var hp := 10:
 		ui.update_hp(hp, value)
 		hp = value
 		
-var money := 0:
+var money := 100:
 	set(value):
 		money = value
 		ui.update_money(money)

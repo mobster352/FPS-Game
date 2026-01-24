@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdjhxs02iqaue"]
+[gd_scene load_steps=9 format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="5_pdggx"]
+[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="6_7la27"]
 [ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="6_58nof"]
+[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="6_pdggx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82vaf"]
-font_size = 64
+font_size = 88
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("menu_audio")]
 layout_mode = 3
@@ -119,6 +123,16 @@ horizontal_alignment = 1
 [node name="MenuAudio" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("5_82vaf")
 volume_db = -5.0
+
+[node name="Level" parent="." instance=ExtResource("6_7la27")]
+start_time = 12.0
+can_advance_time = false
+show_clock = false
+
+[node name="Restaurant" parent="Level" instance=ExtResource("6_pdggx")]
+
+[node name="Camera3D" type="Camera3D" parent="Level/Restaurant"]
+transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
 [connection signal="mouse_entered" from="MarginContainer/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/TextureButton" to="." method="_on_new_game_button_pressed"]
