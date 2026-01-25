@@ -63,24 +63,32 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 		var item = body.get_parent() as Item
 		if item:
 			if pizza_slot.get_child_count() == 0:
-				var _mesh = item.get_node("body/mesh")
+				var collider = body.get_node("CollisionShape3D") as CollisionShape3D
+				if collider:
+					collider.set_deferred("disabled", true)
+				#var _mesh = item.get_node("body/mesh")
+				var _mesh = item.mesh.duplicate()
 				_mesh.position = Vector3.ZERO
 				_mesh.rotation = Vector3.ZERO
 				_mesh.scale = Vector3(0.8,0.8,0.8)
-				if _mesh.get_parent():
-					_mesh.get_parent().remove_child(_mesh)
-				if item.mesh.has_meta("name"):
-					if item.mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
+				#if _mesh.get_parent():
+					#_mesh.get_parent().remove_child(_mesh)
+				if _mesh.has_meta("name"):
+					if _mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.PEPPERONI_PIE)
-					elif item.mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
+					elif _mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.MUSHROOM_PIE)
-					elif item.mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
+					elif _mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.CHEESE_PIE)
 					else:
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
 				#mesh_has_children = true

@@ -409,6 +409,9 @@ func confirm_placement() -> bool:
 
 	if child_mesh.has_meta("food_id"):
 			instance.set_meta("food_id", child_mesh.get_meta("food_id"))
+	
+	if child_mesh.has_meta("pizza"):
+		instance.mesh.set_meta("pizza", child_mesh.get_meta("pizza"))
 		
 	if instance.has_meta("food_id"):
 		var food_id = instance.get_meta("food_id")

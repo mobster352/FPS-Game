@@ -80,19 +80,19 @@ vertical_alignment = 1
 [node name="IncrementItem" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 344.0
-offset_top = 32.0
-offset_right = 360.0
-offset_bottom = 48.0
+offset_top = 28.0
+offset_right = 368.0
+offset_bottom = 52.0
 texture_normal = ExtResource("7_p0ord")
 texture_hover = ExtResource("8_eln7i")
 stretch_mode = 0
 
 [node name="DecrementItem" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 32.0
+offset_left = 304.0
+offset_top = 28.0
 offset_right = 328.0
-offset_bottom = 48.0
+offset_bottom = 52.0
 texture_normal = ExtResource("9_cu1lx")
 texture_hover = ExtResource("10_2xxud")
 stretch_mode = 0
