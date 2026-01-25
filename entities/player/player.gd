@@ -241,6 +241,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.OnlyPlacement)
 					else:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
+			return
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -497,66 +498,66 @@ func _update_preview_color(valid: bool):
 func drop_item() -> void:
 	if has_held_object():
 		cancel_placement(false)
-		var child_mesh = item_slot.get_child(0) as MeshInstance3D
-		if child_mesh.has_meta("name"):
-			var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
-			var forward = -camera.global_transform.basis.z.normalized()
-			if child_mesh.has_meta("count"):
-				item.set_meta("count", child_mesh.get_meta("count"))
-				var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
-				object_spawner.item_type = child_mesh.get_meta("item_type")
-				item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
-			else:
-				item.position = camera.global_position + forward
+		var child_mesh = item_slot.get_child(0)
+		if child_mesh:
+			if child_mesh.has_meta("name"):
+				var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
+				var forward = -camera.global_transform.basis.z.normalized()
+				if child_mesh.has_meta("count"):
+					item.set_meta("count", child_mesh.get_meta("count"))
+					var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+					object_spawner.item_type = child_mesh.get_meta("item_type")
+					item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
+				else:
+					item.position = camera.global_position + forward
 
-			item.mesh = child_mesh.duplicate()
+				item.mesh = child_mesh.duplicate()
 
-			if item.has_node("body/mesh"):
-				var mesh_node = item.get_node("body/mesh")
-				mesh_node.remove_child(mesh_node.get_child(0))
-				mesh_node.add_child(item.mesh)
-			if item.mesh.get_child_count() > 0:
-				item.mesh_has_children = true
-				item.set_z_scale_children(false, item.mesh)
-			if item.mesh.has_meta("toppings"):
-				if item.has_node("body/Cookable"):
-					var cookable = item.get_node("body/Cookable") as Cookable
-					cookable.toppings = item.mesh.get_meta("toppings")
+				if item.has_node("body/mesh"):
+					var mesh_node = item.get_node("body/mesh")
+					mesh_node.remove_child(mesh_node.get_child(0))
+					mesh_node.add_child(item.mesh)
+				if item.mesh.get_child_count() > 0:
+					item.mesh_has_children = true
+					item.set_z_scale_children(false, item.mesh)
+				if item.mesh.has_meta("toppings"):
+					if item.has_node("body/Cookable"):
+						var cookable = item.get_node("body/Cookable") as Cookable
+						cookable.toppings = item.mesh.get_meta("toppings")
+					
+				item.mesh.rotation = Vector3.ZERO
+				get_parent().add_child(item)
 				
-			item.mesh.rotation = Vector3.ZERO
-			get_parent().add_child(item)
-			
-			item.meshInstanceArray.append(item.mesh)
-			item.set_monitoring(true)
-			item.set_z_scale(false)
-			for c in item.get_children():
-				if c is RigidBody3D:
-					c.freeze = false
-					c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
-					if item is PizzaBox:
-						c.look_at(camera.global_position)
-						c.rotate(Vector3.UP, deg_to_rad(180))
-					elif not item.has_meta("count"):
-						c.look_at(camera.global_position)
-						c.rotate(Vector3.UP, deg_to_rad(130))
-						c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-					else:
-						c.look_at(camera.global_position - Vector3(0,1,0))
-			
-			if child_mesh.has_meta("food_id"):
-				item.set_meta("food_id", child_mesh.get_meta("food_id"))
-			
-			if item.has_meta("food_id"):
-				var food_id = item.get_meta("food_id")
-				if food_id:
-					GlobalSignal.drop_food.emit(food_id)
-					GlobalSignal.check_restaurant_food.emit(food_id)
-			elif item.has_meta("plate_dirty"):
-				item.pointer.show()
-				GlobalSignal.toggle_pointer.emit("sink", false)
-
-		item_slot.remove_child(child_mesh)
-		child_mesh.queue_free()
+				item.meshInstanceArray.append(item.mesh)
+				item.set_monitoring(true)
+				item.set_z_scale(false)
+				for c in item.get_children():
+					if c is RigidBody3D:
+						c.freeze = false
+						c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+						if item is PizzaBox:
+							c.look_at(camera.global_position)
+							c.rotate(Vector3.UP, deg_to_rad(180))
+						elif not item.has_meta("count"):
+							c.look_at(camera.global_position)
+							c.rotate(Vector3.UP, deg_to_rad(130))
+							c.rotate(Vector3.RIGHT, deg_to_rad(-20))
+						else:
+							c.look_at(camera.global_position - Vector3(0,1,0))
+				
+				if child_mesh.has_meta("food_id"):
+					item.set_meta("food_id", child_mesh.get_meta("food_id"))
+				
+				if item.has_meta("food_id"):
+					var food_id = item.get_meta("food_id")
+					if food_id:
+						GlobalSignal.drop_food.emit(food_id)
+						GlobalSignal.check_restaurant_food.emit(food_id)
+				elif item.has_meta("plate_dirty"):
+					item.pointer.show()
+					GlobalSignal.toggle_pointer.emit("sink", false)
+			item_slot.remove_child(child_mesh)
+			child_mesh.queue_free()
 
 
 func append_item_in_range(item: Node3D) -> void:

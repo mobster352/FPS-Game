@@ -16,11 +16,13 @@ pointer = NodePath("Pointer")
 metadata/sink = &"sink"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="kitchencounter_sink" index="0"]
+collision_layer = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchencounter_sink/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_qfwpc")
 
 [node name="Area3D" type="Area3D" parent="." index="1"]
+collision_layer = 9
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]

@@ -9,10 +9,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var obj = body.get_parent()
 	if obj.is_in_group("items"):
 		obj = obj as Item
-		if body is RigidBody3D:
-			body.freeze = true
-		pointer.hide()
 		if obj.disposable:
+			if body is RigidBody3D:
+				body.freeze = true
+			pointer.hide()
 			if obj.name == "plate_dirty":
 				obj.shrink_and_free(2, 5.0)
 			else:

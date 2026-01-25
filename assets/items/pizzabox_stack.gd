@@ -88,7 +88,7 @@ func pickup(_new_pos: Vector3, _new_rotation: Vector3, player: Player) -> void:
 	else:
 		this_body.remove_child(pizza_boxes)
 		player.item_slot.add_child(pizza_boxes)
-		pizza_boxes.position = Vector3(0.0,-1.0,1.0)
+		pizza_boxes.position = Vector3(-2.0,-1.0,1.0)
 		set_z_scale_children(true, pizza_boxes)
 		player.setup_placement_pizzabox_stack(preview_scene, "uid://dp8cybb476vqi", num_pizza_boxes)
 		queue_free()

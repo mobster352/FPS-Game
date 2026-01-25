@@ -386,7 +386,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.5
 
 [node name="Pizzabox_Stack" parent="Environment/Restaurant/Decorations" instance=ExtResource("22_ncrwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2356731, -1.1920929e-07, -16.704533)
-num_pizza_boxes = 5
+num_pizza_boxes = 10
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 

@@ -3,7 +3,7 @@ class_name Restaurant
 
 const rolling_pin_item = "res://assets/items/rolling_pin.tscn"
 const crate_generic_item = "res://assets/environment/restaurant/crate_generic.tscn"
-const pizza_box_item = "res://assets/environment/restaurant/pizzabox_open.tscn"
+const pizza_box_item = "uid://dp8cybb476vqi"
 
 @export var chair1: Chair
 @export var chair2: Chair
@@ -64,8 +64,9 @@ func _order_inventory_items(order_items: Array[Dictionary]) -> void:
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Mushroom))
 			if store_item.get("store_item") == GlobalVar.StoreItem.PizzaBox:
 				if store_item.has("quantity"):
-					for q in range(store_item.get("quantity")):
-						order_spawn.add_child(preload(pizza_box_item).instantiate())
+					var stack = preload(pizza_box_item).instantiate() as PizzaBoxStack
+					stack.num_pizza_boxes = store_item.get("quantity")
+					order_spawn.add_child(stack)
 	
 		
 func get_crate_item(order_item: GlobalVar.StoreItem) -> Item:

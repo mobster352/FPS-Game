@@ -98,6 +98,7 @@ metadata/place = true
 metadata/scene_path = &"res://assets/environment/restaurant/pizzabox_open.tscn"
 
 [node name="body" parent="." index="0"]
+collision_mask = 13
 can_sleep = true
 
 [node name="CollisionShape3D" parent="body" index="0"]
