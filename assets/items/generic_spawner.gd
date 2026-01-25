@@ -1,8 +1,5 @@
 extends ObjectSpawner
 
-func _process(_delta: float) -> void:
-	pass
-
 func add_object() -> void:
 	var obj = load(mesh_path).instantiate() as Node3D
 	if object_array.size() < 4:
@@ -37,10 +34,7 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 					if body is RigidBody3D:
 						body.freeze = true
 					parent.shrink_and_free(0, 0.15)
-					#parent.queue_free()
-					#if not parent.disabled:
 					add_object()
-						#parent.disabled = true
 				else:
 					parent.queue_free()
 					add_object()
@@ -72,10 +66,10 @@ func reticle_color() -> Color:
 func interact2(player: Player) -> void:
 	if item.disabled:
 		return
-	if player.item_slot.get_child_count() > 0:
+	if player.has_held_object():
 		player.drop_item()
+		return
 	if get_parent():
 		get_parent().remove_child(self)
-	#item.pickup(Vector3(deg_to_rad(10),deg_to_rad(-15),deg_to_rad(45)), Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)))
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)))
 	item.queue_free()

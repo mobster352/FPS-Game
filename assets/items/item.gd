@@ -3,6 +3,7 @@ class_name Item
 
 @export var mesh: MeshInstance3D
 @export var rigid_body: RigidBody3D
+@export var collider: CollisionShape3D
 @export var area: Area3D
 @export var meshInstanceArray: Array[MeshInstance3D]
 var standardMaterial3D: StandardMaterial3D
@@ -112,6 +113,7 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 
 
 func shrink_and_free(money:int, delay := 1.0) -> void:
+	collider.set_deferred("disabled", true)
 	if pointer:
 		pointer.hide()
 	var tween = create_tween()

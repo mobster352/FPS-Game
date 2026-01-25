@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=4 uid="uid://dp8cybb476vqi"]
+
+[ext_resource type="Script" uid="uid://bc5b3lbe1h3rh" path="res://assets/items/pizzabox_stack.gd" id="1_16iny"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="1_lo3yj"]
+[ext_resource type="Script" uid="uid://cq75s88v7lyr3" path="res://assets/items/pizzabox_stack_interactable.gd" id="2_16iny"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16iny"]
+size = Vector3(1.998, 2.9851441, 2.03)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lo3yj"]
+radius = 1.1214485
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_16iny"]
+radius = 2.2922258
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e01m8"]
+resource_name = "restaurant"
+albedo_texture = ExtResource("1_lo3yj")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h4p0e"]
+_surfaces = [{
+"aabb": AABB(-1, -0.24999991, -1.8626451e-09, 2, 0.29999992, 2.05),
+"format": 34359742465,
+"index_count": 147,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAAAAIABAACAAMAAAAFAAEABgAFAAAABQAHAAEAAQAHAAMABgAIAAUAAAAJAAYACAAGAAkAAAAEAAkACgAFAAgABQAKAAcACAAJAAsACgAIAAsABAAMAAkACwAJAAwABAANAAwACgALAA4ACwAMAA4ACgAPAAcADwADAAcAEAAKAA4ACgAQAA8AEQAOAAwAEAAOABEAEQAMAA0AEAASAA8ADwASAAMAEwAQABEAEwARAA0AEAATABIAEwADABIABAATAA0AEwAEAAMAFAAVABYAFwAVABQAFgAYABQAGQAXABQAGAAaABQAFAAbABkAFAAaABwAHQAbABQAHAAeABQAFAAfAB0AHgAgABQAIQAfABQAFAAgACEA"),
+"name": "restaurant",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 34,
+"vertex_data": PackedByteArray("AACAv/r/f76amQFAAACAP/T/f74AAABAAACAv/T/f74AAABAAACAvwAATDQAAABAAACAv+TMzDyamQFAAACAP/r/f76amQFAmpl5v2ZmZr4zMwNAAACAPwAATDQAAABAmpl5P2ZmZr4zMwNAmpl5v9PMzDwzMwNAAACAP+TMzDyamQFAmpl5P9LMzDwzMwNAmpl5v9DMTD2amQFAmpl5v9DMTD3NzMw8mpl5P9DMTD2amQFAAACAPwAATDQAAACxAACAP+TMzDwAAACxmpl5P9DMTD3NzMw8AACAvwAATDQAAACxAACAv+TMzDwAAACxUIaSPQDXI7yD6YI/ips1P1DXI7wgTo8/fSstP/DWI7yc0Uw/trUTP7DXI7wfJ7w/iMwDP5DWI7xMVPk+kfOQPtDXI7zANtY/mmJkPlDWI7wSQK0+cj2DvqDXI7xSstU/ZNGWvTDWI7zC88A+fnX3vmDXI7ys5sU/Mp6mvmDWI7yABho/xdwivxDXI7zrMKg/TuoEv7DWI7xE3mw/gCchv9DWI7xmeok/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_r88jh"]
+resource_name = "pizzabox_open_Cube_137"
+_surfaces = [{
+"aabb": AABB(-1, -0.24999991, -1.8626451e-09, 2, 0.29999992, 2.05),
+"attribute_data": PackedByteArray("bScFP7QpPj6Ofhk/tCkuPm0nBT+0KS4+jn4ZP7QpPj6Ofhk/rCYVPm0nBT/EbBc+jn4ZP8RsFz5tJwU/rCYVPo5+GT+0KU4+bScFP8BsNz5tJwU/tClOPo5+GT/AbDc+jn4ZP8RsFz5tJwU/wGwXPo5+GT/AbBc+bScFP8RsFz6Ofhk/qCYVPo5+GT/EbBc+jn4ZP8BsFz6Ofhk/rCYVPo5+GT+0KT4+jn4ZP8BsFz6Ofhk/tCkuPo5+GT+oJhU+dD0ZP5jjKz6DaAU/qCYFPnQ9GT+oJgU+g2gFP5jjKz5tJwU/rCYVPm0nBT/AbBc+bScFP8RsFz5tJwU/qCYVPm0nBT+0KS4+bScFP7QpPj6dr/c+bHFDP2VQiD6Ujnw/ZVCIPmxxQz+dr/c+lI58P20nBT9QTeo9g2gFPyDB5T2DaAU/UE3qPY5+GT9QTeo9dD0ZP1BN6j10PRk/IMHlPW0nBT+0KR4+g2gFP1BN6j2DaAU/mOMbPm0nBT9QTeo9bScFP1BN6j2DaAU/KMHlPYNoBT8gweU9bScFP1hN6j1tJwU/WE3qPXQ9GT8oweU9g2gFPyjB5T2Ofhk/WE3qPY5+GT9YTeo9dD0ZPyDB5T10PRk/KMHlPY5+GT9QTeo9jn4ZP1BN6j10PRk/mOMbPnQ9GT9QTeo9jn4ZP7QpHj6DaAU/mOMrPo5+GT+0KS4+bScFP7QpLj50PRk/mOMrPnQ9GT9QTeo9g2gFPyDB5T10PRk/IMHlPYNoBT9QTeo9VrMOPwDBbz7cfQU/uMI0PuLvBT+4wjQ+VrMOPwDBbz6wihI/uMI0PpNACz+4wjQ+VrMOPwDBbz4UGBY/uMI0PqqVFz+4wjQ+VrMOPwDBbz7ErBc/uMI0PvGbFT+4wjQ+SswIP7jCND5pEAw/uMI0PlazDj8AwW8+4u8FP7jCND6UcQc/uMI0PlazDj8AwW8+k0ALP7jCND7iHQg/uMI0PlazDj8AwW8+93EGP7jCND7cfQU/uMI0PlazDj8AwW8+jQEUP7jCND4UGBY/uMI0PlazDj8AwW8+txIQP7jCND7p8RI/uMI0PlazDj8AwW8+8ZsVP7jCND6wihI/uMI0PlazDj8AwW8+qpUXP7jCND7ErBc/uMI0PlazDj8AwW8+VrMOPwDBbz5pEAw/uMI0PrcSED+4wjQ+"),
+"format": 34359742487,
+"index_count": 147,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AHwAgAB0AHwAhACAAIgAjACQAIgAlACMAJgAnACgAKQAqACsALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASwBMAE0ATgBPAFAAUQBSAFMAVABVAFYAVwBYAFkAWgBbAFwAXQBeAF8AYABhAGIAYwBkAGUAZgBnAGgAaQBqAGsAbABtAG4A"),
+"material": SubResource("StandardMaterial3D_e01m8"),
+"name": "restaurant",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 111,
+"vertex_data": PackedByteArray("AACAv/r/f76amQFAAACAP/T/f74AAABAAACAv/T/f74AAABAAACAP/r/f76amQFAAACAP+TMzDwAAACxAACAvwAATDQAAACxAACAPwAATDQAAACxAACAv+TMzDwAAACxAACAP/T/f74AAABAAACAvwAATDQAAABAAACAv/T/f74AAABAAACAPwAATDQAAABAAACAPwAATDQAAACxAACAvwAATDQAAABAAACAPwAATDQAAABAAACAvwAATDQAAACxAACAP+TMzDyamQFAAACAPwAATDQAAACxAACAPwAATDQAAABAAACAP+TMzDwAAACxAACAP/r/f76amQFAAACAPwAATDQAAABAAACAP/T/f74AAABAAACAP+TMzDyamQFAmpl5P2ZmZr4zMwNAmpl5v9PMzDwzMwNAmpl5P9LMzDwzMwNAmpl5v2ZmZr4zMwNAAACAv+TMzDwAAACxAACAvwAATDQAAABAAACAvwAATDQAAACxAACAv+TMzDyamQFAAACAv/T/f74AAABAAACAv/r/f76amQFAmpl5P9DMTD3NzMw8mpl5v9DMTD2amQFAmpl5v9DMTD3NzMw8mpl5P9DMTD2amQFAAACAv+TMzDyamQFAmpl5v9DMTD2amQFAmpl5v9PMzDwzMwNAAACAP+TMzDyamQFAmpl5P9LMzDwzMwNAmpl5P9DMTD2amQFAAACAv/r/f76amQFAmpl5v9PMzDwzMwNAmpl5v2ZmZr4zMwNAAACAv+TMzDyamQFAAACAv+TMzDyamQFAmpl5v9DMTD3NzMw8mpl5v9DMTD2amQFAAACAv+TMzDwAAACxAACAv+TMzDwAAACxmpl5P9DMTD3NzMw8mpl5v9DMTD3NzMw8AACAP+TMzDwAAACxAACAP+TMzDwAAACxmpl5P9DMTD2amQFAmpl5P9DMTD3NzMw8AACAP+TMzDyamQFAAACAP+TMzDyamQFAmpl5P2ZmZr4zMwNAmpl5P9LMzDwzMwNAAACAP/r/f76amQFAmpl5v2ZmZr4zMwNAAACAP/r/f76amQFAAACAv/r/f76amQFAmpl5P2ZmZr4zMwNAmpl5P9LMzDwzMwNAmpl5v9DMTD2amQFAmpl5P9DMTD2amQFAmpl5v9PMzDwzMwNAUIaSPQDXI7yD6YI/ips1P1DXI7wgTo8/fSstP/DWI7yc0Uw/UIaSPQDXI7yD6YI/cj2DvqDXI7xSstU/kfOQPtDXI7zANtY/UIaSPQDXI7yD6YI/TuoEv7DWI7xE3mw/gCchv9DWI7xmeok/UIaSPQDXI7yD6YI/xdwivxDXI7zrMKg/fnX3vmDXI7ys5sU/iMwDP5DWI7xMVPk+mmJkPlDWI7wSQK0+UIaSPQDXI7yD6YI/fSstP/DWI7yc0Uw/iMwDP5DWI7xMVPk+UIaSPQDXI7yD6YI/kfOQPtDXI7zANtY/trUTP7DXI7wfJ7w/UIaSPQDXI7yD6YI/trUTP7DXI7wfJ7w/ips1P1DXI7wgTo8/UIaSPQDXI7yD6YI/Mp6mvmDWI7yABho/TuoEv7DWI7xE3mw/UIaSPQDXI7yD6YI/ZNGWvTDWI7zC88A+Mp6mvmDWI7yABho/UIaSPQDXI7yD6YI/fnX3vmDXI7ys5sU/cj2DvqDXI7xSstU/UIaSPQDXI7yD6YI/gCchv9DWI7xmeok/xdwivxDXI7zrMKg/UIaSPQDXI7yD6YI/UIaSPQDXI7yD6YI/mmJkPlDWI7wSQK0+ZNGWvTDWI7zC88A+/38AAP///z//fwAA////P/9/AAD///8//38AAP///z//////////P/////////8//////////z//////////P/////////8//////////z//////////P/////////8//38AAP///7//fwAA////v/9/AAD///+//38AAP///7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+//3//f////7//f/9/////v/9//3////+//3//f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//f///////v/9///////+//3///////7//f///////v1RVqar/v/+/VFWpqv+//79UVamq/7//v6qqqar+///fqqqpqv7//9+qqqmq/v//3/8//39VtqnJ/z//f/q+BMH/P/9/C7Xzyv8//3//v/+//z//v/7/AAD/P/+//v8AAP8//7/+/wAA/z//v/7/AAD/v///////P/+///////8//7///////z//v///////P/+//7//f/8//7//v/9//z//v/+//3//P/+//7//f/8//7//f9/9d5//v/9/R+wRm/+//3/+///f/7//fxrrxpr/f/8/////v/9//z////+//3//P////7//f/8/////v/9//7////+//3//v////7//f/+/////v/9//7////+//38AAAAAAvr/fwAAAAAC+v9/AAAAAAL6/38AAAAAhT//fwAAAACFP/9/AAAAAIU//38AAIBJ/7//fwAAgEn/v/9/AACASf+//38AAAAAaRn/fwAAAABpGf9/AAAAAGkZ/38AAAAAl9X/fwAAAACX1f9/AAAAAJfV/38AAAAANer/fwAAAAA16v9/AAAAADXq/38AAGI0/z//fwAAYjT/P/9/AABiNP8//38AAORc/z//fwAA5Fz/P/9/AADkXP8//38AAA9Q/7//fwAAD1D/v/9/AAAPUP+//38AAGA8/7//fwAAYDz/v/9/AABgPP+//38AAAAAdSn/fwAAAAB1Kf9/AAAAAHUp/38AAIh8/7//fwAAiHz/v/9/AACIfP+//38AALIO/7//fwAAsg7/v/9/AACyDv+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_h4p0e")
+
+[node name="Pizzabox_Stack" type="Node3D"]
+script = ExtResource("1_16iny")
+
+[node name="body" type="RigidBody3D" parent="."]
+collision_layer = 64
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4932557, 0.025)
+shape = SubResource("BoxShape3D_16iny")
+
+[node name="Interactable" type="Node3D" parent="body" node_paths=PackedStringArray("pizza_box_stack")]
+script = ExtResource("2_16iny")
+pizza_box_stack = NodePath("../..")
+
+[node name="StackArea" type="Area3D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StackArea"]
+shape = SubResource("SphereShape3D_lo3yj")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_16iny")
+
+[node name="pizzabox_lid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03862658, -1)
+mesh = SubResource("ArrayMesh_r88jh")
+skeleton = NodePath("")
+
+[connection signal="body_entered" from="StackArea" to="." method="_on_stack_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

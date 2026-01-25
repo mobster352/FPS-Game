@@ -61,10 +61,16 @@ func interact_item(has_held_object:bool, has_count:bool) -> void:
 		left_input.show()
 		right_input.hide()
 	if has_count:
-		left_input.action = ActionInput.Action.PickOne
-		left_input.show()
-		right_input.action = ActionInput.Action.PickUp
-		right_input.show()
+		if has_held_object:
+			left_input.action = ActionInput.Action.PickOne
+			right_input.action = ActionInput.Action.Drop
+			left_input.show()
+			right_input.show()
+		else:
+			left_input.action = ActionInput.Action.PickOne
+			left_input.show()
+			right_input.action = ActionInput.Action.PickUp
+			right_input.show()
 
 	
 func cook(has_held_object:bool) -> void:

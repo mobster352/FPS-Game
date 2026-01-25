@@ -6,8 +6,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_mah83"]
 radius = 3.9701247
 
-[node name="Item" type="Node3D" node_paths=PackedStringArray("pointer") groups=["items"]]
+[node name="Item" type="Node3D" node_paths=PackedStringArray("collider", "pointer") groups=["items"]]
 script = ExtResource("1_w3e1j")
+collider = NodePath("body/CollisionShape3D")
 pointer = NodePath("body/Pointer")
 
 [node name="body" type="RigidBody3D" parent="."]

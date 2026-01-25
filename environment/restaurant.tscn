@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://5egw1id8hdbg" path="res://assets/items/rolling_pin.tscn" id="16_0dg3b"]
 [ext_resource type="PackedScene" uid="uid://to2ahd3uam2y" path="res://assets/ui/billboard.tscn" id="16_nawl3"]
 [ext_resource type="Script" uid="uid://dp7d5nqog8hm2" path="res://environment/billboard.gd" id="16_w3jle"]
-[ext_resource type="PackedScene" uid="uid://bxflb6heaetxd" path="res://assets/environment/restaurant/pizzabox_open.tscn" id="17_i0ceb"]
 [ext_resource type="PackedScene" uid="uid://c1l5ndj6w6wqw" path="res://assets/environment/furniture/computer.tscn" id="18_45dbx"]
 [ext_resource type="Script" uid="uid://c0dt2w4i1qg53" path="res://assets/ui/billboard_ui.gd" id="18_lussy"]
 [ext_resource type="PackedScene" uid="uid://bn1nnmveigfxq" path="res://assets/environment/prototype/dummy_base.tscn" id="20_ncrwj"]
@@ -28,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dqh8oefwfrjdf" path="res://assets/environment/restaurant/pizza_oven.tscn" id="21_ac10s"]
 [ext_resource type="PackedScene" uid="uid://bhw184635c3p3" path="res://assets/environment/prototype/weaponrack.tscn" id="21_ncrwj"]
 [ext_resource type="PackedScene" uid="uid://boiuip26h4cdl" path="res://assets/environment/restaurant/door_a.tscn" id="22_5mfc8"]
+[ext_resource type="PackedScene" uid="uid://dp8cybb476vqi" path="res://assets/items/pizzabox_stack.tscn" id="22_ncrwj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
 
@@ -315,6 +315,9 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic/body" index="3"]
 item_type = 2
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic/body/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic2" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.279318, 1.0175942, -4.9332867)
 
@@ -323,6 +326,9 @@ can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic2/body" index="3"]
 item_type = 3
+
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic2/body/Interactable" index="0"]
+surface_material_override/0 = null
 
 [node name="crate_generic3" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.279318, 1.0175942, -5.9879427)
@@ -333,6 +339,9 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic3/body" index="3"]
 item_type = 4
 
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic3/body/Interactable" index="0"]
+surface_material_override/0 = null
+
 [node name="crate_generic4" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.279318, 1.0175942, -8.13807)
 
@@ -341,6 +350,9 @@ can_sleep = true
 
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic4/body" index="3"]
 item_type = 5
+
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic4/body/Interactable" index="0"]
+surface_material_override/0 = null
 
 [node name="crate_generic5" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.279318, 1.0175942, -7.063284)
@@ -351,20 +363,8 @@ can_sleep = true
 [node name="Interactable" parent="Environment/Restaurant/Decorations/crate_generic5/body" index="3"]
 item_type = 6
 
-[node name="pizzabox_open" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, -0.004232526, -16.707561)
-
-[node name="pizzabox_open2" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, 0.25327396, -16.707561)
-
-[node name="pizzabox_open3" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, 0.5290446, -16.707561)
-
-[node name="pizzabox_open4" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, 0.81601477, -16.707561)
-
-[node name="pizzabox_open5" parent="Environment/Restaurant/Decorations" instance=ExtResource("17_i0ceb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2424154, 1.0997875, -16.707561)
+[node name="crate2" parent="Environment/Restaurant/Decorations/crate_generic5/body/Interactable" index="0"]
+surface_material_override/0 = null
 
 [node name="Label3D" type="Label3D" parent="Environment/Restaurant/Decorations"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.713505, 2.6730688, -5.9037666)
@@ -383,6 +383,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 
 
 [node name="Weaponrack" parent="Environment/Restaurant/Decorations" instance=ExtResource("21_ncrwj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.513886, 0, -16.063757)
+
+[node name="Pizzabox_Stack" parent="Environment/Restaurant/Decorations" instance=ExtResource("22_ncrwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2356731, -1.1920929e-07, -16.704533)
+num_pizza_boxes = 1
 
 [node name="Walls" type="Node3D" parent="Environment/Restaurant"]
 

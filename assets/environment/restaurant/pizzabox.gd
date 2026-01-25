@@ -66,13 +66,10 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 				var collider = body.get_node("CollisionShape3D") as CollisionShape3D
 				if collider:
 					collider.set_deferred("disabled", true)
-				#var _mesh = item.get_node("body/mesh")
 				var _mesh = item.mesh.duplicate()
 				_mesh.position = Vector3.ZERO
 				_mesh.rotation = Vector3.ZERO
 				_mesh.scale = Vector3(0.8,0.8,0.8)
-				#if _mesh.get_parent():
-					#_mesh.get_parent().remove_child(_mesh)
 				if _mesh.has_meta("name"):
 					if _mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
 						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
@@ -91,5 +88,4 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
-				#mesh_has_children = true
 				item.shrink_and_free(0, 0.25)
