@@ -58,7 +58,7 @@ func interact(player: Player) -> void:
 	var new_pizzabox = remove_box_from_stack()
 	pizza_boxes.add_child(new_pizzabox)
 	if new_pizzabox:
-		new_pizzabox.pickup(Vector3.ZERO, Vector3(deg_to_rad(0), deg_to_rad(90), deg_to_rad(0)))
+		new_pizzabox.pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)))
 		new_pizzabox.queue_free()
 	if num_pizza_boxes == 0:
 		queue_free()
