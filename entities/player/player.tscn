@@ -90,6 +90,7 @@ transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
+hit_from_inside = true
 
 [node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)

@@ -5,6 +5,8 @@ class_name PizzaBox
 @export var speed := 1.5
 @export var pizza_slot: Node3D
 
+@onready var PIZZABOX_STACK = preload("uid://dp8cybb476vqi")
+
 var is_open := false
 var is_cook := false
 var is_interact := false
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 func interact() -> void:
 	if disabled:
 		return
-	if player.item_slot.get_child_count() > 0:
+	if player.has_held_object():
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)
@@ -59,13 +61,14 @@ func cook() -> void:
 
 
 func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
+	var parent = body.get_parent()
 	if body.has_meta("name") and body.get_meta("name") == "whole_pizza" and is_open:
-		var item = body.get_parent() as Item
+		var item = parent as Item
 		if item:
 			if pizza_slot.get_child_count() == 0:
-				var collider = body.get_node("CollisionShape3D") as CollisionShape3D
-				if collider:
-					collider.set_deferred("disabled", true)
+				var pizza_collider = body.get_node("CollisionShape3D") as CollisionShape3D
+				if pizza_collider:
+					pizza_collider.set_deferred("disabled", true)
 				var _mesh = item.mesh.duplicate()
 				_mesh.position = Vector3.ZERO
 				_mesh.rotation = Vector3.ZERO
@@ -89,3 +92,17 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
 				item.shrink_and_free(0, 0.25)
+	elif parent is PizzaBox and parent != self:
+		if body is RigidBody3D:
+			var rigidbody = body as RigidBody3D
+			if not rigidbody.sleeping:
+				return
+			await get_tree().create_timer(0.5).timeout
+			var pizzabox_stack = PIZZABOX_STACK.instantiate() as PizzaBoxStack
+			pizzabox_stack.num_pizza_boxes = 2
+			get_parent().add_child(pizzabox_stack)
+			pizzabox_stack.transform = parent.transform
+			get_parent().remove_child(self)
+			parent.get_parent().remove_child(parent)
+			parent.queue_free()
+			queue_free()

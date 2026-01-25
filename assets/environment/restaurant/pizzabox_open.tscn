@@ -97,6 +97,9 @@ preview_scene = ExtResource("4_mermk")
 metadata/place = true
 metadata/scene_path = &"res://assets/environment/restaurant/pizzabox_open.tscn"
 
+[node name="body" parent="." index="0"]
+can_sleep = true
+
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0063476563, 0.15454102, 0.023040771)
 shape = SubResource("BoxShape3D_elc2u")

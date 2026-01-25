@@ -4,7 +4,7 @@ class_name PizzaBoxStack
 @export var num_pizza_boxes:int = 0
 
 @onready var pizzabox = preload("uid://cpulw2n2h8hsx")
-@onready var pizzabox_open = preload("uid://bxflb6heaetxd")
+@onready var pizzabox_open = load("uid://bxflb6heaetxd")
 
 const BOX_SPACING = 0.3
 var in_range := false
@@ -47,13 +47,13 @@ func _on_stack_area_body_entered(body: Node3D) -> void:
 func interact(player: Player) -> void:
 	if player.has_held_object():
 		player.drop_item()
-	if num_pizza_boxes == 0:
-		return
 	var new_pizzabox = remove_box_from_stack()
 	add_child(new_pizzabox)
 	if new_pizzabox:
 		new_pizzabox.pickup(Vector3.ZERO, Vector3(deg_to_rad(0), deg_to_rad(90), deg_to_rad(0)))
 		new_pizzabox.queue_free()
+	if num_pizza_boxes == 0:
+		queue_free()
 		
 func interact2(player: Player) -> void:
 	if player.has_held_object():
