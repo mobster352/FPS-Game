@@ -12,8 +12,10 @@ radius = 1.1214485
 [sub_resource type="SphereShape3D" id="SphereShape3D_16iny"]
 radius = 2.2922258
 
-[node name="Pizzabox_Stack" type="Node3D"]
+[node name="Pizzabox_Stack" type="Node3D" node_paths=PackedStringArray("pizza_boxes")]
 script = ExtResource("1_16iny")
+pizza_boxes = NodePath("body/PizzaBoxes")
+metadata/place = true
 
 [node name="body" type="RigidBody3D" parent="." groups=["static"]]
 collision_layer = 64
@@ -37,6 +39,10 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/DetectionArea"]
 shape = SubResource("SphereShape3D_16iny")
+
+[node name="PizzaBoxes" type="Node3D" parent="body"]
+metadata/place = true
+metadata/pizzaboxes = true
 
 [connection signal="body_entered" from="body/StackArea" to="." method="_on_stack_area_body_entered"]
 [connection signal="body_entered" from="body/DetectionArea" to="." method="_on_detection_area_body_entered"]

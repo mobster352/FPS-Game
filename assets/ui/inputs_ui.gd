@@ -15,7 +15,8 @@ enum InputAction {
 	Cook,
 	OpenLid,
 	Place,
-	PrePlacement
+	PrePlacement,
+	OnlyPlacement
 }
 
 
@@ -36,6 +37,8 @@ func _update_actions(input_action:InputAction, has_held_object:bool = false, has
 			place()
 		InputAction.PrePlacement:
 			pre_placement()
+		InputAction.OnlyPlacement:
+			only_placement()
 		_:
 			default(has_held_object)
 	
@@ -112,6 +115,11 @@ func pre_placement() -> void:
 	right_input.action = ActionInput.Action.Drop
 	left_input.show()
 	right_input.show()
+	
+func only_placement() -> void:
+	left_input.action = ActionInput.Action.Place
+	left_input.show()
+	right_input.hide()
 
 func default(has_held_object:bool) -> void:
 	cook_input.hide()

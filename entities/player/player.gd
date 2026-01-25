@@ -237,7 +237,10 @@ func _handle_item_raycast(target: Node3D) -> void:
 					inputs_ui.update_actions.emit(inputs_ui.InputAction.Place)
 					is_placing = true
 				else:
-					inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
+					if item.has_meta("pizzaboxes"):
+						inputs_ui.update_actions.emit(inputs_ui.InputAction.OnlyPlacement)
+					else:
+						inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -322,7 +325,7 @@ func _process_crouch() -> void:
 
 
 func _process_drop_item() -> void:
-	if has_held_object():
+	if has_held_object() and not item_slot.get_child(0).has_meta("pizzaboxes"):
 		if drop_input:
 			drop_item()
 
@@ -334,7 +337,14 @@ func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, 
 	preview_instance = preview_scene.instantiate()
 	place_scene_path = _place_scene_path
 	item_type = _item_type
+	
+func setup_placement_pizzabox_stack(preview_scene: PackedScene, _place_scene_path: StringName, num_stack: int) -> void:
+	if preview_instance:
+		return
 
+	preview_instance = preview_scene.instantiate() as PizzaBoxStack
+	place_scene_path = _place_scene_path
+	preview_instance.num_pizza_boxes = num_stack
 
 func start_placement():
 	get_tree().current_scene.add_child(preview_instance)
@@ -396,23 +406,23 @@ func confirm_placement() -> bool:
 	if not can_place or not preview_instance or not has_held_object():
 		return false
 
-	var instance = place_scene.instantiate() as Item
+	var instance = place_scene.instantiate()
 	if instance.has_node("body/Interactable"):
 		var interactable = instance.get_node("body/Interactable")
 		if interactable is ObjectSpawner:
 			interactable.item_type = place_scene_item_type
 
-	var child_mesh = item_slot.get_child(0) as MeshInstance3D
+	var child_mesh = item_slot.get_child(0)
+	if child_mesh:
+		if child_mesh.has_meta("count"):
+			instance.set_meta("count", child_mesh.get_meta("count"))
 
-	if child_mesh.has_meta("count"):
-		instance.set_meta("count", child_mesh.get_meta("count"))
-
-	if child_mesh.has_meta("food_id"):
-			instance.set_meta("food_id", child_mesh.get_meta("food_id"))
-			instance.mesh.set_meta("food_id", child_mesh.get_meta("food_id"))
-	
-	if child_mesh.has_meta("pizza"):
-		instance.mesh.set_meta("pizza", child_mesh.get_meta("pizza"))
+		if child_mesh.has_meta("food_id"):
+				instance.set_meta("food_id", child_mesh.get_meta("food_id"))
+				instance.mesh.set_meta("food_id", child_mesh.get_meta("food_id"))
+		
+		if child_mesh.has_meta("pizza"):
+			instance.mesh.set_meta("pizza", child_mesh.get_meta("pizza"))
 		
 	if instance.has_meta("food_id"):
 		var food_id = instance.get_meta("food_id")
@@ -424,6 +434,10 @@ func confirm_placement() -> bool:
 		GlobalSignal.toggle_pointer.emit("sink", false)
 			
 	instance.global_transform = preview_instance.global_transform
+	
+	if instance is PizzaBoxStack:
+		instance.num_pizza_boxes = preview_instance.num_pizza_boxes
+	
 	get_tree().current_scene.add_child(instance)
 
 	cancel_placement(true)
@@ -436,9 +450,10 @@ func cancel_placement(remove_held_obj: bool):
 		preview_instance = null
 		place_scene_item_type = GlobalVar.StoreItem.None
 		if has_held_object() and remove_held_obj:
-			var child_mesh = item_slot.get_child(0) as MeshInstance3D
-			item_slot.remove_child(child_mesh)
-			child_mesh.queue_free()
+			var child_mesh = item_slot.get_child(0)
+			if child_mesh:
+				item_slot.remove_child(child_mesh)
+				child_mesh.queue_free()
 		place_scene_path = ""
 		item_type = GlobalVar.StoreItem.None
 
@@ -463,6 +478,20 @@ func _update_preview_color(valid: bool):
 	for child in preview_instance.find_children("*", "MeshInstance3D", true):
 		if child is MeshInstance3D:
 			child.material_override.albedo_color = color
+			
+	if preview_instance is PizzaBoxStack:
+		for m in preview_instance.pizza_boxes.get_children():
+			if m.get_child_count() > 0:
+				if m.get_child(0) is MeshInstance3D:
+					var n = m.get_child(0) as MeshInstance3D
+					n.material_override = StandardMaterial3D.new()
+					n.material_override.albedo_color = color
+			for c in m.get_children():
+				if c.get_child_count() > 0:
+					if c.get_child(0) is MeshInstance3D:
+						var n = c.get_child(0) as MeshInstance3D
+						n.material_override = StandardMaterial3D.new()
+						n.material_override.albedo_color = color
 
 
 func drop_item() -> void:
