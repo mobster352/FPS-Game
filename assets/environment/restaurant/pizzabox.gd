@@ -92,7 +92,11 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
 				item.shrink_and_free(0, 0.25)
-	elif parent is PizzaBox and parent != self:
+	elif parent is PizzaBox:
+		if has_meta("food_id"):
+			return
+		if parent.has_meta("food_id"):
+			return
 		if body is RigidBody3D:
 			var rigidbody = body as RigidBody3D
 			if not rigidbody.sleeping:

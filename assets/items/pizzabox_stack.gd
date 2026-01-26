@@ -41,6 +41,13 @@ func remove_box_from_stack() -> PizzaBox:
 func _on_stack_area_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
 	if parent is PizzaBox:
+		if parent.has_meta("food_id"):
+			var rigidbody = body as RigidBody3D
+			if rigidbody:
+				var forward = -rigidbody.global_transform.basis.z.normalized()
+				var throw_strength: float = 2.0
+				body.apply_impulse(forward * (throw_strength / rigidbody.mass), rigidbody.global_position + forward)
+			return
 		if num_pizza_boxes == 10:
 			var rigidbody = body as RigidBody3D
 			if rigidbody:
