@@ -4,32 +4,38 @@ class_name GameState
 @onready var thief_target_timer: Timer
 @onready var restaurant_back_door_marker: Marker3D
 
-signal set_thief_target(target:Node, is_item:bool)
-signal clear_thief_target(has_item:bool)
-
+var thief_nodes: Array[Node]
 var thief_targets: Array[Node]
-var current_target: Node
 
 func _ready() -> void:
 	thief_target_timer = $Timers/ThiefTargetTimer
 	restaurant_back_door_marker = $"../Environment/Markers/RestaurantBackDoorMarker"
 	
+	thief_target_timer.wait_time = get_random_time()
 	thief_target_timer.start()
-	clear_thief_target.connect(_clear_thief_target)
 
 func _on_thief_target_timer_timeout() -> void:
 	thief_targets = get_tree().get_nodes_in_group("thief_target")
 	if not thief_targets:
+		thief_target_timer.wait_time = get_random_time()
 		thief_target_timer.start()
 		return
-	if current_target:
-		set_thief_target.emit(current_target, false)
-	else:
-		current_target = thief_targets.pick_random()
-		set_thief_target.emit(current_target, true)
 
-func _clear_thief_target(has_item:bool) -> void:
-	if has_item:
-		return
-	current_target = null
+	thief_nodes = get_tree().get_nodes_in_group("thief")
+	for thief:Thief in thief_nodes:
+		if thief.navigation_target or thief.has_item:
+			break
+		else:
+			var navigation_target = thief_targets.pick_random()
+			if navigation_target is GenericSpawner:
+				if navigation_target.mesh.get_child_count() <= 0:
+					navigation_target = null # failed to get target
+					thief_target_timer.wait_time = get_random_time()
+					thief_target_timer.start()
+					break
+			thief.set_thief_target(navigation_target, true)
+	thief_target_timer.wait_time = get_random_time()
 	thief_target_timer.start()
+
+func get_random_time() -> float:
+	return randf_range(10, 60)

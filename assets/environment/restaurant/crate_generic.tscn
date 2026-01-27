@@ -55,7 +55,7 @@ grow_amount = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_u4joo"]
 radius = 0.7020078
 
-[node name="crate_generic" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static"] instance=ExtResource("1_0wkgb")]
+[node name="crate_generic" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static", "thief_target"] instance=ExtResource("1_0wkgb")]
 mesh = NodePath("body/Interactable/crate2")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -75,7 +75,7 @@ collision_mask = 41
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035629272, 0.20000839, -0.00089263916)
 shape = SubResource("BoxShape3D_wl83s")
 
-[node name="Interactable" parent="body" index="3" node_paths=PackedStringArray("item", "mesh") instance=ExtResource("3_ytnlp")]
+[node name="Interactable" parent="body" index="3" node_paths=PackedStringArray("item", "mesh") groups=["thief_target"] instance=ExtResource("3_ytnlp")]
 script = ExtResource("4_0wkgb")
 item = NodePath("../..")
 mesh = NodePath("crate2")

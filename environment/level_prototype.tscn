@@ -849,7 +849,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.613641, 0, 45.317074)
 level_ui = NodePath("../../UI")
 
 [node name="Skeleton_Rogue" parent="Entities" index="14" node_paths=PackedStringArray("game_state") instance=ExtResource("32_2alb2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2515125, -4.7683716e-07, 42.755478)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.748487, -4.7683716e-07, 36.755478)
+game_state = NodePath("../../GameState")
+
+[node name="Skeleton_Rogue2" parent="Entities" index="15" node_paths=PackedStringArray("game_state") instance=ExtResource("32_2alb2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8147497, -4.7683716e-07, 29.913124)
+game_state = NodePath("../../GameState")
+
+[node name="Skeleton_Rogue3" parent="Entities" index="16" node_paths=PackedStringArray("game_state") instance=ExtResource("32_2alb2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.083551, -4.7683716e-07, 40.817657)
+game_state = NodePath("../../GameState")
+
+[node name="Skeleton_Rogue4" parent="Entities" index="17" node_paths=PackedStringArray("game_state") instance=ExtResource("32_2alb2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.083551, -4.7683716e-07, 53.075283)
 game_state = NodePath("../../GameState")
 
 [node name="Camera3D" type="Camera3D" parent="." index="5"]

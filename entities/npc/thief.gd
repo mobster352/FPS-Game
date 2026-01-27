@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Thief
 
 @export var game_state: GameState
 @export var speed := 2.0
@@ -27,12 +28,10 @@ var next_state: ThiefState
 func _ready() -> void:
 	thief_skin = $Rig
 	navigation_agent = $NavigationAgent3D
-	#navigation_agent.set_random_target()
 	walk_timer = $Timers/WalkTimer
 	item_slot = $ItemSlot
 	current_state = ThiefState.Idle
 	next_state = ThiefState.None
-	game_state.set_thief_target.connect(_set_thief_target)
 
 func _physics_process(delta: float) -> void:
 	if next_state:
@@ -58,18 +57,41 @@ func idle() -> void:
 func walk(delta:float) -> void:
 	if navigation_agent.is_navigation_finished():
 		if navigation_target and target_is_item:
-			if navigation_target is Item:
+			if navigation_target is Item and not navigation_target.is_queued_for_deletion():
 				var item = navigation_target as Item
+				if item.has_meta("count"):
+					if item.has_node("body/Interactable"):
+						var node = item.get_node("body/Interactable")
+						if node is ObjectSpawner:
+							item.mesh.set_meta("item_type", node.item_type)
+							item.mesh.set_meta("count", item.get_meta("count"))
 				item_slot.add_child(item.mesh.duplicate())
 				item.call_deferred("queue_free")
-			has_item = true
-			game_state.clear_thief_target.emit(has_item)
-			current_state = ThiefState.IdleHoldLargeObject
+				has_item = true
+				current_state = ThiefState.IdleHoldLargeObject
+			elif navigation_target is GenericSpawner and not navigation_target.is_queued_for_deletion():
+				var object_spawner = navigation_target as GenericSpawner
+				var mesh = load(object_spawner.mesh_path).instantiate() as Node3D
+				mesh.set_meta("name", object_spawner.mesh_name)
+				item_slot.add_child(mesh)
+				object_spawner.thief_remove_object()
+				has_item = true
+				current_state = ThiefState.IdleHoldLargeObject
+			elif navigation_target is PizzaBoxStack and not navigation_target.is_queued_for_deletion():
+				var pizza_box_stack = navigation_target as PizzaBoxStack
+				var mesh = pizza_box_stack.pizzabox.instantiate() as Node3D
+				mesh.set_meta("name", "pizza_box_open_mesh")
+				item_slot.add_child(mesh)
+				pizza_box_stack.thief_remove_box_from_stack()
+				has_item = true
+				current_state = ThiefState.IdleHoldLargeObject
+			else:
+				has_item = false
+				current_state = ThiefState.Idle
 			navigation_target = null
 			return
 		elif navigation_target:
 			navigation_target = null
-			game_state.clear_thief_target.emit(false)
 		current_state = ThiefState.Idle
 	else:
 		thief_skin.walk_animation()
@@ -119,7 +141,7 @@ func _on_walk_timer_timeout() -> void:
 		else:
 			navigation_agent.set_random_target()
 
-func _set_thief_target(target:Node3D, is_item:bool) -> void:
+func set_thief_target(target:Node3D, is_item:bool) -> void:
 	if not next_target:
 		next_target = target
 		target_is_item = is_item
@@ -127,10 +149,16 @@ func _set_thief_target(target:Node3D, is_item:bool) -> void:
 func hit() -> void:
 	if has_item:
 		var held_item = item_slot.get_child(0) as Node3D
-		var item = GlobalVar.get_item_from_mesh(held_item.get_meta("name"))
-		get_parent().add_child(item)
-		item.global_transform = held_item.global_transform
-		held_item.queue_free()
+		if held_item:
+			var item = GlobalVar.get_item_from_mesh(held_item.get_meta("name"))
+			if item:
+				if item.has_node("body/Interactable"):
+					var node = item.get_node("body/Interactable")
+					if node is ObjectSpawner:
+						node.item_type = held_item.get_meta("item_type")
+						item.set_meta("count", held_item.get_meta("count"))
+				get_parent().add_child(item)
+				item.global_transform = held_item.global_transform
+				held_item.queue_free()
 		has_item = false
-		game_state.clear_thief_target.emit(false)
 		next_state = ThiefState.Idle

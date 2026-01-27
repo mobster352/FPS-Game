@@ -37,6 +37,17 @@ func remove_box_from_stack() -> PizzaBox:
 	var new_pizzabox = pizzabox_open.instantiate() as PizzaBox
 	return new_pizzabox
 
+func thief_remove_box_from_stack() -> void:
+	var existing_box = pizza_boxes.get_child(-1)
+	pizza_boxes.remove_child(existing_box)
+	existing_box.queue_free()
+	
+	num_pizza_boxes -= 1
+	if num_pizza_boxes == 1:
+		var new_pizzabox = pizzabox_open.instantiate() as PizzaBox
+		new_pizzabox.global_transform = global_transform
+		get_parent().add_child(new_pizzabox)
+		queue_free()
 
 func _on_stack_area_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
@@ -68,6 +79,11 @@ func interact(player: Player) -> void:
 		new_pizzabox.pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)))
 		new_pizzabox.queue_free()
 	if num_pizza_boxes == 0:
+		queue_free()
+	elif num_pizza_boxes == 1:
+		new_pizzabox = pizzabox_open.instantiate() as PizzaBox
+		new_pizzabox.global_transform = global_transform
+		get_parent().add_child(new_pizzabox)
 		queue_free()
 		
 func interact2(player: Player) -> void:

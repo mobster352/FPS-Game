@@ -82,7 +82,7 @@ shadow_mesh = SubResource("ArrayMesh_853ym")
 [sub_resource type="SphereShape3D" id="SphereShape3D_elc2u"]
 radius = 0.9347124
 
-[node name="pizzabox_open" node_paths=PackedStringArray("lid", "pizza_slot", "mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_elc2u")]
+[node name="pizzabox_open" node_paths=PackedStringArray("lid", "pizza_slot", "mesh", "rigid_body", "area", "meshInstanceArray") groups=["thief_target"] instance=ExtResource("1_elc2u")]
 script = ExtResource("2_506v3")
 lid = NodePath("body/pizzabox_open/pizzabox_lid")
 speed = 1.5

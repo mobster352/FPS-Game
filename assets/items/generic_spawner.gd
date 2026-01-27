@@ -1,4 +1,5 @@
 extends ObjectSpawner
+class_name GenericSpawner
 
 func add_object() -> void:
 	var obj = load(mesh_path).instantiate() as Node3D
@@ -23,6 +24,14 @@ func remove_object() -> Item:
 	mesh.add_child(new_node)
 	item.mesh = mesh
 	return new_node
+	
+func thief_remove_object() -> void:
+	if mesh.get_child_count() <= 0:
+		return
+	var node = mesh.get_children().pop_back() as Node3D
+	node.queue_free()
+	object_array.pop_back()
+	item.set_meta("count", object_array.size())
 
 
 func _on_dough_radius_body_entered(body: Node3D) -> void:
