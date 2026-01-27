@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbylqid1806nq"]
+[gd_scene load_steps=8 format=3 uid="uid://dbylqid1806nq"]
 
 [ext_resource type="Script" uid="uid://d0hbgov4fd43j" path="res://environment/level.gd" id="1_vfqff"]
+[ext_resource type="Script" uid="uid://s371qejq0t8l" path="res://scripts/game_state.gd" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
@@ -28,6 +29,15 @@ sun = NodePath("SunPivot/DirectionalLight3D")
 world_environment = NodePath("WorldEnvironment")
 day_length_minutes = 40.0
 level_ui = NodePath("UI")
+
+[node name="GameState" type="Node3D" parent="."]
+script = ExtResource("2_alcuw")
+
+[node name="Timers" type="Node" parent="GameState"]
+
+[node name="ThiefTargetTimer" type="Timer" parent="GameState/Timers"]
+wait_time = 10.0
+one_shot = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vfqff")
@@ -67,6 +77,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 
 [node name="Outside" type="Marker3D" parent="Environment/Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7.686958)
 
+[node name="RestaurantBackDoorMarker" type="Marker3D" parent="Environment/Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9990172, 0, 56.969456)
+
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="UI" type="Control" parent="." node_paths=PackedStringArray("time", "level")]
@@ -93,3 +106,5 @@ grow_horizontal = 0
 [node name="Time" type="Label" parent="UI/MarginContainer"]
 layout_mode = 2
 text = "00:00"
+
+[connection signal="timeout" from="GameState/Timers/ThiefTargetTimer" to="GameState" method="_on_thief_target_timer_timeout"]

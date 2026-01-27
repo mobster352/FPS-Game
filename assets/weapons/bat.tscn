@@ -27,7 +27,7 @@ bone_idx = 0
 
 [node name="Area3D" type="Area3D" parent="Bat Armature/Skeleton3D/BoneAttachment3D" index="0"]
 transform = Transform3D(0.8139585, -0.098344535, -0.57253826, 0.24271517, 0.9529933, 0.18136497, 0.52778876, -0.28658727, 0.7995667, 0, 0, 0)
-collision_mask = 4
+collision_mask = 36
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bat Armature/Skeleton3D/BoneAttachment3D/Area3D" index="0"]
 transform = Transform3D(0.8139584, 0.24271514, 0.5277887, -0.09834455, 0.95299315, -0.2865872, -0.57253814, 0.18136498, 0.7995665, 0, 0, 0)

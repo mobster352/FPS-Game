@@ -16,6 +16,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		call_deferred("update_collider", true)
 		if body.has_method("take_damage"):
 			body.call_deferred("take_damage", 1)
+	elif body.is_in_group("thief"):
+			if body.has_method("hit"):
+				body.call_deferred("hit")
 
 func update_collider(value: bool) -> void:
 	collider.disabled = value

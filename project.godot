@@ -39,6 +39,8 @@ items=""
 player=""
 nav_road=""
 static=""
+thief_target=""
+thief=""
 
 [input]
 

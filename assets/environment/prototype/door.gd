@@ -45,6 +45,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				label.modulate = GREEN
 			if money_required != 0:
 				label.show()
+	elif body.is_in_group("thief"):
+		if not is_open:
+			interact_door = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

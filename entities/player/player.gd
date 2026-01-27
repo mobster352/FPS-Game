@@ -179,6 +179,9 @@ func shoot() -> void:
 			if parent:
 				if parent.has_method("take_damage"):
 					parent.call("take_damage", 1, shape)
+		elif target.is_in_group("thief"):
+			if target.has_method("hit"):
+				target.call_deferred("hit")
 	weapon.shoot_animation()
 
 

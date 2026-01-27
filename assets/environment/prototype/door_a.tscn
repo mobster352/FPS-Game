@@ -20,7 +20,7 @@ number_required = 2
 shape = SubResource("ConcavePolygonShape3D_6yhgu")
 
 [node name="Area3D" type="Area3D" parent="." index="2"]
-collision_mask = 2
+collision_mask = 34
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7252846, 1.4219818, 0.04434204)
