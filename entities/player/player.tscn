@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://br82d65qlha22"]
+[gd_scene format=3 uid="uid://br82d65qlha22"]
 
 [ext_resource type="Script" uid="uid://8y53sjqu8obf" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/skin.tscn" id="1_symyc"]
@@ -21,7 +21,7 @@
 radius = 0.47509766
 height = 2.1817627
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "bat", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer", "inputs_ui") groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=824039100 node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "bat", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer", "inputs_ui") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
@@ -43,11 +43,11 @@ death_timer = NodePath("Timers/DeathTimer")
 hit_timer = NodePath("Timers/HitTimer")
 inputs_ui = NodePath("UI/InputsUI")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=964477817]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0908813, 0)
 shape = SubResource("CapsuleShape3D_sfv1e")
 
-[node name="skin" parent="." node_paths=PackedStringArray("animationTree", "animationPlayer") instance=ExtResource("1_symyc")]
+[node name="skin" parent="." unique_id=1872728600 node_paths=PackedStringArray("animationTree", "animationPlayer") instance=ExtResource("1_symyc")]
 script = ExtResource("3_bectd")
 animationTree = NodePath("PlayerDummy/AnimationTree")
 animationPlayer = NodePath("PlayerDummy/AnimationPlayer")
@@ -61,41 +61,41 @@ visible = false
 [node name="pointer" parent="skin" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.422, 0)
 
-[node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0"]
+[node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0" unique_id=1688731747]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
 cull_mask = 1048573
 current = true
 
-[node name="WeaponSlot" type="Node3D" parent="skin/pointer" index="1"]
+[node name="WeaponSlot" type="Node3D" parent="skin/pointer" index="1" unique_id=694860755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385, -0.473, 0.505)
 
-[node name="Gun_Pistol" parent="skin/pointer/WeaponSlot" node_paths=PackedStringArray("ui") instance=ExtResource("3_26q78")]
+[node name="Gun_Pistol" parent="skin/pointer/WeaponSlot" unique_id=2137792175 node_paths=PackedStringArray("ui") instance=ExtResource("3_26q78")]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999994, 0, 0, 0)
 visible = false
 ui = NodePath("../../../../UI")
 
-[node name="Bat" parent="skin/pointer/WeaponSlot" node_paths=PackedStringArray("ui") instance=ExtResource("5_gx6sm")]
+[node name="Bat" parent="skin/pointer/WeaponSlot" unique_id=1648683519 node_paths=PackedStringArray("ui") instance=ExtResource("5_gx6sm")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0.125)
 visible = false
 ui = NodePath("../../../../UI")
 
-[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2"]
+[node name="ShotRaycast" type="RayCast3D" parent="skin/pointer" index="2" unique_id=1413584411]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 37
 
-[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="3"]
+[node name="ItemRaycast" type="RayCast3D" parent="skin/pointer" index="3" unique_id=366187920]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
 hit_from_inside = true
 
-[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4"]
+[node name="ItemSlot" type="Node3D" parent="skin/pointer" index="4" unique_id=1454555565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]
+[node name="UI" type="Control" parent="." unique_id=1470936331 node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +110,7 @@ damage_overlay = NodePath("DamageOverlay")
 money_label = NodePath("MarginContainer3/Money")
 hp = NodePath("HP")
 
-[node name="ReticleMarginContainer" type="MarginContainer" parent="UI"]
+[node name="ReticleMarginContainer" type="MarginContainer" parent="UI" unique_id=556735865]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -124,10 +124,10 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer"]
+[node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer" unique_id=580176228]
 layout_mode = 2
 
-[node name="AmmoMarginContainer" type="MarginContainer" parent="UI"]
+[node name="AmmoMarginContainer" type="MarginContainer" parent="UI" unique_id=229122559]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -143,7 +143,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="AmmoLabel" type="RichTextLabel" parent="UI/AmmoMarginContainer"]
+[node name="AmmoLabel" type="RichTextLabel" parent="UI/AmmoMarginContainer" unique_id=1261747841]
 visible = false
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -151,14 +151,14 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 text = "10 / 10"
 
-[node name="HP" type="Control" parent="UI"]
+[node name="HP" type="Control" parent="UI" unique_id=1957109358]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/HP"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/HP" unique_id=501393532]
 layout_mode = 1
 offset_right = 74.0
 offset_bottom = 26.0
@@ -168,7 +168,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HpBar" type="TextureProgressBar" parent="UI/HP/MarginContainer"]
+[node name="HpBar" type="TextureProgressBar" parent="UI/HP/MarginContainer" unique_id=762876928]
 layout_mode = 2
 max_value = 10.0
 value = 10.0
@@ -176,7 +176,7 @@ texture_over = ExtResource("7_wvtmh")
 texture_progress = ExtResource("8_7thud")
 texture_progress_offset = Vector2(16, 4.5)
 
-[node name="MarginContainer2" type="MarginContainer" parent="UI/HP"]
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HP" unique_id=1886178344]
 layout_mode = 1
 offset_right = 26.0
 offset_bottom = 26.0
@@ -186,11 +186,11 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Heart" type="TextureRect" parent="UI/HP/MarginContainer2"]
+[node name="Heart" type="TextureRect" parent="UI/HP/MarginContainer2" unique_id=1637491345]
 layout_mode = 2
 texture = ExtResource("6_8fjmc")
 
-[node name="DamageOverlay" type="ColorRect" parent="UI"]
+[node name="DamageOverlay" type="ColorRect" parent="UI" unique_id=775486950]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -200,7 +200,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0)
 
-[node name="MarginContainer3" type="MarginContainer" parent="UI"]
+[node name="MarginContainer3" type="MarginContainer" parent="UI" unique_id=269608059]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.92100006
@@ -213,7 +213,7 @@ offset_bottom = 0.055999756
 grow_horizontal = 0
 theme_override_constants/margin_right = 10
 
-[node name="Money" type="RichTextLabel" parent="UI/MarginContainer3"]
+[node name="Money" type="RichTextLabel" parent="UI/MarginContainer3" unique_id=368677391]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.07058824, 1, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -221,7 +221,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 25
 text = "0"
 
-[node name="MarginContainer4" type="MarginContainer" parent="UI"]
+[node name="MarginContainer4" type="MarginContainer" parent="UI" unique_id=897358081]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.90800005
@@ -234,49 +234,49 @@ offset_right = 80.31201
 offset_bottom = 138.776
 scale = Vector2(0.14, 0.14)
 
-[node name="DollarSign" type="TextureRect" parent="UI/MarginContainer4"]
+[node name="DollarSign" type="TextureRect" parent="UI/MarginContainer4" unique_id=267445184]
 layout_mode = 2
 texture = ExtResource("10_a1qjk")
 
-[node name="GameOver" parent="UI" instance=ExtResource("11_7thud")]
+[node name="GameOver" parent="UI" unique_id=1814045132 instance=ExtResource("11_7thud")]
 visible = false
 layout_mode = 1
 mouse_filter = 1
 
-[node name="PauseMenu" parent="UI" node_paths=PackedStringArray("options_menu", "controls_menu") instance=ExtResource("10_wvtmh")]
+[node name="PauseMenu" parent="UI" unique_id=499671460 node_paths=PackedStringArray("options_menu", "controls_menu") instance=ExtResource("10_wvtmh")]
 visible = false
 layout_mode = 1
 options_menu = NodePath("../OptionsMenu")
 controls_menu = NodePath("../ControlsMenu")
 
-[node name="OptionsMenu" parent="UI" node_paths=PackedStringArray("pause_menu") instance=ExtResource("13_j3ovn")]
+[node name="OptionsMenu" parent="UI" unique_id=350956024 node_paths=PackedStringArray("pause_menu") instance=ExtResource("13_j3ovn")]
 visible = false
 layout_mode = 1
 pause_menu = NodePath("../PauseMenu")
 
-[node name="ControlsMenu" parent="UI" node_paths=PackedStringArray("pause_menu") instance=ExtResource("14_afbqv")]
+[node name="ControlsMenu" parent="UI" unique_id=426058382 node_paths=PackedStringArray("pause_menu") instance=ExtResource("14_afbqv")]
 process_mode = 2
 visible = false
 layout_mode = 1
 pause_menu = NodePath("../PauseMenu")
 
-[node name="Tutorial" parent="UI" instance=ExtResource("15_gx6sm")]
+[node name="Tutorial" parent="UI" unique_id=1635793468 instance=ExtResource("15_gx6sm")]
 layout_mode = 1
 
-[node name="InputsUI" parent="UI" instance=ExtResource("16_yqrof")]
+[node name="InputsUI" parent="UI" unique_id=39802484 instance=ExtResource("16_yqrof")]
 layout_mode = 1
 
-[node name="Timers" type="Node" parent="."]
+[node name="Timers" type="Node" parent="." unique_id=687692606]
 
-[node name="ShotTimer" type="Timer" parent="Timers"]
+[node name="ShotTimer" type="Timer" parent="Timers" unique_id=1447872324]
 wait_time = 0.25
 one_shot = true
 
-[node name="DeathTimer" type="Timer" parent="Timers"]
+[node name="DeathTimer" type="Timer" parent="Timers" unique_id=673376652]
 wait_time = 5.0
 one_shot = true
 
-[node name="HitTimer" type="Timer" parent="Timers"]
+[node name="HitTimer" type="Timer" parent="Timers" unique_id=1541693486]
 wait_time = 2.0
 
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]

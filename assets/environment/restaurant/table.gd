@@ -11,6 +11,7 @@ class_name Table
 @export var pointer: Node3D
 
 @onready var player: Player
+var player_in_range:bool
 
 var food_item: Item
 var money: int
@@ -76,3 +77,13 @@ func _pickup_food(food_id:int) -> void:
 func _drop_food(food_id:int) -> void:
 	if menu.food_id and menu.food_id == food_id:
 		pointer.hide()
+
+
+func _on_detection_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = true
+
+
+func _on_detection_area_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = false

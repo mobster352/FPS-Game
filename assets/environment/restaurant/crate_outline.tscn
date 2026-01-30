@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bgb0ai3o1lbah"]
+[gd_scene format=4 uid="uid://bgb0ai3o1lbah"]
 
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="1_2y11q"]
 
@@ -45,15 +45,15 @@ shadow_mesh = SubResource("ArrayMesh_lqyot")
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc8w3"]
 size = Vector3(1, 0.40977478, 1)
 
-[node name="crate_outline" type="Node3D"]
+[node name="crate_outline" type="Node3D" unique_id=1876828673]
 
-[node name="crate" type="MeshInstance3D" parent="."]
+[node name="crate" type="MeshInstance3D" parent="." unique_id=521510158]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_nc8w3")
 mesh = SubResource("ArrayMesh_748tt")
 skeleton = NodePath("")
 metadata/name = &"crate_mesh"
 
-[node name="collider" type="CollisionShape3D" parent="."]
+[node name="collider" type="CollisionShape3D" parent="." unique_id=453889096]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19464874, 0)
 shape = SubResource("BoxShape3D_nc8w3")

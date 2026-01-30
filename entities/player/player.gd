@@ -39,6 +39,7 @@ var weapon: Weapon
 @export var hit_timer: Timer
 
 @export var inputs_ui: InputsUI
+@export var placement_system: PlacementSystem
 
 var invert := -1
 
@@ -204,6 +205,10 @@ func _process_rayCast() -> void:
 	if weapon:
 		_handle_weapon_raycast(target)
 	else:
+		if placement_system:
+			if placement_system.toggle_build:
+				_handle_build_raycast(target)
+				return
 		_handle_item_raycast(target)
 
 
@@ -223,7 +228,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 			if is_placing:
 				if preview_instance:
 					update_preview()
-					inputs_ui.update_actions.emit(inputs_ui.InputAction.Place)
+					inputs_ui.update_actions.emit(inputs_ui.InputAction.Confirm)
 				if interact:
 					var is_placed = confirm_placement()
 					if is_placed:
@@ -237,7 +242,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 			else:
 				if interact and not target.has_node("Interactable"):
 					start_placement()
-					inputs_ui.update_actions.emit(inputs_ui.InputAction.Place)
+					inputs_ui.update_actions.emit(inputs_ui.InputAction.Confirm)
 					is_placing = true
 				else:
 					if item.has_meta("pizzaboxes"):
@@ -274,6 +279,20 @@ func _handle_item_raycast(target: Node3D) -> void:
 			if cook_input:
 				cookable.cook(self)
 
+func _handle_build_raycast(target: Node3D) -> void:
+	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object())
+	
+	var movable := target as Movable
+	if not movable:
+		movable = target.get_parent() as Movable
+	if not movable and target.has_node("Movable"):
+		movable = target.get_node("Movable") as Movable
+	
+	if movable:
+		if movable.can_move():
+			inputs_ui.update_actions.emit(inputs_ui.InputAction.PreMove)
+			if interact:
+				movable.move()
 
 func _process_draw_weapon() -> void:
 	if Input.is_action_just_pressed("draw_weapon_1") and has_bat:

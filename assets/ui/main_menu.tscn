@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdjhxs02iqaue"]
+[gd_scene format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
@@ -13,7 +13,7 @@ font_size = 88
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("menu_audio")]
+[node name="MainMenu" type="Control" unique_id=325520252 node_paths=PackedStringArray("menu_audio")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 script = ExtResource("1_pdggx")
 menu_audio = NodePath("Audio/MenuAudio")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1966743911]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -34,13 +34,13 @@ offset_right = 144.0
 offset_bottom = 144.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="MarginContainer2"]
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=775572840]
 layout_mode = 2
 text = "Pizza Boy"
 label_settings = SubResource("LabelSettings_82vaf")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1224771542]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,19 +54,19 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+[node name="TextureButton" type="TextureButton" parent="MarginContainer" unique_id=712795814]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1581102096]
 layout_mode = 2
 text = "New Game"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1637598793]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -81,19 +81,19 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer3"]
+[node name="TextureButton" type="TextureButton" parent="MarginContainer3" unique_id=224160048]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer3"]
+[node name="Label" type="Label" parent="MarginContainer3" unique_id=561211431]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="."]
+[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=169590552]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,32 +107,32 @@ offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer4"]
+[node name="TextureButton" type="TextureButton" parent="MarginContainer4" unique_id=86759321]
 layout_mode = 2
 texture_normal = ExtResource("6_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer4"]
+[node name="Label" type="Label" parent="MarginContainer4" unique_id=1177831239]
 layout_mode = 2
 text = "Quit"
 horizontal_alignment = 1
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=981416684]
 
-[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio"]
+[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio" unique_id=964640594]
 stream = ExtResource("5_82vaf")
 volume_db = -5.0
 
-[node name="Level" parent="." instance=ExtResource("6_7la27")]
+[node name="Level" parent="." unique_id=1414784817 instance=ExtResource("6_7la27")]
 start_time = 12.0
 can_advance_time = false
 show_clock = false
 
-[node name="Restaurant" parent="Level" instance=ExtResource("6_pdggx")]
+[node name="Restaurant" parent="Level" unique_id=1993302886 instance=ExtResource("6_pdggx")]
 
-[node name="Camera3D" type="Camera3D" parent="Level/Restaurant"]
+[node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=975023757]
 transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
 [connection signal="mouse_entered" from="MarginContainer/TextureButton" to="." method="_on_texture_button_mouse_entered"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbylqid1806nq"]
+[gd_scene format=3 uid="uid://dbylqid1806nq"]
 
 [ext_resource type="Script" uid="uid://d0hbgov4fd43j" path="res://environment/level.gd" id="1_vfqff"]
 [ext_resource type="Script" uid="uid://s371qejq0t8l" path="res://scripts/game_state.gd" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
+[ext_resource type="PackedScene" uid="uid://diebiq40t0g7k" path="res://components/placement_system.tscn" id="3_3dj58"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,7 +22,7 @@ glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
+[node name="Level" type="Node3D" unique_id=1263719789 node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
 process_mode = 1
 script = ExtResource("1_vfqff")
 sun_pivot = NodePath("SunPivot")
@@ -30,59 +31,55 @@ world_environment = NodePath("WorldEnvironment")
 day_length_minutes = 40.0
 level_ui = NodePath("UI")
 
-[node name="GameState" type="Node3D" parent="."]
+[node name="GameState" type="Node3D" parent="." unique_id=631987869]
 script = ExtResource("2_alcuw")
 
-[node name="Timers" type="Node" parent="GameState"]
-
-[node name="ThiefTargetTimer" type="Timer" parent="GameState/Timers"]
-wait_time = 10.0
-one_shot = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=237411449]
 environment = SubResource("Environment_vfqff")
 
-[node name="SunPivot" type="Node3D" parent="."]
+[node name="SunPivot" type="Node3D" parent="." unique_id=938495831]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot" unique_id=1894946694]
 shadow_enabled = true
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="." unique_id=2027113216]
 
-[node name="World" type="StaticBody3D" parent="Environment"]
+[node name="World" type="StaticBody3D" parent="Environment" unique_id=205505386]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/World"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/World" unique_id=1756685004]
 shape = SubResource("WorldBoundaryShape3D_xafjm")
 
-[node name="Ceiling" type="Node3D" parent="Environment"]
+[node name="Ceiling" type="Node3D" parent="Environment" unique_id=298405826]
 
-[node name="Floor" type="Node3D" parent="Environment"]
+[node name="Floor" type="Node3D" parent="Environment" unique_id=1243817630]
 
-[node name="Walls" type="Node3D" parent="Environment"]
+[node name="Walls" type="Node3D" parent="Environment" unique_id=1422522060]
 
-[node name="Items" type="Node3D" parent="Environment"]
+[node name="Items" type="Node3D" parent="Environment" unique_id=1420774779]
 
-[node name="Decoration" type="Node3D" parent="Environment"]
+[node name="Decoration" type="Node3D" parent="Environment" unique_id=1405859375]
 
-[node name="Buildings" type="Node3D" parent="Environment"]
+[node name="Buildings" type="Node3D" parent="Environment" unique_id=1328818616]
 
-[node name="Markers" type="Node3D" parent="Environment"]
+[node name="Markers" type="Node3D" parent="Environment" unique_id=1146535934]
 
-[node name="RestaurantMarker" type="Marker3D" parent="Environment/Markers"]
+[node name="RestaurantMarker" type="Marker3D" parent="Environment/Markers" unique_id=805240976]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.9694822, 4.7683716e-07, 4.782513)
 
-[node name="Queue" type="Marker3D" parent="Environment/Markers"]
+[node name="Queue" type="Marker3D" parent="Environment/Markers" unique_id=1301580175]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -0.3666215)
 
-[node name="Outside" type="Marker3D" parent="Environment/Markers"]
+[node name="Outside" type="Marker3D" parent="Environment/Markers" unique_id=1681914478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7.686958)
 
-[node name="RestaurantBackDoorMarker" type="Marker3D" parent="Environment/Markers"]
+[node name="RestaurantBackDoorMarker" type="Marker3D" parent="Environment/Markers" unique_id=1532701036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9990172, 0, 56.969456)
 
-[node name="Entities" type="Node3D" parent="."]
+[node name="Entities" type="Node3D" parent="." unique_id=1326860625]
 
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("time", "level")]
+[node name="PlacementSystem" parent="." unique_id=1020658662 instance=ExtResource("3_3dj58")]
+
+[node name="UI" type="Control" parent="." unique_id=1491319236 node_paths=PackedStringArray("time", "level")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,7 +91,7 @@ script = ExtResource("2_vfqff")
 time = NodePath("MarginContainer/Time")
 level = NodePath("..")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1208701440]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -103,8 +100,6 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="Time" type="Label" parent="UI/MarginContainer"]
+[node name="Time" type="Label" parent="UI/MarginContainer" unique_id=1962452591]
 layout_mode = 2
 text = "00:00"
-
-[connection signal="timeout" from="GameState/Timers/ThiefTargetTimer" to="GameState" method="_on_thief_target_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cx648bisbnt5"]
+[gd_scene format=3 uid="uid://cx648bisbnt5"]
 
 [ext_resource type="PackedScene" uid="uid://dn67wskbummsf" path="res://assets/kaykit/restaurant/table_round_A.gltf" id="1_t2akc"]
 [ext_resource type="Script" uid="uid://crv6lttieia1l" path="res://assets/environment/restaurant/table.gd" id="2_dqk40"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkiofm17g8u20" path="res://assets/environment/restaurant/menu.tscn" id="3_go8x5"]
 [ext_resource type="PackedScene" uid="uid://68jcexu6pnr4" path="res://assets/environment/misc/chair_a.tscn" id="5_vppnb"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="6_nm6bs"]
+[ext_resource type="Script" uid="uid://b0thq6a71cmly" path="res://assets/items/table_movable.gd" id="7_jetc7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqk40"]
 albedo_texture = ExtResource("2_go8x5")
@@ -16,7 +17,10 @@ data = PackedVector3Array(-0.7122, 0.05, 0.4758, -0.8401, 0, 0.1671, -0.8401, 0.
 [sub_resource type="SphereShape3D" id="SphereShape3D_vppnb"]
 radius = 1.1609389
 
-[node name="table_round_A2" node_paths=PackedStringArray("menu", "area_col", "plate_timer", "chair", "pointer") instance=ExtResource("1_t2akc")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_nm6bs"]
+radius = 2.992662
+
+[node name="table_round_A2" unique_id=1092467235 node_paths=PackedStringArray("menu", "area_col", "plate_timer", "chair", "pointer") groups=["placement"] instance=ExtResource("1_t2akc")]
 script = ExtResource("2_dqk40")
 menu = NodePath("menu")
 area_col = NodePath("Area3D/CollisionShape3D")
@@ -28,36 +32,50 @@ metadata/table_id = 0
 [node name="table_round_A" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_dqk40")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="table_round_A" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="table_round_A" index="0" unique_id=1502430378]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="table_round_A/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table_round_A/StaticBody3D" index="0" unique_id=267958717]
 shape = SubResource("ConcavePolygonShape3D_t2akc")
 
-[node name="menu" parent="." index="1" instance=ExtResource("3_go8x5")]
+[node name="Movable" type="Node3D" parent="table_round_A/StaticBody3D" index="1" unique_id=426453877 node_paths=PackedStringArray("table")]
+script = ExtResource("7_jetc7")
+table = NodePath("../../..")
+
+[node name="menu" parent="." index="1" unique_id=1469044281 instance=ExtResource("3_go8x5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0000001, 0)
 
-[node name="Area3D" type="Area3D" parent="." index="2"]
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=1166234754]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=279967819]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_vppnb")
 
-[node name="Timers" type="Node" parent="." index="3"]
+[node name="Timers" type="Node" parent="." index="3" unique_id=2042729880]
 
-[node name="PlateTimer" type="Timer" parent="Timers" index="0"]
+[node name="PlateTimer" type="Timer" parent="Timers" index="0" unique_id=229576455]
 wait_time = 5.0
 one_shot = true
 
-[node name="chair_A" parent="." index="4" instance=ExtResource("5_vppnb")]
+[node name="chair_A" parent="." index="4" unique_id=1005578403 groups=["placement"] instance=ExtResource("5_vppnb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04193735, -0.0018999577, 2.527521)
 
-[node name="Pointer" parent="." index="5" instance=ExtResource("6_nm6bs")]
+[node name="Pointer" parent="." index="5" unique_id=863046925 instance=ExtResource("6_nm6bs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0977116, 0)
 visible = false
 
+[node name="DetectionArea" type="Area3D" parent="." index="6" unique_id=537601530]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" index="0" unique_id=953111010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_nm6bs")
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timers/PlateTimer" to="." method="_on_plate_timer_timeout"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 
 [editable path="chair_A"]

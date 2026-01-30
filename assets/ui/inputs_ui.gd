@@ -16,7 +16,9 @@ enum InputAction {
 	OpenLid,
 	Place,
 	PrePlacement,
-	OnlyPlacement
+	OnlyPlacement,
+	PreMove,
+	Confirm
 }
 
 
@@ -33,12 +35,14 @@ func _update_actions(input_action:InputAction, has_held_object:bool = false, has
 			cook(has_held_object)
 		InputAction.OpenLid:
 			open_lid(has_held_object)
-		InputAction.Place:
-			place()
 		InputAction.PrePlacement:
 			pre_placement()
 		InputAction.OnlyPlacement:
 			only_placement()
+		InputAction.PreMove:
+			pre_move()
+		InputAction.Confirm:
+			confirm()
 		_:
 			default(has_held_object)
 	
@@ -103,7 +107,7 @@ func open_lid(has_held_object:bool) -> void:
 		right_input.hide()
 	
 	
-func place() -> void:
+func confirm() -> void:
 	cook_input.hide()
 	left_input.action = ActionInput.Action.Confirm
 	left_input.show()
@@ -120,6 +124,12 @@ func only_placement() -> void:
 	left_input.action = ActionInput.Action.Place
 	left_input.show()
 	right_input.hide()
+	
+func pre_move() -> void:
+	left_input.action = ActionInput.Action.Move
+	left_input.show()
+	right_input.hide()
+
 
 func default(has_held_object:bool) -> void:
 	cook_input.hide()

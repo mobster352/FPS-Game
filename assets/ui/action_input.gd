@@ -20,7 +20,8 @@ enum Action {
 	Cook,
 	OpenLid,
 	Confirm,
-	Cancel
+	Cancel,
+	Move
 }
 
 func _ready() -> void:
@@ -46,5 +47,7 @@ func get_text_from_action() -> StringName:
 		return "Confirm"
 	elif action == Action.Cancel:
 		return "Cancel"
+	elif action == Action.Move:
+		return "Move"
 	else:
 		return "N/A"

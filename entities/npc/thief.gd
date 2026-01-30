@@ -7,12 +7,12 @@ class_name Thief
 @onready var thief_skin: ThiefSkin
 @onready var navigation_agent: ThiefNavigationAgent
 @onready var walk_timer: Timer
+@onready var steal_timer: Timer
 @onready var item_slot: Node3D
 
 var navigation_target: Node
 var next_target: Node3D
 var has_item:bool = false
-var target_is_item:bool = false
 
 enum ThiefState {
 	None,
@@ -29,6 +29,7 @@ func _ready() -> void:
 	thief_skin = $Rig
 	navigation_agent = $NavigationAgent3D
 	walk_timer = $Timers/WalkTimer
+	steal_timer = $Timers/StealTimer
 	item_slot = $ItemSlot
 	current_state = ThiefState.Idle
 	next_state = ThiefState.None
@@ -56,7 +57,7 @@ func idle() -> void:
 
 func walk(delta:float) -> void:
 	if navigation_agent.is_navigation_finished():
-		if navigation_target and target_is_item:
+		if navigation_target:
 			if navigation_target is Item and not navigation_target.is_queued_for_deletion():
 				var item = navigation_target as Item
 				if item.has_meta("count"):
@@ -140,11 +141,10 @@ func _on_walk_timer_timeout() -> void:
 			next_target = null
 		else:
 			navigation_agent.set_random_target()
+			if not steal_timer.time_left:
+				steal_timer.wait_time = get_random_time()
+				steal_timer.start()
 
-func set_thief_target(target:Node3D, is_item:bool) -> void:
-	if not next_target:
-		next_target = target
-		target_is_item = is_item
 
 func hit() -> void:
 	if has_item:
@@ -160,5 +160,16 @@ func hit() -> void:
 				get_parent().add_child(item)
 				item.global_transform = held_item.global_transform
 				held_item.queue_free()
+			thief_skin.hit_animation()
 		has_item = false
-		next_state = ThiefState.Idle
+		current_state = ThiefState.Idle
+
+func get_random_time() -> float:
+	return randi_range(20, 40)
+
+
+func _on_steal_timer_timeout() -> void:
+	if not next_target:
+		var target = game_state.get_target(navigation_target, has_item)
+		if target:
+			next_target = target
