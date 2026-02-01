@@ -31,6 +31,7 @@ BackgroundMusic="*res://scripts/background_music.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [global_group]
@@ -43,6 +44,7 @@ static=""
 thief_target=""
 thief=""
 placement=""
+placement_system=""
 
 [input]
 
@@ -128,10 +130,10 @@ build={
 3d_physics/layer_5="Detection"
 3d_physics/layer_6="Customer"
 3d_physics/layer_7="Static"
+3d_physics/layer_8="Movable"
 
 [physics]
 
 common/physics_ticks_per_second=120
 common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
-common/physics_interpolation=true

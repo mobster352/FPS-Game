@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://da55hwcky2dj6"]
+[gd_scene format=3 uid="uid://da55hwcky2dj6"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_i6x27"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_t7ys6"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_t7ys6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
-rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i6x27"]
 size = Vector3(1, 0.30718994, 1)
 
-[node name="Mushroom_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
+[node name="Mushroom_Slice_Plate_Item" unique_id=2073244963 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_i6x27")]
 mesh = NodePath("body/mushroom_slice_plate/plate/plate")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -28,12 +27,12 @@ physics_material_override = SubResource("PhysicsMaterial_glgut")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15501976, 0.039966583)
 shape = SubResource("BoxShape3D_i6x27")
 
-[node name="mushroom_slice_plate" parent="body" index="1" instance=ExtResource("3_i6x27")]
+[node name="mushroom_slice_plate" parent="body" index="1" unique_id=1042997450 instance=ExtResource("3_i6x27")]
 
 [node name="plate" parent="body/mushroom_slice_plate/plate" index="0"]
 metadata/name = &"mushroom_slice_plate_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=2134944786 node_paths=PackedStringArray("item")]
 script = ExtResource("4_t7ys6")
 item = NodePath("../..")
 

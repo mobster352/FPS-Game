@@ -16,12 +16,12 @@ func get_random_time() -> float:
 func get_target(navigation_target:Node, has_item:bool) -> Node:
 	thief_targets = get_tree().get_nodes_in_group("thief_target")
 	if not thief_targets:
-		return
+		return null
 	if navigation_target or has_item:
-		return
+		return null
 	else:
 		var target = thief_targets.pick_random()
 		if navigation_target is GenericSpawner:
 			if navigation_target.mesh.get_child_count() <= 0:
-				return # failed to get target
+				return null # failed to get target
 		return target

@@ -10,7 +10,9 @@ class_name Table
 @export var npc: NPC_Dummy
 @export var pointer: Node3D
 
+@onready var placement_system: PlacementSystem
 @onready var player: Player
+
 var player_in_range:bool
 
 var food_item: Item
@@ -19,10 +21,27 @@ var table_id: int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.pickup_food.connect(_pickup_food)
 	GlobalSignal.drop_food.connect(_drop_food)
-	table_id = get_meta("table_id")
+	GlobalSignal.send_table_id.connect(_send_table_id)
+	GlobalSignal.add_table.emit(self)
+	placement_system = get_tree().get_first_node_in_group("placement_system")
+
+
+func _init_restaurant(_restaurant: Restaurant) -> void:
+	GlobalSignal.add_table.emit(self)
+
+
+func _send_table_id(table: Table, _table_id: int) -> void:
+	if table == self:
+		table_id = _table_id
+		set_meta("table_id", _table_id)
+
+
+func _exit_tree() -> void:
+	GlobalSignal.remove_table.emit(self)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var obj = body.get_parent()

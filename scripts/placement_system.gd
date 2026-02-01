@@ -1,6 +1,8 @@
 extends Node3D
 class_name PlacementSystem
 
+signal setup_object_preview(uuid: StringName, original_obj: Node3D, new_obj_path: StringName)
+
 @export var camera: Camera3D
 @export var max_distance := 5.0
 @export var player: Player
@@ -9,26 +11,46 @@ class_name PlacementSystem
 var toggle_build:bool = false
 var objects:Array[Node]
 
-var place_scene: PackedScene
 var preview_instance: Node3D
-var can_place := false
-var place_scene_item_type: GlobalVar.StoreItem
-var item_shape: Shape3D
 var place_scene_path: StringName
-var item_type: GlobalVar.StoreItem
+var original_obj: Node3D
+
+var place_scene: PackedScene
+var can_place := false
+var item_shape: Shape3D
 var is_placing := false
 
 func _ready() -> void:
 	objects = get_tree().get_nodes_in_group("placement")
+	setup_object_preview.connect(_setup_object_preview)
 
 func _process(_delta: float) -> void:
 	var build_input = Input.is_action_just_pressed("build")
+	var interact = Input.is_action_just_pressed("interact")
+	var drop_input = Input.is_action_just_pressed("drop")
 	if build_input:
 		toggle_build = not toggle_build
-	for o in objects:
-		for mesh in o.get_children():
-			if mesh is MeshInstance3D:
-				_toggle_build_highlight(mesh.get_active_material(0))
+	if toggle_build and preview_instance:
+		update_preview()
+		if is_placing:
+			if interact:
+				var is_placed = await confirm_placement()
+				if is_placed:
+					interact = false
+					is_placing = false
+			if drop_input:
+				cancel_placement()
+				drop_input = false
+				is_placing = false
+		else:
+			is_placing = true
+	else:
+		for o in objects:
+			if o:
+				for mesh in o.get_children():
+					if mesh is MeshInstance3D:
+						_toggle_build_highlight(mesh.get_active_material(0))
+
 
 func _toggle_build_highlight(material: StandardMaterial3D) -> void:
 	if toggle_build:
@@ -38,20 +60,22 @@ func _toggle_build_highlight(material: StandardMaterial3D) -> void:
 		material.transparency = BaseMaterial3D.TRANSPARENCY_DISABLED
 		material.albedo_color = Color(1,1,1)
 
-func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, _item_type: GlobalVar.StoreItem) -> void:
+
+func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path: StringName) -> void:
 	if preview_instance:
 		return
-
-	preview_instance = preview_scene.instantiate()
-	place_scene_path = _place_scene_path
-	item_type = _item_type
+	preview_instance = load(uuid).instantiate()
+	original_obj = _original_obj
+	place_scene_path = new_obj_path
+	start_placement()
 
 
 func start_placement():
 	get_tree().current_scene.add_child(preview_instance)
 	
 	place_scene = load(place_scene_path)
-	place_scene_item_type = item_type
+	
+	assert(preview_instance.has_node("collider"), "Preview Instance does not have a collider")
 	
 	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
 	item_shape = collision_shape_preview_instance.shape
@@ -85,10 +109,9 @@ func update_preview():
 	var intersect_query = PhysicsShapeQueryParameters3D.new()
 	intersect_query.transform = preview_instance.transform
 	intersect_query.shape = item_shape
-	intersect_query.collision_mask =  (1 << 4 - 1) | (1 << 6 - 1)
+	intersect_query.collision_mask =  (1 << 8 - 1)
 
 	var intersect_hit = space_state.get_rest_info(intersect_query)
-	#print(intersect_hit)
 
 	if down_hit and down_hit.position.y < 4.0:
 		if intersect_hit:
@@ -104,59 +127,31 @@ func update_preview():
 
 
 func confirm_placement() -> bool:
-	if not can_place or not preview_instance or not player.has_held_object():
+	if not can_place or not preview_instance:
 		return false
 
 	var instance = place_scene.instantiate()
-	if instance.has_node("body/Interactable"):
-		var interactable = instance.get_node("body/Interactable")
-		if interactable is ObjectSpawner:
-			interactable.item_type = place_scene_item_type
-
-	var child_mesh = player.item_slot.get_child(0)
-	if child_mesh:
-		if child_mesh.has_meta("count"):
-			instance.set_meta("count", child_mesh.get_meta("count"))
-
-		if child_mesh.has_meta("food_id"):
-				instance.set_meta("food_id", child_mesh.get_meta("food_id"))
-				instance.mesh.set_meta("food_id", child_mesh.get_meta("food_id"))
-		
-		if child_mesh.has_meta("pizza"):
-			instance.mesh.set_meta("pizza", child_mesh.get_meta("pizza"))
-		
-	if instance.has_meta("food_id"):
-		var food_id = instance.get_meta("food_id")
-		if food_id:
-			GlobalSignal.drop_food.emit(food_id)
-			GlobalSignal.check_restaurant_food.emit(food_id)
-	elif instance.has_meta("plate_dirty"):
-		instance.pointer.show()
-		GlobalSignal.toggle_pointer.emit("sink", false)
-			
+	
+	var original_obj_parent = original_obj.get_parent()
+	original_obj.queue_free()
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	original_obj_parent.add_child(instance)
+	
 	instance.global_transform = preview_instance.global_transform
 	
-	if instance is PizzaBoxStack:
-		instance.num_pizza_boxes = preview_instance.num_pizza_boxes
+	objects = get_tree().get_nodes_in_group("placement")
 	
-	get_tree().current_scene.add_child(instance)
-
-	cancel_placement(true)
+	cancel_placement()
 	return true
 
 
-func cancel_placement(remove_held_obj: bool):
+func cancel_placement():
 	if preview_instance:
 		preview_instance.queue_free()
 		preview_instance = null
-		place_scene_item_type = GlobalVar.StoreItem.None
-		if player.has_held_object() and remove_held_obj:
-			var child_mesh = player.item_slot.get_child(0)
-			if child_mesh:
-				player.item_slot.remove_child(child_mesh)
-				child_mesh.queue_free()
 		place_scene_path = ""
-		item_type = GlobalVar.StoreItem.None
 
 
 func _make_preview_material(root: Node):
@@ -179,17 +174,10 @@ func _update_preview_color(valid: bool):
 	for child in preview_instance.find_children("*", "MeshInstance3D", true):
 		if child is MeshInstance3D:
 			child.material_override.albedo_color = color
-			
-	if preview_instance is PizzaBoxStack:
-		for m in preview_instance.pizza_boxes.get_children():
-			if m.get_child_count() > 0:
-				if m.get_child(0) is MeshInstance3D:
-					var n = m.get_child(0) as MeshInstance3D
-					n.material_override = StandardMaterial3D.new()
-					n.material_override.albedo_color = color
-			for c in m.get_children():
-				if c.get_child_count() > 0:
-					if c.get_child(0) is MeshInstance3D:
-						var n = c.get_child(0) as MeshInstance3D
-						n.material_override = StandardMaterial3D.new()
-						n.material_override.albedo_color = color
+
+
+func print_objects() -> void:
+	print("---------")
+	for o in objects:
+		print(o)
+	print("---------")

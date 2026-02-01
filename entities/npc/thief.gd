@@ -159,6 +159,7 @@ func hit() -> void:
 						item.set_meta("count", held_item.get_meta("count"))
 				get_parent().add_child(item)
 				item.global_transform = held_item.global_transform
+				item.scale = Vector3(1,1,1)
 				held_item.queue_free()
 			thief_skin.hit_animation()
 		has_item = false
@@ -169,6 +170,8 @@ func get_random_time() -> float:
 
 
 func _on_steal_timer_timeout() -> void:
+	if not is_instance_valid(navigation_target):
+		navigation_target = null
 	if not next_target:
 		var target = game_state.get_target(navigation_target, has_item)
 		if target:

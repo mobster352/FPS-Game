@@ -10,6 +10,9 @@ class_name NPC_Dummy
 
 @onready var dummy = $Dummy
 @export var level_ui: Level_UI
+@export var walk_in_store_odds := 16
+
+@onready var initial_parent = get_parent()
 
 var target: Marker3D
 var table: Table
@@ -29,58 +32,61 @@ func _navigation_server_map_changed(_map_rid: RID) -> void:
 		target = start_target
 	if navigation_agent.get_navigation_map() and target:
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	else:
+		navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
 
 func _physics_process(delta: float) -> void:
 	if not navigation_ready:
 		return
-	var destination = navigation_agent.get_next_path_position()
-	if global_position.distance_to(destination) > 0.0:
+	
+	if not navigation_agent.is_navigation_finished():
+		var destination = navigation_agent.get_next_path_position()
 		var local_destination = destination - global_position
 		var direction = local_destination.normalized()
-		if global_position.distance_to(navigation_agent.get_final_position()) > navigation_agent.target_desired_distance:
-			var new_velocity = direction * speed
-			if test_move(transform, new_velocity) and (target == GlobalMarker.queue_marker):
-				dummy.idle_animation()
-			else:
-				look_at_target(destination, delta)
-				dummy.walk_animation()
-				if navigation_agent.avoidance_enabled:
-					navigation_agent.velocity = new_velocity
-				else:
-					_on_navigation_agent_3d_velocity_computed(new_velocity)
+		var new_velocity = direction * speed
+		if test_move(transform, new_velocity) and (target == GlobalMarker.queue_marker):
+			dummy.idle_animation()
 		else:
-			velocity = Vector3.ZERO
-			if target:
-				if target == GlobalMarker.queue_marker and area_col.disabled:
-					area_col.disabled = false
-					pointer.show()
-				if table and not sitting:
-					rotate_to_target(target.rotation)
-					dummy.sit_chair_animation()
-					sitting = true
-				if not sitting:
-					dummy.idle_animation()
-				if target == GlobalMarker.outside_marker:
-					navigation_agent.set_navigation_layer_value(1,true)
-					navigation_agent.set_navigation_layer_value(2,false)
-					navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))
-					target = null
-					#set_collision_mask_value(6, false)
-				elif target == GlobalMarker.restaurant_marker:
-					navigation_agent.set_navigation_layer_value(1,false)
-					navigation_agent.set_navigation_layer_value(2,true)
-					target = GlobalMarker.queue_marker
-					#set_collision_mask_value(6, true)
-					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+			look_at_target(destination, delta)
+			dummy.walk_animation()
+			if navigation_agent.avoidance_enabled:
+				navigation_agent.velocity = new_velocity
 			else:
-				var go_to_restaurant_chance = randi_range(0,16)
-				if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
-					target = GlobalMarker.restaurant_marker
-					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-				else:
-					navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))
+				_on_navigation_agent_3d_velocity_computed(new_velocity)
 	else:
-		navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, false))
+		velocity = Vector3.ZERO
+		if target:
+			if target == GlobalMarker.queue_marker and area_col.disabled:
+				area_col.disabled = false
+				pointer.show()
+			if table and not sitting:
+				get_parent().remove_child(self)
+				table.chair.add_child(self)
+				global_position = table.chair.sitting_marker.global_position
+				look_at(table.global_position)
+				dummy.sit_chair_animation()
+				sitting = true
+			if not sitting:
+				dummy.idle_animation()
+			if target == GlobalMarker.outside_marker:
+				#navigation_agent.set_navigation_layer_value(1,true)
+				#navigation_agent.set_navigation_layer_value(2,false)
+				navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+				target = null
+				#set_collision_mask_value(6, false)
+			elif target == GlobalMarker.restaurant_marker:
+				#navigation_agent.set_navigation_layer_value(1,false)
+				#navigation_agent.set_navigation_layer_value(2,true)
+				target = GlobalMarker.queue_marker
+				#set_collision_mask_value(6, true)
+				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+		else:
+			var go_to_restaurant_chance = randi_range(0,walk_in_store_odds)
+			if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
+				target = GlobalMarker.restaurant_marker
+				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+			else:
+				navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -116,14 +122,14 @@ func look_at_target(pos: Vector3, delta: float) -> void:
 	if direction != Vector3.ZERO:
 		var _target: Basis = Basis.looking_at(direction, Vector3.UP)
 		basis = basis.slerp(_target, 5 * delta).orthonormalized()
-		
-func rotate_to_target(rot: Vector3) -> void:
-	basis = basis.slerp(Basis.from_euler(rot), 1).orthonormalized()
 
 func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 	if self == _npc_dummy:
 		has_order = false
 		dummy.sit_chair_stand_up()
+		table.chair.remove_child(self)
+		initial_parent.add_child(self)
+		global_position = table.chair.sitting_marker.global_position
 		await get_tree().create_timer(0.5).timeout
 		target = GlobalMarker.outside_marker
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))

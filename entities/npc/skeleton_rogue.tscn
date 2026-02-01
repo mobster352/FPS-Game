@@ -470,7 +470,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-94, -36)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lg5bh"]
-graph_offset = Vector2(-282.72443, 53.20529)
 nodes/output/position = Vector2(580, 140)
 nodes/MovementStateMachine/node = SubResource("AnimationNodeStateMachine_hnfo7")
 nodes/MovementStateMachine/position = Vector2(60, 140)
@@ -482,6 +481,7 @@ node_connections = [&"output", 0, &"HitOneShot", &"HitOneShot", 0, &"MovementSta
 
 [node name="Skeleton_Rogue" type="CharacterBody3D" unique_id=2110840300 groups=["thief"]]
 collision_layer = 32
+collision_mask = 0
 script = ExtResource("1_yml00")
 
 [node name="body" type="CollisionShape3D" parent="." unique_id=2037576835]

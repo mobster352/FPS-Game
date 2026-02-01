@@ -33,6 +33,7 @@ metadata/table_id = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_dqk40")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="table_round_A" index="0" unique_id=1502430378]
+collision_layer = 129
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="table_round_A/StaticBody3D" index="0" unique_id=267958717]
 shape = SubResource("ConcavePolygonShape3D_t2akc")
@@ -41,8 +42,9 @@ shape = SubResource("ConcavePolygonShape3D_t2akc")
 script = ExtResource("7_jetc7")
 table = NodePath("../../..")
 
-[node name="menu" parent="." index="1" unique_id=1469044281 instance=ExtResource("3_go8x5")]
+[node name="menu" parent="." index="1" unique_id=1469044281 node_paths=PackedStringArray("table") instance=ExtResource("3_go8x5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0000001, 0)
+table = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="." index="2" unique_id=1166234754]
 collision_layer = 0

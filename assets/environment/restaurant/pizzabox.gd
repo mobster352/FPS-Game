@@ -92,16 +92,15 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
 				item.shrink_and_free(0, 0.25)
-	elif parent is PizzaBox:
+	elif parent is PizzaBox and parent != self:
 		if has_meta("food_id"):
 			return
 		if parent.has_meta("food_id"):
 			return
 		if body is RigidBody3D:
-			var rigidbody = body as RigidBody3D
-			if not rigidbody.sleeping:
-				return
 			await get_tree().create_timer(0.5).timeout
+			if not is_instance_valid(self) or not is_instance_valid(get_parent()):
+				return
 			var pizzabox_stack = PIZZABOX_STACK.instantiate() as PizzaBoxStack
 			pizzabox_stack.num_pizza_boxes = 2
 			get_parent().add_child(pizzabox_stack)

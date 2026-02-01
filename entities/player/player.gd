@@ -95,7 +95,6 @@ func _process(_delta: float) -> void:
 			_process_shot()
 			_process_draw_weapon()
 			_process_crouch()
-			_process_drop_item()
 
 
 func _physics_process(delta: float) -> void:
@@ -105,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		if not freeze_camera:
 			_process_jump()
 			_physics_logic()
+			_process_drop_item()
 
 
 func _process_jump() -> void:
@@ -293,6 +293,7 @@ func _handle_build_raycast(target: Node3D) -> void:
 			inputs_ui.update_actions.emit(inputs_ui.InputAction.PreMove)
 			if interact:
 				movable.move()
+				interact = false
 
 func _process_draw_weapon() -> void:
 	if Input.is_action_just_pressed("draw_weapon_1") and has_bat:
@@ -556,7 +557,8 @@ func drop_item() -> void:
 				for c in item.get_children():
 					if c is RigidBody3D:
 						c.freeze = false
-						c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+						c.apply_central_impulse(forward * (throw_strength / c.mass))
+						#c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
 						if item is PizzaBox:
 							c.look_at(camera.global_position)
 							c.rotate(Vector3.UP, deg_to_rad(180))

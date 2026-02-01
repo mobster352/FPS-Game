@@ -49,3 +49,12 @@ signal order_inventory_items(store_items: Array[Dictionary])
 
 @warning_ignore("unused_signal")
 signal toggle_background_audio()
+
+@warning_ignore("unused_signal")
+signal add_table(table: Table)
+
+@warning_ignore("unused_signal")
+signal send_table_id(table: Table, table_id: int)
+
+@warning_ignore("unused_signal")
+signal remove_table(table: Table)

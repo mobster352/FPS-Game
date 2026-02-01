@@ -59,7 +59,7 @@ layers = 2
 visible = false
 
 [node name="pointer" parent="skin" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.422, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2099268, 0)
 
 [node name="Camera3D" type="Camera3D" parent="skin/pointer" index="0" unique_id=1688731747]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)

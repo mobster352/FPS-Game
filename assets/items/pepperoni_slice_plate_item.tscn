@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfdmutnaw0g3g"]
+[gd_scene format=3 uid="uid://dfdmutnaw0g3g"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_t1y86"]
 [ext_resource type="PackedScene" uid="uid://s6frxyp5at7j" path="res://assets/environment/restaurant/pepperoni_slice_plate.tscn" id="2_glgut"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_qgjt0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
-rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glgut"]
 size = Vector3(1, 0.30847168, 1)
 
-[node name="Pepperoni_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
+[node name="Pepperoni_Slice_Plate_Item" unique_id=799160648 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_t1y86")]
 mesh = NodePath("body/pepperoni_slice_plate/plate/plate")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -28,7 +27,7 @@ physics_material_override = SubResource("PhysicsMaterial_glgut")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008029938, 0.14899889, 0.03597337)
 shape = SubResource("BoxShape3D_glgut")
 
-[node name="pepperoni_slice_plate" parent="body" index="1" instance=ExtResource("2_glgut")]
+[node name="pepperoni_slice_plate" parent="body" index="1" unique_id=847376867 instance=ExtResource("2_glgut")]
 
 [node name="plate" parent="body/pepperoni_slice_plate/plate" index="0"]
 metadata/name = &"pepperoni_slice_plate_mesh"
@@ -36,7 +35,7 @@ metadata/name = &"pepperoni_slice_plate_mesh"
 [node name="Pointer" parent="body" index="3"]
 visible = true
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=618891855 node_paths=PackedStringArray("item")]
 script = ExtResource("4_qgjt0")
 item = NodePath("../..")
 

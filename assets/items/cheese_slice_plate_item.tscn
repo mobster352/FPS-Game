@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c07meb4qmjeqc"]
+[gd_scene format=3 uid="uid://c07meb4qmjeqc"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_s2p2d"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_twasl"]
@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://coga4fkbty7xh" path="res://assets/environment/restaurant/pizza_slice_plate_interactable.gd" id="4_twasl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glgut"]
-rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s2p2d"]
 size = Vector3(1, 0.31555176, 1.0125732)
 
-[node name="Cheese_Slice_Plate_Item" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_s2p2d")]
+[node name="Cheese_Slice_Plate_Item" unique_id=1267473455 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_s2p2d")]
 mesh = NodePath("body/cheese_slice_plate/plate/plate")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -23,18 +22,17 @@ metadata/food_id = 2
 
 [node name="body" parent="." index="0"]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
-can_sleep = false
 
 [node name="CollisionShape3D" parent="body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15117407, 0.039502144)
 shape = SubResource("BoxShape3D_s2p2d")
 
-[node name="cheese_slice_plate" parent="body" index="1" instance=ExtResource("3_s2p2d")]
+[node name="cheese_slice_plate" parent="body" index="1" unique_id=551044034 instance=ExtResource("3_s2p2d")]
 
 [node name="plate" parent="body/cheese_slice_plate/plate" index="0"]
 metadata/name = &"cheese_slice_plate_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1626676959 node_paths=PackedStringArray("item")]
 script = ExtResource("4_twasl")
 item = NodePath("../..")
 

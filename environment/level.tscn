@@ -75,6 +75,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 7.686958)
 [node name="RestaurantBackDoorMarker" type="Marker3D" parent="Environment/Markers" unique_id=1532701036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9990172, 0, 56.969456)
 
+[node name="Boundaries" type="Node3D" parent="Environment" unique_id=264896408]
+
 [node name="Entities" type="Node3D" parent="." unique_id=1326860625]
 
 [node name="PlacementSystem" parent="." unique_id=1020658662 instance=ExtResource("3_3dj58")]

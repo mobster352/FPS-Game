@@ -21,7 +21,9 @@ func show_billboard_ui() -> void:
 	billboard_ui.show()
 
 
-func can_interact(_player: Player) -> bool:
+func can_interact(player: Player) -> bool:
+	if in_range:
+		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.Interact)
 	return in_range
 	
 func interact(player: Player) -> void:

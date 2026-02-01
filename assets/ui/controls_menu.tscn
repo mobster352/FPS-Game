@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gsqk2fguvuxm"]
+[gd_scene format=3 uid="uid://gsqk2fguvuxm"]
 
 [ext_resource type="Script" uid="uid://ds80oonuyij6c" path="res://assets/ui/controls_menu.gd" id="1_xlaln"]
 [ext_resource type="Texture2D" uid="uid://cns7bajkyywpf" path="res://assets/ui/Box_WhiteOutline_Rounded.png" id="2_k1srf"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="7_t6w6j"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_5l5ks"]
 
-[node name="ControlsMenu" type="Control" node_paths=PackedStringArray("menu_audio")]
+[node name="ControlsMenu" type="Control" unique_id=657027395 node_paths=PackedStringArray("menu_audio")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_xlaln")
 menu_audio = NodePath("Audio/MenuAudio")
 
-[node name="Background" type="MarginContainer" parent="."]
+[node name="Background" type="MarginContainer" parent="." unique_id=1439777618]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -33,18 +33,18 @@ offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=202556830]
 layout_mode = 2
 texture = ExtResource("2_k1srf")
 expand_mode = 1
 
-[node name="Title" parent="." instance=ExtResource("3_y1ck7")]
+[node name="Title" parent="." unique_id=1534096790 instance=ExtResource("3_y1ck7")]
 layout_mode = 1
 offset_top = 16.0
 offset_bottom = 241.0
 title = &"CONTROLS"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=855886125]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,14 +59,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = 35
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1640945728]
 layout_mode = 2
 theme_override_constants/separation = 45
 
-[node name="Movement" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Movement" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2000524510]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Movement"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Movement" unique_id=1254686238]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -77,14 +77,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Movement/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Movement/MarginContainer" unique_id=570594934]
 layout_mode = 2
 text = "Movement"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Movement"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Movement" unique_id=1494798449]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -95,12 +95,12 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Movement/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Movement/MarginContainer2" unique_id=1281859499]
 layout_mode = 2
 text = "WASD"
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Movement"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Movement" unique_id=1442176343]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -112,10 +112,10 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Interact" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Interact" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1770410152]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Interact"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Interact" unique_id=863958412]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -126,14 +126,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Interact/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Interact/MarginContainer" unique_id=2089312363]
 layout_mode = 2
 text = "Interact"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Interact"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Interact" unique_id=350822858]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -144,13 +144,13 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Interact/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Interact/MarginContainer2" unique_id=1086500678]
 layout_mode = 2
 text = "Left Click"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Interact"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Interact" unique_id=189998082]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -162,10 +162,10 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Drop Item" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Drop Item" type="Control" parent="MarginContainer/VBoxContainer" unique_id=286091159]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Drop Item"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Drop Item" unique_id=181367891]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -176,14 +176,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Drop Item/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Drop Item/MarginContainer" unique_id=93520416]
 layout_mode = 2
 text = "Drop Item"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Drop Item"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Drop Item" unique_id=880121677]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -194,13 +194,13 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Drop Item/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Drop Item/MarginContainer2" unique_id=868235388]
 layout_mode = 2
 text = "Right Click"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Drop Item"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Drop Item" unique_id=1295468113]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -212,10 +212,10 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Crouch" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Crouch" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1775615189]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Crouch"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Crouch" unique_id=1759523323]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -226,14 +226,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Crouch/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Crouch/MarginContainer" unique_id=1692354688]
 layout_mode = 2
 text = "Crouch"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Crouch"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Crouch" unique_id=536658120]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -244,13 +244,13 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Crouch/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Crouch/MarginContainer2" unique_id=41485923]
 layout_mode = 2
 text = "C"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Crouch"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Crouch" unique_id=1610407926]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -262,10 +262,10 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Weapon" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Weapon" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1552874833]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Weapon"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Weapon" unique_id=573507172]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -276,14 +276,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Weapon/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Weapon/MarginContainer" unique_id=313848129]
 layout_mode = 2
 text = "Weapon"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Weapon"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Weapon" unique_id=238853924]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -294,13 +294,13 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Weapon/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Weapon/MarginContainer2" unique_id=636614182]
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Weapon"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Weapon" unique_id=186485516]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -312,10 +312,10 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Use Item" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Use Item" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1968840591]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Use Item"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Use Item" unique_id=1325684042]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -326,14 +326,14 @@ offset_right = -40.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Use Item/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Use Item/MarginContainer" unique_id=979690344]
 layout_mode = 2
 text = "Use Item"
 label_settings = ExtResource("4_gq8hv")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Use Item"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Use Item" unique_id=589118773]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -344,13 +344,13 @@ offset_right = 248.0
 offset_bottom = 86.0
 grow_horizontal = 2
 
-[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Use Item/MarginContainer2"]
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Use Item/MarginContainer2" unique_id=1986698265]
 layout_mode = 2
 text = "E"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Use Item"]
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Use Item" unique_id=902396864]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.499
@@ -362,7 +362,57 @@ offset_bottom = 88.0
 text = "........."
 label_settings = ExtResource("4_gq8hv")
 
-[node name="BackButton" parent="." node_paths=PackedStringArray("label", "button") instance=ExtResource("5_kgv88")]
+[node name="Build" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1485371638]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Build" unique_id=798531576]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 41.0
+offset_right = -40.0
+offset_bottom = 86.0
+grow_horizontal = 2
+
+[node name="InteractLabel" type="Label" parent="MarginContainer/VBoxContainer/Build/MarginContainer" unique_id=682636986]
+layout_mode = 2
+text = "Build"
+label_settings = ExtResource("4_gq8hv")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Build" unique_id=530236183]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 40.0
+offset_top = 41.0
+offset_right = 248.0
+offset_bottom = 86.0
+grow_horizontal = 2
+
+[node name="InteractControl" type="Label" parent="MarginContainer/VBoxContainer/Build/MarginContainer2" unique_id=1635021861]
+layout_mode = 2
+text = "B"
+label_settings = ExtResource("4_gq8hv")
+vertical_alignment = 1
+
+[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Build" unique_id=1825984684]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_right = 0.499
+offset_left = -39.455994
+offset_top = 43.0
+offset_right = 39.544006
+offset_bottom = 88.0
+text = "........."
+label_settings = ExtResource("4_gq8hv")
+
+[node name="BackButton" parent="." unique_id=1078114944 node_paths=PackedStringArray("label", "button") instance=ExtResource("5_kgv88")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36800003
@@ -379,9 +429,9 @@ pressed_texture = ExtResource("7_t6w6j")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=850652704]
 
-[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio"]
+[node name="MenuAudio" type="AudioStreamPlayer" parent="Audio" unique_id=389458699]
 stream = ExtResource("8_5l5ks")
 volume_db = -5.0
 

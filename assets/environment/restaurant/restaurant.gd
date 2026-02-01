@@ -5,31 +5,89 @@ const rolling_pin_item = "res://assets/items/rolling_pin.tscn"
 const crate_generic_item = "res://assets/environment/restaurant/crate_generic.tscn"
 const pizza_box_item = "uid://dp8cybb476vqi"
 
-@export var chair1: Chair
-@export var chair2: Chair
-@export var table1: Table
-@export var table2: Table
 @export var drive_thru_menu: DriveThruMenu
 @export var order_spawn: Marker3D
+
+var table_list: Array[Dictionary]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GlobalSignal.get_open_table.connect(_get_open_table)
 	GlobalSignal.check_restaurant_food.connect(_check_restaurant_food)
 	GlobalSignal.order_inventory_items.connect(_order_inventory_items)
+	GlobalSignal.add_table.connect(_add_table)
+	GlobalSignal.remove_table.connect(_remove_table)
 
 func _process(_delta: float) -> void:
 	pass
 
 
+func _add_table(_table: Table) -> void:
+	for table_dict in table_list:
+		var table = table_dict.get("table") as Table
+		var table_id = table_dict.get("table_id") as int
+		if not table:
+			table_dict.set("table", _table)
+			GlobalSignal.send_table_id.emit(_table, table_id)
+			return
+	
+	var next_table_id:int = get_next_table_id()
+	table_list.append(
+		{
+			"table": _table,
+			"table_id": next_table_id
+		}
+	)
+	GlobalSignal.send_table_id.emit(_table, next_table_id)
+
+
+func _remove_table(_table: Table) -> void:
+	var index = 0
+	for table_dict in table_list:
+		var table = table_dict.get("table") as Table
+		if table and table == _table:
+			#table_list.remove_at(index)
+			table_dict.set("table", null)
+			return
+		index = index + 1
+
+
+func print_table_list() -> void:
+	print("-------------")
+	for table_dict in table_list:
+		var table = table_dict.get("table") as Table
+		var table_id = table_dict.get("table_id") as int
+		print("Table: ", table, " ID: ", table_id)
+	print("-------------")
+
+
+func get_next_table_id() -> int:
+	if table_list.is_empty():
+		return 1
+	var table = table_list.get(table_list.size() - 1)
+	if table.has("table_id"):
+		return table.get("table_id") + 1
+	else:
+		return -1
+
+
 func _get_open_table(npc_dummy:NPC_Dummy) -> void:
-	if table1.is_empty:
-		GlobalSignal.assign_customer_to_table.emit(table1,npc_dummy)
-	elif table2.is_empty:
-		GlobalSignal.assign_customer_to_table.emit(table2,npc_dummy)
+	for table_dict in table_list:
+		var table = table_dict.get("table") as Table
+		if table:
+			if table.is_empty:
+				GlobalSignal.assign_customer_to_table.emit(table,npc_dummy)
+				break
 
 func needs_food(food_id:int) -> bool:
-	return table1.menu.food_id == food_id or table2.menu.food_id == food_id or drive_thru_menu.food_id == food_id
+	for table_dict in table_list:
+		var table = table_dict.get("table") as Table
+		if table:
+			if table.menu.food_id == food_id:
+				return true
+			elif drive_thru_menu.food_id == food_id:
+				return true
+	return false
 
 func _check_restaurant_food(food_id:int) -> void:
 	GlobalSignal.toggle_pointer_by_food.emit(food_id, needs_food(food_id))

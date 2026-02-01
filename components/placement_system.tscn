@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://klhrvmolkwq6" path="res://scripts/placement_system.gd" id="1_h8snn"]
 
-[node name="PlacementSystem" type="Node3D" unique_id=1020658662]
+[node name="PlacementSystem" type="Node3D" unique_id=1020658662 groups=["placement_system"]]
 script = ExtResource("1_h8snn")
