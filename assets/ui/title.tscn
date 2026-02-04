@@ -1,28 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dotla25fifw5p"]
+[gd_scene format=3 uid="uid://dotla25fifw5p"]
 
 [ext_resource type="Script" uid="uid://ukark5amssba" path="res://assets/ui/title.gd" id="1_e7ndf"]
 [ext_resource type="Texture2D" uid="uid://d0v7twhnjb01p" path="res://assets/ui/ButtonText_Small_Square.png" id="1_m73gv"]
 
-[node name="Title" type="MarginContainer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 264.0
-offset_top = 88.0
-offset_right = 264.0
-offset_bottom = 313.0
-grow_horizontal = 2
+[node name="Title" type="MarginContainer" unique_id=915459671]
+offset_right = 622.0
+offset_bottom = 225.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 10
 script = ExtResource("1_e7ndf")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=485530302]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_m73gv")
 stretch_mode = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=125178674]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

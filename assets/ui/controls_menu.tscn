@@ -40,8 +40,12 @@ expand_mode = 1
 
 [node name="Title" parent="." unique_id=1534096790 instance=ExtResource("3_y1ck7")]
 layout_mode = 1
-offset_top = 16.0
-offset_bottom = 241.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = 446.0
+grow_horizontal = 2
 title = &"CONTROLS"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=855886125]

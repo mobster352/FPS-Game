@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name NPC_Dummy
 
+@export var dummy_scene: PackedScene
+var dummy: Dummy
 @export var dialogue_box: DialogueBox
 @export var speed := 1.5
 @export var area_col: CollisionShape3D
@@ -8,7 +10,6 @@ class_name NPC_Dummy
 @export var start_target: Marker3D
 @export var pointer: Node3D
 
-@onready var dummy = $Dummy
 @export var level_ui: Level_UI
 @export var walk_in_store_odds := 16
 
@@ -25,6 +26,9 @@ func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.remove_customer.connect(_remove_customer)
 	NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
+	dummy = dummy_scene.instantiate() as Dummy
+	assert(dummy, "Dummy scene is incorrect")
+	add_child(dummy)
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
@@ -33,7 +37,8 @@ func _navigation_server_map_changed(_map_rid: RID) -> void:
 	if navigation_agent.get_navigation_map() and target:
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 	else:
-		navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+		if navigation_agent and navigation_agent.get_navigation_map():
+			navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
 
 func _physics_process(delta: float) -> void:
 	if not navigation_ready:
@@ -129,7 +134,8 @@ func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 		dummy.sit_chair_stand_up()
 		table.chair.remove_child(self)
 		initial_parent.add_child(self)
-		global_position = table.chair.sitting_marker.global_position
+		global_transform = table.chair.sitting_marker.global_transform
+		look_at(table.global_position)
 		await get_tree().create_timer(0.5).timeout
 		target = GlobalMarker.outside_marker
 		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))

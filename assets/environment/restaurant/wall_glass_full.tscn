@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://baork3jtpg3k5"]
+
+[ext_resource type="PackedScene" uid="uid://bdpvrlt4l44wd" path="res://assets/kaykit/restaurant/wall_glass_full.gltf" id="1_oha2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7o5a1"]
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+
+[node name="wall_glass_full" unique_id=1913055666 instance=ExtResource("1_oha2g")]
+
+[node name="Glass" parent="wall_window_open" parent_id_path=PackedInt32Array(823660523) index="0" unique_id=469366885]
+surface_material_override/0 = SubResource("StandardMaterial3D_7o5a1")

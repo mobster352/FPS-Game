@@ -31,7 +31,8 @@ func thief_remove_object() -> void:
 	var node = mesh.get_children().pop_back() as Node3D
 	node.queue_free()
 	object_array.pop_back()
-	item.set_meta("count", object_array.size())
+	if is_instance_valid(item):
+		item.set_meta("count", object_array.size())
 
 
 func _on_dough_radius_body_entered(body: Node3D) -> void:

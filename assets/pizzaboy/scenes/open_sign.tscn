@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cqij78q72clbr"]
+
+[ext_resource type="PackedScene" uid="uid://cl0ks8di4isij" path="res://assets/pizzaboy/open_sign.gltf" id="1_5m3qj"]
+[ext_resource type="Script" uid="uid://d12qx518ju46d" path="res://assets/pizzaboy/scenes/open_sign.gd" id="2_d4s45"]
+[ext_resource type="Texture2D" uid="uid://bnlyb6k64rjqw" path="res://assets/pizzaboy/open_sign_texture.png" id="2_w60uq"]
+[ext_resource type="Script" uid="uid://cdthdrib5vm4l" path="res://assets/pizzaboy/scenes/open_sign_interactable.gd" id="4_8ik2y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4s45"]
+albedo_texture = ExtResource("2_w60uq")
+emission = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ik2y"]
+albedo_texture = ExtResource("2_w60uq")
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4s45"]
+size = Vector3(1.1035767, 0.6169739, 0.25888062)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8ik2y"]
+radius = 1.0387297
+
+[node name="open_sign" unique_id=1130325679 node_paths=PackedStringArray("sign_text", "blue_background") instance=ExtResource("1_5m3qj")]
+script = ExtResource("2_d4s45")
+sign_text = NodePath("OpenSign/OpenSignText")
+blue_background = NodePath("OpenSign/OpenSignBlueBackground")
+
+[node name="OpenSignBlueBackground" parent="OpenSign" parent_id_path=PackedInt32Array(379227915) index="0" unique_id=545200094]
+surface_material_override/0 = SubResource("StandardMaterial3D_d4s45")
+
+[node name="OpenSignText" parent="OpenSign" parent_id_path=PackedInt32Array(379227915) index="1" unique_id=689930956]
+surface_material_override/0 = SubResource("StandardMaterial3D_8ik2y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=780021899]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=668725108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067443848, -0.06498718, -0.12626648)
+shape = SubResource("BoxShape3D_d4s45")
+
+[node name="Interactable" type="Node3D" parent="StaticBody3D" index="1" unique_id=1365303151 node_paths=PackedStringArray("open_sign")]
+script = ExtResource("4_8ik2y")
+open_sign = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=512732122]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1704934930]
+shape = SubResource("SphereShape3D_8ik2y")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
