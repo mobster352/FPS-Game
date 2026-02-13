@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://boiuip26h4cdl" path="res://assets/environment/restaurant/door_a.tscn" id="22_5mfc8"]
 [ext_resource type="PackedScene" uid="uid://dp8cybb476vqi" path="res://assets/items/pizzabox_stack.tscn" id="22_ncrwj"]
 [ext_resource type="PackedScene" uid="uid://dxvm7jhdwbecu" path="res://assets/pizzaboy/scenes/wall_glass_full.tscn" id="28_jhi77"]
-[ext_resource type="PackedScene" uid="uid://bg6ua3r15iw3f" path="res://assets/pizzaboy/scenes/wall_glass_door.tscn" id="28_nk0hb"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
 
@@ -469,9 +468,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.111, 6)
 
 [node name="wall_glass_full4" parent="Environment/Restaurant/Walls" unique_id=1497330935 instance=ExtResource("28_jhi77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.111, 6)
-
-[node name="wall_glass_door" parent="Environment/Restaurant/Walls" unique_id=148048118 groups=["nav_restaurant"] instance=ExtResource("28_nk0hb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.111, 6)
 
 [node name="Billboard" type="CSGBox3D" parent="Environment/Restaurant" unique_id=1377508158 node_paths=PackedStringArray("billboard_ui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0025635, 3.874876, 6.0865593)

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b10ibkxnixdiq"]
+
+[ext_resource type="Script" uid="uid://b7otpb8g4y83o" path="res://server/connection_registry.gd" id="1_svhql"]
+[ext_resource type="Script" uid="uid://ccki2ba7qk4wn" path="res://server/lobby.gd" id="2_vhrse"]
+[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="3_xn8dg"]
+[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="4_7koex"]
+
+[node name="Multiplayer" type="Node" unique_id=2080877150]
+
+[node name="ConnectionRegistry" type="Node" parent="." unique_id=1516291630 node_paths=PackedStringArray("server_timer")]
+script = ExtResource("1_svhql")
+server_timer = NodePath("Timers/ServerTimer")
+metadata/_custom_type_script = "uid://b7otpb8g4y83o"
+
+[node name="Lobby" type="Node" parent="ConnectionRegistry" unique_id=241758750 node_paths=PackedStringArray("level_node", "connection_registry")]
+script = ExtResource("2_vhrse")
+level_node = NodePath("../Level")
+connection_registry = NodePath("..")
+metadata/_custom_type_script = "uid://ccki2ba7qk4wn"
+
+[node name="Level" type="Node" parent="ConnectionRegistry" unique_id=1392594368]
+
+[node name="Timers" type="Node" parent="ConnectionRegistry" unique_id=2128525935]
+
+[node name="ServerTimer" type="Timer" parent="ConnectionRegistry/Timers" unique_id=1755204240]
+wait_time = 10.0
+
+[node name="UI" type="Control" parent="ConnectionRegistry" unique_id=2095288151]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ConnectionRegistry/UI" unique_id=700069942]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Multiplayer"
+
+[node name="Level2" parent="ConnectionRegistry" unique_id=1263719789 instance=ExtResource("3_xn8dg")]
+start_time = 12.0
+can_advance_time = false
+show_clock = false
+
+[node name="Restaurant" parent="ConnectionRegistry/Level2" unique_id=1282270132 instance=ExtResource("4_7koex")]
+
+[node name="Camera3D" type="Camera3D" parent="ConnectionRegistry/Level2/Restaurant" unique_id=807966521]
+transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
+
+[connection signal="timeout" from="ConnectionRegistry/Timers/ServerTimer" to="ConnectionRegistry/Lobby" method="_on_server_timer_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cqhna6sp0j81h"]
+
+[ext_resource type="Script" uid="uid://cwigg8qu0824m" path="res://entities/player/player_skin.gd" id="1_7ijok"]
+[ext_resource type="PackedScene" uid="uid://bxl5a26rxyixl" path="res://entities/player/player_dummy.tscn" id="2_d30u1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_symyc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abrql"]
+albedo_color = Color(0.383399, 0.910084, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ldbi2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksru8"]
+albedo_color = Color(0.999305, 0.529249, 0.753939, 1)
+
+[node name="PlayerSkin" type="Node3D" unique_id=172272612]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_7ijok")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=339068118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_symyc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_abrql")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="body" unique_id=1752765334]
+transform = Transform3D(0.867106, 0, 0, 0, 1.02591, 0, 0, 0, 1.00026, 0, 0.318727, 0.0828568)
+mesh = SubResource("SphereMesh_ldbi2")
+surface_material_override/0 = SubResource("StandardMaterial3D_ksru8")
+
+[node name="PlayerDummy" parent="." unique_id=2144942684 instance=ExtResource("2_d30u1")]
+
+[node name="Skeleton3D" parent="PlayerDummy/Rig" index="0"]
+bones/1/position = Vector3(0, 0.36816868, 0)
+bones/4/rotation = Quaternion(-0.55055547, -0.056947764, -0.64043915, 0.5324316)
+bones/5/rotation = Quaternion(2.403246e-08, -3.5706105e-08, -0.5119872, 0.8589931)
+bones/7/rotation = Quaternion(-0.32051134, -0.3387976, 0.14778855, 0.8721509)
+bones/8/rotation = Quaternion(0.0012211718, 0.0012211716, -0.7026093, 0.7115737)
+bones/9/rotation = Quaternion(-0.6093395, 0.07748158, 0.6157414, 0.49352264)
+bones/10/rotation = Quaternion(4.2657685e-08, 5.8981254e-08, 0.5345061, 0.84516466)
+bones/12/rotation = Quaternion(-0.3196323, 0.31475088, -0.22996898, 0.86364424)
+bones/13/rotation = Quaternion(0.0037706092, 0.0044412212, 0.70317596, 0.71099204)
+bones/15/rotation = Quaternion(0.9893496, 0.08381842, 0.078891896, 0.08909483)
+bones/16/rotation = Quaternion(0.40042463, 5.7114335e-08, -2.7285466e-07, 0.9163298)
+bones/17/rotation = Quaternion(-0.6249774, -0.2004106, 0.0779718, 0.75043935)
+bones/18/rotation = Quaternion(-2.2485488e-06, 0.92015594, -0.39155212, 5.843898e-07)
+bones/19/rotation = Quaternion(0.9911618, -0.033515718, 0.02974543, 0.12486055)
+bones/20/rotation = Quaternion(0.44507185, -5.8270402e-08, 3.093081e-07, 0.8954949)
+bones/21/rotation = Quaternion(-0.6507289, 0.11235001, -0.023946382, 0.7505704)
+bones/38/position = Vector3(0.5208407, 0.77161384, -0.057637356)
+bones/40/position = Vector3(-0.5108437, 0.7716138, 0.059736915)
+
+[node name="head" parent="PlayerDummy/Rig/Skeleton3D" index="0"]
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2039307, 1.5463912e-15)
+
+[node name="chest" parent="PlayerDummy/Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9351342, 1.0572674e-15)
+
+[node name="hand_slot_r" parent="PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
+transform = Transform3D(0.0026577516, -0.16135268, -0.9868932, -0.9999382, -0.011057796, -0.00088475016, -0.010770288, 0.9868346, -0.1613721, -0.4903556, 0.6246189, 0.10753179)
+
+[node name="pointer" type="Marker3D" parent="." unique_id=809353639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85434, 0)
+
+[editable path="PlayerDummy"]

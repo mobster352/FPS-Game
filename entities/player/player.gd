@@ -7,7 +7,7 @@ const RETICLE_WHITE := Color(255,255,255,0.5)
 const RETICLE_RED := Color(255,0,0,0.5)
 const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 
-const SPEED = 5.0
+const SPEED = 4.0
 @export var JUMP_VELOCITY := 6.0
 
 @export var mouse_sensitivity: float = 0.002
@@ -40,6 +40,7 @@ var weapon: Weapon
 
 @export var inputs_ui: InputsUI
 @export var placement_system: PlacementSystem
+@export var player_skin: PlayerSkin
 
 var invert := -1
 
@@ -121,9 +122,11 @@ func _process_movement() -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		player_skin.walk_animation()
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		player_skin.idle_animation()
 	move_and_slide()
 
 
@@ -140,7 +143,7 @@ func _input(event: InputEvent) -> void:
 		# Clamp vertical rotation to prevent the camera from flipping over
 		var current_rotation_x = pointer_slot.rotation.x
 		# Clamp between -90 and 90 degrees (converted to radians)
-		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-90), deg_to_rad(90))
+		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-60), deg_to_rad(60))
 		
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

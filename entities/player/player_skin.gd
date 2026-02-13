@@ -1,19 +1,32 @@
 extends Node3D
 class_name PlayerSkin
 
-@export var animationTree: AnimationTree
-@export var animationPlayer: AnimationPlayer
-@onready var animation_state_machine: AnimationNodeStateMachinePlayback
+@onready var movement_state_machine_playback: AnimationNodeStateMachinePlayback = $PlayerDummy/AnimationTree.get("parameters/MovementStateMachine/playback")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	animation_state_machine = animationTree.get("parameters/MovementStateMachine/playback")
+@export var is_walking := false:
+	set(value):
+		if is_walking == value:
+			return
+		is_walking = value
+		if is_walking:
+			movement_state_machine_playback.travel("Walking_B")
+		
+@export var is_idle := true:
+	set(value):
+		if is_idle == value:
+			return
+		is_idle = value
+		if is_idle:
+			movement_state_machine_playback.travel("Idle")
+			
+@export var helmut: MeshInstance3D
+@export var head: MeshInstance3D
+@export var head_pivot: Node3D
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
-func aiming_animation() -> void:
-	animation_state_machine.travel("1H_Ranged_Aiming")
+func walk_animation() -> void:
+	is_walking = true
+	is_idle = false
+	
+func idle_animation() -> void:
+	is_walking = false
+	is_idle = true

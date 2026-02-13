@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://2ycx0wai2x7s"]
+
+[ext_resource type="Script" uid="uid://dpq2qoyaotnfs" path="res://server/level_mp.gd" id="1_dks63"]
+[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="2_aai7u"]
+[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="3_1tvxm"]
+
+[node name="LevelMP_Prototype" type="Node3D" unique_id=2054429627 node_paths=PackedStringArray("players_node")]
+script = ExtResource("1_dks63")
+players_node = NodePath("Level/Entities/Players")
+
+[node name="Level" parent="." unique_id=1263719789 instance=ExtResource("2_aai7u")]
+
+[node name="Restaurant" parent="Level/Environment/Buildings" parent_id_path=PackedInt32Array(1263719789, 1328818616) index="0" unique_id=1282270132 instance=ExtResource("3_1tvxm")]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1918957477]
+_spawnable_scenes = PackedStringArray("uid://ckmeyre76mhly")
+spawn_path = NodePath("../Level/Entities/Players")
+
+[editable path="Level"]

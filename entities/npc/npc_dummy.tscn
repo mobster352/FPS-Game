@@ -38,10 +38,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8827615, -0.43405917)
 visible = false
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1964510146]
-path_desired_distance = 0.1
+path_desired_distance = 0.25
 target_desired_distance = 0.1
-path_max_distance = 2.51
-debug_enabled = true
+navigation_layers = 3
 
 [node name="Pointer" parent="." unique_id=164535982 instance=ExtResource("4_kfvlc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6577318, 0)

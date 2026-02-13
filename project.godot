@@ -31,7 +31,7 @@ BackgroundMusic="*res://scripts/background_music.gd"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [global_group]
@@ -126,7 +126,9 @@ build={
 3d_physics/layer_2="Player"
 3d_navigation/layer_2="Restaurant"
 3d_physics/layer_3="Enemies"
+3d_navigation/layer_3="Road"
 3d_physics/layer_4="Items"
+3d_navigation/layer_4="Back Restaurant"
 3d_physics/layer_5="Detection"
 3d_physics/layer_6="Customer"
 3d_physics/layer_7="Static"

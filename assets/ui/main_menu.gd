@@ -14,3 +14,7 @@ func _on_exit_button_pressed() -> void:
 
 func _on_texture_button_mouse_entered() -> void:
 	menu_audio.play()
+
+
+func _on_multiplayer_button_pressed() -> void:
+	get_tree().change_scene_to_file("uid://b10ibkxnixdiq")

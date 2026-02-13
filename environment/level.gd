@@ -28,8 +28,10 @@ func _ready():
 	update_environment()
 	update_sun()
 	update_sun_light()
-	GlobalSignal.init_restaurant.emit(restaurant)
-	GlobalSignal.init_player.emit(player)
+	if restaurant:
+		GlobalSignal.init_restaurant.emit(restaurant)
+	if player:
+		GlobalSignal.init_player.emit(player)
 	GlobalMarker._ready()
 	level_ui.show_clock = show_clock
 
