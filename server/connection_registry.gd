@@ -57,6 +57,13 @@ func create_game():
 	
 	server_started.emit()
 	print("Starting Dedicated Server...")
+	
+func create_singleplayer_game() -> void:
+	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+	players.append(1)
+	player_info.set("peer_id", 1)
+	player_connected.emit(1, player_info)
+	set_multiplayer_authority(1)
 
 
 func join_game(username:String):

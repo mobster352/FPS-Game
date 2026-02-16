@@ -28,6 +28,13 @@ var invert := -1
 @export var skin: PlayerSkin
 @export var name_label: Label3D
 
+@export var item_slot: Node3D
+@export var inputs_ui: InputsUI
+@export var throw_strength: float = 5.0
+
+var interact:bool
+var drop_input:bool
+
 enum State {
 	None,
 	Idle,
@@ -45,6 +52,7 @@ func _ready():
 		skin.helmut.set_layer_mask_value(2, true)
 	state = State.Idle
 	set_process_input(player == multiplayer.get_unique_id())
+	GlobalSignal.init_player_mp.emit(self)
 
 func _physics_process(delta:float):
 	match state:
@@ -52,6 +60,7 @@ func _physics_process(delta:float):
 			idle_physics(delta)
 		State.Walk:
 			walk_physics(delta)
+	_process_drop_item()
 
 func idle_physics(delta:float) -> void:
 	skin.idle_animation()
@@ -74,6 +83,8 @@ func _process(_delta: float) -> void:
 			idle()
 		State.Walk:
 			walk()
+	interact = Input.is_action_just_pressed("interact")
+	drop_input = Input.is_action_just_pressed("drop")
 			
 func idle() -> void:
 	pass
@@ -110,7 +121,83 @@ func rotate_player() -> void:
 	camera_pivot.rotate_x(invert * vertical_change)
 
 	var current_rotation_x = camera_pivot.rotation.x
-	camera_pivot.rotation.x = clamp(current_rotation_x, deg_to_rad(-60), deg_to_rad(45))
-	skin.head_pivot.rotation.x = clamp(-camera_pivot.rotation.x, deg_to_rad(-30), deg_to_rad(30))
+	camera_pivot.rotation.x = clamp(current_rotation_x, deg_to_rad(-45), deg_to_rad(60))
+	skin.head_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-30), deg_to_rad(30))
 	input.mouse_input = Vector2.ZERO
 	
+
+func has_held_object() -> bool:
+	return item_slot.get_child_count() > 0
+
+
+func drop_item() -> void:
+	if has_held_object():
+		#cancel_placement(false)
+		var child_mesh = item_slot.get_child(0)
+		if child_mesh:
+			if child_mesh.has_meta("name"):
+				var item = GlobalVar.get_item_from_mesh(child_mesh.get_meta("name"))
+				var forward = -camera.global_transform.basis.z.normalized()
+				if child_mesh.has_meta("count"):
+					item.set_meta("count", child_mesh.get_meta("count"))
+					var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+					object_spawner.item_type = child_mesh.get_meta("item_type")
+					item.position = camera.global_position + forward + Vector3(0,-0.5,0.0)
+				else:
+					item.position = camera.global_position + forward
+
+				item.mesh = child_mesh.duplicate()
+
+				if item.has_node("body/mesh"):
+					var mesh_node = item.get_node("body/mesh")
+					mesh_node.remove_child(mesh_node.get_child(0))
+					mesh_node.add_child(item.mesh)
+				if item.mesh.get_child_count() > 0:
+					item.mesh_has_children = true
+					item.set_z_scale_children(false, item.mesh)
+				if item.mesh.has_meta("toppings"):
+					if item.has_node("body/Cookable"):
+						var cookable = item.get_node("body/Cookable") as Cookable
+						cookable.toppings = item.mesh.get_meta("toppings")
+					
+				item.mesh.rotation = Vector3.ZERO
+				get_parent().add_child(item)
+				
+				item.meshInstanceArray.append(item.mesh)
+				item.set_monitoring(true)
+				item.set_z_scale(false)
+				for c in item.get_children():
+					if c is RigidBody3D:
+						c.freeze = false
+						c.apply_central_impulse(forward * (throw_strength / c.mass))
+						#c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
+						if item is PizzaBox:
+							c.look_at(camera.global_position)
+							c.rotate(Vector3.UP, deg_to_rad(180))
+						elif not item.has_meta("count"):
+							c.look_at(camera.global_position)
+							c.rotate(Vector3.UP, deg_to_rad(130))
+							c.rotate(Vector3.RIGHT, deg_to_rad(-20))
+						else:
+							c.look_at(camera.global_position - Vector3(0,1,0))
+				
+				if child_mesh.has_meta("food_id"):
+					item.set_meta("food_id", child_mesh.get_meta("food_id"))
+				
+				if item.has_meta("food_id"):
+					var food_id = item.get_meta("food_id")
+					if food_id:
+						GlobalSignal.drop_food.emit(food_id)
+						GlobalSignal.check_restaurant_food.emit(food_id)
+				elif item.has_meta("plate_dirty"):
+					item.pointer.show()
+					GlobalSignal.toggle_pointer.emit("sink", false)
+			item_slot.remove_child(child_mesh)
+			child_mesh.queue_free()
+
+
+func _process_drop_item() -> void:
+	if has_held_object() and not item_slot.get_child(0).has_meta("pizzaboxes"):
+		if drop_input:
+			drop_item()
+			

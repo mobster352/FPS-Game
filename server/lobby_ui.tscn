@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://chd78wxs2t4bs"]
+
+[ext_resource type="Script" uid="uid://ccm1ps477o0vu" path="res://server/lobby_ui.gd" id="1_pwnej"]
+
+[node name="LobbyUI" type="Control" unique_id=1384193482 node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchor_right = 0.22200002
+anchor_bottom = 0.049000002
+offset_right = 0.25598145
+offset_bottom = 0.24799919
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pwnej")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=1543409508]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Button" unique_id=2118223256]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 32.0
+theme_override_constants/separation = 124
+
+[node name="LobbyName" type="Label" parent="Button/HBoxContainer2" unique_id=1427175715]
+layout_mode = 2
+text = "Lobby0"
+
+[node name="NumPlayers" type="Label" parent="Button/HBoxContainer2" unique_id=561221613]
+layout_mode = 2
+text = "1/2"

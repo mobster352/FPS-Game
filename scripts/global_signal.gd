@@ -58,3 +58,6 @@ signal send_table_id(table: Table, table_id: int)
 
 @warning_ignore("unused_signal")
 signal remove_table(table: Table)
+
+@warning_ignore("unused_signal")
+signal init_player_mp(player: PlayerMP)

@@ -129,11 +129,14 @@ func _send_cleanup_lobby_to_peer() -> void:
 
 
 func start_lobby(lobby_id:int) -> void:
-	_start_lobby.rpc_id(1, lobby_id)
+	if multiplayer.get_unique_id() == get_multiplayer_authority():
+		_start_lobby(lobby_id, true)
+	else:
+		_start_lobby.rpc_id(1, lobby_id, false)
 
 
 @rpc("any_peer", "reliable")
-func _start_lobby(lobby_id:int):
+func _start_lobby(lobby_id:int, is_singleplayer:bool):
 	if not multiplayer.is_server():
 		return
 		
@@ -151,23 +154,29 @@ func _start_lobby(lobby_id:int):
 	lobbies[lobby_id]["instance"] = game
 	lobbies[lobby_id]["state"] = "running"
 	
-	for peer_id in lobbies[lobby_id]["players"]:
-		_lobby_started.rpc_id(peer_id, lobby_id, lobbies[lobby_id]["players"], connection_registry.get_username(peer_id))
+	if is_singleplayer:
+		_lobby_started(lobby_id, lobbies[lobby_id]["players"], connection_registry.get_username(1))
+	else:
+		for peer_id in lobbies[lobby_id]["players"]:
+			_lobby_started.rpc_id(peer_id, lobby_id, lobbies[lobby_id]["players"], connection_registry.get_username(peer_id))
 	
 	game.setup(lobby_id)
 
 
 @rpc("reliable")
 func _lobby_started(lobby_id:int, players_in_lobby:Array, username:String):
-	if multiplayer.is_server():
-		return
+	#if multiplayer.is_server():
+		#return
 	var id =  multiplayer.get_unique_id()
 	if not players_in_lobby.has(id):
 		return
-	var game = preload("uid://2ycx0wai2x7s").instantiate() as LevelMP
-	game.name = "Lobby"+str(lobby_id)
-	level_node.add_child(game, true)
-	_add_player.rpc_id(1, id, lobby_id, username)
+	if multiplayer.get_unique_id() == get_multiplayer_authority():
+		_add_player(id, lobby_id, username)
+	else:
+		var game = preload("uid://2ycx0wai2x7s").instantiate() as LevelMP
+		game.name = "Lobby"+str(lobby_id)
+		level_node.add_child(game, true)
+		_add_player.rpc_id(1, id, lobby_id, username)
 	lobby_started.emit(lobby_id, id)
 
 
@@ -242,3 +251,19 @@ func _check_game_started_server(lobby_id:int, peer_id:int) -> void:
 @rpc
 func _send_game_started_to_peer(has_game_started:bool) -> void:
 	game_started.emit(has_game_started)
+
+
+func create_singleplayer_lobby(peer_id:int) -> void:
+	lobby_index = 1
+	var lobby_id = lobby_index
+	var lobby = {
+		"id": lobby_id,
+		"players": [peer_id],
+		"instance": null,
+		"state": "waiting",
+		"host": peer_id,
+		"hostname": connection_registry.get_username(peer_id)
+	}
+	lobbies[lobby_id] = lobby
+	_send_new_lobby_to_peer(lobby_id)
+	start_lobby(1)

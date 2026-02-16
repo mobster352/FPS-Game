@@ -1,0 +1,281 @@
+[gd_scene format=3 uid="uid://b7p8m06u0vvwd"]
+
+[ext_resource type="Script" uid="uid://c2rovpwwv148e" path="res://server/multiplayer_ui.gd" id="1_qiyno"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6bgqd"]
+font_size = 92
+
+[sub_resource type="LabelSettings" id="LabelSettings_flt7w"]
+font_size = 32
+
+[node name="UI" type="Control" unique_id=1416344008 node_paths=PackedStringArray("main_menu_control", "lobby_list_control", "lobby_control", "lobby_grid", "peer_id_label", "lobby_vbox", "start_game_button", "join_game_button", "login_menu", "username_line_edit", "password_line_edit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qiyno")
+main_menu_control = NodePath("MainMenu")
+lobby_list_control = NodePath("LobbyList")
+lobby_control = NodePath("Lobby")
+lobby_grid = NodePath("LobbyList/ColorRect/ScrollContainer/LobbyGrid")
+peer_id_label = NodePath("LobbyList/ColorRect/PeerId")
+lobby_vbox = NodePath("Lobby/ColorRect/LobbyVBox")
+start_game_button = NodePath("Lobby/ColorRect/StartGameButton")
+join_game_button = NodePath("Lobby/ColorRect/JoinGameButton")
+login_menu = NodePath("Login")
+username_line_edit = NodePath("Login/Username")
+password_line_edit = NodePath("Login/Password")
+
+[node name="Label" type="Label" parent="." unique_id=652533563]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Multiplayer Test"
+label_settings = SubResource("LabelSettings_6bgqd")
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Control" parent="." unique_id=1474286333]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SingleplayerButton" type="Button" parent="MainMenu" unique_id=1233051148]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 492.0
+offset_top = 220.0
+offset_right = 620.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Singleplayer"
+
+[node name="MultiplayerButton" type="Button" parent="MainMenu" unique_id=613555683]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 492.0
+offset_top = 288.5
+offset_right = 620.0
+offset_bottom = 319.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Multiplayer"
+
+[node name="ExitToDesktopButton" type="Button" parent="MainMenu" unique_id=420197114]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 492.0
+offset_top = 356.0
+offset_right = 620.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit to Desktop"
+
+[node name="LobbyList" type="Control" parent="." unique_id=609715501]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="LobbyList" unique_id=123536176]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 576.0
+color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[node name="CreateLobbyButton" type="Button" parent="LobbyList/ColorRect" unique_id=2069015843]
+layout_mode = 0
+offset_left = 192.0
+offset_top = -48.0
+offset_right = 303.0
+offset_bottom = -17.0
+text = "Create Lobby"
+
+[node name="MenuButton" type="Button" parent="LobbyList/ColorRect" unique_id=1769017703]
+layout_mode = 0
+offset_left = 56.0
+offset_top = -48.0
+offset_right = 167.0
+offset_bottom = -17.0
+text = "Back to Menu"
+
+[node name="RefreshLobbyButton" type="Button" parent="LobbyList/ColorRect" unique_id=923062230]
+layout_mode = 0
+offset_left = 328.0
+offset_top = -48.0
+offset_right = 439.0
+offset_bottom = -17.0
+text = "Refresh"
+
+[node name="LobbyGridHeader" type="GridContainer" parent="LobbyList/ColorRect" unique_id=1843105741]
+layout_mode = 0
+offset_right = 272.0
+offset_bottom = 408.0
+theme_override_constants/v_separation = 35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LobbyList/ColorRect/LobbyGridHeader" unique_id=1901676327]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Label" type="Label" parent="LobbyList/ColorRect/LobbyGridHeader/HBoxContainer" unique_id=638944363]
+layout_mode = 2
+text = "Name"
+
+[node name="Label2" type="Label" parent="LobbyList/ColorRect/LobbyGridHeader/HBoxContainer" unique_id=1462064511]
+layout_mode = 2
+text = "Number of Players"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LobbyList/ColorRect" unique_id=1020347061]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 768.0
+offset_bottom = 384.0
+
+[node name="LobbyGrid" type="GridContainer" parent="LobbyList/ColorRect/ScrollContainer" unique_id=1087807415]
+layout_mode = 2
+theme_override_constants/v_separation = 35
+
+[node name="PeerId" type="Label" parent="LobbyList/ColorRect" unique_id=495401250]
+layout_mode = 0
+offset_left = 704.0
+offset_top = -40.0
+offset_right = 744.0
+offset_bottom = -17.0
+
+[node name="Lobby" type="Control" parent="." unique_id=1836338527]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Lobby" unique_id=258097050]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 576.0
+color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[node name="LeaveLobbyButton" type="Button" parent="Lobby/ColorRect" unique_id=1720169362]
+layout_mode = 0
+offset_top = -48.0
+offset_right = 111.0
+offset_bottom = -17.0
+text = "Leave Lobby"
+
+[node name="StartGameButton" type="Button" parent="Lobby/ColorRect" unique_id=1579529616]
+visible = false
+layout_mode = 0
+offset_left = 656.0
+offset_top = -48.0
+offset_right = 767.0
+offset_bottom = -17.0
+text = "Start Game"
+
+[node name="JoinGameButton" type="Button" parent="Lobby/ColorRect" unique_id=2045822589]
+visible = false
+layout_mode = 0
+offset_left = 656.0
+offset_top = -48.0
+offset_right = 767.0
+offset_bottom = -17.0
+text = "Join Game"
+
+[node name="ConnectedPlayers" type="Label" parent="Lobby/ColorRect" unique_id=1721854495]
+layout_mode = 0
+offset_left = 224.0
+offset_right = 510.0
+offset_bottom = 45.0
+text = "Connected Players"
+label_settings = SubResource("LabelSettings_flt7w")
+
+[node name="LobbyVBox" type="VBoxContainer" parent="Lobby/ColorRect" unique_id=704976069]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 576.0
+offset_bottom = 384.0
+theme_override_constants/separation = 10
+
+[node name="Login" type="Control" parent="." unique_id=1629435655]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ConnectButton" type="Button" parent="Login" unique_id=794949771]
+layout_mode = 1
+offset_left = 688.0
+offset_top = 408.0
+offset_right = 816.0
+offset_bottom = 472.0
+text = "Connect"
+
+[node name="Username" type="LineEdit" parent="Login" unique_id=652623762]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 320.0
+offset_right = 648.0
+offset_bottom = 384.0
+placeholder_text = "Username"
+max_length = 25
+
+[node name="Password" type="LineEdit" parent="Login" unique_id=53765238]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 408.0
+offset_right = 648.0
+offset_bottom = 472.0
+placeholder_text = "Password"
+max_length = 25
+secret = true
+
+[node name="MobButton" type="Button" parent="Login" unique_id=1212382821]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 512.0
+offset_right = 512.0
+offset_bottom = 576.0
+text = "Mob"
+
+[node name="NoobButton" type="Button" parent="Login" unique_id=948613104]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 512.0
+offset_right = 672.0
+offset_bottom = 576.0
+text = "Noob"
+
+[connection signal="pressed" from="MainMenu/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
+[connection signal="pressed" from="MainMenu/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MainMenu/ExitToDesktopButton" to="." method="_on_exit_to_desktop_button_pressed"]
+[connection signal="pressed" from="LobbyList/ColorRect/CreateLobbyButton" to="." method="_on_create_lobby_button_pressed"]
+[connection signal="pressed" from="LobbyList/ColorRect/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="LobbyList/ColorRect/RefreshLobbyButton" to="." method="_on_refresh_lobby_button_pressed"]
+[connection signal="pressed" from="Lobby/ColorRect/LeaveLobbyButton" to="." method="_on_leave_lobby_button_pressed"]
+[connection signal="pressed" from="Lobby/ColorRect/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Lobby/ColorRect/JoinGameButton" to="." method="_on_join_game_button_pressed"]
+[connection signal="pressed" from="Login/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="Login/MobButton" to="." method="_on_mob_button_pressed"]
+[connection signal="pressed" from="Login/NoobButton" to="." method="_on_noob_button_pressed"]

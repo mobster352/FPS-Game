@@ -53,6 +53,8 @@ func _process(_delta: float) -> void:
 
 
 func _toggle_build_highlight(material: StandardMaterial3D) -> void:
+	if not material:
+		return
 	if toggle_build:
 		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		material.albedo_color = highlight_color

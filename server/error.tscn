@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cih8jcma476vk"]
+
+[ext_resource type="Script" uid="uid://cr0oqq5vi43b3" path="res://server/error.gd" id="1_a85wu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bshrv"]
+font_size = 32
+font_color = Color(1, 0.15294118, 0.15294118, 1)
+outline_size = 2
+outline_color = Color(0.38039216, 0, 0, 1)
+
+[node name="Error" type="Control" unique_id=1020826116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a85wu")
+
+[node name="Label" type="Label" parent="." unique_id=1252046211]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -22.5
+offset_right = 159.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lobby does not exist"
+label_settings = SubResource("LabelSettings_bshrv")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=2062508704]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 44.0
+offset_right = 39.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Confirm"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

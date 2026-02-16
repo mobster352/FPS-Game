@@ -9,7 +9,7 @@ extends MultiplayerSynchronizer
 
 @export var mouse_input := Vector2()
 
-@onready var ui: UI = get_node("/root/Multiplayer/ConnectionRegistry/UI")
+@onready var ui: MultiplayerUI = get_node("/root/Multiplayer/ConnectionRegistry/UI")
 
 var is_paused := false
 
@@ -28,10 +28,13 @@ func _process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if not is_paused:
-		direction = Input.get_vector("move_right", "move_left", "move_back", "move_forward")
+		direction = Input.get_vector("move_right", "move_left", "move_backward", "move_forward")
 		if Input.is_action_just_pressed("jump"):
-			jump.rpc()
-	if Input.is_action_just_pressed("quit"):
+			if multiplayer.is_server():
+				jump()
+			else:
+				jump.rpc()
+	if Input.is_action_just_pressed("pause"):
 		is_paused = not is_paused
 		if is_paused:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

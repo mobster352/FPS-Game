@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cqhna6sp0j81h" path="res://entities/player_skin.tscn" id="1_tyrc3"]
 [ext_resource type="Script" uid="uid://bvdbj3ur74xb2" path="res://server/player_input.gd" id="2_b83s3"]
 [ext_resource type="Texture2D" uid="uid://cstlp0qnxncv0" path="res://assets/kaykit/misc/Dummy_prototypebits_texture.png" id="4_ly3rc"]
+[ext_resource type="Script" uid="uid://d3tofcrmiu3at" path="res://entities/player/item_raycast.gd" id="5_medb6"]
+[ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="6_skphw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cttg0"]
 properties/0/path = NodePath(".:player")
@@ -37,7 +39,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cttg0"]
-radius = 0.7060547
+radius = 0.76904297
 height = 3.5532227
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxkgy"]
@@ -226,14 +228,19 @@ bind/40/name = &"handIK.r"
 bind/40/bone = -1
 bind/40/pose = Transform3D(-2.842171e-14, 7.549795e-08, -1, -1, 3.7892514e-15, 8.526513e-14, 2.1457808e-21, 1, 7.549795e-08, 1.3201894e-09, -0.71318156, -1.1067611)
 
-[node name="PlayerMP" type="CharacterBody3D" unique_id=1505982360 node_paths=PackedStringArray("server_synchronizer", "camera_pivot", "camera", "skin", "name_label")]
+[node name="PlayerMP" type="CharacterBody3D" unique_id=1505982360 node_paths=PackedStringArray("server_synchronizer", "player_input_synchronizer", "camera_pivot", "camera", "skin", "name_label", "item_slot", "inputs_ui") groups=["player"]]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_cttg0")
 server_synchronizer = NodePath("ServerSynchronizer")
+player_input_synchronizer = NodePath("PlayerInput")
 camera_pivot = NodePath("PlayerSkin/pointer")
 camera = NodePath("PlayerSkin/pointer/Camera3D")
 skin = NodePath("PlayerSkin")
 name_label = NodePath("Name")
+item_slot = NodePath("PlayerSkin/pointer/ItemSlot")
+inputs_ui = NodePath("UI/InputsUI")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=247496376]
 replication_config = SubResource("SceneReplicationConfig_cttg0")
@@ -255,26 +262,29 @@ head = NodePath("PlayerDummy/Rig/Skeleton3D/head/headPivot/Dummy_Head")
 head_pivot = NodePath("PlayerDummy/Rig/Skeleton3D/head/headPivot")
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.37561554, 0)
-bones/4/rotation = Quaternion(-0.5512824, -0.0614691, -0.6539423, 0.5144597)
-bones/5/rotation = Quaternion(3.481187e-08, -5.058152e-08, -0.48357144, 0.8753049)
-bones/7/rotation = Quaternion(-0.31724077, -0.33186588, 0.13671525, 0.87779975)
-bones/8/rotation = Quaternion(0.0016134594, 0.0016134585, -0.70115805, 0.7130022)
-bones/9/rotation = Quaternion(-0.6106841, 0.081686124, 0.62729156, 0.4763376)
-bones/10/rotation = Quaternion(-1.6409367e-09, 5.7656266e-08, 0.50729907, 0.8617701)
-bones/12/rotation = Quaternion(-0.3159722, 0.30633852, -0.21849164, 0.8709649)
-bones/13/rotation = Quaternion(0.004387136, 0.0051673986, 0.70252883, 0.71162295)
-bones/15/rotation = Quaternion(0.9909807, 0.0832968, 0.07766648, 0.07061819)
-bones/16/rotation = Quaternion(0.35158756, 6.562691e-08, -2.3782198e-07, 0.9361551)
-bones/17/rotation = Quaternion(-0.59873384, -0.20332229, 0.068918996, 0.7716398)
-bones/19/rotation = Quaternion(0.9931527, -0.03235145, 0.030220643, 0.108110785)
-bones/20/rotation = Quaternion(0.40053403, -6.065608e-08, 2.812787e-07, 0.916282)
-bones/21/rotation = Quaternion(-0.62662375, 0.11315811, -0.019694539, 0.7708113)
-bones/38/position = Vector3(0.5208407, 0.76781356, -0.057637356)
-bones/40/position = Vector3(-0.5108437, 0.76781344, 0.059736915)
+bones/1/position = Vector3(0, 0.3735616, 0)
+bones/4/rotation = Quaternion(-0.55341005, -0.056872435, -0.6372945, 0.5332529)
+bones/5/rotation = Quaternion(3.918792e-08, -3.4962774e-08, -0.51514626, 0.85710233)
+bones/7/rotation = Quaternion(-0.32185706, -0.33656713, 0.15057714, 0.87204194)
+bones/8/rotation = Quaternion(0.00069911004, 0.0006990992, -0.70453584, 0.7096678)
+bones/9/rotation = Quaternion(-0.61185235, 0.07728948, 0.6127996, 0.4941051)
+bones/10/rotation = Quaternion(4.155027e-08, 7.0434105e-08, 0.53753096, 0.8432441)
+bones/12/rotation = Quaternion(-0.32078332, 0.31275365, -0.23270349, 0.8632105)
+bones/13/rotation = Quaternion(0.0022308764, 0.002627642, 0.70478666, 0.7094109)
+bones/15/rotation = Quaternion(0.9905362, 0.08341266, 0.078032106, 0.076100975)
+bones/16/rotation = Quaternion(0.36604586, 6.173736e-08, -2.5148677e-07, 0.9305969)
+bones/17/rotation = Quaternion(-0.6063001, -0.20253678, 0.07148009, 0.7656825)
+bones/19/rotation = Quaternion(0.9925981, -0.032682367, 0.030082874, 0.11303125)
+bones/20/rotation = Quaternion(0.41328368, -6.1824586e-08, 2.8315756e-07, 0.91060233)
+bones/21/rotation = Quaternion(-0.63350016, 0.11294732, -0.020889796, 0.7651694)
+bones/38/position = Vector3(0.5208407, 0.7784423, -0.057637352)
+bones/40/position = Vector3(-0.5108437, 0.7784422, 0.059736915)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2113775, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2093236, 1.5463912e-15)
+
+[node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
+visible = false
 
 [node name="headPivot" type="Node3D" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="1" unique_id=125839102]
 
@@ -289,24 +299,67 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.942581, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9405271, 1.0572674e-15)
+
+[node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
+visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.0031039496, -0.16322045, -0.98658466, -0.9999163, -0.012868402, -0.0010167205, -0.012529911, 0.9865053, -0.16324662, -0.49076378, 0.61921614, 0.10566201)
+transform = Transform3D(0.0015571467, -0.15667887, -0.9876481, -0.999978, -0.0065416065, -0.0005385777, -0.00637662, 0.9876275, -0.15668547, -0.49046645, 0.63168156, 0.10781104)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85434, 0.3403611)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9347214, 0.26233953)
 
 [node name="Camera3D" type="Camera3D" parent="PlayerSkin/pointer" index="0" unique_id=1809162198]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 cull_mask = 1048573
-current = true
+
+[node name="ItemRaycast" type="RayCast3D" parent="PlayerSkin/pointer" index="1" unique_id=260104132 node_paths=PackedStringArray("inputs_ui", "player")]
+transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+visible = false
+target_position = Vector3(0, 0, 1000)
+collision_mask = 105
+hit_from_inside = true
+script = ExtResource("5_medb6")
+inputs_ui = NodePath("../../../UI/InputsUI")
+player = NodePath("../../..")
+
+[node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer" index="2" unique_id=473987868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
 
 [node name="Name" type="Label3D" parent="." unique_id=443071306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9149082, 0)
 billboard = 1
 double_sided = false
 text = "Player"
+
+[node name="UI" type="Control" parent="." unique_id=4640721]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReticleMarginContainer" type="MarginContainer" parent="UI" unique_id=1175705403]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer" unique_id=191998313]
+layout_mode = 2
+
+[node name="InputsUI" parent="UI" unique_id=519252468 instance=ExtResource("6_skphw")]
+layout_mode = 1
 
 [editable path="PlayerSkin"]
 [editable path="PlayerSkin/PlayerDummy"]

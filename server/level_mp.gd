@@ -2,16 +2,22 @@ extends Node3D
 class_name LevelMP
 
 @export var players_node:Node3D
+@export var objects_node:Node3D
+
+@export var rolling_pin_marker: Marker3D
 
 const SPAWN_RANDOM := 5.0
 
 var lobby_id:int
 var players:Array
+var objects:Array
 
 func _ready() -> void:
-	players.append(1)
 	if not multiplayer.is_server():
 		return
+	if OS.has_feature("dedicated_server"):
+		players.append(1)
+	spawn_objects()
 
 func _exit_tree():
 	if not multiplayer.is_server():
@@ -33,19 +39,22 @@ func add_player(id: int, username:String):
 		character.server_synchronizer.set_visibility_for(peer_id, true)
 		character.player_input_synchronizer.set_visibility_for(peer_id, true)
 	players_node.add_child(character, true)
-	for player:Player in players_node.get_children():
+	for player:PlayerMP in players_node.get_children():
 		player.server_synchronizer.set_visibility_for(id, true)
 		player.player_input_synchronizer.set_visibility_for(id, true)
 	for peer_id in players:
 		if peer_id != 1:
 			_add_player_to_peers.rpc_id(peer_id, id)
+			for object in objects:
+				var sync = object.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
+				sync.set_visibility_for(peer_id, true)
 	
 func del_player(id: int):
 	if not players.has(id):
 		return
 	if not players_node.has_node(str(id)):
 		return
-	for player:Player in players_node.get_children():
+	for player:PlayerMP in players_node.get_children():
 		player.server_synchronizer.set_visibility_for(id, false)
 		player.player_input_synchronizer.set_visibility_for(id, false)
 	for peer_id in players:
@@ -59,7 +68,7 @@ func setup(_lobby_id:int) -> void:
 
 @rpc
 func _add_player_to_peers(peer_id:int) -> void:
-	for player:Player in players_node.get_children():
+	for player:PlayerMP in players_node.get_children():
 		player.server_synchronizer.set_multiplayer_authority(1)
 		player.server_synchronizer.set_visibility_for(peer_id, true)
 		player.player_input_synchronizer.set_visibility_for(peer_id, true)
@@ -68,7 +77,16 @@ func _add_player_to_peers(peer_id:int) -> void:
 	
 @rpc
 func _remove_player_from_peers(_peer_id:int) -> void:
-	#for player:Player in players_node.get_children():
+	#for player:PlayerMP in players_node.get_children():
 		#player.server_synchronizer.set_visibility_for(peer_id, false)
 		#player.player_input_synchronizer.set_visibility_for(peer_id, false)
 	pass
+
+
+func spawn_objects() -> void:
+	var rolling_pin = preload("uid://5egw1id8hdbg").instantiate()
+	var sync = rolling_pin.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
+	sync.set_visibility_for(1, true)
+	rolling_pin.position = rolling_pin_marker.position
+	objects_node.add_child(rolling_pin)
+	objects.append(rolling_pin)

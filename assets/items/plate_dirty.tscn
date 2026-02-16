@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvxmwk63a2k37"]
+[gd_scene format=3 uid="uid://bvxmwk63a2k37"]
 
 [ext_resource type="PackedScene" uid="uid://xcfqb031pcvj" path="res://assets/kaykit/restaurant/plate_dirty.gltf" id="1_kv4sn"]
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_uqbfs"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqbfs"]
 size = Vector3(1, 0.10205078, 1)
 
-[node name="plate_dirty" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_uqbfs")]
+[node name="plate_dirty" unique_id=1342001859 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_uqbfs")]
 mesh = NodePath("body/plate_dirty/plate_dirty")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -21,7 +21,7 @@ metadata/plate_dirty = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05018866, 0)
 shape = SubResource("BoxShape3D_uqbfs")
 
-[node name="plate_dirty" parent="body" index="2" instance=ExtResource("1_kv4sn")]
+[node name="plate_dirty" parent="body" index="2" unique_id=1659134316 instance=ExtResource("1_kv4sn")]
 
 [node name="plate_dirty" parent="body/plate_dirty" index="0"]
 metadata/name = &"plate_dirty_mesh"
@@ -29,7 +29,7 @@ metadata/name = &"plate_dirty_mesh"
 [node name="Pointer" parent="body" index="3"]
 visible = true
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1751644765 node_paths=PackedStringArray("item")]
 script = ExtResource("4_hygbd")
 item = NodePath("../..")
 

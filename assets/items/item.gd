@@ -14,19 +14,25 @@ var standardMaterial3D: StandardMaterial3D
 
 @export var preview_scene: PackedScene
 
-var player: Player
+var player
 var disabled := false
 var kill := false
 
 var in_range := false
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
+	player = get_tree().get_first_node_in_group("player") as Player
+	if not player:
+		player = get_tree().get_first_node_in_group("player") as PlayerMP
+
 	standardMaterial3D = StandardMaterial3D.new()
 	standardMaterial3D.albedo_texture = albedo_texture
 	for m in meshInstanceArray:
+		if m.get_surface_override_material_count() == 0:
+			continue
 		m.set_surface_override_material(0,standardMaterial3D)
 	GlobalSignal.toggle_pointer_by_food.connect(_toggle_pointer_by_food)
+	GlobalSignal.init_player_mp.connect(_init_player_mp)
 
 func _process(_delta: float) -> void:
 	pass
@@ -34,13 +40,13 @@ func _process(_delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		player.append_item_in_range(self)
+		#player.append_item_in_range(self)
 		in_range = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		player.remove_item_in_range(self)
+		#player.remove_item_in_range(self)
 		in_range = false
 
 
@@ -131,3 +137,7 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if has_meta("food_id"):
 		if get_meta("food_id") == food_id:
 			pointer.visible = value
+
+
+func _init_player_mp(_player:PlayerMP) -> void:
+	player = _player
