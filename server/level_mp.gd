@@ -10,10 +10,11 @@ const SPAWN_RANDOM := 5.0
 
 var lobby_id:int
 var players:Array
-var objects:Array
+var objects:Array[Dictionary]
 
 func _ready() -> void:
 	if not multiplayer.is_server():
+		GlobalSignal.remove_object_from_level.connect(_remove_object_from_level)
 		return
 	if OS.has_feature("dedicated_server"):
 		players.append(1)
@@ -46,7 +47,7 @@ func add_player(id: int, username:String):
 		if peer_id != 1:
 			_add_player_to_peers.rpc_id(peer_id, id)
 			for object in objects:
-				var sync = object.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
+				var sync = object.get("object").get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
 				sync.set_visibility_for(peer_id, true)
 	
 func del_player(id: int):
@@ -84,9 +85,36 @@ func _remove_player_from_peers(_peer_id:int) -> void:
 
 
 func spawn_objects() -> void:
-	var rolling_pin = preload("uid://5egw1id8hdbg").instantiate()
+	var id := 1
+	var rolling_pin = preload("uid://5egw1id8hdbg").instantiate() as Item
 	var sync = rolling_pin.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
 	sync.set_visibility_for(1, true)
 	rolling_pin.position = rolling_pin_marker.position
-	objects_node.add_child(rolling_pin)
-	objects.append(rolling_pin)
+	rolling_pin.id = id
+	rolling_pin.name = str(id)
+	objects_node.add_child(rolling_pin, true)
+	objects.append({
+		"object": rolling_pin,
+		"id": id
+	})
+
+
+func get_object_at_id(id:int) -> Dictionary:
+	for object in objects:
+		if object.get("id") == id:
+			return object
+	return {}
+
+
+@rpc("any_peer")
+func _remove_item_from_server(id:int) -> void:
+	var object_dict = get_object_at_id(id)
+	if object_dict:
+		var object = object_dict.get("object") as Node3D
+		objects_node.remove_child(object)
+		object.queue_free()
+		objects.remove_at(objects.find(object_dict))
+
+
+func _remove_object_from_level(id:int) -> void:
+	_remove_item_from_server.rpc_id(1, id)

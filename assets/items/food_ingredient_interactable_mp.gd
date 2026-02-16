@@ -17,7 +17,10 @@ func interact(player: PlayerMP) -> void:
 	if get_parent():
 		get_parent().remove_child(self)
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
-	item.queue_free()
+	if player.multiplayer.get_unique_id() == player.get_multiplayer_authority():
+		item.queue_free()
+	else:
+		remove_item(item.id)
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN
@@ -27,3 +30,7 @@ func interact2(player: PlayerMP) -> void:
 		if item.disabled:
 			return
 		player.drop_item()
+
+
+func remove_item(id:int) -> void:
+	GlobalSignal.remove_object_from_level.emit(id)

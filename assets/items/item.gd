@@ -19,6 +19,7 @@ var disabled := false
 var kill := false
 
 var in_range := false
+@export var id:int
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player") as Player

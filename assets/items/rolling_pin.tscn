@@ -16,6 +16,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:id")
+properties/2/spawn = true
+properties/2/replication_mode = 0
 
 [node name="RollingPin" unique_id=1329176234 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["thief_target"] instance=ExtResource("1_rei0x")]
 mesh = NodePath("body/mesh/rollingpin")
@@ -24,20 +27,20 @@ area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/mesh/rollingpin")]
 albedo_texture = ExtResource("2_gix2a")
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017089844, 0.003540039, 0.007019043)
 shape = SubResource("ConvexPolygonShape3D_gix2a")
 
-[node name="mesh" parent="body" index="1" unique_id=704232850 instance=ExtResource("2_o7hke")]
+[node name="mesh" parent="body" parent_id_path=PackedInt32Array(978506078) index="1" unique_id=704232850 instance=ExtResource("2_o7hke")]
 
 [node name="rollingpin" parent="body/mesh" index="0"]
 metadata/name = &"rolling_pin_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=772216194 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="4" unique_id=772216194 node_paths=PackedStringArray("item")]
 script = ExtResource("4_gix2a")
 item = NodePath("../..")
 
-[node name="InteractableMP" type="Node3D" parent="body" index="5" unique_id=1139455951 node_paths=PackedStringArray("item")]
+[node name="InteractableMP" type="Node3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="5" unique_id=1139455951 node_paths=PackedStringArray("item")]
 script = ExtResource("5_mh0x7")
 item = NodePath("../..")
 

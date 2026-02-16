@@ -161,7 +161,7 @@ func drop_item() -> void:
 						cookable.toppings = item.mesh.get_meta("toppings")
 					
 				item.mesh.rotation = Vector3.ZERO
-				get_parent().add_child(item)
+				get_node("../../Objects").add_child(item)
 				
 				item.meshInstanceArray.append(item.mesh)
 				item.set_monitoring(true)

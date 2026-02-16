@@ -61,3 +61,6 @@ signal remove_table(table: Table)
 
 @warning_ignore("unused_signal")
 signal init_player_mp(player: PlayerMP)
+
+@warning_ignore("unused_signal")
+signal remove_object_from_level(id:int)

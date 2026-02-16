@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dailpqyk5qdk4"]
+[gd_scene format=3 uid="uid://dailpqyk5qdk4"]
 
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="1_w3e1j"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="2_smh0g"]
@@ -6,27 +6,27 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_mah83"]
 radius = 3.9701247
 
-[node name="Item" type="Node3D" node_paths=PackedStringArray("collider", "pointer") groups=["items"]]
+[node name="Item" type="Node3D" unique_id=2143710857 node_paths=PackedStringArray("collider", "pointer") groups=["items"]]
 script = ExtResource("1_w3e1j")
 collider = NodePath("body/CollisionShape3D")
 pointer = NodePath("body/Pointer")
 
-[node name="body" type="RigidBody3D" parent="."]
+[node name="body" type="RigidBody3D" parent="." unique_id=978506078]
 collision_layer = 8
 collision_mask = 77
 can_sleep = false
 angular_damp = 5.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=389354591]
 
-[node name="Area3D" type="Area3D" parent="body"]
+[node name="Area3D" type="Area3D" parent="body" unique_id=1232155341]
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" unique_id=549575535]
 shape = SubResource("SphereShape3D_mah83")
 
-[node name="Pointer" parent="body" instance=ExtResource("2_smh0g")]
+[node name="Pointer" parent="body" unique_id=42302540 instance=ExtResource("2_smh0g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 visible = false
 
