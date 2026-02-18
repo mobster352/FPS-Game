@@ -9,7 +9,7 @@ const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 @export var inputs_ui: InputsUI
 #@export var placement_system:PlacementSystem
 
-@export var player:PlayerMP
+@export var playerMP:PlayerMP
 
 var can_place := false
 
@@ -21,6 +21,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, playerMP.has_held_object())
+	if not playerMP.is_current_player():
+		return
 	_process_rayCast()
 
 
@@ -42,8 +45,6 @@ func _process_rayCast() -> void:
 	
 func _handle_item_raycast(target: Node3D) -> void:
 	can_place = false
-	
-	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, player.has_held_object())
 	
 	#if player.has_held_object():
 		#var item = player.item_slot.get_child(0)
@@ -81,14 +82,14 @@ func _handle_item_raycast(target: Node3D) -> void:
 		interactable = target.get_node("InteractableMP") as InteractableMP
 
 	if interactable:
-		if interactable.can_interact(player):
+		if interactable.can_interact(playerMP):
 			#reticle.color = interactable.reticle_color()
-			if player.interact:
-				interactable.interact(player)
-				player.interact = false
-			if player.drop_input:
-				interactable.interact2(player)
-				player.drop_input = false
+			if playerMP.interact:
+				interactable.interact(playerMP)
+				playerMP.interact = false
+			if playerMP.drop_input:
+				interactable.interact2(playerMP)
+				playerMP.drop_input = false
 
 	var cook_input := Input.is_action_just_pressed("cook")
 	
@@ -97,13 +98,13 @@ func _handle_item_raycast(target: Node3D) -> void:
 		cookable = target.get_node("CookableMP")
 	
 	if cookable:
-		if cookable.can_cook(player):
+		if cookable.can_cook(playerMP):
 			#reticle.color = cookable.reticle_color()
 			if cook_input:
-				cookable.cook(player)
+				cookable.cook(playerMP)
 
 func _handle_build_raycast(target: Node3D) -> void:
-	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, player.has_held_object())
+	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, playerMP.has_held_object())
 	
 	var movable := target as Movable
 	if not movable:
@@ -114,6 +115,6 @@ func _handle_build_raycast(target: Node3D) -> void:
 	if movable:
 		if movable.can_move():
 			inputs_ui.update_actions.emit(inputs_ui.InputAction.PreMove)
-			if player.interact:
+			if playerMP.interact:
 				movable.move()
-				player.interact = false
+				playerMP.interact = false

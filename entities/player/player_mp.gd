@@ -51,7 +51,7 @@ func _ready():
 		skin.helmut.set_layer_mask_value(1, false)
 		skin.helmut.set_layer_mask_value(2, true)
 	state = State.Idle
-	set_process_input(player == multiplayer.get_unique_id())
+	set_process_input(is_current_player())
 	GlobalSignal.init_player_mp.emit(self)
 
 func _physics_process(delta:float):
@@ -197,7 +197,16 @@ func drop_item() -> void:
 
 
 func _process_drop_item() -> void:
+	if player != multiplayer.get_unique_id():
+		return
 	if has_held_object() and not item_slot.get_child(0).has_meta("pizzaboxes"):
 		if drop_input:
 			drop_item()
 			
+
+func is_current_player() -> bool:
+	return player == multiplayer.get_unique_id()
+
+
+func is_host() -> bool:
+	return multiplayer.is_server()

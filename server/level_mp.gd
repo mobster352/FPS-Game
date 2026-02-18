@@ -106,6 +106,10 @@ func get_object_at_id(id:int) -> Dictionary:
 	return {}
 
 
+func _remove_object_from_level(id:int) -> void:
+	_remove_item_from_server.rpc_id(1, id)
+
+
 @rpc("any_peer")
 func _remove_item_from_server(id:int) -> void:
 	var object_dict = get_object_at_id(id)
@@ -114,7 +118,3 @@ func _remove_item_from_server(id:int) -> void:
 		objects_node.remove_child(object)
 		object.queue_free()
 		objects.remove_at(objects.find(object_dict))
-
-
-func _remove_object_from_level(id:int) -> void:
-	_remove_item_from_server.rpc_id(1, id)
