@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="2_aai7u"]
 [ext_resource type="PackedScene" uid="uid://c2mi0p5kigfp6" path="res://environment/restaurant_mp.tscn" id="3_e12pd"]
 
-[node name="LevelMP_Prototype" type="Node3D" unique_id=2054429627 node_paths=PackedStringArray("players_node", "objects_node", "rolling_pin_marker")]
+[node name="LevelMP_Prototype" type="Node3D" unique_id=2054429627 node_paths=PackedStringArray("players_node", "objects_node", "rolling_pin_marker", "rolling_pin_marker2")]
 script = ExtResource("1_dks63")
 players_node = NodePath("Level/Entities/Players")
 objects_node = NodePath("Level/Entities/Objects")
-rolling_pin_marker = NodePath("Level/Entities/Objects/RollingPinMarker")
+rolling_pin_marker = NodePath("Level/RollingPinMarker")
+rolling_pin_marker2 = NodePath("Level/RollingPinMarker2")
 
 [node name="Level" parent="." unique_id=1263719789 instance=ExtResource("2_aai7u")]
 
@@ -16,10 +17,13 @@ rolling_pin_marker = NodePath("Level/Entities/Objects/RollingPinMarker")
 
 [node name="Objects" type="Node3D" parent="Level/Entities" parent_id_path=PackedInt32Array(1263719789, 1326860625) index="1" unique_id=1359858586]
 
-[node name="RollingPinMarker" type="Marker3D" parent="Level/Entities/Objects" unique_id=736686221]
+[node name="RollingPinMarker" type="Marker3D" parent="Level" unique_id=736686221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6703997, 1.4450655, -8.458376)
 
-[node name="ObjectsSpawner" type="MultiplayerSpawner" parent="Level" unique_id=973933517]
+[node name="RollingPinMarker2" type="Marker3D" parent="Level" unique_id=1508306818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.237784, 1.4450655, -8.458376)
+
+[node name="ObjectSpawner" type="MultiplayerSpawner" parent="Level" unique_id=397721238]
 _spawnable_scenes = PackedStringArray("uid://5egw1id8hdbg")
 spawn_path = NodePath("../Entities/Objects")
 

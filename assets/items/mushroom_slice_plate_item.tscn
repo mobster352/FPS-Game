@@ -20,10 +20,10 @@ disposable = true
 mesh_has_children = true
 metadata/food_id = 3
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=978506078]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15501976, 0.039966583)
 shape = SubResource("BoxShape3D_i6x27")
 

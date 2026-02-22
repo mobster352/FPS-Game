@@ -64,3 +64,9 @@ signal init_player_mp(player: PlayerMP)
 
 @warning_ignore("unused_signal")
 signal remove_object_from_level(id:int)
+
+@warning_ignore("unused_signal")
+signal add_item_to_player(mesh_name:String, player_id:int)
+
+@warning_ignore("unused_signal")
+signal player_drop_item(mesh_name:String, item_position:Vector3, player_id:int)

@@ -55,7 +55,7 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 					body.apply_impulse(forward * (throw_strength / body.mass), body.global_position + forward)
 
 
-func can_interact() -> bool:
+func can_interact(_player:Player) -> bool:
 	return item.in_range
 	
 func interact(player: Player) -> void:
@@ -65,7 +65,7 @@ func interact(player: Player) -> void:
 			player.drop_item()
 		if obj.get_parent():
 			obj.get_parent().remove_child(obj)
-		obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)))
+		obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
 		obj.queue_free()
 	
 func reticle_color() -> Color:

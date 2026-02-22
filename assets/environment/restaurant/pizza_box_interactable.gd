@@ -7,8 +7,8 @@ func can_interact(player: Player) -> bool:
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object())
 	return pizza_box.in_range
 	
-func interact(_player: Player) -> void:
-	pizza_box.interact()
+func interact(player: Player) -> void:
+	pizza_box.interact(player)
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN

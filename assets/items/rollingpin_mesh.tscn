@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://h5v7gi6sfwcp"]
+
+[ext_resource type="PackedScene" uid="uid://c5mwmmts17sf" path="res://assets/kaykit/restaurant/rollingpin.gltf" id="1_ycmqf"]
+
+[node name="rollingpin_mesh" unique_id=1338729564 instance=ExtResource("1_ycmqf")]
+
+[node name="rollingpin" parent="." index="0"]
+metadata/name = "rolling_pin_mesh"

@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			lid.basis = lerp(lid.basis,lid.basis.rotated(Vector3.RIGHT, deg_to_rad(-90)).orthonormalized(), speed * delta)
 		elapsed += speed * delta
 
-func interact() -> void:
+func interact(player) -> void:
 	if disabled:
 		return
 	if player.has_held_object():
@@ -49,7 +49,7 @@ func interact() -> void:
 	if get_parent():
 		get_parent().remove_child(self)
 	lid.rotation = Vector3.ZERO
-	pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)))
+	pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)), player)
 	if pizza_slot.has_meta("pizza"):
 		player.item_slot.get_child(0).set_meta("pizza", pizza_slot.get_meta("pizza"))
 		player.item_slot.get_child(0).set_meta("food_id", pizza_slot.get_meta("food_id"))

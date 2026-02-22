@@ -14,17 +14,20 @@ var standardMaterial3D: StandardMaterial3D
 
 @export var preview_scene: PackedScene
 
-var player
+#var player
 var disabled := false
 var kill := false
 
 var in_range := false
+var players_in_range: Array
+
 @export var id:int
+@export var multiplayer_synchornizer: MultiplayerSynchronizer
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player") as Player
-	if not player:
-		player = get_tree().get_first_node_in_group("player") as PlayerMP
+	#player = get_tree().get_first_node_in_group("player") as Player
+	#if not player:
+		#player = get_tree().get_first_node_in_group("player") as PlayerMP
 
 	standardMaterial3D = StandardMaterial3D.new()
 	standardMaterial3D.albedo_texture = albedo_texture
@@ -33,7 +36,7 @@ func _ready() -> void:
 			continue
 		m.set_surface_override_material(0,standardMaterial3D)
 	GlobalSignal.toggle_pointer_by_food.connect(_toggle_pointer_by_food)
-	GlobalSignal.init_player_mp.connect(_init_player_mp)
+	#GlobalSignal.init_player_mp.connect(_init_player_mp)
 
 func _process(_delta: float) -> void:
 	pass
@@ -41,13 +44,29 @@ func _process(_delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		var player
+		if body is Player:
+			player = body as Player
+		elif body is PlayerMP:
+			player = body as PlayerMP
+		if not player:
+			return
 		#player.append_item_in_range(self)
+		players_in_range.append(player.player)
 		in_range = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
+		var player
+		if body is Player:
+			player = body as Player
+		elif body is PlayerMP:
+			player = body as PlayerMP
+		if not player:
+			return
 		#player.remove_item_in_range(self)
+		players_in_range.remove_at(players_in_range.find(player.player))
 		in_range = false
 
 
@@ -78,7 +97,12 @@ func set_z_scale_children(value: bool, new_mesh: Node3D) -> void:
 						material.z_clip_scale = 0.1
 
 
-func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
+func pickup(new_pos: Vector3, new_rotation: Vector3, player) -> void:
+	if player is Player:
+		player = player as Player
+	elif player is PlayerMP:
+		player = player as PlayerMP
+	
 	var new_mesh = mesh.duplicate()
 	
 	new_mesh.position = new_pos
@@ -102,8 +126,13 @@ func pickup(new_pos: Vector3, new_rotation: Vector3) -> void:
 	
 	if mesh.has_meta("toppings"):
 		new_mesh.set_meta("toppings", mesh.get_meta("toppings"))
+		
+	new_mesh.set_meta("name", mesh.get_meta("name"))
 	
-	player.item_slot.add_child(new_mesh)
+	if player.is_host():
+		player.item_slot.add_child(new_mesh)
+	else:
+		GlobalSignal.add_item_to_player.emit(new_mesh.get_meta("name"), player.player)
 
 	set_monitoring(false)
 	set_z_scale(true)
@@ -131,8 +160,13 @@ func shrink_and_free(money:int, delay := 1.0) -> void:
 		tween.tween_callback(_pay_player.bind(money))
 	tween.tween_callback(queue_free).set_delay(delay)
 
-func _pay_player(money:int) -> void:
-	player.update_money(money)
+func _pay_player(_money:int, player) -> void:
+	if player is Player:
+		player = player as Player
+	elif player is PlayerMP:
+		player = player as PlayerMP
+	#player.update_money(money)
+	pass
 
 func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if has_meta("food_id"):
@@ -140,5 +174,5 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 			pointer.visible = value
 
 
-func _init_player_mp(_player:PlayerMP) -> void:
-	player = _player
+#func _init_player_mp(_player:PlayerMP) -> void:
+	#player = _player

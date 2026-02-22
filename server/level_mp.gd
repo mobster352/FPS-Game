@@ -5,20 +5,24 @@ class_name LevelMP
 @export var objects_node:Node3D
 
 @export var rolling_pin_marker: Marker3D
+@export var rolling_pin_marker2: Marker3D
 
-const SPAWN_RANDOM := 5.0
+const SPAWN_RANDOM := 1.0
 
 var lobby_id:int
 var players:Array
 var objects:Array[Dictionary]
 
+var _object_id := 0
+
 func _ready() -> void:
 	if not multiplayer.is_server():
 		GlobalSignal.remove_object_from_level.connect(_remove_object_from_level)
+		GlobalSignal.add_item_to_player.connect(_add_item_to_player)
+		GlobalSignal.player_drop_item.connect(_player_drop_item)
 		return
 	if OS.has_feature("dedicated_server"):
 		players.append(1)
-	spawn_objects()
 
 func _exit_tree():
 	if not multiplayer.is_server():
@@ -34,21 +38,21 @@ func add_player(id: int, username:String):
 	var pos := Vector2.from_angle(randf() * 2 * PI)
 	character.position = Vector3(pos.x * SPAWN_RANDOM * randf(), 0, pos.y * SPAWN_RANDOM * randf())
 	character.name = str(id)
-	character.server_synchronizer.set_multiplayer_authority(1)
 	character.name_label.text = username
+	print(username, ": ", str(id))
 	for peer_id in players:
 		character.server_synchronizer.set_visibility_for(peer_id, true)
-		character.player_input_synchronizer.set_visibility_for(peer_id, true)
 	players_node.add_child(character, true)
 	for player:PlayerMP in players_node.get_children():
 		player.server_synchronizer.set_visibility_for(id, true)
-		player.player_input_synchronizer.set_visibility_for(id, true)
 	for peer_id in players:
 		if peer_id != 1:
 			_add_player_to_peers.rpc_id(peer_id, id)
-			for object in objects:
-				var sync = object.get("object").get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
-				sync.set_visibility_for(peer_id, true)
+			_update_held_item_late_join(id)
+	for object in objects:
+		if object.get("object").has_node("MultiplayerSynchronizer"):
+			var sync = object.get("object").get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
+			sync.set_visibility_for(id, true)
 	
 func del_player(id: int):
 	if not players.has(id):
@@ -66,16 +70,15 @@ func del_player(id: int):
 
 func setup(_lobby_id:int) -> void:
 	lobby_id = _lobby_id
+	spawn_objects_on_server()
 
 @rpc
 func _add_player_to_peers(peer_id:int) -> void:
 	for player:PlayerMP in players_node.get_children():
-		player.server_synchronizer.set_multiplayer_authority(1)
-		player.server_synchronizer.set_visibility_for(peer_id, true)
 		player.player_input_synchronizer.set_visibility_for(peer_id, true)
-		player.server_synchronizer.set_visibility_for(1, true)
 		player.player_input_synchronizer.set_visibility_for(1, true)
-	
+
+
 @rpc
 func _remove_player_from_peers(_peer_id:int) -> void:
 	#for player:PlayerMP in players_node.get_children():
@@ -84,19 +87,32 @@ func _remove_player_from_peers(_peer_id:int) -> void:
 	pass
 
 
-func spawn_objects() -> void:
-	var id := 1
-	var rolling_pin = preload("uid://5egw1id8hdbg").instantiate() as Item
-	var sync = rolling_pin.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
-	sync.set_visibility_for(1, true)
-	rolling_pin.position = rolling_pin_marker.position
-	rolling_pin.id = id
-	rolling_pin.name = str(id)
-	objects_node.add_child(rolling_pin, true)
-	objects.append({
-		"object": rolling_pin,
-		"id": id
-	})
+func spawn_objects_on_server() -> void:
+	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker.position)
+	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker2.position)
+
+
+@rpc("call_local")
+func _spawn_object_on_peer(mesh_name:String, object_position:Vector3) -> void:
+	var item = GlobalVar.get_item_from_mesh(mesh_name) as Item
+	if item:
+		_object_id = _object_id + 1
+		
+		item.name = mesh_name
+		item.id = _object_id
+		item.position = object_position
+		objects_node.add_child(item, true)
+		
+		objects.append({
+			"object": item,
+			"mesh_name": mesh_name,
+			"id": _object_id
+		})
+		
+		for player in players:
+			if item.has_node("MultiplayerSynchronizer"):
+				var sync = item.get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
+				sync.set_visibility_for(player, true)
 
 
 func get_object_at_id(id:int) -> Dictionary:
@@ -115,6 +131,59 @@ func _remove_item_from_server(id:int) -> void:
 	var object_dict = get_object_at_id(id)
 	if object_dict:
 		var object = object_dict.get("object") as Node3D
-		objects_node.remove_child(object)
 		object.queue_free()
 		objects.remove_at(objects.find(object_dict))
+
+func _add_item_to_player(mesh_name:String, player_id:int) -> void:
+	_server_add_item_to_player.rpc_id(1, mesh_name, player_id)
+
+
+@rpc("any_peer")
+func _server_add_item_to_player(mesh_name:String, peer_id:int):
+	for player:PlayerMP in players_node.get_children():
+		_update_held_item_to_peers.rpc_id(player.player, peer_id, mesh_name)
+		
+		if player.player == peer_id:
+			var item = GlobalVar.get_mesh_from_array(mesh_name)
+			player.item_slot.add_child(item, true)
+			var mesh = player.item_slot.get_child(0)
+			mesh.set_meta("name", mesh_name)
+
+
+@rpc
+func _update_held_item_to_peers(peer_id:int, mesh_name:String) -> void:
+	for player:PlayerMP in players_node.get_children():
+		if player.player != peer_id:
+			continue
+		var item = GlobalVar.get_mesh_from_array(mesh_name)
+		player.item_slot.add_child(item, true)
+		var mesh = player.item_slot.get_child(0)
+		mesh.set_meta("name", mesh_name)
+
+
+func _update_held_item_late_join(new_player_id:int) -> void:
+	for player:PlayerMP in players_node.get_children():
+		if player.has_held_object():
+			var item_node = player.item_slot.get_child(0)
+			var mesh = item_node.get_child(0)
+			if mesh.has_meta("name"):
+				_update_held_item_to_peers.rpc_id(new_player_id, player.player, mesh.get_meta("name"))
+
+
+func _player_drop_item(mesh_name:String, item_position:Vector3, player_id:int) -> void:
+	_server_player_drop_item.rpc_id(1, mesh_name, item_position, player_id)
+	
+	
+@rpc("any_peer")
+func _server_player_drop_item(mesh_name:String, item_position:Vector3, player_id:int) -> void:
+	_spawn_object_on_peer(mesh_name, item_position)
+	for player in players:
+		_remove_held_item_from_peers.rpc_id(player, player_id)
+		
+@rpc("call_local")
+func _remove_held_item_from_peers(peer_id:int) -> void:
+	for player:PlayerMP in players_node.get_children():
+		if player.player != peer_id:
+			continue
+		if player.has_held_object():
+			player.item_slot.get_child(0).queue_free()

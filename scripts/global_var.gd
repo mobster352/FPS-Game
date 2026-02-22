@@ -23,71 +23,72 @@ enum StoreItem {
 
 var mesh_to_item_array: Array[Dictionary] = [
 	{
-		"mesh": "dough_mesh",
+		"name": "dough_mesh",
 		"item": "res://assets/environment/restaurant/food_ingredient_dough.tscn"
 	},
 	{
-		"mesh": "cheese_slice_plate_mesh",
+		"name": "cheese_slice_plate_mesh",
 		"item": "res://assets/items/cheese_slice_plate_item.tscn"
 	},
 	{
-		"mesh": "mushroom_slice_plate_mesh",
+		"name": "mushroom_slice_plate_mesh",
 		"item": "res://assets/items/mushroom_slice_plate_item.tscn"
 	},
 	{
-		"mesh": "pepperoni_slice_plate_mesh",
+		"name": "pepperoni_slice_plate_mesh",
 		"item": "res://assets/items/pepperoni_slice_plate_item.tscn"
 	},
 	{
-		"mesh": "plate_dirty_mesh",
+		"name": "plate_dirty_mesh",
 		"item": "res://assets/items/plate_dirty.tscn"
 	},
 	{
-		"mesh": "crate_mesh",
+		"name": "crate_mesh",
 		"item": "res://assets/environment/restaurant/crate_generic.tscn"
 	},
 	{
-		"mesh": "dough_base_mesh",
+		"name": "dough_base_mesh",
 		"item": "res://assets/items/food_ingredient_dough_base.tscn"
 	},
 	{
-		"mesh": "rolling_pin_mesh",
-		"item": "res://assets/items/rolling_pin.tscn"
+		"name": "rolling_pin_mesh",
+		"item": "res://assets/items/rolling_pin.tscn",
+		"mesh": "res://assets/items/rollingpin_mesh.tscn"
 	},
 	{
-		"mesh": "food_ingredient_tomato_mesh",
+		"name": "food_ingredient_tomato_mesh",
 		"item": "res://assets/items/food_ingredient_tomato.tscn"
 	},
 	{
-		"mesh": "food_ingredient_cheese_mesh",
+		"name": "food_ingredient_cheese_mesh",
 		"item": "res://assets/items/food_ingredient_cheese.tscn"
 	},
 	{
-		"mesh": "food_ingredient_mushroom_mesh",
+		"name": "food_ingredient_mushroom_mesh",
 		"item": "res://assets/items/food_ingredient_mushroom.tscn"
 	},
 	{
-		"mesh": "food_ingredient_pepperoni_mesh",
+		"name": "food_ingredient_pepperoni_mesh",
 		"item": "res://assets/items/food_ingredient_pepperoni.tscn"
 	},
 	{
-		"mesh": "food_ingredient_pepperoni_pizza_mesh",
+		"name": "food_ingredient_pepperoni_pizza_mesh",
 		"item": "res://assets/items/food_pizza_pepperoni_plated.tscn"
 	},
 	{
-		"mesh": "food_ingredient_mushroom_pizza_mesh",
+		"name": "food_ingredient_mushroom_pizza_mesh",
 		"item": "res://assets/items/food_pizza_mushroom_plated.tscn"
 	},
 	{
-		"mesh": "food_ingredient_cheese_pizza_mesh",
+		"name": "food_ingredient_cheese_pizza_mesh",
 		"item": "res://assets/items/food_pizza_cheese_plated.tscn"
 	},
 	{
-		"mesh": "pizza_box_open_mesh",
+		"name": "pizza_box_open_mesh",
 		"item": "res://assets/environment/restaurant/pizzabox_open.tscn"
 	},
 	{
-		"mesh": "coin_a_mesh",
+		"name": "coin_a_mesh",
 		"item": "res://assets/items/coin_a.tscn"
 	}
 ]
@@ -109,8 +110,14 @@ func get_food(food_id:int) -> Food:
 			return food
 	return null
 
-func get_item_from_mesh(mesh: StringName) -> Item:
+func get_item_from_mesh(mesh_name: StringName) -> Item:
 	for mti in mesh_to_item_array:
-		if mti.mesh == mesh:
+		if mti.name == mesh_name:
 			return load(mti.item).instantiate()
+	return null
+
+func get_mesh_from_array(mesh_name: StringName) -> Node3D:
+	for mti in mesh_to_item_array:
+		if mti.name == mesh_name:
+			return load(mti.mesh).instantiate()
 	return null
