@@ -48,7 +48,7 @@ func add_player(id: int, username:String):
 	for peer_id in players:
 		if peer_id != 1:
 			_add_player_to_peers.rpc_id(peer_id, id)
-			_update_held_item_late_join(id)
+	_update_held_item_late_join(id)
 	for object in objects:
 		if object.get("object").has_node("MultiplayerSynchronizer"):
 			var sync = object.get("object").get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
@@ -146,8 +146,9 @@ func _server_add_item_to_player(mesh_name:String, peer_id:int):
 		if player.player == peer_id:
 			var item = GlobalVar.get_mesh_from_array(mesh_name)
 			player.item_slot.add_child(item, true)
-			var mesh = player.item_slot.get_child(0)
-			mesh.set_meta("name", mesh_name)
+			
+			var child = player.item_slot.get_child(0)
+			child.set_meta("name", mesh_name)
 
 
 @rpc
@@ -157,8 +158,19 @@ func _update_held_item_to_peers(peer_id:int, mesh_name:String) -> void:
 			continue
 		var item = GlobalVar.get_mesh_from_array(mesh_name)
 		player.item_slot.add_child(item, true)
-		var mesh = player.item_slot.get_child(0)
-		mesh.set_meta("name", mesh_name)
+		
+		var child = player.item_slot.get_child(0)
+		child.set_meta("name", mesh_name)
+		
+		var mesh = item.get_child(0) as MeshInstance3D
+			
+		if multiplayer.get_unique_id() == peer_id:
+			var material = StandardMaterial3D.new()
+			if material is BaseMaterial3D:
+				material.use_z_clip_scale = true
+				if material.z_clip_scale == 1.0:
+					material.z_clip_scale = 0.1
+				mesh.set_surface_override_material(0, material)
 
 
 func _update_held_item_late_join(new_player_id:int) -> void:

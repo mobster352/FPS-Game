@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://h5v7gi6sfwcp"]
 
 [ext_resource type="PackedScene" uid="uid://c5mwmmts17sf" path="res://assets/kaykit/restaurant/rollingpin.gltf" id="1_ycmqf"]
+[ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_3qj1r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vc4ed"]
+albedo_texture = ExtResource("2_3qj1r")
 
 [node name="rollingpin_mesh" unique_id=1338729564 instance=ExtResource("1_ycmqf")]
 
 [node name="rollingpin" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vc4ed")
 metadata/name = "rolling_pin_mesh"
