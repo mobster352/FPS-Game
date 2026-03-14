@@ -6,7 +6,7 @@ func can_interact(playerMP: PlayerMP) -> bool:
 	if not playerMP.is_current_player():
 		return false
 	if item.players_in_range.has(playerMP.player):
-		playerMP.inputs_ui.update_actions.emit(playerMP.inputs_ui.InputAction.InteractItem, playerMP.has_held_object())
+		playerMP.inputs_ui.update_actions.emit(playerMP.inputs_ui.InputAction.InteractItem, playerMP.has_held_object(), false, playerMP.player)
 	return item.players_in_range.has(playerMP.player)
 	
 func interact(playerMP: PlayerMP) -> void:

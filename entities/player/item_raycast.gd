@@ -6,7 +6,6 @@ const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 
 #@export var reticle: ColorRect
 
-@export var inputs_ui: InputsUI
 #@export var placement_system:PlacementSystem
 
 @export var playerMP:PlayerMP
@@ -21,9 +20,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, playerMP.has_held_object())
 	if not playerMP.is_current_player():
 		return
+	playerMP.inputs_ui.update_actions.emit(playerMP.inputs_ui.InputAction.None, playerMP.has_held_object(), false, playerMP.player)
 	_process_rayCast()
 
 
@@ -104,7 +103,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 				cookable.cook(playerMP)
 
 func _handle_build_raycast(target: Node3D) -> void:
-	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, playerMP.has_held_object())
+	playerMP.inputs_ui.update_actions.emit(playerMP.inputs_ui.InputAction.None, playerMP.has_held_object())
 	
 	var movable := target as Movable
 	if not movable:
@@ -114,7 +113,7 @@ func _handle_build_raycast(target: Node3D) -> void:
 	
 	if movable:
 		if movable.can_move():
-			inputs_ui.update_actions.emit(inputs_ui.InputAction.PreMove)
+			playerMP.inputs_ui.update_actions.emit(playerMP.inputs_ui.InputAction.PreMove)
 			if playerMP.interact:
 				movable.move()
 				playerMP.interact = false

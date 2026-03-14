@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dpq2qoyaotnfs" path="res://server/level_mp.gd" id="1_dks63"]
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="2_aai7u"]
 [ext_resource type="PackedScene" uid="uid://c2mi0p5kigfp6" path="res://environment/restaurant_mp.tscn" id="3_e12pd"]
+[ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="4_1tvxm"]
 
 [node name="LevelMP_Prototype" type="Node3D" unique_id=2054429627 node_paths=PackedStringArray("players_node", "objects_node", "rolling_pin_marker", "rolling_pin_marker2")]
 script = ExtResource("1_dks63")
@@ -16,6 +17,24 @@ rolling_pin_marker2 = NodePath("Level/RollingPinMarker2")
 [node name="Restaurant" parent="Level/Environment/Buildings" parent_id_path=PackedInt32Array(1263719789, 1328818616) index="0" unique_id=1282270132 instance=ExtResource("3_e12pd")]
 
 [node name="Objects" type="Node3D" parent="Level/Entities" parent_id_path=PackedInt32Array(1263719789, 1326860625) index="1" unique_id=1359858586]
+
+[node name="UI" parent="Level" index="6" unique_id=1491319236 node_paths=PackedStringArray("inputs_ui")]
+inputs_ui = NodePath("InputsUI")
+
+[node name="InputsUI" parent="Level/UI" index="1" unique_id=682606250 instance=ExtResource("4_1tvxm")]
+layout_mode = 1
+
+[node name="ReticleMarginContainer" type="MarginContainer" parent="Level/UI" index="2" unique_id=758157027]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 319.0
+offset_right = 581.0
+offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reticle2" type="ColorRect" parent="Level/UI/ReticleMarginContainer" unique_id=1871143597]
+layout_mode = 2
 
 [node name="RollingPinMarker" type="Marker3D" parent="Level" unique_id=736686221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6703997, 1.4450655, -8.458376)

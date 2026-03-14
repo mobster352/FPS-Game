@@ -25,7 +25,9 @@ enum InputAction {
 func _ready() -> void:
 	update_actions.connect(_update_actions)
 	
-func _update_actions(input_action:InputAction, has_held_object:bool = false, has_count:bool = false) -> void:
+func _update_actions(input_action:InputAction, has_held_object:bool = false, has_count:bool = false, peer_id:int = 1) -> void:
+	if multiplayer.get_unique_id() != peer_id:
+		return
 	match input_action:
 		InputAction.Interact:
 			interact(has_held_object)

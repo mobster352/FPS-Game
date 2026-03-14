@@ -88,12 +88,12 @@ func _remove_player_from_peers(_peer_id:int) -> void:
 
 
 func spawn_objects_on_server() -> void:
-	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker.position)
-	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker2.position)
+	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker.position, rolling_pin_marker.rotation)
+	#_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker2.position, rolling_pin_marker2.rotation)
 
 
 @rpc("call_local")
-func _spawn_object_on_peer(mesh_name:String, object_position:Vector3) -> void:
+func _spawn_object_on_peer(mesh_name:String, object_position:Vector3, object_rotation:Vector3) -> void:
 	var item = GlobalVar.get_item_from_mesh(mesh_name) as Item
 	if item:
 		_object_id = _object_id + 1
@@ -101,6 +101,7 @@ func _spawn_object_on_peer(mesh_name:String, object_position:Vector3) -> void:
 		item.name = mesh_name
 		item.id = _object_id
 		item.position = object_position
+		item.rotation = object_rotation
 		objects_node.add_child(item, true)
 		
 		objects.append({
@@ -161,16 +162,17 @@ func _update_held_item_to_peers(peer_id:int, mesh_name:String) -> void:
 		
 		var child = player.item_slot.get_child(0)
 		child.set_meta("name", mesh_name)
-		
-		var mesh = item.get_child(0) as MeshInstance3D
 			
-		if multiplayer.get_unique_id() == peer_id:
-			var material = StandardMaterial3D.new()
-			if material is BaseMaterial3D:
-				material.use_z_clip_scale = true
-				if material.z_clip_scale == 1.0:
-					material.z_clip_scale = 0.1
-				mesh.set_surface_override_material(0, material)
+		#if multiplayer.get_unique_id() == peer_id:
+			#var mesh = item.get_child(0) as MeshInstance3D
+			#var material = StandardMaterial3D.new()
+			#if mesh.get_surface_override_material_count() > 0:
+				#material = mesh.get_surface_override_material(0)
+			#if material is BaseMaterial3D:
+				#material.use_z_clip_scale = true
+				#if material.z_clip_scale == 1.0:
+					#material.z_clip_scale = 0.1
+				#mesh.set_surface_override_material(0, material)
 
 
 func _update_held_item_late_join(new_player_id:int) -> void:
@@ -182,13 +184,13 @@ func _update_held_item_late_join(new_player_id:int) -> void:
 				_update_held_item_to_peers.rpc_id(new_player_id, player.player, mesh.get_meta("name"))
 
 
-func _player_drop_item(mesh_name:String, item_position:Vector3, player_id:int) -> void:
-	_server_player_drop_item.rpc_id(1, mesh_name, item_position, player_id)
+func _player_drop_item(mesh_name:String, item_position:Vector3, item_rotation:Vector3, player_id:int) -> void:
+	_server_player_drop_item.rpc_id(1, mesh_name, item_position, item_rotation, player_id)
 	
 	
 @rpc("any_peer")
-func _server_player_drop_item(mesh_name:String, item_position:Vector3, player_id:int) -> void:
-	_spawn_object_on_peer(mesh_name, item_position)
+func _server_player_drop_item(mesh_name:String, item_position:Vector3, item_rotation:Vector3, player_id:int) -> void:
+	_spawn_object_on_peer(mesh_name, item_position, item_rotation)
 	for player in players:
 		_remove_held_item_from_peers.rpc_id(player, player_id)
 		

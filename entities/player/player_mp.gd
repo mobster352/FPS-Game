@@ -62,6 +62,7 @@ func _physics_process(delta:float):
 			walk_physics(delta)
 	_process_drop_item()
 
+
 func idle_physics(delta:float) -> void:
 	skin.idle_animation()
 	process_jump(delta)
@@ -70,11 +71,13 @@ func idle_physics(delta:float) -> void:
 		state = State.Walk
 	move_and_slide()
 
+
 func walk_physics(delta:float) -> void:
 	skin.walk_animation()
 	process_movement(delta)
 	process_jump(delta)
 	move_and_slide()
+
 
 func _process(_delta: float) -> void:
 	rotate_player()
@@ -85,13 +88,16 @@ func _process(_delta: float) -> void:
 			walk()
 	interact = Input.is_action_just_pressed("interact")
 	drop_input = Input.is_action_just_pressed("drop")
-			
+
+
 func idle() -> void:
 	pass
-	
+
+
 func walk() -> void:
 	pass
-	
+
+
 func process_movement(_delta: float) -> void:
 	if input.is_paused:
 		return
@@ -105,6 +111,7 @@ func process_movement(_delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		state = State.Idle
 
+
 func process_jump(delta:float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -113,6 +120,7 @@ func process_jump(delta:float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	input.jumping = false
+
 
 func rotate_player() -> void:
 	rotate_y(-input.mouse_input.x * mouse_sensitivity)
@@ -124,7 +132,7 @@ func rotate_player() -> void:
 	camera_pivot.rotation.x = clamp(current_rotation_x, deg_to_rad(-45), deg_to_rad(60))
 	skin.head_pivot.rotation.x = clamp(camera_pivot.rotation.x, deg_to_rad(-30), deg_to_rad(30))
 	input.mouse_input = Vector2.ZERO
-	
+
 
 func has_held_object() -> bool:
 	return item_slot.get_child_count() > 0
@@ -162,7 +170,7 @@ func drop_item() -> void:
 							cookable.toppings = item.mesh.get_meta("toppings")
 						
 					item.mesh.rotation = Vector3.ZERO
-					get_node("../../Objects").add_child(item)
+					get_node("../../Objects").add_child(item, true)
 					
 					item.meshInstanceArray.append(item.mesh)
 					item.set_monitoring(true)
@@ -198,7 +206,7 @@ func drop_item() -> void:
 				if child_mesh.has_meta("name"):
 					var forward = -camera.global_transform.basis.z.normalized()
 					var item_position = camera.global_position + forward
-					GlobalSignal.player_drop_item.emit(child_mesh.get_meta("name"), item_position, player)
+					GlobalSignal.player_drop_item.emit(child_mesh.get_meta("name"), item_position, camera.global_rotation, player)
 
 
 func _process_drop_item() -> void:

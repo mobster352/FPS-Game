@@ -4,12 +4,26 @@ class_name Level_UI
 @export var time: Label
 @export var level: Level
 
+@export var inputs_ui: InputsUI
+var _player
+
 var show_clock: bool
 var hours: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	GlobalSignal.init_player_mp.connect(_init_player_mp)
+	
+
+func _init_player_mp(_p:PlayerMP) -> void:
+	if _player:
+		return
+	_player = get_tree().get_first_node_in_group("player")
+	if _player is Player:
+		_player = _player as Player
+	elif _player is PlayerMP:
+		_player = _player as PlayerMP
+		_player.inputs_ui = inputs_ui
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

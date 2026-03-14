@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bvdbj3ur74xb2" path="res://server/player_input.gd" id="2_b83s3"]
 [ext_resource type="Texture2D" uid="uid://cstlp0qnxncv0" path="res://assets/kaykit/misc/Dummy_prototypebits_texture.png" id="4_ly3rc"]
 [ext_resource type="Script" uid="uid://d3tofcrmiu3at" path="res://entities/player/item_raycast.gd" id="5_medb6"]
-[ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="6_skphw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cttg0"]
 properties/0/path = NodePath(".:player")
@@ -228,7 +227,7 @@ bind/40/name = &"handIK.r"
 bind/40/bone = -1
 bind/40/pose = Transform3D(-2.842171e-14, 7.549795e-08, -1, -1, 3.7892514e-15, 8.526513e-14, 2.1457808e-21, 1, 7.549795e-08, 1.3201894e-09, -0.71318156, -1.1067611)
 
-[node name="PlayerMP" type="CharacterBody3D" unique_id=1505982360 node_paths=PackedStringArray("server_synchronizer", "player_input_synchronizer", "camera_pivot", "camera", "skin", "name_label", "item_slot", "inputs_ui") groups=["player"]]
+[node name="PlayerMP" type="CharacterBody3D" unique_id=1505982360 node_paths=PackedStringArray("server_synchronizer", "player_input_synchronizer", "camera_pivot", "camera", "skin", "name_label", "item_slot") groups=["player"]]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
 collision_layer = 2
 collision_mask = 5
@@ -240,7 +239,6 @@ camera = NodePath("PlayerSkin/pointer/Camera3D")
 skin = NodePath("PlayerSkin")
 name_label = NodePath("Name")
 item_slot = NodePath("PlayerSkin/pointer/ItemSlot")
-inputs_ui = NodePath("UI/InputsUI")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=247496376]
 replication_config = SubResource("SceneReplicationConfig_cttg0")
@@ -262,27 +260,27 @@ head = NodePath("PlayerDummy/Rig/Skeleton3D/head/headPivot/Dummy_Head")
 head_pivot = NodePath("PlayerDummy/Rig/Skeleton3D/head/headPivot")
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.36889493, 0)
-bones/4/rotation = Quaternion(-0.55038285, -0.057685442, -0.6431478, 0.52925617)
-bones/5/rotation = Quaternion(8.138309e-09, -5.6122133e-08, -0.5068495, 0.8620347)
-bones/7/rotation = Quaternion(-0.31974894, -0.33784458, 0.14563085, 0.8731628)
-bones/8/rotation = Quaternion(0.0013408416, 0.0013408412, -0.702167, 0.71200985)
-bones/9/rotation = Quaternion(-0.6093166, 0.078168906, 0.6180862, 0.4905022)
-bones/10/rotation = Quaternion(1.548118e-08, 6.9875576e-08, 0.52958965, 0.84825397)
-bones/12/rotation = Quaternion(-0.31883413, 0.31350332, -0.22775237, 0.8649794)
-bones/13/rotation = Quaternion(0.0040916284, 0.0048193354, 0.70283914, 0.71132076)
-bones/15/rotation = Quaternion(0.9894715, 0.083771415, 0.07880984, 0.087849624)
-bones/16/rotation = Quaternion(0.39712387, 6.208957e-08, -2.658958e-07, 0.917765)
-bones/17/rotation = Quaternion(-0.62261486, -0.20069486, 0.07713706, 0.7524109)
-bones/18/rotation = Quaternion(-2.2485488e-06, 0.92015594, -0.3915521, 5.843898e-07)
-bones/19/rotation = Quaternion(0.99130696, -0.03343287, 0.029778415, 0.12371801)
-bones/20/rotation = Quaternion(0.44103083, -5.768086e-08, 3.0852945e-07, 0.897492)
-bones/21/rotation = Quaternion(-0.64853156, 0.11243183, -0.023551574, 0.7524701)
-bones/38/position = Vector3(0.5208407, 0.77017665, -0.057637356)
-bones/40/position = Vector3(-0.5108437, 0.7701766, 0.059736915)
+bones/1/position = Vector3(0, 0.37758, 0)
+bones/4/rotation = Quaternion(-0.5549412, -0.05756157, -0.63817817, 0.530524)
+bones/5/rotation = Quaternion(3.2514627e-08, -3.2301244e-08, -0.51184815, 0.85907596)
+bones/7/rotation = Quaternion(-0.32185367, -0.33425522, 0.15006255, 0.8730206)
+bones/8/rotation = Quaternion(0.00051178056, 0.0005117798, -0.70522577, 0.7089824)
+bones/9/rotation = Quaternion(-0.61333066, 0.07785485, 0.6134342, 0.49138856)
+bones/10/rotation = Quaternion(3.4208917e-08, 3.6854004e-08, 0.53437275, 0.84524894)
+bones/12/rotation = Quaternion(-0.32063043, 0.31028104, -0.23209329, 0.8643232)
+bones/13/rotation = Quaternion(0.001646948, 0.001939859, 0.7053955, 0.7088093)
+bones/15/rotation = Quaternion(0.99139476, 0.083212584, 0.077296056, 0.06509562)
+bones/16/rotation = Quaternion(0.3370565, 5.9596342e-08, -2.3049644e-07, 0.94148445)
+bones/17/rotation = Quaternion(-0.59114367, -0.20406836, 0.066389605, 0.77749443)
+bones/18/rotation = Quaternion(9.362275e-06, 0.92016596, -0.39152867, -2.0636792e-06)
+bones/19/rotation = Quaternion(0.9936803, -0.032030735, 0.030356472, 0.103208795)
+bones/20/rotation = Quaternion(0.38785017, -6.187509e-08, 2.6887696e-07, 0.9217225)
+bones/21/rotation = Quaternion(-0.61980015, 0.11335246, -0.018522356, 0.7763092)
+bones/38/position = Vector3(0.5208407, 0.7810327, -0.057637352)
+bones/40/position = Vector3(-0.5108437, 0.78103256, 0.059736915)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.204657, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.213342, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
 visible = false
@@ -300,13 +298,13 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9358604, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.94454545, 1.0572674e-15)
 
 [node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
 visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.0028896048, -0.16232656, -0.9867326, -0.99992734, -0.011998807, -0.0009541062, -0.011684925, 0.9866639, -0.16234945, -0.49040988, 0.62291586, 0.10718586)
+transform = Transform3D(0.0011451985, -0.1549046, -0.9879286, -0.9999878, -0.004828599, -0.00040181383, -0.0047083525, 0.9879173, -0.15490827, -0.49058568, 0.63420844, 0.107627004)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9347214, 0.26233953)
@@ -315,52 +313,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9347214, 0.26233953)
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
 cull_mask = 1048573
 
-[node name="ItemRaycast" type="RayCast3D" parent="PlayerSkin/pointer" index="1" unique_id=260104132 node_paths=PackedStringArray("inputs_ui", "playerMP")]
+[node name="ItemRaycast" type="RayCast3D" parent="PlayerSkin/pointer" index="1" unique_id=260104132 node_paths=PackedStringArray("playerMP")]
 transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
 hit_from_inside = true
 script = ExtResource("5_medb6")
-inputs_ui = NodePath("../../../UI/InputsUI")
 playerMP = NodePath("../../..")
 
 [node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer" index="2" unique_id=473987868]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.525, 1.429)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.525, 0.984)
 
 [node name="Name" type="Label3D" parent="." unique_id=443071306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9149082, 0)
 billboard = 1
 double_sided = false
 text = "Player"
-
-[node name="UI" type="Control" parent="." unique_id=4640721]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ReticleMarginContainer" type="MarginContainer" parent="UI" unique_id=1175705403]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Reticle" type="ColorRect" parent="UI/ReticleMarginContainer" unique_id=191998313]
-layout_mode = 2
-
-[node name="InputsUI" parent="UI" unique_id=519252468 instance=ExtResource("6_skphw")]
-layout_mode = 1
 
 [editable path="PlayerSkin"]
 [editable path="PlayerSkin/PlayerDummy"]
