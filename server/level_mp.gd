@@ -5,7 +5,7 @@ class_name LevelMP
 @export var objects_node:Node3D
 
 @export var rolling_pin_marker: Marker3D
-@export var rolling_pin_marker2: Marker3D
+@export var crate_dough_marker: Marker3D
 
 const SPAWN_RANDOM := 1.0
 
@@ -89,11 +89,11 @@ func _remove_player_from_peers(_peer_id:int) -> void:
 
 func spawn_objects_on_server() -> void:
 	_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker.position, rolling_pin_marker.rotation)
-	#_spawn_object_on_peer("rolling_pin_mesh", rolling_pin_marker2.position, rolling_pin_marker2.rotation)
+	_spawn_object_on_peer("crate_mesh", crate_dough_marker.position, crate_dough_marker.rotation, GlobalVar.StoreItem.Dough)
 
 
 @rpc("call_local")
-func _spawn_object_on_peer(mesh_name:String, object_position:Vector3, object_rotation:Vector3) -> void:
+func _spawn_object_on_peer(mesh_name:String, object_position:Vector3, object_rotation:Vector3, item_type:GlobalVar.StoreItem = GlobalVar.StoreItem.None) -> void:
 	var item = GlobalVar.get_item_from_mesh(mesh_name) as Item
 	if item:
 		_object_id = _object_id + 1
@@ -102,6 +102,12 @@ func _spawn_object_on_peer(mesh_name:String, object_position:Vector3, object_rot
 		item.id = _object_id
 		item.position = object_position
 		item.rotation = object_rotation
+		
+		var interactable = item.get_node("body/Interactable")
+		if interactable:
+			if interactable is ObjectSpawner:
+				interactable.item_type = item_type
+		
 		objects_node.add_child(item, true)
 		
 		objects.append({

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
+[ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_7la27"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="5_pdggx"]
@@ -63,7 +64,8 @@ stretch_mode = 0
 
 [node name="Label" type="Label" parent="MarginContainer" unique_id=1581102096]
 layout_mode = 2
-text = "Singleplayer"
+text = "New Game"
+label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1637598793]
@@ -117,9 +119,11 @@ stretch_mode = 0
 [node name="Label" type="Label" parent="MarginContainer4" unique_id=1177831239]
 layout_mode = 2
 text = "Quit"
+label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
 [node name="MarginContainer5" type="MarginContainer" parent="." unique_id=1759103797]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

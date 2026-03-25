@@ -70,3 +70,9 @@ signal add_item_to_player(mesh_name:String, player_id:int)
 
 @warning_ignore("unused_signal")
 signal player_drop_item(mesh_name:String, item_position:Vector3, player_id:int)
+
+@warning_ignore("unused_signal")
+signal freeze_player_camera(freeze:bool)
+
+@warning_ignore("unused_signal")
+signal next_day

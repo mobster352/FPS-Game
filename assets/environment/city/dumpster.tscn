@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://elhs3l32vcuj"]
+[gd_scene format=3 uid="uid://elhs3l32vcuj"]
 
 [ext_resource type="PackedScene" uid="uid://cdfcdvfg4cttw" path="res://assets/kaykit/city/dumpster.gltf" id="1_xqxuf"]
 [ext_resource type="Script" uid="uid://dwlxsa1656qwy" path="res://assets/environment/city/dumpster.gd" id="2_x4cir"]
@@ -9,22 +9,21 @@ data = PackedVector3Array(-0.1531, 0.2988, -0.14999999, -0.2394, 0.26, 0.1499999
 [sub_resource type="SphereShape3D" id="SphereShape3D_gbwgy"]
 radius = 1.5507367
 
-[node name="dumpster" instance=ExtResource("1_xqxuf")]
+[node name="dumpster" unique_id=2122706028 instance=ExtResource("1_xqxuf")]
 script = ExtResource("2_x4cir")
 
 [node name="dumpster" parent="." index="0"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="dumpster" index="0"]
-collision_layer = 0
+[node name="StaticBody3D" type="StaticBody3D" parent="dumpster" index="0" unique_id=801494827]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="dumpster/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dumpster/StaticBody3D" index="0" unique_id=1846137292]
 shape = SubResource("ConcavePolygonShape3D_x4cir")
 
-[node name="Area3D" type="Area3D" parent="." index="1"]
+[node name="Area3D" type="Area3D" parent="." index="1" unique_id=2041298077]
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1220967338]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8008257, 0.8067087)
 shape = SubResource("SphereShape3D_gbwgy")
 

@@ -36,7 +36,7 @@ func _ready():
 	level_ui.show_clock = show_clock
 
 func _process(delta):
-	if can_advance_time:
+	if can_advance_time and time_of_day < 22:
 		advance_time(delta)
 		update_sun()
 		update_sun_light()

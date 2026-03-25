@@ -24,8 +24,10 @@ var players_in_range: Array
 @export var id:int
 @export var multiplayer_synchornizer: MultiplayerSynchronizer
 
+var player: Player
+
 func _ready() -> void:
-	#player = get_tree().get_first_node_in_group("player") as Player
+	player = get_tree().get_first_node_in_group("player") as Player
 	#if not player:
 		#player = get_tree().get_first_node_in_group("player") as PlayerMP
 
@@ -44,29 +46,29 @@ func _process(_delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		var player
-		if body is Player:
-			player = body as Player
-		elif body is PlayerMP:
-			player = body as PlayerMP
-		if not player:
-			return
-		#player.append_item_in_range(self)
-		players_in_range.append(player.player)
+		#var player
+		#if body is Player:
+			#player = body as Player
+		#elif body is PlayerMP:
+			#player = body as PlayerMP
+		#if not player:
+			#return
+		player.append_item_in_range(self)
+		#players_in_range.append(player.player)
 		in_range = true
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		var player
-		if body is Player:
-			player = body as Player
-		elif body is PlayerMP:
-			player = body as PlayerMP
-		if not player:
-			return
-		#player.remove_item_in_range(self)
-		players_in_range.remove_at(players_in_range.find(player.player))
+		#var player
+		#if body is Player:
+			#player = body as Player
+		#elif body is PlayerMP:
+			#player = body as PlayerMP
+		#if not player:
+			#return
+		player.remove_item_in_range(self)
+		#players_in_range.remove_at(players_in_range.find(player.player))
 		in_range = false
 
 
@@ -97,11 +99,11 @@ func set_z_scale_children(value: bool, new_mesh: Node3D) -> void:
 						material.z_clip_scale = 0.1
 
 
-func pickup(new_pos: Vector3, new_rotation: Vector3, player) -> void:
-	if player is Player:
-		player = player as Player
-	elif player is PlayerMP:
-		player = player as PlayerMP
+func pickup(new_pos: Vector3, new_rotation: Vector3, _player) -> void:
+	#if player is Player:
+		#player = player as Player
+	#elif player is PlayerMP:
+		#player = player as PlayerMP
 	
 	var new_mesh = mesh.duplicate()
 	
@@ -129,10 +131,10 @@ func pickup(new_pos: Vector3, new_rotation: Vector3, player) -> void:
 		
 	new_mesh.set_meta("name", mesh.get_meta("name"))
 	
-	if player.is_host():
-		player.item_slot.add_child(new_mesh)
-	else:
-		GlobalSignal.add_item_to_player.emit(new_mesh.get_meta("name"), player.player)
+	#if player.is_host():
+	player.item_slot.add_child(new_mesh)
+	#else:
+		#GlobalSignal.add_item_to_player.emit(new_mesh.get_meta("name"), player.player)
 
 	set_monitoring(false)
 	set_z_scale(true)
@@ -160,13 +162,13 @@ func shrink_and_free(money:int, delay := 1.0) -> void:
 		tween.tween_callback(_pay_player.bind(money))
 	tween.tween_callback(queue_free).set_delay(delay)
 
-func _pay_player(_money:int, player) -> void:
-	if player is Player:
-		player = player as Player
-	elif player is PlayerMP:
-		player = player as PlayerMP
-	#player.update_money(money)
-	pass
+func _pay_player(money:int) -> void:
+	#if player is Player:
+		#player = player as Player
+	#elif player is PlayerMP:
+		#player = player as PlayerMP
+	player.update_money(money)
+	#pass
 
 func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 	if has_meta("food_id"):

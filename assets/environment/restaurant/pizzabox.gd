@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 			lid.basis = lerp(lid.basis,lid.basis.rotated(Vector3.RIGHT, deg_to_rad(-90)).orthonormalized(), speed * delta)
 		elapsed += speed * delta
 
-func interact(player) -> void:
+func interact(_player: Player) -> void:
 	if disabled:
 		return
 	if player.has_held_object():

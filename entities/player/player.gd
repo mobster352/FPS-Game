@@ -52,7 +52,7 @@ var hp := 10:
 		ui.update_hp(hp, value)
 		hp = value
 		
-var money := 0:
+@export var money := 0:
 	set(value):
 		money = value
 		ui.update_money(money)
@@ -81,6 +81,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
+	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
 
 
 func _process(_delta: float) -> void:
@@ -635,3 +636,7 @@ func _init_restaurant(_restaurant:Restaurant) -> void:
 
 func has_held_object() -> bool:
 	return item_slot.get_child_count() > 0
+
+
+func _freeze_player_camera(freeze:bool) -> void:
+	freeze_camera = freeze
