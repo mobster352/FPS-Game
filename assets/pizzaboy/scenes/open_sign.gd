@@ -14,7 +14,7 @@ func interact() -> void:
 		open_store()
 		level.can_advance_time = is_sign_on
 	elif level.time_of_day > 22:
-		GlobalSignal.next_day.emit()
+		GlobalSignal.next_day.emit(false)
 
 func open_store() -> void:
 	is_sign_on = not is_sign_on

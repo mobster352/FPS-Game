@@ -75,4 +75,7 @@ signal player_drop_item(mesh_name:String, item_position:Vector3, player_id:int)
 signal freeze_player_camera(freeze:bool)
 
 @warning_ignore("unused_signal")
-signal next_day
+signal next_day(submit:bool)
+
+@warning_ignore("unused_signal")
+signal change_scene

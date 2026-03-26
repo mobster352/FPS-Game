@@ -5,7 +5,7 @@ class_name PizzaBoxStack
 
 @onready var pizzabox = preload("uid://cpulw2n2h8hsx")
 @onready var pizzabox_open = load("uid://bxflb6heaetxd")
-@export var pizza_boxes: Node3D
+var pizza_boxes: Node3D
 @onready var this_body
 @onready var preview_scene = load("uid://7t2skrh4o8jq")
 
@@ -14,6 +14,7 @@ var in_range := false
 var disabled := false
 
 func _ready() -> void:
+	pizza_boxes = %PizzaBoxes
 	if has_node("body"):
 		this_body = $body
 	for i in range(num_pizza_boxes):

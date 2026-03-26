@@ -79,6 +79,7 @@ func interact(_player: Player) -> void:
 			player.update_money(-money_required)
 			money_required = 0
 			label.hide()
+			is_locked = false
 			door_interact()
 	else:
 		door_interact()

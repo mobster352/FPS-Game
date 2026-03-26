@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bvujdihwqllrs"]
+
+[ext_resource type="Script" uid="uid://vq2i0baticw" path="res://environment/next_day_ui.gd" id="1_y7raq"]
+[ext_resource type="LabelSettings" uid="uid://bnh6ad5srexo" path="res://environment/end_of_day_label.tres" id="2_dwrot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t8g5g"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwrot"]
+font_size = 24
+font_color = Color(0, 1, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NextDay" type="Control" unique_id=1019455502]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_y7raq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=595276208]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 59.0
+offset_right = 845.0
+offset_bottom = 609.0
+color = Color(0.27058825, 0.27058825, 0.27058825, 0.46666667)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2123540761]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.800001
+anchor_bottom = 16.2
+offset_left = 456.0
+offset_top = 486.0
+offset_right = -478.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Button" type="Button" parent="MarginContainer" unique_id=1975760218]
+layout_mode = 2
+text = "Next Day"
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=228078835]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.788002
+anchor_bottom = 16.145
+offset_top = 85.0
+offset_right = 0.47998047
+offset_bottom = -190.80005
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1257695612]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=1669808454]
+layout_mode = 2
+text = "End of Day Report"
+label_settings = SubResource("LabelSettings_t8g5g")
+horizontal_alignment = 1
+
+[node name="CustomersServed" type="BoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=887084274]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CustomersServedLabel" type="Label" parent="MarginContainer2/VBoxContainer/CustomersServed" unique_id=2066661231]
+layout_mode = 2
+text = "Customers served:"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
+[node name="CustomersServedValue" type="Label" parent="MarginContainer2/VBoxContainer/CustomersServed" unique_id=722404749]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
+[node name="Profit" type="BoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1253115768]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ProfitLabel" type="Label" parent="MarginContainer2/VBoxContainer/Profit" unique_id=2077525109]
+layout_mode = 2
+text = "Profit:"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
+[node name="ProfitValue" type="Label" parent="MarginContainer2/VBoxContainer/Profit" unique_id=313544280]
+layout_mode = 2
+text = "$0"
+label_settings = SubResource("LabelSettings_dwrot")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

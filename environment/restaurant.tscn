@@ -25,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://bhw184635c3p3" path="res://assets/environment/prototype/weaponrack.tscn" id="21_ncrwj"]
 [ext_resource type="PackedScene" uid="uid://cqij78q72clbr" path="res://assets/pizzaboy/scenes/open_sign.tscn" id="22_4x4se"]
 [ext_resource type="PackedScene" uid="uid://boiuip26h4cdl" path="res://assets/environment/restaurant/door_a.tscn" id="22_5mfc8"]
-[ext_resource type="PackedScene" uid="uid://dp8cybb476vqi" path="res://assets/items/pizzabox_stack.tscn" id="22_ncrwj"]
 [ext_resource type="PackedScene" uid="uid://dxvm7jhdwbecu" path="res://assets/pizzaboy/scenes/wall_glass_full.tscn" id="28_jhi77"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_08apq"]
@@ -302,10 +301,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 
 [node name="Weaponrack" parent="Environment/Restaurant/Decorations" unique_id=1731279079 instance=ExtResource("21_ncrwj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.513886, 0, -16.063757)
 
-[node name="Pizzabox_Stack" parent="Environment/Restaurant/Decorations" unique_id=2146892724 instance=ExtResource("22_ncrwj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2356731, -1.1920929e-07, -16.704533)
-num_pizza_boxes = 10
-
 [node name="open_sign" parent="Environment/Restaurant/Decorations" unique_id=1140681504 instance=ExtResource("22_4x4se")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1042166, 1.9347057, 5.9974847)
 
@@ -394,6 +389,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6, 
 
 [node name="door_A" parent="Environment/Restaurant/Walls/wall_doorway4" unique_id=851614535 instance=ExtResource("22_5mfc8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82192516, 0, 0)
+is_locked = true
+money_required = 10
 
 [node name="wall_glass_full2" parent="Environment/Restaurant/Walls" unique_id=1391068790 instance=ExtResource("28_jhi77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.111, 6)

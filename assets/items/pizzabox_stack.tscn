@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dp8cybb476vqi"]
+[gd_scene format=3 uid="uid://dp8cybb476vqi"]
 
 [ext_resource type="Script" uid="uid://bc5b3lbe1h3rh" path="res://assets/items/pizzabox_stack.gd" id="1_16iny"]
 [ext_resource type="Script" uid="uid://cq75s88v7lyr3" path="res://assets/items/pizzabox_stack_interactable.gd" id="2_16iny"]
@@ -12,35 +12,35 @@ radius = 1.1214485
 [sub_resource type="SphereShape3D" id="SphereShape3D_16iny"]
 radius = 2.2922258
 
-[node name="Pizzabox_Stack" type="Node3D" node_paths=PackedStringArray("pizza_boxes") groups=["thief_target"]]
+[node name="Pizzabox_Stack" type="Node3D" unique_id=669900504 groups=["thief_target"]]
 script = ExtResource("1_16iny")
-pizza_boxes = NodePath("body/PizzaBoxes")
 metadata/place = true
 
-[node name="body" type="RigidBody3D" parent="." groups=["static"]]
+[node name="body" type="RigidBody3D" parent="." unique_id=474890183 groups=["static"]]
 collision_layer = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=387341044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4932557, 0.025)
 shape = SubResource("BoxShape3D_16iny")
 
-[node name="Interactable" type="Node3D" parent="body" node_paths=PackedStringArray("pizza_box_stack")]
+[node name="Interactable" type="Node3D" parent="body" unique_id=281257027 node_paths=PackedStringArray("pizza_box_stack")]
 script = ExtResource("2_16iny")
 pizza_box_stack = NodePath("../..")
 
-[node name="StackArea" type="Area3D" parent="body"]
+[node name="StackArea" type="Area3D" parent="body" unique_id=452401118]
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/StackArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/StackArea" unique_id=1577495283]
 shape = SubResource("SphereShape3D_lo3yj")
 
-[node name="DetectionArea" type="Area3D" parent="body"]
+[node name="DetectionArea" type="Area3D" parent="body" unique_id=137176654]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/DetectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/DetectionArea" unique_id=1393333431]
 shape = SubResource("SphereShape3D_16iny")
 
-[node name="PizzaBoxes" type="Node3D" parent="body"]
+[node name="PizzaBoxes" type="Node3D" parent="body" unique_id=622934419]
+unique_name_in_owner = true
 metadata/place = true
 metadata/pizzaboxes = true
 

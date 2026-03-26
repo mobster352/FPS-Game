@@ -23,6 +23,7 @@ var players_in_range: Array
 
 @export var id:int
 @export var multiplayer_synchornizer: MultiplayerSynchronizer
+#@export var item_resource: ItemResource
 
 var player: Player
 

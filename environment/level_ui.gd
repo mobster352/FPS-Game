@@ -61,7 +61,8 @@ func _process(_delta: float) -> void:
 		time.text = str(hr_text + ":", int(round(minutes)))
 	
 
-func _next_day() -> void:
-	next_day_ui.show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	GlobalSignal.freeze_player_camera.emit(true)
+func _next_day(submit:bool) -> void:
+	if not submit:
+		next_day_ui.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GlobalSignal.freeze_player_camera.emit(true)

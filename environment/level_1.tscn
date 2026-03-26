@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="3_pk1qf"]
 [ext_resource type="PackedScene" uid="uid://kvhd2v2ocjy1" path="res://assets/environment/city/road_straight.tscn" id="3_ramo3"]
 [ext_resource type="PackedScene" uid="uid://elhs3l32vcuj" path="res://assets/environment/city/dumpster.tscn" id="4_ramo3"]
-[ext_resource type="Script" uid="uid://vq2i0baticw" path="res://environment/next_day_ui.gd" id="7_0k1he"]
 [ext_resource type="Script" uid="uid://5efmqcu0cev4" path="res://environment/drive_thru_spawn.gd" id="7_0rppq"]
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="8_kcloa"]
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="9_e0ycv"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="10_kv32d"]
+[ext_resource type="PackedScene" uid="uid://bvujdihwqllrs" path="res://environment/next_day_ui.tscn" id="11_0rppq"]
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("restaurant", "player") instance=ExtResource("1_xqm7o")]
-start_time = 10.0
-day_length_minutes = 10.0
+start_time = 21.9
+day_length_minutes = 1.0
 restaurant = NodePath("Environment/Buildings/Restaurant")
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
@@ -131,11 +131,13 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 [node name="Restaurant" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="0" unique_id=1282270132 node_paths=PackedStringArray("drive_thru_menu") instance=ExtResource("2_epm7i")]
 drive_thru_menu = NodePath("../../../Entities/DriveThruSpawn/DriveThruMenu")
 
-[node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="25" unique_id=1140681504 node_paths=PackedStringArray("level")]
+[node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="24" unique_id=1140681504 node_paths=PackedStringArray("level")]
 level = NodePath("../../../../../../..")
 
-[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 instance=ExtResource("3_pk1qf")]
+[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
 money = 100
+items_marker = NodePath("../../Items")
+order_spawn_marker = NodePath("../../../Environment/Buildings/Restaurant/Environment/Restaurant/OrderSpawn")
 
 [node name="DriveThruSpawn" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="1" unique_id=707607217 node_paths=PackedStringArray("area", "area_col", "drive_thru_menu", "drive_thru_timer", "dialogue_box", "customer_collider", "drive_thru_customer")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7.7243094, 0.15, -4.4155817)
@@ -164,37 +166,18 @@ dialogue_box = NodePath("../../DialogueBox")
 [node name="DriveThruTimer" type="Timer" parent="Entities/DriveThruSpawn/Timers" index="0" unique_id=1562198995]
 wait_time = 5.0
 
+[node name="Items" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=1145708403]
+
 [node name="UI" parent="." index="6" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
 next_day_ui = NodePath("NextDay")
 
-[node name="NextDay" type="Control" parent="UI" index="1" unique_id=850246502]
+[node name="NextDay" parent="UI" index="1" unique_id=1019455502 instance=ExtResource("11_0rppq")]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("7_0k1he")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/NextDay" index="0" unique_id=1194468467]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 28.800001
-anchor_bottom = 16.2
-offset_left = 474.0
-offset_top = 286.0
-offset_right = -460.0
-offset_bottom = -290.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(50, 50)
-
-[node name="Button" type="Button" parent="UI/NextDay/MarginContainer" index="0" unique_id=178302618]
-layout_mode = 2
-text = "Next Day"
+layout_mode = 0
 
 [connection signal="visibility_changed" from="Entities/DriveThruSpawn/DriveThruMenu" to="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer" method="_on_drive_thru_menu_visibility_changed"]
 [connection signal="body_entered" from="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer/Area3D" to="Entities/DriveThruSpawn" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
-[connection signal="pressed" from="UI/NextDay/MarginContainer/Button" to="UI/NextDay" method="_on_button_pressed"]
 
 [editable path="Environment/Buildings/Restaurant"]
 [editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]

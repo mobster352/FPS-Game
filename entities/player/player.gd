@@ -52,7 +52,7 @@ var hp := 10:
 		ui.update_hp(hp, value)
 		hp = value
 		
-@export var money := 0:
+@export var money: int:
 	set(value):
 		money = value
 		ui.update_money(money)
@@ -77,11 +77,20 @@ var place_scene_path: StringName
 var item_type: GlobalVar.StoreItem
 var is_placing := false
 
+@export var items_marker: Marker3D
+@export var order_spawn_marker: Marker3D
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
+	
+	# set up player data
+	load_player_data()
+	
+	# save player data
+	GlobalSignal.next_day.connect(_next_day)
 
 
 func _process(_delta: float) -> void:
@@ -466,7 +475,7 @@ func confirm_placement() -> bool:
 	if instance is PizzaBoxStack:
 		instance.num_pizza_boxes = preview_instance.num_pizza_boxes
 	
-	get_tree().current_scene.add_child(instance)
+	items_marker.add_child(instance)
 
 	cancel_placement(true)
 	return true
@@ -553,7 +562,8 @@ func drop_item() -> void:
 						cookable.toppings = item.mesh.get_meta("toppings")
 					
 				item.mesh.rotation = Vector3.ZERO
-				get_parent().add_child(item)
+				
+				items_marker.add_child(item)
 				
 				item.meshInstanceArray.append(item.mesh)
 				item.set_monitoring(true)
@@ -640,3 +650,80 @@ func has_held_object() -> bool:
 
 func _freeze_player_camera(freeze:bool) -> void:
 	freeze_camera = freeze
+
+
+func _next_day(submit:bool) -> void:
+	if submit:
+		save_player_data()
+		GlobalSignal.change_scene.emit()
+
+
+func save_player_data() -> void:
+	PlayerData.money = money
+		
+	PlayerData.items.clear()
+	for item in items_marker.get_children():
+		if item is Item:
+			var item_resource: ItemResource = ItemResource.new()
+			item_resource.name = item.name
+			if item.mesh.has_meta("name"):
+				item_resource.mesh_name = item.mesh.get_meta("name")
+			item_resource.position = item.position
+			item_resource.rotation = item.rotation
+			if item.has_meta("count"):
+				item_resource.count = item.get_meta("count")
+			var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+			if object_spawner:
+				item_resource.item_type = object_spawner.item_type
+			PlayerData.items.append(item_resource)
+		elif item is PizzaBoxStack:
+			var item_resource: ItemResource = ItemResource.new()
+			item_resource.name = item.name
+			item_resource.position = item.position
+			item_resource.rotation = item.rotation
+			item_resource.num_pizza_boxes = item.num_pizza_boxes
+			PlayerData.items.append(item_resource)
+	for item in order_spawn_marker.get_children():
+		if item is Item:
+			var item_resource: ItemResource = ItemResource.new()
+			item_resource.name = item.name
+			if item.mesh.has_meta("name"):
+				item_resource.mesh_name = item.mesh.get_meta("name")
+			item_resource.position = item.position
+			item_resource.rotation = item.rotation
+			if item.has_meta("count"):
+				item_resource.count = item.get_meta("count")
+			var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+			if object_spawner:
+				item_resource.item_type = object_spawner.item_type
+			PlayerData.items.append(item_resource)
+		elif item is PizzaBoxStack:
+			var item_resource: ItemResource = ItemResource.new()
+			item_resource.name = item.name
+			item_resource.position = item.position
+			item_resource.rotation = item.rotation
+			item_resource.num_pizza_boxes = item.num_pizza_boxes
+			PlayerData.items.append(item_resource)
+
+
+func load_player_data() -> void:
+	money = PlayerData.money
+	for item_resource:ItemResource in PlayerData.items:
+		var item = GlobalVar.get_item_from_mesh(item_resource.mesh_name)
+		if item:
+			item.position = item_resource.position
+			item.rotation = item_resource.rotation
+			if item_resource.count > 0:
+				item.set_meta("count", item_resource.count)
+			if item_resource.item_type:
+				var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+				object_spawner.item_type = item_resource.item_type
+			if item is PizzaBoxStack:
+				item.num_pizza_boxes = item_resource.num_pizza_boxes
+			items_marker.add_child(item)
+		elif item_resource.num_pizza_boxes > 0:
+			item = preload("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
+			item.position = item_resource.position
+			item.rotation = item_resource.rotation
+			item.num_pizza_boxes = item_resource.num_pizza_boxes
+			items_marker.add_child(item)
