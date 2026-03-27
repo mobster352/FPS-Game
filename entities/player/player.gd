@@ -704,9 +704,11 @@ func save_player_data() -> void:
 			item_resource.rotation = item.rotation
 			item_resource.num_pizza_boxes = item.num_pizza_boxes
 			PlayerData.items.append(item_resource)
+	save_game()
 
 
 func load_player_data() -> void:
+	load_game()
 	money = PlayerData.money
 	for item_resource:ItemResource in PlayerData.items:
 		var item = GlobalVar.get_item_from_mesh(item_resource.mesh_name)
@@ -727,3 +729,28 @@ func load_player_data() -> void:
 			item.rotation = item_resource.rotation
 			item.num_pizza_boxes = item_resource.num_pizza_boxes
 			items_marker.add_child(item)
+
+
+func save_game() -> void:
+	var save_dict = {
+		"money": PlayerData.money
+	}
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	if save_file:
+		var json_string = JSON.stringify(save_dict)
+		save_file.store_line(json_string)
+		
+func load_game() -> void:
+	if not FileAccess.file_exists("user://savegame.save"):
+		return
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		var node_data = json.data
+		PlayerData.money = node_data["money"]
+		

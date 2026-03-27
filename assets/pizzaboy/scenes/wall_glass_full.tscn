@@ -13,10 +13,13 @@ data = PackedVector3Array(-1.8095, 0.049, 0.25, -1.8095, 3.949, -0.25, -1.8095, 
 
 [node name="wall_glass_full" unique_id=1391068790 instance=ExtResource("1_wn0q5")]
 
-[node name="Glass" parent="." index="0" unique_id=330566468]
+[node name="Glass" parent="." index="0" unique_id=1809235656]
 surface_material_override/0 = SubResource("StandardMaterial3D_wn0q5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Glass" index="4" unique_id=989393062]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Glass/StaticBody3D" index="0" unique_id=762978432]
 shape = SubResource("ConcavePolygonShape3D_wn0q5")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." index="1" unique_id=438171122]
+affect_navigation_mesh = true

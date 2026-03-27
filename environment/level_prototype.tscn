@@ -1260,27 +1260,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13544679, -2.3841858e-07, 
 placement_system = NodePath("../../../PlacementSystem")
 
 [node name="Skeleton3D" parent="Entities/Players/Player/PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.3722585, 0)
-bones/4/rotation = Quaternion(-0.55070406, -0.059748694, -0.6494367, 0.52094823)
-bones/5/rotation = Quaternion(3.3909778e-08, -4.82492e-08, -0.49374738, 0.86960536)
-bones/7/rotation = Quaternion(-0.31818834, -0.33466902, 0.14050873, 0.87579125)
-bones/8/rotation = Quaternion(0.0015202155, 0.0015202147, -0.70150334, 0.712663)
-bones/9/rotation = Quaternion(-0.6099275, 0.080096774, 0.6234796, 0.48254156)
-bones/10/rotation = Quaternion(1.538558e-08, 7.074777e-08, 0.51701134, 0.85597855)
-bones/12/rotation = Quaternion(-0.3171181, 0.30961883, -0.22244383, 0.8683841)
-bones/13/rotation = Quaternion(0.004518179, 0.0053217504, 0.70239115, 0.71175694)
-bones/15/rotation = Quaternion(0.9902497, 0.08350078, 0.07825343, 0.079432555)
-bones/16/rotation = Quaternion(0.37485167, 5.9659165e-08, -2.5354424e-07, 0.92708486)
-bones/17/rotation = Quaternion(-0.61091727, -0.20203549, 0.07306365, 0.76198655)
-bones/18/rotation = Quaternion(-2.2485488e-06, 0.920156, -0.39155212, 5.843898e-07)
-bones/19/rotation = Quaternion(0.99224573, -0.03289016, 0.029997641, 0.11604696)
-bones/20/rotation = Quaternion(0.42111093, -6.0680584e-08, 2.9173893e-07, 0.9070092)
-bones/21/rotation = Quaternion(-0.63773185, 0.112809606, -0.021632716, 0.7616457)
-bones/38/position = Vector3(0.5208407, 0.76817864, -0.057637356)
-bones/40/position = Vector3(-0.5108437, 0.7681785, 0.059736915)
+bones/1/position = Vector3(0, 0.38215286, 0)
+bones/4/rotation = Quaternion(-0.55326813, -0.06353703, -0.65770704, 0.5072268)
+bones/5/rotation = Quaternion(3.6767226e-08, -6.5554715e-08, -0.47293958, 0.8810949)
+bones/7/rotation = Quaternion(-0.31669745, -0.32757226, 0.133374, 0.8801197)
+bones/8/rotation = Quaternion(0.0016267962, 0.0016267818, -0.7011087, 0.7130507)
+bones/9/rotation = Quaternion(-0.61271304, 0.08354715, 0.6303322, 0.4693443)
+bones/10/rotation = Quaternion(1.7249455e-08, 7.2353096e-08, 0.49717164, 0.86765224)
+bones/12/rotation = Quaternion(-0.3151763, 0.30155724, -0.21502042, 0.87378114)
+bones/13/rotation = Quaternion(0.0041638003, 0.004904341, 0.70276344, 0.71139455)
+bones/15/rotation = Quaternion(0.99229735, 0.08312133, 0.07634444, 0.05107176)
+bones/16/rotation = Quaternion(0.30024928, 6.844847e-08, -2.0094262e-07, 0.9538609)
+bones/17/rotation = Quaternion(-0.5719584, -0.20578451, 0.060156453, 0.79176867)
+bones/18/rotation = Quaternion(3.2479726e-05, 0.9201867, -0.39148, -7.2969524e-06)
+bones/19/rotation = Quaternion(0.99488556, -0.031265434, 0.030688902, 0.09101335)
+bones/20/rotation = Quaternion(0.35633418, -6.194693e-08, 2.4912316e-07, 0.93435866)
+bones/21/rotation = Quaternion(-0.6028643, 0.11377273, -0.015672838, 0.78953457)
+bones/38/position = Vector3(0.5208407, 0.76981556, -0.057637356)
+bones/40/position = Vector3(-0.5108437, 0.7698155, 0.059736915)
 
 [node name="head" parent="Entities/Players/Player/PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2080206, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2179148, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="Entities/Players/Player/PlayerSkin/PlayerDummy/Rig/Skeleton3D/head/headPivot" parent_id_path=PackedInt32Array(1767432578, 1488001646) index="0" unique_id=1704987744]
 mesh = SubResource("ArrayMesh_3jonn")
@@ -1290,10 +1290,10 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="Entities/Players/Player/PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.939224, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9491183, 1.0572674e-15)
 
 [node name="hand_slot_r" parent="Entities/Players/Player/PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.0031977822, -0.16362034, -0.98651797, -0.9999114, -0.013248848, -0.0010435453, -0.012899637, 0.9864341, -0.16364811, -0.49060553, 0.6203009, 0.10632448)
+transform = Transform3D(0.0029418324, -0.16254373, -0.9866967, -0.99992466, -0.012213109, -0.0009691132, -0.011893209, 0.9866255, -0.16256726, -0.49100357, 0.62134534, 0.1050019)
 
 [node name="Camera3D" type="Camera3D" parent="." index="5" unique_id=1226025336]
 transform = Transform3D(-1, -8.6673666e-08, -1.142004e-08, -6.181724e-08, 0.60867834, 0.793417, -6.181723e-08, 0.79341704, -0.6086783, 3, 7.285009, 2.5348763)
@@ -1306,16 +1306,6 @@ player = NodePath("../Entities/Players/Player")
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
 
 [editable path="Environment/Buildings/Restaurant"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic/body/Interactable"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic2"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic2/body/Interactable"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic3"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic3/body/Interactable"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic4"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic4/body/Interactable"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic5"]
-[editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations/crate_generic5/body/Interactable"]
 [editable path="Environment/Buildings/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]
 [editable path="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer"]
 [editable path="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer/car_taxi_edited"]

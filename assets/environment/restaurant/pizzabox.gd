@@ -91,7 +91,7 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot.add_child(_mesh)
-				item.shrink_and_free(0, 0.25)
+				item.shrink_and_free(0, 0)
 	elif parent is PizzaBox and parent != self:
 		if has_meta("food_id"):
 			return
