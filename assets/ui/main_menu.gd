@@ -7,10 +7,6 @@ func _ready() -> void:
 		get_tree().call_deferred("change_scene_to_file","uid://b10ibkxnixdiq")
 
 
-func _on_new_game_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://environment/level_1.tscn")
-
-
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
@@ -22,3 +18,7 @@ func _on_texture_button_mouse_entered() -> void:
 
 func _on_multiplayer_button_pressed() -> void:
 	get_tree().change_scene_to_file("uid://b10ibkxnixdiq")
+
+
+func _on_start_game_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://assets/ui/load_game_menu.tscn")

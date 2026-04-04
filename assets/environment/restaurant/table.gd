@@ -81,6 +81,7 @@ func _on_plate_timer_timeout() -> void:
 	is_empty = true
 	
 	player.update_money(money)
+	player.increment_customers_served()
 
 
 func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:

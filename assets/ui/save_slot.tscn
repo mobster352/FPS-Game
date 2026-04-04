@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://kfxx87xghhyt"]
+
+[ext_resource type="Script" uid="uid://basfgv1ucljj" path="res://assets/ui/save_slot.gd" id="1_rx1xx"]
+
+[node name="SaveSlot" type="MarginContainer" unique_id=1712424773]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_rx1xx")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=238969660]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1534552084]
+layout_mode = 2
+
+[node name="SlotName" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1620778619]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Empty Save Slot"
+horizontal_alignment = 1
+
+[node name="MoneyContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=230307492]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="PanelContainer/VBoxContainer/MoneyContainer" unique_id=753686419]
+layout_mode = 2
+text = "Money: "
+horizontal_alignment = 1
+
+[node name="MoneyValue" type="Label" parent="PanelContainer/VBoxContainer/MoneyContainer" unique_id=1620670472]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="DayContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1057385772]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="DayLabel" type="Label" parent="PanelContainer/VBoxContainer/DayContainer" unique_id=813928888]
+layout_mode = 2
+text = "Day: "
+horizontal_alignment = 1
+
+[node name="DayValue" type="Label" parent="PanelContainer/VBoxContainer/DayContainer" unique_id=934266445]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="Date" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2064990353]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "4/3/2026"
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

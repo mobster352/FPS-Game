@@ -7,8 +7,12 @@ extends Marker3D
 @export var dialogue_box: DialogueBox
 @export var customer_collider: CollisionShape3D
 @export var drive_thru_customer: DriveThruCustomer
+@export var level_ui: Level_UI
 
 var food_item: Item
+
+func _ready() -> void:
+	GlobalSignal.open_store.connect(_open_store)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var obj = body.get_parent()
@@ -31,12 +35,22 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			await get_tree().create_timer(2).timeout
 			drive_thru_menu.hide()
 			customer_collider.set_deferred("disabled", true)
-			drive_thru_timer.wait_time = randf_range(15,60)
-			drive_thru_timer.start()
+			_start_timer()
 
 
 func _on_drive_thru_timer_timeout() -> void:
+	if level_ui.hours >= 18:
+		return
 	drive_thru_menu.show()
 	area_col.set_deferred("disabled", false)
 	customer_collider.set_deferred("disabled", false)
 	drive_thru_customer.pointer.show()
+
+
+func _open_store() -> void:
+	_start_timer()
+
+
+func _start_timer() -> void:
+	drive_thru_timer.wait_time = randf_range(15,60)
+	drive_thru_timer.start()

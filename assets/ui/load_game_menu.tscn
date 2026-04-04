@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cg1kpd2f5ylo7"]
+
+[ext_resource type="Script" uid="uid://blxfqti0ps2kp" path="res://assets/ui/load_game_menu.gd" id="1_mfw0s"]
+[ext_resource type="PackedScene" uid="uid://kfxx87xghhyt" path="res://assets/ui/save_slot.tscn" id="2_6bfbr"]
+[ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="2_e2d8f"]
+[ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="3_38oqv"]
+[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="3_64wec"]
+[ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_5viaj"]
+[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="4_e2d8f"]
+
+[node name="LoadGameMenu" type="Control" unique_id=208226146]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_mfw0s")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=673643996]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 88.0
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer" unique_id=847776072]
+layout_mode = 2
+texture_normal = ExtResource("2_e2d8f")
+texture_hover = ExtResource("3_38oqv")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1474853614]
+layout_mode = 2
+text = "Back"
+label_settings = ExtResource("4_5viaj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slots" type="MarginContainer" parent="." unique_id=605719691]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.19800001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.3040161
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 154
+theme_override_constants/margin_bottom = 273
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Slots" unique_id=1660525468]
+layout_mode = 2
+theme_override_constants/separation = 195
+alignment = 1
+
+[node name="SaveSlot" parent="Slots/HBoxContainer" unique_id=238969660 instance=ExtResource("2_6bfbr")]
+layout_mode = 2
+
+[node name="SaveSlot2" parent="Slots/HBoxContainer" unique_id=1399133339 instance=ExtResource("2_6bfbr")]
+layout_mode = 2
+save_slot = 2
+
+[node name="SaveSlot3" parent="Slots/HBoxContainer" unique_id=351500731 instance=ExtResource("2_6bfbr")]
+layout_mode = 2
+save_slot = 3
+
+[node name="Level" parent="." unique_id=1263719789 instance=ExtResource("3_64wec")]
+start_time = 12.0
+can_advance_time = false
+show_clock = false
+
+[node name="Restaurant" parent="Level" unique_id=1282270132 instance=ExtResource("4_e2d8f")]
+
+[node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=1498943275]
+transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

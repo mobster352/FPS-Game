@@ -79,3 +79,6 @@ signal next_day(submit:bool)
 
 @warning_ignore("unused_signal")
 signal change_scene
+
+@warning_ignore("unused_signal")
+signal open_store

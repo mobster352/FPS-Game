@@ -1,5 +1,9 @@
 extends Node
 
+const SAVE_SLOT_1 := "user://save_slot_1.tres"
+const SAVE_SLOT_2 := "user://save_slot_2.tres"
+const SAVE_SLOT_3 := "user://save_slot_3.tres"
+
 enum PIZZA_TYPE {
 	NONE,
 	PEPPERONI,
@@ -104,6 +108,8 @@ var food_items: Array[Food] = [
 
 var show_tips := true
 
+var save_slot := 1
+
 func get_food(food_id:int) -> Food:
 	for food in food_items:
 		if food.food_id == food_id:
@@ -121,3 +127,19 @@ func get_mesh_from_array(mesh_name: StringName) -> Node3D:
 		if mti.name == mesh_name:
 			return load(mti.mesh).instantiate()
 	return null
+	
+func get_save_slot() -> String:
+	if save_slot == 1:
+		return SAVE_SLOT_1
+	elif save_slot == 2:
+		return SAVE_SLOT_2
+	else:
+		return SAVE_SLOT_3
+		
+func get_save_slot_by_id(slot:int) -> String:
+	if slot == 1:
+		return SAVE_SLOT_1
+	elif slot == 2:
+		return SAVE_SLOT_2
+	else:
+		return SAVE_SLOT_3

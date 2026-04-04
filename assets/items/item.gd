@@ -169,6 +169,7 @@ func _pay_player(money:int) -> void:
 	#elif player is PlayerMP:
 		#player = player as PlayerMP
 	player.update_money(money)
+	player.increment_customers_served()
 	#pass
 
 func _toggle_pointer_by_food(food_id:int, value:bool) -> void:

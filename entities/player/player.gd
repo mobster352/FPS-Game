@@ -3,6 +3,9 @@ class_name Player
 
 signal weapon_fired
 
+var playerData: PlayerData
+var customers_served: int
+
 const RETICLE_WHITE := Color(255,255,255,0.5)
 const RETICLE_RED := Color(255,0,0,0.5)
 const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
@@ -51,7 +54,8 @@ var hp := 10:
 	set(value):
 		ui.update_hp(hp, value)
 		hp = value
-		
+
+var starting_money: int
 @export var money: int:
 	set(value):
 		money = value
@@ -86,8 +90,15 @@ func _ready():
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
 	
+	customers_served = 0
 	# set up player data
-	load_player_data()
+	if ResourceLoader.exists(GlobalVar.get_save_slot()):
+		load_player_data()
+	else:
+		playerData = PlayerData.new()
+		playerData.day = 1
+	
+	starting_money = money
 	
 	# save player data
 	GlobalSignal.next_day.connect(_next_day)
@@ -623,6 +634,9 @@ func take_damage(value: int) -> void:
 func update_money(_money:int) -> void:
 	money += _money
 
+func increment_customers_served() -> void:
+	customers_served += 1
+
 
 func _respawn() -> void:
 	hp = max_hp
@@ -659,9 +673,9 @@ func _next_day(submit:bool) -> void:
 
 
 func save_player_data() -> void:
-	PlayerData.money = money
+	playerData.money = money
 		
-	PlayerData.items.clear()
+	playerData.items.clear()
 	for item in items_marker.get_children():
 		if item is Item:
 			var item_resource: ItemResource = ItemResource.new()
@@ -675,14 +689,14 @@ func save_player_data() -> void:
 			var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
 			if object_spawner:
 				item_resource.item_type = object_spawner.item_type
-			PlayerData.items.append(item_resource)
+			playerData.items.append(item_resource)
 		elif item is PizzaBoxStack:
 			var item_resource: ItemResource = ItemResource.new()
 			item_resource.name = item.name
 			item_resource.position = item.position
 			item_resource.rotation = item.rotation
 			item_resource.num_pizza_boxes = item.num_pizza_boxes
-			PlayerData.items.append(item_resource)
+			playerData.items.append(item_resource)
 	for item in order_spawn_marker.get_children():
 		if item is Item:
 			var item_resource: ItemResource = ItemResource.new()
@@ -696,30 +710,32 @@ func save_player_data() -> void:
 			var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
 			if object_spawner:
 				item_resource.item_type = object_spawner.item_type
-			PlayerData.items.append(item_resource)
+			playerData.items.append(item_resource)
 		elif item is PizzaBoxStack:
 			var item_resource: ItemResource = ItemResource.new()
 			item_resource.name = item.name
 			item_resource.position = item.position
 			item_resource.rotation = item.rotation
 			item_resource.num_pizza_boxes = item.num_pizza_boxes
-			PlayerData.items.append(item_resource)
+			playerData.items.append(item_resource)
+	
+	playerData.save_date = Time.get_datetime_dict_from_system()
+	playerData.day += 1
 	save_game()
 
 
 func load_player_data() -> void:
 	load_game()
-	money = PlayerData.money
-	for item_resource:ItemResource in PlayerData.items:
+	money = playerData.money
+	for item_resource:ItemResource in playerData.items:
 		var item = GlobalVar.get_item_from_mesh(item_resource.mesh_name)
 		if item:
 			item.position = item_resource.position
 			item.rotation = item_resource.rotation
-			if item_resource.count > 0:
-				item.set_meta("count", item_resource.count)
 			if item_resource.item_type:
 				var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
 				object_spawner.item_type = item_resource.item_type
+				item.set_meta("count", item_resource.count)
 			if item is PizzaBoxStack:
 				item.num_pizza_boxes = item_resource.num_pizza_boxes
 			items_marker.add_child(item)
@@ -732,25 +748,10 @@ func load_player_data() -> void:
 
 
 func save_game() -> void:
-	var save_dict = {
-		"money": PlayerData.money
-	}
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	if save_file:
-		var json_string = JSON.stringify(save_dict)
-		save_file.store_line(json_string)
-		
+	var error_code := ResourceSaver.save(playerData, GlobalVar.get_save_slot())
+	if error_code != OK:
+		push_error("Failed to save game: " + error_string(error_code))
+
+
 func load_game() -> void:
-	if not FileAccess.file_exists("user://savegame.save"):
-		return
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
-	while save_file.get_position() < save_file.get_length():
-		var json_string = save_file.get_line()
-		var json = JSON.new()
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
-			continue
-		var node_data = json.data
-		PlayerData.money = node_data["money"]
-		
+	playerData = ResourceLoader.load(GlobalVar.get_save_slot())

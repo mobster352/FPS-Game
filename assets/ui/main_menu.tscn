@@ -41,7 +41,7 @@ text = "Pizza Boy"
 label_settings = SubResource("LabelSettings_82vaf")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1224771542]
+[node name="StartGame" type="MarginContainer" parent="." unique_id=1731944410]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,20 +55,20 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer" unique_id=712795814]
+[node name="StartGameButton" type="TextureButton" parent="StartGame" unique_id=947225438]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer" unique_id=1581102096]
+[node name="Label" type="Label" parent="StartGame" unique_id=936076518]
 layout_mode = 2
-text = "New Game"
+text = "Start Game"
 label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1637598793]
+[node name="Settings" type="MarginContainer" parent="." unique_id=1637598793]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -83,19 +83,19 @@ offset_bottom = 295.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer3" unique_id=224160048]
+[node name="TextureButton" type="TextureButton" parent="Settings" unique_id=224160048]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer3" unique_id=561211431]
+[node name="Label" type="Label" parent="Settings" unique_id=561211431]
 layout_mode = 2
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=169590552]
+[node name="Quit" type="MarginContainer" parent="." unique_id=169590552]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -109,20 +109,20 @@ offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer4" unique_id=86759321]
+[node name="TextureButton" type="TextureButton" parent="Quit" unique_id=86759321]
 layout_mode = 2
 texture_normal = ExtResource("6_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer4" unique_id=1177831239]
+[node name="Label" type="Label" parent="Quit" unique_id=1177831239]
 layout_mode = 2
 text = "Quit"
 label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
-[node name="MarginContainer5" type="MarginContainer" parent="." unique_id=1759103797]
+[node name="Multiplayer" type="MarginContainer" parent="." unique_id=1759103797]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -137,14 +137,14 @@ offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MultiplayerButton" type="TextureButton" parent="MarginContainer5" unique_id=833226492]
+[node name="MultiplayerButton" type="TextureButton" parent="Multiplayer" unique_id=833226492]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MarginContainer5" unique_id=1900527082]
+[node name="Label" type="Label" parent="Multiplayer" unique_id=1900527082]
 layout_mode = 2
 text = "Multiplayer"
 horizontal_alignment = 1
@@ -165,10 +165,10 @@ show_clock = false
 [node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=975023757]
 transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
-[connection signal="mouse_entered" from="MarginContainer/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer/TextureButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="MarginContainer3/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer3/TextureButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="MarginContainer4/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="MarginContainer4/TextureButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="MarginContainer5/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="mouse_entered" from="StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="mouse_entered" from="Settings/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Settings/TextureButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Quit/TextureButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]

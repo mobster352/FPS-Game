@@ -1,4 +1,7 @@
-extends Node
+class_name PlayerData
+extends Resource
 
-var money: int = 100
-var items: Array[ItemResource]
+@export var money: int = 100
+@export var items: Array[ItemResource]
+@export var save_date: Dictionary
+@export var day: int

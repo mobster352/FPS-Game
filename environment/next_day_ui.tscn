@@ -8,6 +8,15 @@ font_size = 32
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lb64x"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iv20o"]
+font_color = Color(0, 1, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_dwrot"]
 font_size = 24
 font_color = Color(0, 1, 0, 1)
@@ -65,6 +74,24 @@ text = "End of Day Report"
 label_settings = SubResource("LabelSettings_t8g5g")
 horizontal_alignment = 1
 
+[node name="Day" type="BoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=785526320]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="DayLabel" type="Label" parent="MarginContainer2/VBoxContainer/Day" unique_id=120802343]
+layout_mode = 2
+text = "Day:"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
+[node name="DayValue" type="Label" parent="MarginContainer2/VBoxContainer/Day" unique_id=1278798866]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
 [node name="CustomersServed" type="BoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=887084274]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -77,6 +104,7 @@ label_settings = ExtResource("2_dwrot")
 horizontal_alignment = 1
 
 [node name="CustomersServedValue" type="Label" parent="MarginContainer2/VBoxContainer/CustomersServed" unique_id=722404749]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("2_dwrot")
@@ -89,11 +117,30 @@ alignment = 1
 
 [node name="ProfitLabel" type="Label" parent="MarginContainer2/VBoxContainer/Profit" unique_id=2077525109]
 layout_mode = 2
-text = "Profit:"
-label_settings = ExtResource("2_dwrot")
+text = "Net Profit:"
+label_settings = SubResource("LabelSettings_lb64x")
 horizontal_alignment = 1
 
 [node name="ProfitValue" type="Label" parent="MarginContainer2/VBoxContainer/Profit" unique_id=313544280]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$0"
+label_settings = SubResource("LabelSettings_iv20o")
+horizontal_alignment = 1
+
+[node name="Balance" type="BoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=331521431]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="MarginContainer2/VBoxContainer/Balance" unique_id=733675818]
+layout_mode = 2
+text = "Balance:"
+label_settings = ExtResource("2_dwrot")
+horizontal_alignment = 1
+
+[node name="BalanceValue" type="Label" parent="MarginContainer2/VBoxContainer/Balance" unique_id=1955402955]
+unique_name_in_owner = true
 layout_mode = 2
 text = "$0"
 label_settings = SubResource("LabelSettings_dwrot")
