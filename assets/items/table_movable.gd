@@ -12,4 +12,3 @@ func can_move() -> bool:
 	
 func move() -> void:
 	table.placement_system.setup_object_preview.emit(table_outline, table, table_a2)
-#	test

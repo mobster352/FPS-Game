@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dys1xor47kxw"]
+
+[ext_resource type="Script" uid="uid://cj2xrfgqsuvak" path="res://assets/ui/tablet.gd" id="1_fysnc"]
+
+[node name="Tablet" type="Control" unique_id=1200652761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fysnc")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 448.0
+offset_bottom = 512.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2042304493]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer" unique_id=1202018562]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer" unique_id=643983633]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=990477978]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Tablet"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2069815883]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer" unique_id=30768554]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=1505212184]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemName" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=632902784]
+layout_mode = 2
+text = "Table"
+
+[node name="ItemPrice" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1836549336]
+layout_mode = 2
+text = "$10"
+
+[node name="PurchaseButton" type="Button" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=617853600]
+layout_mode = 2
+text = "BUY"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]

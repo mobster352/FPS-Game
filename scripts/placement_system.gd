@@ -15,6 +15,7 @@ var objects:Array[Node]
 var preview_instance: Node3D
 var place_scene_path: StringName
 var original_obj: Node3D
+var original_obj_parent
 
 var place_scene: PackedScene
 var can_place := false
@@ -45,12 +46,11 @@ func _process(_delta: float) -> void:
 				is_placing = false
 		else:
 			is_placing = true
-	else:
-		for o in objects:
-			if o:
-				for mesh in o.get_children():
-					if mesh is MeshInstance3D:
-						_toggle_build_highlight(mesh.get_active_material(0))
+	for o in objects:
+		if o:
+			for mesh in o.get_children():
+				if mesh is MeshInstance3D:
+					_toggle_build_highlight(mesh.get_active_material(0))
 
 
 func _toggle_build_highlight(material: StandardMaterial3D) -> void:
@@ -70,6 +70,7 @@ func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path
 	preview_instance = load(uuid).instantiate()
 	original_obj = _original_obj
 	place_scene_path = new_obj_path
+	toggle_build = true
 	start_placement()
 
 
@@ -84,6 +85,11 @@ func start_placement():
 	item_shape = collision_shape_preview_instance.shape
 
 	_make_preview_material(preview_instance)
+	
+	original_obj_parent = original_obj.get_parent()
+	if original_obj is Table:
+		GlobalSignal.remove_table.emit(original_obj)
+	original_obj.queue_free()
 
 
 func update_preview():
@@ -138,10 +144,7 @@ func confirm_placement() -> bool:
 
 	var instance = place_scene.instantiate()
 	
-	var original_obj_parent = original_obj.get_parent()
-	original_obj.queue_free()
-	
-	await get_tree().create_timer(0.1).timeout
+	#await get_tree().create_timer(0.1).timeout
 	
 	original_obj_parent.add_child(instance)
 	

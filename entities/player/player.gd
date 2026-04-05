@@ -45,6 +45,8 @@ var weapon: Weapon
 @export var placement_system: PlacementSystem
 @export var player_skin: PlayerSkin
 
+@export var tables_node: Node3D
+
 var invert := -1
 
 var items_in_range: Array[Item]
@@ -723,6 +725,15 @@ func save_player_data() -> void:
 	
 	playerData.save_date = Time.get_datetime_dict_from_system()
 	playerData.day += 1
+	
+	playerData.tables.clear()
+	for table:Table in tables_node.get_children():
+		var table_resource:TableResource = TableResource.new()
+		table_resource.table_id = table.table_id
+		table_resource.position = table.position
+		table_resource.rotation = table.rotation
+		playerData.tables.append(table_resource)
+	
 	save_game()
 
 
@@ -749,6 +760,14 @@ func load_player_data() -> void:
 			items_marker.add_child(item)
 	if playerData.store_name:
 		GlobalSignal.update_store_name.emit(playerData.store_name, playerData.store_font_size)
+	
+	for table_resource:TableResource in playerData.tables:
+		var table:Table = preload("uid://cx648bisbnt5").instantiate()
+		table.table_id = table_resource.table_id
+		table.position = table_resource.position
+		table.rotation = table_resource.rotation
+		tables_node.add_child(table)
+
 
 func save_game() -> void:
 	var error_code := ResourceSaver.save(playerData, GlobalVar.get_save_slot())

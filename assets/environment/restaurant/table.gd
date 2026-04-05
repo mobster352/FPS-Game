@@ -31,7 +31,9 @@ func _ready() -> void:
 
 
 func _init_restaurant(_restaurant: Restaurant) -> void:
-	GlobalSignal.add_table.emit(self)
+	#print("init rest")
+	#GlobalSignal.add_table.emit(self)
+	pass
 
 
 func _send_table_id(table: Table, _table_id: int) -> void:
@@ -66,7 +68,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 
 func _on_plate_timer_timeout() -> void:
-	var plate_dirty = preload("uid://bvxmwk63a2k37").instantiate() as Item
+	var plate_dirty = load("uid://bvxmwk63a2k37").instantiate() as Item
 	food_item.get_parent().add_child(plate_dirty)
 	plate_dirty.global_position = food_item.rigid_body.global_position
 	food_item.queue_free()

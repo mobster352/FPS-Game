@@ -19,6 +19,7 @@ func _ready() -> void:
 	GlobalSignal.remove_table.connect(_remove_table)
 
 func _process(_delta: float) -> void:
+	#print_table_list()
 	pass
 
 
@@ -31,14 +32,23 @@ func _add_table(_table: Table) -> void:
 			GlobalSignal.send_table_id.emit(_table, table_id)
 			return
 	
-	var next_table_id:int = get_next_table_id()
-	table_list.append(
-		{
-			"table": _table,
-			"table_id": next_table_id
-		}
-	)
-	GlobalSignal.send_table_id.emit(_table, next_table_id)
+	if _table.table_id:
+		table_list.append(
+			{
+				"table": _table,
+				"table_id": _table.table_id
+			}
+		)
+		GlobalSignal.send_table_id.emit(_table, _table.table_id)
+	else:
+		var next_table_id:int = get_next_table_id()
+		table_list.append(
+			{
+				"table": _table,
+				"table_id": next_table_id
+			}
+		)
+		GlobalSignal.send_table_id.emit(_table, next_table_id)
 
 
 func _remove_table(_table: Table) -> void:
@@ -64,9 +74,12 @@ func print_table_list() -> void:
 func get_next_table_id() -> int:
 	if table_list.is_empty():
 		return 1
-	var table = table_list.get(table_list.size() - 1)
-	if table.has("table_id"):
-		return table.get("table_id") + 1
+	var max_id:int = 0
+	for table_dict:Dictionary in table_list:
+		if table_dict.get("table_id") > max_id:
+			max_id = table_dict.get("table_id")
+	if max_id:
+		return max_id + 1
 	else:
 		return -1
 

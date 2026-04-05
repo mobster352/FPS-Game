@@ -17,19 +17,19 @@ albedo_texture = ExtResource("3_uqbfs")
 disposable = true
 metadata/plate_dirty = true
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05018866, 0)
 shape = SubResource("BoxShape3D_uqbfs")
 
-[node name="plate_dirty" parent="body" index="2" unique_id=1659134316 instance=ExtResource("1_kv4sn")]
+[node name="plate_dirty" parent="body" parent_id_path=PackedInt32Array(978506078) index="2" unique_id=1659134316 instance=ExtResource("1_kv4sn")]
 
 [node name="plate_dirty" parent="body/plate_dirty" index="0"]
 metadata/name = &"plate_dirty_mesh"
 
-[node name="Pointer" parent="body" index="3"]
+[node name="Pointer" parent="body" parent_id_path=PackedInt32Array(978506078) index="3" unique_id=42302540]
 visible = true
 
-[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1751644765 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="4" unique_id=1751644765 node_paths=PackedStringArray("item")]
 script = ExtResource("4_hygbd")
 item = NodePath("../..")
 

@@ -7,3 +7,4 @@ extends Resource
 @export var day: int
 @export var store_name: String
 @export var store_font_size: int
+@export var tables: Array[TableResource]

@@ -31,4 +31,7 @@ func _on_name_input_text_changed(new_text: String) -> void:
 
 func _update_store_name(store_name:String, font_size:int) -> void:
 	billboard_label.text = store_name
+	name_input.text = store_name
+	name_input.caret_column = store_name.length()
 	billboard_label.font_size = font_size
+	size_input.value = font_size
