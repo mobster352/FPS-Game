@@ -3,10 +3,11 @@ class_name PlacementSystem
 
 signal setup_object_preview(uuid: StringName, original_obj: Node3D, new_obj_path: StringName)
 
-@export var camera: Camera3D
+#@export var camera: Camera3D
 @export var max_distance := 5.0
 @export var player: Player
 @export var highlight_color: Color = Color(0,0,5,0.35)
+@export var restaurant_nav_region: NavigationRegion3D
 
 var toggle_build:bool = false
 var objects:Array[Node]
@@ -88,8 +89,8 @@ func start_placement():
 func update_preview():
 	var space_state = get_world_3d().direct_space_state
 
-	var from = camera.global_position
-	var forward = -camera.global_transform.basis.z
+	var from = player.camera.global_position
+	var forward = -player.camera.global_transform.basis.z
 	var to = from + forward * max_distance
 
 	# Forward ray
@@ -121,7 +122,10 @@ func update_preview():
 		else:
 			can_place = true
 		preview_instance.global_position = down_hit.position
-		preview_instance.global_rotation.y = camera.global_rotation.y
+		preview_instance.global_rotation.y = player.camera.global_rotation.y
+		var in_nav_region = is_position_in_nav_region(preview_instance.global_position)
+		if not in_nav_region:
+			can_place = false
 	else:
 		can_place = false
 
@@ -146,6 +150,9 @@ func confirm_placement() -> bool:
 	objects = get_tree().get_nodes_in_group("placement")
 	
 	cancel_placement()
+	
+	restaurant_nav_region.bake_navigation_mesh()
+	
 	return true
 
 
@@ -183,3 +190,18 @@ func print_objects() -> void:
 	for o in objects:
 		print(o)
 	print("---------")
+
+
+func is_position_in_nav_region(target_pos: Vector3) -> bool:
+	var map_rid = restaurant_nav_region.get_navigation_map()
+	
+	var closest_point = NavigationServer3D.map_get_closest_point(map_rid, target_pos)
+	
+	if target_pos.distance_to(closest_point) > 0.1:
+		return false
+
+	# Get the polygon owner (region)
+	var region_rid = restaurant_nav_region.get_rid()
+	var nav_owner = NavigationServer3D.map_get_closest_point_owner(map_rid, target_pos)
+
+	return nav_owner == region_rid

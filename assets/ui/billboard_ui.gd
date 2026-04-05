@@ -9,12 +9,13 @@ extends Control
 func _ready() -> void:
 	name_input.text = billboard_label.text
 	size_input.value = billboard_label.font_size
+	GlobalSignal.update_store_name.connect(_update_store_name)
 
 func _on_save_button_pressed() -> void:
+	GlobalSignal.update_store_name.emit(billboard_label.text, billboard_label.font_size)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hide()
 	player.freeze_camera = false
-
 
 
 func _on_size_input_value_changed(value: float) -> void:
@@ -26,3 +27,8 @@ func _on_name_input_text_changed(new_text: String) -> void:
 	name_input.text = new_text
 	name_input.caret_column = new_text.length()
 	billboard_label.text = new_text
+
+
+func _update_store_name(store_name:String, font_size:int) -> void:
+	billboard_label.text = store_name
+	billboard_label.font_size = font_size

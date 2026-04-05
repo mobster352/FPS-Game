@@ -6,6 +6,7 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -256.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -22,6 +23,13 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Empty Save Slot"
+horizontal_alignment = 1
+
+[node name="StoreName" type="Label" parent="PanelContainer/VBoxContainer" unique_id=594231068]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Pizzeria"
 horizontal_alignment = 1
 
 [node name="MoneyContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=230307492]

@@ -164,7 +164,8 @@ drive_thru_menu = NodePath("../../../Entities/DriveThruSpawn/DriveThruMenu")
 [node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="24" unique_id=1140681504 node_paths=PackedStringArray("level")]
 level = NodePath("../../../../../../..")
 
-[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
+[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
+placement_system = NodePath("../../../PlacementSystem")
 money = 100
 items_marker = NodePath("../../Items")
 order_spawn_marker = NodePath("../../../Environment/Buildings/Restaurant/Environment/Restaurant/OrderSpawn")
@@ -216,6 +217,10 @@ script = ExtResource("13_kv32d")
 endPathMarker = NodePath("../StartPathMarker")
 level_ui = NodePath("../../UI")
 npcSpawnTimer = NodePath("../DriveThruSpawn/Timers/NpcSpawnTimer")
+
+[node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
+player = NodePath("../Entities/Players/Player")
+restaurant_nav_region = NodePath("../Environment/Floor/NavRestaurant")
 
 [node name="UI" parent="." index="6" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
 next_day_ui = NodePath("NextDay")

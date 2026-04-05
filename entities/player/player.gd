@@ -89,6 +89,7 @@ func _ready():
 	spawn_position = global_position
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
+	GlobalSignal.update_store_name.connect(_update_store_name)
 	
 	customers_served = 0
 	# set up player data
@@ -97,6 +98,7 @@ func _ready():
 	else:
 		playerData = PlayerData.new()
 		playerData.day = 1
+		playerData.store_name = "Pizzeria"
 	
 	starting_money = money
 	
@@ -745,7 +747,8 @@ func load_player_data() -> void:
 			item.rotation = item_resource.rotation
 			item.num_pizza_boxes = item_resource.num_pizza_boxes
 			items_marker.add_child(item)
-
+	if playerData.store_name:
+		GlobalSignal.update_store_name.emit(playerData.store_name, playerData.store_font_size)
 
 func save_game() -> void:
 	var error_code := ResourceSaver.save(playerData, GlobalVar.get_save_slot())
@@ -755,3 +758,8 @@ func save_game() -> void:
 
 func load_game() -> void:
 	playerData = ResourceLoader.load(GlobalVar.get_save_slot())
+
+
+func _update_store_name(store_name:String, font_size:int) -> void:
+	playerData.store_name = store_name
+	playerData.store_font_size = font_size

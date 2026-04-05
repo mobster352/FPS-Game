@@ -9,6 +9,9 @@ func _ready() -> void:
 		playerData = ResourceLoader.load(GlobalVar.get_save_slot_by_id(save_slot))
 	if playerData:
 		%SlotName.text = "Save Slot " + str(save_slot)
+		if playerData.store_name:
+			%StoreName.show()
+			%StoreName.text = playerData.store_name
 		%MoneyContainer.show()
 		%MoneyValue.text = str(playerData.money)
 		%Date.show()
@@ -27,3 +30,11 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		GlobalVar.save_slot = save_slot
 		get_tree().change_scene_to_file("res://environment/level_1.tscn")
+
+
+func delete_slot() -> void:
+	%SlotName.text = "Empty Save Slot"
+	%StoreName.hide()
+	%MoneyContainer.hide()
+	%Date.hide()
+	%DayContainer.hide()

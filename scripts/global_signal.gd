@@ -85,3 +85,6 @@ signal open_store
 
 @warning_ignore("unused_signal")
 signal close_store
+
+@warning_ignore("unused_signal")
+signal update_store_name(store_name:String, font_size:int)
