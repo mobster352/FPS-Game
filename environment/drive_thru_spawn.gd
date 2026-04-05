@@ -39,7 +39,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _on_drive_thru_timer_timeout() -> void:
-	if level_ui.hours >= 18:
+	if level_ui.hours >= 22:
 		return
 	drive_thru_menu.show()
 	area_col.set_deferred("disabled", false)

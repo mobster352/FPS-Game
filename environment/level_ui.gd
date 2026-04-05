@@ -31,7 +31,42 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+#func _process(_delta: float) -> void:
+	#if not show_clock:
+		#if time.visible:
+			#time.hide()
+		#return
+	#else:
+		#if not time.visible:
+			#time.show()
+	#var rounded_float = snappedf(level.time_of_day, 0.01)
+	#var decimal = rounded_float - int(rounded_float)
+	#var minutes = decimal * 100 * 0.6
+	#hours = int(rounded_float)
+	#
+	#var hr_text: StringName
+	#if hours == 0:
+		#hr_text = "12"
+	#elif hours < 10:
+		#hr_text = "0" + str(hours)
+	#elif hours >= 10 and hours <= 12:
+		#hr_text = str(hours)
+	#elif hours > 12:
+		#hr_text = str(hours - 12)
+	#if int(round(minutes)) < 10:
+		#time.text = str(hr_text + ":0", int(round(minutes)))
+	#else:
+		#time.text = str(hr_text + ":", int(round(minutes)))
+	
+
+func _next_day(submit:bool) -> void:
+	if not submit:
+		next_day_ui.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GlobalSignal.freeze_player_camera.emit(true)
+
+
+func _on_clock_timer_timeout() -> void:
 	if not show_clock:
 		if time.visible:
 			time.hide()
@@ -39,7 +74,7 @@ func _process(_delta: float) -> void:
 	else:
 		if not time.visible:
 			time.show()
-	var rounded_float = snappedf(level.time_of_day, 0.01)
+	var rounded_float = snappedf(level.time_of_day, 0.0001)
 	var decimal = rounded_float - int(rounded_float)
 	var minutes = decimal * 100 * 0.6
 	hours = int(rounded_float)
@@ -54,15 +89,6 @@ func _process(_delta: float) -> void:
 	elif hours > 12:
 		hr_text = str(hours - 12)
 	if int(round(minutes)) < 10:
-		#time.text = str(int(rounded_float), ":0", int(round(minutes)))
 		time.text = str(hr_text + ":0", int(round(minutes)))
 	else:
-		#time.text = str(int(rounded_float), ":", int(round(minutes)))
 		time.text = str(hr_text + ":", int(round(minutes)))
-	
-
-func _next_day(submit:bool) -> void:
-	if not submit:
-		next_day_ui.show()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		GlobalSignal.freeze_player_camera.emit(true)

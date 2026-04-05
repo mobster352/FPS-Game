@@ -9,6 +9,7 @@ var dummy: Dummy
 @export var navigation_agent: NavigationAgent3D
 @export var start_target: Marker3D
 @export var pointer: Node3D
+@export var endPathMarker: Marker3D
 
 @export var level_ui: Level_UI
 @export var walk_in_store_odds := 16
@@ -29,21 +30,38 @@ func _ready() -> void:
 	dummy = dummy_scene.instantiate() as Dummy
 	assert(dummy, "Dummy scene is incorrect")
 	add_child(dummy)
+	set_nav_path()
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
-	if start_target:
-		target = start_target
-	if navigation_agent.get_navigation_map() and target:
-		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	var walk_in_store = randi_range(0, walk_in_store_odds)
+	if walk_in_store == 0:
+		target = GlobalMarker.restaurant_marker
 	else:
-		if navigation_agent and navigation_agent.get_navigation_map():
-			navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+		target = endPathMarker
+	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	
+	#OLD
+	#if start_target:
+		#target = start_target
+	#if navigation_agent.get_navigation_map() and target:
+		#navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	#else:
+		#if navigation_agent and navigation_agent.get_navigation_map():
+			#navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+
+func set_nav_path() -> void:
+	navigation_ready = true
+	var walk_in_store = randi_range(0, walk_in_store_odds)
+	if walk_in_store == 0:
+		target = GlobalMarker.restaurant_marker
+	else:
+		target = endPathMarker
+	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
 func _physics_process(delta: float) -> void:
 	if not navigation_ready:
 		return
-	
 	if not navigation_agent.is_navigation_finished():
 		var destination = navigation_agent.get_next_path_position()
 		var local_destination = destination - global_position
@@ -76,8 +94,10 @@ func _physics_process(delta: float) -> void:
 			if target == GlobalMarker.outside_marker:
 				#navigation_agent.set_navigation_layer_value(1,true)
 				#navigation_agent.set_navigation_layer_value(2,false)
-				navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
-				target = null
+				target = endPathMarker
+				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+				#navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+				#target = null
 				#set_collision_mask_value(6, false)
 			elif target == GlobalMarker.restaurant_marker:
 				#navigation_agent.set_navigation_layer_value(1,false)
@@ -85,13 +105,15 @@ func _physics_process(delta: float) -> void:
 				target = GlobalMarker.queue_marker
 				#set_collision_mask_value(6, true)
 				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-		else:
-			var go_to_restaurant_chance = randi_range(0,walk_in_store_odds)
-			if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
-				target = GlobalMarker.restaurant_marker
-				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-			else:
-				navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
+			elif target == endPathMarker:
+				queue_free()
+		#else:
+			#var go_to_restaurant_chance = randi_range(0,walk_in_store_odds)
+			#if go_to_restaurant_chance == 0 and level_ui.hours >= 6 and level_ui.hours < 18:
+				#target = GlobalMarker.restaurant_marker
+				#navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+			#else:
+				#navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

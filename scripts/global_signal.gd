@@ -82,3 +82,6 @@ signal change_scene
 
 @warning_ignore("unused_signal")
 signal open_store
+
+@warning_ignore("unused_signal")
+signal close_store

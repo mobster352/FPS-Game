@@ -107,3 +107,11 @@ grow_horizontal = 0
 [node name="Time" type="Label" parent="UI/MarginContainer" unique_id=1962452591]
 layout_mode = 2
 text = "00:00"
+
+[node name="Timers" type="Node" parent="." unique_id=1184588231]
+
+[node name="ClockTimer" type="Timer" parent="Timers" unique_id=1175787207]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timers/ClockTimer" to="UI" method="_on_clock_timer_timeout"]

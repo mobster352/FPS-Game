@@ -49,6 +49,9 @@ func advance_time(delta: float):
 
 	time_of_day += delta * hours_per_second
 	time_of_day = fmod(time_of_day, 24.0)
+	
+	if time_of_day > 22:
+		GlobalSignal.close_store.emit()
 
 func update_sun():
 	# Shift time so sunrise happens at 6.0
