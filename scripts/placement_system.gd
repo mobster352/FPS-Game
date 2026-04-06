@@ -155,6 +155,7 @@ func confirm_placement() -> bool:
 	cancel_placement()
 	
 	restaurant_nav_region.bake_navigation_mesh()
+	toggle_build = false
 	
 	return true
 
