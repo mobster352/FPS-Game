@@ -101,6 +101,7 @@ func _ready():
 		playerData = PlayerData.new()
 		playerData.day = 1
 		playerData.store_name = "Pizzeria"
+		playerData.store_font_size = 72
 	
 	starting_money = money
 	

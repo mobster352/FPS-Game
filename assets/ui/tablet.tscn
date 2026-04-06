@@ -52,7 +52,7 @@ text = "Table"
 
 [node name="ItemPrice" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1836549336]
 layout_mode = 2
-text = "$10"
+text = "$25"
 
 [node name="PurchaseButton" type="Button" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=617853600]
 layout_mode = 2

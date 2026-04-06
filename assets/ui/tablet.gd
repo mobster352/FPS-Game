@@ -39,4 +39,4 @@ func _on_purchase_button_pressed() -> void:
 	var table:Table = preload("uid://cx648bisbnt5").instantiate()
 	player.tables_node.add_child(table)
 	placement_system.setup_object_preview.emit(table_outline, table, table_a2)
-	player.update_money(-10)
+	player.update_money(-25)
