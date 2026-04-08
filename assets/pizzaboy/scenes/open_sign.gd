@@ -7,15 +7,22 @@ class_name OpenSign
 
 var is_sign_on := false
 var in_range := false
+var quest_log:QuestLog
 
+func _ready() -> void:
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func interact() -> void:
 	if not is_sign_on:
 		open_store()
 		level.can_advance_time = is_sign_on
 		GlobalSignal.open_store.emit()
+		if quest_log.active_quest_id == Quest.QuestIds.OPEN_PIZZERIA:
+			quest_log.update_quest(Quest.QuestIds.OPEN_PIZZERIA)
 	elif level.time_of_day > 22:
 		GlobalSignal.next_day.emit(false)
+		if quest_log.active_quest_id == Quest.QuestIds.CLOSE_PIZZERIA:
+			quest_log.update_quest(Quest.QuestIds.CLOSE_PIZZERIA)
 
 func open_store() -> void:
 	is_sign_on = not is_sign_on

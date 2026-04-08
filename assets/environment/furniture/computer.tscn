@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1l5ndj6w6wqw"]
+[gd_scene format=3 uid="uid://c1l5ndj6w6wqw"]
 
 [ext_resource type="Script" uid="uid://cab3k5auv4mmh" path="res://assets/environment/furniture/computer.gd" id="1_nj7n0"]
 [ext_resource type="PackedScene" uid="uid://b4kdyglt32tdp" path="res://assets/kaykit/furniture/monitor.gltf" id="1_qhrrk"]
@@ -60,7 +60,7 @@ outline_color = Color(0, 0, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Computer" type="Node3D" node_paths=PackedStringArray("sub_viewport", "cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio")]
+[node name="Computer" type="Node3D" unique_id=81864904 node_paths=PackedStringArray("sub_viewport", "cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio")]
 script = ExtResource("1_nj7n0")
 sub_viewport = NodePath("SubViewportContainer")
 cart_total_label = NodePath("SubViewportContainer/SubViewport/Control/CartPanel/CartTotal")
@@ -71,49 +71,46 @@ remaining_money_label = NodePath("SubViewportContainer/SubViewport/Control/CartI
 balance_label = NodePath("SubViewportContainer/SubViewport/Control/CartItems/Balance")
 hover_audio = NodePath("Audio/HoverAudio")
 
-[node name="monitor" parent="." instance=ExtResource("1_qhrrk")]
+[node name="monitor" parent="." unique_id=1700634387 instance=ExtResource("1_qhrrk")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="monitor/monitor" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="monitor/monitor" index="0" unique_id=1311316921]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="monitor/monitor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monitor/monitor/StaticBody3D" unique_id=1167531913]
 shape = SubResource("ConcavePolygonShape3D_6vl5r")
 
-[node name="Interactable" type="Node3D" parent="monitor/monitor/StaticBody3D" node_paths=PackedStringArray("computer")]
+[node name="Interactable" type="Node3D" parent="monitor/monitor/StaticBody3D" unique_id=379640578 node_paths=PackedStringArray("computer")]
 script = ExtResource("2_xyefn")
 computer = NodePath("../../../..")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="monitor/monitor" index="1"]
+[node name="CSGBox3D" type="CSGBox3D" parent="monitor/monitor" index="1" unique_id=1797951657]
 transform = Transform3D(-1, 1.6540238e-08, 8.584383e-08, 0, 0.98193896, -0.18919826, -8.742278e-08, -0.18919826, -0.98193896, 0.0013427793, 0.6564952, 0.14626233)
-visible = false
 flip_faces = true
 size = Vector3(1.2990723, 0.74642944, 0)
 material = SubResource("StandardMaterial3D_6vl5r")
 
-[node name="Area3D" type="Area3D" parent="monitor/monitor" index="2"]
+[node name="Area3D" type="Area3D" parent="monitor/monitor" index="2" unique_id=1398341070]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="monitor/monitor/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monitor/monitor/Area3D" unique_id=1533200869]
 shape = SubResource("SphereShape3D_kldnb")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-visible = false
-offset_right = 512.0
-offset_bottom = 512.0
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=377695231]
+offset_right = 1152.0
+offset_bottom = 648.0
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=691195555]
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport" unique_id=710377329]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport/Control" unique_id=795059738]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -123,12 +120,12 @@ offset_right = 51.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="Title" type="Label" parent="SubViewportContainer/SubViewport/Control/MarginContainer"]
+[node name="Title" type="Label" parent="SubViewportContainer/SubViewport/Control/MarginContainer" unique_id=88602917]
 layout_mode = 2
 text = "Order Screen"
 label_settings = SubResource("LabelSettings_qhrrk")
 
-[node name="MarginContainer2" type="MarginContainer" parent="SubViewportContainer/SubViewport/Control"]
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewportContainer/SubViewport/Control" unique_id=1502273544]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.040000003
@@ -138,14 +135,14 @@ offset_bottom = -0.09347916
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="HomeButton" type="TextureButton" parent="SubViewportContainer/SubViewport/Control/MarginContainer2"]
+[node name="HomeButton" type="TextureButton" parent="SubViewportContainer/SubViewport/Control/MarginContainer2" unique_id=1147830573]
 layout_mode = 2
 texture_normal = ExtResource("4_nj7n0")
 texture_hover = ExtResource("5_3wc7u")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CartPanel" type="Panel" parent="SubViewportContainer/SubViewport/Control"]
+[node name="CartPanel" type="Panel" parent="SubViewportContainer/SubViewport/Control" unique_id=952214601]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.832
@@ -159,13 +156,13 @@ offset_bottom = -0.20800781
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/Control/CartPanel"]
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport/Control/CartPanel" unique_id=1151188030]
 layout_mode = 0
 offset_right = 168.0
 offset_bottom = 40.0
 color = Color(0.3254902, 0.3254902, 0.3254902, 0.4509804)
 
-[node name="CartButton" type="TextureButton" parent="SubViewportContainer/SubViewport/Control/CartPanel"]
+[node name="CartButton" type="TextureButton" parent="SubViewportContainer/SubViewport/Control/CartPanel" unique_id=431147933]
 layout_mode = 0
 offset_left = 127.0
 offset_right = 167.0
@@ -175,7 +172,7 @@ texture_hover = ExtResource("7_nj7n0")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CartTotal" type="Label" parent="SubViewportContainer/SubViewport/Control/CartPanel"]
+[node name="CartTotal" type="Label" parent="SubViewportContainer/SubViewport/Control/CartPanel" unique_id=448844288]
 layout_mode = 0
 offset_right = 77.0
 offset_bottom = 39.0
@@ -184,14 +181,14 @@ label_settings = SubResource("LabelSettings_nj7n0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CartItems" type="Panel" parent="SubViewportContainer/SubViewport/Control"]
+[node name="CartItems" type="Panel" parent="SubViewportContainer/SubViewport/Control" unique_id=867213963]
 layout_mode = 0
 offset_left = 852.0
 offset_top = 166.0
 offset_right = 1137.0
 offset_bottom = 512.0
 
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=1767715225]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 2.0
@@ -200,17 +197,17 @@ offset_bottom = 25.0
 text = "Cart Summary"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=1685023649]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 26.0
 offset_right = 150.0
 offset_bottom = 283.0
 
-[node name="CartVBox" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/CartItems/ScrollContainer"]
+[node name="CartVBox" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/CartItems/ScrollContainer" unique_id=744463022]
 layout_mode = 2
 
-[node name="BalanceLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="BalanceLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=2033444866]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 194.0
@@ -219,7 +216,7 @@ offset_bottom = 217.0
 text = "Balance"
 label_settings = SubResource("LabelSettings_3wc7u")
 
-[node name="Balance" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="Balance" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=853496258]
 layout_mode = 0
 offset_left = 188.0
 offset_top = 194.0
@@ -228,7 +225,7 @@ offset_bottom = 217.0
 text = "$1000"
 label_settings = SubResource("LabelSettings_eg7ia")
 
-[node name="TotalLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="TotalLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=1168805402]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 218.0
@@ -237,7 +234,7 @@ offset_bottom = 241.0
 text = "Total"
 label_settings = SubResource("LabelSettings_tp6c8")
 
-[node name="TotalPrice" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="TotalPrice" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=2034875475]
 layout_mode = 0
 offset_left = 188.0
 offset_top = 218.0
@@ -246,7 +243,7 @@ offset_bottom = 241.0
 text = "$1000"
 label_settings = SubResource("LabelSettings_pxnma")
 
-[node name="RemainingLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="RemainingLabel" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=1014964029]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 242.0
@@ -255,7 +252,7 @@ offset_bottom = 265.0
 text = "Remaining"
 label_settings = SubResource("LabelSettings_3u46q")
 
-[node name="RemainingMoney" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="RemainingMoney" type="Label" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=2014207852]
 layout_mode = 0
 offset_left = 188.0
 offset_top = 242.0
@@ -264,7 +261,7 @@ offset_bottom = 265.0
 text = "$2000"
 label_settings = SubResource("LabelSettings_urjbb")
 
-[node name="PurchaseButton" type="Button" parent="SubViewportContainer/SubViewport/Control/CartItems"]
+[node name="PurchaseButton" type="Button" parent="SubViewportContainer/SubViewport/Control/CartItems" unique_id=608189707]
 layout_mode = 0
 offset_left = 108.0
 offset_top = 290.0
@@ -272,95 +269,78 @@ offset_right = 188.0
 offset_bottom = 321.0
 text = "Purchase"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control"]
+[node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control" unique_id=2076971101]
 layout_mode = 1
-offset_left = 24.0
+offset_left = 256.0
 offset_top = 99.0
 offset_right = 840.0
 offset_bottom = 624.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer" unique_id=1745641667]
 layout_mode = 2
 theme_override_constants/separation = 125
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+[node name="RollingPin" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1543266332 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-theme_override_constants/separation = 400
-
-[node name="RollingPin" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
-layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Rolling Pin"
 texture = ExtResource("6_nj7n0")
 store_item = 1
 
-[node name="Dough" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Dough" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1096080327 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Dough"
 texture = ExtResource("6_nj7n0")
 store_item = 2
 price = 10
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+[node name="Tomato" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=830184223 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-theme_override_constants/separation = 400
-
-[node name="Tomato" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
-layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Tomato"
 texture = ExtResource("6_nj7n0")
 store_item = 3
 price = 10
 
-[node name="Cheese" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Cheese" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1503135581 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Cheese"
 texture = ExtResource("6_nj7n0")
 store_item = 4
 price = 10
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+[node name="Pepperoni" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1034392035 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-theme_override_constants/separation = 400
-
-[node name="Pepperoni" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
-layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Pepperoni"
 texture = ExtResource("6_nj7n0")
 store_item = 5
 price = 10
 
-[node name="Mushroom" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Mushroom" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=377681073 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Mushroom"
 texture = ExtResource("6_nj7n0")
 store_item = 6
 price = 10
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+[node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1290600538 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-theme_override_constants/separation = 400
-
-[node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer/HBoxContainer4" node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
-layout_mode = 2
-computer = NodePath("../../../../../../..")
+computer = NodePath("../../../../../..")
 text = &"Pizza Box"
 texture = ExtResource("6_nj7n0")
 store_item = 7
 price = 1
 
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1198065472]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=330916112]
 
-[node name="HoverAudio" type="AudioStreamPlayer" parent="Audio"]
+[node name="HoverAudio" type="AudioStreamPlayer" parent="Audio" unique_id=1114144070]
 stream = ExtResource("10_3wc7u")
 volume_db = -5.0
 

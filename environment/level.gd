@@ -19,6 +19,8 @@ class_name Level
 # Internal state
 var time_of_day := 0.0 # 0–24
 
+var quest_log:QuestLog
+
 const SUNRISE := 6.0
 const SUNSET  := 18.0
 const MAX_ELEVATION := PI / 2.0  # 90°
@@ -34,6 +36,7 @@ func _ready():
 		GlobalSignal.init_player.emit(player)
 	GlobalMarker._ready()
 	level_ui.show_clock = show_clock
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func _process(delta):
 	if can_advance_time and time_of_day < 22:
@@ -42,6 +45,9 @@ func _process(delta):
 		update_sun_light()
 		update_environment()
 		#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
+	elif time_of_day >= 22:
+		if quest_log.active_quest_id == Quest.QuestIds.SERVE_CUSTOMERS:
+			quest_log.update_quest(Quest.QuestIds.SERVE_CUSTOMERS)
 
 func advance_time(delta: float):
 	var seconds_per_day = day_length_minutes * 60.0

@@ -15,6 +15,7 @@ signal decrement_store_item(store_item: GlobalVar.StoreItem, price: int, quantit
 
 var in_range := false
 var player: Player
+var quest_log:QuestLog
 
 var cart_total := 0:
 	set(value):
@@ -35,6 +36,7 @@ func _ready() -> void:
 	total_price_label.text = "$0"
 	remaining_money_label.text = "$0"
 	cart_total = 0
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and sub_viewport.visible:
@@ -48,6 +50,9 @@ func interact(_player: Player) -> void:
 	player.ui.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	balance_label.text = "$" + str(player.money)
+	
+	if quest_log.active_quest_id == Quest.QuestIds.OPEN_COMPUTER:
+		quest_log.update_quest(Quest.QuestIds.OPEN_COMPUTER)
 	
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -103,6 +108,8 @@ func _on_purchase_button_pressed() -> void:
 				update_store_item_to_cart_vbox(store_item.get("store_item"), 0)
 		GlobalSignal.order_inventory_items.emit(order_items)
 		order_items.clear()
+		if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
+			quest_log.update_quest(Quest.QuestIds.BUY_INGREDIENTS)
 
 
 func _on_mouse_entered() -> void:

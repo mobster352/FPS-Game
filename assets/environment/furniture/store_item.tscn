@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5p2c8ul2we3e"]
+[gd_scene format=3 uid="uid://b5p2c8ul2we3e"]
 
 [ext_resource type="Texture2D" uid="uid://cepkh1qbco7i1" path="res://assets/ui/SlimSlider_Green_Pointer.png" id="1_onmes"]
 [ext_resource type="Script" uid="uid://cr7t7087mw2lv" path="res://assets/environment/furniture/store_item.gd" id="1_xeoji"]
@@ -14,8 +14,10 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 
-[node name="StoreItem" type="Panel" node_paths=PackedStringArray("item_name", "item_icon", "background", "item_price", "hover_audio", "increment_item_button", "decrement_item_button", "quantity_label")]
-offset_right = 0.37600708
+[node name="StoreItem" type="Panel" unique_id=12460798 node_paths=PackedStringArray("item_name", "item_icon", "background", "item_price", "hover_audio", "increment_item_button", "decrement_item_button", "quantity_label")]
+offset_left = 0.37600708
+offset_right = 384.0
+offset_bottom = 96.0
 mouse_filter = 2
 script = ExtResource("1_xeoji")
 item_name = NodePath("Name")
@@ -27,13 +29,13 @@ increment_item_button = NodePath("IncrementItem")
 decrement_item_button = NodePath("DecrementItem")
 quantity_label = NodePath("Quantity")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=959340438]
 layout_mode = 0
 offset_right = 384.0
 offset_bottom = 100.0
 color = Color(0.28118682, 0.28118688, 0.28118682, 1)
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=1567099058]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 24.0
@@ -43,7 +45,7 @@ mouse_filter = 2
 texture = ExtResource("1_onmes")
 expand_mode = 1
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=1535628883]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 24.0
@@ -54,7 +56,7 @@ label_settings = SubResource("LabelSettings_xeoji")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Price" type="Label" parent="."]
+[node name="Price" type="Label" parent="." unique_id=1898404067]
 layout_mode = 0
 offset_left = 224.0
 offset_top = 24.0
@@ -66,7 +68,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Quantity" type="Label" parent="."]
+[node name="Quantity" type="Label" parent="." unique_id=588224820]
 layout_mode = 0
 offset_left = 328.0
 offset_top = 24.0
@@ -77,7 +79,7 @@ label_settings = SubResource("LabelSettings_xeoji")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IncrementItem" type="TextureButton" parent="."]
+[node name="IncrementItem" type="TextureButton" parent="." unique_id=1259024134]
 layout_mode = 0
 offset_left = 344.0
 offset_top = 28.0
@@ -87,7 +89,7 @@ texture_normal = ExtResource("7_p0ord")
 texture_hover = ExtResource("8_eln7i")
 stretch_mode = 0
 
-[node name="DecrementItem" type="TextureButton" parent="."]
+[node name="DecrementItem" type="TextureButton" parent="." unique_id=1671184322]
 layout_mode = 0
 offset_left = 304.0
 offset_top = 28.0
@@ -97,9 +99,9 @@ texture_normal = ExtResource("9_cu1lx")
 texture_hover = ExtResource("10_2xxud")
 stretch_mode = 0
 
-[node name="Audio" type="Node" parent="."]
+[node name="Audio" type="Node" parent="." unique_id=992558573]
 
-[node name="HoverAudio" type="AudioStreamPlayer" parent="Audio"]
+[node name="HoverAudio" type="AudioStreamPlayer" parent="Audio" unique_id=1987551001]
 stream = ExtResource("7_oab22")
 volume_db = -5.0
 

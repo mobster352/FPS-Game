@@ -44,6 +44,7 @@ thief_target=""
 thief=""
 placement=""
 placement_system=""
+quest_log=""
 
 [input]
 

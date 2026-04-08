@@ -34,7 +34,7 @@ edge_max_length = 0.25
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("restaurant", "player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
-day_length_minutes = 8.0
+day_length_minutes = 1.0
 restaurant = NodePath("Environment/Buildings/Restaurant")
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
@@ -89,64 +89,58 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -16)
 [node name="base18" parent="Environment/Floor/Sidewalk" index="14" unique_id=550861595 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -20)
 
-[node name="base22" parent="Environment/Floor/Sidewalk" index="15" unique_id=1755791907 instance=ExtResource("2_2i2pb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -20)
-
-[node name="base23" parent="Environment/Floor/Sidewalk" index="16" unique_id=2138837994 instance=ExtResource("2_2i2pb")]
+[node name="base23" parent="Environment/Floor/Sidewalk" index="15" unique_id=2138837994 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -20)
 
-[node name="base30" parent="Environment/Floor/Sidewalk" index="17" unique_id=363784928 instance=ExtResource("2_2i2pb")]
+[node name="base30" parent="Environment/Floor/Sidewalk" index="16" unique_id=363784928 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -24)
 
-[node name="base34" parent="Environment/Floor/Sidewalk" index="18" unique_id=1527151964 instance=ExtResource("2_2i2pb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -24)
-
-[node name="base35" parent="Environment/Floor/Sidewalk" index="19" unique_id=1219801231 instance=ExtResource("2_2i2pb")]
+[node name="base35" parent="Environment/Floor/Sidewalk" index="17" unique_id=1219801231 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
 
-[node name="base36" parent="Environment/Floor/Sidewalk" index="20" unique_id=1382311881 instance=ExtResource("2_2i2pb")]
+[node name="base36" parent="Environment/Floor/Sidewalk" index="18" unique_id=1382311881 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -28)
 
-[node name="base37" parent="Environment/Floor/Sidewalk" index="21" unique_id=1044956369 instance=ExtResource("2_2i2pb")]
+[node name="base37" parent="Environment/Floor/Sidewalk" index="19" unique_id=1044956369 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -28)
 
-[node name="base38" parent="Environment/Floor/Sidewalk" index="22" unique_id=907745589 instance=ExtResource("2_2i2pb")]
+[node name="base38" parent="Environment/Floor/Sidewalk" index="20" unique_id=907745589 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28)
 
-[node name="base39" parent="Environment/Floor/Sidewalk" index="23" unique_id=848384151 instance=ExtResource("2_2i2pb")]
+[node name="base39" parent="Environment/Floor/Sidewalk" index="21" unique_id=848384151 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -28)
 
-[node name="base40" parent="Environment/Floor/Sidewalk" index="24" unique_id=1006212515 instance=ExtResource("2_2i2pb")]
+[node name="base40" parent="Environment/Floor/Sidewalk" index="22" unique_id=1006212515 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -28)
 
-[node name="base41" parent="Environment/Floor/Sidewalk" index="25" unique_id=1395485385 instance=ExtResource("2_2i2pb")]
+[node name="base41" parent="Environment/Floor/Sidewalk" index="23" unique_id=1395485385 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -28)
 
-[node name="base24" parent="Environment/Floor/Sidewalk" index="26" unique_id=1797626659 instance=ExtResource("2_2i2pb")]
+[node name="base24" parent="Environment/Floor/Sidewalk" index="24" unique_id=1797626659 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -16)
 
-[node name="base25" parent="Environment/Floor/Sidewalk" index="27" unique_id=368509215 instance=ExtResource("2_2i2pb")]
+[node name="base25" parent="Environment/Floor/Sidewalk" index="25" unique_id=368509215 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -12)
 
-[node name="base26" parent="Environment/Floor/Sidewalk" index="28" unique_id=1782386764 instance=ExtResource("2_2i2pb")]
+[node name="base26" parent="Environment/Floor/Sidewalk" index="26" unique_id=1782386764 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -8)
 
-[node name="base27" parent="Environment/Floor/Sidewalk" index="29" unique_id=1765322834 instance=ExtResource("2_2i2pb")]
+[node name="base27" parent="Environment/Floor/Sidewalk" index="27" unique_id=1765322834 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
 
-[node name="base28" parent="Environment/Floor/Sidewalk" index="30" unique_id=1319630354 instance=ExtResource("2_2i2pb")]
+[node name="base28" parent="Environment/Floor/Sidewalk" index="28" unique_id=1319630354 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
 
-[node name="base29" parent="Environment/Floor/Sidewalk" index="31" unique_id=280559137 instance=ExtResource("2_2i2pb")]
+[node name="base29" parent="Environment/Floor/Sidewalk" index="29" unique_id=280559137 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 4)
 
-[node name="base6" parent="Environment/Floor/Sidewalk" index="32" unique_id=1913982246 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base6" parent="Environment/Floor/Sidewalk" index="30" unique_id=1913982246 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
 
-[node name="base7" parent="Environment/Floor/Sidewalk" index="33" unique_id=1170153845 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base7" parent="Environment/Floor/Sidewalk" index="31" unique_id=1170153845 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 
-[node name="base8" parent="Environment/Floor/Sidewalk" index="34" unique_id=353000249 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base8" parent="Environment/Floor/Sidewalk" index="32" unique_id=353000249 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 8)
 
 [node name="Road" type="Node3D" parent="Environment/Floor" parent_id_path=PackedInt32Array(1243817630) index="1" unique_id=1344174959]
