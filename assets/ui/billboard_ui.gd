@@ -12,6 +12,7 @@ func _ready() -> void:
 	GlobalSignal.update_store_name.connect(_update_store_name)
 
 func _on_save_button_pressed() -> void:
+	get_tree().paused = false
 	GlobalSignal.update_store_name.emit(billboard_label.text, billboard_label.font_size)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hide()

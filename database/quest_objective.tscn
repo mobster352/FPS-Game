@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ds2eh5sxwh0wb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbn8k"]
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="QuestObjective" type="Label" unique_id=392258243]
+label_settings = SubResource("LabelSettings_vbn8k")
+horizontal_alignment = 1

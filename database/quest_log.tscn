@@ -5,7 +5,6 @@
 
 [sub_resource type="Resource" id="Resource_8utaj"]
 script = ExtResource("2_7ah8b")
-description = "Click on the Computer to buy ingredients"
 metadata/_custom_type_script = "uid://cgnmchw6f783c"
 
 [sub_resource type="Resource" id="Resource_vbn8k"]
@@ -13,10 +12,9 @@ script = ExtResource("2_7ah8b")
 id = 1
 metadata/_custom_type_script = "uid://cgnmchw6f783c"
 
-[sub_resource type="Resource" id="Resource_7ah8b"]
+[sub_resource type="Resource" id="Resource_x0uak"]
 script = ExtResource("2_7ah8b")
 id = 2
-description = "Click on the Open sign"
 metadata/_custom_type_script = "uid://cgnmchw6f783c"
 
 [sub_resource type="Resource" id="Resource_i5ga1"]
@@ -27,23 +25,32 @@ metadata/_custom_type_script = "uid://cgnmchw6f783c"
 [sub_resource type="Resource" id="Resource_5n6id"]
 script = ExtResource("2_7ah8b")
 id = 4
-description = "Click on the Open sign"
+metadata/_custom_type_script = "uid://cgnmchw6f783c"
+
+[sub_resource type="Resource" id="Resource_7ah8b"]
+script = ExtResource("2_7ah8b")
+id = 5
+metadata/_custom_type_script = "uid://cgnmchw6f783c"
+
+[sub_resource type="Resource" id="Resource_d3vlb"]
+script = ExtResource("2_7ah8b")
+id = 6
+metadata/_custom_type_script = "uid://cgnmchw6f783c"
+
+[sub_resource type="Resource" id="Resource_ill3g"]
+script = ExtResource("2_7ah8b")
+id = 7
 metadata/_custom_type_script = "uid://cgnmchw6f783c"
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ah8b"]
 font_size = 18
-
-[sub_resource type="LabelSettings" id="LabelSettings_vbn8k"]
-font_size = 10
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
 
 [node name="QuestLog" type="Control" unique_id=1450797647 groups=["quest_log"]]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_vbn8k")
-quests = Array[ExtResource("2_7ah8b")]([SubResource("Resource_8utaj"), SubResource("Resource_vbn8k"), SubResource("Resource_7ah8b"), SubResource("Resource_i5ga1"), SubResource("Resource_5n6id")])
+quests = Array[ExtResource("2_7ah8b")]([SubResource("Resource_8utaj"), SubResource("Resource_vbn8k"), SubResource("Resource_x0uak"), SubResource("Resource_i5ga1"), SubResource("Resource_5n6id"), SubResource("Resource_7ah8b"), SubResource("Resource_d3vlb"), SubResource("Resource_ill3g")])
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=666197920]
 layout_mode = 0
@@ -71,21 +78,7 @@ horizontal_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=79728463]
 layout_mode = 2
 
-[node name="Description" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=1244452428]
+[node name="ObjectivesList" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=2127818614]
 unique_name_in_owner = true
 layout_mode = 2
-label_settings = SubResource("LabelSettings_vbn8k")
-horizontal_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/Description" unique_id=937752627]
-visible = false
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -1.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.7647059)
+theme_override_constants/separation = 10

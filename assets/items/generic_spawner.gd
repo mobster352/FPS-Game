@@ -1,6 +1,12 @@
 extends ObjectSpawner
 class_name GenericSpawner
 
+var quest_log:QuestLog
+
+func _ready() -> void:
+	super()
+	quest_log = get_tree().get_first_node_in_group("quest_log")
+
 func add_object() -> void:
 	var obj = load(mesh_path).instantiate() as Node3D
 	if object_array.size() < 4:
@@ -82,4 +88,7 @@ func interact2(player: Player) -> void:
 	if get_parent():
 		get_parent().remove_child(self)
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)), player)
+	if is_instance_valid(quest_log):
+			if quest_log.active_quest_id == Quest.QuestIds.MOVE_PRODUCTS:
+				quest_log.update_quest_objective(Quest.QuestObjs.PICK_UP_PRODUCTS)
 	item.queue_free()

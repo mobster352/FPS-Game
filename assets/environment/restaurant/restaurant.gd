@@ -9,6 +9,7 @@ const pizza_box_item = "uid://dp8cybb476vqi"
 @export var order_spawn: Marker3D
 
 var table_list: Array[Dictionary]
+var quest_log:QuestLog
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,8 @@ func _ready() -> void:
 	GlobalSignal.order_inventory_items.connect(_order_inventory_items)
 	GlobalSignal.add_table.connect(_add_table)
 	GlobalSignal.remove_table.connect(_remove_table)
+	
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func _process(_delta: float) -> void:
 	#print_table_list()
@@ -113,18 +116,30 @@ func _order_inventory_items(order_items: Array[Dictionary]) -> void:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(preload(rolling_pin_item).instantiate())
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
+						quest_log.update_quest_objective(Quest.QuestObjs.BUY_ROLLING_PIN)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Dough:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Dough))
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
+						quest_log.update_quest_objective(Quest.QuestObjs.BUY_DOUGH)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Tomato:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Tomato))
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
+						quest_log.update_quest_objective(Quest.QuestObjs.BUY_TOMATO)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Cheese:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Cheese))
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
+						quest_log.update_quest_objective(Quest.QuestObjs.BUY_CHEESE)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Pepperoni:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):

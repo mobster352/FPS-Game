@@ -61,6 +61,7 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Computer" type="Node3D" unique_id=81864904 node_paths=PackedStringArray("sub_viewport", "cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio")]
+process_mode = 2
 script = ExtResource("1_nj7n0")
 sub_viewport = NodePath("SubViewportContainer")
 cart_total_label = NodePath("SubViewportContainer/SubViewport/Control/CartPanel/CartTotal")
@@ -84,6 +85,7 @@ computer = NodePath("../../../..")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="monitor/monitor" index="1" unique_id=1797951657]
 transform = Transform3D(-1, 1.6540238e-08, 8.584383e-08, 0, 0.98193896, -0.18919826, -8.742278e-08, -0.18919826, -0.98193896, 0.0013427793, 0.6564952, 0.14626233)
+visible = false
 flip_faces = true
 size = Vector3(1.2990723, 0.74642944, 0)
 material = SubResource("StandardMaterial3D_6vl5r")
@@ -105,6 +107,7 @@ render_target_update_mode = 4
 
 [node name="Control" type="Control" parent="SubViewportContainer/SubViewport" unique_id=710377329]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

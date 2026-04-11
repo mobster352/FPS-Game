@@ -43,6 +43,8 @@ func _process(_delta: float) -> void:
 		_on_home_button_pressed()
 	
 func interact(_player: Player) -> void:
+	get_tree().paused = true
+	
 	player = _player
 	sub_viewport.show()
 	player.freeze_camera = true
@@ -51,8 +53,9 @@ func interact(_player: Player) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	balance_label.text = "$" + str(player.money)
 	
-	if quest_log.active_quest_id == Quest.QuestIds.OPEN_COMPUTER:
-		quest_log.update_quest(Quest.QuestIds.OPEN_COMPUTER)
+	if is_instance_valid(quest_log):
+		if quest_log.active_quest_id == Quest.QuestIds.OPEN_COMPUTER:
+			quest_log.update_quest_objective(Quest.QuestObjs.CLICK_ON_COMPUTER)
 	
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -65,6 +68,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func _on_home_button_pressed() -> void:
+	get_tree().paused = false
 	sub_viewport.hide()
 	player.freeze_camera = false
 	player.reticle.show()
@@ -108,8 +112,6 @@ func _on_purchase_button_pressed() -> void:
 				update_store_item_to_cart_vbox(store_item.get("store_item"), 0)
 		GlobalSignal.order_inventory_items.emit(order_items)
 		order_items.clear()
-		if quest_log.active_quest_id == Quest.QuestIds.BUY_INGREDIENTS:
-			quest_log.update_quest(Quest.QuestIds.BUY_INGREDIENTS)
 
 
 func _on_mouse_entered() -> void:

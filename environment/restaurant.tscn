@@ -337,15 +337,27 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.76
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.010052681, 0.9906155, 0.010961533)
 
 [node name="PizzaLabel" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1629579140]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.714, 2.3, -5.904)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.714, 2.8682082, -5.904)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
-text = "Every Pizza needs Cheese and Sauce"
+text = "Add Cheese and Sauce to make a Pizza"
 font_size = 48
 
 [node name="PizzaLabel2" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=693455566]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.456, 2.3, -2.263)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.7224648, 2.9075513, -2.263)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
-text = "Drive-Thru orders need to be in a box"
+text = "Place Drive-Thru orders in a box"
+font_size = 38
+
+[node name="PizzaLabel3" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1206032397]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 3.9384248, 3.2280138, -17.740154)
+modulate = Color(0.2627451, 1, 0.75686276, 1)
+text = "Deliveries"
+font_size = 48
+
+[node name="PizzaLabel4" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1387563856]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 5.7407837, 2.9654782, -8.051666)
+modulate = Color(0.2627451, 1, 0.75686276, 1)
+text = "Pizza Slices"
 font_size = 48
 
 [node name="kitchentable_B4" parent="Environment/Restaurant/Decorations" unique_id=1279682353 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]

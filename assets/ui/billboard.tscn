@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="6_33xu4"]
 
 [node name="Billboard" type="Control" unique_id=2010033716 node_paths=PackedStringArray("name_input", "size_input")]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

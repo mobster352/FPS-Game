@@ -36,7 +36,8 @@ func _process(_delta: float) -> void:
 		update_preview()
 		if is_placing:
 			if interact:
-				var is_placed = await confirm_placement()
+				#var is_placed = await confirm_placement()
+				var is_placed = confirm_placement()
 				if is_placed:
 					interact = false
 					is_placing = false
