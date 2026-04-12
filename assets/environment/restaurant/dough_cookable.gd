@@ -1,6 +1,10 @@
 extends Cookable
 
 @export var item: Item
+var quest_log:QuestLog
+
+func _ready() -> void:
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func can_cook(player:Player) -> bool:
 	if player.item_slot.get_child_count() == 1:
@@ -19,6 +23,9 @@ func cook(player: Player) -> void:
 				parent.add_child(dough_base)
 				dough_base.global_position = item.rigid_body.global_position
 				item.queue_free()
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
+						quest_log.update_quest_objective(Quest.QuestObjs.ROLL_DOUGH)
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN

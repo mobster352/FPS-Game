@@ -67,13 +67,16 @@ func can_interact(player: Player) -> bool:
 	return item.in_range
 	
 func interact(player: Player) -> void:
-	var obj = remove_object()
+	var obj:Item = remove_object()
 	if obj:
 		if player.item_slot.get_child_count() > 0:
 			player.drop_item()
 		if obj.get_parent():
 			obj.get_parent().remove_child(obj)
 		obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
+		if is_instance_valid(quest_log) and item_type == GlobalVar.StoreItem.Dough:
+			if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
+				quest_log.update_quest_objective(Quest.QuestObjs.PICK_UP_DOUGH)
 		obj.queue_free()
 
 func reticle_color() -> Color:

@@ -2,6 +2,11 @@ extends Cookable
 
 @export var item: Item
 
+var quest_log:QuestLog
+
+func _ready() -> void:
+	quest_log = get_tree().get_first_node_in_group("quest_log")
+
 func can_cook(player:Player) -> bool:
 	if player.item_slot.get_child_count() == 1:
 		var held_item = player.item_slot.get_child(0)
@@ -22,9 +27,15 @@ func cook(player: Player) -> void:
 			if held_item.get_meta("name") == "food_ingredient_tomato_mesh":
 				var tomato_sauce = preload("res://assets/kaykit/restaurant/food_ingredient_tomato_sauce.gltf").instantiate()
 				update_mesh(tomato_sauce, held_item)
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
+						quest_log.update_quest_objective(Quest.QuestObjs.ADD_TOMATO)
 			elif held_item.get_meta("name") == "food_ingredient_cheese_mesh":
 				var cheese = preload("res://assets/kaykit/restaurant/food_ingredient_cheese_grated.gltf").instantiate()
 				update_mesh(cheese, held_item)
+				if is_instance_valid(quest_log):
+					if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
+						quest_log.update_quest_objective(Quest.QuestObjs.ADD_CHEESE)
 			elif held_item.get_meta("name") == "food_ingredient_pepperoni_mesh":
 				var pepperoni = preload("res://assets/kaykit/restaurant/food_ingredient_pepperoni_slices.gltf").instantiate()
 				update_mesh(pepperoni, held_item)

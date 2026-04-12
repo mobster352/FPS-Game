@@ -3,7 +3,6 @@ extends Control
 
 const quest_objective_scene:PackedScene = preload("uid://ds2eh5sxwh0wb")
 
-@export var quests:Array[Quest]
 var quests_data:Array[Quest.QuestData]
 
 var player:Player
@@ -15,9 +14,9 @@ var active_quest_id:int:
 		update_quest_text()
 
 func _ready() -> void:
-	for quest:Quest in quests:
+	for id:int in Quest.QuestIds.values():
 		var quest_data:Quest.QuestData = Quest.QuestData.new()
-		quest_data = quest_data.create_quest_data(quest.id)
+		quest_data = quest_data.create_quest_data(id)
 		quests_data.append(quest_data)
 	
 	active_quest_id = Quest.QuestIds.OPEN_COMPUTER
@@ -31,7 +30,7 @@ func _process(_delta: float) -> void:
 			queue_free()
 
 func update_quest_text() -> void:
-	if quests.size() > active_quest_id:
+	if quests_data.size() > active_quest_id:
 		show()
 		var quest_data:Quest.QuestData = get_quest_data_by_id(active_quest_id)
 		if not quest_data:
