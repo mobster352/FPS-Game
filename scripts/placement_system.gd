@@ -88,8 +88,8 @@ func start_placement():
 	_make_preview_material(preview_instance)
 	
 	original_obj_parent = original_obj.get_parent()
-	if original_obj is Table:
-		GlobalSignal.remove_table.emit(original_obj)
+	#if original_obj is Table:
+		#GlobalSignal.remove_table.emit(original_obj)
 	original_obj.queue_free()
 
 

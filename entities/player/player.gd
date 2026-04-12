@@ -169,7 +169,7 @@ func _input(event: InputEvent) -> void:
 		# Clamp vertical rotation to prevent the camera from flipping over
 		var current_rotation_x = pointer_slot.rotation.x
 		# Clamp between -90 and 90 degrees (converted to radians)
-		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-60), deg_to_rad(60))
+		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-75), deg_to_rad(80))
 		
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

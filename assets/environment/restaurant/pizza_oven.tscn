@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dqh8oefwfrjdf"]
+[gd_scene format=4 uid="uid://dqh8oefwfrjdf"]
 
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="1_kbga2"]
 [ext_resource type="Script" uid="uid://dofjl6kd14dep" path="res://assets/environment/restaurant/pizza_oven.gd" id="1_ret6o"]
@@ -82,12 +82,12 @@ shadow_mesh = SubResource("ArrayMesh_nqgyk")
 data = PackedVector3Array(0.91999996, 1.14, 0.19999999, -0.82, 1.04, 0.099999994, -0.91999996, 1.14, 0.19999999, 0.91999996, 1.14, 0.19999999, 0.82, 1.04, 0.099999994, -0.82, 1.04, 0.099999994, 1.15, 0, -0.07, 1.15, 1.3399999, 0.17, 1.15, 1.3399999, -0.07, 1.15, 0, -0.07, 1.15, 0, 0.17, 1.15, 1.3399999, 0.17, 1.12, 1.37, -0.07, -1.12, 1.37, 0.17, -1.12, 1.37, -0.07, 1.12, 1.37, -0.07, 1.12, 1.37, 0.17, -1.12, 1.37, 0.17, -1.15, 0, 0.17, -1.15, 1.3399999, -0.07, -1.15, 1.3399999, 0.17, -1.15, 0, 0.17, -1.15, 0, -0.07, -1.15, 1.3399999, -0.07, -1.12, 0, -0.099999994, 1.12, 1.3399999, -0.099999994, -1.12, 1.3399999, -0.099999994, -1.12, 0, -0.099999994, 1.12, 0, -0.099999994, 1.12, 1.3399999, -0.099999994, -1.12, -0.03, 0.17, -1.15, 0, 0.17, -1.12, 0, 0.19999999, -1.12, 1.3399999, 0.19999999, -1.15, 1.3399999, 0.17, -1.12, 1.37, 0.17, -1.12, -0.03, -0.07, -1.12, 0, -0.099999994, -1.15, 0, -0.07, -1.12, 1.37, -0.07, -1.15, 1.3399999, -0.07, -1.12, 1.3399999, -0.099999994, 1.12, -0.03, 0.17, 1.12, 0, 0.19999999, 1.15, 0, 0.17, 1.12, 1.37, 0.17, 1.15, 1.3399999, 0.17, 1.12, 1.3399999, 0.19999999, 1.12, -0.03, -0.07, 1.15, 0, -0.07, 1.12, 0, -0.099999994, 1.12, 1.37, -0.07, 1.12, 1.3399999, -0.099999994, 1.15, 1.3399999, -0.07, -1.12, -0.03, -0.07, -1.15, 0, 0.17, -1.12, -0.03, 0.17, -1.12, -0.03, -0.07, -1.15, 0, -0.07, -1.15, 0, 0.17, -1.12, 0, 0.19999999, -1.15, 1.3399999, 0.17, -1.12, 1.3399999, 0.19999999, -1.12, 0, 0.19999999, -1.15, 0, 0.17, -1.15, 1.3399999, 0.17, -1.12, 1.37, 0.17, -1.15, 1.3399999, -0.07, -1.12, 1.37, -0.07, -1.12, 1.37, 0.17, -1.15, 1.3399999, 0.17, -1.15, 1.3399999, -0.07, -1.12, 1.3399999, -0.099999994, -1.15, 0, -0.07, -1.12, 0, -0.099999994, -1.12, 1.3399999, -0.099999994, -1.15, 1.3399999, -0.07, -1.15, 0, -0.07, 1.12, -0.03, -0.07, -1.12, 0, -0.099999994, -1.12, -0.03, -0.07, 1.12, -0.03, -0.07, 1.12, 0, -0.099999994, -1.12, 0, -0.099999994, -1.12, 1.37, -0.07, 1.12, 1.3399999, -0.099999994, 1.12, 1.37, -0.07, -1.12, 1.37, -0.07, -1.12, 1.3399999, -0.099999994, 1.12, 1.3399999, -0.099999994, 1.15, 1.3399999, -0.07, 1.12, 0, -0.099999994, 1.15, 0, -0.07, 1.15, 1.3399999, -0.07, 1.12, 1.3399999, -0.099999994, 1.12, 0, -0.099999994, 1.12, -0.03, 0.17, 1.15, 0, -0.07, 1.12, -0.03, -0.07, 1.12, -0.03, 0.17, 1.15, 0, 0.17, 1.15, 0, -0.07, 1.12, 1.37, -0.07, 1.15, 1.3399999, 0.17, 1.12, 1.37, 0.17, 1.12, 1.37, -0.07, 1.15, 1.3399999, -0.07, 1.15, 1.3399999, 0.17, 1.12, 1.3399999, 0.19999999, 1.15, 0, 0.17, 1.12, 0, 0.19999999, 1.12, 1.3399999, 0.19999999, 1.15, 1.3399999, 0.17, 1.15, 0, 0.17, -1.12, -0.03, 0.17, 1.12, 0, 0.19999999, 1.12, -0.03, 0.17, -1.12, -0.03, 0.17, -1.12, 0, 0.19999999, 1.12, 0, 0.19999999, 1.12, 1.37, 0.17, -1.12, 1.3399999, 0.19999999, -1.12, 1.37, 0.17, 1.12, 1.37, 0.17, 1.12, 1.3399999, 0.19999999, -1.12, 1.3399999, 0.19999999, -1.12, -0.03, -0.07, 1.12, -0.03, 0.17, 1.12, -0.03, -0.07, -1.12, -0.03, -0.07, -1.12, -0.03, 0.17, 1.12, -0.03, 0.17, -0.91999996, 0.19999999, 0.19999999, -1.12, 1.3399999, 0.19999999, -0.91999996, 1.14, 0.19999999, -0.91999996, 0.19999999, 0.19999999, -1.12, 0, 0.19999999, -1.12, 1.3399999, 0.19999999, -0.91999996, 1.14, 0.19999999, -1.12, 1.3399999, 0.19999999, 1.12, 1.3399999, 0.19999999, -0.91999996, 1.14, 0.19999999, 1.12, 1.3399999, 0.19999999, 0.91999996, 1.14, 0.19999999, 0.91999996, 1.14, 0.19999999, 1.12, 1.3399999, 0.19999999, 1.12, 0, 0.19999999, 0.91999996, 1.14, 0.19999999, 1.12, 0, 0.19999999, 0.91999996, 0.19999999, 0.19999999, 0.91999996, 0.19999999, 0.19999999, -1.12, 0, 0.19999999, -0.91999996, 0.19999999, 0.19999999, 0.91999996, 0.19999999, 0.19999999, 1.12, 0, 0.19999999, -1.12, 0, 0.19999999, 0.82, 0.29999998, 0.099999994, -0.82, 1.04, 0.099999994, 0.82, 1.04, 0.099999994, 0.82, 0.29999998, 0.099999994, -0.82, 0.29999998, 0.099999994, -0.82, 1.04, 0.099999994, 0.91999996, 0.19999999, 0.19999999, 0.82, 1.04, 0.099999994, 0.91999996, 1.14, 0.19999999, 0.91999996, 0.19999999, 0.19999999, 0.82, 0.29999998, 0.099999994, 0.82, 1.04, 0.099999994, -0.91999996, 0.19999999, 0.19999999, 0.82, 0.29999998, 0.099999994, 0.91999996, 0.19999999, 0.19999999, -0.91999996, 0.19999999, 0.19999999, -0.82, 0.29999998, 0.099999994, 0.82, 0.29999998, 0.099999994, -0.91999996, 1.14, 0.19999999, -0.82, 0.29999998, 0.099999994, -0.91999996, 0.19999999, 0.19999999, -0.91999996, 1.14, 0.19999999, -0.82, 1.04, 0.099999994, -0.82, 0.29999998, 0.099999994, -0.91999996, 1.1899999, 0.29999998, -1.02, 1.29, 0.19999999, -0.91999996, 1.29, 0.29999998, -0.91999996, 1.1899999, 0.29999998, -1.02, 1.1899999, 0.19999999, -1.02, 1.29, 0.19999999, -1.02, 1.1899999, 0.19999999, 1.02, 1.29, 0.19999999, -1.02, 1.29, 0.19999999, -1.02, 1.1899999, 0.19999999, 1.02, 1.1899999, 0.19999999, 1.02, 1.29, 0.19999999, 1.02, 1.1899999, 0.19999999, 0.91999996, 1.29, 0.29999998, 1.02, 1.29, 0.19999999, 1.02, 1.1899999, 0.19999999, 0.91999996, 1.1899999, 0.29999998, 0.91999996, 1.29, 0.29999998, 0.91999996, 1.1899999, 0.29999998, -0.91999996, 1.29, 0.29999998, 0.91999996, 1.29, 0.29999998, 0.91999996, 1.1899999, 0.29999998, -0.91999996, 1.1899999, 0.29999998, -0.91999996, 1.29, 0.29999998, -1.02, 1.1899999, 0.19999999, 0.91999996, 1.1899999, 0.29999998, 1.02, 1.1899999, 0.19999999, -1.02, 1.1899999, 0.19999999, -0.91999996, 1.1899999, 0.29999998, 0.91999996, 1.1899999, 0.29999998, 1.02, 1.29, 0.19999999, -0.91999996, 1.29, 0.29999998, -1.02, 1.29, 0.19999999, 1.02, 1.29, 0.19999999, 0.91999996, 1.29, 0.29999998, -0.91999996, 1.29, 0.29999998)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0co8r"]
-radius = 3.1031852
+radius = 4.0419297
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0co8r"]
 size = Vector3(2.2512817, 1.3842163, 0.19169617)
 
-[node name="pizza_oven" type="Node3D" node_paths=PackedStringArray("pizza_oven_door_mesh", "pizza_slot_top", "pizza_slot_bottom", "cook_timer", "oven_audio", "oven_ding_audio")]
+[node name="pizza_oven" type="Node3D" unique_id=1242572807 node_paths=PackedStringArray("pizza_oven_door_mesh", "pizza_slot_top", "pizza_slot_bottom", "cook_timer", "oven_audio", "oven_ding_audio")]
 script = ExtResource("1_ret6o")
 pizza_oven_door_mesh = NodePath("pizza_oven_mesh/pizza_oven_door_mesh")
 pizza_slot_top = NodePath("PizzaSlotTop")
@@ -96,60 +96,60 @@ cook_timer = NodePath("Timers/CookTimer")
 oven_audio = NodePath("OvenAudio")
 oven_ding_audio = NodePath("OvenDingAudio")
 
-[node name="pizza_oven_mesh" type="MeshInstance3D" parent="."]
+[node name="pizza_oven_mesh" type="MeshInstance3D" parent="." unique_id=1107887046]
 mesh = SubResource("ArrayMesh_0r1ds")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="pizza_oven_mesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="pizza_oven_mesh" unique_id=710467078]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/StaticBody3D" unique_id=646330333]
 shape = SubResource("ConcavePolygonShape3D_4rdd7")
 
-[node name="pizza_oven_door_mesh" type="MeshInstance3D" parent="pizza_oven_mesh"]
+[node name="pizza_oven_door_mesh" type="MeshInstance3D" parent="pizza_oven_mesh" unique_id=1476160734]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.22999954, 1)
 mesh = SubResource("ArrayMesh_jhgum")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="pizza_oven_mesh/pizza_oven_door_mesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="pizza_oven_mesh/pizza_oven_door_mesh" unique_id=1646613752]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=1950128455]
 shape = SubResource("ConcavePolygonShape3D_0co8r")
 
-[node name="Interactable" type="Node3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" node_paths=PackedStringArray("pizza_oven")]
+[node name="Interactable" type="Node3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=542511369 node_paths=PackedStringArray("pizza_oven")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.22999954, -1)
 script = ExtResource("3_0co8r")
 pizza_oven = NodePath("../../../..")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=368584359]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=487875463]
 shape = SubResource("SphereShape3D_0co8r")
 
-[node name="PizzaArea" type="Area3D" parent="."]
+[node name="PizzaArea" type="Area3D" parent="." unique_id=743282177]
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaArea" unique_id=1675507772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20687866, 0.9396057, 1.2061386)
 shape = SubResource("BoxShape3D_0co8r")
 
-[node name="PizzaSlotTop" type="Node3D" parent="."]
+[node name="PizzaSlotTop" type="Node3D" parent="." unique_id=1406214000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17010117, 1.0162457, 0)
 
-[node name="PizzaSlotBottom" type="Node3D" parent="."]
+[node name="PizzaSlotBottom" type="Node3D" parent="." unique_id=1256562417]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17010117, 0.34892553, 0)
 
-[node name="Timers" type="Node" parent="."]
+[node name="Timers" type="Node" parent="." unique_id=62114964]
 
-[node name="CookTimer" type="Timer" parent="Timers"]
+[node name="CookTimer" type="Timer" parent="Timers" unique_id=72808235]
 wait_time = 8.0
 one_shot = true
 
-[node name="OvenAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="OvenAudio" type="AudioStreamPlayer3D" parent="." unique_id=1939317243]
 stream = ExtResource("4_4rdd7")
 volume_db = -5.0
 
-[node name="OvenDingAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="OvenDingAudio" type="AudioStreamPlayer3D" parent="." unique_id=1169484733]
 stream = ExtResource("5_uvbxi")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -23,7 +23,7 @@ transparency = 1
 albedo_texture = SubResource("ViewportTexture_qhrrk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kldnb"]
-radius = 1.9860924
+radius = 3.0200129
 
 [sub_resource type="LabelSettings" id="LabelSettings_qhrrk"]
 font_size = 32

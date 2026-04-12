@@ -17,7 +17,7 @@ emission = Color(1, 0, 0, 1)
 size = Vector3(1.1035767, 0.6169739, 0.25888062)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8ik2y"]
-radius = 1.0387297
+radius = 1.4999084
 
 [node name="open_sign" unique_id=1130325679 node_paths=PackedStringArray("sign_text", "blue_background") instance=ExtResource("1_5m3qj")]
 script = ExtResource("2_d4s45")

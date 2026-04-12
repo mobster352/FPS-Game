@@ -10,7 +10,7 @@ size = Vector3(1.998, 2.9851441, 2.03)
 radius = 1.1214485
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_16iny"]
-radius = 2.2922258
+radius = 4.052632
 
 [node name="Pizzabox_Stack" type="Node3D" unique_id=669900504 groups=["thief_target"]]
 script = ExtResource("1_16iny")

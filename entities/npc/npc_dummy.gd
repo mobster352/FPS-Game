@@ -34,12 +34,12 @@ func _ready() -> void:
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
-	var walk_in_store = randi_range(0, walk_in_store_odds)
-	if walk_in_store == 0:
-		target = GlobalMarker.restaurant_marker
-	else:
-		target = endPathMarker
-	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	#var walk_in_store = randi_range(0, walk_in_store_odds)
+	#if walk_in_store == 0:
+		#target = GlobalMarker.restaurant_marker
+	#else:
+		#target = endPathMarker
+	#navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 	
 	#OLD
 	#if start_target:
