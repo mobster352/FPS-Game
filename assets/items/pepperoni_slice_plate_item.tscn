@@ -20,10 +20,10 @@ disposable = true
 mesh_has_children = true
 metadata/food_id = 1
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=978506078]
 physics_material_override = SubResource("PhysicsMaterial_glgut")
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0008029938, 0.14899889, 0.03597337)
 shape = SubResource("BoxShape3D_glgut")
 
@@ -31,9 +31,6 @@ shape = SubResource("BoxShape3D_glgut")
 
 [node name="plate" parent="body/pepperoni_slice_plate/plate" index="0"]
 metadata/name = &"pepperoni_slice_plate_mesh"
-
-[node name="Pointer" parent="body" index="3"]
-visible = true
 
 [node name="Interactable" type="Node3D" parent="body" index="4" unique_id=618891855 node_paths=PackedStringArray("item")]
 script = ExtResource("4_qgjt0")

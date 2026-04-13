@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://nf1jt6prgpcs" path="res://assets/environment/restaurant/food_pizza_cheese_plated_slices.tscn" id="1_tmb4q"]
 [ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_xuxgh"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_4wgoq"]
+[ext_resource type="PackedScene" uid="uid://bl2lnyjofa5lr" path="res://assets/items/pizza_label.tscn" id="4_4wgoq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e8xut"]
 radius = 3.0
@@ -54,6 +55,9 @@ shape = SubResource("BoxShape3D_m2ao7")
 [node name="Pointer" parent="." unique_id=1789647267 instance=ExtResource("3_4wgoq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2068269, 0)
 visible = false
+
+[node name="PizzaLabel" parent="." unique_id=2100755056 instance=ExtResource("4_4wgoq")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

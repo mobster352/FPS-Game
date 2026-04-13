@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bl2lnyjofa5lr"]
+
+[node name="PizzaLabel" type="Label3D" unique_id=2100755056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+visible = false
+billboard = 1
+double_sided = false
+text = "Cheese Pizza"

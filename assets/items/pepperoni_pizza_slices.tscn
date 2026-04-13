@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c57mtyihcjmor" path="res://assets/environment/restaurant/food_pizza_pepperoni_plated_slices.tscn" id="1_8uwgv"]
 [ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_kv6ci"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_r7h7c"]
+[ext_resource type="PackedScene" uid="uid://bl2lnyjofa5lr" path="res://assets/items/pizza_label.tscn" id="4_r7h7c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ght4t"]
 radius = 3.0
@@ -18,6 +19,24 @@ pizza_type = 1
 whole_pizza_type = 4
 
 [node name="food_pizza_pepperoni_plated_slices" parent="." unique_id=190591517 instance=ExtResource("1_8uwgv")]
+
+[node name="food_pizza_pepperoni_plated_slices_001" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="0" unique_id=998212556]
+visible = false
+
+[node name="food_pizza_pepperoni_plated_slices_002" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="1" unique_id=338809407]
+visible = false
+
+[node name="food_pizza_pepperoni_plated_slices_003" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="2" unique_id=1375095145]
+visible = false
+
+[node name="food_pizza_pepperoni_plated_slices_004" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="3" unique_id=1894591683]
+visible = false
+
+[node name="food_pizza_pepperoni_plated_slices_005" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="4" unique_id=536827530]
+visible = false
+
+[node name="food_pizza_pepperoni_plated_slices_006" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="5" unique_id=1663190463]
+visible = false
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1491329412]
 collision_layer = 8
@@ -36,6 +55,10 @@ shape = SubResource("BoxShape3D_auxpk")
 [node name="Pointer" parent="." unique_id=1794786154 instance=ExtResource("3_r7h7c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2068269, 0)
 visible = false
+
+[node name="PizzaLabel" parent="." unique_id=2100755056 instance=ExtResource("4_r7h7c")]
+unique_name_in_owner = true
+text = "Pepperoni Pizza"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

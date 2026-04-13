@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bgb0ai3o1lbah" path="res://assets/environment/restaurant/crate_outline.tscn" id="3_x6gbj"]
 [ext_resource type="PackedScene" uid="uid://dgayf051oh1wt" path="res://assets/kaykit/restaurant/crate.gltf" id="3_ytnlp"]
 [ext_resource type="Script" uid="uid://dpebceury4kga" path="res://assets/items/generic_spawner.gd" id="4_0wkgb"]
+[ext_resource type="PackedScene" uid="uid://bl2lnyjofa5lr" path="res://assets/items/pizza_label.tscn" id="6_ytnlp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wl83s"]
 size = Vector3(0.9994049, 0.39873505, 1.007309)
@@ -107,6 +108,10 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/Interactable/DoughRadius" index="0" unique_id=169445015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348359, 0)
 shape = SubResource("SphereShape3D_u4joo")
+
+[node name="PizzaLabel" parent="body" index="4" unique_id=2100755056 instance=ExtResource("6_ytnlp")]
+unique_name_in_owner = true
+text = ""
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="1" unique_id=383395764]
 replication_config = SubResource("SceneReplicationConfig_wl83s")

@@ -6,6 +6,11 @@ var quest_log:QuestLog
 func _ready() -> void:
 	super()
 	quest_log = get_tree().get_first_node_in_group("quest_log")
+	%PizzaLabel.text = item_text + " (" + str(object_array.size()) + "/8)"
+	
+func _physics_process(_delta: float) -> void:
+	%PizzaLabel.text = item_text + " (" + str(object_array.size()) + "/8)"
+	%PizzaLabel.hide()
 
 func add_object() -> void:
 	var obj = load(mesh_path).instantiate() as Node3D
@@ -63,6 +68,7 @@ func _on_dough_radius_body_entered(body: Node3D) -> void:
 
 func can_interact(player: Player) -> bool:
 	if item.in_range:
+		%PizzaLabel.show()
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), true)
 	return item.in_range
 	
