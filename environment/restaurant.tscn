@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://gl3jxux1hwfj" path="res://assets/environment/prototype/floor_prototype.tscn" id="6_4x4se"]
 [ext_resource type="PackedScene" uid="uid://n7dx1a844sgn" path="res://assets/environment/restaurant/wall_orderwindow.tscn" id="7_7v2r2"]
 [ext_resource type="PackedScene" uid="uid://c474lmnv4l5" path="res://assets/environment/restaurant/kitchentable_b.tscn" id="8_1nokp"]
-[ext_resource type="PackedScene" uid="uid://cwwv8y56y0uve" path="res://assets/items/pepperoni_pizza_boxed.tscn" id="9_nd13t"]
-[ext_resource type="PackedScene" uid="uid://bomyc4si50787" path="res://assets/items/mushroom_pizza_boxed.tscn" id="11_nawl3"]
-[ext_resource type="PackedScene" uid="uid://y62cn7mthtdb" path="res://assets/items/cheese_pizza_boxed.tscn" id="12_lussy"]
+[ext_resource type="PackedScene" uid="uid://m5kwuf2m6rpm" path="res://assets/items/cheese_pizza_slices.tscn" id="8_5mfc8"]
+[ext_resource type="PackedScene" uid="uid://ccohvau3gp3bh" path="res://assets/items/pepperoni_pizza_slices.tscn" id="9_e68e3"]
+[ext_resource type="PackedScene" uid="uid://bwkvya8vm82gh" path="res://assets/items/mushroom_pizza_slices.tscn" id="10_ac10s"]
 [ext_resource type="PackedScene" uid="uid://cfqpenmvwlnw6" path="res://assets/environment/restaurant/monitor.tscn" id="12_w3jle"]
 [ext_resource type="PackedScene" uid="uid://dy7xax75cix75" path="res://assets/environment/restaurant/kitchentable_b_large.tscn" id="13_ggvsq"]
 [ext_resource type="PackedScene" uid="uid://d2kpnf1kkfy0i" path="res://assets/environment/restaurant/kitchencounter_sink.tscn" id="14_w3jle"]
@@ -274,28 +274,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9887, 3.0848804, 2.578204
 omni_range = 17.402536
 
 [node name="kitchentable_B" parent="Environment/Restaurant/Decorations" unique_id=514779330 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.759668, 0, -0.11652851)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.759668, 0, -0.32726014)
 
-[node name="Pepperoni_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B" unique_id=453488332 instance=ExtResource("9_nd13t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+[node name="Marker3D" type="Marker3D" parent="Environment/Restaurant/Decorations/kitchentable_B" unique_id=836733302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Cheese_Pizza_Slices" parent="Environment/Restaurant/Decorations/kitchentable_B/Marker3D" unique_id=1652629305 instance=ExtResource("8_5mfc8")]
 
 [node name="kitchentable_B2" parent="Environment/Restaurant/Decorations" unique_id=1558889539 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.758941, 0, -0.117321014)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.758941, 0, -0.32805264)
 
-[node name="Mushroom_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B2" unique_id=2014064340 instance=ExtResource("11_nawl3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+[node name="Marker3D" type="Marker3D" parent="Environment/Restaurant/Decorations/kitchentable_B2" unique_id=1672497591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Pepperoni_Pizza_Slices" parent="Environment/Restaurant/Decorations/kitchentable_B2/Marker3D" unique_id=696625637 instance=ExtResource("9_e68e3")]
 
 [node name="kitchentable_B3" parent="Environment/Restaurant/Decorations" unique_id=1454276972 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.766002, 0, -0.12278175)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.766002, 0, -0.33351338)
 
-[node name="Cheese_Pizza_Boxed" parent="Environment/Restaurant/Decorations/kitchentable_B3" unique_id=1943850154 instance=ExtResource("12_lussy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0080234, 0)
+[node name="Marker3D" type="Marker3D" parent="Environment/Restaurant/Decorations/kitchentable_B3" unique_id=1578943372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Mushroom_Pizza_Slices" parent="Environment/Restaurant/Decorations/kitchentable_B3/Marker3D" unique_id=68276855 instance=ExtResource("10_ac10s")]
 
 [node name="Monitor" parent="Environment/Restaurant/Decorations" unique_id=735103462 instance=ExtResource("12_w3jle")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.020117, 2.4897282, 8.949292)
 
 [node name="kitchencounter_sink" parent="Environment/Restaurant/Decorations" unique_id=183972977 groups=["nav_back_restaurant"] instance=ExtResource("14_w3jle")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -15.326215, 0, 7.7675114)
+transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -20.525087, 0, 4.995189)
 
 [node name="kitchentable_B_large" parent="Environment/Restaurant/Decorations" unique_id=878065265 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.036165, 0, 7.853652)
@@ -307,10 +313,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.2
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.234201, 0, 12.92376)
 
 [node name="kitchentable_B_large2" parent="Environment/Restaurant/Decorations" unique_id=1377662822 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16.274897, 0, -0.1130085)
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -15.552262, 0, 7.90578)
 
 [node name="pizza_oven" parent="Environment/Restaurant/Decorations/kitchentable_B_large2" unique_id=1866829801 instance=ExtResource("21_ac10s")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.019834518, 0.9906155, 0.4091797)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.019834518, 0.9906155, -0.00662899)
 
 [node name="PizzaLabel" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1629579140]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.928757, 2.8682082, 13.70686)
@@ -337,7 +343,7 @@ text = "Pizza Slices"
 font_size = 48
 
 [node name="kitchentable_B4" parent="Environment/Restaurant/Decorations" unique_id=1279682353 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.934238, 0, 5.2896366)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -15.886312, 0, -0.29851815)
 
 [node name="Computer" parent="Environment/Restaurant/Decorations/kitchentable_B4" unique_id=1525205948 instance=ExtResource("18_45dbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)

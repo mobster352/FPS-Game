@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://nf1jt6prgpcs"]
+
+[ext_resource type="PackedScene" uid="uid://dk0lqrwklerfx" path="res://assets/kaykit/restaurant/food_pizza_cheese_plated_slices.glb" id="1_1stw2"]
+
+[node name="food_pizza_cheese_plated_slices" unique_id=220244127 instance=ExtResource("1_1stw2")]

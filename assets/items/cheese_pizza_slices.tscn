@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://m5kwuf2m6rpm"]
+
+[ext_resource type="PackedScene" uid="uid://nf1jt6prgpcs" path="res://assets/environment/restaurant/food_pizza_cheese_plated_slices.tscn" id="1_tmb4q"]
+[ext_resource type="Script" uid="uid://cj8ugwvkbcy6u" path="res://assets/items/pizza_controller.gd" id="1_xuxgh"]
+[ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_4wgoq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e8xut"]
+radius = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2ao7"]
+size = Vector3(1.9978027, 0.31506348, 2.0152588)
+
+[node name="Cheese_Pizza_Slices" type="Node3D" unique_id=1652629305 node_paths=PackedStringArray("pointer", "mesh_slices")]
+script = ExtResource("1_xuxgh")
+pointer = NodePath("Pointer")
+mesh_slices = [NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_1"), NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_2"), NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_3"), NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_4"), NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_5"), NodePath("food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices_6")]
+pizza_type = 2
+whole_pizza_type = 5
+
+[node name="food_pizza_cheese_plated_slices" parent="." unique_id=220244127 instance=ExtResource("1_tmb4q")]
+
+[node name="food_pizza_cheese_plated_slices_1" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="0" unique_id=923512283]
+visible = false
+
+[node name="food_pizza_cheese_plated_slices_2" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="1" unique_id=430576387]
+visible = false
+
+[node name="food_pizza_cheese_plated_slices_3" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="2" unique_id=908095680]
+visible = false
+
+[node name="food_pizza_cheese_plated_slices_4" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="3" unique_id=632448618]
+visible = false
+
+[node name="food_pizza_cheese_plated_slices_5" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="4" unique_id=1432217602]
+visible = false
+
+[node name="food_pizza_cheese_plated_slices_6" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="5" unique_id=1404787709]
+visible = false
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1475096145]
+collision_layer = 8
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1173392525]
+shape = SubResource("SphereShape3D_e8xut")
+
+[node name="PizzaBody" type="StaticBody3D" parent="." unique_id=631222065]
+collision_layer = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaBody" unique_id=1073725096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008178711, 0.1428833, 0.006164551)
+shape = SubResource("BoxShape3D_m2ao7")
+
+[node name="Pointer" parent="." unique_id=1789647267 instance=ExtResource("3_4wgoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2068269, 0)
+visible = false
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+
+[editable path="food_pizza_cheese_plated_slices"]
