@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://dys1xor47kxw"]
 
 [ext_resource type="Script" uid="uid://cj2xrfgqsuvak" path="res://assets/ui/tablet.gd" id="1_fysnc"]
+[ext_resource type="Texture2D" uid="uid://cmewmaxhmw3nr" path="res://assets/ui/Icon_Small_Blank_X.png" id="2_43c17"]
+[ext_resource type="Texture2D" uid="uid://be4qgt33h783i" path="res://assets/kaykit/restaurant/textures/table_round_A.png" id="2_fnm0s"]
+[ext_resource type="Texture2D" uid="uid://dy3xtjnvmxpgv" path="res://assets/kaykit/restaurant/textures/table_round_B.png" id="3_gqwca"]
+[ext_resource type="Texture2D" uid="uid://b7kbm5o4mhdxm" path="res://assets/ui/Icon_Small_WhiteOutline_X.png" id="3_p1abc"]
+[ext_resource type="Texture2D" uid="uid://ngcfckm461tq" path="res://assets/kaykit/restaurant/textures/table_round_B_tablecloth_green.png" id="4_rsp8a"]
+[ext_resource type="Texture2D" uid="uid://b2pg2emlki7qp" path="res://assets/kaykit/restaurant/textures/table_round_B_tablecloth_red.png" id="5_ijgbv"]
 
 [node name="Tablet" type="Control" unique_id=1200652761]
 layout_mode = 3
@@ -15,47 +21,148 @@ script = ExtResource("1_fysnc")
 layout_mode = 0
 offset_left = 192.0
 offset_top = 128.0
-offset_right = 448.0
+offset_right = 960.0
 offset_bottom = 512.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2042304493]
-layout_mode = 2
-theme_override_constants/margin_left = 40
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer" unique_id=1202018562]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer" unique_id=643983633]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=990477978]
-layout_mode = 2
+[node name="Label" type="Label" parent="." unique_id=990477978]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_top = 136.0
+offset_right = 25.0
+offset_bottom = 159.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 text = "Tablet"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2069815883]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 20
+[node name="CloseTabletButton" type="TextureButton" parent="." unique_id=634662534]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 136.0
+offset_right = 952.0
+offset_bottom = 152.0
+texture_normal = ExtResource("2_43c17")
+texture_hover = ExtResource("3_p1abc")
+ignore_texture_size = true
+stretch_mode = 4
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer" unique_id=30768554]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2042304493]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 160.0
+offset_right = 960.0
+offset_bottom = 512.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=388247618]
+layout_mode = 2
+current_tab = 0
+
+[node name="Tables" type="PanelContainer" parent="MarginContainer/TabContainer" unique_id=30768554]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Tables" unique_id=1157536191]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer" unique_id=1505212184]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer" unique_id=851185727]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=1505212184]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemName" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=632902784]
+[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=632902784]
+visible = false
 layout_mode = 2
 text = "Table"
 
-[node name="ItemPrice" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=1836549336]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=790806528]
+layout_mode = 2
+texture = ExtResource("2_fnm0s")
+expand_mode = 2
+
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1836549336]
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseButton" type="Button" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer" unique_id=617853600]
+[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
 layout_mode = 2
 text = "BUY"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/PanelContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=901195072]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1522441518]
+visible = false
+layout_mode = 2
+text = "Table"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1419103991]
+layout_mode = 2
+texture = ExtResource("3_gqwca")
+expand_mode = 2
+
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=648923172]
+layout_mode = 2
+text = "$25"
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
+layout_mode = 2
+text = "BUY"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=175671370]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1272104059]
+visible = false
+layout_mode = 2
+text = "Table"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=624023751]
+layout_mode = 2
+texture = ExtResource("4_rsp8a")
+expand_mode = 2
+
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1042956017]
+layout_mode = 2
+text = "$25"
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
+layout_mode = 2
+text = "BUY"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=544164845]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1928180164]
+visible = false
+layout_mode = 2
+text = "Table"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=45865793]
+layout_mode = 2
+texture = ExtResource("5_ijgbv")
+expand_mode = 2
+
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=971862493]
+layout_mode = 2
+text = "$25"
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
+layout_mode = 2
+text = "BUY"
+
+[connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4/PurchaseButton" to="." method="_on_purchase_button_pressed"]

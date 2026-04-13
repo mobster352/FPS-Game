@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://4lrbis05s0fu"
 path.s3tc="res://.godot/imported/food_pizza_mushroom_plated_slices_restaurantbits_extra.png-34bc180ffcf358da4f8cd0c2bba87f17.s3tc.ctex"
+path.etc2="res://.godot/imported/food_pizza_mushroom_plated_slices_restaurantbits_extra.png-34bc180ffcf358da4f8cd0c2bba87f17.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/kaykit/restaurant/food_pizza_mushroom_plated_slices_restaurantbits_extra.png"
-dest_files=["res://.godot/imported/food_pizza_mushroom_plated_slices_restaurantbits_extra.png-34bc180ffcf358da4f8cd0c2bba87f17.s3tc.ctex"]
+dest_files=["res://.godot/imported/food_pizza_mushroom_plated_slices_restaurantbits_extra.png-34bc180ffcf358da4f8cd0c2bba87f17.s3tc.ctex", "res://.godot/imported/food_pizza_mushroom_plated_slices_restaurantbits_extra.png-34bc180ffcf358da4f8cd0c2bba87f17.etc2.ctex"]
 
 [params]
 

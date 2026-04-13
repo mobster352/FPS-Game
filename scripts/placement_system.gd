@@ -1,7 +1,7 @@
 extends Node3D
 class_name PlacementSystem
 
-signal setup_object_preview(uuid: StringName, original_obj: Node3D, new_obj_path: StringName)
+signal setup_object_preview(uuid: StringName, original_obj: Node3D, new_obj_path: StringName, _money:int)
 
 #@export var camera: Camera3D
 @export var max_distance := 5.0
@@ -21,6 +21,7 @@ var place_scene: PackedScene
 var can_place := false
 var item_shape: Shape3D
 var is_placing := false
+var money:int
 
 func _ready() -> void:
 	objects = get_tree().get_nodes_in_group("placement")
@@ -65,13 +66,14 @@ func _toggle_build_highlight(material: StandardMaterial3D) -> void:
 		material.albedo_color = Color(1,1,1)
 
 
-func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path: StringName) -> void:
+func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path: StringName, _money:int) -> void:
 	if preview_instance:
 		return
 	preview_instance = load(uuid).instantiate()
 	original_obj = _original_obj
 	place_scene_path = new_obj_path
 	toggle_build = true
+	money = _money
 	start_placement()
 
 
@@ -158,6 +160,8 @@ func confirm_placement() -> bool:
 	restaurant_nav_region.bake_navigation_mesh()
 	toggle_build = false
 	
+	player.update_money(money)
+	
 	return true
 
 
@@ -166,6 +170,7 @@ func cancel_placement():
 		preview_instance.queue_free()
 		preview_instance = null
 		place_scene_path = ""
+		toggle_build = false
 
 
 func _make_preview_material(root: Node):

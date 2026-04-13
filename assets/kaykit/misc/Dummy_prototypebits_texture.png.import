@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cstlp0qnxncv0"
 path.s3tc="res://.godot/imported/Dummy_prototypebits_texture.png-d53b088c063476ed6c07ab1fb40b139a.s3tc.ctex"
+path.etc2="res://.godot/imported/Dummy_prototypebits_texture.png-d53b088c063476ed6c07ab1fb40b139a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/kaykit/misc/Dummy_prototypebits_texture.png"
-dest_files=["res://.godot/imported/Dummy_prototypebits_texture.png-d53b088c063476ed6c07ab1fb40b139a.s3tc.ctex"]
+dest_files=["res://.godot/imported/Dummy_prototypebits_texture.png-d53b088c063476ed6c07ab1fb40b139a.s3tc.ctex", "res://.godot/imported/Dummy_prototypebits_texture.png-d53b088c063476ed6c07ab1fb40b139a.etc2.ctex"]
 
 [params]
 

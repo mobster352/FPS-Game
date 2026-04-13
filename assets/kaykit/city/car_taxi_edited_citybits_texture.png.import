@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://2arc4kvs5n76"
 path.s3tc="res://.godot/imported/car_taxi_edited_citybits_texture.png-74d6d8e591ea3ccf2400f4cea1411c98.s3tc.ctex"
+path.etc2="res://.godot/imported/car_taxi_edited_citybits_texture.png-74d6d8e591ea3ccf2400f4cea1411c98.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/kaykit/city/car_taxi_edited_citybits_texture.png"
-dest_files=["res://.godot/imported/car_taxi_edited_citybits_texture.png-74d6d8e591ea3ccf2400f4cea1411c98.s3tc.ctex"]
+dest_files=["res://.godot/imported/car_taxi_edited_citybits_texture.png-74d6d8e591ea3ccf2400f4cea1411c98.s3tc.ctex", "res://.godot/imported/car_taxi_edited_citybits_texture.png-74d6d8e591ea3ccf2400f4cea1411c98.etc2.ctex"]
 
 [params]
 

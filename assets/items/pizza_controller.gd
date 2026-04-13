@@ -4,12 +4,14 @@ extends Pizza
 @export var mesh_slices: Array[MeshInstance3D]
 
 var restaurant: Restaurant
+var quest_log:QuestLog
 
 func _ready() -> void:
 	GlobalSignal.drop_food.connect(_drop_food)
 	GlobalSignal.pickup_food.connect(_pickup_food)
 	GlobalSignal.init_restaurant.connect(_init_restaurant)
 	GlobalSignal.toggle_pointer_by_food.connect(_toggle_pointer_by_food)
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 	
 func _process(_delta: float) -> void:
 	%PizzaLabel.hide()
@@ -21,6 +23,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		if body.get_parent().get_meta("food_id") == whole_pizza_type:
 			refill_pizza_slices()
 			body.get_parent().queue_free()
+			if is_instance_valid(quest_log):
+				if quest_log.active_quest_id == Quest.QuestIds.PLACE_PIZZA:
+					quest_log.update_quest_objective(Quest.QuestObjs.PLACE_PIZZA_COUNTER)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:

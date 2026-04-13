@@ -31,6 +31,7 @@ enum QuestIds {
 	BUY_INGREDIENTS,
 	MOVE_PRODUCTS,
 	MAKE_PIZZA,
+	PLACE_PIZZA,
 	BUY_TABLE,
 	CHANGE_STORE_NAME,
 	OPEN_PIZZERIA,
@@ -43,6 +44,7 @@ const QUEST_TITLES = {
 	QuestIds.BUY_INGREDIENTS: "Buy Ingredients",
 	QuestIds.MOVE_PRODUCTS: "Pick Up Products",
 	QuestIds.MAKE_PIZZA: "Make your first Pizza",
+	QuestIds.PLACE_PIZZA: "Refill Pizza Slices",
 	QuestIds.BUY_TABLE: "Buy Table",
 	QuestIds.CHANGE_STORE_NAME: "Change Store Name",
 	QuestIds.OPEN_PIZZERIA: "Open Pizzeria",
@@ -63,6 +65,7 @@ enum QuestObjs {
 	ADD_CHEESE,
 	PLACE_PIZZA_OVEN,
 	REMOVE_PIZZA_OVEN,
+	PLACE_PIZZA_COUNTER,
 	OPEN_TABLET,
 	BUY_TABLE,
 	CHANGE_STORE_NAME,
@@ -85,6 +88,7 @@ const QUEST_OBJECTIVES_TEXT = {
 	QuestObjs.ADD_CHEESE: "Add cheese to the pizza",
 	QuestObjs.PLACE_PIZZA_OVEN: "Place pizza into the oven",
 	QuestObjs.REMOVE_PIZZA_OVEN: "Remove pizza from the oven",
+	QuestObjs.PLACE_PIZZA_COUNTER: "Place pizza on the counter",
 	QuestObjs.OPEN_TABLET: "Open Tablet",
 	QuestObjs.BUY_TABLE: "Buy Table",
 	QuestObjs.CHANGE_STORE_NAME: "Click on the Store Sign",
@@ -113,6 +117,9 @@ const QUEST_OBJECTIVES = {
 		QuestObjs.ADD_CHEESE,
 		QuestObjs.PLACE_PIZZA_OVEN,
 		QuestObjs.REMOVE_PIZZA_OVEN
+	],
+	QuestIds.PLACE_PIZZA: [
+		QuestObjs.PLACE_PIZZA_COUNTER
 	],
 	QuestIds.BUY_TABLE: [
 		QuestObjs.OPEN_TABLET,

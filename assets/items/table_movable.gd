@@ -11,4 +11,4 @@ func can_move() -> bool:
 	return table.player_in_range
 	
 func move() -> void:
-	table.placement_system.setup_object_preview.emit(table_outline, table, table_a2)
+	table.placement_system.setup_object_preview.emit(table_outline, table, table_a2, 0)

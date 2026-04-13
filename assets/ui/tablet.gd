@@ -46,8 +46,11 @@ func _on_purchase_button_pressed() -> void:
 	hide_tablet()
 	var table:Table = preload("uid://cx648bisbnt5").instantiate()
 	player.tables_node.add_child(table)
-	placement_system.setup_object_preview.emit(table_outline, table, table_a2)
-	player.update_money(-25)
+	placement_system.setup_object_preview.emit(table_outline, table, table_a2, -25)
 	if is_instance_valid(quest_log):
 		if quest_log.active_quest_id == Quest.QuestIds.BUY_TABLE:
 			quest_log.update_quest_objective(Quest.QuestObjs.BUY_TABLE)
+
+
+func _on_close_tablet_button_pressed() -> void:
+	hide_tablet()
