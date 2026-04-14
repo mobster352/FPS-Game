@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5p2c8ul2we3e"]
 
-[ext_resource type="Texture2D" uid="uid://cepkh1qbco7i1" path="res://assets/ui/SlimSlider_Green_Pointer.png" id="1_onmes"]
 [ext_resource type="Script" uid="uid://cr7t7087mw2lv" path="res://assets/environment/furniture/store_item.gd" id="1_xeoji"]
+[ext_resource type="Texture2D" uid="uid://bgudwc767qkkw" path="res://assets/kaykit/restaurant/textures/pepperoni.png" id="2_oab22"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="7_oab22"]
 [ext_resource type="Texture2D" uid="uid://cu5825fjfu321" path="res://assets/ui/tile_0694.png" id="7_p0ord"]
 [ext_resource type="Texture2D" uid="uid://tsygupy6jp3s" path="res://assets/ui/tile_0719.png" id="8_eln7i"]
@@ -36,14 +36,16 @@ offset_bottom = 100.0
 color = Color(0.28118682, 0.28118688, 0.28118682, 1)
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1567099058]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
-offset_left = 15.0
-offset_top = 24.0
-offset_right = 68.84615
-offset_bottom = 69.0
+offset_left = 7.623993
+offset_top = 8.0
+offset_right = 95.62399
+offset_bottom = 80.0
 mouse_filter = 2
-texture = ExtResource("1_onmes")
+texture = ExtResource("2_oab22")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Name" type="Label" parent="." unique_id=1535628883]
 layout_mode = 0

@@ -55,9 +55,9 @@ offset_left = 192.0
 offset_top = 160.0
 offset_right = 960.0
 offset_bottom = 512.0
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=388247618]
 layout_mode = 2
@@ -72,17 +72,17 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer" unique_id=851185727]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=1505212184]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=632902784]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1942958697]
 layout_mode = 2
-text = "Table"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=790806528]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 texture = ExtResource("2_fnm0s")
 expand_mode = 2
@@ -99,12 +99,11 @@ text = "BUY"
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1522441518]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=888519024]
 layout_mode = 2
-text = "Table"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1419103991]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 texture = ExtResource("3_gqwca")
 expand_mode = 2
@@ -121,12 +120,11 @@ text = "BUY"
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1272104059]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1666695317]
 layout_mode = 2
-text = "Table"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=624023751]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 texture = ExtResource("4_rsp8a")
 expand_mode = 2
@@ -143,12 +141,11 @@ text = "BUY"
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="ItemName" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1928180164]
-visible = false
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=723765660]
 layout_mode = 2
-text = "Table"
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=45865793]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 texture = ExtResource("5_ijgbv")
 expand_mode = 2

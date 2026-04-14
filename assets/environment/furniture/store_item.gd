@@ -2,7 +2,7 @@ extends Panel
 
 @export var computer: Computer
 @export var text: StringName
-@export var texture: Texture2D
+@export var texture: CompressedTexture2D
 @export var store_item: GlobalVar.StoreItem
 @export var price: int
 
