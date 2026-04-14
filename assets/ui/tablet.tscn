@@ -8,6 +8,32 @@
 [ext_resource type="Texture2D" uid="uid://ngcfckm461tq" path="res://assets/kaykit/restaurant/textures/table_round_B_tablecloth_green.png" id="4_rsp8a"]
 [ext_resource type="Texture2D" uid="uid://b2pg2emlki7qp" path="res://assets/kaykit/restaurant/textures/table_round_B_tablecloth_red.png" id="5_ijgbv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43c17"]
+bg_color = Color(0.8745098, 0.94509804, 0.9843137, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq8je"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1abc"]
+bg_color = Color(0.38039216, 0.88235295, 1, 0.49019608)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nbh5"]
+bg_color = Color(0.09019608, 0.101960786, 0.105882354, 0.8117647)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [node name="Tablet" type="Control" unique_id=1200652761]
 layout_mode = 3
 anchors_preset = 15
@@ -18,148 +44,166 @@ grow_vertical = 2
 script = ExtResource("1_fysnc")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 128.0
-offset_right = 960.0
-offset_bottom = 512.0
-
-[node name="Label" type="Label" parent="." unique_id=990477978]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -24.0
-offset_top = 136.0
-offset_right = 25.0
-offset_bottom = 159.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-text = "Tablet"
-horizontal_alignment = 1
+anchors_preset = -1
+anchor_left = 0.16700001
+anchor_top = 0.148
+anchor_right = 0.83300006
+anchor_bottom = 0.79
+offset_left = -0.38401794
+offset_top = 0.09600067
+offset_right = 0.38391113
+offset_bottom = 24.079987
+theme_override_styles/panel = SubResource("StyleBoxFlat_43c17")
 
 [node name="CloseTabletButton" type="TextureButton" parent="." unique_id=634662534]
-layout_mode = 0
-offset_left = 936.0
-offset_top = 136.0
-offset_right = 952.0
-offset_bottom = 152.0
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.79200006
+anchor_top = 0.19800001
+anchor_right = 0.80600005
+anchor_bottom = 0.22200002
+offset_left = -0.3840332
+offset_top = -0.3040161
+offset_right = -0.51208496
+offset_bottom = 0.14398193
 texture_normal = ExtResource("2_43c17")
 texture_hover = ExtResource("3_p1abc")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2042304493]
-layout_mode = 0
-offset_left = 192.0
-offset_top = 160.0
-offset_right = 960.0
-offset_bottom = 512.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.208
+anchor_top = 0.19800001
+anchor_right = 0.79200006
+anchor_bottom = 0.77800006
+offset_left = 0.3840027
+offset_top = -0.3040161
+offset_right = -0.3840332
+offset_bottom = -0.14404297
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=388247618]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oq8je")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_p1abc")
 current_tab = 0
 
-[node name="Tables" type="PanelContainer" parent="MarginContainer/TabContainer" unique_id=30768554]
+[node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Tables" unique_id=1157536191]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer" unique_id=851185727]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer" unique_id=315536761]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer" unique_id=851185727]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=1505212184]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1505212184]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1942958697]
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1942958697]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=790806528]
-custom_minimum_size = Vector2(0, 70)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=790806528]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 texture = ExtResource("2_fnm0s")
 expand_mode = 2
 
-[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1836549336]
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1836549336]
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
 layout_mode = 2
 text = "BUY"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=901195072]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=901195072]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=888519024]
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=888519024]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1419103991]
-custom_minimum_size = Vector2(0, 70)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1419103991]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 texture = ExtResource("3_gqwca")
 expand_mode = 2
 
-[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=648923172]
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=648923172]
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
 layout_mode = 2
 text = "BUY"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=175671370]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=175671370]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1666695317]
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1666695317]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=624023751]
-custom_minimum_size = Vector2(0, 70)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=624023751]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 texture = ExtResource("4_rsp8a")
 expand_mode = 2
 
-[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1042956017]
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1042956017]
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
 layout_mode = 2
 text = "BUY"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer" unique_id=544164845]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=544164845]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=723765660]
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=723765660]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=45865793]
-custom_minimum_size = Vector2(0, 70)
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=45865793]
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 texture = ExtResource("5_ijgbv")
 expand_mode = 2
 
-[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=971862493]
+[node name="ItemPrice" type="Label" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=971862493]
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
 layout_mode = 2
 text = "BUY"
 
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_A"]]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B"]]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Green"]]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Red"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_A"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Green"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Red"]]
