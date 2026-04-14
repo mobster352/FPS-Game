@@ -215,3 +215,10 @@ func is_position_in_nav_region(target_pos: Vector3) -> bool:
 	var nav_owner = NavigationServer3D.map_get_closest_point_owner(map_rid, target_pos)
 
 	return nav_owner == region_rid
+
+
+func sell_table(table:Table) -> void:
+	GlobalSignal.remove_table.emit(table)
+	table.queue_free()
+	toggle_build = false
+	player.update_money(25)

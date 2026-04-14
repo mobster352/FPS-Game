@@ -91,7 +91,7 @@ expand_mode = 2
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
 layout_mode = 2
 text = "BUY"
 
@@ -113,7 +113,7 @@ expand_mode = 2
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
 layout_mode = 2
 text = "BUY"
 
@@ -135,7 +135,7 @@ expand_mode = 2
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
 layout_mode = 2
 text = "BUY"
 
@@ -157,12 +157,12 @@ expand_mode = 2
 layout_mode = 2
 text = "$25"
 
-[node name="PurchaseButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
+[node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
 layout_mode = 2
 text = "BUY"
 
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2/PurchaseButton" to="." method="_on_purchase_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3/PurchaseButton" to="." method="_on_purchase_button_pressed"]
-[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_A"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer2/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer3/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Green"]]
+[connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/VBoxContainer/HBoxContainer4/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B_Tablecloth_Red"]]

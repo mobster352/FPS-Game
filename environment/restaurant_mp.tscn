@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bhw184635c3p3" path="res://assets/environment/prototype/weaponrack.tscn" id="19_17osh"]
 [ext_resource type="PackedScene" uid="uid://dp8cybb476vqi" path="res://assets/items/pizzabox_stack.tscn" id="20_bh2oo"]
 [ext_resource type="PackedScene" uid="uid://cqij78q72clbr" path="res://assets/pizzaboy/scenes/open_sign.tscn" id="21_v8v6u"]
-[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a_2.tscn" id="22_x6hol"]
+[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a.tscn" id="22_x6hol"]
 [ext_resource type="PackedScene" uid="uid://qciotp2lgm5w" path="res://assets/environment/misc/wall_window_open.tscn" id="23_edx2y"]
 [ext_resource type="PackedScene" uid="uid://n7dx1a844sgn" path="res://assets/environment/restaurant/wall_orderwindow.tscn" id="24_ner8i"]
 [ext_resource type="PackedScene" uid="uid://cr4jxf8d7khnr" path="res://assets/environment/misc/wall_doorway.tscn" id="25_pxxnw"]

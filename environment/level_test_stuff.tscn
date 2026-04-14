@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl2tap3b4bh4i"]
+[gd_scene format=3 uid="uid://bl2tap3b4bh4i"]
 
 [ext_resource type="PackedScene" uid="uid://br82d65qlha22" path="res://entities/player/player.tscn" id="1_u220n"]
 [ext_resource type="PackedScene" uid="uid://cluhuyjg8gco4" path="res://entities/enemy/enemy.tscn" id="2_lrw4s"]
 [ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="3_5f3w7"]
 [ext_resource type="Texture2D" uid="uid://cstlp0qnxncv0" path="res://assets/kaykit/misc/Dummy_prototypebits_texture.png" id="4_ilny0"]
 [ext_resource type="PackedScene" uid="uid://cct1cty0q7mys" path="res://assets/items/box.tscn" id="5_46gny"]
-[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a_2.tscn" id="6_mpomp"]
+[ext_resource type="PackedScene" uid="uid://cx648bisbnt5" path="res://assets/items/table_round_a.tscn" id="6_mpomp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hjwoo"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

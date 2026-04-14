@@ -1,9 +1,8 @@
+class_name TableMovable
 extends Movable
 
 @export var table:Table
-
-const table_outline = "uid://ftktew0563fj"
-const table_a2 = "uid://cx648bisbnt5"
+@export var table_type:Table.Tables
 
 func can_move() -> bool:
 	if table.npc:
@@ -11,4 +10,12 @@ func can_move() -> bool:
 	return table.player_in_range
 	
 func move() -> void:
-	table.placement_system.setup_object_preview.emit(table_outline, table, table_a2, 0)
+	table.placement_system.setup_object_preview.emit(
+		Table.TablesDict.get(table_type).get("table_outline_node_path"), 
+		table, 
+		Table.TablesDict.get(table_type).get("table_node_path"), 
+		0
+	)
+
+func sell() -> void:
+	table.placement_system.sell_table(table)

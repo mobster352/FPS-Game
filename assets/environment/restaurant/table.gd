@@ -19,6 +19,32 @@ var food_item: Item
 var money: int
 var table_id: int
 
+enum Tables {
+	Table_Round_A,
+	Table_Round_B,
+	Table_Round_B_Tablecloth_Green,
+	Table_Round_B_Tablecloth_Red
+}
+
+const TablesDict = {
+	Tables.Table_Round_A: {
+		"table_node_path": "uid://cx648bisbnt5",
+		"table_outline_node_path": "uid://ftktew0563fj"
+	},
+	Tables.Table_Round_B: {
+		"table_node_path": "uid://beal0rpet7ug6",
+		"table_outline_node_path": "uid://u3r87twoyihh"
+	},
+	Tables.Table_Round_B_Tablecloth_Green: {
+		"table_node_path": "uid://bapcem8402mk5",
+		"table_outline_node_path": "uid://bnutiphxtceau"
+	},
+	Tables.Table_Round_B_Tablecloth_Red: {
+		"table_node_path": "uid://bgef606kqnl3w",
+		"table_outline_node_path": "uid://etwcw4esf47g"
+	}
+}
+
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	GlobalSignal.init_restaurant.connect(_init_restaurant)

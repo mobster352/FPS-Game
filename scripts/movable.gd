@@ -6,3 +6,6 @@ func can_move() -> bool:
 	
 func move() -> void:
 	pass
+
+func sell() -> void:
+	pass

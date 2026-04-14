@@ -78,6 +78,7 @@ var item_shape: Shape3D
 
 var interact:bool
 var drop_input:bool
+var sell_input:bool
 
 var place_scene_path: StringName
 var item_type: GlobalVar.StoreItem
@@ -116,6 +117,7 @@ func _process(_delta: float) -> void:
 			get_tree().paused = true
 		interact = Input.is_action_just_pressed("interact")
 		drop_input = Input.is_action_just_pressed("drop")
+		sell_input = Input.is_action_just_pressed("sell")
 		_process_rayCast()
 		if not freeze_camera:
 			_process_movement()
@@ -323,6 +325,8 @@ func _handle_build_raycast(target: Node3D) -> void:
 			if interact:
 				movable.move()
 				interact = false
+			if sell_input:
+				movable.sell()
 
 func _process_draw_weapon() -> void:
 	if Input.is_action_just_pressed("draw_weapon_1") and has_bat:
@@ -733,6 +737,11 @@ func save_player_data() -> void:
 		table_resource.table_id = table.table_id
 		table_resource.position = table.position
 		table_resource.rotation = table.rotation
+		var movable:TableMovable = table.find_child("Movable")
+		if movable:
+			table_resource.table_type = movable.table_type
+		else:
+			table_resource.table_type = Table.Tables.Table_Round_A
 		playerData.tables.append(table_resource)
 	
 	save_game()
@@ -763,7 +772,11 @@ func load_player_data() -> void:
 		GlobalSignal.update_store_name.emit(playerData.store_name, playerData.store_font_size)
 	
 	for table_resource:TableResource in playerData.tables:
-		var table:Table = preload("uid://cx648bisbnt5").instantiate()
+		var table:Table
+		if table_resource.table_type:
+			table = load(Table.TablesDict.get(table_resource.table_type).get("table_node_path")).instantiate()
+		else:
+			table = preload("uid://cx648bisbnt5").instantiate()
 		table.table_id = table_resource.table_id
 		table.position = table_resource.position
 		table.rotation = table_resource.rotation

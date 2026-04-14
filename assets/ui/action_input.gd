@@ -21,7 +21,8 @@ enum Action {
 	OpenLid,
 	Confirm,
 	Cancel,
-	Move
+	Move,
+	Sell
 }
 
 func _ready() -> void:
@@ -49,5 +50,7 @@ func get_text_from_action() -> StringName:
 		return "Cancel"
 	elif action == Action.Move:
 		return "Move"
+	elif action == Action.Sell:
+		return "Sell"
 	else:
 		return "N/A"

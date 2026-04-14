@@ -1,11 +1,15 @@
 extends Control
 
+enum TabletStoreItems {
+	Table_Round_A,
+	Table_Round_B,
+	Table_Round_B_Tablecloth_Green,
+	Table_Round_B_Tablecloth_Red
+}
+
 var is_tablet_open := false
 var placement_system: PlacementSystem
 var player:Player
-
-const table_outline = "uid://ftktew0563fj"
-const table_a2 = "uid://cx648bisbnt5"
 
 var quest_log:QuestLog
 
@@ -42,11 +46,28 @@ func hide_tablet() -> void:
 	GlobalSignal.freeze_player_camera.emit(false)
 	is_tablet_open = false
 
-func _on_purchase_button_pressed() -> void:
+func _on_purchase_table_button_pressed(enum_name:String) -> void:
+	var table_node_path:String
+	var table_outline_node_path:String
+	match TabletStoreItems[enum_name]:
+		TabletStoreItems.Table_Round_A: 
+			table_node_path = Table.TablesDict.get(Table.Tables.Table_Round_A).get("table_node_path")
+			table_outline_node_path = Table.TablesDict.get(Table.Tables.Table_Round_A).get("table_outline_node_path")
+		TabletStoreItems.Table_Round_B:
+			table_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B).get("table_node_path")
+			table_outline_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B).get("table_outline_node_path")
+		TabletStoreItems.Table_Round_B_Tablecloth_Green:
+			table_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B_Tablecloth_Green).get("table_node_path")
+			table_outline_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B_Tablecloth_Green).get("table_outline_node_path")
+		TabletStoreItems.Table_Round_B_Tablecloth_Red:
+			table_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B_Tablecloth_Red).get("table_node_path")
+			table_outline_node_path = Table.TablesDict.get(Table.Tables.Table_Round_B_Tablecloth_Red).get("table_outline_node_path")
+	if not table_node_path:
+		return
+	var table:Table = load(table_node_path).instantiate()
 	hide_tablet()
-	var table:Table = preload("uid://cx648bisbnt5").instantiate()
 	player.tables_node.add_child(table)
-	placement_system.setup_object_preview.emit(table_outline, table, table_a2, -25)
+	placement_system.setup_object_preview.emit(table_outline_node_path, table, table_node_path, -25)
 	if is_instance_valid(quest_log):
 		if quest_log.active_quest_id == Quest.QuestIds.BUY_TABLE:
 			quest_log.update_quest_objective(Quest.QuestObjs.BUY_TABLE)

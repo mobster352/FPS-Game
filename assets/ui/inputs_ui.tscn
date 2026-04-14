@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chcdq3vwq1hwn"]
+[gd_scene format=3 uid="uid://chcdq3vwq1hwn"]
 
 [ext_resource type="PackedScene" uid="uid://rkt7u0p0ns70" path="res://assets/ui/action_input.tscn" id="1_p5iri"]
 [ext_resource type="Script" uid="uid://boqhih07x2u5i" path="res://assets/ui/inputs_ui.gd" id="1_wn4ag"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c4wo3nm704e1c" path="res://assets/ui/tile_0078.png" id="3_wn4ag"]
 [ext_resource type="Texture2D" uid="uid://blj0ihg3tuoku" path="res://assets/ui/tile_0087.png" id="5_htl47"]
 
-[node name="InputsUI" type="Control" node_paths=PackedStringArray("left_input", "right_input", "cook_input")]
+[node name="InputsUI" type="Control" unique_id=414961565 node_paths=PackedStringArray("left_input", "right_input", "cook_input")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ left_input = NodePath("LeftInput")
 right_input = NodePath("RightInput")
 cook_input = NodePath("CookInput")
 
-[node name="LeftInput" parent="." instance=ExtResource("1_p5iri")]
+[node name="LeftInput" parent="." unique_id=1888847672 instance=ExtResource("1_p5iri")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -35,7 +35,7 @@ grow_vertical = 0
 action = 1
 action_texture = ExtResource("2_000aa")
 
-[node name="RightInput" parent="." instance=ExtResource("1_p5iri")]
+[node name="RightInput" parent="." unique_id=603884551 instance=ExtResource("1_p5iri")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -51,7 +51,7 @@ grow_vertical = 0
 action = 2
 action_texture = ExtResource("3_wn4ag")
 
-[node name="CookInput" parent="." instance=ExtResource("1_p5iri")]
+[node name="CookInput" parent="." unique_id=172012745 instance=ExtResource("1_p5iri")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

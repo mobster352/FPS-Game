@@ -130,7 +130,8 @@ func only_placement() -> void:
 func pre_move() -> void:
 	left_input.action = ActionInput.Action.Move
 	left_input.show()
-	right_input.hide()
+	right_input.action = ActionInput.Action.Sell
+	right_input.show()
 
 
 func default(has_held_object:bool) -> void:
