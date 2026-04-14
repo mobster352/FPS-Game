@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://xg4c7378elpc" path="res://database/quest_log.gd" id="1_vbn8k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ah8b"]
-font_size = 18
 
 [node name="QuestLog" type="Control" unique_id=1450797647 groups=["quest_log"]]
 visible = false
@@ -13,10 +12,10 @@ script = ExtResource("1_vbn8k")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=666197920]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 128.0
-offset_right = 152.0
-offset_bottom = 256.0
+offset_left = 896.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 320.0
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1802604032]
 layout_mode = 2
@@ -33,6 +32,7 @@ unique_name_in_owner = true
 layout_mode = 2
 label_settings = SubResource("LabelSettings_7ah8b")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=79728463]
 layout_mode = 2

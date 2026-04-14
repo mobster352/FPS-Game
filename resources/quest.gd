@@ -27,7 +27,7 @@ class QuestObjective:
 
 
 enum QuestIds {
-	OPEN_COMPUTER,
+	#OPEN_COMPUTER,
 	BUY_INGREDIENTS,
 	MOVE_PRODUCTS,
 	MAKE_PIZZA,
@@ -40,8 +40,8 @@ enum QuestIds {
 }
 
 const QUEST_TITLES = {
-	QuestIds.OPEN_COMPUTER: "Open Computer",
-	QuestIds.BUY_INGREDIENTS: "Buy Ingredients",
+	#QuestIds.OPEN_COMPUTER: "Open Computer",
+	QuestIds.BUY_INGREDIENTS: "Buy Ingredients from Computer",
 	QuestIds.MOVE_PRODUCTS: "Pick Up Products",
 	QuestIds.MAKE_PIZZA: "Make your first Pizza",
 	QuestIds.PLACE_PIZZA: "Refill Pizza Slices",
@@ -53,7 +53,7 @@ const QUEST_TITLES = {
 }
 
 enum QuestObjs {
-	CLICK_ON_COMPUTER,
+	#CLICK_ON_COMPUTER,
 	BUY_ROLLING_PIN,
 	BUY_DOUGH,
 	BUY_TOMATO,
@@ -76,7 +76,7 @@ enum QuestObjs {
 
 
 const QUEST_OBJECTIVES_TEXT = {
-	QuestObjs.CLICK_ON_COMPUTER: "Click on Computer",
+	#QuestObjs.CLICK_ON_COMPUTER: "Click on Computer",
 	QuestObjs.BUY_ROLLING_PIN: "Buy Rolling Pin",
 	QuestObjs.BUY_DOUGH: "Buy Dough",
 	QuestObjs.BUY_TOMATO: "Buy Tomato",
@@ -98,9 +98,9 @@ const QUEST_OBJECTIVES_TEXT = {
 }
 
 const QUEST_OBJECTIVES = {
-	QuestIds.OPEN_COMPUTER: [
-		QuestObjs.CLICK_ON_COMPUTER
-	],
+	#QuestIds.OPEN_COMPUTER: [
+		#QuestObjs.CLICK_ON_COMPUTER
+	#],
 	QuestIds.BUY_INGREDIENTS: [
 		QuestObjs.BUY_ROLLING_PIN,
 		QuestObjs.BUY_DOUGH,

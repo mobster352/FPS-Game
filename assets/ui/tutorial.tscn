@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://chcflrh8r1fb2"]
+[gd_scene format=3 uid="uid://chcflrh8r1fb2"]
 
 [ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="1_i6f6j"]
 
-[node name="Tutorial" type="Control"]
+[node name="Tutorial" type="Control" unique_id=1345630176]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,14 +11,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_top = 75.0
-offset_right = 131.0
-offset_bottom = 120.0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1699124298]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 128.0
+offset_right = -61.0
+offset_bottom = 173.0
+grow_horizontal = 0
 theme_override_constants/margin_left = 10
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=505451714]
 visible = false
 layout_mode = 2
 text = "Tutorial"

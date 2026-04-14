@@ -19,7 +19,7 @@ func _ready() -> void:
 		quest_data = quest_data.create_quest_data(id)
 		quests_data.append(quest_data)
 	
-	active_quest_id = Quest.QuestIds.OPEN_COMPUTER
+	active_quest_id = Quest.QuestIds.BUY_INGREDIENTS
 	player = get_tree().get_first_node_in_group("player")
 	
 func _process(_delta: float) -> void:
