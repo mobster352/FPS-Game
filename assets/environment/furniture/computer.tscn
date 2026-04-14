@@ -276,71 +276,82 @@ text = "Purchase"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SubViewportContainer/SubViewport/Control" unique_id=2076971101]
 layout_mode = 1
-offset_left = 256.0
+offset_left = 24.0
 offset_top = 99.0
 offset_right = 840.0
 offset_bottom = 624.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer" unique_id=1745641667]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer" unique_id=1968919733]
+layout_mode = 2
+theme_override_constants/separation = 391
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer" unique_id=1745641667]
 layout_mode = 2
 theme_override_constants/separation = 125
 
-[node name="RollingPin" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1543266332 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="RollingPin" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=1543266332 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Rolling Pin"
 texture = ExtResource("6_nj7n0")
 store_item = 1
 
-[node name="Dough" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1096080327 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Dough" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=1096080327 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Dough"
 texture = ExtResource("6_nj7n0")
 store_item = 2
 price = 10
 
-[node name="Tomato" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=830184223 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Tomato" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=830184223 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Tomato"
 texture = ExtResource("6_nj7n0")
 store_item = 3
 price = 10
 
-[node name="Cheese" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1503135581 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Cheese" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=1503135581 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Cheese"
 texture = ExtResource("6_nj7n0")
 store_item = 4
 price = 10
 
-[node name="Pepperoni" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1034392035 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer" unique_id=1198065472]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer" unique_id=1297213148]
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="Pepperoni" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer2" unique_id=1034392035 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+layout_mode = 2
+computer = NodePath("../../../../../../..")
 text = &"Pepperoni"
 texture = ExtResource("6_nj7n0")
 store_item = 5
 price = 10
 
-[node name="Mushroom" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=377681073 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="Mushroom" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer2" unique_id=377681073 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Mushroom"
 texture = ExtResource("6_nj7n0")
 store_item = 6
 price = 10
 
-[node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1290600538 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
+[node name="PizzaBox" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer2" unique_id=1290600538 node_paths=PackedStringArray("computer") instance=ExtResource("5_0o7yv")]
 layout_mode = 2
-computer = NodePath("../../../../../..")
+computer = NodePath("../../../../../../..")
 text = &"Pizza Box"
 texture = ExtResource("6_nj7n0")
 store_item = 7
 price = 1
 
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/VBoxContainer" unique_id=1198065472]
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/Control/ScrollContainer/HBoxContainer/VBoxContainer2" unique_id=70744914]
 layout_mode = 2
 
 [node name="Audio" type="Node" parent="." unique_id=330916112]
