@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="9_e0ycv"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="10_kv32d"]
 [ext_resource type="PackedScene" uid="uid://bvujdihwqllrs" path="res://environment/next_day_ui.tscn" id="11_0rppq"]
+[ext_resource type="PackedScene" uid="uid://dnq1nnpqchkh7" path="res://assets/environment/restaurant/cashregister_cashdrawer.tscn" id="13_e0ycv"]
 [ext_resource type="Script" uid="uid://c5i63yvieqi33" path="res://environment/npc_spawner.gd" id="13_kv32d"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_e0ycv"]
@@ -172,7 +173,7 @@ level = NodePath("../../../../../../..")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.966239, 0, -0.012383854)
 
 [node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "tables_node", "items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
-transform = Transform3D(-0.65, 0, -5.6824803e-08, 0, 0.65, 0, 5.6824803e-08, 0, -0.65, -3.8999999, 0, 9.099999)
+transform = Transform3D(-0.65, 0, -5.6824803e-08, 0, 0.65, 0, 5.6824803e-08, 0, -0.65, -8.729814, 0, 2.5939982)
 placement_system = NodePath("../../../PlacementSystem")
 tables_node = NodePath("../../Tables")
 money = 100
@@ -239,6 +240,9 @@ next_day_ui = NodePath("NextDay")
 [node name="NextDay" parent="UI" index="1" unique_id=1019455502 instance=ExtResource("11_0rppq")]
 visible = false
 layout_mode = 0
+
+[node name="cashregister_cashdrawer2" parent="." index="8" unique_id=804449852 instance=ExtResource("13_e0ycv")]
+transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -6.104749, 1.1999995, 0.9071607)
 
 [connection signal="visibility_changed" from="Entities/DriveThruSpawn/DriveThruMenu" to="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer" method="_on_drive_thru_menu_visibility_changed"]
 [connection signal="body_entered" from="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer/Area3D" to="Entities/DriveThruSpawn" method="_on_area_3d_body_entered"]

@@ -16,6 +16,7 @@ signal decrement_store_item(store_item: GlobalVar.StoreItem, price: int, quantit
 var in_range := false
 var player: Player
 var quest_log:QuestLog
+var use:bool
 
 var cart_total := 0:
 	set(value):
@@ -38,12 +39,12 @@ func _ready() -> void:
 	cart_total = 0
 	quest_log = get_tree().get_first_node_in_group("quest_log")
 	
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and sub_viewport.visible:
-		_on_home_button_pressed()
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("pause") and use:
+		#_on_home_button_pressed()
 	
 func interact(_player: Player) -> void:
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 	player = _player
 	sub_viewport.show()
@@ -52,6 +53,7 @@ func interact(_player: Player) -> void:
 	player.ui.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	balance_label.text = "$" + str(player.money)
+	use = true
 	
 	#if is_instance_valid(quest_log):
 		#if quest_log.active_quest_id == Quest.QuestIds.OPEN_COMPUTER:
@@ -68,12 +70,13 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func _on_home_button_pressed() -> void:
-	get_tree().paused = false
+	#get_tree().paused = false
 	sub_viewport.hide()
 	player.freeze_camera = false
 	player.reticle.show()
 	player.ui.show()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	use = false
 
 
 func _on_cart_button_pressed() -> void:

@@ -216,16 +216,16 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_abrql")
 JUMP_VELOCITY = 5.0
-pointer_slot = NodePath("PlayerSkin/pointer")
-shotRaycast = NodePath("PlayerSkin/pointer/ShotRaycast")
-itemRaycast = NodePath("PlayerSkin/pointer/ItemRaycast")
+pointer_slot = NodePath("PlayerSkin/pointer/Camera3D")
+shotRaycast = NodePath("PlayerSkin/pointer/Camera3D/ShotRaycast")
+itemRaycast = NodePath("PlayerSkin/pointer/Camera3D/ItemRaycast")
 reticle = NodePath("UI/ReticleMarginContainer/Reticle")
-gun_pistol = NodePath("PlayerSkin/pointer/WeaponSlot/Gun_Pistol")
-bat = NodePath("PlayerSkin/pointer/WeaponSlot/Bat")
+gun_pistol = NodePath("PlayerSkin/pointer/Camera3D/WeaponSlot/Gun_Pistol")
+bat = NodePath("PlayerSkin/pointer/Camera3D/WeaponSlot/Bat")
 ammo_label = NodePath("UI/AmmoMarginContainer/AmmoLabel")
 shotTimer = NodePath("Timers/ShotTimer")
 ui = NodePath("UI")
-item_slot = NodePath("PlayerSkin/pointer/ItemSlot")
+item_slot = NodePath("PlayerSkin/pointer/Camera3D/ItemSlot")
 camera = NodePath("PlayerSkin/pointer/Camera3D")
 pause_menu = NodePath("UI/PauseMenu")
 game_over = NodePath("UI/GameOver")
@@ -250,27 +250,27 @@ layers = 2
 visible = false
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.38817957, 0)
-bones/4/rotation = Quaternion(-0.55863714, -0.05988396, -0.6421603, 0.52150613)
-bones/5/rotation = Quaternion(4.8419725e-08, -4.9924495e-08, -0.49990037, 0.86608297)
-bones/7/rotation = Quaternion(-0.32134676, -0.32778037, 0.14717261, 0.87614876)
-bones/8/rotation = Quaternion(0.00016725552, 0.00016723775, -0.7064928, 0.7077203)
-bones/9/rotation = Quaternion(-0.6169745, 0.07986558, 0.61656946, 0.4824999)
-bones/10/rotation = Quaternion(6.6168933e-09, 5.193681e-08, 0.52287364, 0.85241026)
-bones/12/rotation = Quaternion(-0.31972882, 0.30322063, -0.2288949, 0.8680081)
-bones/13/rotation = Quaternion(0.00046972994, 0.00055326975, 0.7066196, 0.7075932)
-bones/15/rotation = Quaternion(0.9932916, 0.08330743, 0.07480155, 0.028919179)
-bones/16/rotation = Quaternion(0.24239028, 6.398535e-08, -1.6146197e-07, 0.9701789)
-bones/17/rotation = Quaternion(-0.5418782, -0.20802926, 0.05082851, 0.8127167)
-bones/18/rotation = Quaternion(6.605711e-05, 0.9202168, -0.39140907, -1.489472e-05)
-bones/19/rotation = Quaternion(0.99640805, -0.030198572, 0.031174788, 0.07271453)
-bones/20/rotation = Quaternion(0.30916318, -6.330237e-08, 2.1384281e-07, 0.9510091)
-bones/21/rotation = Quaternion(-0.5777341, 0.114256985, -0.0115729645, 0.8081057)
-bones/38/position = Vector3(0.5208407, 0.78655946, -0.05763735)
-bones/40/position = Vector3(-0.5108437, 0.7865594, 0.059736922)
+bones/1/position = Vector3(0, 0.39184725, 0)
+bones/4/rotation = Quaternion(-0.5598366, -0.060822904, -0.6438693, 0.51799226)
+bones/5/rotation = Quaternion(1.060734e-08, -4.0905498e-08, -0.4948773, 0.86896294)
+bones/7/rotation = Quaternion(-0.32108873, -0.3255162, 0.14584522, 0.8773087)
+bones/8/rotation = Quaternion(1.7234366e-05, 1.7223087e-05, -0.7070437, 0.70716983)
+bones/9/rotation = Quaternion(-0.6181739, 0.080678485, 0.6179276, 0.47908)
+bones/10/rotation = Quaternion(2.5257139e-08, 5.578334e-08, 0.51809037, 0.85532594)
+bones/12/rotation = Quaternion(-0.31931672, 0.30067602, -0.22744095, 0.86942595)
+bones/13/rotation = Quaternion(4.838599e-05, 5.6987985e-05, 0.70705676, 0.7071568)
+bones/15/rotation = Quaternion(0.99370676, 0.08369812, 0.073546775, 0.011505141)
+bones/16/rotation = Quaternion(0.1971241, 6.456709e-08, -1.2134981e-07, 0.9803786)
+bones/17/rotation = Quaternion(-0.51835537, -0.20945336, 0.043883562, 0.8279561)
+bones/18/rotation = Quaternion(0.00010707427, 0.92025363, -0.3913226, -2.4175937e-05)
+bones/19/rotation = Quaternion(0.9972967, -0.029479757, 0.031518355, 0.059472844)
+bones/20/rotation = Quaternion(0.27509943, -6.302176e-08, 1.9177413e-07, 0.96141577)
+bones/21/rotation = Quaternion(-0.5596193, 0.11450608, -0.008717748, 0.82075495)
+bones/38/position = Vector3(0.5208407, 0.78813535, -0.05763735)
+bones/40/position = Vector3(-0.5108437, 0.7881353, 0.059736922)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2239416, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2276093, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
 visible = false
@@ -290,13 +290,13 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.955145, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9588127, 1.0572674e-15)
 
 [node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
 visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.0003244364, -0.151324, -0.988484, -0.99999875, -0.0013767775, -0.000117236785, -0.0013432896, 0.9884829, -0.15132411, -0.49093738, 0.639422, 0.10691433)
+transform = Transform3D(-5.4596872e-05, -0.1502562, -0.9886468, -0.99999946, -0.0003343643, 0.00010630868, -0.00034667313, 0.98864675, -0.15025596, -0.49112463, 0.64091253, 0.10652412)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285187, 0.3403611)
@@ -307,34 +307,34 @@ cull_mask = 1048573
 current = true
 fov = 60.0
 
-[node name="WeaponSlot" type="Node3D" parent="PlayerSkin/pointer" index="1" unique_id=694860755]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.385, -0.473, 0.505)
+[node name="WeaponSlot" type="Node3D" parent="PlayerSkin/pointer/Camera3D" unique_id=694860755]
+transform = Transform3D(-0.97499996, 0, -1.472211e-07, 0, 0.97499996, 0, 1.472211e-07, 0, -0.97499996, 0.37537485, -0.46117496, -0.82573634)
 
-[node name="Gun_Pistol" parent="PlayerSkin/pointer/WeaponSlot" unique_id=2137792175 node_paths=PackedStringArray("ui") instance=ExtResource("3_26q78")]
+[node name="Gun_Pistol" parent="PlayerSkin/pointer/Camera3D/WeaponSlot" unique_id=2137792175 node_paths=PackedStringArray("ui") instance=ExtResource("3_26q78")]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999994, 0, 0, 0)
 visible = false
-ui = NodePath("../../../../UI")
+ui = NodePath("../../../../../UI")
 
-[node name="Bat" parent="PlayerSkin/pointer/WeaponSlot" unique_id=1648683519 node_paths=PackedStringArray("ui") instance=ExtResource("5_gx6sm")]
+[node name="Bat" parent="PlayerSkin/pointer/Camera3D/WeaponSlot" unique_id=1648683519 node_paths=PackedStringArray("ui") instance=ExtResource("5_gx6sm")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0.125)
 visible = false
-ui = NodePath("../../../../UI")
+ui = NodePath("../../../../../UI")
 
-[node name="ShotRaycast" type="RayCast3D" parent="PlayerSkin/pointer" index="2" unique_id=1413584411]
-transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+[node name="ShotRaycast" type="RayCast3D" parent="PlayerSkin/pointer/Camera3D" unique_id=1413584411]
+transform = Transform3D(-0.97499996, 0, -1.4092407e-07, 0, 0.97499996, 0, 1.4092407e-07, 0, -0.97499996, -5.0336226e-08, 0, -0.3333613)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 37
 
-[node name="ItemRaycast" type="RayCast3D" parent="PlayerSkin/pointer" index="3" unique_id=366187920]
-transform = Transform3D(1, 0, -6.45849e-09, 0, 1, 0, 6.45849e-09, 0, 1, 0, 0, 0)
+[node name="ItemRaycast" type="RayCast3D" parent="PlayerSkin/pointer/Camera3D" unique_id=366187920]
+transform = Transform3D(-0.97499996, 0, -1.4092407e-07, 0, 0.97499996, 0, 1.4092407e-07, 0, -0.97499996, -5.0336226e-08, 0, -0.3333613)
 visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 105
 hit_from_inside = true
 
-[node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer" index="4" unique_id=1454555565]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.373, -0.52500015, 1.7141643)
+[node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer/Camera3D" unique_id=1454555565]
+transform = Transform3D(-0.97499996, 0, -1.472211e-07, 0, 0.97499996, 0, 1.472211e-07, 0, -0.97499996, 0.36367467, -0.51187515, -2.0046713)
 
 [node name="UI" type="Control" parent="." unique_id=1470936331 node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]
 layout_mode = 3
