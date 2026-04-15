@@ -1,0 +1,85 @@
+class_name CashRegister
+extends Node3D
+
+const drawer_closed_position = Vector3(0.18, 0.055, 0.0)
+const drawer_open_position = Vector3(0.30, 0.055, 0.0)
+
+var is_open:bool
+var npc_dummy:NPC_Dummy
+var change:int:
+	set(value):
+		change = value
+		%ChangeValue.text = format_money(value)
+
+func _ready() -> void:
+	set_register_visibility(false)
+	
+	is_open = false
+	change = 0
+	
+	GlobalSignal.process_order.connect(_process_order)
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("complete_transaction") and is_open:
+		if change == 0:
+			set_register_visibility(false)
+			%ReceivedValue.text = ""
+			%TotalValue.text = ""
+			%ChangeValue.text = ""
+			for child:Node3D in %CashSpawn.get_children():
+				child.queue_free()
+			GlobalSignal.process_payment.emit(npc_dummy)
+
+
+func _process_order(_npc_dummy:NPC_Dummy, money:int, total:int) -> void:
+	is_open = true
+	change = money - total
+	
+	set_register_visibility(true)
+	
+	%ReceivedValue.text = format_money(money)
+	%TotalValue.text = format_money(total)
+	
+	npc_dummy = _npc_dummy
+
+
+func format_money(money:int) -> String:
+	return "$" + str(money)
+
+func set_register_visibility(_is_visible:bool) -> void:
+	if _is_visible:
+		%cash_drawer.position = drawer_open_position
+	else:
+		%cash_drawer.position = drawer_closed_position
+
+	%MarginContainer.visible = _is_visible
+	%cash_1.visible = _is_visible
+	%cash_5.visible = _is_visible
+	%cash_10.visible = _is_visible
+	%cash_20.visible = _is_visible
+	%cash_50.visible = _is_visible
+
+
+func update_change(cash_value:int, add:bool) -> void:
+	if add:
+		change += cash_value
+		return
+	else:
+		change -= cash_value
+	var cash_obj:Cash = preload("uid://cefdcjkgsta4f").instantiate()
+	match cash_value:
+		1:
+			cash_obj.cash_denom = Cash.CashDenom.ONE
+		5:
+			cash_obj.cash_denom = Cash.CashDenom.FIVE
+		10:
+			cash_obj.cash_denom = Cash.CashDenom.TEN
+		20:
+			cash_obj.cash_denom = Cash.CashDenom.TWENTY
+		50:
+			cash_obj.cash_denom = Cash.CashDenom.FIFTY
+	cash_obj.in_register = false
+	cash_obj.scale = Vector3(1,1,1)
+	cash_obj.position = %CashSpawn.position
+	%CashSpawn.add_child(cash_obj)

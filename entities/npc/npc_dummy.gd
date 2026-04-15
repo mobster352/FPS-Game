@@ -18,14 +18,16 @@ var dummy: Dummy
 
 var target: Marker3D
 var table: Table
-var in_range := false
-var has_order := false
-var sitting := false
-var navigation_ready := false
+var in_range:bool = false
+var has_order:bool = false
+var sitting:bool = false
+var navigation_ready:bool = false
+var random_food:int
 
 func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.remove_customer.connect(_remove_customer)
+	GlobalSignal.process_payment.connect(_process_payment)
 	NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
 	dummy = dummy_scene.instantiate() as Dummy
 	assert(dummy, "Dummy scene is incorrect")
@@ -127,17 +129,31 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func interact() -> void:
 	if not has_order:
-		GlobalSignal.get_open_table.emit(self)
-
-func _assign_customer_to_table(_table:Table,_npc_dummy:NPC_Dummy) -> void:
-	if _npc_dummy == self:
-		table = _table
-		var random_food = randi_range(1,6)
-		GlobalSignal.add_order.emit(table.get_meta("table_id"), random_food)
-		GlobalSignal.check_restaurant_food.emit(random_food)
 		has_order = true
+		var money:int = 0
+		random_food = randi_range(1,6)
+		if random_food in [1,2,3]:
+			money = 5
+		else:
+			money = 10
 		dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
 		dialogue_box.show()
+		
+		GlobalSignal.process_order.emit(self, money+2, money)
+
+
+func _process_payment(npc_dummy:NPC_Dummy) -> void:
+	if npc_dummy == self:
+		GlobalSignal.get_open_table.emit(self)
+
+
+func _assign_customer_to_table(_table:Table, _npc_dummy:NPC_Dummy) -> void:
+	if _npc_dummy == self:
+		table = _table
+		
+		GlobalSignal.add_order.emit(table.get_meta("table_id"), random_food)
+		GlobalSignal.check_restaurant_food.emit(random_food)
+		
 		table.npc = self
 		table.dialogue_box = dialogue_box
 		target = table.chair.sitting_marker

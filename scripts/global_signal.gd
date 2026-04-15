@@ -88,3 +88,9 @@ signal close_store
 
 @warning_ignore("unused_signal")
 signal update_store_name(store_name:String, font_size:int)
+
+@warning_ignore("unused_signal")
+signal process_order(_npc_dummy:NPC_Dummy, money:int, total:int)
+
+@warning_ignore("unused_signal")
+signal process_payment(_npc_dummy:NPC_Dummy)

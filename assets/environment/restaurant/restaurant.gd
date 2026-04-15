@@ -92,7 +92,7 @@ func _get_open_table(npc_dummy:NPC_Dummy) -> void:
 		var table = table_dict.get("table") as Table
 		if table:
 			if table.is_empty:
-				GlobalSignal.assign_customer_to_table.emit(table,npc_dummy)
+				GlobalSignal.assign_customer_to_table.emit(table, npc_dummy)
 				break
 
 func needs_food(food_id:int) -> bool:
