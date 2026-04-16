@@ -10,13 +10,14 @@ var change:int:
 	set(value):
 		change = value
 		%ChangeValue.text = format_money(value)
+var total:int = 0
+var player:Player
 
 func _ready() -> void:
 	set_register_visibility(false)
-	
 	change = 0
-	
 	GlobalSignal.process_order.connect(_process_order)
+	player = get_tree().get_first_node_in_group("player")
 
 
 func _process(_delta: float) -> void:
@@ -29,9 +30,12 @@ func _process(_delta: float) -> void:
 			for child:Node3D in %CashSpawn.get_children():
 				child.queue_free()
 			GlobalSignal.process_payment.emit(npc_dummy)
+			player.update_money(total)
+			total = 0
 
 
-func _process_order(_npc_dummy:NPC_Dummy, money:int, total:int) -> void:
+func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int) -> void:
+	total = _total
 	change = money - total
 	
 	set_register_visibility(true)
