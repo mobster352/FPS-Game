@@ -14,7 +14,6 @@ var change:int:
 func _ready() -> void:
 	set_register_visibility(false)
 	
-	is_open = false
 	change = 0
 	
 	GlobalSignal.process_order.connect(_process_order)
@@ -33,7 +32,6 @@ func _process(_delta: float) -> void:
 
 
 func _process_order(_npc_dummy:NPC_Dummy, money:int, total:int) -> void:
-	is_open = true
 	change = money - total
 	
 	set_register_visibility(true)
@@ -48,6 +46,7 @@ func format_money(money:int) -> String:
 	return "$" + str(money)
 
 func set_register_visibility(_is_visible:bool) -> void:
+	is_open = _is_visible
 	if _is_visible:
 		%cash_drawer.position = drawer_open_position
 	else:
