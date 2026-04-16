@@ -87,7 +87,15 @@ func _physics_process(delta: float) -> void:
 			if target == GlobalMarker.queue_marker and area_col.disabled:
 				area_col.disabled = false
 				pointer.show()
-				# TODO: Process Order or register
+				
+				has_order = true
+				var money:int = 0
+				random_food = randi_range(1,6)
+				if random_food in [1,2,3]:
+					money = 5
+				else:
+					money = 10
+				GlobalSignal.process_order.emit(self, money+2, money, random_food)
 			if table and not sitting:
 				get_parent().remove_child(self)
 				table.chair.add_child(self)
@@ -139,18 +147,19 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func interact() -> void:
-	if not has_order:
-		has_order = true
-		var money:int = 0
-		random_food = randi_range(1,6)
-		if random_food in [1,2,3]:
-			money = 5
-		else:
-			money = 10
-		dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
-		dialogue_box.show()
-		
-		GlobalSignal.process_order.emit(self, money+2, money)
+	#if not has_order:
+		#has_order = true
+		#var money:int = 0
+		#random_food = randi_range(1,6)
+		#if random_food in [1,2,3]:
+			#money = 5
+		#else:
+			#money = 10
+		#dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
+		#dialogue_box.show()
+		#
+		#GlobalSignal.process_order.emit(self, money+2, money)
+	pass
 
 func _check_for_open_table() -> void:
 	if is_waiting_on_table:

@@ -34,12 +34,19 @@ func _process(_delta: float) -> void:
 			total = 0
 
 
-func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int) -> void:
+func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int, random_food:int) -> void:
 	total = _total
 	change = money - total
 	
 	set_register_visibility(true)
 	
+	var order_food:StringName = "Invalid Food"
+	for food in GlobalVar.food_items:
+		if random_food == food.food_id:
+			order_food = food.food_name
+			break
+	
+	%OrderValue.text = order_food
 	%ReceivedValue.text = format_money(money)
 	%TotalValue.text = format_money(total)
 	

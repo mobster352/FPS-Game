@@ -90,7 +90,7 @@ signal close_store
 signal update_store_name(store_name:String, font_size:int)
 
 @warning_ignore("unused_signal")
-signal process_order(_npc_dummy:NPC_Dummy, money:int, total:int)
+signal process_order(_npc_dummy:NPC_Dummy, money:int, total:int, random_food:int)
 
 @warning_ignore("unused_signal")
 signal process_payment(_npc_dummy:NPC_Dummy)

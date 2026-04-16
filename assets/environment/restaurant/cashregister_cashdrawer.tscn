@@ -74,7 +74,7 @@ shadow_mesh = SubResource("ArrayMesh_hxdv7")
 viewport_path = NodePath("cash_register/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhqdx"]
-font_size = 100
+font_size = 50
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c56uo"]
 resource_name = "grey"
@@ -163,7 +163,8 @@ size = Vector2i(1088, 562)
 unique_name_in_owner = true
 offset_right = 1152.0
 offset_bottom = 648.0
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 75
 
 [node name="GridContainer" type="GridContainer" parent="cash_register/SubViewport/MarginContainer" unique_id=682297616]
 layout_mode = 2
@@ -171,8 +172,22 @@ theme_override_constants/h_separation = 248
 theme_override_constants/v_separation = 61
 columns = 2
 
+[node name="Order" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1708579088]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Order:"
+label_settings = SubResource("LabelSettings_nhqdx")
+
+[node name="OrderValue" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1251082163]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cheese Pizza Slice"
+label_settings = SubResource("LabelSettings_nhqdx")
+horizontal_alignment = 2
+
 [node name="Received" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1600558177]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Received:"
 label_settings = SubResource("LabelSettings_nhqdx")
 
@@ -181,6 +196,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "$100"
 label_settings = SubResource("LabelSettings_nhqdx")
+horizontal_alignment = 2
 
 [node name="Total" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1316323791]
 layout_mode = 2
@@ -192,6 +208,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "$12"
 label_settings = SubResource("LabelSettings_nhqdx")
+horizontal_alignment = 2
 
 [node name="Change" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=91371005]
 layout_mode = 2
@@ -203,6 +220,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "$88"
 label_settings = SubResource("LabelSettings_nhqdx")
+horizontal_alignment = 2
 
 [node name="cash_drawer" type="MeshInstance3D" parent="." unique_id=2033899948]
 unique_name_in_owner = true
