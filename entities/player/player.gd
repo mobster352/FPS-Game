@@ -10,7 +10,9 @@ const RETICLE_WHITE := Color(255,255,255,0.5)
 const RETICLE_RED := Color(255,0,0,0.5)
 const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 
-const SPEED = 4.0
+const SPEED = 5.5
+const SPRINT_SPEED = 8.0
+
 @export var JUMP_VELOCITY := 6.0
 
 @export var mouse_sensitivity: float = 0.002
@@ -141,19 +143,27 @@ func _process_jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-
 func _process_movement() -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_right", "move_left", "move_backward", "move_forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var is_sprinting:bool = Input.is_action_pressed("sprint")
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if is_sprinting:
+			velocity.x = direction.x * SPRINT_SPEED
+			velocity.z = direction.z * SPRINT_SPEED
+		else:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 		player_skin.walk_animation()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if is_sprinting:
+			velocity.x = move_toward(velocity.x, 0, SPRINT_SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPRINT_SPEED)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 		player_skin.idle_animation()
 	move_and_slide()
 
