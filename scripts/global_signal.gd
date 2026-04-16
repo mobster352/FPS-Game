@@ -94,3 +94,6 @@ signal process_order(_npc_dummy:NPC_Dummy, money:int, total:int)
 
 @warning_ignore("unused_signal")
 signal process_payment(_npc_dummy:NPC_Dummy)
+
+@warning_ignore("unused_signal")
+signal check_for_open_table

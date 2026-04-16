@@ -166,11 +166,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22.
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 drive_thru_menu = NodePath("../../../Entities/DriveThruSpawn/DriveThruMenu")
 
+[node name="wall40" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Ceiling" parent_id_path=PackedInt32Array(1282270132, 259140845) index="12" unique_id=863957072]
+transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -1.2278557e-05, 4.000013, 9.999987)
+
 [node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="29" unique_id=1140681504 node_paths=PackedStringArray("level")]
 level = NodePath("../../../../../../..")
 
 [node name="Queue" parent="Environment/Markers" parent_id_path=PackedInt32Array(1146535934) index="1" unique_id=1301580175]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.966239, 0, -0.012383854)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -4.966239, 0, -0.012383854)
 
 [node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "tables_node", "items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
 transform = Transform3D(-0.65, 0, -5.6824803e-08, 0, 0.65, 0, 5.6824803e-08, 0, -0.65, -8.729814, 0, 2.5939982)
