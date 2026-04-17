@@ -26,6 +26,8 @@ var random_food:int
 
 var is_waiting_on_table:bool = false
 
+var player:Player
+
 func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
 	GlobalSignal.remove_customer.connect(_remove_customer)
@@ -36,6 +38,7 @@ func _ready() -> void:
 	assert(dummy, "Dummy scene is incorrect")
 	add_child(dummy)
 	set_nav_path()
+	player = get_tree().get_first_node_in_group("player")
 	
 func _navigation_server_map_changed(_map_rid: RID) -> void:
 	navigation_ready = true
@@ -135,6 +138,8 @@ func _physics_process(delta: float) -> void:
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			elif target == endPathMarker:
 				queue_free()
+			elif target == GlobalMarker.queue_marker:
+				look_at(player.global_position)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
