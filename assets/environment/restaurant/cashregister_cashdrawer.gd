@@ -46,9 +46,9 @@ func _process(_delta: float) -> void:
 		
 
 
-func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int, random_food:int) -> void:
+func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_food:int) -> void:
 	total = _total
-	money_payed = money
+	money_payed = _money_payed
 	change = money_payed - total
 	
 	%MarginContainer.show()

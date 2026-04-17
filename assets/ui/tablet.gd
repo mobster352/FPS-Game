@@ -47,6 +47,8 @@ func hide_tablet() -> void:
 	is_tablet_open = false
 
 func _on_purchase_table_button_pressed(enum_name:String) -> void:
+	if player.money < 25:
+		return
 	var table_node_path:String
 	var table_outline_node_path:String
 	match TabletStoreItems[enum_name]:
