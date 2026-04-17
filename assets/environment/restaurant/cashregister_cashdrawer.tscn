@@ -147,6 +147,11 @@ shadow_mesh = SubResource("ArrayMesh_tkkyn")
 [sub_resource type="SphereShape3D" id="SphereShape3D_5geiw"]
 radius = 0.8703305
 
+[sub_resource type="LabelSettings" id="LabelSettings_5geiw"]
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [node name="cashregister_cashdrawer" type="Node3D" unique_id=804449852 groups=["cash_register"]]
 transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, 0, 0, 0)
 script = ExtResource("1_f3ljx")
@@ -282,6 +287,32 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1513385656]
 shape = SubResource("SphereShape3D_5geiw")
+
+[node name="ConfirmTransaction" type="Control" parent="." unique_id=111072321]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ConfirmTransaction" unique_id=1908708823]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -96.0
+offset_right = 157.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Space - Confirm Transaction"
+label_settings = SubResource("LabelSettings_5geiw")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -8,6 +8,7 @@ func can_interact(_player: Player) -> bool:
 	return cash_register.in_range
 	
 func interact(_player: Player) -> void:
-	_player.transform = cash_register.cashier_marker.transform
-	_player.is_cashier = true
-	cash_register.set_register_visibility(true)
+	if not _player.is_cashier:
+		_player.transform = cash_register.cashier_marker.transform
+		_player.is_cashier = true
+		cash_register.set_register_visibility(true)

@@ -26,6 +26,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if is_open and player.is_cashier and change == 0 and %MarginContainer.visible:
+		%ConfirmTransaction.show()
+	else:
+		%ConfirmTransaction.hide()
 	if Input.is_action_just_pressed("complete_transaction") and is_open and player.is_cashier:
 		if change == 0:
 			%MarginContainer.hide()
