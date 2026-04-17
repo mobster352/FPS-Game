@@ -4,6 +4,8 @@ extends Node3D
 const drawer_closed_position = Vector3(0.18, 0.055, 0.0)
 const drawer_open_position = Vector3(0.30, 0.055, 0.0)
 
+@export var cashier_marker:Marker3D
+
 var is_open:bool
 var npc_dummy:NPC_Dummy
 var change:int:
@@ -12,8 +14,10 @@ var change:int:
 		%ChangeValue.text = format_money(value)
 var total:int = 0
 var player:Player
+var in_range:bool = false
 
 func _ready() -> void:
+	%MarginContainer.hide()
 	set_register_visibility(false)
 	change = 0
 	GlobalSignal.process_order.connect(_process_order)
@@ -21,9 +25,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("complete_transaction") and is_open:
+	if Input.is_action_just_pressed("complete_transaction") and is_open and player.is_cashier:
 		if change == 0:
-			set_register_visibility(false)
+			%MarginContainer.hide()
+			%OrderValue.text = ""
 			%ReceivedValue.text = ""
 			%TotalValue.text = ""
 			%ChangeValue.text = ""
@@ -32,13 +37,15 @@ func _process(_delta: float) -> void:
 			GlobalSignal.process_payment.emit(npc_dummy)
 			player.update_money(total)
 			total = 0
+	if not player.is_cashier:
+		set_register_visibility(false)
 
 
 func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int, random_food:int) -> void:
 	total = _total
 	change = money - total
 	
-	set_register_visibility(true)
+	%MarginContainer.show()
 	
 	var order_food:StringName = "Invalid Food"
 	for food in GlobalVar.food_items:
@@ -63,7 +70,6 @@ func set_register_visibility(_is_visible:bool) -> void:
 	else:
 		%cash_drawer.position = drawer_closed_position
 
-	%MarginContainer.visible = _is_visible
 	%cash_1.visible = _is_visible
 	%cash_5.visible = _is_visible
 	%cash_10.visible = _is_visible
@@ -93,3 +99,13 @@ func update_change(cash_value:int, add:bool) -> void:
 	cash_obj.scale = Vector3(1,1,1)
 	cash_obj.position = %CashSpawn.position
 	%CashSpawn.add_child(cash_obj)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		in_range = true
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		in_range = false

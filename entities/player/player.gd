@@ -68,6 +68,8 @@ var starting_money: int
 var spawn_position: Vector3
 var is_alive := true
 var freeze_camera := false
+var is_cashier := false
+
 var restaurant: Restaurant
 
 @export var max_distance := 5.0
@@ -133,9 +135,10 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		if not freeze_camera:
-			_process_jump()
-			_physics_logic()
-			_process_drop_item()
+			if not is_cashier:
+				_process_jump()
+				_physics_logic()
+				_process_drop_item()
 
 
 func _process_jump() -> void:
@@ -156,6 +159,8 @@ func _process_movement() -> void:
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+		if is_cashier:
+			is_cashier = false
 		player_skin.walk_animation()
 	else:
 		if is_sprinting:
