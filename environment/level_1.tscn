@@ -212,9 +212,6 @@ dialogue_box = NodePath("../../DialogueBox")
 [node name="DriveThruTimer" type="Timer" parent="Entities/DriveThruSpawn/Timers" index="0" unique_id=1562198995]
 wait_time = 5.0
 
-[node name="NpcSpawnTimer" type="Timer" parent="Entities/DriveThruSpawn/Timers" index="1" unique_id=47648875]
-wait_time = 10.0
-
 [node name="Items" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=1145708403]
 
 [node name="StartPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="3" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
@@ -222,19 +219,24 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.2
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("../EndPathMarker")
 level_ui = NodePath("../../UI")
-npcSpawnTimer = NodePath("../DriveThruSpawn/Timers/NpcSpawnTimer")
+npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="4" unique_id=1433582954 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -24.268303, 0, 8.064042)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("../StartPathMarker")
 level_ui = NodePath("../../UI")
-npcSpawnTimer = NodePath("../DriveThruSpawn/Timers/NpcSpawnTimer")
+npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
 
 [node name="Tables" type="Node3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="5" unique_id=47192229]
 
 [node name="CashierMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="6" unique_id=1144985480]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.3946147, 2.3841858e-07, 0.94485724)
+
+[node name="Timers" type="Node" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=2112135972]
+
+[node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
+wait_time = 3.0
 
 [node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
@@ -254,8 +256,8 @@ cashier_marker = NodePath("../Entities/CashierMarker")
 [connection signal="visibility_changed" from="Entities/DriveThruSpawn/DriveThruMenu" to="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer" method="_on_drive_thru_menu_visibility_changed"]
 [connection signal="body_entered" from="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer/Area3D" to="Entities/DriveThruSpawn" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
-[connection signal="timeout" from="Entities/DriveThruSpawn/Timers/NpcSpawnTimer" to="Entities/StartPathMarker" method="_on_npc_spawn_timer_timeout"]
-[connection signal="timeout" from="Entities/DriveThruSpawn/Timers/NpcSpawnTimer" to="Entities/EndPathMarker" method="_on_npc_spawn_timer_timeout"]
+[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/StartPathMarker" method="_on_npc_spawn_timer_timeout"]
+[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/EndPathMarker" method="_on_npc_spawn_timer_timeout"]
 [connection signal="visibility_changed" from="UI/NextDay" to="UI/NextDay" method="_on_visibility_changed"]
 
 [editable path="Environment/Buildings/Restaurant"]
