@@ -20,7 +20,8 @@ font_size = 24
 [node name="body" type="RigidBody3D" parent="." unique_id=262980744]
 unique_name_in_owner = true
 collision_layer = 9
-collision_mask = 9
+collision_mask = 77
+can_sleep = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=1125283611]
 transform = Transform3D(8.9407e-09, 0, -0.050000012, 0, 0.050000012, 0, 0.050000012, 0, 8.9407e-09, -0.0009155289, 1.1444092e-05, 0.0018127449)

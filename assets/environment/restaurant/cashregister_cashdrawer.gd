@@ -13,6 +13,7 @@ var change:int:
 		change = value
 		%ChangeValue.text = format_money(value)
 var total:int = 0
+var money_payed:int = 0
 var player:Player
 var in_range:bool = false
 
@@ -39,11 +40,16 @@ func _process(_delta: float) -> void:
 			total = 0
 	if not player.is_cashier:
 		set_register_visibility(false)
+		for child:Node3D in %CashSpawn.get_children():
+			child.queue_free()
+		change = money_payed - total
+		
 
 
 func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int, random_food:int) -> void:
 	total = _total
-	change = money - total
+	money_payed = money
+	change = money_payed - total
 	
 	%MarginContainer.show()
 	
@@ -54,7 +60,7 @@ func _process_order(_npc_dummy:NPC_Dummy, money:int, _total:int, random_food:int
 			break
 	
 	%OrderValue.text = order_food
-	%ReceivedValue.text = format_money(money)
+	%ReceivedValue.text = format_money(money_payed)
 	%TotalValue.text = format_money(total)
 	
 	npc_dummy = _npc_dummy
