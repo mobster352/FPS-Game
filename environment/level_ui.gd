@@ -1,7 +1,6 @@
 extends Control
 class_name Level_UI
 
-@export var time: Label
 @export var level: Level
 
 @export var inputs_ui: InputsUI
@@ -9,7 +8,16 @@ class_name Level_UI
 
 var _player
 
-var show_clock: bool
+var show_clock: bool:
+	set(value):
+		show_clock = value
+		if not value:
+			%StatusBar.hide()
+			GlobalSignal.set_time_visibility.emit(false)
+		else:
+			%StatusBar.show()
+			GlobalSignal.set_time_visibility.emit(true)
+
 var hours: int
 
 # Called when the node enters the scene tree for the first time.
@@ -67,16 +75,12 @@ func _next_day(submit:bool) -> void:
 
 
 func _on_clock_timer_timeout() -> void:
-	if not show_clock:
-		if time.visible:
-			time.hide()
-		return
-	else:
-		if not time.visible:
-			time.show()
 	var rounded_float = snappedf(level.time_of_day, 0.0001)
 	var decimal = rounded_float - int(rounded_float)
 	var minutes = decimal * 100 * 0.6
+	print(minutes)
+	#if minutes == 60:
+		#minutes = 0
 	hours = int(rounded_float)
 	
 	var hr_text: StringName
@@ -88,7 +92,10 @@ func _on_clock_timer_timeout() -> void:
 		hr_text = str(hours)
 	elif hours > 12:
 		hr_text = str(hours - 12)
-	if int(round(minutes)) < 10:
-		time.text = str(hr_text + ":0", int(round(minutes)))
+	var is_pm:bool = false
+	if hours >= 12:
+		is_pm = true
+	if int(floor(minutes)) < 10:
+		GlobalSignal.update_time.emit(str(hr_text + ":0", int(floor(minutes))), is_pm)
 	else:
-		time.text = str(hr_text + ":", int(round(minutes)))
+		GlobalSignal.update_time.emit(str(hr_text + ":", int(floor(minutes))), is_pm)

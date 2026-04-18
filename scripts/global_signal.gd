@@ -97,3 +97,12 @@ signal process_payment(_npc_dummy:NPC_Dummy)
 
 @warning_ignore("unused_signal")
 signal check_for_open_table
+
+@warning_ignore("unused_signal")
+signal update_money(money:int)
+
+@warning_ignore("unused_signal")
+signal update_time(time:String, is_pm:bool)
+
+@warning_ignore("unused_signal")
+signal set_time_visibility(visible:bool)

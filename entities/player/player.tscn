@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://wsof6wjfapgr" path="res://assets/ui/Heart_Red_1.png" id="6_8fjmc"]
 [ext_resource type="Texture2D" uid="uid://0oy35q6x2j7" path="res://assets/ui/Health_01_t.png" id="7_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cw4fv1dudib86" path="res://assets/ui/Health_04_Bar01.png" id="8_7thud"]
-[ext_resource type="Texture2D" uid="uid://dw7frynfr6830" path="res://assets/ui/Icon_Small_Blank_Dollar_G.png" id="10_a1qjk"]
 [ext_resource type="PackedScene" uid="uid://w7i8t1diden8" path="res://assets/ui/pause_menu.tscn" id="10_wvtmh"]
 [ext_resource type="PackedScene" uid="uid://cbqgh01rgobi6" path="res://assets/ui/game_over.tscn" id="11_7thud"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="13_j3ovn"]
@@ -250,27 +249,27 @@ layers = 2
 visible = false
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.39199078, 0)
-bones/4/rotation = Quaternion(-0.5598829, -0.060860932, -0.643939, 0.5178512)
-bones/5/rotation = Quaternion(1.2158016e-08, -4.4181206e-08, -0.4947726, 0.86902255)
-bones/7/rotation = Quaternion(-0.32107326, -0.32538536, 0.1457662, 0.877376)
-bones/8/rotation = Quaternion(5.817458e-06, 5.806671e-06, -0.70708555, 0.707128)
-bones/9/rotation = Quaternion(-0.61822015, 0.08071179, 0.61798334, 0.47894275)
-bones/10/rotation = Quaternion(2.1495447e-08, 5.9982945e-08, 0.5179902, 0.85538656)
-bones/12/rotation = Quaternion(-0.31929985, 0.3005754, -0.2273805, 0.8694827)
-bones/13/rotation = Quaternion(1.6320872e-05, 1.9219946e-05, 0.70708996, 0.7071236)
-bones/15/rotation = Quaternion(0.9937124, 0.08370903, 0.073518306, 0.011116382)
-bones/16/rotation = Quaternion(0.19611554, 6.4612124e-08, -1.20633e-07, 0.9805809)
-bones/17/rotation = Quaternion(-0.51783097, -0.20948209, 0.043731995, 0.8282849)
-bones/18/rotation = Quaternion(0.00011019575, 0.92025644, -0.39131603, -2.4882254e-05)
-bones/19/rotation = Quaternion(0.9973136, -0.029464923, 0.031525593, 0.0591915)
-bones/20/rotation = Quaternion(0.2743762, -6.277449e-08, 1.9036494e-07, 0.96162254)
-bones/21/rotation = Quaternion(-0.55923504, 0.114510514, -0.00865803, 0.82101685)
-bones/38/position = Vector3(0.5208407, 0.7882526, -0.05763735)
-bones/40/position = Vector3(-0.5108437, 0.7882525, 0.059736922)
+bones/1/position = Vector3(0, 0.3919677, 0)
+bones/4/rotation = Quaternion(-0.5598622, -0.060907125, -0.64409727, 0.5176711)
+bones/5/rotation = Quaternion(8.396402e-09, -4.38611e-08, -0.49451342, 0.86917)
+bones/7/rotation = Quaternion(-0.3210265, -0.3253199, 0.1456186, 0.8774418)
+bones/8/rotation = Quaternion(1.7513263e-05, 1.7500759e-05, -0.7070426, 0.70717096)
+bones/9/rotation = Quaternion(-0.61820865, 0.08075586, 0.61812055, 0.4787729)
+bones/10/rotation = Quaternion(1.9983252e-08, 6.1756324e-08, 0.5177427, 0.85553646)
+bones/12/rotation = Quaternion(-0.31925377, 0.30051345, -0.22724184, 0.8695574)
+bones/13/rotation = Quaternion(5.5884087e-05, 6.581956e-05, 0.70704895, 0.7071646)
+bones/15/rotation = Quaternion(0.99371153, 0.08370727, 0.07352288, 0.011178916)
+bones/16/rotation = Quaternion(0.19627777, 6.431071e-08, -1.2270502e-07, 0.98054844)
+bones/17/rotation = Quaternion(-0.5179153, -0.20947747, 0.043756373, 0.82823205)
+bones/18/rotation = Quaternion(0.0001096941, 0.920256, -0.3913171, -2.4768742e-05)
+bones/19/rotation = Quaternion(0.9973108, -0.029467301, 0.031524427, 0.05923675)
+bones/20/rotation = Quaternion(0.2744926, -6.2726755e-08, 1.9060077e-07, 0.96158934)
+bones/21/rotation = Quaternion(-0.55929685, 0.11450977, -0.008667626, 0.8209747)
+bones/38/position = Vector3(0.5208407, 0.788178, -0.05763735)
+bones/40/position = Vector3(-0.5108437, 0.7881779, 0.059736922)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2277528, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2277297, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
 visible = false
@@ -290,13 +289,13 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.95895624, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9589332, 1.0572674e-15)
 
 [node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
 visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(-1.8346285e-05, -0.15001631, -0.98868334, -0.99999964, -0.000112978574, 3.589929e-05, -0.000117177166, 0.9886831, -0.15001631, -0.49108267, 0.6409899, 0.106571406)
+transform = Transform3D(3.892863e-05, -0.15006427, -0.9886759, -0.9999995, -0.00016391271, -1.4155941e-05, -0.00016006092, 0.9886758, -0.15006422, -0.49106145, 0.64083844, 0.10658083)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285187, 0.3403611)
@@ -336,7 +335,7 @@ hit_from_inside = true
 [node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer/Camera3D" unique_id=1454555565]
 transform = Transform3D(-0.97499996, 0, -1.472211e-07, 0, 0.97499996, 0, 1.472211e-07, 0, -0.97499996, 0.36367467, -0.51187515, -2.0046713)
 
-[node name="UI" type="Control" parent="." unique_id=1470936331 node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "money_label", "hp")]
+[node name="UI" type="Control" parent="." unique_id=1470936331 node_paths=PackedStringArray("ammo_label", "hp_bar", "damage_overlay", "hp")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -348,7 +347,6 @@ script = ExtResource("4_bls4j")
 ammo_label = NodePath("AmmoMarginContainer/AmmoLabel")
 hp_bar = NodePath("HP/MarginContainer/HpBar")
 damage_overlay = NodePath("DamageOverlay")
-money_label = NodePath("MarginContainer3/Money")
 hp = NodePath("HP")
 
 [node name="ReticleMarginContainer" type="MarginContainer" parent="UI" unique_id=556735865]
@@ -440,44 +438,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0)
-
-[node name="MarginContainer3" type="MarginContainer" parent="UI" unique_id=269608059]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.92100006
-anchor_top = 0.066
-anchor_right = 1.0
-anchor_bottom = 0.128
-offset_left = 0.00793457
-offset_top = 0.23199844
-offset_bottom = 0.055999756
-grow_horizontal = 0
-theme_override_constants/margin_right = 10
-
-[node name="Money" type="RichTextLabel" parent="UI/MarginContainer3" unique_id=368677391]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.07058824, 1, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 25
-text = "0"
-
-[node name="MarginContainer4" type="MarginContainer" parent="UI" unique_id=897358081]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.90800005
-anchor_top = 0.07700001
-anchor_right = 0.919
-anchor_bottom = 0.113000005
-offset_left = -0.016113281
-offset_top = 0.10399628
-offset_right = 80.31201
-offset_bottom = 138.776
-scale = Vector2(0.14, 0.14)
-
-[node name="DollarSign" type="TextureRect" parent="UI/MarginContainer4" unique_id=267445184]
-layout_mode = 2
-texture = ExtResource("10_a1qjk")
 
 [node name="GameOver" parent="UI" unique_id=1814045132 instance=ExtResource("11_7thud")]
 visible = false

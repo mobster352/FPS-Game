@@ -63,7 +63,8 @@ var starting_money: int
 @export var money: int:
 	set(value):
 		money = value
-		ui.update_money(money)
+		GlobalSignal.update_money.emit(value)
+		
 		
 var spawn_position: Vector3
 var is_alive := true

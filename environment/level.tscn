@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 [ext_resource type="PackedScene" uid="uid://diebiq40t0g7k" path="res://components/placement_system.tscn" id="3_3dj58"]
 [ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="5_xafsa"]
+[ext_resource type="PackedScene" uid="uid://baakymstnrcvv" path="res://components/status_bar.tscn" id="6_78a7o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -90,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.999018, 0, -8.030544)
 
 [node name="PlacementSystem" parent="." unique_id=1020658662 instance=ExtResource("3_3dj58")]
 
-[node name="UI" type="Control" parent="." unique_id=1491319236 node_paths=PackedStringArray("time", "level")]
+[node name="UI" type="Control" parent="." unique_id=1491319236 node_paths=PackedStringArray("level")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,23 +100,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_vfqff")
-time = NodePath("MarginContainer/Time")
 level = NodePath("..")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1208701440]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="Time" type="Label" parent="UI/MarginContainer" unique_id=1962452591]
-layout_mode = 2
-text = "00:00"
-
 [node name="DebugTools" parent="UI" unique_id=816295500 instance=ExtResource("5_xafsa")]
+layout_mode = 1
+
+[node name="StatusBar" parent="UI" unique_id=275568955 instance=ExtResource("6_78a7o")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="Timers" type="Node" parent="." unique_id=1184588231]
