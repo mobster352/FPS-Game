@@ -49,7 +49,7 @@ var weapon: Weapon
 
 @export var tables_node: Node3D
 
-var invert := -1
+var invert := 1
 
 var items_in_range: Array[Item]
 
@@ -172,22 +172,22 @@ func _process_movement() -> void:
 		player_skin.idle_animation()
 	move_and_slide()
 
-
+var pitch := 0.0  # store vertical rotation manually
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
-		# Horizontal rotation (Y-axis) applied to the main Player node
-		# Rotate around the global up vector
+		# Horizontal (yaw)
 		rotate_y(-event.relative.x * mouse_sensitivity)
 
-		# Vertical rotation (X-axis) applied to the Camera Pivot node
-		var vertical_change = -event.relative.y * mouse_sensitivity
-		pointer_slot.rotate_x(invert * vertical_change)
+		# Vertical (pitch)
+		var vertical_change = -event.relative.y * mouse_sensitivity * invert
+		pitch += vertical_change
 
-		# Clamp vertical rotation to prevent the camera from flipping over
-		var current_rotation_x = pointer_slot.rotation.x
-		# Clamp between -90 and 90 degrees (converted to radians)
-		pointer_slot.rotation.x = clamp(current_rotation_x, deg_to_rad(-75), deg_to_rad(80))
-		
+		# Clamp BEFORE applying
+		pitch = clamp(pitch, deg_to_rad(-90), deg_to_rad(90))
+
+		# Apply rotation
+		pointer_slot.rotation.x = pitch
+
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://s371qejq0t8l" path="res://scripts/game_state.gd" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 [ext_resource type="PackedScene" uid="uid://diebiq40t0g7k" path="res://components/placement_system.tscn" id="3_3dj58"]
+[ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="5_xafsa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -113,6 +114,9 @@ grow_horizontal = 0
 [node name="Time" type="Label" parent="UI/MarginContainer" unique_id=1962452591]
 layout_mode = 2
 text = "00:00"
+
+[node name="DebugTools" parent="UI" unique_id=816295500 instance=ExtResource("5_xafsa")]
+layout_mode = 1
 
 [node name="Timers" type="Node" parent="." unique_id=1184588231]
 

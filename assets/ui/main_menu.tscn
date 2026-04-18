@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
+[ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="2_n4sa1"]
 [ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_7la27"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
@@ -23,6 +24,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pdggx")
 menu_audio = NodePath("Audio/MenuAudio")
+
+[node name="DebugTools" parent="." unique_id=816295500 instance=ExtResource("2_n4sa1")]
+layout_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1966743911]
 layout_mode = 1
