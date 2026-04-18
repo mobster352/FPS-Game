@@ -102,6 +102,9 @@ signal check_for_open_table
 signal update_money(money:int)
 
 @warning_ignore("unused_signal")
+signal update_money_floating_text(money:int)
+
+@warning_ignore("unused_signal")
 signal update_time(time:String, is_pm:bool)
 
 @warning_ignore("unused_signal")

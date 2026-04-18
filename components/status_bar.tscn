@@ -9,11 +9,22 @@ variation_embolden = 0.15
 font = SubResource("FontVariation_ylvgs")
 font_size = 24
 font_color = Color(0, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rewvx"]
+font = SubResource("FontVariation_ylvgs")
+font_size = 18
+font_color = Color(0, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4bhi"]
 font = SubResource("FontVariation_ylvgs")
 font_size = 24
 font_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="StatusBar" type="Control" unique_id=275568955]
 layout_mode = 3
@@ -26,13 +37,18 @@ mouse_filter = 2
 script = ExtResource("1_ap4so")
 
 [node name="Control" type="Control" parent="." unique_id=1997735050]
-anchors_preset = 0
-offset_left = 704.0
-offset_top = 16.0
-offset_right = 1136.0
-offset_bottom = 64.0
+layout_mode = 1
+anchor_left = 0.611
+anchor_top = 0.025
+anchor_right = 0.98600006
+anchor_bottom = 0.09900001
+offset_left = 0.12799072
+offset_top = -0.20000076
+offset_right = 0.12792969
+offset_bottom = -0.15200806
 
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1922343694]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,6 +80,22 @@ text = "0"
 label_settings = SubResource("LabelSettings_ap4so")
 visible_characters = 10
 visible_ratio = 3.3333333
+
+[node name="MoneyIncrement" type="Label" parent="Control/PlayerMoney/MoneyValue" unique_id=572413830]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.71400005
+anchor_top = 2.265
+anchor_right = 0.786
+anchor_bottom = 3.029
+offset_left = -0.0039987564
+offset_top = -0.010002136
+offset_right = -0.00399971
+offset_bottom = 0.013999939
+text = "+0"
+label_settings = SubResource("LabelSettings_rewvx")
 
 [node name="Time" type="HBoxContainer" parent="Control" unique_id=687034264]
 layout_mode = 0

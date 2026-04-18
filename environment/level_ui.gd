@@ -78,9 +78,6 @@ func _on_clock_timer_timeout() -> void:
 	var rounded_float = snappedf(level.time_of_day, 0.0001)
 	var decimal = rounded_float - int(rounded_float)
 	var minutes = decimal * 100 * 0.6
-	print(minutes)
-	#if minutes == 60:
-		#minutes = 0
 	hours = int(rounded_float)
 	
 	var hr_text: StringName

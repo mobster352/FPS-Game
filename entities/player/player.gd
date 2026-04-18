@@ -658,6 +658,7 @@ func take_damage(value: int) -> void:
 
 func update_money(_money:int) -> void:
 	money += _money
+	GlobalSignal.update_money_floating_text.emit(_money)
 
 func increment_customers_served() -> void:
 	customers_served += 1
