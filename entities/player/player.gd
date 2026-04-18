@@ -88,6 +88,7 @@ var sell_input:bool
 var place_scene_path: StringName
 var item_type: GlobalVar.StoreItem
 var is_placing := false
+var num_pizza_boxes:int = 0
 
 @export var items_marker: Marker3D
 @export var order_spawn_marker: Marker3D
@@ -410,7 +411,7 @@ func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, 
 	preview_instance = preview_scene.instantiate()
 	place_scene_path = _place_scene_path
 	item_type = _item_type
-	
+
 func setup_placement_pizzabox_stack(preview_scene: PackedScene, _place_scene_path: StringName, num_stack: int) -> void:
 	if preview_instance:
 		return
@@ -418,6 +419,7 @@ func setup_placement_pizzabox_stack(preview_scene: PackedScene, _place_scene_pat
 	preview_instance = preview_scene.instantiate() as PizzaBoxStack
 	place_scene_path = _place_scene_path
 	preview_instance.num_pizza_boxes = num_stack
+	num_pizza_boxes = num_stack
 
 func start_placement():
 	get_tree().current_scene.add_child(preview_instance)
@@ -630,6 +632,10 @@ func drop_item() -> void:
 				elif item.has_meta("plate_dirty"):
 					item.pointer.show()
 					GlobalSignal.toggle_pointer.emit("sink", false)
+			#if child_mesh.has_meta("pizzaboxes"):
+				#var item = preload("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
+				#item.num_pizza_boxes = num_pizza_boxes
+				#items_marker.add_child(item)
 			item_slot.remove_child(child_mesh)
 			child_mesh.queue_free()
 
