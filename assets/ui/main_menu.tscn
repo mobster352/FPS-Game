@@ -9,13 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="6_7la27"]
 [ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="6_58nof"]
 [ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="6_pdggx"]
+[ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="6_q6mfq"]
+[ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="8_jci6o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82vaf"]
 font_size = 88
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MainMenu" type="Control" unique_id=325520252 node_paths=PackedStringArray("menu_audio")]
+[node name="MainMenu" type="Control" unique_id=325520252 node_paths=PackedStringArray("menu_audio", "main_menu", "options_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,109 +26,124 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pdggx")
 menu_audio = NodePath("Audio/MenuAudio")
+main_menu = NodePath("Main")
+options_menu = NodePath("OptionsMenu")
 
-[node name="DebugTools" parent="." unique_id=816295500 instance=ExtResource("2_n4sa1")]
+[node name="Main" type="Control" parent="." unique_id=505933194]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DebugTools" parent="Main" unique_id=816295500 instance=ExtResource("2_n4sa1")]
 layout_mode = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1966743911]
+[node name="MarginContainer2" type="MarginContainer" parent="Main" unique_id=1966743911]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -144.0
+offset_left = 358.0
 offset_top = 56.0
-offset_right = 144.0
-offset_bottom = 144.0
+offset_right = 754.0
+offset_bottom = 177.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="MarginContainer2" unique_id=775572840]
+[node name="Label" type="Label" parent="Main/MarginContainer2" unique_id=775572840]
 layout_mode = 2
 text = "Pizza Boy"
 label_settings = SubResource("LabelSettings_82vaf")
 horizontal_alignment = 1
 
-[node name="StartGame" type="MarginContainer" parent="." unique_id=1731944410]
+[node name="StartGame" type="MarginContainer" parent="Main" unique_id=1731944410]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -68.0
-offset_right = 62.734924
-offset_bottom = -1.0
+offset_left = 492.0
+offset_top = 236.0
+offset_right = 618.7349
+offset_bottom = 303.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGameButton" type="TextureButton" parent="StartGame" unique_id=947225438]
+[node name="StartGameButton" type="TextureButton" parent="Main/StartGame" unique_id=947225438]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="StartGame" unique_id=936076518]
+[node name="Label" type="Label" parent="Main/StartGame" unique_id=936076518]
 layout_mode = 2
 text = "Start Game"
 label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
-[node name="Settings" type="MarginContainer" parent="." unique_id=1637598793]
-visible = false
+[node name="Settings" type="MarginContainer" parent="Main" unique_id=40219817 node_paths=PackedStringArray("label", "button")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = 212.0
-offset_right = 77.0
-offset_bottom = 295.0
+offset_left = 492.0
+offset_top = 332.0
+offset_right = 620.0
+offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_q6mfq")
+button_label = &"Settings"
+normal_texture = ExtResource("4_58nof")
+pressed_texture = ExtResource("5_pdggx")
+label = NodePath("Label")
+button = NodePath("SettingsButton")
 
-[node name="TextureButton" type="TextureButton" parent="Settings" unique_id=224160048]
+[node name="SettingsButton" type="TextureButton" parent="Main/Settings" unique_id=733303456]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
+texture_pressed = ExtResource("5_pdggx")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Settings" unique_id=561211431]
+[node name="Label" type="Label" parent="Main/Settings" unique_id=1869557153]
 layout_mode = 2
 text = "Settings"
+label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Quit" type="MarginContainer" parent="." unique_id=169590552]
+[node name="Quit" type="MarginContainer" parent="Main" unique_id=169590552]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 124.0
-offset_right = 62.734924
-offset_bottom = 191.0
+offset_left = 492.0
+offset_top = 428.0
+offset_right = 618.7349
+offset_bottom = 495.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="Quit" unique_id=86759321]
+[node name="TextureButton" type="TextureButton" parent="Main/Quit" unique_id=86759321]
 layout_mode = 2
 texture_normal = ExtResource("6_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Quit" unique_id=1177831239]
+[node name="Label" type="Label" parent="Main/Quit" unique_id=1177831239]
 layout_mode = 2
 text = "Quit"
 label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
-[node name="Multiplayer" type="MarginContainer" parent="." unique_id=1759103797]
+[node name="Multiplayer" type="MarginContainer" parent="Main" unique_id=1759103797]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -134,24 +151,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = 28.0
-offset_right = 62.734924
-offset_bottom = 95.0
+offset_left = 492.0
+offset_top = 332.0
+offset_right = 618.7349
+offset_bottom = 399.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MultiplayerButton" type="TextureButton" parent="Multiplayer" unique_id=833226492]
+[node name="MultiplayerButton" type="TextureButton" parent="Main/Multiplayer" unique_id=833226492]
 layout_mode = 2
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Multiplayer" unique_id=1900527082]
+[node name="Label" type="Label" parent="Main/Multiplayer" unique_id=1900527082]
 layout_mode = 2
 text = "Multiplayer"
 horizontal_alignment = 1
+
+[node name="OptionsMenu" parent="." unique_id=737911688 node_paths=PackedStringArray("callback_menu") instance=ExtResource("8_jci6o")]
+visible = false
+layout_mode = 1
+callback_menu = NodePath("../Main")
 
 [node name="Audio" type="Node" parent="." unique_id=981416684]
 
@@ -169,10 +191,9 @@ show_clock = false
 [node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=975023757]
 transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
-[connection signal="mouse_entered" from="StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="mouse_entered" from="Settings/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="Settings/TextureButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="Quit/TextureButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="mouse_entered" from="Main/StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Main/StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Main/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="Main/Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Main/Quit/TextureButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Main/Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]

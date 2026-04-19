@@ -1,6 +1,8 @@
 extends Control
 
 @export var menu_audio: AudioStreamPlayer
+@export var main_menu: Control
+@export var options_menu: Control
 
 func _ready() -> void:
 	if OS.has_feature("dedicated_server"):
@@ -22,3 +24,8 @@ func _on_multiplayer_button_pressed() -> void:
 
 func _on_start_game_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://assets/ui/load_game_menu.tscn")
+
+
+func _on_settings_button_pressed() -> void:
+	main_menu.hide()
+	options_menu.show()

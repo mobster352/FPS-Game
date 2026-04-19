@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_xhm57"]
 
 [node name="OptionsMenu" type="Control" unique_id=737911688 node_paths=PackedStringArray("menu_audio")]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,6 +68,48 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 40
 
+[node name="QualityPreset" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1140450594]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/QualityPreset" unique_id=431433210]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="QualityPresetLabel" type="Label" parent="MarginContainer/VBoxContainer/QualityPreset/MarginContainer4" unique_id=1642974933]
+layout_mode = 2
+text = "Graphics Quality"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/QualityPreset" unique_id=1133565031]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 148.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="QualityPresetButton" type="OptionButton" parent="MarginContainer/VBoxContainer/QualityPreset/MarginContainer3" unique_id=780926498]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Low"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "High"
+popup/item_2/id = 2
+
 [node name="WindowSize" type="Control" parent="MarginContainer/VBoxContainer" unique_id=52142845]
 layout_mode = 2
 
@@ -99,6 +141,7 @@ offset_bottom = 39.0
 grow_horizontal = 2
 
 [node name="WindowSizeButton" type="OptionButton" parent="MarginContainer/VBoxContainer/WindowSize/MarginContainer3" unique_id=421785053]
+unique_name_in_owner = true
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -110,6 +153,7 @@ popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 
 [node name="ShowTips" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1526716139]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShowTips" unique_id=82404296]
@@ -173,8 +217,8 @@ offset_bottom = 39.0
 grow_horizontal = 2
 
 [node name="BackgroundAudioCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer3" unique_id=1052098671]
+unique_name_in_owner = true
 layout_mode = 2
-button_pressed = true
 
 [node name="BackButton" parent="." unique_id=828781490 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kudt6")]
 layout_mode = 1
@@ -199,10 +243,11 @@ button = NodePath("TextureButton")
 stream = ExtResource("8_xhm57")
 volume_db = -5.0
 
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton" to="." method="_on_quality_preset_button_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ShowTips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
-[connection signal="mouse_entered" from="BackButton/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="BackButton/TextureButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_button_pressed"]
 
 [editable path="BackButton"]
