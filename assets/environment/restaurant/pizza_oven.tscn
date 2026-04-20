@@ -84,9 +84,6 @@ data = PackedVector3Array(0.91999996, 1.14, 0.19999999, -0.82, 1.04, 0.099999994
 [sub_resource type="SphereShape3D" id="SphereShape3D_0co8r"]
 radius = 4.0419297
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0co8r"]
-size = Vector3(2.2512817, 1.3842163, 0.19169617)
-
 [node name="pizza_oven" type="Node3D" unique_id=1242572807 node_paths=PackedStringArray("pizza_oven_door_mesh", "pizza_slot_top", "pizza_slot_bottom", "cook_timer", "oven_audio", "oven_ding_audio")]
 script = ExtResource("1_ret6o")
 pizza_oven_door_mesh = NodePath("pizza_oven_mesh/pizza_oven_door_mesh")
@@ -105,6 +102,10 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/StaticBody3D" unique_id=646330333]
 shape = SubResource("ConcavePolygonShape3D_4rdd7")
 
+[node name="Interactable" type="Node3D" parent="pizza_oven_mesh/StaticBody3D" unique_id=542511369 node_paths=PackedStringArray("pizza_oven")]
+script = ExtResource("3_0co8r")
+pizza_oven = NodePath("../../..")
+
 [node name="pizza_oven_door_mesh" type="MeshInstance3D" parent="pizza_oven_mesh" unique_id=1476160734]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.22999954, 1)
 mesh = SubResource("ArrayMesh_jhgum")
@@ -115,8 +116,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=1950128455]
 shape = SubResource("ConcavePolygonShape3D_0co8r")
 
-[node name="Interactable" type="Node3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=542511369 node_paths=PackedStringArray("pizza_oven")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.22999954, -1)
+[node name="Interactable" type="Node3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=1037671597 node_paths=PackedStringArray("pizza_oven")]
 script = ExtResource("3_0co8r")
 pizza_oven = NodePath("../../../..")
 
@@ -125,13 +125,6 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=487875463]
 shape = SubResource("SphereShape3D_0co8r")
-
-[node name="PizzaArea" type="Area3D" parent="." unique_id=743282177]
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PizzaArea" unique_id=1675507772]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20687866, 0.9396057, 1.2061386)
-shape = SubResource("BoxShape3D_0co8r")
 
 [node name="PizzaSlotTop" type="Node3D" parent="." unique_id=1406214000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17010117, 1.0162457, 0)
@@ -154,5 +147,4 @@ stream = ExtResource("5_uvbxi")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="PizzaArea" to="." method="_on_pizza_area_body_entered"]
 [connection signal="timeout" from="Timers/CookTimer" to="." method="_on_cook_timer_timeout"]

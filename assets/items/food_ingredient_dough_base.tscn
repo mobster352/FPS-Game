@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2f1gcqpluxwk"]
+[gd_scene format=3 uid="uid://d2f1gcqpluxwk"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_hupm6"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_k3mnl"]
@@ -9,30 +9,30 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3mnl"]
 size = Vector3(1.751709, 0.15185547, 1.734436)
 
-[node name="food_ingredient_dough_base" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_hupm6")]
+[node name="food_ingredient_dough_base" unique_id=89443164 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_hupm6")]
 mesh = NodePath("body/mesh/food_ingredient_dough_base")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/mesh/food_ingredient_dough_base")]
 albedo_texture = ExtResource("2_k3mnl")
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=978506078]
 metadata/name = &"dough_base"
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017211914, 0.075927734, -0.00869751)
 shape = SubResource("BoxShape3D_k3mnl")
 
-[node name="mesh" parent="body" index="1" instance=ExtResource("2_m41i0")]
+[node name="mesh" parent="body" index="1" unique_id=61097174 instance=ExtResource("2_m41i0")]
 
 [node name="food_ingredient_dough_base" parent="body/mesh" index="0"]
 metadata/name = &"dough_base_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1871729306 node_paths=PackedStringArray("item")]
 script = ExtResource("6_r5cdk")
 item = NodePath("../..")
 
-[node name="Cookable" type="Node3D" parent="body" index="5" node_paths=PackedStringArray("item")]
+[node name="Cookable" type="Node3D" parent="body" index="5" unique_id=110619842 node_paths=PackedStringArray("item")]
 script = ExtResource("5_r5cdk")
 item = NodePath("../..")
 
