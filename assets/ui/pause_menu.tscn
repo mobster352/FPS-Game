@@ -51,7 +51,6 @@ offset_left = -7.7440186
 offset_top = 0.29599762
 offset_right = 303.21594
 offset_bottom = 112.54399
-grow_horizontal = 1
 title = &"PAUSED"
 
 [node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1755438775]

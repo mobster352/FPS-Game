@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l5srflv17hew"
-path="res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.ctex"
+path.s3tc="res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.s3tc.ctex"
+path.etc2="res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/kaykit/characters/mage_texture.png"
-dest_files=["res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.ctex"]
+dest_files=["res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.s3tc.ctex", "res://.godot/imported/mage_texture.png-fa6ee7877167d5aa977fb78068a6cfcd.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

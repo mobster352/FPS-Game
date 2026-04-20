@@ -20,7 +20,6 @@ sky = SubResource("Sky_vfqff")
 tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
-glow_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
 

@@ -1,6 +1,7 @@
 extends Control
 
 const SETTINGS_PATH = "user://settings.tres"
+const PROJECT_SETTINGS_PATH = "user://project_settings.cfg"
 
 @export var callback_menu: Control
 @export var menu_audio: AudioStreamPlayer
@@ -35,6 +36,20 @@ var quality_preset:int = QualityPreset.LOW:
 		quality_preset = value
 		%QualityPresetButton.selected = value
 		apply_preset(value)
+		
+var previous_rendering_method:String
+var rendering_method:String = "forward_plus":
+	set(value):
+		previous_rendering_method = rendering_method
+		rendering_method = value
+		match value:
+			"forward_plus":
+				%RendererButton.selected = 0
+			"gl_compatibility":
+				%RendererButton.selected = 1
+			"mobile":
+				%RendererButton.selected = 2
+		set_renderer_for_next_launch()
 
 var settings_data:Settings
 
@@ -44,6 +59,7 @@ func _ready() -> void:
 	else:
 		settings_data = Settings.new()
 		auto_detect_tier()
+	#print("Renderer: ", RenderingServer.get_current_rendering_method())
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -84,6 +100,7 @@ func save_settings() -> void:
 	settings_data.quality_preset = quality_preset
 	settings_data.window_mode = window_mode
 	settings_data.bg_music_on = is_bg_audio_on
+	settings_data.rendering_method = rendering_method
 	var error_code := ResourceSaver.save(settings_data, SETTINGS_PATH)
 	if error_code != OK:
 		push_error("Failed to save game: " + error_string(error_code))
@@ -100,6 +117,8 @@ func load_settings() -> void:
 		window_mode = settings_data.window_mode
 	if settings_data.bg_music_on:
 		is_bg_audio_on = settings_data.bg_music_on
+	if settings_data.rendering_method:
+		rendering_method = settings_data.rendering_method
 
 
 func apply_preset(preset: QualityPreset):
@@ -147,3 +166,41 @@ func auto_detect_tier():
 func _on_quality_preset_button_item_selected(index: int) -> void:
 	quality_preset = index
 	save_settings()
+
+
+func set_renderer_for_next_launch():
+	if settings_data:
+		if rendering_method == settings_data.rendering_method:
+			return
+	%Settings.hide()
+	%GraphicsRestartPopup.show()
+
+
+func set_renderer_and_restart():
+	var config = ConfigFile.new()
+	config.set_value("rendering", "renderer/rendering_method", rendering_method)
+	config.save(PROJECT_SETTINGS_PATH)
+
+	OS.set_restart_on_exit(true, ["--rendering-method", rendering_method])
+	get_tree().quit()
+
+
+func _on_renderer_button_item_selected(index: int) -> void:
+	match index:
+		0:
+			rendering_method = "forward_plus"
+		1:
+			rendering_method = "gl_compatibility"
+		2:
+			rendering_method = "mobile"
+
+
+func _on_restart_button_pressed() -> void:
+	save_settings()
+	set_renderer_and_restart()
+
+
+func _on_cancel_button_pressed() -> void:
+	rendering_method = previous_rendering_method
+	%Settings.show()
+	%GraphicsRestartPopup.hide()
