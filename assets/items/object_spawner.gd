@@ -1,6 +1,8 @@
 extends Interactable
 class_name ObjectSpawner
 
+const MAX_SIZE:int = 8
+
 @export var item: Item
 @export var mesh: MeshInstance3D
 @export var item_type: GlobalVar.StoreItem

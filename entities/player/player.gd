@@ -694,6 +694,19 @@ func has_held_object() -> bool:
 	return item_slot.get_child_count() > 0
 
 
+func get_held_object() -> Node3D:
+	if has_held_object():
+		return item_slot.get_child(0)
+	return null
+
+
+func get_held_object_mesh_name() -> String:
+	if has_held_object():
+		if item_slot.get_child(0).has_meta("name"):
+			return item_slot.get_child(0).get_meta("name")
+	return "Mesh name not found"
+
+
 func _freeze_player_camera(freeze:bool) -> void:
 	freeze_camera = freeze
 

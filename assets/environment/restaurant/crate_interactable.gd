@@ -10,7 +10,7 @@ func can_interact(player: Player) -> bool:
 func interact(player: Player) -> void:
 	if item.disabled:
 		return
-	if player.item_slot.get_child_count() > 0:
+	if player.has_held_object():
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)

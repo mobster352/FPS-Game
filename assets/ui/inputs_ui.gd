@@ -71,7 +71,7 @@ func interact_item(has_held_object:bool, has_count:bool) -> void:
 		right_input.hide()
 	if has_count:
 		if has_held_object:
-			left_input.action = ActionInput.Action.PickOne
+			left_input.action = ActionInput.Action.PutBack
 			right_input.action = ActionInput.Action.Drop
 			left_input.show()
 			right_input.show()

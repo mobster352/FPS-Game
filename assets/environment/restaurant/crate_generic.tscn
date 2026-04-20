@@ -52,9 +52,7 @@ albedo_texture = ExtResource("2_wl83s")
 grow_amount = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytnlp"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_u4joo"]
-radius = 0.7020078
+albedo_texture = ExtResource("2_wl83s")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wl83s"]
 properties/0/path = NodePath("body:position")
@@ -92,22 +90,14 @@ mesh = NodePath("crate2")
 [node name="crate2" type="MeshInstance3D" parent="body/Interactable" index="0" unique_id=108420176]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_kq17r")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wl83s")
 metadata/name = &"crate_mesh"
 
 [node name="crate" parent="body/Interactable" index="1"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_ytnlp")
 metadata/name = &"crate_mesh"
-
-[node name="DoughRadius" type="Area3D" parent="body/Interactable" index="2" unique_id=477318562]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Interactable/DoughRadius" index="0" unique_id=169445015]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348359, 0)
-shape = SubResource("SphereShape3D_u4joo")
 
 [node name="PizzaLabel" parent="body" index="4" unique_id=2100755056 instance=ExtResource("6_ytnlp")]
 unique_name_in_owner = true
@@ -116,7 +106,5 @@ text = ""
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="1" unique_id=383395764]
 replication_config = SubResource("SceneReplicationConfig_wl83s")
 public_visibility = false
-
-[connection signal="body_entered" from="body/Interactable/DoughRadius" to="body/Interactable" method="_on_dough_radius_body_entered"]
 
 [editable path="body/Interactable"]
