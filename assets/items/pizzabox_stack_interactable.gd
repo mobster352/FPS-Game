@@ -4,7 +4,12 @@ extends Interactable
 
 func can_interact(player: Player) -> bool:
 	if pizza_box_stack.in_range:
-		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), true)
+		if player.has_held_object() and player.get_held_object().has_meta("pizzaboxes"):
+			player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.CombineStack)
+		elif player.has_held_object() and player.get_held_object_mesh_name() == "pizza_box_open_mesh":
+			player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.PutBack, player.has_held_object())
+		else:
+			player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object(), true)
 	return pizza_box_stack.in_range
 	
 func interact(player: Player) -> void:

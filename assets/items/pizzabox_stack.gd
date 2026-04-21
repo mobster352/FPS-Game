@@ -1,6 +1,8 @@
 extends Node3D
 class_name PizzaBoxStack
 
+const MAX_STACK_SIZE:int = 10
+
 @export var num_pizza_boxes:int = 0
 
 @onready var pizzabox = preload("uid://cpulw2n2h8hsx")
@@ -60,7 +62,7 @@ func _on_stack_area_body_entered(body: Node3D) -> void:
 				var throw_strength: float = 2.0
 				body.apply_impulse(forward * (throw_strength / rigidbody.mass), rigidbody.global_position + forward)
 			return
-		if num_pizza_boxes == 10:
+		if num_pizza_boxes == MAX_STACK_SIZE:
 			var rigidbody = body as RigidBody3D
 			if rigidbody:
 				var forward = -rigidbody.global_transform.basis.z.normalized()
@@ -73,25 +75,47 @@ func _on_stack_area_body_entered(body: Node3D) -> void:
 
 func interact(player: Player) -> void:
 	if player.has_held_object():
-		player.drop_item()
-	var new_pizzabox = remove_box_from_stack()
-	pizza_boxes.add_child(new_pizzabox)
-	if new_pizzabox:
-		new_pizzabox.pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)), player)
-		new_pizzabox.queue_free()
-	if num_pizza_boxes == 0:
-		queue_free()
-	elif num_pizza_boxes == 1:
-		new_pizzabox = pizzabox_open.instantiate() as PizzaBox
-		new_pizzabox.global_transform = global_transform
-		get_parent().add_child(new_pizzabox)
-		queue_free()
+		if player.get_held_object_mesh_name() == "pizza_box_open_mesh":
+			var held_obj = player.get_held_object()
+			if held_obj.has_meta("food_id"):
+				return
+			if num_pizza_boxes == MAX_STACK_SIZE:
+				return
+			add_box_at_index(num_pizza_boxes)
+			num_pizza_boxes += 1
+			held_obj.queue_free()
+			return
+		if player.get_held_object().has_meta("pizzaboxes"):
+			var held_obj = player.get_held_object()
+			for child in held_obj.get_children():
+				if num_pizza_boxes >= MAX_STACK_SIZE:
+					break
+				add_box_at_index(num_pizza_boxes)
+				num_pizza_boxes += 1
+				child.free()
+			player.num_pizza_boxes = held_obj.get_child_count()
+			player.preview_instance.num_pizza_boxes = held_obj.get_child_count()
+			if held_obj.get_child_count() == 0:
+				held_obj.queue_free()
+	else:
+		var new_pizzabox = remove_box_from_stack()
+		pizza_boxes.add_child(new_pizzabox)
+		if new_pizzabox:
+			new_pizzabox.pickup(Vector3(0.0,-0.5,0.75), Vector3(deg_to_rad(0), deg_to_rad(180), deg_to_rad(0)), player)
+			new_pizzabox.queue_free()
+		if num_pizza_boxes == 0:
+			queue_free()
+		#elif num_pizza_boxes == 1:
+			#new_pizzabox = pizzabox_open.instantiate() as PizzaBox
+			#new_pizzabox.global_transform = global_transform
+			#get_parent().add_child(new_pizzabox)
+			#queue_free()
 		
 func interact2(player: Player) -> void:
 	if player.has_held_object():
 		if disabled:
 			return
-		player.drop_item()
+		#player.drop_item()
 		return
 	else:
 		pickup(Vector3.ZERO, Vector3.ZERO, player)

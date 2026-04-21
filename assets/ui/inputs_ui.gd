@@ -18,7 +18,9 @@ enum InputAction {
 	PrePlacement,
 	OnlyPlacement,
 	PreMove,
-	Confirm
+	Confirm,
+	CombineStack,
+	PutBack
 }
 
 
@@ -45,6 +47,10 @@ func _update_actions(input_action:InputAction, has_held_object:bool = false, has
 			pre_move()
 		InputAction.Confirm:
 			confirm()
+		InputAction.CombineStack:
+			combine_stack()
+		InputAction.PutBack:
+			put_back()
 		_:
 			default(has_held_object)
 	
@@ -81,7 +87,20 @@ func interact_item(has_held_object:bool, has_count:bool) -> void:
 			right_input.action = ActionInput.Action.PickUp
 			right_input.show()
 
+func combine_stack() -> void:
+	cook_input.hide()
+	cook_input.hide()
+	left_input.action = ActionInput.Action.Combine
+	left_input.show()
+	right_input.hide()
 	
+func put_back() -> void:
+	cook_input.hide()
+	cook_input.hide()
+	left_input.action = ActionInput.Action.PutBack
+	left_input.show()
+	right_input.hide()
+
 func cook(has_held_object:bool) -> void:
 	cook_input.action = ActionInput.Action.Cook
 	cook_input.show()

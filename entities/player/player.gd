@@ -297,7 +297,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.OnlyPlacement)
 					else:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
-			return
+			#return
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -405,17 +405,11 @@ func _process_drop_item() -> void:
 
 
 func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, _item_type: GlobalVar.StoreItem) -> void:
-	if preview_instance:
-		return
-
 	preview_instance = preview_scene.instantiate()
 	place_scene_path = _place_scene_path
 	item_type = _item_type
 
 func setup_placement_pizzabox_stack(preview_scene: PackedScene, _place_scene_path: StringName, num_stack: int) -> void:
-	if preview_instance:
-		return
-
 	preview_instance = preview_scene.instantiate() as PizzaBoxStack
 	place_scene_path = _place_scene_path
 	preview_instance.num_pizza_boxes = num_stack
@@ -511,7 +505,12 @@ func confirm_placement() -> bool:
 	instance.global_transform = preview_instance.global_transform
 	
 	if instance is PizzaBoxStack:
-		instance.num_pizza_boxes = preview_instance.num_pizza_boxes
+		instance.num_pizza_boxes = num_pizza_boxes
+	elif instance is PizzaBox:
+		if not child_mesh.has_meta("food_id"):
+			instance = load("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
+			instance.num_pizza_boxes = 1
+			instance.global_transform = preview_instance.global_transform
 	
 	items_marker.add_child(instance)
 

@@ -23,7 +23,8 @@ enum Action {
 	Cancel,
 	Move,
 	Sell,
-	PutBack
+	PutBack,
+	Combine
 }
 
 func _ready() -> void:
@@ -55,5 +56,7 @@ func get_text_from_action() -> StringName:
 		return "Sell"
 	elif action == Action.PutBack:
 		return "Put Back"
+	elif action == Action.Combine:
+		return "Combine"
 	else:
 		return "N/A"
