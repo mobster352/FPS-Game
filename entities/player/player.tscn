@@ -249,27 +249,27 @@ layers = 2
 visible = false
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.3757419, 0)
-bones/4/rotation = Quaternion(-0.55425465, -0.057227455, -0.63770133, 0.53184944)
-bones/5/rotation = Quaternion(5.938968e-08, -3.192017e-08, -0.5134901, 0.8580956)
-bones/7/rotation = Quaternion(-0.3218779, -0.33532852, 0.15035976, 0.8725489)
-bones/8/rotation = Quaternion(0.0005943996, 0.0005943942, -0.70492154, 0.7092847)
-bones/9/rotation = Quaternion(-0.61266404, 0.07757817, 0.6130804, 0.49270356)
-bones/10/rotation = Quaternion(-5.9179164e-09, 4.4500023e-08, 0.5359448, 0.844253)
-bones/12/rotation = Quaternion(-0.32072333, 0.31143507, -0.23243558, 0.8637816)
-bones/13/rotation = Quaternion(0.001904542, 0.0022432671, 0.70512706, 0.7090748)
-bones/15/rotation = Quaternion(0.9910081, 0.083291285, 0.077642806, 0.07026462)
-bones/16/rotation = Quaternion(0.35065895, 6.529582e-08, -2.3731796e-07, 0.9365033)
-bones/17/rotation = Quaternion(-0.598249, -0.20337081, 0.06875693, 0.7720175)
-bones/18/rotation = Quaternion(-1.5688859e-06, 0.92015654, -0.39155072, 4.2937984e-07)
-bones/19/rotation = Quaternion(0.99318725, -0.03233087, 0.03022938, 0.10779669)
-bones/20/rotation = Quaternion(0.39972287, -6.0720986e-08, 2.8054475e-07, 0.9166361)
-bones/21/rotation = Quaternion(-0.6261874, 0.11317087, -0.019619351, 0.77116585)
-bones/38/position = Vector3(0.5208407, 0.77988976, -0.057637352)
-bones/40/position = Vector3(-0.5108437, 0.77988964, 0.059736915)
+bones/1/position = Vector3(0, 0.39143705, 0)
+bones/4/rotation = Quaternion(-0.55970454, -0.060714282, -0.64366996, 0.51839536)
+bones/5/rotation = Quaternion(9.16423e-09, -3.3924323e-08, -0.4953197, 0.86871076)
+bones/7/rotation = Quaternion(-0.32113284, -0.32589, 0.14607108, 0.87711614)
+bones/8/rotation = Quaternion(4.986723e-05, 4.985455e-05, -0.70692384, 0.7072897)
+bones/9/rotation = Quaternion(-0.61804146, 0.080583476, 0.6177681, 0.47947222)
+bones/10/rotation = Quaternion(2.7660915e-08, 4.8046733e-08, 0.5185128, 0.8550699)
+bones/12/rotation = Quaternion(-0.31936488, 0.3009636, -0.22761369, 0.8692635)
+bones/13/rotation = Quaternion(0.00014003746, 0.00016494008, 0.7069617, 0.70725185)
+bones/15/rotation = Quaternion(0.99368155, 0.08365386, 0.07366573, 0.01313221)
+bones/16/rotation = Quaternion(0.20134717, 6.474713e-08, -1.2505193e-07, 0.97952)
+bones/17/rotation = Quaternion(-0.5205514, -0.2093315, 0.04452008, 0.826574)
+bones/18/rotation = Quaternion(9.815213e-05, 0.9202456, -0.39134142, -2.215707e-05)
+bones/19/rotation = Quaternion(0.9972242, -0.029542629, 0.03148779, 0.06066011)
+bones/20/rotation = Quaternion(0.27815226, -6.366086e-08, 1.9509179e-07, 0.960537)
+bones/21/rotation = Quaternion(-0.5612418, 0.11448692, -0.008970369, 0.8196463)
+bones/38/position = Vector3(0.5208407, 0.7878003, -0.05763735)
+bones/40/position = Vector3(-0.5108437, 0.78780025, 0.059736922)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2115039, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2271991, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
 visible = false
@@ -289,13 +289,13 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.94270736, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9584025, 1.0572674e-15)
 
 [node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
 visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.0013266157, -0.15568745, -0.9878053, -0.99998397, -0.005584088, -0.00046253315, -0.005444119, 0.9877902, -0.15569246, -0.49053034, 0.633115, 0.10772054)
+transform = Transform3D(-6.87478e-05, -0.15072331, -0.9885759, -0.9999996, -0.00077163504, 0.00018738188, -0.00079128356, 0.9885753, -0.1507233, -0.49117306, 0.6407227, 0.10648046)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.285187, 0.3403611)

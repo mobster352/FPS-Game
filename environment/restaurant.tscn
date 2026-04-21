@@ -298,19 +298,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Mushroom_Pizza_Slices" parent="Environment/Restaurant/Decorations/kitchentable_B3/Marker3D" unique_id=68276855 instance=ExtResource("10_ac10s")]
 
 [node name="Monitor" parent="Environment/Restaurant/Decorations" unique_id=735103462 instance=ExtResource("12_w3jle")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.020117, 2.4897282, 8.949292)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.020117, 1.8989038, 7.979781)
 
 [node name="kitchencounter_sink" parent="Environment/Restaurant/Decorations" unique_id=183972977 groups=["nav_back_restaurant"] instance=ExtResource("14_w3jle")]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -20.525087, 0, 4.995189)
 
 [node name="kitchentable_B_large" parent="Environment/Restaurant/Decorations" unique_id=878065265 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.036165, 0, 7.853652)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 0.75, 0, -1, 0, -4.371139e-08, -13.036165, 0, 7.853652)
 
 [node name="kitchentable_B_large3" parent="Environment/Restaurant/Decorations" unique_id=985653586 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.234201, 0, 12.92376)
-
-[node name="kitchentable_B_large4" parent="Environment/Restaurant/Decorations" unique_id=909398374 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.234201, 0, 12.92376)
+transform = Transform3D(-2.5, 0, -1.509958e-07, 0, 0.75, 0, 3.774895e-07, 0, -1, -10.209353, 0, 12.686308)
 
 [node name="kitchentable_B_large2" parent="Environment/Restaurant/Decorations" unique_id=1377662822 groups=["nav_back_restaurant"] instance=ExtResource("13_ggvsq")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -15.552262, 0, 7.90578)
@@ -322,25 +319,29 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.928757, 2.8682082, 13.70686)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
 text = "Add Cheese and Sauce to make a Pizza"
-font_size = 48
+font_size = 64
+outline_size = 6
 
 [node name="PizzaLabel2" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=693455566]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.287757, 2.9075513, 0.53730536)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.287757, 2.9075513, 0.71323085)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
 text = "Place Drive-Thru orders in a box"
-font_size = 38
+font_size = 48
+outline_size = 6
 
 [node name="PizzaLabel3" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1206032397]
-transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -21.5405, 3.2280138, 0.3213458)
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -21.5405, 3.3655818, 0.20881945)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
 text = "Deliveries"
-font_size = 48
+font_size = 64
+outline_size = 6
 
 [node name="PizzaLabel4" type="Label3D" parent="Environment/Restaurant/Decorations" unique_id=1387563856]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -12.076424, 2.9654782, -1.4810138)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -11.828754, 2.9654782, -1.4810138)
 modulate = Color(0.2627451, 1, 0.75686276, 1)
 text = "Pizza Slices"
-font_size = 48
+font_size = 64
+outline_size = 6
 
 [node name="kitchentable_B4" parent="Environment/Restaurant/Decorations" unique_id=1279682353 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -15.886312, 0, -0.29851815)

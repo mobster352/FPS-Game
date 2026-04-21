@@ -101,7 +101,8 @@ metadata/name = &"crate_mesh"
 
 [node name="PizzaLabel" parent="body" index="4" unique_id=2100755056 instance=ExtResource("6_ytnlp")]
 unique_name_in_owner = true
-text = ""
+visible = true
+outline_size = 6
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="1" unique_id=383395764]
 replication_config = SubResource("SceneReplicationConfig_wl83s")

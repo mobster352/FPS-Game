@@ -173,15 +173,15 @@ size = Vector2i(1088, 562)
 
 [node name="MarginContainer" type="MarginContainer" parent="cash_register/SubViewport" unique_id=1182022733]
 unique_name_in_owner = true
-offset_right = 1152.0
-offset_bottom = 648.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 75
+offset_left = 64.0
+offset_right = 1088.0
+offset_bottom = 660.0
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
 
 [node name="GridContainer" type="GridContainer" parent="cash_register/SubViewport/MarginContainer" unique_id=682297616]
 layout_mode = 2
-theme_override_constants/h_separation = 248
-theme_override_constants/v_separation = 61
+theme_override_constants/v_separation = 70
 columns = 2
 
 [node name="Order" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1708579088]
@@ -193,7 +193,7 @@ label_settings = SubResource("LabelSettings_nhqdx")
 [node name="OrderValue" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1251082163]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Cheese Pizza Slice"
+text = "Mushroom Pizza Slice"
 label_settings = SubResource("LabelSettings_nhqdx")
 horizontal_alignment = 2
 

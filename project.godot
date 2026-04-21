@@ -48,6 +48,10 @@ placement_system=""
 quest_log=""
 cash_register=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 ui_accept={
