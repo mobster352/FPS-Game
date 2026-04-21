@@ -22,6 +22,7 @@ func _ready() -> void:
 	set_register_visibility(false)
 	change = 0
 	GlobalSignal.process_order.connect(_process_order)
+	GlobalSignal.remove_order_from_register.connect(_remove_order_from_register)
 	player = get_tree().get_first_node_in_group("player")
 
 
@@ -32,11 +33,7 @@ func _process(_delta: float) -> void:
 		%ConfirmTransaction.hide()
 	if Input.is_action_just_pressed("complete_transaction") and is_open and player.is_cashier:
 		if change == 0:
-			%MarginContainer.hide()
-			%OrderValue.text = ""
-			%ReceivedValue.text = ""
-			%TotalValue.text = ""
-			%ChangeValue.text = ""
+			_remove_order_from_register()
 			for child:Node3D in %CashSpawn.get_children():
 				child.queue_free()
 			GlobalSignal.process_payment.emit(npc_dummy)
@@ -48,6 +45,15 @@ func _process(_delta: float) -> void:
 			child.queue_free()
 		change = money_payed - total
 		
+
+
+func _remove_order_from_register() -> void:
+	%MarginContainer.hide()
+	%OrderValue.text = ""
+	%ReceivedValue.text = ""
+	%TotalValue.text = ""
+	%ChangeValue.text = ""
+
 
 
 func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_food:int) -> void:

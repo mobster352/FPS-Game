@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="3_k0m3b"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_kfvlc"]
 [ext_resource type="Script" uid="uid://ca88v61n8pibv" path="res://entities/npc/npc_dummy_interactable.gd" id="5_k0m3b"]
+[ext_resource type="PackedScene" uid="uid://clejiqu3onixq" path="res://components/radial_progress_bar.tscn" id="5_p43ok"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwd6t"]
 radius = 0.47802734
@@ -52,6 +53,12 @@ visible = false
 script = ExtResource("5_k0m3b")
 npc_dummy = NodePath("..")
 
+[node name="RadialProgressBar" parent="." unique_id=1885023224 instance=ExtResource("5_p43ok")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7932312, 0)
+visible = false
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="radial_timeout" from="RadialProgressBar" to="." method="_on_radial_progress_bar_radial_timeout"]

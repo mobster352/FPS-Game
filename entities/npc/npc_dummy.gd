@@ -27,6 +27,7 @@ var random_food:int
 var is_waiting_on_table:bool = false
 
 var player:Player
+var order_total:int
 
 func _ready() -> void:
 	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
@@ -92,14 +93,15 @@ func _physics_process(delta: float) -> void:
 				pointer.show()
 				
 				has_order = true
-				var money:int = 0
+				order_total = 0
 				random_food = randi_range(1,6)
 				if random_food in [1,2,3]:
-					money = 5
+					order_total = 5
 				else:
-					money = 10
-				var money_payed:int = randi_range(money, money+8)
-				GlobalSignal.process_order.emit(self, money_payed, money, random_food)
+					order_total = 10
+				var money_payed:int = randi_range(order_total, order_total+8)
+				GlobalSignal.process_order.emit(self, money_payed, order_total, random_food)
+				%RadialProgressBar.show()
 			if table and not sitting:
 				get_parent().remove_child(self)
 				table.chair.add_child(self)
@@ -107,6 +109,7 @@ func _physics_process(delta: float) -> void:
 				look_at(table.global_position)
 				dummy.sit_chair_animation()
 				sitting = true
+				%RadialProgressBar.show()
 			if not sitting:
 				dummy.idle_animation()
 			if target == GlobalMarker.outside_marker:
@@ -129,6 +132,7 @@ func _physics_process(delta: float) -> void:
 				if not GlobalMarker.queue1_npc:
 					GlobalMarker.queue1_npc = self
 					target = GlobalMarker.queue_marker
+					%RadialProgressBar.show()
 					GlobalMarker.queue2_npc = null
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			elif target == GlobalMarker.queue3_marker:
@@ -174,6 +178,7 @@ func _check_for_open_table() -> void:
 
 func _process_payment(npc_dummy:NPC_Dummy) -> void:
 	if npc_dummy == self:
+		%RadialProgressBar.hide()
 		GlobalSignal.get_open_table.emit(self)
 
 
@@ -210,15 +215,33 @@ func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 		initial_parent.add_child(self)
 		global_transform = table.chair.sitting_marker.global_transform
 		look_at(table.global_position)
+		table.is_empty = true
+		table.npc = null
 		await get_tree().create_timer(0.5).timeout
-		target = GlobalMarker.outside_marker
-		navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-		area_col.disabled = true
-		table = null
-		sitting = false
 		GlobalSignal.check_for_open_table.emit()
+		_leave_restaurant()
+
+
+func _leave_restaurant() -> void:
+	target = GlobalMarker.outside_marker
+	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+	area_col.disabled = true
+	table = null
+	sitting = false
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
 	move_and_slide()
+
+
+func _on_radial_progress_bar_radial_timeout() -> void:
+	if sitting:
+		GlobalSignal.remove_order_from_list.emit(table.table_id)
+		_remove_customer(self)
+		player.update_money(-order_total)
+	else:
+		_leave_restaurant()
+		GlobalSignal.remove_order_from_register.emit()
+		await get_tree().create_timer(1).timeout
+		GlobalMarker.queue1_npc = null

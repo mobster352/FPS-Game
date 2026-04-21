@@ -109,3 +109,6 @@ signal update_time(time:String, is_pm:bool)
 
 @warning_ignore("unused_signal")
 signal set_time_visibility(visible:bool)
+
+@warning_ignore("unused_signal")
+signal remove_order_from_register

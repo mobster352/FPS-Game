@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://clejiqu3onixq"]
+
+[ext_resource type="Script" uid="uid://bk8ie2pkhano6" path="res://components/radial_progress_bar.gd" id="1_5f603"]
+[ext_resource type="Texture2D" uid="uid://ckmovx3lqwgfe" path="res://assets/pizzaboy/progress_bar_circle_transparent.png" id="1_n5nrt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n5nrt"]
+viewport_path = NodePath("CSGBox3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f603"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_n5nrt")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[node name="RadialProgressBar" type="Node3D" unique_id=1885023224]
+script = ExtResource("1_5f603")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=392463666]
+size = Vector3(1, 1, 0)
+material = SubResource("StandardMaterial3D_5f603")
+
+[node name="SubViewport" type="SubViewport" parent="CSGBox3D" unique_id=1842839910]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="RadialProgressBar" type="Control" parent="CSGBox3D/SubViewport" unique_id=1615872215]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CSGBox3D/SubViewport/RadialProgressBar" unique_id=763864576]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -112.5
+offset_right = 112.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 55.0
+fill_mode = 4
+texture_under = ExtResource("1_n5nrt")
+texture_progress = ExtResource("1_n5nrt")
+tint_under = Color(0.7666196, 0.76661956, 0.76661956, 1)
+tint_progress = Color(0, 1, 0.85882354, 1)
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
