@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dldo317gvwies"]
+[gd_scene format=3 uid="uid://dldo317gvwies"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_vw06d"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_whkud"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_fwepx"]
 size = Vector3(0.5171509, 0.56988525, 0.5249634)
 
-[node name="food_ingredient_mushroom" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_vw06d")]
+[node name="food_ingredient_mushroom" unique_id=668059811 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_vw06d")]
 mesh = NodePath("body/food_ingredient_mushroom/food_ingredient_mushroom")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -16,19 +16,19 @@ meshInstanceArray = [NodePath("body/food_ingredient_mushroom/food_ingredient_mus
 albedo_texture = ExtResource("2_whkud")
 metadata/name = &"mushroom"
 
-[node name="body" parent="." index="0"]
-can_sleep = false
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009124756, 0.071624756, 0.005218506)
 shape = SubResource("BoxShape3D_fwepx")
 
-[node name="food_ingredient_mushroom" parent="body" index="1" instance=ExtResource("3_tvw18")]
+[node name="food_ingredient_mushroom" parent="body" index="1" unique_id=1405347228 instance=ExtResource("3_tvw18")]
 
 [node name="food_ingredient_mushroom" parent="body/food_ingredient_mushroom" index="0"]
 metadata/name = &"food_ingredient_mushroom_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=283532469 node_paths=PackedStringArray("item")]
 script = ExtResource("4_whkud")
 item = NodePath("../..")
 

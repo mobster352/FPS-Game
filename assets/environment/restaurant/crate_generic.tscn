@@ -62,7 +62,7 @@ properties/1/path = NodePath("body:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="crate_generic" unique_id=1078960927 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["static", "thief_target"] instance=ExtResource("1_0wkgb")]
+[node name="crate_generic" unique_id=1078960927 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["thief_target"] instance=ExtResource("1_0wkgb")]
 mesh = NodePath("body/Interactable/crate2")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")

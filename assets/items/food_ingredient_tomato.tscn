@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqvbnoj3n72ox"]
+[gd_scene format=3 uid="uid://dqvbnoj3n72ox"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_021o2"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_l7j4t"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7j4t"]
 size = Vector3(0.74658203, 0.70983887, 0.7505493)
 
-[node name="food_ingredient_tomato" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_021o2")]
+[node name="food_ingredient_tomato" unique_id=1870772815 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_021o2")]
 mesh = NodePath("body/food_ingredient_tomato/food_ingredient_tomato")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -16,19 +16,19 @@ meshInstanceArray = [NodePath("body/food_ingredient_tomato/food_ingredient_tomat
 albedo_texture = ExtResource("2_l7j4t")
 metadata/name = &"tomato"
 
-[node name="body" parent="." index="0"]
-can_sleep = false
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007324219, 0.35491943, 0.0008239746)
 shape = SubResource("BoxShape3D_l7j4t")
 
-[node name="food_ingredient_tomato" parent="body" index="1" instance=ExtResource("2_tsbu5")]
+[node name="food_ingredient_tomato" parent="body" index="1" unique_id=1289685152 instance=ExtResource("2_tsbu5")]
 
 [node name="food_ingredient_tomato" parent="body/food_ingredient_tomato" index="0"]
 metadata/name = &"food_ingredient_tomato_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1010139950 node_paths=PackedStringArray("item")]
 script = ExtResource("4_l7j4t")
 item = NodePath("../..")
 

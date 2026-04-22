@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rh40fw8vhtkc"]
+[gd_scene format=3 uid="uid://rh40fw8vhtkc"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_soev4"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_hecch"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_hecch"]
 size = Vector3(0.9729004, 0.50146484, 0.7219238)
 
-[node name="food_ingredient_cheese" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_soev4")]
+[node name="food_ingredient_cheese" unique_id=838689451 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_soev4")]
 mesh = NodePath("body/food_ingredient_cheese/food_ingredient_cheese")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -16,19 +16,19 @@ meshInstanceArray = [NodePath("body/food_ingredient_cheese/food_ingredient_chees
 albedo_texture = ExtResource("2_hecch")
 metadata/name = &"cheese"
 
-[node name="body" parent="." index="0"]
-can_sleep = false
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1517334, 0.25073242, 0.0028076172)
 shape = SubResource("BoxShape3D_hecch")
 
-[node name="food_ingredient_cheese" parent="body" index="1" instance=ExtResource("2_yu1aq")]
+[node name="food_ingredient_cheese" parent="body" index="1" unique_id=188909414 instance=ExtResource("2_yu1aq")]
 
 [node name="food_ingredient_cheese" parent="body/food_ingredient_cheese" index="0"]
 metadata/name = &"food_ingredient_cheese_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=315381848 node_paths=PackedStringArray("item")]
 script = ExtResource("4_hecch")
 item = NodePath("../..")
 

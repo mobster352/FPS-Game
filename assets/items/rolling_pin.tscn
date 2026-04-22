@@ -34,17 +34,20 @@ meshInstanceArray = [NodePath("body/mesh/rollingpin")]
 albedo_texture = ExtResource("2_gix2a")
 multiplayer_synchornizer = NodePath("MultiplayerSynchronizer")
 
-[node name="CollisionShape3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="0" unique_id=389354591]
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
+
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017089844, 0.003540039, 0.007019043)
 shape = SubResource("ConvexPolygonShape3D_gix2a")
 
-[node name="mesh" parent="body" parent_id_path=PackedInt32Array(978506078) index="1" unique_id=1338729564 instance=ExtResource("3_mh0x7")]
+[node name="mesh" parent="body" index="1" unique_id=1338729564 instance=ExtResource("3_mh0x7")]
 
-[node name="Interactable" type="Node3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="4" unique_id=772216194 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=772216194 node_paths=PackedStringArray("item")]
 script = ExtResource("4_gix2a")
 item = NodePath("../..")
 
-[node name="InteractableMP" type="Node3D" parent="body" parent_id_path=PackedInt32Array(978506078) index="5" unique_id=1139455951 node_paths=PackedStringArray("item")]
+[node name="InteractableMP" type="Node3D" parent="body" index="5" unique_id=1139455951 node_paths=PackedStringArray("item")]
 script = ExtResource("5_mh0x7")
 item = NodePath("../..")
 

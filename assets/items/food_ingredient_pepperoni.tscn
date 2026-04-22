@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwbi1l7xm1dqo"]
+[gd_scene format=3 uid="uid://dwbi1l7xm1dqo"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_rn882"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_7r5ds"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bl7p"]
 size = Vector3(1.4973145, 0.4050293, 0.40234375)
 
-[node name="food_ingredient_pepperoni" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_rn882")]
+[node name="food_ingredient_pepperoni" unique_id=282226976 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_rn882")]
 mesh = NodePath("body/food_ingredient_pepperoni/food_ingredient_pepperoni")
 rigid_body = NodePath("body")
 area = NodePath("body/Area3D")
@@ -16,19 +16,19 @@ meshInstanceArray = [NodePath("body/food_ingredient_pepperoni/food_ingredient_pe
 albedo_texture = ExtResource("2_7r5ds")
 metadata/name = &"pepperoni"
 
-[node name="body" parent="." index="0"]
-can_sleep = false
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, 0.00012207031, 0.0029296875)
 shape = SubResource("BoxShape3D_0bl7p")
 
-[node name="food_ingredient_pepperoni" parent="body" index="1" instance=ExtResource("3_xo4ov")]
+[node name="food_ingredient_pepperoni" parent="body" index="1" unique_id=1035852189 instance=ExtResource("3_xo4ov")]
 
 [node name="food_ingredient_pepperoni" parent="body/food_ingredient_pepperoni" index="0"]
 metadata/name = &"food_ingredient_pepperoni_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1359451797 node_paths=PackedStringArray("item")]
 script = ExtResource("4_7r5ds")
 item = NodePath("../..")
 

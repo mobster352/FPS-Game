@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2uqcxly8m6l4"]
+[gd_scene format=3 uid="uid://c2uqcxly8m6l4"]
 
 [ext_resource type="PackedScene" uid="uid://dailpqyk5qdk4" path="res://assets/items/item.tscn" id="1_j2v25"]
 [ext_resource type="Texture2D" uid="uid://cruxwxefv2v1j" path="res://assets/kaykit/restaurant/restaurantbits_extra.png" id="2_rh6gc"]
@@ -8,7 +8,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mh5sv"]
 size = Vector3(1.9976196, 0.30664063, 1.9780884)
 
-[node name="food_pizza_mushroom_plated" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_j2v25")]
+[node name="food_pizza_mushroom_plated" unique_id=1305392606 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") instance=ExtResource("1_j2v25")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = NodePath("body/mesh/food_pizza_mushroom_plated")
 rigid_body = NodePath("body")
@@ -17,19 +17,20 @@ meshInstanceArray = [NodePath("body/mesh/food_pizza_mushroom_plated")]
 albedo_texture = ExtResource("2_rh6gc")
 metadata/food_id = 6
 
-[node name="body" parent="." index="0"]
+[node name="body" parent="." index="0" unique_id=978506078]
+collision_mask = 109
 metadata/name = &"whole_pizza"
 
-[node name="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022888184, 0.15332031, 0.0022888184)
 shape = SubResource("BoxShape3D_mh5sv")
 
-[node name="mesh" parent="body" index="1" instance=ExtResource("3_0ns7q")]
+[node name="mesh" parent="body" index="1" unique_id=591967070 instance=ExtResource("3_0ns7q")]
 
 [node name="food_pizza_mushroom_plated" parent="body/mesh" index="0"]
 metadata/name = &"food_ingredient_mushroom_pizza_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1555441281 node_paths=PackedStringArray("item")]
 script = ExtResource("4_rh6gc")
 item = NodePath("../..")
 
