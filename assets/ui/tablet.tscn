@@ -34,7 +34,7 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="Tablet" type="Control" unique_id=1200652761]
+[node name="Tablet" type="Control" unique_id=1200652761 node_paths=PackedStringArray("order_vbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fysnc")
+order_vbox = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/OrderVBoxContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
 layout_mode = 1
@@ -94,9 +95,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oq8je")
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_p1abc")
 current_tab = 0
 
-[node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
+[node name="Orders" type="Control" parent="MarginContainer/TabContainer" unique_id=1144617593]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Orders" unique_id=1111150729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OrderVBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=484179309]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Tables" unique_id=1157536191]
 layout_mode = 1

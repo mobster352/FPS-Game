@@ -7,17 +7,23 @@ enum TabletStoreItems {
 	Table_Round_B_Tablecloth_Red
 }
 
+@export var order_vbox:VBoxContainer
+
 var is_tablet_open := false
 var placement_system: PlacementSystem
 var player:Player
 
 var quest_log:QuestLog
+var order_list: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	placement_system = get_tree().get_first_node_in_group("placement_system")
 	player = get_tree().get_first_node_in_group("player")
 	quest_log = get_tree().get_first_node_in_group("quest_log")
+	
+	GlobalSignal.add_order.connect(_add_order)
+	GlobalSignal.remove_order_from_list.connect(_remove_order_from_list)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -77,3 +83,25 @@ func _on_purchase_table_button_pressed(enum_name:String) -> void:
 
 func _on_close_tablet_button_pressed() -> void:
 	hide_tablet()
+
+func _add_order(table_id:int, food_id: int) -> void:
+	var monitor_order = preload("res://assets/environment/restaurant/monitor_order.tscn").instantiate() as MarginContainer
+	var child = monitor_order.get_child(0) as Label
+	
+	var food = GlobalVar.get_food(food_id) as Food
+	if table_id == 0:
+		child.text = "Drive-Thru: " + food.food_name
+	else:
+		child.text = "Table " + str(table_id) + ": " + food.food_name
+	
+	order_vbox.add_child(monitor_order)
+	var order = {"table_id": table_id, "food_id": food_id, "monitor_order": monitor_order}
+	order_list.append(order)
+
+func _remove_order_from_list(table_id: int) -> void:
+	var i = 0
+	for order in order_list:
+		if order.table_id == table_id:
+			order_vbox.remove_child(order.monitor_order)
+			order_list.remove_at(i)
+		i += 1
