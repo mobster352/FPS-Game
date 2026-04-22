@@ -144,7 +144,9 @@ func _physics_process(delta: float) -> void:
 			elif target == endPathMarker:
 				queue_free()
 			elif target == GlobalMarker.queue_marker:
-				look_at(player.global_position)
+				var target_pos = player.global_position
+				target_pos.y = global_position.y
+				look_at(target_pos)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
