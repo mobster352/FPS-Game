@@ -5,6 +5,16 @@
 [sub_resource type="FontVariation" id="FontVariation_ylvgs"]
 variation_embolden = 0.15
 
+[sub_resource type="LabelSettings" id="LabelSettings_w4bhi"]
+font = SubResource("FontVariation_ylvgs")
+font_size = 24
+font_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap4so"]
+bg_color = Color(0, 0.6531362, 0.5593084, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ap4so"]
 font = SubResource("FontVariation_ylvgs")
 font_size = 24
@@ -16,13 +26,6 @@ outline_color = Color(0, 0, 0, 1)
 font = SubResource("FontVariation_ylvgs")
 font_size = 18
 font_color = Color(0, 1, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_w4bhi"]
-font = SubResource("FontVariation_ylvgs")
-font_size = 24
-font_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
@@ -60,28 +63,91 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0.19607843, 0.19607843, 0.19607843, 0.84313726)
 
-[node name="PlayerMoney" type="HBoxContainer" parent="Control" unique_id=998316853]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 296.0
-offset_bottom = 40.0
+[node name="LevelContainer" type="MarginContainer" parent="Control" unique_id=1951394627]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.593
+anchor_right = -0.669
+anchor_bottom = 0.83300006
+offset_left = 0.17602539
+offset_right = -7.991974
+offset_bottom = 1.0159988
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/LevelContainer" unique_id=1787542174]
+layout_mode = 2
+color = Color(0.22745098, 0.22745098, 0.22745098, 0.47058824)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/LevelContainer" unique_id=1701497570]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/LevelContainer/MarginContainer" unique_id=56846672]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Level" type="HBoxContainer" parent="Control/LevelContainer/MarginContainer/HBoxContainer" unique_id=1825670997]
+layout_mode = 2
+alignment = 2
+
+[node name="LevelLabel" type="Label" parent="Control/LevelContainer/MarginContainer/HBoxContainer/Level" unique_id=576189652]
+layout_mode = 2
+text = "Lv:"
+label_settings = SubResource("LabelSettings_w4bhi")
+
+[node name="LevelValue" type="Label" parent="Control/LevelContainer/MarginContainer/HBoxContainer/Level" unique_id=553250295]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_w4bhi")
+
+[node name="LevelProgressBar" type="ProgressBar" parent="Control/LevelContainer/MarginContainer/HBoxContainer" unique_id=1024986785]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_ap4so")
+value = 50.0
+show_percentage = false
+
+[node name="MoneyContainer" type="MarginContainer" parent="Control" unique_id=1747305022]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46300003
+anchor_right = 0.725
+anchor_bottom = 0.83300006
+offset_left = -40.016006
+offset_right = -20.200012
+offset_bottom = 0.01599884
+
+[node name="ColorRect" type="ColorRect" parent="Control/MoneyContainer" unique_id=581961542]
+layout_mode = 2
+color = Color(0.22745098, 0.22745098, 0.22745098, 0.47058824)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MoneyContainer" unique_id=80052316]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="PlayerMoney" type="HBoxContainer" parent="Control/MoneyContainer/MarginContainer" unique_id=998316853]
+layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 2
 
-[node name="DollarSign" type="Label" parent="Control/PlayerMoney" unique_id=72951108]
+[node name="DollarSign" type="Label" parent="Control/MoneyContainer/MarginContainer/PlayerMoney" unique_id=72951108]
 layout_mode = 2
 text = "$"
 label_settings = SubResource("LabelSettings_ap4so")
 
-[node name="MoneyValue" type="Label" parent="Control/PlayerMoney" unique_id=82796244]
+[node name="MoneyValue" type="Label" parent="Control/MoneyContainer/MarginContainer/PlayerMoney" unique_id=82796244]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_ap4so")
-visible_characters = 10
-visible_ratio = 3.3333333
 
-[node name="MoneyIncrement" type="Label" parent="Control/PlayerMoney/MoneyValue" unique_id=572413830]
+[node name="MoneyIncrement" type="Label" parent="Control/MoneyContainer/MarginContainer/PlayerMoney/MoneyValue" unique_id=572413830]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -97,13 +163,29 @@ offset_bottom = 0.013999939
 text = "+0"
 label_settings = SubResource("LabelSettings_rewvx")
 
-[node name="Time" type="HBoxContainer" parent="Control" unique_id=687034264]
-layout_mode = 0
-offset_left = 320.0
-offset_right = 420.0
-offset_bottom = 40.0
+[node name="TimeContainer" type="MarginContainer" parent="Control" unique_id=995582863]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75900006
+anchor_right = 0.99300003
+anchor_bottom = 0.83300006
+offset_left = -15.888031
+offset_right = 4.023987
+offset_bottom = 0.01599884
 
-[node name="TimeValue" type="Label" parent="Control/Time" unique_id=408303468]
+[node name="ColorRect" type="ColorRect" parent="Control/TimeContainer" unique_id=278796630]
+layout_mode = 2
+color = Color(0.22670749, 0.22670749, 0.22670746, 0.47058824)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TimeContainer" unique_id=657092610]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Time" type="HBoxContainer" parent="Control/TimeContainer/MarginContainer" unique_id=687034264]
+layout_mode = 2
+
+[node name="TimeValue" type="Label" parent="Control/TimeContainer/MarginContainer/Time" unique_id=408303468]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10:34pm"
