@@ -21,8 +21,6 @@ tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xafjm"]
-
 [node name="Level" type="Node3D" unique_id=1263719789 node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
 process_mode = 1
 script = ExtResource("1_vfqff")
@@ -44,11 +42,6 @@ environment = SubResource("Environment_vfqff")
 shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="." unique_id=2027113216]
-
-[node name="World" type="StaticBody3D" parent="Environment" unique_id=205505386]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/World" unique_id=1756685004]
-shape = SubResource("WorldBoundaryShape3D_xafjm")
 
 [node name="Ceiling" type="Node3D" parent="Environment" unique_id=298405826]
 

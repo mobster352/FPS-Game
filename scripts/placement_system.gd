@@ -161,6 +161,7 @@ func confirm_placement() -> bool:
 	toggle_build = false
 	
 	player.update_money(money)
+	GlobalSignal.check_for_open_table.emit()
 	
 	return true
 

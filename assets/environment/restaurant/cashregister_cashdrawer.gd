@@ -34,20 +34,24 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("complete_transaction") and is_open and player.is_cashier:
 		if change == 0:
 			_remove_order_from_register()
-			for child:Node3D in %CashSpawn.get_children():
-				child.queue_free()
 			GlobalSignal.process_payment.emit(npc_dummy)
 			player.update_money(total)
 			total = 0
 	if not player.is_cashier:
 		set_register_visibility(false)
-		for child:Node3D in %CashSpawn.get_children():
-			child.queue_free()
+		_clear_money()
 		change = money_payed - total
 		
 
 
+func _clear_money() -> void:
+	for child:Node3D in %CashSpawn.get_children():
+		child.queue_free()
+
+
 func _remove_order_from_register() -> void:
+	_clear_money()
+	change = -1000
 	%MarginContainer.hide()
 	%OrderValue.text = ""
 	%ReceivedValue.text = ""
@@ -57,6 +61,8 @@ func _remove_order_from_register() -> void:
 
 
 func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_food:int) -> void:
+	_clear_money()
+	
 	total = _total
 	money_payed = _money_payed
 	change = money_payed - total

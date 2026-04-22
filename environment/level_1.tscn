@@ -33,6 +33,36 @@ cell_height = 0.01
 agent_radius = 0.2
 edge_max_length = 0.25
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e0ycv"]
+size = Vector3(1, 10, 24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kv32d"]
+size = Vector3(12.508, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uk0wj"]
+size = Vector3(1, 10, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_or7vm"]
+size = Vector3(2, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhqdx"]
+size = Vector3(1, 10, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xg88"]
+size = Vector3(40, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8bsvg"]
+size = Vector3(1, 10, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_saud4"]
+size = Vector3(10, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wlmb3"]
+size = Vector3(1, 10, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yan4v"]
+size = Vector3(40, 10, 1)
+
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("restaurant", "player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
 day_length_minutes = 8.0
@@ -60,25 +90,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 8)
 [node name="base12" parent="Environment/Floor/Sidewalk" index="4" unique_id=1906230148 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 8)
 
-[node name="base2" parent="Environment/Floor/Sidewalk" index="5" unique_id=1306830173 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base13" parent="Environment/Floor/Sidewalk" index="5" unique_id=1780228827 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 8)
+
+[node name="base2" parent="Environment/Floor/Sidewalk" index="6" unique_id=1306830173 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
 
-[node name="base3" parent="Environment/Floor/Sidewalk" index="6" unique_id=1140969742 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base3" parent="Environment/Floor/Sidewalk" index="7" unique_id=1140969742 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
-[node name="base4" parent="Environment/Floor/Sidewalk" index="7" unique_id=714520549 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base4" parent="Environment/Floor/Sidewalk" index="8" unique_id=714520549 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 
-[node name="base5" parent="Environment/Floor/Sidewalk" index="8" unique_id=858722370 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base5" parent="Environment/Floor/Sidewalk" index="9" unique_id=858722370 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
-[node name="base6" parent="Environment/Floor/Sidewalk" index="9" unique_id=1913982246 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base6" parent="Environment/Floor/Sidewalk" index="10" unique_id=1913982246 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8)
 
-[node name="base7" parent="Environment/Floor/Sidewalk" index="10" unique_id=1170153845 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base7" parent="Environment/Floor/Sidewalk" index="11" unique_id=1170153845 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 
-[node name="base8" parent="Environment/Floor/Sidewalk" index="11" unique_id=353000249 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
+[node name="base8" parent="Environment/Floor/Sidewalk" index="12" unique_id=353000249 groups=["nav_sidewalk_restaurant"] instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 8)
 
 [node name="AroundRestaurant" type="Node3D" parent="Environment/Floor" parent_id_path=PackedInt32Array(1243817630) index="1" unique_id=35484971]
@@ -134,6 +167,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
 [node name="base28" parent="Environment/Floor/AroundRestaurant" index="16" unique_id=469226146 instance=ExtResource("2_2i2pb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 4)
 
+[node name="base29" parent="Environment/Floor/AroundRestaurant" index="17" unique_id=722990582 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -12)
+
+[node name="base34" parent="Environment/Floor/AroundRestaurant" index="18" unique_id=807483623 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -16)
+
+[node name="base35" parent="Environment/Floor/AroundRestaurant" index="19" unique_id=475329312 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
+
+[node name="base36" parent="Environment/Floor/AroundRestaurant" index="20" unique_id=1834628288 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="base37" parent="Environment/Floor/AroundRestaurant" index="21" unique_id=349140977 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16)
+
+[node name="base38" parent="Environment/Floor/AroundRestaurant" index="22" unique_id=1372118689 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -16)
+
+[node name="base39" parent="Environment/Floor/AroundRestaurant" index="23" unique_id=205131012 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -16)
+
+[node name="base40" parent="Environment/Floor/AroundRestaurant" index="24" unique_id=889754112 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
+
+[node name="base41" parent="Environment/Floor/AroundRestaurant" index="25" unique_id=1786050928 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -16)
+
+[node name="base42" parent="Environment/Floor/AroundRestaurant" index="26" unique_id=1959376648 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -16)
+
+[node name="base43" parent="Environment/Floor/AroundRestaurant" index="27" unique_id=868796507 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -16)
+
+[node name="base30" parent="Environment/Floor/AroundRestaurant" index="28" unique_id=1560564676 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -8)
+
+[node name="base31" parent="Environment/Floor/AroundRestaurant" index="29" unique_id=611123016 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, -4)
+
+[node name="base32" parent="Environment/Floor/AroundRestaurant" index="30" unique_id=674419254 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 0)
+
+[node name="base33" parent="Environment/Floor/AroundRestaurant" index="31" unique_id=871213941 instance=ExtResource("2_2i2pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 0, 4)
+
 [node name="Road" type="Node3D" parent="Environment/Floor" parent_id_path=PackedInt32Array(1243817630) index="2" unique_id=1344174959]
 
 [node name="road_straight" parent="Environment/Floor/Road" index="0" unique_id=1685287943 instance=ExtResource("3_ramo3")]
@@ -169,11 +247,77 @@ drive_thru_menu = NodePath("../../../Entities/DriveThruSpawn/DriveThruMenu")
 [node name="wall40" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Ceiling" parent_id_path=PackedInt32Array(1282270132, 259140845) index="12" unique_id=863957072]
 transform = Transform3D(-1, 4.371139e-08, -4.3711385e-08, -4.371139e-08, -4.371139e-08, 1, 4.3711385e-08, 1, 4.3711392e-08, -1.2278557e-05, 4.000013, 9.999987)
 
-[node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="29" unique_id=1140681504 node_paths=PackedStringArray("level")]
+[node name="open_sign" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Decorations" parent_id_path=PackedInt32Array(1282270132, 6263966) index="27" unique_id=1140681504 node_paths=PackedStringArray("level")]
 level = NodePath("../../../../../../..")
+
+[node name="wall34" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="22" unique_id=1014475099]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -16.306267, -4.056839, 14.246748)
+
+[node name="wall35" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="23" unique_id=892223882]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.306267, -4.177706, 14.246748)
+
+[node name="wall36" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="24" unique_id=867281978]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8.306267, -4.178913, 14.246748)
+
+[node name="wall29" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="25" unique_id=1168610957]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -14.306267, -4.178, 7.9277945)
+
+[node name="wall32" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="26" unique_id=1449761800]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.9280457, -4.178, 7.9277935)
+
+[node name="wall33" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="27" unique_id=263753670]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.928, -4.178, 11.928)
+
+[node name="wall30" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="28" unique_id=356709953]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -12.306267, -4.178, 5.927794)
+
+[node name="wall31" parent="Environment/Buildings/Restaurant/Environment/Restaurant/Walls" parent_id_path=PackedInt32Array(1282270132, 471095949) index="29" unique_id=398735731]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -8.306267, -4.178, 5.9277935)
 
 [node name="Queue" parent="Environment/Markers" parent_id_path=PackedInt32Array(1146535934) index="1" unique_id=1301580175]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -4.966239, 0, -0.012383854)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Boundaries" parent_id_path=PackedInt32Array(264896408) index="0" unique_id=2003783485]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="0" unique_id=1504648154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -6)
+shape = SubResource("BoxShape3D_e0ycv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="1" unique_id=101868198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.746, 5, 6)
+shape = SubResource("BoxShape3D_kv32d")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="2" unique_id=139160171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5, 8)
+shape = SubResource("BoxShape3D_uk0wj")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="3" unique_id=819665255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 5, 10.5)
+shape = SubResource("BoxShape3D_or7vm")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="4" unique_id=1031050214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 5, 15.5)
+shape = SubResource("BoxShape3D_nhqdx")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="5" unique_id=1361893778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 19.5)
+shape = SubResource("BoxShape3D_0xg88")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="6" unique_id=2058025678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 5, 14.5)
+shape = SubResource("BoxShape3D_8bsvg")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="7" unique_id=87515486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 5, 10.5)
+shape = SubResource("BoxShape3D_saud4")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="8" unique_id=539811118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, 5, -4)
+shape = SubResource("BoxShape3D_wlmb3")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Environment/Boundaries/StaticBody3D" index="9" unique_id=1446802196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -18)
+shape = SubResource("BoxShape3D_yan4v")
 
 [node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "tables_node", "items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
 transform = Transform3D(-0.65, 0, -5.6824803e-08, 0, 0.65, 0, 5.6824803e-08, 0, -0.65, -8.729814, 0, 2.5939982)

@@ -15,12 +15,18 @@ const BOX_SPACING = 0.3
 var in_range := false
 var disabled := false
 
+const BOX_WIDTH:float = 2.0
+const BOX_DEPTH:float = 2.0
+const SINGLE_BOX_HEIGHT:float = 0.3
+const MIN_HEIGHT:float = 0.3
+
 func _ready() -> void:
 	pizza_boxes = %PizzaBoxes
 	if has_node("body"):
 		this_body = $body
 	for i in range(num_pizza_boxes):
 		add_box_at_index(i)
+	set_num_pizza_boxes(num_pizza_boxes)
 
 func get_pos(index:int) -> float:
 	return index * BOX_SPACING
@@ -36,7 +42,7 @@ func remove_box_from_stack() -> PizzaBox:
 	pizza_boxes.remove_child(existing_box)
 	existing_box.queue_free()
 	
-	num_pizza_boxes -= 1
+	set_num_pizza_boxes(num_pizza_boxes - 1)
 	var new_pizzabox = pizzabox_open.instantiate() as PizzaBox
 	return new_pizzabox
 
@@ -45,7 +51,7 @@ func thief_remove_box_from_stack() -> void:
 	pizza_boxes.remove_child(existing_box)
 	existing_box.queue_free()
 	
-	num_pizza_boxes -= 1
+	set_num_pizza_boxes(num_pizza_boxes - 1)
 	if num_pizza_boxes == 1:
 		var new_pizzabox = pizzabox_open.instantiate() as PizzaBox
 		new_pizzabox.global_transform = global_transform
@@ -70,8 +76,30 @@ func _on_stack_area_body_entered(body: Node3D) -> void:
 				body.apply_impulse(forward * (throw_strength / rigidbody.mass), rigidbody.global_position + forward)
 			return
 		add_box_at_index(num_pizza_boxes)
-		num_pizza_boxes += 1
+		set_num_pizza_boxes(num_pizza_boxes + 1)
 		parent.shrink_and_free(0, 0)
+
+
+func set_num_pizza_boxes(value: int) -> void:
+	num_pizza_boxes = clamp(value, 0, MAX_STACK_SIZE)
+	update_stack_collision()
+
+
+func update_stack_collision() -> void:
+	if not %collider:
+		return
+
+	#var box_shape := %collider.shape as BoxShape3D
+	#if box_shape == null:
+	var box_shape = BoxShape3D.new()
+	%collider.shape = box_shape
+
+	var height:float = max(MIN_HEIGHT, num_pizza_boxes * SINGLE_BOX_HEIGHT)
+	box_shape.size = Vector3(BOX_WIDTH, height, BOX_DEPTH)
+
+	# Move the collision up so its bottom stays on the table/floor.
+	%collider.position.y = height * 0.5
+
 
 func interact(player: Player) -> void:
 	if player.has_held_object():
@@ -82,7 +110,7 @@ func interact(player: Player) -> void:
 			if num_pizza_boxes == MAX_STACK_SIZE:
 				return
 			add_box_at_index(num_pizza_boxes)
-			num_pizza_boxes += 1
+			set_num_pizza_boxes(num_pizza_boxes + 1)
 			held_obj.queue_free()
 			return
 		if player.get_held_object().has_meta("pizzaboxes"):
@@ -91,7 +119,7 @@ func interact(player: Player) -> void:
 				if num_pizza_boxes >= MAX_STACK_SIZE:
 					break
 				add_box_at_index(num_pizza_boxes)
-				num_pizza_boxes += 1
+				set_num_pizza_boxes(num_pizza_boxes + 1)
 				child.free()
 			player.num_pizza_boxes = held_obj.get_child_count()
 			player.preview_instance.num_pizza_boxes = held_obj.get_child_count()

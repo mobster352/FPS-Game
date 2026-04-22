@@ -19,7 +19,8 @@ metadata/place = true
 [node name="body" type="RigidBody3D" parent="." unique_id=474890183 groups=["static"]]
 collision_layer = 64
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=387341044]
+[node name="collider" type="CollisionShape3D" parent="body" unique_id=387341044]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4932557, 0.025)
 shape = SubResource("BoxShape3D_16iny")
 
@@ -32,6 +33,7 @@ collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/StackArea" unique_id=1577495283]
 shape = SubResource("SphereShape3D_lo3yj")
+disabled = true
 
 [node name="DetectionArea" type="Area3D" parent="body" unique_id=137176654]
 collision_mask = 2
@@ -44,6 +46,5 @@ unique_name_in_owner = true
 metadata/place = true
 metadata/pizzaboxes = true
 
-[connection signal="body_entered" from="body/StackArea" to="." method="_on_stack_area_body_entered"]
 [connection signal="body_entered" from="body/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="body/DetectionArea" to="." method="_on_detection_area_body_exited"]
