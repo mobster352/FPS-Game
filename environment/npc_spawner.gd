@@ -30,4 +30,5 @@ func _on_npc_spawn_timer_timeout() -> void:
 	npc_dummy.level_ui = level_ui
 	npc_dummy.position = position + Vector3(0, 0, randf_range(-0.5,0.5))
 	npc_dummy.rotation = rotation
+	npcSpawnTimer.wait_time = randf_range(3, 15)
 	get_parent().add_child(npc_dummy)

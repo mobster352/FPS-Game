@@ -3,6 +3,7 @@ class_name Thief
 
 @export var game_state: GameState
 @export var speed := 2.0
+@export var end_path_marker:Marker3D
 
 @onready var thief_skin: ThiefSkin
 @onready var navigation_agent: ThiefNavigationAgent
@@ -13,6 +14,7 @@ class_name Thief
 var navigation_target: Node
 var next_target: Node3D
 var has_item:bool = false
+var is_hit:bool = false
 
 enum ThiefState {
 	None,
@@ -86,6 +88,8 @@ func walk(delta:float) -> void:
 				pizza_box_stack.thief_remove_box_from_stack()
 				has_item = true
 				current_state = ThiefState.IdleHoldLargeObject
+			elif navigation_target == end_path_marker:
+				queue_free()
 			else:
 				has_item = false
 				current_state = ThiefState.Idle
@@ -133,6 +137,10 @@ func _on_walk_timer_timeout() -> void:
 	if has_item:
 		current_state = ThiefState.WalkHoldLargeObject
 		navigation_agent.set_random_target()
+	elif is_hit:
+		current_state = ThiefState.Walk
+		navigation_target = end_path_marker
+		navigation_agent.set_target(navigation_target)
 	else:
 		current_state = ThiefState.Walk
 		if next_target:
@@ -161,9 +169,10 @@ func hit() -> void:
 				item.global_transform = held_item.global_transform
 				item.scale = Vector3(1,1,1)
 				held_item.queue_free()
-			thief_skin.hit_animation()
 		has_item = false
-		current_state = ThiefState.Idle
+	current_state = ThiefState.Idle
+	thief_skin.hit_animation()
+	is_hit = true
 
 func get_random_time() -> float:
 	return randi_range(20, 40)

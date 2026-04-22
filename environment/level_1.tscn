@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="9_e0ycv"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="10_kv32d"]
 [ext_resource type="PackedScene" uid="uid://bvujdihwqllrs" path="res://environment/next_day_ui.tscn" id="11_0rppq"]
-[ext_resource type="PackedScene" uid="uid://cgoev8wqbi1ks" path="res://entities/npc/skeleton_rogue.tscn" id="12_kv32d"]
+[ext_resource type="PackedScene" uid="uid://b5focl0l18uhf" path="res://entities/npc/thief_spawner.tscn" id="12_kv32d"]
 [ext_resource type="PackedScene" uid="uid://dnq1nnpqchkh7" path="res://assets/environment/restaurant/cashregister_cashdrawer.tscn" id="13_e0ycv"]
 [ext_resource type="Script" uid="uid://c5i63yvieqi33" path="res://environment/npc_spawner.gd" id="13_kv32d"]
 
@@ -407,25 +407,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.3
 [node name="Timers" type="Node" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=2112135972]
 
 [node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
-wait_time = 3.0
+wait_time = 5.0
 
-[node name="Skeleton_Rogue" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="8" unique_id=2110840300 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
+[node name="ThiefSpawner" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="8" unique_id=203439532 node_paths=PackedStringArray("game_state", "endPathMarker") instance=ExtResource("12_kv32d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.085882, 0, 3.9808621)
 game_state = NodePath("../../GameState")
-
-[node name="Skeleton_Rogue2" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="9" unique_id=1367830120 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
-game_state = NodePath("../../GameState")
-
-[node name="Skeleton_Rogue3" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="10" unique_id=81027958 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
-game_state = NodePath("../../GameState")
-
-[node name="Skeleton_Rogue4" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="11" unique_id=1685942183 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
-game_state = NodePath("../../GameState")
-
-[node name="Skeleton_Rogue5" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="12" unique_id=1318114239 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
-game_state = NodePath("../../GameState")
-
-[node name="Skeleton_Rogue6" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="13" unique_id=2042337306 node_paths=PackedStringArray("game_state") instance=ExtResource("12_kv32d")]
-game_state = NodePath("../../GameState")
+endPathMarker = NodePath("../EndPathMarker")
 
 [node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
