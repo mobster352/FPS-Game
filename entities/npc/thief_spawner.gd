@@ -21,5 +21,5 @@ func _on_thief_timer_timeout() -> void:
 	thief.end_path_marker = endPathMarker
 	thief.position = position + Vector3(0, 0, randf_range(-0.5,0.5))
 	thief.rotation = rotation
-	%ThiefTimer.wait_time = randf_range(3, 15)
+	%ThiefTimer.wait_time = randf_range(15, 30)
 	get_parent().add_child(thief)

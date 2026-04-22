@@ -9,5 +9,6 @@ script = ExtResource("1_tdtxu")
 
 [node name="ThiefTimer" type="Timer" parent="Timers" unique_id=964632713]
 unique_name_in_owner = true
+wait_time = 30.0
 
 [connection signal="timeout" from="Timers/ThiefTimer" to="." method="_on_thief_timer_timeout"]

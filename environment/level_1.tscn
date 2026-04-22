@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="9_e0ycv"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="10_kv32d"]
 [ext_resource type="PackedScene" uid="uid://bvujdihwqllrs" path="res://environment/next_day_ui.tscn" id="11_0rppq"]
-[ext_resource type="PackedScene" uid="uid://b5focl0l18uhf" path="res://entities/npc/thief_spawner.tscn" id="12_kv32d"]
 [ext_resource type="PackedScene" uid="uid://dnq1nnpqchkh7" path="res://assets/environment/restaurant/cashregister_cashdrawer.tscn" id="13_e0ycv"]
 [ext_resource type="Script" uid="uid://c5i63yvieqi33" path="res://environment/npc_spawner.gd" id="13_kv32d"]
 
@@ -386,18 +385,24 @@ wait_time = 5.0
 [node name="Items" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=1145708403]
 
 [node name="StartPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="3" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.20523, 0, 8.064037)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.20523, 0, 7.3347816)
 script = ExtResource("13_kv32d")
-endPathMarker = NodePath("../EndPathMarker")
+endPathMarker = NodePath("Marker3D")
 level_ui = NodePath("../../UI")
 npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
 
+[node name="Marker3D" type="Marker3D" parent="Entities/StartPathMarker" index="0" unique_id=1880130272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.01641, 0, 0)
+
 [node name="EndPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="4" unique_id=1433582954 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -24.268303, 0, 8.064042)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -24.268303, 0, 8.737624)
 script = ExtResource("13_kv32d")
-endPathMarker = NodePath("../StartPathMarker")
+endPathMarker = NodePath("Marker3D")
 level_ui = NodePath("../../UI")
 npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
+
+[node name="Marker3D" type="Marker3D" parent="Entities/EndPathMarker" index="0" unique_id=1369260149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.514698, 0, 0)
 
 [node name="Tables" type="Node3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="5" unique_id=47192229]
 
@@ -408,11 +413,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.3
 
 [node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
 wait_time = 5.0
-
-[node name="ThiefSpawner" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="8" unique_id=203439532 node_paths=PackedStringArray("game_state", "endPathMarker") instance=ExtResource("12_kv32d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.085882, 0, 3.9808621)
-game_state = NodePath("../../GameState")
-endPathMarker = NodePath("../EndPathMarker")
 
 [node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
