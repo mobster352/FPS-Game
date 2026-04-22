@@ -23,7 +23,7 @@ speed = 2.0
 area_col = NodePath("Area3D/CollisionShape3D")
 navigation_agent = NodePath("NavigationAgent3D")
 pointer = NodePath("Pointer")
-walk_in_store_odds = 10
+walk_in_store_odds = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=929231383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2341309, 0)

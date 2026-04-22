@@ -115,8 +115,9 @@ func interact2(player: Player) -> void:
 	if player.has_held_object():
 		if disabled:
 			return
-		#player.drop_item()
-		return
+		if player.get_held_object().has_meta("pizzaboxes") or player.get_held_object_mesh_name() == "pizza_box_open_mesh":
+			return
+		player.drop_item()
 	else:
 		pickup(Vector3.ZERO, Vector3.ZERO, player)
 

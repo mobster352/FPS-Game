@@ -92,6 +92,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		plate_timer.start()
 		GlobalSignal.remove_order_from_list.emit(menu.table_id)
 		GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
+		var radialProgressBar:Node3D = npc.get_node("RadialProgressBar")
+		if radialProgressBar:
+			radialProgressBar.hide()
 
 func _on_plate_timer_timeout() -> void:
 	var plate_dirty = load("uid://bvxmwk63a2k37").instantiate() as Item

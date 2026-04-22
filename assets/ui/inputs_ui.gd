@@ -20,7 +20,8 @@ enum InputAction {
 	PreMove,
 	Confirm,
 	CombineStack,
-	PutBack
+	PutBack,
+	Default
 }
 
 
