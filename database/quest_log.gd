@@ -10,7 +10,7 @@ var player:Player
 var active_quest_id:int:
 	set(value):
 		active_quest_id = value
-		await get_tree().create_timer(1.0).timeout
+		#await get_tree().create_timer(1.0).timeout
 		update_quest_text()
 
 func _ready() -> void:
@@ -71,7 +71,6 @@ func update_quest_objective(quest_objective_id:int) -> void:
 			continue
 		if obj.status:
 			continue
-		obj.status = true
 		for child:Label in %ObjectivesList.get_children():
 			if not child:
 				continue
@@ -80,3 +79,4 @@ func update_quest_objective(quest_objective_id:int) -> void:
 				if %ObjectivesList.get_child_count() <= 0:
 					update_quest(active_quest_id)
 				GlobalSignal.add_xp.emit(5)
+				obj.status = true
