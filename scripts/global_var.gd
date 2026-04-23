@@ -167,3 +167,15 @@ func get_save_slot_by_id(slot:int) -> String:
 		return SAVE_SLOT_2
 	else:
 		return SAVE_SLOT_3
+
+
+func get_pizza_type_from_name(mesh_name:String) -> PIZZA_TYPE:
+	match mesh_name:
+		"food_ingredient_cheese_pizza_mesh":
+			return PIZZA_TYPE.CHEESE_PIE
+		"food_ingredient_pepperoni_pizza_mesh":
+			return PIZZA_TYPE.PEPPERONI_PIE
+		"food_ingredient_mushroom_pizza_mesh":
+			return PIZZA_TYPE.MUSHROOM_PIE
+		_:
+			return PIZZA_TYPE.NONE

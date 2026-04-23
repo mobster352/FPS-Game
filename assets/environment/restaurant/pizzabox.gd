@@ -45,6 +45,16 @@ func interact(_player: Player) -> void:
 	if disabled:
 		return
 	if player.has_held_object():
+		var held_obj:Node3D = player.get_held_object()
+		if held_obj.has_meta("name"):
+			var mesh_name:String = held_obj.get_meta("name")
+			if GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.PEPPERONI_PIE or \
+			GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.CHEESE_PIE or \
+			GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				var is_added:bool = add_pizza_to_box(mesh_name)
+				if is_added:
+					held_obj.queue_free()
+				return
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)
@@ -62,37 +72,37 @@ func cook() -> void:
 
 func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 	var parent = body.get_parent()
-	if body.has_meta("name") and body.get_meta("name") == "whole_pizza" and is_open:
-		var item = parent as Item
-		if item:
-			if pizza_slot.get_child_count() == 0:
-				var pizza_collider = body.get_node("CollisionShape3D") as CollisionShape3D
-				if pizza_collider:
-					pizza_collider.set_deferred("disabled", true)
-				var _mesh = item.mesh.duplicate()
-				_mesh.position = Vector3.ZERO
-				_mesh.rotation = Vector3.ZERO
-				_mesh.scale = Vector3(0.8,0.8,0.8)
-				if _mesh.has_meta("name"):
-					if _mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
-						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
-						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
-						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.PEPPERONI_PIE)
-					elif _mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
-						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
-						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
-						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.MUSHROOM_PIE)
-					elif _mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
-						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.CHEESE_PIE)
-					else:
-						pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
-						mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
-						pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
-				pizza_slot.add_child(_mesh)
-				item.shrink_and_free(0, 0)
-	elif parent is PizzaBox and parent != self:
+	#if body.has_meta("name") and body.get_meta("name") == "whole_pizza" and is_open:
+		#var item = parent as Item
+		#if item:
+			#if pizza_slot.get_child_count() == 0:
+				#var pizza_collider = body.get_node("CollisionShape3D") as CollisionShape3D
+				#if pizza_collider:
+					#pizza_collider.set_deferred("disabled", true)
+				#var _mesh = item.mesh.duplicate()
+				#_mesh.position = Vector3.ZERO
+				#_mesh.rotation = Vector3.ZERO
+				#_mesh.scale = Vector3(0.8,0.8,0.8)
+				#if _mesh.has_meta("name"):
+					#if _mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
+						#pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+						#mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+						#pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.PEPPERONI_PIE)
+					#elif _mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
+						#pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+						#mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+						#pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.MUSHROOM_PIE)
+					#elif _mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
+						#pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+						#mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+						#pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.CHEESE_PIE)
+					#else:
+						#pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						#mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+						#pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
+				#pizza_slot.add_child(_mesh)
+				#item.shrink_and_free(0, 0)
+	if parent is PizzaBox and parent != self:
 		if has_meta("food_id"):
 			return
 		if parent.has_meta("food_id"):
@@ -109,3 +119,35 @@ func _on_pizza_detection_area_body_entered(body: Node3D) -> void:
 			parent.get_parent().remove_child(parent)
 			parent.queue_free()
 			queue_free()
+
+
+func add_pizza_to_box(mesh_name:String) -> bool:
+	var item:Item = GlobalVar.get_item_from_mesh(mesh_name)
+	if not item:
+		return false
+	if pizza_slot.get_child_count() > 0:
+		return false
+	var item_mesh = item.mesh.duplicate()
+	item_mesh.position = Vector3.ZERO
+	item_mesh.rotation = Vector3.ZERO
+	item_mesh.scale = Vector3(0.8,0.8,0.8)
+	if item_mesh.has_meta("name"):
+		if item_mesh.get_meta("name") == "food_ingredient_pepperoni_pizza_mesh":
+			pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+			mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.PEPPERONI)
+			pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.PEPPERONI_PIE)
+		elif item_mesh.get_meta("name") == "food_ingredient_mushroom_pizza_mesh":
+			pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+			mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
+			pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.MUSHROOM_PIE)
+		elif item_mesh.get_meta("name") == "food_ingredient_cheese_pizza_mesh":
+			pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+			mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
+			pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.CHEESE_PIE)
+		else:
+			pizza_slot.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+			mesh.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
+			pizza_slot.set_meta("food_id", GlobalVar.PIZZA_TYPE.NONE)
+	pizza_slot.add_child(item_mesh)
+	item.queue_free()
+	return true
