@@ -15,9 +15,9 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		_update_money(player.money)
+		update_max_xp_value()
 		%LevelValue.text = str(player.level)
 		%LevelProgressBar.value = player.xp
-		update_max_xp_value()
 	money_increment_start_pos = %MoneyIncrement.position
 	xp_increment_start_pos = %LevelIncrement.position
 	

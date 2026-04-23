@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name DriveThruMenu
 
 var table_id = 0

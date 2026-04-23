@@ -129,7 +129,7 @@ func get_random_food_by_level_for_drive_thru(level:int) -> int:
 		2:
 			return [PIZZA_TYPE.CHEESE_PIE].pick_random()
 		3:
-			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
 		_:
 			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE].pick_random()
 

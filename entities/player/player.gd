@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
+
+signal player_loaded(player:Player)
 signal weapon_fired
 
 var playerData: PlayerData
@@ -119,6 +121,7 @@ func _ready():
 	
 	# save player data
 	GlobalSignal.next_day.connect(_next_day)
+	player_loaded.emit(self)
 
 
 func _process(_delta: float) -> void:

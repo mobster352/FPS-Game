@@ -1,3 +1,4 @@
+class_name ThiefSpawner
 extends Marker3D
 
 @export var game_state:GameState

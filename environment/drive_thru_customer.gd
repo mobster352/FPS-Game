@@ -37,12 +37,12 @@ func _drop_food(food_id:int) -> void:
 
 
 func can_interact(_player: Player) -> bool:
-	if in_range:
+	if in_range and drive_thru_menu.visible:
 		_player.inputs_ui.update_actions.emit(_player.inputs_ui.InputAction.Interact, _player.has_held_object())
 	return in_range
 	
 func interact(_player: Player) -> void:
-	if not has_order:
+	if not has_order and drive_thru_menu.visible:
 		var random_food = GlobalVar.get_random_food_by_level_for_drive_thru(_player.level)
 		GlobalSignal.add_order.emit(0, random_food)
 		GlobalSignal.check_restaurant_food.emit(random_food)

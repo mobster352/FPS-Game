@@ -395,6 +395,7 @@ npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.01641, 0, 0)
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="4" unique_id=1433582954 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -24.268303, 0, 8.737624)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("Marker3D")
@@ -414,6 +415,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.3
 [node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
 wait_time = 5.0
 
+[node name="ThiefSpawnerMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="8" unique_id=772048251]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.575624, 0, 3.379627)
+
 [node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
 restaurant_nav_region = NodePath("../Environment/Floor/NavRestaurant")
@@ -429,6 +434,7 @@ layout_mode = 0
 transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -6.104749, 1.1999995, 0.9071607)
 cashier_marker = NodePath("../Entities/CashierMarker")
 
+[connection signal="player_loaded" from="Entities/Players/Player" to="GameState" method="_on_player_player_loaded"]
 [connection signal="visibility_changed" from="Entities/DriveThruSpawn/DriveThruMenu" to="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer" method="_on_drive_thru_menu_visibility_changed"]
 [connection signal="body_entered" from="Entities/DriveThruSpawn/DriveThruMenu/DriveThruCustomer/Area3D" to="Entities/DriveThruSpawn" method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
