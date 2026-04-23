@@ -17,7 +17,6 @@ albedo_texture = ExtResource("2_faxge")
 metadata/food_id = 5
 
 [node name="body" parent="." index="0" unique_id=978506078]
-collision_mask = 109
 metadata/name = &"whole_pizza"
 
 [node name="CollisionShape3D" parent="body" index="0" unique_id=389354591]

@@ -93,6 +93,9 @@ var num_pizza_boxes:int = 0
 @export var items_marker: Marker3D
 @export var order_spawn_marker: Marker3D
 
+var level:int = 1
+var xp:int = 0
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
@@ -109,6 +112,8 @@ func _ready():
 		playerData.day = 1
 		playerData.store_name = "Pizzeria"
 		playerData.store_font_size = 72
+		playerData.level = 0
+		playerData.xp = 0
 	
 	starting_money = money
 	
@@ -778,6 +783,9 @@ func save_player_data() -> void:
 		else:
 			table_resource.table_type = Table.Tables.Table_Round_A
 		playerData.tables.append(table_resource)
+		
+	playerData.level = level
+	playerData.xp = xp
 	
 	save_game()
 
@@ -816,6 +824,9 @@ func load_player_data() -> void:
 		table.position = table_resource.position
 		table.rotation = table_resource.rotation
 		tables_node.add_child(table)
+		
+	level = playerData.level
+	xp = playerData.xp
 
 
 func save_game() -> void:

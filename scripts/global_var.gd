@@ -110,6 +110,30 @@ var show_tips := true
 
 var save_slot := 1
 
+func get_random_food_by_level(level:int) -> int:
+	match level:
+		1:
+			return [PIZZA_TYPE.CHEESE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+		2:
+			return [PIZZA_TYPE.CHEESE_PIE].pick_random()
+		3:
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+		_:
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE].pick_random()
+
+
+func get_random_food_by_level_for_drive_thru(level:int) -> int:
+	match level:
+		1:
+			return [PIZZA_TYPE.CHEESE_PIE].pick_random()
+		2:
+			return [PIZZA_TYPE.CHEESE_PIE].pick_random()
+		3:
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+		_:
+			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE].pick_random()
+
+
 func get_food(food_id:int) -> Food:
 	for food in food_items:
 		if food.food_id == food_id:

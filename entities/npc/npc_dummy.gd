@@ -94,7 +94,7 @@ func _physics_process(delta: float) -> void:
 				
 				has_order = true
 				order_total = 0
-				random_food = randi_range(1,6)
+				random_food = GlobalVar.get_random_food_by_level(player.level)
 				if random_food in [1,2,3]:
 					order_total = 5
 				else:

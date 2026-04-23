@@ -9,3 +9,4 @@ extends Resource
 @export var store_font_size: int
 @export var tables: Array[TableResource]
 @export var level: int = 0
+@export var xp:int = 0

@@ -79,3 +79,4 @@ func update_quest_objective(quest_objective_id:int) -> void:
 				child.free()
 				if %ObjectivesList.get_child_count() <= 0:
 					update_quest(active_quest_id)
+				GlobalSignal.add_xp.emit(5)

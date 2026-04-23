@@ -112,3 +112,9 @@ signal set_time_visibility(visible:bool)
 
 @warning_ignore("unused_signal")
 signal remove_order_from_register
+
+@warning_ignore("unused_signal")
+signal add_xp(value:int)
+
+@warning_ignore("unused_signal")
+signal level_up(value:int)

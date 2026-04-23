@@ -15,16 +15,16 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap4so"]
 bg_color = Color(0, 0.6531362, 0.5593084, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ap4so"]
+[sub_resource type="LabelSettings" id="LabelSettings_rewvx"]
 font = SubResource("FontVariation_ylvgs")
-font_size = 24
+font_size = 18
 font_color = Color(0, 1, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rewvx"]
+[sub_resource type="LabelSettings" id="LabelSettings_ap4so"]
 font = SubResource("FontVariation_ylvgs")
-font_size = 18
+font_size = 24
 font_color = Color(0, 1, 0, 1)
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -41,37 +41,23 @@ script = ExtResource("1_ap4so")
 
 [node name="Control" type="Control" parent="." unique_id=1997735050]
 layout_mode = 1
-anchor_left = 0.611
 anchor_top = 0.025
 anchor_right = 0.98600006
 anchor_bottom = 0.09900001
-offset_left = 0.12799072
+offset_left = 704.0
 offset_top = -0.20000076
 offset_right = 0.12792969
 offset_bottom = -0.15200806
-
-[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1922343694]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer" unique_id=756295343]
-layout_mode = 2
-color = Color(0.19607843, 0.19607843, 0.19607843, 0.84313726)
 
 [node name="LevelContainer" type="MarginContainer" parent="Control" unique_id=1951394627]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.593
-anchor_right = -0.669
-anchor_bottom = 0.83300006
+anchor_right = -0.565
+anchor_bottom = 0.85400003
 offset_left = 0.17602539
-offset_right = -7.991974
-offset_bottom = 1.0159988
+offset_right = 0.08000183
+offset_bottom = 0.00799942
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -109,17 +95,28 @@ custom_minimum_size = Vector2(300, 10)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/fill = SubResource("StyleBoxFlat_ap4so")
-value = 50.0
+max_value = 50.0
 show_percentage = false
+
+[node name="LevelIncrement" type="Label" parent="Control" unique_id=233441842]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -240.0
+offset_top = 24.0
+offset_right = -198.0
+offset_bottom = 57.5
+text = "+10"
+label_settings = SubResource("LabelSettings_rewvx")
 
 [node name="MoneyContainer" type="MarginContainer" parent="Control" unique_id=1747305022]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.46300003
-anchor_right = 0.725
+anchor_left = 0.333
+anchor_right = 0.64100003
 anchor_bottom = 0.83300006
-offset_left = -40.016006
-offset_right = -20.200012
+offset_left = 0.14399719
+offset_right = 0.08798218
 offset_bottom = 0.01599884
 
 [node name="ColorRect" type="ColorRect" parent="Control/MoneyContainer" unique_id=581961542]
@@ -147,30 +144,29 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_ap4so")
 
-[node name="MoneyIncrement" type="Label" parent="Control/MoneyContainer/MarginContainer/PlayerMoney/MoneyValue" unique_id=572413830]
+[node name="MoneyIncrement" type="Label" parent="Control" unique_id=572413830]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.71400005
-anchor_top = 2.265
-anchor_right = 0.786
-anchor_bottom = 3.029
-offset_left = -0.0039987564
-offset_top = -0.010002136
-offset_right = -0.00399971
-offset_bottom = 0.013999939
+anchor_left = 0.648
+anchor_top = 0.5
+anchor_right = 0.697
+anchor_bottom = 1.023
+offset_left = 0.06399536
+offset_right = -0.104003906
+offset_bottom = 0.020999908
 text = "+0"
 label_settings = SubResource("LabelSettings_rewvx")
 
 [node name="TimeContainer" type="MarginContainer" parent="Control" unique_id=995582863]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.75900006
-anchor_right = 0.99300003
+anchor_left = 0.72200006
+anchor_right = 1.0
 anchor_bottom = 0.83300006
-offset_left = -15.888031
-offset_right = 4.023987
+offset_left = 0.09597778
+offset_right = 1.0
 offset_bottom = 0.01599884
 
 [node name="ColorRect" type="ColorRect" parent="Control/TimeContainer" unique_id=278796630]

@@ -36,14 +36,14 @@ func _drop_food(food_id:int) -> void:
 		pointer.hide()
 
 
-func can_interact(player: Player) -> bool:
+func can_interact(_player: Player) -> bool:
 	if in_range:
-		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.Interact, player.has_held_object())
+		_player.inputs_ui.update_actions.emit(_player.inputs_ui.InputAction.Interact, _player.has_held_object())
 	return in_range
 	
 func interact(_player: Player) -> void:
 	if not has_order:
-		var random_food = randi_range(4,6)
+		var random_food = GlobalVar.get_random_food_by_level_for_drive_thru(_player.level)
 		GlobalSignal.add_order.emit(0, random_food)
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()
@@ -54,7 +54,7 @@ func interact(_player: Player) -> void:
 func reticle_color() -> Color:
 	return RETICLE_GREEN
 
-func interact2(player: Player) -> void:
-	if player.has_held_object():
-		if player.item_slot.get_child_count() > 0:
-			player.drop_item()
+func interact2(_player: Player) -> void:
+	if _player.has_held_object():
+		if _player.item_slot.get_child_count() > 0:
+			_player.drop_item()

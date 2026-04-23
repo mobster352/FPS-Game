@@ -1,5 +1,7 @@
 extends Panel
 
+@export var level_required:int
+
 @export var computer: Computer
 @export var text: StringName
 @export var texture: CompressedTexture2D
@@ -30,13 +32,18 @@ enum ButtonState {
 }
 
 var button_state: ButtonState = ButtonState.NotSelected
+var player:Player
 
 func _ready() -> void:
 	item_name.text = text
 	item_icon.texture = texture
 	item_price.text = "$" + str(price)
 	GlobalSignal.order_inventory_items.connect(_order_inventory_items)
-
+	GlobalSignal.level_up.connect(_level_up)
+	player = get_tree().get_first_node_in_group("player")
+	if player:
+		check_level_required()
+	%LevelRequired.text = "Lv. " + str(level_required)
 
 func _on_select_item_button_mouse_entered() -> void:
 	hover_audio.play()
@@ -59,3 +66,16 @@ func _on_decrement_item_pressed() -> void:
 	
 func _order_inventory_items(_store_items: Array[Dictionary]) -> void:
 	quantity = 0
+
+
+func check_level_required() -> void:
+	if player.level >= level_required:
+		%Quantity.show()
+		%Locked.hide()
+	else:
+		%Quantity.hide()
+		%Locked.show()
+
+
+func _level_up(_value:int) -> void:
+	check_level_required()

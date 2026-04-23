@@ -4,7 +4,7 @@ class_name Computer
 signal increment_store_item(store_item: GlobalVar.StoreItem, price: int, quantity: int)
 signal decrement_store_item(store_item: GlobalVar.StoreItem, price: int, quantity: int)
 
-@export var sub_viewport: SubViewportContainer
+#@export var sub_viewport: SubViewportContainer
 @export var cart_total_label: Label
 @export var cart_vbox: VBoxContainer
 @export var cart_items: Panel
@@ -30,7 +30,7 @@ var cart_total := 0:
 var order_items: Array[Dictionary]
 
 func _ready() -> void:
-	sub_viewport.hide()
+	%OrderUI.hide()
 	increment_store_item.connect(_increment_store_item)
 	decrement_store_item.connect(_decrement_store_item)
 	balance_label.text = "$0"
@@ -47,7 +47,7 @@ func interact(_player: Player) -> void:
 	#get_tree().paused = true
 	
 	player = _player
-	sub_viewport.show()
+	%OrderUI.show()
 	player.freeze_camera = true
 	player.reticle.hide()
 	player.ui.hide()
@@ -71,7 +71,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func _on_home_button_pressed() -> void:
 	#get_tree().paused = false
-	sub_viewport.hide()
+	%OrderUI.hide()
 	player.freeze_camera = false
 	player.reticle.show()
 	player.ui.show()

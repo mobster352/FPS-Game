@@ -15,6 +15,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			pointer.hide()
 			if obj.name == "plate_dirty":
 				obj.shrink_and_free(2, 5.0)
+				GlobalSignal.add_xp.emit(5)
 			else:
 				obj.shrink_and_free(0)
 

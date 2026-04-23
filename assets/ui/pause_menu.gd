@@ -9,9 +9,10 @@ class_name PauseMenu
 var can_pause := false
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause") and can_pause:
-		can_pause = false
-		hide()
+	#if Input.is_action_just_pressed("pause") and can_pause:
+		#can_pause = false
+		#hide()
+	pass
 
 
 func _on_visibility_changed() -> void:

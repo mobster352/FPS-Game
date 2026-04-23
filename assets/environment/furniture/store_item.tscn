@@ -14,6 +14,13 @@ outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_oab22"]
+font_size = 24
+font_color = Color(0.25068453, 0.9381292, 0.90385586, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+
 [node name="StoreItem" type="Panel" unique_id=12460798 node_paths=PackedStringArray("item_name", "item_icon", "background", "item_price", "hover_audio", "increment_item_button", "decrement_item_button", "quantity_label")]
 offset_left = 0.37600708
 offset_right = 384.0
@@ -25,9 +32,9 @@ item_icon = NodePath("Icon")
 background = NodePath("Background")
 item_price = NodePath("Price")
 hover_audio = NodePath("Audio/HoverAudio")
-increment_item_button = NodePath("IncrementItem")
-decrement_item_button = NodePath("DecrementItem")
-quantity_label = NodePath("Quantity")
+increment_item_button = NodePath("Quantity/IncrementItem")
+decrement_item_button = NodePath("Quantity/DecrementItem")
+quantity_label = NodePath("Quantity/Quantity")
 
 [node name="Background" type="ColorRect" parent="." unique_id=959340438]
 layout_mode = 0
@@ -70,7 +77,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Quantity" type="Label" parent="." unique_id=588224820]
+[node name="Quantity" type="Control" parent="." unique_id=1579538906]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quantity" type="Label" parent="Quantity" unique_id=588224820]
 layout_mode = 0
 offset_left = 328.0
 offset_top = 24.0
@@ -81,7 +95,7 @@ label_settings = SubResource("LabelSettings_xeoji")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IncrementItem" type="TextureButton" parent="." unique_id=1259024134]
+[node name="IncrementItem" type="TextureButton" parent="Quantity" unique_id=1259024134]
 layout_mode = 0
 offset_left = 344.0
 offset_top = 28.0
@@ -91,7 +105,7 @@ texture_normal = ExtResource("7_p0ord")
 texture_hover = ExtResource("8_eln7i")
 stretch_mode = 0
 
-[node name="DecrementItem" type="TextureButton" parent="." unique_id=1671184322]
+[node name="DecrementItem" type="TextureButton" parent="Quantity" unique_id=1671184322]
 layout_mode = 0
 offset_left = 304.0
 offset_top = 28.0
@@ -101,6 +115,24 @@ texture_normal = ExtResource("9_cu1lx")
 texture_hover = ExtResource("10_2xxud")
 stretch_mode = 0
 
+[node name="Locked" type="Control" parent="." unique_id=248292618]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelRequired" type="Label" parent="Locked" unique_id=832852722]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 303.624
+offset_top = 24.0
+offset_right = 365.624
+offset_bottom = 58.0
+text = "Lv. 2"
+label_settings = SubResource("LabelSettings_oab22")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Audio" type="Node" parent="." unique_id=992558573]
 
 [node name="HoverAudio" type="AudioStreamPlayer" parent="Audio" unique_id=1987551001]
@@ -109,5 +141,5 @@ volume_db = -5.0
 
 [connection signal="mouse_entered" from="Background" to="." method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="Background" to="." method="_on_color_rect_mouse_exited"]
-[connection signal="pressed" from="IncrementItem" to="." method="_on_increment_item_pressed"]
-[connection signal="pressed" from="DecrementItem" to="." method="_on_decrement_item_pressed"]
+[connection signal="pressed" from="Quantity/IncrementItem" to="." method="_on_increment_item_pressed"]
+[connection signal="pressed" from="Quantity/DecrementItem" to="." method="_on_decrement_item_pressed"]
