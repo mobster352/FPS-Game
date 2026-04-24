@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="5_nvtjr"]
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="6_33xu4"]
 
-[node name="Billboard" type="Control" unique_id=2010033716 node_paths=PackedStringArray("name_input", "size_input")]
+[node name="Billboard" type="Control" unique_id=2010033716 node_paths=PackedStringArray("name_input", "size_input", "back_button")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -19,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_nvtjr")
 name_input = NodePath("Options/VBoxContainer/ShopName/MarginContainer2/NameInput")
 size_input = NodePath("Options/VBoxContainer/Name Size/MarginContainer2/SizeInput")
+back_button = NodePath("Button/TextureButton")
 
 [node name="Background" type="MarginContainer" parent="." unique_id=376569287]
 layout_mode = 1
@@ -93,6 +94,8 @@ grow_horizontal = 0
 
 [node name="NameInput" type="LineEdit" parent="Options/VBoxContainer/ShopName/MarginContainer2" unique_id=1899695410]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../../Button/TextureButton")
+focus_neighbor_bottom = NodePath("../../../Name Size/MarginContainer2/SizeInput")
 placeholder_text = "Name"
 alignment = 1
 max_length = 20
@@ -125,6 +128,10 @@ grow_horizontal = 0
 
 [node name="SizeInput" type="SpinBox" parent="Options/VBoxContainer/Name Size/MarginContainer2" unique_id=567458111]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../ShopName/MarginContainer2/NameInput")
+focus_neighbor_bottom = NodePath("../../../../../Button/TextureButton")
+focus_mode = 2
+focus_behavior_recursive = 2
 rounded = true
 allow_greater = true
 alignment = 1
@@ -147,6 +154,12 @@ pressed_texture = ExtResource("6_33xu4")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="TextureButton" parent="Button" index="0" unique_id=2147143867]
+focus_neighbor_top = NodePath("../../Options/VBoxContainer/Name Size/MarginContainer2/SizeInput")
+focus_neighbor_bottom = NodePath("../../Options/VBoxContainer/ShopName/MarginContainer2/NameInput")
+texture_focused = ExtResource("6_33xu4")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="Options/VBoxContainer/ShopName/MarginContainer2/NameInput" to="." method="_on_name_input_text_changed"]
 [connection signal="value_changed" from="Options/VBoxContainer/Name Size/MarginContainer2/SizeInput" to="." method="_on_size_input_value_changed"]
 [connection signal="pressed" from="Button/TextureButton" to="." method="_on_save_button_pressed"]

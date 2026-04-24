@@ -1,3 +1,4 @@
+class_name Tablet
 extends Control
 
 enum TabletStoreItems {
@@ -8,6 +9,7 @@ enum TabletStoreItems {
 }
 
 @export var order_vbox:VBoxContainer
+@export var tabs:TabContainer
 
 var is_tablet_open := false
 var placement_system: PlacementSystem
@@ -24,6 +26,8 @@ func _ready() -> void:
 	
 	GlobalSignal.add_order.connect(_add_order)
 	GlobalSignal.remove_order_from_list.connect(_remove_order_from_list)
+	
+	$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -45,6 +49,7 @@ func show_tablet() -> void:
 	if is_instance_valid(quest_log):
 		if quest_log.active_quest_id == Quest.QuestIds.BUY_TABLE:
 			quest_log.update_quest_objective(Quest.QuestObjs.OPEN_TABLET)
+	$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
 
 func hide_tablet() -> void:
 	hide()
@@ -105,3 +110,14 @@ func _remove_order_from_list(table_id: int) -> void:
 			order_vbox.remove_child(order.monitor_order)
 			order_list.remove_at(i)
 		i += 1
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("tab_left"):
+		tabs.current_tab = wrapi(tabs.current_tab + 1, 0, tabs.get_tab_count())
+		$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("tab_right"):
+		tabs.current_tab = wrapi(tabs.current_tab - 1, 0, tabs.get_tab_count())
+		$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
+		get_viewport().set_input_as_handled()

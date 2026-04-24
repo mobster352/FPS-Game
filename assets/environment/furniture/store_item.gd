@@ -1,3 +1,4 @@
+class_name StoreItem
 extends Panel
 
 @export var level_required:int
@@ -33,6 +34,7 @@ enum ButtonState {
 
 var button_state: ButtonState = ButtonState.NotSelected
 var player:Player
+var is_locked:bool
 
 func _ready() -> void:
 	item_name.text = text
@@ -70,9 +72,11 @@ func _order_inventory_items(_store_items: Array[Dictionary]) -> void:
 
 func check_level_required() -> void:
 	if player.level >= level_required:
+		is_locked = false
 		%Quantity.show()
 		%Locked.hide()
 	else:
+		is_locked = true
 		%Quantity.hide()
 		%Locked.show()
 

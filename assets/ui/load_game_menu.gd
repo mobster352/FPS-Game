@@ -7,6 +7,7 @@ func _ready() -> void:
 		%DeleteSlot2.show()
 	if ResourceLoader.exists(GlobalVar.get_save_slot_by_id(3)):
 		%DeleteSlot3.show()
+	$Slots/HBoxContainer/SaveSlot/PanelContainer/Button.grab_focus()
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://assets/ui/main_menu.tscn")
@@ -33,3 +34,8 @@ func delete_save_slot(slot_id:int) -> void:
 		var error = DirAccess.remove_absolute(path)
 		if error != OK:
 			print("Error deleting save slot " + str(slot_id))
+
+
+func _on_visibility_changed() -> void:
+	if visible and $Slots/HBoxContainer/SaveSlot/PanelContainer/Button.is_inside_tree():
+		$Slots/HBoxContainer/SaveSlot/PanelContainer/Button.grab_focus()

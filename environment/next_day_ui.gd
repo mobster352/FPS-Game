@@ -32,3 +32,4 @@ func _on_visibility_changed() -> void:
 			else:
 				%BalanceValue.text = "$" + str(player.money)
 				%BalanceValue.label_settings.font_color = Color(0,255,0)
+			%Button.grab_focus()

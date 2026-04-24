@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	if OS.has_feature("dedicated_server"):
 		get_tree().call_deferred("change_scene_to_file","uid://b10ibkxnixdiq")
+	%StartGameButton.grab_focus()
 
 
 func _on_exit_button_pressed() -> void:
@@ -29,3 +30,9 @@ func _on_start_game_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	main_menu.hide()
 	options_menu.show()
+
+
+
+func _on_main_visibility_changed() -> void:
+	if visible and %StartGameButton.is_inside_tree():
+		%StartGameButton.grab_focus()

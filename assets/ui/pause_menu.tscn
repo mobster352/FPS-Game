@@ -82,6 +82,11 @@ pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Resume" index="0"]
+focus_neighbor_top = NodePath("../../Exit/TextureButton")
+focus_neighbor_bottom = NodePath("../../Controls/TextureButton")
+texture_focused = ExtResource("6_r37c0")
+
 [node name="Controls" parent="MarginContainer3/VBoxContainer" unique_id=1438112760 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
 layout_mode = 2
 button_label = &"CONTROLS"
@@ -89,6 +94,11 @@ normal_texture = ExtResource("5_yhety")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
 button = NodePath("TextureButton")
+
+[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Controls" index="0"]
+focus_neighbor_top = NodePath("../../Resume/TextureButton")
+focus_neighbor_bottom = NodePath("../../Options/TextureButton")
+texture_focused = ExtResource("6_r37c0")
 
 [node name="Options" parent="MarginContainer3/VBoxContainer" unique_id=784365126 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
 layout_mode = 2
@@ -98,6 +108,11 @@ pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Options" index="0"]
+focus_neighbor_top = NodePath("../../Controls/TextureButton")
+focus_neighbor_bottom = NodePath("../../Exit/TextureButton")
+texture_focused = ExtResource("6_r37c0")
+
 [node name="Exit" parent="MarginContainer3/VBoxContainer" unique_id=1541462004 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
 layout_mode = 2
 button_label = &"EXIT"
@@ -105,6 +120,11 @@ normal_texture = ExtResource("7_dhub8")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
 button = NodePath("TextureButton")
+
+[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Exit" index="0"]
+focus_neighbor_top = NodePath("../../Options/TextureButton")
+focus_neighbor_bottom = NodePath("../../Resume/TextureButton")
+texture_focused = ExtResource("6_r37c0")
 
 [node name="Timers" type="Node" parent="." unique_id=1558302306]
 

@@ -17,6 +17,13 @@ font_size = 88
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_q6mfq"]
+viewport_path = NodePath("CSGMesh3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jci6o"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_q6mfq")
+
 [node name="MainMenu" type="Control" unique_id=325520252 node_paths=PackedStringArray("menu_audio", "main_menu", "options_menu")]
 layout_mode = 3
 anchors_preset = 15
@@ -69,9 +76,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="StartGameButton" type="TextureButton" parent="Main/StartGame" unique_id=947225438]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Quit/TextureButton")
+focus_neighbor_bottom = NodePath("../../Settings/SettingsButton")
 texture_normal = ExtResource("4_58nof")
 texture_hover = ExtResource("5_pdggx")
+texture_focused = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -103,9 +114,12 @@ button = NodePath("SettingsButton")
 
 [node name="SettingsButton" type="TextureButton" parent="Main/Settings" unique_id=733303456]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../StartGame/StartGameButton")
+focus_neighbor_bottom = NodePath("../../Quit/TextureButton")
 texture_normal = ExtResource("4_58nof")
 texture_pressed = ExtResource("5_pdggx")
 texture_hover = ExtResource("5_pdggx")
+texture_focused = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -132,8 +146,11 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="Main/Quit" unique_id=86759321]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Settings/SettingsButton")
+focus_neighbor_bottom = NodePath("../../StartGame/StartGameButton")
 texture_normal = ExtResource("6_58nof")
 texture_hover = ExtResource("5_pdggx")
+texture_focused = ExtResource("5_pdggx")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -188,12 +205,25 @@ show_clock = false
 
 [node name="Restaurant" parent="Level" unique_id=1993302886 instance=ExtResource("6_pdggx")]
 
+[node name="CSGMesh3D" parent="Level/Restaurant/Environment/Restaurant/Decorations/Monitor" parent_id_path=PackedInt32Array(1993302886, 735103462) index="0" unique_id=887691759]
+material = SubResource("StandardMaterial3D_jci6o")
+
+[node name="OrderUI" parent="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer" parent_id_path=PackedInt32Array(1993302886, 1525205948) index="2" unique_id=710377329]
+visible = false
+
 [node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=975023757]
 transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
+[connection signal="visibility_changed" from="Main" to="." method="_on_main_visibility_changed"]
 [connection signal="mouse_entered" from="Main/StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Main/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="Main/Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/Quit/TextureButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Main/Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+
+[editable path="Level/Restaurant"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/Monitor"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
+[editable path="Level/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]

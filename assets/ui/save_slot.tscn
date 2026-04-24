@@ -6,7 +6,6 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -256.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -16,8 +15,13 @@ script = ExtResource("1_rx1xx")
 layout_mode = 2
 mouse_filter = 1
 
+[node name="Button" type="Button" parent="PanelContainer" unique_id=1274040085]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1534552084]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="SlotName" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1620778619]
 unique_name_in_owner = true
@@ -36,6 +40,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="PanelContainer/VBoxContainer/MoneyContainer" unique_id=753686419]
@@ -53,6 +58,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="DayLabel" type="Label" parent="PanelContainer/VBoxContainer/DayContainer" unique_id=813928888]
@@ -73,4 +79,4 @@ layout_mode = 2
 text = "4/3/2026"
 horizontal_alignment = 1
 
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="PanelContainer/Button" to="." method="_on_button_pressed"]

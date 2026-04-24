@@ -34,7 +34,7 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="Tablet" type="Control" unique_id=1200652761 node_paths=PackedStringArray("order_vbox")]
+[node name="Tablet" type="Control" unique_id=1200652761 node_paths=PackedStringArray("order_vbox", "tabs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fysnc")
 order_vbox = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/OrderVBoxContainer")
+tabs = NodePath("MarginContainer/TabContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
 layout_mode = 1
@@ -95,34 +96,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oq8je")
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_p1abc")
 current_tab = 0
 
-[node name="Orders" type="Control" parent="MarginContainer/TabContainer" unique_id=1144617593]
+[node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
 layout_mode = 2
 metadata/_tab_index = 0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Orders" unique_id=1111150729]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="OrderVBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=484179309]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Tables" unique_id=1157536191]
 layout_mode = 1
@@ -163,6 +139,8 @@ text = "$25"
 
 [node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=617853600]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer4/PurchaseTableButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer2/PurchaseTableButton")
 text = "BUY"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=901195072]
@@ -184,6 +162,8 @@ text = "$25"
 
 [node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=517024952]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer/PurchaseTableButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer3/PurchaseTableButton")
 text = "BUY"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=175671370]
@@ -205,6 +185,8 @@ text = "$25"
 
 [node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1717152346]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer2/PurchaseTableButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer4/PurchaseTableButton")
 text = "BUY"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=544164845]
@@ -226,7 +208,34 @@ text = "$25"
 
 [node name="PurchaseTableButton" type="Button" parent="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1197832483]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../HBoxContainer3/PurchaseTableButton")
+focus_neighbor_bottom = NodePath("../../HBoxContainer/PurchaseTableButton")
 text = "BUY"
+
+[node name="Orders" type="Control" parent="MarginContainer/TabContainer" unique_id=1144617593]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Orders" unique_id=1111150729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="OrderVBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=484179309]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_A"]]

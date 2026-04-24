@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bxwis5gpctryk" path="res://assets/ui/button_small_round.tscn" id="4_kudt6"]
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="5_0t508"]
 [ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="5_sm5ln"]
+[ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="8_gmlw0"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_xhm57"]
+[ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="9_m37hy"]
 
 [node name="OptionsMenu" type="Control" unique_id=737911688 node_paths=PackedStringArray("menu_audio")]
 process_mode = 3
@@ -110,6 +112,8 @@ grow_horizontal = 2
 [node name="QualityPresetButton" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer/QualityPreset/MarginContainer3" unique_id=780926498]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../../../BackButton/TextureButton")
+focus_neighbor_bottom = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
 alignment = 1
 selected = 0
 item_count = 3
@@ -153,6 +157,8 @@ grow_horizontal = 2
 [node name="RendererButton" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer/GraphicsMode/MarginContainer3" unique_id=721833670]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../QualityPreset/MarginContainer3/QualityPresetButton")
+focus_neighbor_bottom = NodePath("../../../WindowSize/MarginContainer3/WindowSizeButton")
 alignment = 1
 selected = 0
 item_count = 3
@@ -196,6 +202,8 @@ grow_horizontal = 2
 [node name="WindowSizeButton" type="OptionButton" parent="Settings/MarginContainer/VBoxContainer/WindowSize/MarginContainer3" unique_id=421785053]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
+focus_neighbor_bottom = NodePath("../../../BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox")
 alignment = 1
 selected = 0
 item_count = 3
@@ -291,6 +299,13 @@ pressed_texture = ExtResource("5_0t508")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="TextureButton" parent="Settings/BackButton" index="0" unique_id=2147143867]
+focus_neighbor_top = NodePath("../../MarginContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox")
+focus_neighbor_bottom = NodePath("../../MarginContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton")
+texture_normal = ExtResource("8_gmlw0")
+texture_pressed = ExtResource("9_m37hy")
+texture_focused = ExtResource("9_m37hy")
+
 [node name="GraphicsRestartPopup" type="Control" parent="." unique_id=462459678]
 unique_name_in_owner = true
 visible = false
@@ -365,6 +380,7 @@ text = "Restart"
 stream = ExtResource("8_xhm57")
 volume_db = -5.0
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton" to="." method="_on_quality_preset_button_item_selected"]
 [connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/GraphicsMode/MarginContainer3/RendererButton" to="." method="_on_renderer_button_item_selected"]
 [connection signal="item_selected" from="Settings/MarginContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]

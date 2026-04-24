@@ -8,6 +8,9 @@ class_name PauseMenu
 
 var can_pause := false
 
+func _ready() -> void:
+	$MarginContainer3/VBoxContainer/Resume/TextureButton.grab_focus()
+
 func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed("pause") and can_pause:
 		#can_pause = false
@@ -19,6 +22,7 @@ func _on_visibility_changed() -> void:
 	if is_node_ready():
 		if visible:
 			timer.start()
+			$MarginContainer3/VBoxContainer/Resume/TextureButton.grab_focus()
 		elif not visible and not can_pause:
 			get_tree().paused = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

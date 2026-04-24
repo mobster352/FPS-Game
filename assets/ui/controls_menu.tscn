@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dqkbgb040ouwf" path="res://assets/ui/ButtonText_Small_Orange_Round.png" id="6_1ycfe"]
 [ext_resource type="Texture2D" uid="uid://b086qh14deg3e" path="res://assets/ui/ButtonText_Small_GreyOutline_Round.png" id="7_t6w6j"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_5l5ks"]
+[ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="8_k1srf"]
 
 [node name="ControlsMenu" type="Control" unique_id=657027395 node_paths=PackedStringArray("menu_audio")]
 layout_mode = 3
@@ -433,12 +434,16 @@ pressed_texture = ExtResource("7_t6w6j")
 label = NodePath("Label")
 button = NodePath("TextureButton")
 
+[node name="TextureButton" parent="BackButton" index="0" unique_id=2147143867]
+texture_focused = ExtResource("8_k1srf")
+
 [node name="Audio" type="Node" parent="." unique_id=850652704]
 
 [node name="MenuAudio" type="AudioStreamPlayer" parent="Audio" unique_id=389458699]
 stream = ExtResource("8_5l5ks")
 volume_db = -5.0
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="mouse_entered" from="BackButton/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_button_pressed"]
 

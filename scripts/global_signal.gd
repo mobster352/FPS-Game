@@ -118,3 +118,6 @@ signal add_xp(value:int)
 
 @warning_ignore("unused_signal")
 signal level_up(value:int)
+
+@warning_ignore("unused_signal")
+signal pause_game(is_paused:bool)

@@ -204,3 +204,8 @@ func _on_cancel_button_pressed() -> void:
 	rendering_method = previous_rendering_method
 	%Settings.show()
 	%GraphicsRestartPopup.hide()
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		%QualityPresetButton.grab_focus()

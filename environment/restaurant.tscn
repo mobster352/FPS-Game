@@ -353,6 +353,9 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -15.
 [node name="Computer" parent="Environment/Restaurant/Decorations/kitchentable_B4" unique_id=1525205948 instance=ExtResource("18_45dbx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)
 
+[node name="OrderUI" parent="Environment/Restaurant/Decorations/kitchentable_B4/Computer" index="2" unique_id=710377329]
+visible = false
+
 [node name="Weaponrack" parent="Environment/Restaurant/Decorations" unique_id=1731279079 instance=ExtResource("21_ncrwj")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -20.370024, 0, 13.441681)
 
@@ -523,4 +526,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.564, 100, 0.198)
 [connection signal="body_entered" from="Environment/Restaurant/Billboard/Area3D" to="Environment/Restaurant/Billboard" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Environment/Restaurant/Billboard/Area3D" to="Environment/Restaurant/Billboard" method="_on_area_3d_body_exited"]
 
+[editable path="Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
+[editable path="Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
 [editable path="Environment/Restaurant/Walls/wall_window_open4"]

@@ -38,3 +38,8 @@ func delete_slot() -> void:
 	%MoneyContainer.hide()
 	%Date.hide()
 	%DayContainer.hide()
+
+
+func _on_button_pressed() -> void:
+	GlobalVar.save_slot = save_slot
+	get_tree().change_scene_to_file("res://environment/level_1.tscn")

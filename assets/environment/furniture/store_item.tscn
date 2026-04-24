@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5p2c8ul2we3e"]
 
 [ext_resource type="Script" uid="uid://cr7t7087mw2lv" path="res://assets/environment/furniture/store_item.gd" id="1_xeoji"]
+[ext_resource type="Script" uid="uid://djt0mqh7ap2vj" path="res://assets/environment/furniture/order_option_row.gd" id="2_0qo6t"]
 [ext_resource type="Texture2D" uid="uid://bgudwc767qkkw" path="res://assets/kaykit/restaurant/textures/pepperoni.png" id="2_oab22"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="7_oab22"]
 [ext_resource type="Texture2D" uid="uid://cu5825fjfu321" path="res://assets/ui/tile_0694.png" id="7_p0ord"]
@@ -42,6 +43,16 @@ offset_right = 384.0
 offset_bottom = 100.0
 color = Color(0.28118682, 0.28118688, 0.28118682, 1)
 
+[node name="Button" type="Button" parent="Background" unique_id=2119300215 node_paths=PackedStringArray("store_item")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_0qo6t")
+store_item = NodePath("../..")
+
 [node name="Icon" type="TextureRect" parent="." unique_id=1567099058]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 0
@@ -79,7 +90,6 @@ autowrap_mode = 2
 
 [node name="Quantity" type="Control" parent="." unique_id=1579538906]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -96,27 +106,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IncrementItem" type="TextureButton" parent="Quantity" unique_id=1259024134]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 344.0
 offset_top = 28.0
 offset_right = 368.0
 offset_bottom = 52.0
+focus_mode = 0
+focus_behavior_recursive = 1
 texture_normal = ExtResource("7_p0ord")
 texture_hover = ExtResource("8_eln7i")
+texture_focused = ExtResource("8_eln7i")
 stretch_mode = 0
 
 [node name="DecrementItem" type="TextureButton" parent="Quantity" unique_id=1671184322]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 304.0
 offset_top = 28.0
 offset_right = 328.0
 offset_bottom = 52.0
+focus_mode = 0
+focus_behavior_recursive = 1
 texture_normal = ExtResource("9_cu1lx")
 texture_hover = ExtResource("10_2xxud")
+texture_focused = ExtResource("10_2xxud")
 stretch_mode = 0
 
 [node name="Locked" type="Control" parent="." unique_id=248292618]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -141,5 +160,6 @@ volume_db = -5.0
 
 [connection signal="mouse_entered" from="Background" to="." method="_on_color_rect_mouse_entered"]
 [connection signal="mouse_exited" from="Background" to="." method="_on_color_rect_mouse_exited"]
+[connection signal="gui_input" from="Background/Button" to="Background/Button" method="_on_gui_input"]
 [connection signal="pressed" from="Quantity/IncrementItem" to="." method="_on_increment_item_pressed"]
 [connection signal="pressed" from="Quantity/DecrementItem" to="." method="_on_decrement_item_pressed"]

@@ -5,8 +5,6 @@ const quest_objective_scene:PackedScene = preload("uid://ds2eh5sxwh0wb")
 
 var quests_data:Array[Quest.QuestData]
 
-var player:Player
-
 var active_quest_id:int:
 	set(value):
 		active_quest_id = value
@@ -20,14 +18,7 @@ func _ready() -> void:
 		quests_data.append(quest_data)
 	
 	active_quest_id = Quest.QuestIds.BUY_INGREDIENTS
-	player = get_tree().get_first_node_in_group("player")
-	
-func _process(_delta: float) -> void:
-	if not visible:
-		if player.playerData.day == 1:
-			show()
-		else:
-			queue_free()
+
 
 func update_quest_text() -> void:
 	if quests_data.size() > active_quest_id:

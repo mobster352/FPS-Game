@@ -28,7 +28,9 @@ offset_bottom = 88.0
 [node name="BackButton" type="TextureButton" parent="MarginContainer" unique_id=847776072]
 layout_mode = 2
 texture_normal = ExtResource("2_e2d8f")
+texture_pressed = ExtResource("3_38oqv")
 texture_hover = ExtResource("3_38oqv")
+texture_focused = ExtResource("3_38oqv")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -60,53 +62,83 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Button" parent="Slots/HBoxContainer/SaveSlot/PanelContainer" parent_id_path=PackedInt32Array(238969660, 238969660) index="0" unique_id=1274040085]
+focus_neighbor_left = NodePath("../../../SaveSlot3/PanelContainer/Button")
+focus_neighbor_top = NodePath("../../../../../MarginContainer/BackButton")
+focus_neighbor_right = NodePath("../../../SaveSlot2/PanelContainer/Button")
+focus_neighbor_bottom = NodePath("../../../../../DeleteSlot1/DeleteButtonSlot1")
+
 [node name="SaveSlot2" parent="Slots/HBoxContainer" unique_id=1399133339 instance=ExtResource("2_6bfbr")]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../SaveSlot")
+focus_neighbor_top = NodePath("../../../MarginContainer/BackButton")
+focus_neighbor_right = NodePath("../SaveSlot3")
 save_slot = 2
+
+[node name="Button" parent="Slots/HBoxContainer/SaveSlot2/PanelContainer" parent_id_path=PackedInt32Array(1399133339, 238969660) index="0" unique_id=1274040085]
+focus_neighbor_left = NodePath("../../../SaveSlot/PanelContainer/Button")
+focus_neighbor_top = NodePath("../../../../../MarginContainer/BackButton")
+focus_neighbor_right = NodePath("../../../SaveSlot3/PanelContainer/Button")
+focus_neighbor_bottom = NodePath("../../../../../DeleteSlot2/DeleteButtonSlot2")
 
 [node name="SaveSlot3" parent="Slots/HBoxContainer" unique_id=351500731 instance=ExtResource("2_6bfbr")]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../SaveSlot2")
+focus_neighbor_top = NodePath("../../../MarginContainer/BackButton")
+focus_neighbor_right = NodePath("../SaveSlot")
 save_slot = 3
+
+[node name="Button" parent="Slots/HBoxContainer/SaveSlot3/PanelContainer" parent_id_path=PackedInt32Array(351500731, 238969660) index="0" unique_id=1274040085]
+focus_neighbor_left = NodePath("../../../SaveSlot2/PanelContainer/Button")
+focus_neighbor_top = NodePath("../../../../../MarginContainer/BackButton")
+focus_neighbor_right = NodePath("../../../SaveSlot/PanelContainer/Button")
+focus_neighbor_bottom = NodePath("../../../../../DeleteSlot3/DeleteButtonSlot3")
 
 [node name="DeleteSlot1" type="MarginContainer" parent="." unique_id=1702296387]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
-offset_left = 336.0
-offset_top = 282.0
-offset_right = 400.0
-offset_bottom = 320.0
+offset_left = 224.0
+offset_top = 408.0
+offset_right = 288.0
+offset_bottom = 446.0
 
 [node name="DeleteButtonSlot1" type="Button" parent="DeleteSlot1" unique_id=1532030907]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../DeleteSlot3/DeleteButtonSlot3")
+focus_neighbor_top = NodePath("../../Slots/HBoxContainer/SaveSlot/PanelContainer/Button")
+focus_neighbor_right = NodePath("../../DeleteSlot2/DeleteButtonSlot2")
 text = "Delete"
 
 [node name="DeleteSlot2" type="MarginContainer" parent="." unique_id=354540564]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
-offset_left = 656.0
-offset_top = 280.0
-offset_right = 720.0
-offset_bottom = 318.0
+offset_left = 544.0
+offset_top = 408.0
+offset_right = 608.0
+offset_bottom = 446.0
 
 [node name="DeleteButtonSlot2" type="Button" parent="DeleteSlot2" unique_id=2047428556]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../DeleteSlot1/DeleteButtonSlot1")
+focus_neighbor_top = NodePath("../../Slots/HBoxContainer/SaveSlot2/PanelContainer/Button")
+focus_neighbor_right = NodePath("../../DeleteSlot3/DeleteButtonSlot3")
 text = "Delete"
 
 [node name="DeleteSlot3" type="MarginContainer" parent="." unique_id=1535449711]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
-offset_left = 976.0
-offset_top = 280.0
-offset_right = 1040.0
-offset_bottom = 318.0
+offset_left = 864.0
+offset_top = 408.0
+offset_right = 928.0
+offset_bottom = 446.0
 
 [node name="DeleteButtonSlot3" type="Button" parent="DeleteSlot3" unique_id=984235593]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../DeleteSlot2/DeleteButtonSlot2")
+focus_neighbor_top = NodePath("../../Slots/HBoxContainer/SaveSlot3/PanelContainer/Button")
+focus_neighbor_right = NodePath("../../DeleteSlot1/DeleteButtonSlot1")
 text = "Delete"
 
 [node name="Level" parent="." unique_id=1263719789 instance=ExtResource("3_64wec")]
@@ -119,7 +151,17 @@ show_clock = false
 [node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=1498943275]
 transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="DeleteSlot1/DeleteButtonSlot1" to="." method="_on_delete_button_slot_1_pressed"]
 [connection signal="pressed" from="DeleteSlot2/DeleteButtonSlot2" to="." method="_on_delete_button_slot_2_pressed"]
 [connection signal="pressed" from="DeleteSlot3/DeleteButtonSlot3" to="." method="_on_delete_button_slot_3_pressed"]
+
+[editable path="Slots/HBoxContainer/SaveSlot"]
+[editable path="Slots/HBoxContainer/SaveSlot2"]
+[editable path="Slots/HBoxContainer/SaveSlot3"]
+[editable path="Level/Restaurant"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
+[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]
+[editable path="Level/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]

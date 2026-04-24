@@ -38,6 +38,7 @@ func _ready() -> void:
 	remaining_money_label.text = "$0"
 	cart_total = 0
 	quest_log = get_tree().get_first_node_in_group("quest_log")
+	GlobalSignal.pause_game.connect(_pause_game)
 	
 #func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed("pause") and use:
@@ -173,3 +174,8 @@ func update_store_item_to_cart_vbox(_store_item: GlobalVar.StoreItem, _quantity:
 	var new_label : Label = Label.new()
 	new_label.text = new_store_item_name + " x " + str(_quantity)
 	cart_vbox.add_child(new_label)
+
+
+func _pause_game(_is_paused:bool) -> void:
+	if %OrderUI.visible:
+		_on_home_button_pressed()

@@ -98,6 +98,13 @@ var num_pizza_boxes:int = 0
 var level:int = 1
 var xp:int = 0
 
+@export var controller_sensitivity := 3.0
+@export var controller_deadzone := 0.18
+@export var min_pitch_deg := -75.0
+@export var max_pitch_deg := 80.0
+
+@onready var tablet:Tablet = %Tablet
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
@@ -109,6 +116,7 @@ func _ready():
 	# set up player data
 	if ResourceLoader.exists(GlobalVar.get_save_slot()):
 		load_player_data()
+		%QuestLog.hide()
 	else:
 		playerData = PlayerData.new()
 		playerData.day = 1
@@ -116,6 +124,7 @@ func _ready():
 		playerData.store_font_size = 72
 		playerData.level = 0
 		playerData.xp = 0
+		%QuestLog.show()
 	
 	starting_money = money
 	
@@ -127,6 +136,8 @@ func _ready():
 func _process(_delta: float) -> void:
 	if is_alive:
 		if Input.is_action_just_pressed("pause"):
+			tablet.hide_tablet()
+			GlobalSignal.pause_game.emit(true)
 			pause_menu.show()
 			get_tree().paused = true
 		interact = Input.is_action_just_pressed("interact")
@@ -149,6 +160,29 @@ func _physics_process(delta: float) -> void:
 				_process_jump()
 				_physics_logic()
 				_process_drop_item()
+			_process_controller_turning(delta)
+
+func _process_controller_turning(delta:float) -> void:
+	# Map these actions in Input Map:
+	# look_left, look_right, look_up, look_down
+	var look := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+
+	# Small manual threshold to avoid tiny drift still affecting look/device switching
+	if look.length() > controller_deadzone:
+		#current_input_device = InputDevice.CONTROLLER
+
+		rotate_y(-look.x * controller_sensitivity * delta)
+
+		pitch -= look.y * controller_sensitivity * delta
+		pitch = clamp(
+			pitch,
+			deg_to_rad(min_pitch_deg),
+			deg_to_rad(max_pitch_deg)
+		)
+		pointer_slot.rotation.x = pitch
+	else:
+		# Optional: snap tiny values to zero if you want extra stability
+		look = Vector2.ZERO
 
 
 func _process_jump() -> void:
