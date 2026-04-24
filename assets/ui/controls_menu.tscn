@@ -431,7 +431,7 @@ offset_bottom = 266.52798
 button_label = &"BACK"
 normal_texture = ExtResource("6_1ycfe")
 pressed_texture = ExtResource("7_t6w6j")
-label = NodePath("Label")
+label = NodePath("TextureButton/Label")
 button = NodePath("TextureButton")
 
 [node name="TextureButton" parent="BackButton" index="0" unique_id=2147143867]

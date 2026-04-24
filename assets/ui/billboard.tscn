@@ -151,7 +151,7 @@ offset_bottom = 187.43997
 button_label = &"SAVE"
 normal_texture = ExtResource("5_nvtjr")
 pressed_texture = ExtResource("6_33xu4")
-label = NodePath("Label")
+label = NodePath("TextureButton/Label")
 button = NodePath("TextureButton")
 
 [node name="TextureButton" parent="Button" index="0" unique_id=2147143867]

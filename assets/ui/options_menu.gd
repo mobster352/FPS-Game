@@ -5,6 +5,7 @@ const PROJECT_SETTINGS_PATH = "user://project_settings.cfg"
 
 @export var callback_menu: Control
 @export var menu_audio: AudioStreamPlayer
+@export var tabs:TabContainer
 
 enum QualityPreset { LOW, MEDIUM, HIGH }
 
@@ -52,6 +53,7 @@ var rendering_method:String = "forward_plus":
 		set_renderer_for_next_launch()
 
 var settings_data:Settings
+var player:Player
 
 func _ready() -> void:
 	if ResourceLoader.exists(SETTINGS_PATH):
@@ -60,6 +62,7 @@ func _ready() -> void:
 		settings_data = Settings.new()
 		auto_detect_tier()
 	#print("Renderer: ", RenderingServer.get_current_rendering_method())
+	GlobalSignal.init_player.connect(_init_player)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -119,6 +122,18 @@ func load_settings() -> void:
 		is_bg_audio_on = settings_data.bg_music_on
 	if settings_data.rendering_method:
 		rendering_method = settings_data.rendering_method
+	if settings_data.mouse_sensitivity:
+		if player:
+			player.mouse_sensitivity = Settings.update_mouse_sensitivity(settings_data.mouse_sensitivity)
+		%MouseSensitivitySpinBox.value = settings_data.mouse_sensitivity
+	if settings_data.controller_sensitivity:
+		if player:
+			player.controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
+		%ControllerSensitivitySpinBox.value = settings_data.controller_sensitivity
+	if settings_data.deadzone:
+		if player:
+			player.controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
+		%DeadzoneSpinBox.value = settings_data.deadzone
 
 
 func apply_preset(preset: QualityPreset):
@@ -209,3 +224,49 @@ func _on_cancel_button_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		%QualityPresetButton.grab_focus()
+
+
+func _on_mouse_sensitivity_spin_box_value_changed(value: float) -> void:
+	settings_data.mouse_sensitivity = value
+	save_settings()
+	if player:
+		player.mouse_sensitivity = Settings.update_mouse_sensitivity(value)
+
+
+func _init_player(_player:Player) -> void:
+	player = _player
+
+
+func _on_controller_sensitivity_spin_box_value_changed(value: float) -> void:
+	settings_data.controller_sensitivity = value
+	save_settings()
+	if player:
+		player.controller_sensitivity = Settings.update_controller_sensitivity(value)
+
+
+func _on_deadzone_spin_box_value_changed(value: float) -> void:
+	settings_data.deadzone = value
+	save_settings()
+	if player:
+		player.controller_deadzone = Settings.update_deadzone(value)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("tab_left"):
+		tabs.current_tab = wrapi(tabs.current_tab - 1, 0, tabs.get_tab_count())
+		if tabs.current_tab == 0:
+			%QualityPresetButton.grab_focus()
+		elif tabs.current_tab == 1:
+			%MouseSensitivitySpinBox.get_line_edit().grab_focus()
+		elif tabs.current_tab == 2:
+			%ControllerSensitivitySpinBox.get_line_edit().grab_focus()
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("tab_right"):
+		tabs.current_tab = wrapi(tabs.current_tab + 1, 0, tabs.get_tab_count())
+		if tabs.current_tab == 0:
+			%QualityPresetButton.grab_focus()
+		elif tabs.current_tab == 1:
+			%MouseSensitivitySpinBox.get_line_edit().grab_focus()
+		elif tabs.current_tab == 2:
+			%ControllerSensitivitySpinBox.get_line_edit().grab_focus()
+		get_viewport().set_input_as_handled()

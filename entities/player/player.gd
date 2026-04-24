@@ -98,7 +98,7 @@ var num_pizza_boxes:int = 0
 var level:int = 1
 var xp:int = 0
 
-@export var controller_sensitivity := 3.0
+@export var controller_sensitivity := 5.0
 @export var controller_deadzone := 0.18
 @export var min_pitch_deg := -75.0
 @export var max_pitch_deg := 80.0
@@ -129,9 +129,10 @@ func _ready():
 	
 	starting_money = money
 	
-	# save player data
 	GlobalSignal.next_day.connect(_next_day)
+	load_settings()
 	player_loaded.emit(self)
+	GlobalSignal.init_player.emit(self)
 
 
 func _process(_delta: float) -> void:
@@ -881,3 +882,14 @@ func load_game() -> void:
 func _update_store_name(store_name:String, font_size:int) -> void:
 	playerData.store_name = store_name
 	playerData.store_font_size = font_size
+
+
+func load_settings() -> void:
+	const SETTINGS_PATH = "user://settings.tres"
+	var settings_data:Settings = ResourceLoader.load(SETTINGS_PATH)
+	if settings_data.mouse_sensitivity:
+		mouse_sensitivity = Settings.update_mouse_sensitivity(settings_data.mouse_sensitivity)
+	if settings_data.controller_sensitivity:
+		controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
+	if settings_data.deadzone:
+		controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
