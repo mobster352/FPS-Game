@@ -42,9 +42,7 @@ func _ready() -> void:
 	item_price.text = "$" + str(price)
 	GlobalSignal.order_inventory_items.connect(_order_inventory_items)
 	GlobalSignal.level_up.connect(_level_up)
-	player = get_tree().get_first_node_in_group("player")
-	if player:
-		check_level_required()
+	GlobalSignal.init_player.connect(_init_player)
 	%LevelRequired.text = "Lv. " + str(level_required)
 
 func _on_select_item_button_mouse_entered() -> void:
@@ -82,4 +80,9 @@ func check_level_required() -> void:
 
 
 func _level_up(_value:int) -> void:
+	check_level_required()
+
+
+func _init_player(_player:Player) -> void:
+	player = _player
 	check_level_required()

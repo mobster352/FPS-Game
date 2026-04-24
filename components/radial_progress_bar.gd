@@ -2,7 +2,7 @@ extends Node3D
 
 signal radial_timeout
 
-const TIMER_LIMIT = 30.0 #seconds
+const TIMER_LIMIT = 75.0 #seconds
 var timer = 0.0:
 	set(value):
 		timer = value
