@@ -104,6 +104,7 @@ var xp:int = 0
 @export var max_pitch_deg := 80.0
 
 @onready var tablet:Tablet = %Tablet
+var is_sprinting:bool = false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -145,6 +146,8 @@ func _process(_delta: float) -> void:
 		sell_input = Input.is_action_just_pressed("sell")
 		_process_rayCast()
 		if not freeze_camera:
+			if Input.is_action_just_pressed("sprint"):
+				is_sprinting = not is_sprinting
 			_process_movement()
 			_process_shot()
 			_process_draw_weapon()
@@ -195,7 +198,6 @@ func _process_movement() -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_right", "move_left", "move_backward", "move_forward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var is_sprinting:bool = Input.is_action_pressed("sprint")
 	if direction:
 		if is_sprinting:
 			velocity.x = direction.x * SPRINT_SPEED
