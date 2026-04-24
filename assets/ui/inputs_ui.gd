@@ -4,6 +4,12 @@ class_name InputsUI
 @export var left_input: ActionInput
 @export var right_input: ActionInput
 @export var cook_input: ActionInput
+@export var input_type:InputType:
+	set(value):
+		input_type = value
+		left_input.update_input_textures(value)
+		right_input.update_input_textures(value)
+		cook_input.update_input_textures(value)
 
 @warning_ignore("unused_signal")
 signal update_actions(input_action:InputAction)
@@ -22,6 +28,11 @@ enum InputAction {
 	CombineStack,
 	PutBack,
 	Default
+}
+
+enum InputType {
+	MOUSE,
+	CONTROLLER
 }
 
 

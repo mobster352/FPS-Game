@@ -106,6 +106,18 @@ var xp:int = 0
 @onready var tablet:Tablet = %Tablet
 var is_sprinting:bool = false
 
+enum InputDevice {
+	MOUSE_KEYBOARD,
+	CONTROLLER
+}
+var current_input_device := InputDevice.MOUSE_KEYBOARD:
+	set(value):
+		current_input_device = value
+		if value == InputDevice.MOUSE_KEYBOARD:
+			inputs_ui.input_type = InputsUI.InputType.MOUSE
+		elif value == InputDevice.CONTROLLER:
+			inputs_ui.input_type = InputsUI.InputType.CONTROLLER
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	spawn_position = global_position
@@ -184,6 +196,8 @@ func _process_controller_turning(delta:float) -> void:
 			deg_to_rad(max_pitch_deg)
 		)
 		pointer_slot.rotation.x = pitch
+		
+		current_input_device = InputDevice.CONTROLLER
 	else:
 		# Optional: snap tiny values to zero if you want extra stability
 		look = Vector2.ZERO
@@ -237,6 +251,8 @@ func _input(event: InputEvent) -> void:
 
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
+		current_input_device = InputDevice.MOUSE_KEYBOARD
 
 
 func _process_shot() -> void:

@@ -2,9 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://rkt7u0p0ns70" path="res://assets/ui/action_input.tscn" id="1_p5iri"]
 [ext_resource type="Script" uid="uid://boqhih07x2u5i" path="res://assets/ui/inputs_ui.gd" id="1_wn4ag"]
-[ext_resource type="Texture2D" uid="uid://dft8ql16fuhsg" path="res://assets/ui/tile_0077.png" id="2_000aa"]
-[ext_resource type="Texture2D" uid="uid://c4wo3nm704e1c" path="res://assets/ui/tile_0078.png" id="3_wn4ag"]
-[ext_resource type="Texture2D" uid="uid://blj0ihg3tuoku" path="res://assets/ui/tile_0087.png" id="5_htl47"]
 
 [node name="InputsUI" type="Control" unique_id=414961565 node_paths=PackedStringArray("left_input", "right_input", "cook_input")]
 layout_mode = 3
@@ -33,7 +30,6 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
 action = 1
-action_texture = ExtResource("2_000aa")
 
 [node name="RightInput" parent="." unique_id=603884551 instance=ExtResource("1_p5iri")]
 layout_mode = 1
@@ -49,7 +45,7 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
 action = 2
-action_texture = ExtResource("3_wn4ag")
+input_button = 1
 
 [node name="CookInput" parent="." unique_id=172012745 instance=ExtResource("1_p5iri")]
 layout_mode = 1
@@ -65,4 +61,4 @@ offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 0
 action = 6
-action_texture = ExtResource("5_htl47")
+input_button = 2
