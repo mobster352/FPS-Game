@@ -1,28 +1,22 @@
 [gd_scene format=3 uid="uid://bdjhxs02iqaue"]
 
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
+[ext_resource type="Texture2D" uid="uid://cmu22kl0anlb2" path="res://assets/ui/background.png" id="2_eqiyk"]
 [ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="2_n4sa1"]
 [ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_7la27"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="4_58nof"]
+[ext_resource type="Texture2D" uid="uid://r0bvb77tspkd" path="res://assets/ui/pizza_boy_logo_tp.png" id="4_ijjh2"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="5_pdggx"]
-[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="6_7la27"]
 [ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="6_58nof"]
-[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="6_pdggx"]
 [ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="6_q6mfq"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="8_jci6o"]
+[ext_resource type="Texture2D" uid="uid://bo48425onffjr" path="res://assets/ui/discord2.png" id="10_efjyj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82vaf"]
 font_size = 88
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_q6mfq"]
-viewport_path = NodePath("CSGMesh3D/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jci6o"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_q6mfq")
 
 [node name="MainMenu" type="Control" unique_id=325520252 node_paths=PackedStringArray("menu_audio", "main_menu", "options_menu")]
 layout_mode = 3
@@ -35,6 +29,16 @@ script = ExtResource("1_pdggx")
 menu_audio = NodePath("Audio/MenuAudio")
 main_menu = NodePath("Main")
 options_menu = NodePath("OptionsMenu")
+
+[node name="Background" type="MarginContainer" parent="." unique_id=757466749]
+layout_mode = 0
+offset_right = 1520.0
+offset_bottom = 704.0
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=334809413]
+layout_mode = 2
+texture = ExtResource("2_eqiyk")
+stretch_mode = 4
 
 [node name="Main" type="Control" parent="." unique_id=505933194]
 anchors_preset = 0
@@ -49,17 +53,24 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 358.0
-offset_top = 56.0
-offset_right = 754.0
-offset_bottom = 177.0
+offset_left = 68.0
+offset_top = 16.0
+offset_right = 428.0
+offset_bottom = 232.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="Main/MarginContainer2" unique_id=775572840]
+visible = false
 layout_mode = 2
 text = "Pizza Boy"
 label_settings = SubResource("LabelSettings_82vaf")
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Main/MarginContainer2" unique_id=615072981]
+layout_mode = 2
+texture = ExtResource("4_ijjh2")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="StartGame" type="MarginContainer" parent="Main" unique_id=1731944410]
 layout_mode = 1
@@ -68,9 +79,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 492.0
+offset_left = 188.0
 offset_top = 236.0
-offset_right = 618.7349
+offset_right = 314.73492
 offset_bottom = 303.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -99,9 +110,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 492.0
+offset_left = 188.0
 offset_top = 332.0
-offset_right = 620.0
+offset_right = 316.0
 offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -137,9 +148,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 492.0
+offset_left = 188.0
 offset_top = 428.0
-offset_right = 618.7349
+offset_right = 314.73492
 offset_bottom = 495.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -187,6 +198,32 @@ layout_mode = 2
 text = "Multiplayer"
 horizontal_alignment = 1
 
+[node name="Discord" type="MarginContainer" parent="Main" unique_id=73079957]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.000001
+anchor_top = 3.2
+anchor_right = 12.943001
+anchor_bottom = 5.2000003
+offset_left = -3.0517578e-05
+offset_right = -0.0056762695
+offset_bottom = -1.5258789e-05
+
+[node name="DiscordTexture" type="TextureRect" parent="Main/Discord" unique_id=1170171647]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("10_efjyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="Main/Discord/DiscordTexture" unique_id=1867609660]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0300001
+anchor_bottom = 1.0
+offset_right = -0.030006409
+uri = "https://discord.gg/GBZvgFyDx9"
+
 [node name="OptionsMenu" parent="." unique_id=737911688 node_paths=PackedStringArray("callback_menu") instance=ExtResource("8_jci6o")]
 visible = false
 layout_mode = 1
@@ -198,22 +235,6 @@ callback_menu = NodePath("../Main")
 stream = ExtResource("5_82vaf")
 volume_db = -5.0
 
-[node name="Level" parent="." unique_id=1414784817 instance=ExtResource("6_7la27")]
-start_time = 12.0
-can_advance_time = false
-show_clock = false
-
-[node name="Restaurant" parent="Level" unique_id=1993302886 instance=ExtResource("6_pdggx")]
-
-[node name="CSGMesh3D" parent="Level/Restaurant/Environment/Restaurant/Decorations/Monitor" parent_id_path=PackedInt32Array(1993302886, 735103462) index="0" unique_id=887691759]
-material = SubResource("StandardMaterial3D_jci6o")
-
-[node name="OrderUI" parent="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer" parent_id_path=PackedInt32Array(1993302886, 1525205948) index="2" unique_id=710377329]
-visible = false
-
-[node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=975023757]
-transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
-
 [connection signal="visibility_changed" from="Main" to="." method="_on_main_visibility_changed"]
 [connection signal="mouse_entered" from="Main/StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
@@ -221,9 +242,5 @@ transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.1
 [connection signal="mouse_entered" from="Main/Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/Quit/TextureButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Main/Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
-
-[editable path="Level/Restaurant"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/Monitor"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
-[editable path="Level/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]
+[connection signal="mouse_entered" from="Main/Discord/DiscordTexture/LinkButton" to="." method="_on_discord_texture_mouse_entered"]
+[connection signal="mouse_exited" from="Main/Discord/DiscordTexture/LinkButton" to="." method="_on_discord_texture_mouse_exited"]

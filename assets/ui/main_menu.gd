@@ -36,3 +36,11 @@ func _on_settings_button_pressed() -> void:
 func _on_main_visibility_changed() -> void:
 	if visible and %StartGameButton.is_inside_tree():
 		%StartGameButton.grab_focus()
+
+
+func _on_discord_texture_mouse_entered() -> void:
+	%DiscordTexture.texture = load("res://assets/ui/discord2_hover.png")
+
+
+func _on_discord_texture_mouse_exited() -> void:
+	%DiscordTexture.texture = load("res://assets/ui/discord2.png")

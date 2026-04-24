@@ -528,4 +528,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.564, 100, 0.198)
 
 [editable path="Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
 [editable path="Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
+[editable path="Environment/Restaurant/Decorations/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]
 [editable path="Environment/Restaurant/Walls/wall_window_open4"]

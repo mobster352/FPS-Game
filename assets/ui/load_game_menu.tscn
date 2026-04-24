@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://blxfqti0ps2kp" path="res://assets/ui/load_game_menu.gd" id="1_mfw0s"]
 [ext_resource type="PackedScene" uid="uid://kfxx87xghhyt" path="res://assets/ui/save_slot.tscn" id="2_6bfbr"]
+[ext_resource type="Texture2D" uid="uid://cmu22kl0anlb2" path="res://assets/ui/background.png" id="2_64wec"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="2_e2d8f"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="3_38oqv"]
-[ext_resource type="PackedScene" uid="uid://dbylqid1806nq" path="res://environment/level.tscn" id="3_64wec"]
 [ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_5viaj"]
-[ext_resource type="PackedScene" uid="uid://bnegw0uworysw" path="res://environment/restaurant.tscn" id="4_e2d8f"]
 
 [node name="LoadGameMenu" type="Control" unique_id=208226146]
 layout_mode = 3
@@ -17,6 +16,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_mfw0s")
+
+[node name="Background" type="MarginContainer" parent="." unique_id=1354593537]
+layout_mode = 0
+offset_right = 1520.0
+offset_bottom = 704.0
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1740198388]
+layout_mode = 2
+texture = ExtResource("2_64wec")
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=673643996]
 layout_mode = 0
@@ -141,16 +150,6 @@ focus_neighbor_top = NodePath("../../Slots/HBoxContainer/SaveSlot3/PanelContaine
 focus_neighbor_right = NodePath("../../DeleteSlot1/DeleteButtonSlot1")
 text = "Delete"
 
-[node name="Level" parent="." unique_id=1263719789 instance=ExtResource("3_64wec")]
-start_time = 12.0
-can_advance_time = false
-show_clock = false
-
-[node name="Restaurant" parent="Level" unique_id=1282270132 instance=ExtResource("4_e2d8f")]
-
-[node name="Camera3D" type="Camera3D" parent="Level/Restaurant" unique_id=1498943275]
-transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.104528464, 0.10532688, -0.103947036, 0.98899, -3.7049441, 1.9282646, 5.232668)
-
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="DeleteSlot1/DeleteButtonSlot1" to="." method="_on_delete_button_slot_1_pressed"]
@@ -160,8 +159,3 @@ transform = Transform3D(0.99443763, 0.011009658, -0.104749896, 0, 0.9945219, 0.1
 [editable path="Slots/HBoxContainer/SaveSlot"]
 [editable path="Slots/HBoxContainer/SaveSlot2"]
 [editable path="Slots/HBoxContainer/SaveSlot3"]
-[editable path="Level/Restaurant"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/monitor"]
-[editable path="Level/Restaurant/Environment/Restaurant/Decorations/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]
-[editable path="Level/Restaurant/Environment/Restaurant/Walls/wall_window_open4"]
