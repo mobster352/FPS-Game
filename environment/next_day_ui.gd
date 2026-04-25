@@ -18,7 +18,9 @@ func _change_scene() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		if player:
+			%LevelValue.text = str(player.level)
 			%CustomersServedValue.text = str(player.customers_served)
+			%CustomersSatisfiedValue.text = str(player.customers_satisfied)
 			var profit = player.money - player.starting_money
 			if profit < 0:
 				%ProfitValue.text = "-$" + str(abs(profit))

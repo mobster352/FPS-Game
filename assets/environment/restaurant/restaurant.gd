@@ -161,3 +161,7 @@ func get_crate_item(order_item: GlobalVar.StoreItem) -> Item:
 		var interactable = crate.get_node("body/Interactable") as ObjectSpawner
 		interactable.item_type = order_item
 		return crate
+
+
+func _on_drive_thru_spawn_init_drive_thru_menu(_drive_thru_menu:DriveThruMenu) -> void:
+	drive_thru_menu = _drive_thru_menu

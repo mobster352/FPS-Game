@@ -1,26 +1,30 @@
 [gd_scene format=3 uid="uid://dyerpcqr0dhve"]
 
 [ext_resource type="Script" uid="uid://drqxxnnvrlx6m" path="res://environment/drive_thru_customer.gd" id="1_2q675"]
-[ext_resource type="PackedScene" uid="uid://b5e5d5rwjarrn" path="res://assets/environment/city/car_taxi_edited.tscn" id="2_roemc"]
+[ext_resource type="PackedScene" uid="uid://dfqntysow7vqc" path="res://assets/environment/city/car_taxi_edited.tscn" id="2_roemc"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_d8lpq"]
+[ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="4_f7sqe"]
+[ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="5_2w7nu"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_roemc"]
-size = Vector3(1.8862915, 2.161621, 4.4296875)
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7sqe"]
+size = Vector3(2.0839233, 1.8134155, 4.690918)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_roemc"]
-radius = 2.0258462
+radius = 2.764011
 
-[node name="DriveThruCustomer" type="StaticBody3D" unique_id=1622733246 node_paths=PackedStringArray("pointer")]
+[node name="DriveThruCustomer" type="StaticBody3D" unique_id=1811510335 node_paths=PackedStringArray("drive_thru_menu", "dialogue_box", "pointer")]
 collision_layer = 32
-collision_mask = 0
 script = ExtResource("1_2q675")
+drive_thru_menu = NodePath("DriveThruMenu")
+dialogue_box = NodePath("DialogueBox")
 pointer = NodePath("Pointer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=148431381]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005218506, 0.810791, 0.026367188)
-shape = SubResource("BoxShape3D_roemc")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=723299839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0039978027, 0.89785767, -0.018310547)
+shape = SubResource("BoxShape3D_f7sqe")
 
-[node name="car_taxi_edited" parent="." unique_id=1188811937 instance=ExtResource("2_roemc")]
+[node name="car_taxi_edited" parent="." unique_id=1627127432 instance=ExtResource("2_roemc")]
+unique_name_in_owner = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1025795307]
 collision_mask = 10
@@ -31,6 +35,14 @@ shape = SubResource("SphereShape3D_roemc")
 
 [node name="Pointer" parent="." unique_id=86623557 instance=ExtResource("3_d8lpq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4403276, 0)
+visible = false
+
+[node name="DriveThruMenu" type="Node3D" parent="." unique_id=751788780]
+script = ExtResource("4_f7sqe")
+
+[node name="DialogueBox" parent="." unique_id=790149930 instance=ExtResource("5_2w7nu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5560074, 2.7607057, -0.15580845)
+visible = false
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

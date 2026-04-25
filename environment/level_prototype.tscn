@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://elhs3l32vcuj" path="res://assets/environment/city/dumpster.tscn" id="18_yc5kt"]
 [ext_resource type="PackedScene" uid="uid://vpt84oiayql3" path="res://assets/environment/city/firehydrant.tscn" id="19_1ntup"]
 [ext_resource type="PackedScene" uid="uid://7tdbbai16mmq" path="res://assets/environment/city/bush.tscn" id="20_acoea"]
-[ext_resource type="PackedScene" uid="uid://b5e5d5rwjarrn" path="res://assets/environment/city/car_taxi_edited.tscn" id="26_pwpgx"]
+[ext_resource type="PackedScene" uid="uid://b5e5d5rwjarrn" path="res://assets/environment/city/car_taxi.tscn" id="26_pwpgx"]
 [ext_resource type="Script" uid="uid://5efmqcu0cev4" path="res://environment/drive_thru_spawn.gd" id="27_acoea"]
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="28_as0rt"]
 [ext_resource type="PackedScene" uid="uid://dyerpcqr0dhve" path="res://assets/environment/restaurant/drive_thru_customer.tscn" id="29_cl1yb"]

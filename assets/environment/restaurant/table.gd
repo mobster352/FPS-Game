@@ -83,6 +83,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				money = randi_range(6,10)
 			dialogue_box.text = dialogue_box.get_good_order_delivered_text()
 			GlobalSignal.add_xp.emit(10)
+			player.increment_customers_satisfied()
 		else:
 			money = randi_range(1,3)
 			dialogue_box.text = dialogue_box.get_bad_order_delivered_text()

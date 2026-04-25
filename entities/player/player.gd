@@ -7,6 +7,7 @@ signal weapon_fired
 
 var playerData: PlayerData
 var customers_served: int
+var customers_satisfied: int
 
 const RETICLE_WHITE := Color(255,255,255,0.5)
 const RETICLE_RED := Color(255,0,0,0.5)
@@ -126,6 +127,7 @@ func _ready():
 	GlobalSignal.update_store_name.connect(_update_store_name)
 	
 	customers_served = 0
+	customers_satisfied = 0
 	# set up player data
 	if ResourceLoader.exists(GlobalVar.get_save_slot()):
 		load_player_data()
@@ -728,6 +730,10 @@ func update_money(_money:int) -> void:
 
 func increment_customers_served() -> void:
 	customers_served += 1
+
+
+func increment_customers_satisfied() -> void:
+	customers_satisfied += 1
 
 
 func _respawn() -> void:

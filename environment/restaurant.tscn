@@ -224,58 +224,76 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.
 
 [node name="Decorations" type="Node3D" parent="Environment/Restaurant" unique_id=6263966]
 
+[node name="Lights" type="Node3D" parent="Environment/Restaurant/Decorations" unique_id=1071369627]
+
+[node name="CustomerArea" type="Node3D" parent="Environment/Restaurant/Decorations/Lights" unique_id=654965295]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/CustomerArea" unique_id=2134200177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.199365, 2.8222942, 3.9671044)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/CustomerArea" unique_id=657216146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9531322, 2.8222942, 8.938494)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/CustomerArea" unique_id=35522349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9531322, 2.8222942, 1.6519809)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/CustomerArea" unique_id=1000421756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3059616, 2.8222942, 10.834626)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="BackArea" type="Node3D" parent="Environment/Restaurant/Decorations/Lights" unique_id=1755127162]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=170472336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.793595, 2.8222942, 2.000196)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=2034281250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.725644, 2.8222942, 2.000196)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=206280414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.429409, 2.8222942, 2.000196)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=1596247561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.585285, 2.8222942, 6.9329553)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=361175482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.936047, 2.8222942, 7.789799)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Environment/Restaurant/Decorations/Lights/BackArea" unique_id=146933733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.520833, 2.8222942, 10.465803)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 9.135443
+
 [node name="Door_A2" parent="Environment/Restaurant/Decorations" unique_id=1522499235 instance=ExtResource("5_5dcbl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.8, 0, -0.6000004)
 is_locked = false
 number_required = 0
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=2134200177]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7890625, 3.0848804, 2.6542923)
-omni_range = 17.402536
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=1781802306]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0920153, 3.0848804, 2.6542923)
-omni_range = 17.402536
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=1411677273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, 2.6542923)
-omni_range = 17.402536
-
-[node name="OmniLight3D10" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=879717521]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7890625, 3.0848804, 9.654292)
-omni_range = 17.402536
-
-[node name="OmniLight3D11" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=842411216]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0920153, 3.0848804, 9.654292)
-omni_range = 17.402536
-
-[node name="OmniLight3D12" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=649145622]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7431321, 3.0848804, 9.654292)
-omni_range = 17.402536
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=1008306471]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.520894, 3.0848804, 9.120213)
-omni_range = 17.402536
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=509774161]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.823845, 3.0848804, 9.120213)
-omni_range = 17.402536
-
-[node name="OmniLight3D6" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=719337838]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9887, 3.0848804, 9.120213)
-omni_range = 17.402536
-
-[node name="OmniLight3D7" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=1395564124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.520894, 3.0848804, 2.5782042)
-omni_range = 17.402536
-
-[node name="OmniLight3D8" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=677716676]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.823845, 3.0848804, 2.5782042)
-omni_range = 17.402536
-
-[node name="OmniLight3D9" type="OmniLight3D" parent="Environment/Restaurant/Decorations" unique_id=689645716]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9887, 3.0848804, 2.5782042)
-omni_range = 17.402536
 
 [node name="kitchentable_B" parent="Environment/Restaurant/Decorations" unique_id=514779330 groups=["nav_back_restaurant"] instance=ExtResource("8_1nokp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.759668, 0, -0.32726014)

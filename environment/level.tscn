@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://baakymstnrcvv" path="res://components/status_bar.tscn" id="6_78a7o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xafjm"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+sky_top_color = Color(0.39814603, 0.58059263, 0.8047893, 1)
+sky_horizon_color = Color(0.6016315, 0.6098409, 0.6262637, 1)
+energy_multiplier = 0.5
 
 [sub_resource type="Sky" id="Sky_vfqff"]
 sky_material = SubResource("ProceduralSkyMaterial_xafjm")
