@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cgu21koi8jmrs"]
+
+[ext_resource type="PackedScene" uid="uid://da1wdhxmbch4g" path="res://assets/environment/city/streetlight_edited.glb" id="1_ibsn4"]
+[ext_resource type="Texture2D" uid="uid://cog4lehknnseg" path="res://assets/kaykit/city/citybits_texture.png" id="2_1yfn0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dadh4"]
+albedo_texture = ExtResource("2_1yfn0")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[node name="streetlight_edited" unique_id=521656018 instance=ExtResource("1_ibsn4")]
+
+[node name="streetlight" parent="." index="0" unique_id=702033735]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="streetlight_light" parent="streetlight" index="0" unique_id=1755153186]
+surface_material_override/0 = SubResource("StandardMaterial3D_dadh4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="streetlight/streetlight_light" index="0" unique_id=1086962063]
+transform = Transform3D(0.9723414, 0, 0.23356415, -0.23356415, -4.371139e-08, 0.9723414, 1.0209414e-08, -1, -4.2502393e-08, -0.1993289, 0.90056705, -3.936504e-08)
+spot_range = 8.844251

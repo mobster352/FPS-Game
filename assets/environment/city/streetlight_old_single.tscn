@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://2knrbq2bw1pg"]
+
+[ext_resource type="PackedScene" uid="uid://f00dk2raalwa" path="res://assets/environment/city/streetlight_old_single.gltf" id="1_8kv26"]
+
+[node name="streetlight_old_single" unique_id=1531760891 instance=ExtResource("1_8kv26")]
+
+[node name="streetlight_old_single" parent="." index="0" unique_id=867156994]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="streetlight_old_single" index="0" unique_id=881862567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60309315, 0)
+light_color = Color(0.7457388, 0.51462746, 0, 1)
+omni_range = 3.8946285

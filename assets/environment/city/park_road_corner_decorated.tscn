@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d121iluacy4ru"]
+
+[ext_resource type="PackedScene" uid="uid://bdf7hn2j805o8" path="res://assets/environment/city/park_road_corner_decorated.gltf" id="1_7bqtv"]
+
+[node name="park_road_corner_decorated" unique_id=103607358 instance=ExtResource("1_7bqtv")]
+
+[node name="park_road_corner_decorated" parent="." index="0" unique_id=834909058]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.4, 0)

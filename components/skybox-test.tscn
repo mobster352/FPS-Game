@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://qcu8xyu2whxi"]
+
+[ext_resource type="Shader" uid="uid://c4xhw86y5qojt" path="res://components/sky_shader.gdshader" id="1_lky4o"]
+[ext_resource type="Texture2D" uid="uid://dppfg45rcbi0c" path="res://assets/environment/sky/skybox_equirect_8192x4096.png" id="2_elihh"]
+[ext_resource type="PackedScene" uid="uid://cy5qd7os4mdfb" path="res://components/basic_player.tscn" id="3_y6xkr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elihh"]
+shader = ExtResource("1_lky4o")
+shader_parameter/sky_tex = ExtResource("2_elihh")
+shader_parameter/sun_pos = Vector3(20000, 25000, -10000)
+
+[sub_resource type="Sky" id="Sky_y6xkr"]
+sky_material = SubResource("ShaderMaterial_elihh")
+
+[sub_resource type="Environment" id="Environment_sasq1"]
+background_mode = 2
+sky = SubResource("Sky_y6xkr")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_elihh"]
+
+[node name="Node3D" type="Node3D" unique_id=1283409406]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2115285659]
+environment = SubResource("Environment_sasq1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=56811130]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1614439269]
+shape = SubResource("WorldBoundaryShape3D_elihh")
+
+[node name="BasicPlayer" parent="." unique_id=139113775 instance=ExtResource("3_y6xkr")]

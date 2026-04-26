@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d2hv01hqb84oi"]
+
+[ext_resource type="Material" uid="uid://b5wopxvlt2ftf" path="res://components/day_shader.tres" id="1_368al"]
+[ext_resource type="PackedScene" uid="uid://cy5qd7os4mdfb" path="res://components/basic_player.tscn" id="2_368al"]
+
+[sub_resource type="Sky" id="Sky_8mqjk"]
+sky_material = ExtResource("1_368al")
+
+[sub_resource type="Environment" id="Environment_pblb6"]
+background_mode = 2
+sky = SubResource("Sky_8mqjk")
+tonemap_mode = 2
+glow_enabled = true
+adjustment_enabled = true
+adjustment_contrast = 1.5
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pwv5h"]
+
+[node name="Day" type="Node3D" unique_id=1663365009]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=730561215]
+environment = SubResource("Environment_pblb6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=998338349]
+transform = Transform3D(1, 0, 0, 0, 0.51726544, 0.85582495, 0, -0.85582495, 0.51726544, 0, 0, 0)
+
+[node name="BasicPlayer" parent="." unique_id=139113775 instance=ExtResource("2_368al")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1902468323]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1956738839]
+shape = SubResource("WorldBoundaryShape3D_pwv5h")

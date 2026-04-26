@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://lc6ng6na157"]
+
+[ext_resource type="PackedScene" uid="uid://cwhr0ikasb03g" path="res://assets/environment/city/park_road_junction_decorated_C.gltf" id="1_uhmiu"]
+
+[node name="park_road_junction_decorated_C" unique_id=624967816 instance=ExtResource("1_uhmiu")]
+
+[node name="park_road_junction_decorated_C" parent="." index="0" unique_id=1954409083]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.4, 0)

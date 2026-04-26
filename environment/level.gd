@@ -24,6 +24,7 @@ var quest_log:QuestLog
 const SUNRISE := 6.0
 const SUNSET  := 18.0
 const MAX_ELEVATION := PI / 2.0  # 90°
+var sky_shader:ShaderMaterial
 
 func _ready():
 	time_of_day = start_time
@@ -37,6 +38,8 @@ func _ready():
 	GlobalMarker._ready()
 	level_ui.show_clock = show_clock
 	quest_log = get_tree().get_first_node_in_group("quest_log")
+	sky_shader = world_environment.environment.sky.sky_material
+	sky_shader.set_shader_parameter("stars_intensity", 0.0)
 
 func _process(delta):
 	if can_advance_time and time_of_day < 22:
@@ -80,8 +83,12 @@ func update_environment():
 	var f := get_sun_factor()
 
 	var env := world_environment.environment
-	env.ambient_light_energy = lerp(0.05, 1.0, f)
-	env.background_energy_multiplier = lerp(0.2, 1.0, f)
+	env.ambient_light_energy = lerp(0.15, 0.35, f)
+	env.background_energy_multiplier = lerp(0.5, 0.75, f)
+	
+	if not sky_shader:
+		return
+	set_night_shader_params(f)
 
 func get_sun_factor() -> float:
 	# Based on sun angle, not time
@@ -89,10 +96,33 @@ func get_sun_factor() -> float:
 	var height := sun_dir.y
 
 	# Fade between -0.1 and +0.2 (below → above horizon)
-	return smoothstep(-0.4, 0.2, height)
+	return smoothstep(-0.1, 0.2, height)
 
 
 func update_sun_light():
 	var f := get_sun_factor()
 	sun.light_energy = lerp(sun_min_energy, sun_max_energy, f)
 	sun.shadow_enabled = f > 0.15
+
+
+func set_day_shader_params() -> void:	
+	sun.light_color = Color("#e0e0e0")
+	
+func set_night_shader_params(f:float) -> void:
+	#Sky
+	sky_shader.set_shader_parameter("top_color", Color("#071a40").lerp(Color("#5996ff"), f))
+	sky_shader.set_shader_parameter("bottom_color", Color("#071a40").lerp(Color("#0054f7"), f))
+	sky_shader.set_shader_parameter("sun_scatter", Color("#20165f").lerp(Color("#404040"), f))
+	
+	#Clouds
+	sky_shader.set_shader_parameter("clouds_light_color", Color("#3a72ff").lerp(Color("#ffffff"), f))
+	sky_shader.set_shader_parameter("clouds_smoothness", lerp(0.05, 0.03, f))
+	sky_shader.set_shader_parameter("clouds_shadow_intensity", lerp(8.0, 1.0, f))
+	
+	#High Clouds
+	sky_shader.set_shader_parameter("high_clouds_density", lerp(0.3, 0.0, f))
+	
+	#Stars
+	sky_shader.set_shader_parameter("stars_intensity", lerp(0.5, 0.0, f))
+	
+	sun.light_color = Color("#00053e").lerp(Color("#e0e0e0"), f)

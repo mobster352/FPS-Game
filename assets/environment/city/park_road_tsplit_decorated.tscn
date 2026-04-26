@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://chvm4t08rq0e2"]
+
+[ext_resource type="PackedScene" uid="uid://bvvtucxiprwah" path="res://assets/environment/city/park_road_tsplit_decorated.gltf" id="1_8tddb"]
+
+[node name="park_road_tsplit_decorated" unique_id=369846151 instance=ExtResource("1_8tddb")]
+
+[node name="park_road_tsplit_decorated" parent="." index="0" unique_id=617870650]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.4, 0)

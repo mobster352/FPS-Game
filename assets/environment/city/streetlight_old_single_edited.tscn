@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://v41k08v2xhkv"]
+
+[ext_resource type="PackedScene" uid="uid://nlnfeag7f1d4" path="res://assets/environment/city/streetlight_old_single_edited.glb" id="1_fsdp7"]
+[ext_resource type="Texture2D" uid="uid://cog4lehknnseg" path="res://assets/kaykit/city/citybits_texture.png" id="2_mx742"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_os6yk"]
+albedo_texture = ExtResource("2_mx742")
+emission_enabled = true
+emission = Color(0.74509805, 0.5137255, 0, 1)
+
+[node name="streetlight_old_single_edited" unique_id=1246394435 instance=ExtResource("1_fsdp7")]
+
+[node name="streetlight_old_single" parent="." index="0" unique_id=1290994668]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="streetlight_old_single_light" parent="streetlight_old_single" index="0" unique_id=168081421]
+surface_material_override/0 = SubResource("StandardMaterial3D_os6yk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="streetlight_old_single/streetlight_old_single_light" index="0" unique_id=1530775031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60309315, 0)
+light_color = Color(0.7457388, 0.51462746, 0, 1)
+omni_range = 3.8946285

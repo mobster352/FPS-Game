@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c0bypxre12xw3"]
+
+[ext_resource type="PackedScene" uid="uid://bbx055y3yxnul" path="res://assets/environment/city/park_wall_entry_decorated.gltf" id="1_5gm7w"]
+
+[node name="park_wall_entry_decorated" unique_id=643822052 instance=ExtResource("1_5gm7w")]
+
+[node name="park_wall_entry_decorated" parent="." index="0" unique_id=2117786202]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.4, 0)

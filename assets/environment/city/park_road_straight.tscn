@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://slgf7voyvfny"]
+
+[ext_resource type="PackedScene" uid="uid://b3fpnos2oiht" path="res://assets/environment/city/park_road_straight.gltf" id="1_f68gu"]
+
+[node name="park_road_straight" unique_id=796293149 instance=ExtResource("1_f68gu")]
+
+[node name="park_road_straight" parent="." index="0" unique_id=1477977683]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, -0.4, 0)
