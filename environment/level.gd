@@ -44,11 +44,11 @@ func _ready():
 func _process(delta):
 	if can_advance_time and time_of_day < 22:
 		advance_time(delta)
-		update_sun()
-		update_sun_light()
-		update_environment()
+	update_sun()
+	update_sun_light()
+	update_environment()
 		#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
-	elif time_of_day >= 22:
+	if time_of_day >= 22:
 		if is_instance_valid(quest_log):
 			if quest_log.active_quest_id == Quest.QuestIds.SERVE_CUSTOMERS:
 				quest_log.update_quest_objective(Quest.QuestObjs.SERVER_CUSTOMERS)

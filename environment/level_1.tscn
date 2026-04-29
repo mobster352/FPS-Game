@@ -94,7 +94,6 @@ _data = {
 point_count = 3
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("restaurant", "player") instance=ExtResource("1_xqm7o")]
-start_time = 19.5
 day_length_minutes = 8.0
 restaurant = NodePath("Environment/Buildings/Restaurant")
 player = NodePath("Entities/Players/Player")
@@ -398,6 +397,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0285496, 0, 21)
 
 [node name="streetlight_old_single_edited2" parent="Environment/Floor/Park" index="21" unique_id=859677159 instance=ExtResource("12_wlmb3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.978312, 0, 21)
+
+[node name="streetlight_old_single_edited3" parent="Environment/Floor/Park" index="22" unique_id=267738140 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 25.724)
+
+[node name="streetlight_old_single_edited4" parent="Environment/Floor/Park" index="23" unique_id=1860638202 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 29.656687)
+
+[node name="streetlight_old_single_edited7" parent="Environment/Floor/Park" index="24" unique_id=247344549 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1784, 0, 33.175587)
+
+[node name="streetlight_old_single_edited8" parent="Environment/Floor/Park" index="25" unique_id=1443951876 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1784, 0, 36.851795)
+
+[node name="streetlight_old_single_edited9" parent="Environment/Floor/Park" index="26" unique_id=714126315 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.652888, 0, 40.739334)
+
+[node name="streetlight_old_single_edited10" parent="Environment/Floor/Park" index="27" unique_id=1763391424 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.97668, 0, 40.739334)
+
+[node name="streetlight_old_single_edited11" parent="Environment/Floor/Park" index="28" unique_id=2098534317 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.375885, 0, 43.123608)
+
+[node name="streetlight_old_single_edited12" parent="Environment/Floor/Park" index="29" unique_id=1115292413 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.375885, 0, 46.799816)
+
+[node name="streetlight_old_single_edited13" parent="Environment/Floor/Park" index="30" unique_id=2066863400 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1340017, 0, 43.123608)
+
+[node name="streetlight_old_single_edited14" parent="Environment/Floor/Park" index="31" unique_id=668319524 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1340017, 0, 46.799816)
+
+[node name="streetlight_old_single_edited15" parent="Environment/Floor/Park" index="32" unique_id=1847945942 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.076813, 0, 40.939476)
+
+[node name="streetlight_old_single_edited16" parent="Environment/Floor/Park" index="33" unique_id=459266035 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 8.260504, 0, 42.77758)
+
+[node name="streetlight_old_single_edited17" parent="Environment/Floor/Park" index="34" unique_id=1527280114 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(-0.86602545, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.86602545, 3.4765177, 0, 37.302547)
+
+[node name="streetlight_old_single_edited18" parent="Environment/Floor/Park" index="35" unique_id=537221329 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(-0.86602545, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.86602545, 5.314622, 0, 34.118855)
+
+[node name="streetlight_old_single_edited5" parent="Environment/Floor/Park" index="36" unique_id=709413368 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 25.724)
+
+[node name="streetlight_old_single_edited6" parent="Environment/Floor/Park" index="37" unique_id=630678939 instance=ExtResource("12_wlmb3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 29.656687)
 
 [node name="dumpster" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="0" unique_id=89771373 instance=ExtResource("4_ramo3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22.818449, 0, -2.3841858e-06)

@@ -1,6 +1,8 @@
 extends Item
 class_name PizzaBox
 
+const MAX_STACK_SIZE := 10
+
 @export var lid: MeshInstance3D
 @export var speed := 1.5
 @export var pizza_slot: Node3D
@@ -46,8 +48,33 @@ func interact(_player: Player) -> void:
 		return
 	if player.has_held_object():
 		var held_obj:Node3D = player.get_held_object()
+		if held_obj.has_meta("pizzaboxes"):
+			var num_pizza_boxes = held_obj.get_child_count() + 1
+			var diff:int = 0
+			if num_pizza_boxes > MAX_STACK_SIZE:
+				diff = MAX_STACK_SIZE - num_pizza_boxes
+				num_pizza_boxes = MAX_STACK_SIZE
+			var new_stack = load("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
+			new_stack.num_pizza_boxes = num_pizza_boxes
+			new_stack.global_transform = global_transform
+			get_parent().add_child(new_stack)
+			if diff > 0:
+				for i in range(held_obj.get_child_count() - diff):
+					held_obj.remove_child(held_obj.get_child(i))
+			else:
+				held_obj.queue_free()
+			queue_free()
+			return
 		if held_obj.has_meta("name"):
 			var mesh_name:String = held_obj.get_meta("name")
+			if mesh_name == "pizza_box_open_mesh":
+				var new_stack = load("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
+				new_stack.num_pizza_boxes = 2
+				new_stack.global_transform = global_transform
+				get_parent().add_child(new_stack)
+				held_obj.queue_free()
+				queue_free()
+				return
 			if GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.PEPPERONI_PIE or \
 			GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.CHEESE_PIE or \
 			GlobalVar.get_pizza_type_from_name(mesh_name) == GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:

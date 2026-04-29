@@ -133,11 +133,11 @@ func interact(player: Player) -> void:
 			new_pizzabox.queue_free()
 		if num_pizza_boxes == 0:
 			queue_free()
-		#elif num_pizza_boxes == 1:
-			#new_pizzabox = pizzabox_open.instantiate() as PizzaBox
-			#new_pizzabox.global_transform = global_transform
-			#get_parent().add_child(new_pizzabox)
-			#queue_free()
+		elif num_pizza_boxes == 1:
+			new_pizzabox = pizzabox_open.instantiate() as PizzaBox
+			new_pizzabox.global_transform = global_transform
+			get_parent().add_child(new_pizzabox)
+			queue_free()
 		
 func interact2(player: Player) -> void:
 	if player.has_held_object():

@@ -569,11 +569,6 @@ func confirm_placement() -> bool:
 	
 	if instance is PizzaBoxStack:
 		instance.num_pizza_boxes = num_pizza_boxes
-	elif instance is PizzaBox:
-		if not child_mesh.has_meta("food_id"):
-			instance = load("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
-			instance.num_pizza_boxes = 1
-			instance.global_transform = preview_instance.global_transform
 	
 	items_marker.add_child(instance)
 

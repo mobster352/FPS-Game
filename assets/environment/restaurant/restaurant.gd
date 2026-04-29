@@ -102,7 +102,7 @@ func needs_food(food_id:int) -> bool:
 		if table:
 			if table.menu.food_id == food_id:
 				return true
-			elif drive_thru_menu.food_id == food_id:
+			elif drive_thru_menu and drive_thru_menu.food_id == food_id:
 				return true
 	return false
 

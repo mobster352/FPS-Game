@@ -13,6 +13,13 @@ var player:Player
 func _ready() -> void:
 	quest_log = get_tree().get_first_node_in_group("quest_log")
 	player = get_tree().get_first_node_in_group("player")
+	
+	var sign_material = sign_text.get_surface_override_material(0) as StandardMaterial3D
+	var blue_material = blue_background.get_surface_override_material(0) as StandardMaterial3D
+	if sign_material:
+		sign_material.emission_enabled = false
+	if blue_material:
+		blue_material.emission_enabled = false
 
 func interact() -> void:
 	if not is_sign_on:
@@ -25,7 +32,7 @@ func interact() -> void:
 		if is_instance_valid(quest_log):
 			if quest_log.active_quest_id == Quest.QuestIds.OPEN_PIZZERIA:
 				quest_log.update_quest_objective(Quest.QuestObjs.OPEN_PIZZERIA)
-	elif level.time_of_day > 22:
+	elif level.time_of_day >= 22:
 		GlobalSignal.next_day.emit(false)
 		if is_instance_valid(quest_log):
 			if quest_log.active_quest_id == Quest.QuestIds.CLOSE_PIZZERIA:
