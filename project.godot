@@ -255,6 +255,7 @@ tab_right={
 3d_physics/layer_6="Customer"
 3d_physics/layer_7="Static"
 3d_physics/layer_8="Movable"
+3d_physics/layer_9="Cars"
 
 [physics]
 

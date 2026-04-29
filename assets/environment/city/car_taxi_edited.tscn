@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://trt5rjln6y7v" path="res://assets/environment/city/car_vehicle_body.gd" id="4_6owwi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0reu3"]
-size = Vector3(0.4229126, 0.36419678, 0.94091797)
+size = Vector3(0.4229126, 0.19577026, 0.94091797)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysvbq"]
 resource_name = "citybits_texture"
@@ -260,11 +260,13 @@ script = ExtResource("1_0reu3")
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="." unique_id=385394041]
 unique_name_in_owner = true
-collision_layer = 0
+collision_layer = 256
+collision_mask = 256
 script = ExtResource("4_6owwi")
+engine_power = 100
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D" unique_id=1146927203]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.18252563, -0.007080078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.09831238, -0.007080078)
 shape = SubResource("BoxShape3D_0reu3")
 
 [node name="FrontLeftWheel" type="VehicleWheel3D" parent="VehicleBody3D" unique_id=441938568]

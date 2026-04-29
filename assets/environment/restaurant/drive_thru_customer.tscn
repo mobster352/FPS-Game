@@ -7,20 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="5_2w7nu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f7sqe"]
-size = Vector3(2.0839233, 1.8134155, 4.690918)
+size = Vector3(2.0552368, 3.0355835, 4.696228)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_roemc"]
 radius = 2.764011
 
-[node name="DriveThruCustomer" type="StaticBody3D" unique_id=1811510335 node_paths=PackedStringArray("drive_thru_menu", "dialogue_box", "pointer")]
+[node name="DriveThruCustomer" type="StaticBody3D" unique_id=58984675 node_paths=PackedStringArray("drive_thru_menu", "dialogue_box", "pointer")]
 collision_layer = 32
+collision_mask = 32
 script = ExtResource("1_2q675")
 drive_thru_menu = NodePath("DriveThruMenu")
 dialogue_box = NodePath("DialogueBox")
 pointer = NodePath("Pointer")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=723299839]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0039978027, 0.89785767, -0.018310547)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=960809265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006011963, 1.4850769, -0.044525146)
 shape = SubResource("BoxShape3D_f7sqe")
 
 [node name="car_taxi_edited" parent="." unique_id=1627127432 instance=ExtResource("2_roemc")]

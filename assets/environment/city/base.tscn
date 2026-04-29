@@ -19,3 +19,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_epmea")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="base/StaticBody3D" index="0" unique_id=416147089]
 shape = SubResource("ConcavePolygonShape3D_5g26v")
+disabled = true
