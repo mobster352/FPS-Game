@@ -16,6 +16,7 @@ const RETICLE_GREEN := Color(0.0, 1.0, 0.0, 0.5)
 const SPEED = 5.5
 const SPRINT_SPEED = 8.0
 
+@export var is_test:bool
 @export var JUMP_VELOCITY := 6.0
 
 @export var mouse_sensitivity: float = 0.002
@@ -129,7 +130,7 @@ func _ready():
 	customers_served = 0
 	customers_satisfied = 0
 	# set up player data
-	if ResourceLoader.exists(GlobalVar.get_save_slot()):
+	if ResourceLoader.exists(GlobalVar.get_save_slot()) and not is_test:
 		load_player_data()
 		%QuestLog.hide()
 	else:

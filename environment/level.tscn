@@ -79,6 +79,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.999018, 0, -8.030544)
 
 [node name="Players" type="Node3D" parent="Entities" unique_id=966853027]
 
+[node name="Tables" type="Node3D" parent="Entities" unique_id=2125951936]
+
+[node name="Items" type="Marker3D" parent="Entities" unique_id=1373334443]
+
 [node name="PlacementSystem" parent="." unique_id=1020658662 instance=ExtResource("3_3dj58")]
 
 [node name="UI" type="Control" parent="." unique_id=1491319236 node_paths=PackedStringArray("level")]
