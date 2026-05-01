@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://blk0xp6tetjqx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfuis"]
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 1.0
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=1359194593]
+size = Vector3(3.0542908, 2.0050964, 0.14282227)
+material = SubResource("StandardMaterial3D_xfuis")

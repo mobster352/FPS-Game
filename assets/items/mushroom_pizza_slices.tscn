@@ -12,6 +12,7 @@ radius = 3.0
 size = Vector3(1.9978027, 0.31506348, 2.0152588)
 
 [node name="Mushroom_Pizza_Slices" type="Node3D" unique_id=68276855 node_paths=PackedStringArray("pointer", "mesh_slices")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 script = ExtResource("1_p2no8")
 pointer = NodePath("Pointer")
 mesh_slices = [NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_001"), NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_002"), NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_003"), NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_004"), NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_005"), NodePath("food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices/food_pizza_mushroom_plated_slices_006")]
