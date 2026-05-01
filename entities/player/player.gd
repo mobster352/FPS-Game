@@ -804,27 +804,28 @@ func save_player_data() -> void:
 			item_resource.rotation = item.rotation
 			item_resource.num_pizza_boxes = item.num_pizza_boxes
 			playerData.items.append(item_resource)
-	for item in order_spawn_marker.get_children():
-		if item is Item:
-			var item_resource: ItemResource = ItemResource.new()
-			item_resource.name = item.name
-			if item.mesh.has_meta("name"):
-				item_resource.mesh_name = item.mesh.get_meta("name")
-			item_resource.position = item.position
-			item_resource.rotation = item.rotation
-			if item.has_meta("count"):
-				item_resource.count = item.get_meta("count")
-			var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
-			if object_spawner:
-				item_resource.item_type = object_spawner.item_type
-			playerData.items.append(item_resource)
-		elif item is PizzaBoxStack:
-			var item_resource: ItemResource = ItemResource.new()
-			item_resource.name = item.name
-			item_resource.position = item.position
-			item_resource.rotation = item.rotation
-			item_resource.num_pizza_boxes = item.num_pizza_boxes
-			playerData.items.append(item_resource)
+	if order_spawn_marker:
+		for item in order_spawn_marker.get_children():
+			if item is Item:
+				var item_resource: ItemResource = ItemResource.new()
+				item_resource.name = item.name
+				if item.mesh.has_meta("name"):
+					item_resource.mesh_name = item.mesh.get_meta("name")
+				item_resource.position = item.position
+				item_resource.rotation = item.rotation
+				if item.has_meta("count"):
+					item_resource.count = item.get_meta("count")
+				var object_spawner = item.get_node("body/Interactable") as ObjectSpawner
+				if object_spawner:
+					item_resource.item_type = object_spawner.item_type
+				playerData.items.append(item_resource)
+			elif item is PizzaBoxStack:
+				var item_resource: ItemResource = ItemResource.new()
+				item_resource.name = item.name
+				item_resource.position = item.position
+				item_resource.rotation = item.rotation
+				item_resource.num_pizza_boxes = item.num_pizza_boxes
+				playerData.items.append(item_resource)
 	
 	playerData.save_date = Time.get_datetime_dict_from_system()
 	playerData.day += 1

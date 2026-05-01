@@ -5,7 +5,9 @@ const rolling_pin_item = "res://assets/items/rolling_pin.tscn"
 const crate_generic_item = "res://assets/environment/restaurant/crate_generic.tscn"
 const pizza_box_item = "uid://dp8cybb476vqi"
 
-@export var drive_thru_menu: DriveThruMenu
+var drive_thru_menu: DriveThruMenu
+
+@export var level:Level
 @export var order_spawn: Marker3D
 
 var table_list: Array[Dictionary]
@@ -20,6 +22,8 @@ func _ready() -> void:
 	GlobalSignal.remove_table.connect(_remove_table)
 	
 	quest_log = get_tree().get_first_node_in_group("quest_log")
+	
+	GlobalSignal.init_restaurant.emit(self)
 
 func _process(_delta: float) -> void:
 	#print_table_list()
@@ -165,3 +169,7 @@ func get_crate_item(order_item: GlobalVar.StoreItem) -> Item:
 
 func _on_drive_thru_spawn_init_drive_thru_menu(_drive_thru_menu:DriveThruMenu) -> void:
 	drive_thru_menu = _drive_thru_menu
+
+
+func _on_open_sign_init_open_sign() -> void:
+	%open_sign.level = level

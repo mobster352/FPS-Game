@@ -1,9 +1,12 @@
 extends Node3D
 class_name OpenSign
 
+signal init_open_sign
+
 @export var sign_text: MeshInstance3D
 @export var blue_background: MeshInstance3D
-@export var level: Level
+var level: Level
+@export var restaurant:Restaurant
 
 var is_sign_on := false
 var in_range := false
@@ -20,6 +23,8 @@ func _ready() -> void:
 		sign_material.emission_enabled = false
 	if blue_material:
 		blue_material.emission_enabled = false
+
+	init_open_sign.emit()
 
 func interact() -> void:
 	if not is_sign_on:

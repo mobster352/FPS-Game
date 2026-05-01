@@ -132,9 +132,9 @@ func update_preview():
 			can_place = true
 		preview_instance.global_position = down_hit.position
 		preview_instance.global_rotation.y = player.camera.global_rotation.y
-		var in_nav_region = is_position_in_nav_region(preview_instance.global_position)
-		if not in_nav_region:
-			can_place = false
+		#var in_nav_region = is_position_in_nav_region(preview_instance.global_position)
+		#if not in_nav_region:
+			#can_place = false
 	else:
 		can_place = false
 

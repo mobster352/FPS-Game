@@ -145,16 +145,20 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tkkyn")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5geiw"]
-radius = 0.8703305
+radius = 1.8736973
 
 [sub_resource type="LabelSettings" id="LabelSettings_5geiw"]
 font_size = 24
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="cashregister_cashdrawer" type="Node3D" unique_id=804449852 groups=["cash_register"]]
+[node name="cashregister_cashdrawer" type="Node3D" unique_id=804449852 node_paths=PackedStringArray("cashier_marker") groups=["cash_register"]]
 transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, 0, 0, 0)
 script = ExtResource("1_f3ljx")
+cashier_marker = NodePath("CashierMarker")
+
+[node name="CashierMarker" type="Marker3D" parent="." unique_id=377179097]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0.9659914, -0.6653367, -0.0022705193)
 
 [node name="cash_register" type="MeshInstance3D" parent="." unique_id=205936661]
 transform = Transform3D(1, 0, -1.4210855e-14, 0, 1, 0, 1.4210855e-14, 0, 1, 0, 0, 0)
@@ -280,7 +284,7 @@ in_register = true
 
 [node name="CashSpawn" type="Marker3D" parent="." unique_id=966008696]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32116777, 0.359)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116463505, 0.08454062, 0.26535997)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1970847136]
 collision_mask = 2

@@ -47,6 +47,7 @@ placement=""
 placement_system=""
 quest_log=""
 cash_register=""
+nav_restaurant=""
 
 [gui]
 

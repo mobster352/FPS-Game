@@ -122,7 +122,6 @@ func update_change(cash_value:int, add:bool) -> void:
 	cash_obj.position = %CashSpawn.position
 	%CashSpawn.add_child(cash_obj)
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		in_range = true
