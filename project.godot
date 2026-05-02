@@ -28,6 +28,7 @@ GlobalSignal="*res://scripts/global_signal.gd"
 GlobalVar="*res://scripts/global_var.gd"
 GlobalMarker="*res://environment/global_markers.gd"
 BackgroundMusic="*res://scripts/background_music.gd"
+steamworks="*uid://73div2ppmo5a"
 
 [display]
 
@@ -269,3 +270,8 @@ common/physics_jitter_fix=0.0
 textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 occlusion_culling/use_occlusion_culling=true
+
+[steam]
+
+initialization/app_id=4633460
+initialization/embed_callbacks=true
