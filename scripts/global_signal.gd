@@ -121,3 +121,6 @@ signal level_up(value:int)
 
 @warning_ignore("unused_signal")
 signal pause_game(is_paused:bool)
+
+@warning_ignore("unused_signal")
+signal spawn_new_level

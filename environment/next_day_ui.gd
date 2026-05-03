@@ -12,7 +12,10 @@ func _on_button_pressed() -> void:
 	GlobalSignal.next_day.emit(true)
 
 func _change_scene() -> void:
-	get_tree().change_scene_to_file("res://environment/level_1.tscn")
+	var old_level:Node3D = get_node("/root/Game/Level")
+	old_level.name = "oldLevel"
+	old_level.queue_free()
+	GlobalSignal.spawn_new_level.emit()
 
 
 func _on_visibility_changed() -> void:

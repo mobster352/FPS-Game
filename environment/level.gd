@@ -42,6 +42,8 @@ func _ready():
 	#sky_shader = world_environment.environment.sky.sky_material
 	#sky_shader.set_shader_parameter("stars_intensity", 0.0)
 	sky = world_environment.environment.sky.sky_material
+	
+	GlobalMarker.update_markers.emit()
 
 func _process(delta):
 	if can_advance_time and time_of_day < 22:
