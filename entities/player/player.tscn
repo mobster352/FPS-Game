@@ -17,7 +17,16 @@
 [ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="16_yqrof"]
 [ext_resource type="PackedScene" uid="uid://dys1xor47kxw" path="res://assets/ui/tablet.tscn" id="17_3wlsy"]
 [ext_resource type="PackedScene" uid="uid://b63p3w5y50lmp" path="res://assets/ui/help_input.tscn" id="18_b2kln"]
+[ext_resource type="AudioStream" uid="uid://bboxb8c85upj3" path="res://assets/audio/boots/0.ogg" id="19_mtric"]
 [ext_resource type="PackedScene" uid="uid://cxasxexs7hgvc" path="res://database/quest_log.tscn" id="19_we0b7"]
+[ext_resource type="AudioStream" uid="uid://bbcxjv82dtt2d" path="res://assets/audio/boots/1.ogg" id="20_qpopc"]
+[ext_resource type="AudioStream" uid="uid://7ntasp53a6tj" path="res://assets/audio/boots/2.ogg" id="21_wq0jh"]
+[ext_resource type="AudioStream" uid="uid://v43d13ds0bd8" path="res://assets/audio/boots/3.ogg" id="22_gt4e4"]
+[ext_resource type="AudioStream" uid="uid://djhf0e0t6wt7h" path="res://assets/audio/boots/4.ogg" id="23_24ehl"]
+[ext_resource type="AudioStream" uid="uid://bg6nwn01e5gjj" path="res://assets/audio/boots/5.ogg" id="24_bwdx1"]
+[ext_resource type="AudioStream" uid="uid://c2hg1hdclt23v" path="res://assets/audio/boots/6.ogg" id="25_vewsg"]
+[ext_resource type="AudioStream" uid="uid://edr2pjb1dexx" path="res://assets/audio/boots/7.ogg" id="26_2soq1"]
+[ext_resource type="AudioStream" uid="uid://4s2ls0svdg0k" path="res://assets/audio/boots/8.ogg" id="27_8q4fm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sfv1e"]
 radius = 0.6176758
@@ -209,6 +218,20 @@ bind/40/name = &"handIK.r"
 bind/40/bone = -1
 bind/40/pose = Transform3D(-2.842171e-14, 7.549795e-08, -1, -1, 3.7892514e-15, 8.526513e-14, 2.1457808e-21, 1, 7.549795e-08, 1.3201894e-09, -0.71318156, -1.1067611)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_np63p"]
+random_pitch = 1.122462
+random_volume_offset_db = 0.5
+streams_count = 9
+stream_0/stream = ExtResource("19_mtric")
+stream_1/stream = ExtResource("20_qpopc")
+stream_2/stream = ExtResource("21_wq0jh")
+stream_3/stream = ExtResource("22_gt4e4")
+stream_4/stream = ExtResource("23_24ehl")
+stream_5/stream = ExtResource("24_bwdx1")
+stream_6/stream = ExtResource("25_vewsg")
+stream_7/stream = ExtResource("26_2soq1")
+stream_8/stream = ExtResource("27_8q4fm")
+
 [node name="Player" type="CharacterBody3D" unique_id=824039100 node_paths=PackedStringArray("pointer_slot", "shotRaycast", "itemRaycast", "reticle", "gun_pistol", "bat", "ammo_label", "shotTimer", "ui", "item_slot", "camera", "pause_menu", "game_over", "death_timer", "hit_timer", "inputs_ui", "player_skin") groups=["player"]]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
 collision_layer = 2
@@ -248,30 +271,29 @@ layers = 2
 [node name="PlayerDummy" parent="PlayerSkin" index="1" unique_id=2144942684]
 visible = false
 
-[node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" index="0"]
-bones/1/position = Vector3(0, 0.3836406, 0)
-bones/4/rotation = Quaternion(-0.55709136, -0.05882074, -0.64027256, 0.52558595)
-bones/5/rotation = Quaternion(3.5096665e-08, -3.943638e-08, -0.50542897, 0.8628682)
-bones/7/rotation = Quaternion(-0.32161534, -0.33060455, 0.14859766, 0.8747474)
-bones/8/rotation = Quaternion(0.0002785276, 0.00027850905, -0.70608383, 0.70812815)
-bones/9/rotation = Quaternion(-0.61544436, 0.07892027, 0.61505556, 0.48652503)
-bones/10/rotation = Quaternion(2.0668969e-08, 5.2646644e-08, 0.5282307, 0.84910095)
-bones/12/rotation = Quaternion(-0.32016277, 0.30631745, -0.23047243, 0.8663417)
-bones/13/rotation = Quaternion(0.00090533623, 0.0010663493, 0.7061672, 0.7080437)
-bones/15/rotation = Quaternion(0.99257046, 0.083134666, 0.07599661, 0.04601257)
-bones/16/rotation = Quaternion(0.2870029, 6.784733e-08, -1.934842e-07, 0.9579298)
-bones/17/rotation = Quaternion(-0.5650823, -0.20633586, 0.057994086, 0.7967084)
-bones/18/rotation = Quaternion(4.0154286e-05, 0.9201936, -0.3914638, -9.033524e-06)
-bones/19/rotation = Quaternion(0.9952702, -0.031013783, 0.030803055, 0.08675659)
-bones/20/rotation = Quaternion(0.34529293, -6.2060025e-08, 2.4017186e-07, 0.93849504)
-bones/21/rotation = Quaternion(-0.59698737, 0.113901444, -0.014698692, 0.7939878)
-bones/38/position = Vector3(0.5208407, 0.7843465, -0.057637352)
-bones/40/position = Vector3(-0.5108437, 0.7843464, 0.05973692)
+[node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" parent_id_path=PackedInt32Array(1872728600, 2144942684, 2028074997) index="0" unique_id=492075426]
+bones/1/position = Vector3(0, 0.3684466, 0)
+bones/4/rotation = Quaternion(-0.5508911, -0.05660129, -0.63887215, 0.5340017)
+bones/5/rotation = Quaternion(3.2562454e-08, -5.1302028e-08, -0.51467764, 0.8573837)
+bones/7/rotation = Quaternion(-0.3210011, -0.3390487, 0.14904751, 0.8716589)
+bones/8/rotation = Quaternion(0.0011160539, 0.0011160579, -0.7029976, 0.7111904)
+bones/9/rotation = Quaternion(-0.6095731, 0.07714924, 0.6143645, 0.4949999)
+bones/10/rotation = Quaternion(4.8772115e-08, 5.4421356e-08, 0.53708225, 0.8435299)
+bones/12/rotation = Quaternion(-0.32012054, 0.3151638, -0.23125191, 0.86297005)
+bones/13/rotation = Quaternion(0.0034787047, 0.0040974, 0.7034819, 0.7106929)
+bones/15/rotation = Quaternion(0.9893496, 0.08381842, 0.078891896, 0.08909479)
+bones/16/rotation = Quaternion(0.40042457, 5.643487e-08, -2.7289306e-07, 0.9163298)
+bones/17/rotation = Quaternion(-0.62450486, -0.20046788, 0.07780445, 0.7508348)
+bones/19/rotation = Quaternion(0.9911618, -0.033515714, 0.02974543, 0.12486051)
+bones/20/rotation = Quaternion(0.44426295, -5.9197696e-08, 3.0869373e-07, 0.8958965)
+bones/21/rotation = Quaternion(-0.6502888, 0.1123666, -0.023867171, 0.7509519)
+bones/38/position = Vector3(0.5208407, 0.77292913, -0.057637356)
+bones/40/position = Vector3(-0.5108437, 0.7729291, 0.059736915)
 
-[node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0"]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2194026, 1.5463912e-15)
+[node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0" unique_id=1929788963]
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2042086, 1.5463912e-15)
 
-[node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0"]
+[node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0" unique_id=267887540]
 visible = false
 
 [node name="headPivot" type="Node3D" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="1" unique_id=1488001646]
@@ -288,14 +310,14 @@ layers = 0
 mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
-[node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1"]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.95060605, 1.0572674e-15)
+[node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1" unique_id=1128264264]
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.93541205, 1.0572674e-15)
 
-[node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5"]
+[node name="Dummy_Head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="5" unique_id=1511721275]
 visible = false
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.000632079, -0.15263139, -0.9882828, -0.9999963, -0.0026331483, -0.00023270748, -0.0025669802, 0.9882792, -0.15263239, -0.49076992, 0.6373658, 0.10725514)
+transform = Transform3D(0.0024476524, -0.16046673, -0.9870381, -0.99994725, -0.01020235, -0.0008208179, -0.009938609, 0.9869883, -0.16048327, -0.49034017, 0.6261996, 0.10771906)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.141051, 0.3403611)
@@ -516,8 +538,20 @@ one_shot = true
 [node name="HitTimer" type="Timer" parent="Timers" unique_id=1541693486]
 wait_time = 2.0
 
+[node name="FootstepTimer" type="Timer" parent="Timers" unique_id=676813571]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=501134343]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_np63p")
+attenuation_model = 3
+volume_db = -20.0
+
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="timeout" from="Timers/HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="Timers/FootstepTimer" to="." method="_on_footstep_timer_timeout"]
 
 [editable path="PlayerSkin"]
 [editable path="PlayerSkin/PlayerDummy"]

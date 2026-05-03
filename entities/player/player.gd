@@ -119,6 +119,8 @@ var current_input_device := InputDevice.MOUSE_KEYBOARD:
 			inputs_ui.input_type = InputsUI.InputType.MOUSE
 		elif value == InputDevice.CONTROLLER:
 			inputs_ui.input_type = InputsUI.InputType.CONTROLLER
+			
+var can_play_audio:bool = true
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -220,12 +222,21 @@ func _process_movement() -> void:
 		if is_sprinting:
 			velocity.x = direction.x * SPRINT_SPEED
 			velocity.z = direction.z * SPRINT_SPEED
+			%FootstepTimer.wait_time = 0.25
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+			%FootstepTimer.wait_time = 0.40
 		if is_cashier:
 			is_cashier = false
 		player_skin.walk_animation()
+		if not is_on_floor():
+			%Footsteps.playing = false
+		if not %Footsteps.playing and can_play_audio:
+			%Footsteps.playing = true
+			
+			can_play_audio = false
+			%FootstepTimer.start()
 	else:
 		if is_sprinting:
 			velocity.x = move_toward(velocity.x, 0, SPRINT_SPEED)
@@ -234,6 +245,7 @@ func _process_movement() -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		player_skin.idle_animation()
+		%Footsteps.playing = false
 	move_and_slide()
 
 var pitch := 0.0  # store vertical rotation manually
@@ -914,3 +926,7 @@ func load_settings() -> void:
 		controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
 	if settings_data.deadzone:
 		controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
+
+
+func _on_footstep_timer_timeout() -> void:
+	can_play_audio = true
