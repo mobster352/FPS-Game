@@ -126,7 +126,7 @@ func _physics_process(delta: float) -> void:
 					GlobalMarker.queue3_npc = self
 					target = GlobalMarker.queue3_marker
 				else:
-					return
+					target = endPathMarker
 				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			elif target == GlobalMarker.queue2_marker:
 				if not GlobalMarker.queue1_npc:

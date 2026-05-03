@@ -906,6 +906,8 @@ func _update_store_name(store_name:String, font_size:int) -> void:
 func load_settings() -> void:
 	const SETTINGS_PATH = "user://settings.tres"
 	var settings_data:Settings = ResourceLoader.load(SETTINGS_PATH)
+	if not settings_data:
+		return
 	if settings_data.mouse_sensitivity:
 		mouse_sensitivity = Settings.update_mouse_sensitivity(settings_data.mouse_sensitivity)
 	if settings_data.controller_sensitivity:
