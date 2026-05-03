@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c85j0g7glmkou"]
+
+[ext_resource type="PackedScene" uid="uid://bdjhxs02iqaue" path="res://assets/ui/main_menu.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://cg1kpd2f5ylo7" path="res://assets/ui/load_game_menu.tscn" id="2_e2o6t"]
+
+[node name="Game" type="Node3D" unique_id=431558590]
+
+[node name="MainMenu" parent="." unique_id=325520252 instance=ExtResource("1_80nbo")]
+
+[node name="LoadGameMenu" parent="." unique_id=208226146 instance=ExtResource("2_e2o6t")]
+visible = false
+
+[connection signal="show_load_game_menu" from="MainMenu" to="LoadGameMenu" method="_on_main_menu_show_load_game_menu"]
+[connection signal="show_main_menu" from="LoadGameMenu" to="MainMenu" method="_on_load_game_menu_show_main_menu"]

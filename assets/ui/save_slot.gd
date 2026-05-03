@@ -2,6 +2,8 @@ extends MarginContainer
 
 @export var save_slot := 1
 
+const LEVEL_1 = preload("res://environment/level_1.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	var playerData: PlayerData
@@ -26,12 +28,6 @@ func _ready() -> void:
 		%DayValue.text = str(playerData.day)
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		GlobalVar.save_slot = save_slot
-		get_tree().change_scene_to_file("res://environment/level_1.tscn")
-
-
 func delete_slot() -> void:
 	%SlotName.text = "Empty Save Slot"
 	%StoreName.hide()
@@ -42,4 +38,8 @@ func delete_slot() -> void:
 
 func _on_button_pressed() -> void:
 	GlobalVar.save_slot = save_slot
-	get_tree().change_scene_to_file("res://environment/level_1.tscn")
+	#get_tree().change_scene_to_file("res://environment/level_1.tscn")
+	var level_node:Node3D = LEVEL_1.instantiate()
+	level_node.name = "Level"
+	get_node("/root/Game").add_child(level_node)
+	get_node("/root/Game/LoadGameMenu").hide()

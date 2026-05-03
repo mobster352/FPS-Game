@@ -1,5 +1,7 @@
 extends Control
 
+signal show_load_game_menu
+
 @export var menu_audio: AudioStreamPlayer
 @export var main_menu: Control
 @export var options_menu: Control
@@ -24,7 +26,9 @@ func _on_multiplayer_button_pressed() -> void:
 
 
 func _on_start_game_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://assets/ui/load_game_menu.tscn")
+	#get_tree().change_scene_to_file("res://assets/ui/load_game_menu.tscn")
+	hide()
+	show_load_game_menu.emit()
 
 
 func _on_settings_button_pressed() -> void:
@@ -44,3 +48,7 @@ func _on_discord_texture_mouse_entered() -> void:
 
 func _on_discord_texture_mouse_exited() -> void:
 	%DiscordTexture.texture = load("res://assets/ui/discord2.png")
+
+
+func _on_load_game_menu_show_main_menu() -> void:
+	show()

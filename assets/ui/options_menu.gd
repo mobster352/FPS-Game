@@ -27,10 +27,12 @@ var is_bg_audio_on:bool = false:
 		if BackgroundMusic:
 			if value:
 				%BackgroundAudioCheckBox.button_pressed = true
-				BackgroundMusic.bg_music_node.play()
+				BackgroundMusic.bg_music_node.stream_paused = false
+				if not BackgroundMusic.bg_music_node.playing:
+					BackgroundMusic.bg_music_node.play()
 			else:
 				%BackgroundAudioCheckBox.button_pressed = false
-				BackgroundMusic.bg_music_node.stop()
+				BackgroundMusic.bg_music_node.stream_paused = true
 
 var quality_preset:int = QualityPreset.LOW:
 	set(value):

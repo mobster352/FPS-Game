@@ -1,5 +1,7 @@
 extends Control
 
+signal show_main_menu
+
 func _ready() -> void:
 	if ResourceLoader.exists(GlobalVar.get_save_slot_by_id(1)):
 		%DeleteSlot1.show()
@@ -10,7 +12,9 @@ func _ready() -> void:
 	$Slots/HBoxContainer/SaveSlot/PanelContainer/Button.grab_focus()
 
 func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://assets/ui/main_menu.tscn")
+	#get_tree().change_scene_to_file("res://assets/ui/main_menu.tscn")
+	hide()
+	show_main_menu.emit()
 
 
 func _on_delete_button_slot_1_pressed() -> void:
@@ -39,3 +43,7 @@ func delete_save_slot(slot_id:int) -> void:
 func _on_visibility_changed() -> void:
 	if visible and $Slots/HBoxContainer/SaveSlot/PanelContainer/Button.is_inside_tree():
 		$Slots/HBoxContainer/SaveSlot/PanelContainer/Button.grab_focus()
+
+
+func _on_main_menu_show_load_game_menu() -> void:
+	show()
