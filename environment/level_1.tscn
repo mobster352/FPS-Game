@@ -75,7 +75,7 @@ can_advance_time = false
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="DirectionalLight3D" parent="SunPivot" index="0" unique_id=1894946694]
-transform = Transform3D(1.0000001, 0, 0, 0, 0.7583279, 0.6518735, 0, -0.6518735, 0.7583279, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7583278, 0.65187347, 0, -0.65187347, 0.7583278, 0, 0, 0)
 shadow_opacity = 0.5
 
 [node name="Sidewalk" type="Node3D" parent="Environment/Floor" parent_id_path=PackedInt32Array(1243817630) index="0" unique_id=362656686]
@@ -1424,6 +1424,10 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 21.6
 [node name="pizzeria" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="0" unique_id=136617764 node_paths=PackedStringArray("level") instance=ExtResource("19_42juk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.965, 0, 4)
 level = NodePath("../../..")
+
+[node name="SpotLight3D2" parent="Environment/Buildings/pizzeria/Lights/Outside" parent_id_path=PackedInt32Array(136617764, 804881794) index="1" unique_id=828971180]
+transform = Transform3D(-0.8148581, 0.49925056, 0.29454237, 0.011704929, -0.49385378, 0.8694663, 0.5795423, 0.71193916, 0.39657703, 13.649979, 5.9260826, -31.085894)
+spot_range = 22.37792
 
 [node name="Walls" parent="Environment/Buildings/pizzeria/Mesh" parent_id_path=PackedInt32Array(136617764, 2086767700) index="6" unique_id=1164855280 groups=["nav_restaurant"]]
 

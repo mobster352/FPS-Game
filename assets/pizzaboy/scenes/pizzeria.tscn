@@ -227,6 +227,18 @@ spot_range = 1.75
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.992552, 2.1544843, -15.029251)
 spot_range = 1.75
 
+[node name="Outside" type="Node3D" parent="Lights" index="4" unique_id=804881794]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights/Outside" index="0" unique_id=2062189920]
+transform = Transform3D(0.9659259, -0.17622326, -0.18955918, 0.029972298, -0.6513116, 0.7582183, -0.25707775, -0.73806417, -0.6238369, 16.444992, 5.927614, -25.074696)
+light_energy = 2.0
+spot_range = 17.356586
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lights/Outside" index="1" unique_id=828971180]
+transform = Transform3D(-0.8148581, 0.49925056, 0.29454234, 0.10728596, -0.36945385, 0.923035, 0.5696455, 0.7837428, 0.24748988, 13.649979, 5.9260826, -31.085894)
+light_energy = 2.0
+spot_range = 15.076393
+
 [node name="Doors" type="Node3D" parent="." index="2" unique_id=581122937]
 
 [node name="Door_A" parent="Doors" index="0" unique_id=719377740 instance=ExtResource("2_bi6je")]

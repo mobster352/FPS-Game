@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if current_path == car_path:
 		if 1.0 - current_path.progress_ratio <= END_PATH_DISTANCE:
 			is_moving = false
-			var drive_thru_chance = randi_range(0, 0)
+			var drive_thru_chance = randi_range(0, 3)
 			if level.time_of_day < 22 and drive_thru_chance == 0 and is_store_open:
 				current_path = drive_thru_path
 				car_path.remove_child(get_parent())
