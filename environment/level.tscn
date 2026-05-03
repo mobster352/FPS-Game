@@ -4,12 +4,18 @@
 [ext_resource type="Script" uid="uid://s371qejq0t8l" path="res://scripts/game_state.gd" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 [ext_resource type="PackedScene" uid="uid://diebiq40t0g7k" path="res://components/placement_system.tscn" id="3_3dj58"]
-[ext_resource type="Material" uid="uid://b5wopxvlt2ftf" path="res://components/day_shader.tres" id="3_32bfo"]
 [ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="5_xafsa"]
 [ext_resource type="PackedScene" uid="uid://baakymstnrcvv" path="res://components/status_bar.tscn" id="6_78a7o"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_78a7o"]
+sky_top_color = Color(0.34901962, 0.5882353, 1, 1)
+sky_horizon_color = Color(0, 0.32941177, 0.96862745, 1)
+sky_curve = 0.05490331
+sky_cover_modulate = Color(5.77569e-06, 0.9183319, 0.91936356, 1)
+sun_angle_max = 10.0
+
 [sub_resource type="Sky" id="Sky_vfqff"]
-sky_material = ExtResource("3_32bfo")
+sky_material = SubResource("ProceduralSkyMaterial_78a7o")
 
 [sub_resource type="Environment" id="Environment_vfqff"]
 background_mode = 2
@@ -37,6 +43,7 @@ environment = SubResource("Environment_vfqff")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SunPivot" unique_id=1894946694]
 transform = Transform3D(1, 0, 0, 0, 0.75832796, 0.6518736, 0, -0.6518736, 0.75832796, 0, 0, 0)
+light_specular = 0.0
 shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="." unique_id=2027113216]

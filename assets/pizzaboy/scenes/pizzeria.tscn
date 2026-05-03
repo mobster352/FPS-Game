@@ -310,7 +310,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4134722, 1.7200596, 0.00158
 [node name="FrontRightWindow2" parent="Windows" index="1" unique_id=928437428 instance=ExtResource("18_j0tbr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3861113, 1.7200596, 0.0015869141)
 
-[node name="Ceiling" parent="Mesh" parent_id_path=PackedInt32Array(2140838213) index="1" unique_id=1220215092]
+[node name="Ceiling" parent="Mesh" parent_id_path=PackedInt32Array(1518390967) index="1" unique_id=1260759158]
 surface_material_override/0 = SubResource("StandardMaterial3D_my70n")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Ceiling" index="0" unique_id=1158023978]
@@ -318,29 +318,29 @@ surface_material_override/0 = SubResource("StandardMaterial3D_my70n")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Ceiling/StaticBody3D" index="0" unique_id=829720426]
 shape = SubResource("ConcavePolygonShape3D_wxjwm")
 
-[node name="Floor" parent="Mesh" parent_id_path=PackedInt32Array(2140838213) index="2" unique_id=464996135 groups=["nav_back_restaurant"]]
+[node name="Floor" parent="Mesh" parent_id_path=PackedInt32Array(1518390967) index="2" unique_id=1885971402 groups=["nav_back_restaurant", "nav_restaurant"]]
 surface_material_override/0 = SubResource("StandardMaterial3D_bbid8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Objects/Counter" parent_id_path=PackedInt32Array(1897495331) index="0" unique_id=1884273646]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Objects/Counter" parent_id_path=PackedInt32Array(710999644) index="0" unique_id=1884273646]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Objects/Counter/StaticBody3D" index="0" unique_id=875497734]
 shape = SubResource("ConcavePolygonShape3D_j0tbr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Pizza" parent_id_path=PackedInt32Array(549182676) index="0" unique_id=232313861]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Pizza" parent_id_path=PackedInt32Array(97707478) index="0" unique_id=232313861]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Pizza/StaticBody3D" index="0" unique_id=585024994]
 shape = SubResource("ConcavePolygonShape3D_bbid8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/RoofBoarder" parent_id_path=PackedInt32Array(158364066) index="0" unique_id=370088710]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/RoofBoarder" parent_id_path=PackedInt32Array(1930565701) index="0" unique_id=370088710]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/RoofBoarder/StaticBody3D" index="0" unique_id=687696103]
 shape = SubResource("ConcavePolygonShape3D_8ohxw")
 
-[node name="Walls" parent="Mesh" parent_id_path=PackedInt32Array(2140838213) index="6" unique_id=1588493781]
+[node name="Walls" parent="Mesh" parent_id_path=PackedInt32Array(1518390967) index="6" unique_id=527709321]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009112358, 0.0020754337, -0.0002565384)
 surface_material_override/0 = SubResource("StandardMaterial3D_kb4ys")
 
-[node name="WallCounter" parent="Mesh/Walls" index="0" unique_id=1525846411]
+[node name="WallCounter" parent="Mesh/Walls" index="0" unique_id=751019533]
 surface_material_override/0 = SubResource("StandardMaterial3D_wxjwm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Walls/WallCounter" index="0" unique_id=51155981]
@@ -348,7 +348,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wxjwm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Walls/WallCounter/StaticBody3D" index="0" unique_id=1482675868]
 shape = SubResource("ConcavePolygonShape3D_j3633")
 
-[node name="WallStorage" parent="Mesh/Walls" index="1" unique_id=2142997956]
+[node name="WallStorage" parent="Mesh/Walls" index="1" unique_id=1220480035]
 surface_material_override/0 = SubResource("StandardMaterial3D_j0tbr")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Walls/WallStorage" index="0" unique_id=1928255062]
