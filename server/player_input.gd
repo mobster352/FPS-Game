@@ -9,7 +9,7 @@ extends MultiplayerSynchronizer
 
 @export var mouse_input := Vector2()
 
-@onready var ui: MultiplayerUI = get_node("/root/Multiplayer/ConnectionRegistry/UI")
+@onready var ui: MultiplayerUI = get_node("/root/Node/Multiplayer/ConnectionRegistry/UI")
 
 var is_paused := false
 
