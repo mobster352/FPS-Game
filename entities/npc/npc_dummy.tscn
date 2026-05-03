@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_kfvlc"]
 [ext_resource type="Script" uid="uid://ca88v61n8pibv" path="res://entities/npc/npc_dummy_interactable.gd" id="5_k0m3b"]
 [ext_resource type="PackedScene" uid="uid://clejiqu3onixq" path="res://components/radial_progress_bar.tscn" id="5_p43ok"]
+[ext_resource type="AudioStream" uid="uid://b0bc1n16saeec" path="res://assets/audio/ding_03_amped.ogg" id="6_p43ok"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwd6t"]
 radius = 0.47802734
@@ -56,6 +57,12 @@ npc_dummy = NodePath("..")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7932312, 0)
 visible = false
+
+[node name="Ding" type="AudioStreamPlayer3D" parent="." unique_id=1991761721]
+unique_name_in_owner = true
+stream = ExtResource("6_p43ok")
+attenuation_model = 3
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

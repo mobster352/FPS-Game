@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 				var money_payed:int = randi_range(order_total, order_total+8)
 				GlobalSignal.process_order.emit(self, money_payed, order_total, random_food)
 				%RadialProgressBar.show()
+				%Ding.play()
 			if table and not sitting:
 				get_parent().remove_child(self)
 				table.chair.add_child(self)

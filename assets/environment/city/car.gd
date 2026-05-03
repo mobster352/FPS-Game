@@ -17,6 +17,8 @@ var current_path:PathFollow3D
 var is_moving:bool = false
 var is_store_open:bool = false
 
+var audio_played:bool = false
+
 
 func _ready() -> void:
 	GlobalSignal.open_store.connect(_open_store)
@@ -30,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	if current_path == car_path:
 		if 1.0 - current_path.progress_ratio <= END_PATH_DISTANCE:
 			is_moving = false
-			var drive_thru_chance = randi_range(0, 4)
+			var drive_thru_chance = randi_range(0, 0)
 			if level.time_of_day < 22 and drive_thru_chance == 0 and is_store_open:
 				current_path = drive_thru_path
 				car_path.remove_child(get_parent())
@@ -43,6 +45,9 @@ func _physics_process(delta: float) -> void:
 	elif current_path == drive_thru_path:
 		if 1.0 - current_path.progress_ratio <= END_PATH_DISTANCE:
 			is_moving = false
+			if not audio_played:
+				%Honk.play()
+				audio_played = true
 			return
 		if not is_moving:
 			is_moving = true
@@ -54,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			return_car_path.remove_child(get_parent())
 			car_path.add_child(get_parent())
 			current_path.progress_ratio = 0.155
+			audio_played = false
 			return
 		if not is_moving:
 			is_moving = true

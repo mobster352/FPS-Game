@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bj7xt3q3dri3x" path="res://assets/environment/city/park_wall_outer_corner_decorated.tscn" id="16_saud4"]
 [ext_resource type="PackedScene" uid="uid://d121iluacy4ru" path="res://assets/environment/city/park_road_corner_decorated.tscn" id="17_wlmb3"]
 [ext_resource type="PackedScene" uid="uid://1hoirc45f7kh" path="res://assets/environment/city/building_h_without_base.tscn" id="17_yan4v"]
-[ext_resource type="AudioStream" uid="uid://qp8ctyt1x1n2" path="res://assets/audio/AmbientNatureOutside.wav" id="18_42juk"]
+[ext_resource type="AudioStream" uid="uid://1bmiwalvqm0o" path="res://assets/audio/AmbientNatureOutside_amped.ogg" id="18_42juk"]
 [ext_resource type="PackedScene" uid="uid://cdsfoefd6ifbk" path="res://assets/environment/city/building_f_without_base.tscn" id="18_k65s8"]
 [ext_resource type="PackedScene" uid="uid://chvm4t08rq0e2" path="res://assets/environment/city/park_road_tsplit_decorated.tscn" id="18_yan4v"]
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
@@ -1562,8 +1562,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.277092, 0, -24.82454)
 [node name="OutsidePark" type="AudioStreamPlayer3D" parent="Environment/Sounds" parent_id_path=PackedInt32Array(900747152) index="0" unique_id=1001415038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1049814, 0, 38.635017)
 stream = ExtResource("18_42juk")
-attenuation_model = 3
-volume_db = 80.0
+attenuation_model = 2
+volume_db = -10.0
 unit_size = 100.0
 autoplay = true
 max_distance = 50.0
@@ -1624,8 +1624,8 @@ curve = SubResource("Curve3D_kcloa")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Entities/CarPath" index="0" unique_id=959317914]
 unique_name_in_owner = true
-transform = Transform3D(-0.99996424, 0, -0.0020130181, 0, 0.99999356, 0, 0.002013008, 0, -0.9999692, 28.125158, 0, 5.708558)
-progress = 204.37553
+transform = Transform3D(-0.99996424, 0, -0.0020130181, 0, 0.99999356, 0, 0.002013008, 0, -0.9999692, 28.200277, 0, 43.023335)
+progress = 167.06065
 use_model_front = true
 
 [node name="DriveThruCustomer" parent="Entities/CarPath/PathFollow3D" index="0" unique_id=1622733246 node_paths=PackedStringArray("timer", "car_path", "drive_thru_path", "return_car_path", "drive_thru_spawn", "level") instance=ExtResource("10_kv32d")]

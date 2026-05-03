@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://2arc4kvs5n76" path="res://assets/kaykit/city/car_taxi_edited_citybits_texture.png" id="1_5mqof"]
 [ext_resource type="Texture2D" uid="uid://cog4lehknnseg" path="res://assets/kaykit/city/citybits_texture.png" id="2_1g4pj"]
 [ext_resource type="Script" uid="uid://trt5rjln6y7v" path="res://assets/environment/city/car_vehicle_body.gd" id="4_6owwi"]
+[ext_resource type="AudioStream" uid="uid://o2sg5dl7wdoj" path="res://assets/audio/freesound_community-car-driving-ambience-6365.mp3" id="5_ocd80"]
+[ext_resource type="AudioStream" uid="uid://mglg0d3d7eje" path="res://assets/audio/universfield-double-car-horn-352443.mp3" id="6_6jwnx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0reu3"]
 size = Vector3(0.4229126, 0.19577026, 0.94091797)
@@ -333,3 +335,15 @@ spot_range = 10.0
 [node name="SpotLight3D2" type="SpotLight3D" parent="VehicleBody3D" unique_id=827915161]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.13585673, 0.11916335, 0.4467342)
 spot_range = 10.0
+
+[node name="CarEngine" type="AudioStreamPlayer3D" parent="VehicleBody3D" unique_id=1355694061]
+stream = ExtResource("5_ocd80")
+attenuation_model = 2
+volume_db = -10.0
+autoplay = true
+
+[node name="Honk" type="AudioStreamPlayer3D" parent="VehicleBody3D" unique_id=649558382]
+unique_name_in_owner = true
+stream = ExtResource("6_6jwnx")
+attenuation_model = 3
+volume_db = -10.0
