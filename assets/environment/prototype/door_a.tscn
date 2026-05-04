@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://otk1cl8ngm85"]
+[gd_scene format=3 uid="uid://otk1cl8ngm85"]
 
 [ext_resource type="PackedScene" uid="uid://buh2mrunnqx4h" path="res://assets/kaykit/prototype/Door_A.gltf" id="1_x3swg"]
 [ext_resource type="Script" uid="uid://do6xecu382b8x" path="res://assets/environment/prototype/door.gd" id="2_wv63p"]
@@ -9,20 +9,23 @@ data = PackedVector3Array(0, 1, 0.099999994, 0, 2.8, -0.099999994, 0, 2.8, 0.099
 [sub_resource type="BoxShape3D" id="BoxShape3D_indri"]
 size = Vector3(3.27285, 2.825592, 3.1469116)
 
-[node name="Door_A" instance=ExtResource("1_x3swg")]
+[node name="Door_A" unique_id=329432222 instance=ExtResource("1_x3swg")]
 script = ExtResource("2_wv63p")
 is_locked = true
 number_required = 2
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="Door_A" parent="." index="0" unique_id=61802831]
+layers = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=933097890]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1895881741]
 shape = SubResource("ConcavePolygonShape3D_6yhgu")
 
-[node name="Area3D" type="Area3D" parent="." index="2"]
+[node name="Area3D" type="Area3D" parent="." index="2" unique_id=1699056490]
 collision_mask = 34
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=124544929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7252846, 1.4219818, 0.04434204)
 shape = SubResource("BoxShape3D_indri")
 

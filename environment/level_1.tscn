@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://chvm4t08rq0e2" path="res://assets/environment/city/park_road_tsplit_decorated.tscn" id="18_yan4v"]
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
+[ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
 size = Vector3(120.17102, 0.8843994, 136.86133)
@@ -67,11 +68,15 @@ point_count = 4
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
-day_length_minutes = 0.25
+day_length_minutes = 8.0
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
 
-[node name="SunPivot" parent="." index="2" unique_id=938495831]
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="." index="0" unique_id=509094633]
+occluder = ExtResource("24_42juk")
+bake_mask = 4294967289
+
+[node name="SunPivot" parent="." index="3" unique_id=938495831]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="DirectionalLight3D" parent="SunPivot" index="0" unique_id=1894946694]
@@ -1657,11 +1662,11 @@ curve = SubResource("Curve3D_kv32d")
 transform = Transform3D(-0.9999919, 0, 0.0040316624, 0, 1, 0, -0.0040316624, 0, -0.9999919, 8.644927, 0, -13.9648)
 use_model_front = true
 
-[node name="PlacementSystem" parent="." index="5" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
+[node name="PlacementSystem" parent="." index="6" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
 restaurant_nav_region = NodePath("../Environment/Floor/NavRestaurant")
 
-[node name="UI" parent="." index="6" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
+[node name="UI" parent="." index="7" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
 next_day_ui = NodePath("NextDay")
 
 [node name="NextDay" parent="UI" index="1" unique_id=1019455502 instance=ExtResource("11_0rppq")]

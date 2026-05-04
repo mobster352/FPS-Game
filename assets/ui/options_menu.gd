@@ -56,6 +56,7 @@ var rendering_method:String = "forward_plus":
 
 var settings_data:Settings
 var player:Player
+var worldEnvironment:WorldEnvironment
 
 func _ready() -> void:
 	if ResourceLoader.exists(SETTINGS_PATH):
@@ -65,7 +66,8 @@ func _ready() -> void:
 		auto_detect_tier()
 	#print("Renderer: ", RenderingServer.get_current_rendering_method())
 	GlobalSignal.init_player.connect(_init_player)
-
+	worldEnvironment = get_tree().get_first_node_in_group("world_environment")
+ 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		hide()
@@ -153,6 +155,7 @@ func apply_preset(preset: QualityPreset):
 			# Anti-Aliasing
 			root_viewport.msaa_3d = Viewport.MSAA_DISABLED
 			root_viewport.screen_space_aa = Viewport.SCREEN_SPACE_AA_DISABLED
+			set_world_environment_properties(false)
 			#print("low quality")
 		QualityPreset.MEDIUM:
 			root_viewport.scaling_3d_mode = Viewport.SCALING_3D_MODE_FSR
@@ -160,6 +163,7 @@ func apply_preset(preset: QualityPreset):
 			RenderingServer.directional_shadow_atlas_set_size(2048, true)
 			root_viewport.msaa_3d = Viewport.MSAA_2X
 			root_viewport.screen_space_aa = Viewport.SCREEN_SPACE_AA_FXAA
+			set_world_environment_properties(false)
 			#print("medium quality")
 		QualityPreset.HIGH:
 			root_viewport.scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
@@ -167,6 +171,7 @@ func apply_preset(preset: QualityPreset):
 			RenderingServer.directional_shadow_atlas_set_size(4096, true)
 			root_viewport.msaa_3d = Viewport.MSAA_4X
 			root_viewport.screen_space_aa = Viewport.SCREEN_SPACE_AA_FXAA
+			set_world_environment_properties(true)
 			#print("high quality")
 
 func auto_detect_tier():
@@ -178,6 +183,15 @@ func auto_detect_tier():
 		quality_preset = QualityPreset.HIGH
 	else:
 		quality_preset = QualityPreset.MEDIUM
+
+
+func set_world_environment_properties(is_enabled:bool) -> void:
+	if worldEnvironment:
+		worldEnvironment.environment.sdfgi_enabled = is_enabled
+		worldEnvironment.environment.ssil_enabled = is_enabled
+		worldEnvironment.environment.ssao_enabled = is_enabled
+		worldEnvironment.environment.ssr_enabled = is_enabled
+		worldEnvironment.environment.volumetric_fog_enabled = is_enabled
 
 
 func _on_quality_preset_button_item_selected(index: int) -> void:

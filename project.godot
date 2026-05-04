@@ -49,6 +49,7 @@ placement_system=""
 quest_log=""
 cash_register=""
 nav_restaurant=""
+world_environment=""
 
 [gui]
 
@@ -270,6 +271,7 @@ common/physics_jitter_fix=0.0
 textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=0.5
 
 [steam]
 

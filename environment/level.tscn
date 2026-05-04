@@ -23,6 +23,12 @@ sky = SubResource("Sky_vfqff")
 tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.09239707, 0.09239706, 0.09239706, 1)
+volumetric_fog_sky_affect = 0.25
 
 [node name="Level" type="Node3D" unique_id=1263719789 node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
 process_mode = 1
@@ -36,7 +42,7 @@ level_ui = NodePath("UI")
 [node name="GameState" type="Node3D" parent="." unique_id=631987869]
 script = ExtResource("2_alcuw")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=237411449]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=237411449 groups=["world_environment"]]
 environment = SubResource("Environment_vfqff")
 
 [node name="SunPivot" type="Node3D" parent="." unique_id=938495831]
