@@ -16,7 +16,9 @@ var dummy: Dummy
 
 @onready var initial_parent = get_parent()
 
-var target: Marker3D
+var target: Marker3D:
+	set(value):
+		target = value
 var table: Table
 var in_range:bool = false
 var has_order:bool = false
@@ -29,37 +31,51 @@ var is_waiting_on_table:bool = false
 var player:Player
 var order_total:int
 
+var is_enabled:bool = false
+
+func enable_npc(enable:bool) -> void:
+	is_enabled = enable
+	if enable:
+		if not GlobalSignal.assign_customer_to_table.is_connected(_assign_customer_to_table):
+			GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
+		if not GlobalSignal.remove_customer.is_connected(_remove_customer):
+			GlobalSignal.remove_customer.connect(_remove_customer)
+		if not GlobalSignal.process_payment.is_connected(_process_payment):
+			GlobalSignal.process_payment.connect(_process_payment)
+		if not GlobalSignal.check_for_open_table.is_connected(_check_for_open_table):
+			GlobalSignal.check_for_open_table.connect(_check_for_open_table)
+		if not NavigationServer3D.map_changed.is_connected(_navigation_server_map_changed):
+			NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
+		set_path()
+		show()
+	else:
+		if GlobalSignal.assign_customer_to_table.is_connected(_assign_customer_to_table):
+			GlobalSignal.assign_customer_to_table.disconnect(_assign_customer_to_table)
+		if GlobalSignal.remove_customer.is_connected(_remove_customer):
+			GlobalSignal.remove_customer.disconnect(_remove_customer)
+		if GlobalSignal.process_payment.is_connected(_process_payment):
+			GlobalSignal.process_payment.disconnect(_process_payment)
+		if GlobalSignal.check_for_open_table.is_connected(_check_for_open_table):
+			GlobalSignal.check_for_open_table.disconnect(_check_for_open_table)
+		if NavigationServer3D.map_changed.is_connected(_navigation_server_map_changed):
+			NavigationServer3D.map_changed.disconnect(_navigation_server_map_changed)
+		hide()
+
+
 func _ready() -> void:
-	GlobalSignal.assign_customer_to_table.connect(_assign_customer_to_table)
-	GlobalSignal.remove_customer.connect(_remove_customer)
-	GlobalSignal.process_payment.connect(_process_payment)
-	GlobalSignal.check_for_open_table.connect(_check_for_open_table)
-	NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
 	dummy = dummy_scene.instantiate() as Dummy
 	assert(dummy, "Dummy scene is incorrect")
 	add_child(dummy)
-	set_nav_path()
 	player = get_tree().get_first_node_in_group("player")
-	
-func _navigation_server_map_changed(_map_rid: RID) -> void:
-	navigation_ready = true
-	#var walk_in_store = randi_range(0, walk_in_store_odds)
-	#if walk_in_store == 0:
-		#target = GlobalMarker.restaurant_marker
-	#else:
-		#target = endPathMarker
-	#navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-	
-	#OLD
-	#if start_target:
-		#target = start_target
-	#if navigation_agent.get_navigation_map() and target:
-		#navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-	#else:
-		#if navigation_agent and navigation_agent.get_navigation_map():
-			#navigation_agent.set_target_position(NavigationServer3D.map_get_random_point(navigation_agent.get_navigation_map(), 1, true))
 
-func set_nav_path() -> void:
+
+func _navigation_server_map_changed(_map_rid: RID) -> void:
+	set_path()
+
+
+func set_path() -> void:
+	if target:
+		return
 	navigation_ready = true
 	var walk_in_store = randi_range(0, walk_in_store_odds)
 	if walk_in_store == 0:
@@ -67,6 +83,7 @@ func set_nav_path() -> void:
 	else:
 		target = endPathMarker
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+
 
 func _physics_process(delta: float) -> void:
 	if not navigation_ready:
@@ -143,7 +160,7 @@ func _physics_process(delta: float) -> void:
 					GlobalMarker.queue3_npc = null
 					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 			elif target == endPathMarker:
-				queue_free()
+				enable_npc(false)
 			elif target == GlobalMarker.queue_marker:
 				var target_pos = player.global_position
 				target_pos.y = global_position.y

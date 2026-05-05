@@ -1585,7 +1585,30 @@ money = 100
 items_marker = NodePath("../../Items")
 order_spawn_marker = NodePath("../../../Environment/Buildings/pizzeria/Objects/OrderSpawn")
 
-[node name="DriveThruSpawn" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="1" unique_id=707607217 node_paths=PackedStringArray("drive_thru_timer", "level_ui")]
+[node name="NPCs" type="Node3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="1" unique_id=2018062379]
+
+[node name="StartPathMarker" type="Marker3D" parent="Entities/NPCs" index="0" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.205231, 0, 7.3347826)
+script = ExtResource("13_kv32d")
+endPathMarker = NodePath("Marker3D")
+level_ui = NodePath("../../../UI")
+npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
+
+[node name="Marker3D" type="Marker3D" parent="Entities/NPCs/StartPathMarker" index="0" unique_id=1880130272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.01641, 0, 0)
+
+[node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=1433582954 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -28.268303, 0, 8.737625)
+script = ExtResource("13_kv32d")
+endPathMarker = NodePath("Marker3D")
+level_ui = NodePath("../../../UI")
+npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
+
+[node name="Marker3D" type="Marker3D" parent="Entities/NPCs/EndPathMarker" index="0" unique_id=1369260149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.514698, 0, 0)
+
+[node name="DriveThruSpawn" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=707607217 node_paths=PackedStringArray("drive_thru_timer", "level_ui")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.8880186, 0.15, -12.015583)
 script = ExtResource("7_0rppq")
 drive_thru_timer = NodePath("Timers/DriveThruTimer")
@@ -1597,37 +1620,16 @@ level_ui = NodePath("../../UI")
 wait_time = 5.0
 one_shot = true
 
-[node name="StartPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8.205231, 0, 7.3347826)
-script = ExtResource("13_kv32d")
-endPathMarker = NodePath("Marker3D")
-level_ui = NodePath("../../UI")
-npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
-
-[node name="Marker3D" type="Marker3D" parent="Entities/StartPathMarker" index="0" unique_id=1880130272]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.01641, 0, 0)
-
-[node name="EndPathMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="3" unique_id=1433582954 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -28.268303, 0, 8.737625)
-script = ExtResource("13_kv32d")
-endPathMarker = NodePath("Marker3D")
-level_ui = NodePath("../../UI")
-npcSpawnTimer = NodePath("../Timers/NpcSpawnTimer")
-
-[node name="Marker3D" type="Marker3D" parent="Entities/EndPathMarker" index="0" unique_id=1369260149]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.514698, 0, 0)
-
-[node name="Timers" type="Node" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="4" unique_id=2112135972]
+[node name="Timers" type="Node" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="3" unique_id=2112135972]
 
 [node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
 wait_time = 5.0
 
-[node name="ThiefSpawnerMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="5" unique_id=772048251]
+[node name="ThiefSpawnerMarker" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="4" unique_id=772048251]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.58403, 0, -32.703342)
 
-[node name="CarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="6" unique_id=356334893]
+[node name="CarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="5" unique_id=356334893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 curve = SubResource("Curve3D_kcloa")
 
@@ -1647,7 +1649,7 @@ return_car_path = NodePath("../../../ReturnCarPath/PathFollow3D")
 drive_thru_spawn = NodePath("../../../DriveThruSpawn")
 level = NodePath("../../../..")
 
-[node name="DriveThruPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=1231579220]
+[node name="DriveThruPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="6" unique_id=1231579220]
 curve = SubResource("Curve3D_e0ycv")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Entities/DriveThruPath" index="0" unique_id=572758490]
@@ -1655,7 +1657,7 @@ transform = Transform3D(-0.9999191, 0, -0.007936931, 0, 0.99999815, 0, 0.0079369
 use_model_front = true
 loop = false
 
-[node name="ReturnCarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="8" unique_id=1062064984]
+[node name="ReturnCarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=1062064984]
 curve = SubResource("Curve3D_kv32d")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Entities/ReturnCarPath" index="0" unique_id=640778589]
@@ -1675,8 +1677,8 @@ layout_mode = 0
 
 [connection signal="player_loaded" from="Entities/Players/Player" to="GameState" method="_on_player_player_loaded"]
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
-[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/StartPathMarker" method="_on_npc_spawn_timer_timeout"]
-[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/EndPathMarker" method="_on_npc_spawn_timer_timeout"]
+[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/NPCs/StartPathMarker" method="_on_npc_spawn_timer_timeout"]
+[connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/NPCs/EndPathMarker" method="_on_npc_spawn_timer_timeout"]
 [connection signal="visibility_changed" from="UI/NextDay" to="UI/NextDay" method="_on_visibility_changed"]
 
 [editable path="Environment/Buildings/pizzeria"]

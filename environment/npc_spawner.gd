@@ -13,10 +13,28 @@ var skins:Array[String] = [
 	"uid://btlcpec1pk0f4"
 ]
 
+var npcs_node:Node3D
+var npcs:Dictionary[String, NPC_Dummy]
+
 func _ready() -> void:
 	GlobalSignal.open_store.connect(_open_store)
 	GlobalSignal.close_store.connect(_close_store)
+	
 	npcSpawnTimer.wait_time = randi_range(3, 10)
+	
+	npcs_node = get_parent()
+	
+	for skin:String in skins:
+		var npc_dummy:NPC_Dummy = preload("uid://dxnl4jurpfddl").instantiate()
+		npc_dummy.dummy_scene = load(skin)
+		npc_dummy.endPathMarker = endPathMarker
+		npc_dummy.level_ui = level_ui
+		npc_dummy.position = position + Vector3(0, 0, randf_range(-0.5,0.5))
+		npc_dummy.rotation = rotation
+		npc_dummy.enable_npc(false)
+		npcSpawnTimer.wait_time = randi_range(5, 15)
+		npcs_node.call_deferred("add_child", npc_dummy)
+		npcs.set(skin, npc_dummy)
 	
 func _open_store() -> void:
 	npcSpawnTimer.start()
@@ -29,11 +47,8 @@ func _on_npc_spawn_timer_timeout() -> void:
 	if stagger_chance == 0:
 		npcSpawnTimer.wait_time = 3
 		return
-	var npc_dummy:NPC_Dummy = preload("uid://dxnl4jurpfddl").instantiate()
-	npc_dummy.dummy_scene = load(skins.pick_random())
-	npc_dummy.endPathMarker = endPathMarker
-	npc_dummy.level_ui = level_ui
-	npc_dummy.position = position + Vector3(0, 0, randf_range(-0.5,0.5))
-	npc_dummy.rotation = rotation
-	npcSpawnTimer.wait_time = randi_range(5, 15)
-	get_parent().add_child(npc_dummy)
+	var random_npc = skins.pick_random()
+	var npc:NPC_Dummy = npcs.get(random_npc)
+	if npc.is_enabled:
+		return
+	npc.enable_npc(true)
