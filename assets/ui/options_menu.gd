@@ -59,6 +59,8 @@ var player:Player
 var worldEnvironment:WorldEnvironment
 
 func _ready() -> void:
+	worldEnvironment = get_tree().get_first_node_in_group("world_environment")
+	set_world_environment_properties(false)
 	if ResourceLoader.exists(SETTINGS_PATH):
 		load_settings()
 	else:
@@ -66,7 +68,6 @@ func _ready() -> void:
 		auto_detect_tier()
 	#print("Renderer: ", RenderingServer.get_current_rendering_method())
 	GlobalSignal.init_player.connect(_init_player)
-	worldEnvironment = get_tree().get_first_node_in_group("world_environment")
  
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):

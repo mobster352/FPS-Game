@@ -60,6 +60,7 @@ func enable_npc(enable:bool) -> void:
 		if NavigationServer3D.map_changed.is_connected(_navigation_server_map_changed):
 			NavigationServer3D.map_changed.disconnect(_navigation_server_map_changed)
 		hide()
+		target = null
 
 
 func _ready() -> void:

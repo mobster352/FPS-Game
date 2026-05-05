@@ -2,8 +2,7 @@ extends MarginContainer
 
 @export var save_slot := 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func load_game_data() -> void:
 	var playerData: PlayerData
 	if ResourceLoader.exists(GlobalVar.get_save_slot_by_id(save_slot)):
 		playerData = ResourceLoader.load(GlobalVar.get_save_slot_by_id(save_slot))
@@ -42,3 +41,8 @@ func _on_button_pressed() -> void:
 	GlobalVar.save_slot = save_slot
 	get_node("/root/Node/CanvasLayer/LoadGameMenu").hide()
 	GlobalSignal.spawn_new_level.emit()
+
+
+func _on_load_game_menu_visibility_changed() -> void:
+	if visible:
+		load_game_data()
