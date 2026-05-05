@@ -94,6 +94,7 @@ oven_audio = NodePath("OvenAudio")
 oven_ding_audio = NodePath("OvenDingAudio")
 
 [node name="pizza_oven_mesh" type="MeshInstance3D" parent="." unique_id=1107887046]
+layers = 4
 mesh = SubResource("ArrayMesh_0r1ds")
 skeleton = NodePath("")
 
@@ -108,6 +109,7 @@ pizza_oven = NodePath("../../..")
 
 [node name="pizza_oven_door_mesh" type="MeshInstance3D" parent="pizza_oven_mesh" unique_id=1476160734]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.22999954, 1)
+layers = 4
 mesh = SubResource("ArrayMesh_jhgum")
 skeleton = NodePath("")
 

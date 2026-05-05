@@ -246,6 +246,9 @@ tab_right={
 
 [layer_names]
 
+3d_render/layer_1="Environment"
+3d_render/layer_2="Player"
+3d_render/layer_3="No Cull"
 3d_physics/layer_1="Environment"
 3d_navigation/layer_1="Sidewalk"
 3d_physics/layer_2="Player"
