@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c1apxqra2i8td"]
+
+[ext_resource type="PackedScene" uid="uid://67nlkdvk4sy1" path="res://assets/pizzaboy/ceiling_light.glb" id="1_jv2on"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tpmm"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 3.0
+
+[node name="ceiling_light" unique_id=1725600520 instance=ExtResource("1_jv2on")]
+
+[node name="CeilingLightEmitter" parent="Mesh/CeilingLight" parent_id_path=PackedInt32Array(2346426) index="0" unique_id=157088187]
+surface_material_override/0 = SubResource("StandardMaterial3D_5tpmm")

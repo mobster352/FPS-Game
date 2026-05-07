@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dkiofm17g8u20" path="res://assets/environment/restaurant/menu.tscn" id="5_wu3my"]
 [ext_resource type="PackedScene" uid="uid://68jcexu6pnr4" path="res://assets/environment/misc/chair_a.tscn" id="6_0dng7"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="7_5lbjd"]
+[ext_resource type="PackedScene" uid="uid://cdw02022aurw2" path="res://assets/pizzaboy/scenes/hanging_light.tscn" id="8_kdyam"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqk40"]
 albedo_texture = ExtResource("3_dgaop")
@@ -29,7 +30,7 @@ chair = NodePath("chair_A")
 pointer = NodePath("Pointer")
 metadata/table_id = 0
 
-[node name="table_round_A" parent="." index="0"]
+[node name="table_round_A" parent="." index="0" unique_id=978287041]
 surface_material_override/0 = SubResource("StandardMaterial3D_dqk40")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="table_round_A" index="0" unique_id=1502430378]
@@ -74,6 +75,8 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" index="0" unique_id=953111010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_nm6bs")
+
+[node name="hanging_light" parent="." index="7" unique_id=330979996 instance=ExtResource("8_kdyam")]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timers/PlateTimer" to="." method="_on_plate_timer_timeout"]
