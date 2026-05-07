@@ -1,6 +1,11 @@
 extends Node3D
 class_name Dummy
 
+enum Animations {
+	NONE,
+	IDLE
+}
+
 @export var animationTree: AnimationTree
 @export var animationPlayer: AnimationPlayer
 @onready var movement_state_machine: AnimationNodeStateMachinePlayback
@@ -8,12 +13,16 @@ class_name Dummy
 @export var skeleton: Skeleton3D
 @export var physical_bones: PhysicalBoneSimulator3D
 
+@export var initial_animation: Animations
+
 var is_ragdoll := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	movement_state_machine = animationTree.get("parameters/MovementStateMachine/playback")
-
+	if initial_animation:
+		if initial_animation == Animations.IDLE:
+			sit_chair_animation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

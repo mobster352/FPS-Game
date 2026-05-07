@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://chvm4t08rq0e2" path="res://assets/environment/city/park_road_tsplit_decorated.tscn" id="18_yan4v"]
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
+[ext_resource type="PackedScene" uid="uid://btlcpec1pk0f4" path="res://entities/enemy/dummy.tscn" id="22_rt760"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
@@ -1608,6 +1609,16 @@ npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker2" index="0" unique_id=1027319659]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.2, 0, -36.229797)
+
+[node name="Idle" type="Node3D" parent="Entities/NPCs" index="2" unique_id=1741938431]
+
+[node name="Dummy" parent="Entities/NPCs/Idle" index="0" unique_id=831369888 instance=ExtResource("22_rt760")]
+transform = Transform3D(0.68715096, 0, -0.72651464, 0, 1, 0, 0.72651464, 0, 0.68715096, 0.06111348, 0.13289672, 31.895685)
+initial_animation = 1
+
+[node name="Dummy2" parent="Entities/NPCs/Idle" index="1" unique_id=701410245 instance=ExtResource("22_rt760")]
+transform = Transform3D(0.68715096, 0, -0.72651464, 0, 1, 0, 0.72651464, 0, 0.68715096, 6.624759, 0.13289672, 35.427917)
+initial_animation = 1
 
 [node name="DriveThruSpawn" type="Marker3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="2" unique_id=707607217 node_paths=PackedStringArray("drive_thru_timer", "level_ui")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.8880186, 0.15, -12.015583)

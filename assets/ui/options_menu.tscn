@@ -78,14 +78,19 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Display" unique_id=1464976240]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/TabContainer/Display" unique_id=258467061]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Display/ScrollContainer" unique_id=1464976240]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
-[node name="QualityPreset" type="Control" parent="Settings/TabContainer/Display/VBoxContainer" unique_id=1140450594]
+[node name="QualityPreset" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=1140450594]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/QualityPreset" unique_id=431433210]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset" unique_id=431433210]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -96,12 +101,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="QualityPresetLabel" type="Label" parent="Settings/TabContainer/Display/VBoxContainer/QualityPreset/MarginContainer4" unique_id=1642974933]
+[node name="QualityPresetLabel" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer4" unique_id=1642974933]
 layout_mode = 2
 text = "Graphics Quality"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/QualityPreset" unique_id=1133565031]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset" unique_id=1133565031]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -112,10 +117,10 @@ offset_right = 192.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="QualityPresetButton" type="OptionButton" parent="Settings/TabContainer/Display/VBoxContainer/QualityPreset/MarginContainer3" unique_id=780926498]
+[node name="QualityPresetButton" type="OptionButton" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer3" unique_id=780926498]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../../BackButton/TextureButton")
+focus_neighbor_top = NodePath("../../../../../../../BackButton/TextureButton")
 focus_neighbor_bottom = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
 theme_override_font_sizes/font_size = 14
 alignment = 1
@@ -128,10 +133,10 @@ popup/item_1/id = 1
 popup/item_2/text = "High"
 popup/item_2/id = 2
 
-[node name="GraphicsMode" type="Control" parent="Settings/TabContainer/Display/VBoxContainer" unique_id=1604368551]
+[node name="GraphicsMode" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=1604368551]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/GraphicsMode" unique_id=466126300]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/GraphicsMode" unique_id=466126300]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -142,12 +147,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="RendererLabel" type="Label" parent="Settings/TabContainer/Display/VBoxContainer/GraphicsMode/MarginContainer4" unique_id=843405612]
+[node name="RendererLabel" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/GraphicsMode/MarginContainer4" unique_id=843405612]
 layout_mode = 2
 text = "Graphics Mode"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/GraphicsMode" unique_id=1011658858]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/GraphicsMode" unique_id=1011658858]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -158,7 +163,7 @@ offset_right = 192.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="RendererButton" type="OptionButton" parent="Settings/TabContainer/Display/VBoxContainer/GraphicsMode/MarginContainer3" unique_id=721833670]
+[node name="RendererButton" type="OptionButton" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/GraphicsMode/MarginContainer3" unique_id=721833670]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../QualityPreset/MarginContainer3/QualityPresetButton")
@@ -174,10 +179,10 @@ popup/item_1/id = 1
 popup/item_2/text = "Performance"
 popup/item_2/id = 2
 
-[node name="WindowSize" type="Control" parent="Settings/TabContainer/Display/VBoxContainer" unique_id=52142845]
+[node name="WindowSize" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=52142845]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/WindowSize" unique_id=2136658832]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize" unique_id=2136658832]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -188,12 +193,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="WindowSizeLabel" type="Label" parent="Settings/TabContainer/Display/VBoxContainer/WindowSize/MarginContainer4" unique_id=613940232]
+[node name="WindowSizeLabel" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize/MarginContainer4" unique_id=613940232]
 layout_mode = 2
 text = "Window Size"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/WindowSize" unique_id=1083442613]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize" unique_id=1083442613]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -204,11 +209,10 @@ offset_right = 192.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="WindowSizeButton" type="OptionButton" parent="Settings/TabContainer/Display/VBoxContainer/WindowSize/MarginContainer3" unique_id=421785053]
+[node name="WindowSizeButton" type="OptionButton" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize/MarginContainer3" unique_id=421785053]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
-focus_neighbor_bottom = NodePath("../../../BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox")
 theme_override_font_sizes/font_size = 14
 alignment = 1
 selected = 0
@@ -220,11 +224,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 
-[node name="ShowTips" type="Control" parent="Settings/TabContainer/Display/VBoxContainer" unique_id=1526716139]
+[node name="ShowTips" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=1526716139]
 visible = false
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/ShowTips" unique_id=82404296]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips" unique_id=82404296]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -235,12 +239,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="ShowTipsLabel" type="Label" parent="Settings/TabContainer/Display/VBoxContainer/ShowTips/MarginContainer4" unique_id=313932496]
+[node name="ShowTipsLabel" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips/MarginContainer4" unique_id=313932496]
 layout_mode = 2
 text = "Show Tips"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/ShowTips" unique_id=1244124450]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips" unique_id=1244124450]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -251,13 +255,13 @@ offset_right = 148.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="ShowTipsCheckBox" type="CheckBox" parent="Settings/TabContainer/Display/VBoxContainer/ShowTips/MarginContainer3" unique_id=2112964733]
+[node name="ShowTipsCheckBox" type="CheckBox" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips/MarginContainer3" unique_id=2112964733]
 layout_mode = 2
 
-[node name="BackgroundAudio" type="Control" parent="Settings/TabContainer/Display/VBoxContainer" unique_id=217680539]
+[node name="FOV" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=262831238]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/BackgroundAudio" unique_id=131510435]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV" unique_id=804466764]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -268,12 +272,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="BackgroundMusicLabel" type="Label" parent="Settings/TabContainer/Display/VBoxContainer/BackgroundAudio/MarginContainer4" unique_id=1778579575]
+[node name="FovLabel" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV/MarginContainer4" unique_id=32008416]
 layout_mode = 2
-text = "Background Music"
+text = "Field of View (FOV)"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/VBoxContainer/BackgroundAudio" unique_id=1592300482]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV" unique_id=919626329]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -284,8 +288,28 @@ offset_right = 192.0
 offset_bottom = 39.0
 grow_horizontal = 2
 
-[node name="BackgroundAudioCheckBox" type="CheckBox" parent="Settings/TabContainer/Display/VBoxContainer/BackgroundAudio/MarginContainer3" unique_id=1052098671]
+[node name="FovSlider" type="HSlider" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV/MarginContainer3" unique_id=127578966]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 60.0
+max_value = 90.0
+value = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV" unique_id=951166418]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 9.0
+offset_right = 443.0
+offset_bottom = 39.333336
+
+[node name="FovValue" type="Label" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV/MarginContainer" unique_id=92597314]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "75"
+
+[node name="Control" type="Control" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer" unique_id=838491153]
 layout_mode = 2
 
 [node name="Mouse" type="MarginContainer" parent="Settings/TabContainer" unique_id=418411336]
@@ -293,14 +317,19 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Mouse" unique_id=1311849818]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/TabContainer/Mouse" unique_id=536108434]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Mouse/ScrollContainer" unique_id=1311849818]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
-[node name="Sensitivity" type="Control" parent="Settings/TabContainer/Mouse/VBoxContainer" unique_id=2089344808]
+[node name="Sensitivity" type="Control" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer" unique_id=2089344808]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Mouse/VBoxContainer/Sensitivity" unique_id=906971296]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity" unique_id=906971296]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -311,12 +340,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="MouseSensitivityLabel" type="Label" parent="Settings/TabContainer/Mouse/VBoxContainer/Sensitivity/MarginContainer4" unique_id=1065425417]
+[node name="MouseSensitivityLabel" type="Label" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer4" unique_id=1065425417]
 layout_mode = 2
 text = "Mouse Sensitivity"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Mouse/VBoxContainer/Sensitivity" unique_id=1033117076]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity" unique_id=1033117076]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -327,27 +356,35 @@ offset_right = 190.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="MouseSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Mouse/VBoxContainer/Sensitivity/MarginContainer3" unique_id=465813656]
+[node name="MouseSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=465813656]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 min_value = 1.0
 max_value = 10.0
 value = 5.0
+
+[node name="Control" type="Control" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer" unique_id=1180119995]
+layout_mode = 2
 
 [node name="Controller" type="MarginContainer" parent="Settings/TabContainer" unique_id=115267021]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Controller" unique_id=605327953]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/TabContainer/Controller" unique_id=384202495]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Controller/ScrollContainer" unique_id=605327953]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 40
 
-[node name="Sensitivity" type="Control" parent="Settings/TabContainer/Controller/VBoxContainer" unique_id=1884344307]
+[node name="Sensitivity" type="Control" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer" unique_id=1884344307]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Controller/VBoxContainer/Sensitivity" unique_id=584519410]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity" unique_id=584519410]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -358,12 +395,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="ControllerSensitivityLabel" type="Label" parent="Settings/TabContainer/Controller/VBoxContainer/Sensitivity/MarginContainer4" unique_id=1694590774]
+[node name="ControllerSensitivityLabel" type="Label" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer4" unique_id=1694590774]
 layout_mode = 2
 text = "Controller Sensitivity"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Controller/VBoxContainer/Sensitivity" unique_id=196852926]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity" unique_id=196852926]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -374,7 +411,7 @@ offset_right = 190.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="ControllerSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/VBoxContainer/Sensitivity/MarginContainer3" unique_id=1453407682]
+[node name="ControllerSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=1453407682]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
@@ -382,10 +419,10 @@ min_value = 1.0
 max_value = 10.0
 value = 5.0
 
-[node name="Deadzone" type="Control" parent="Settings/TabContainer/Controller/VBoxContainer" unique_id=1528602872]
+[node name="Deadzone" type="Control" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer" unique_id=1528602872]
 layout_mode = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Controller/VBoxContainer/Deadzone" unique_id=1652409191]
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone" unique_id=1652409191]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -396,12 +433,12 @@ offset_right = 3.0
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="DeadzoneLabel" type="Label" parent="Settings/TabContainer/Controller/VBoxContainer/Deadzone/MarginContainer4" unique_id=77170869]
+[node name="DeadzoneLabel" type="Label" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer4" unique_id=77170869]
 layout_mode = 2
 text = "Deadzone"
 label_settings = ExtResource("4_08tyc")
 
-[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Controller/VBoxContainer/Deadzone" unique_id=488113494]
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone" unique_id=488113494]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -412,13 +449,67 @@ offset_right = 190.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="DeadzoneSpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/VBoxContainer/Deadzone/MarginContainer3" unique_id=737334563]
+[node name="DeadzoneSpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3" unique_id=737334563]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 min_value = 1.0
 max_value = 9.0
 value = 5.0
+
+[node name="Control" type="Control" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer" unique_id=1584832899]
+layout_mode = 2
+
+[node name="Audio" type="MarginContainer" parent="Settings/TabContainer" unique_id=219721350]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/TabContainer/Audio" unique_id=2080523037]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/TabContainer/Audio/ScrollContainer" unique_id=1472854654]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="BackgroundAudio" type="Control" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer" unique_id=777673091]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio" unique_id=1912769410]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="BackgroundMusicLabel" type="Label" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer4" unique_id=1396016602]
+layout_mode = 2
+text = "Background Music"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio" unique_id=460064802]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="BackgroundAudioCheckBox" type="CheckBox" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3" unique_id=1490644582]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer" unique_id=1324927487]
+layout_mode = 2
 
 [node name="BackButton" parent="Settings" unique_id=828781490 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kudt6")]
 layout_mode = 1
@@ -439,8 +530,7 @@ label = NodePath("TextureButton/Label")
 button = NodePath("TextureButton")
 
 [node name="TextureButton" parent="Settings/BackButton" index="0" unique_id=2147143867]
-focus_neighbor_top = NodePath("../../TabContainer/Display/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox")
-focus_neighbor_bottom = NodePath("../../TabContainer/Display/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton")
+focus_neighbor_bottom = NodePath("../../TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton")
 texture_pressed = ExtResource("9_m37hy")
 texture_focused = ExtResource("9_m37hy")
 
@@ -531,14 +621,15 @@ stream = ExtResource("8_xhm57")
 volume_db = -5.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="item_selected" from="Settings/TabContainer/Display/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton" to="." method="_on_quality_preset_button_item_selected"]
-[connection signal="item_selected" from="Settings/TabContainer/Display/VBoxContainer/GraphicsMode/MarginContainer3/RendererButton" to="." method="_on_renderer_button_item_selected"]
-[connection signal="item_selected" from="Settings/TabContainer/Display/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
-[connection signal="pressed" from="Settings/TabContainer/Display/VBoxContainer/ShowTips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
-[connection signal="pressed" from="Settings/TabContainer/Display/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
-[connection signal="value_changed" from="Settings/TabContainer/Mouse/VBoxContainer/Sensitivity/MarginContainer3/MouseSensitivitySpinBox" to="." method="_on_mouse_sensitivity_spin_box_value_changed"]
-[connection signal="value_changed" from="Settings/TabContainer/Controller/VBoxContainer/Sensitivity/MarginContainer3/ControllerSensitivitySpinBox" to="." method="_on_controller_sensitivity_spin_box_value_changed"]
-[connection signal="value_changed" from="Settings/TabContainer/Controller/VBoxContainer/Deadzone/MarginContainer3/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
+[connection signal="item_selected" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton" to="." method="_on_quality_preset_button_item_selected"]
+[connection signal="item_selected" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/GraphicsMode/MarginContainer3/RendererButton" to="." method="_on_renderer_button_item_selected"]
+[connection signal="item_selected" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
+[connection signal="pressed" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
+[connection signal="value_changed" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV/MarginContainer3/FovSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/MouseSensitivitySpinBox" to="." method="_on_mouse_sensitivity_spin_box_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/ControllerSensitivitySpinBox" to="." method="_on_controller_sensitivity_spin_box_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
+[connection signal="pressed" from="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
 [connection signal="mouse_entered" from="Settings/BackButton/TextureButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Settings/BackButton/TextureButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GraphicsRestartPopup/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

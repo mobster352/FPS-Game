@@ -8,6 +8,7 @@ extends Resource
 @export var mouse_sensitivity:float
 @export var controller_sensitivity:float
 @export var deadzone:float
+@export var fov:int
 
 static func update_mouse_sensitivity(value:float) -> float:
 	return 0.01 / (10 - value)

@@ -121,6 +121,10 @@ var current_input_device := InputDevice.MOUSE_KEYBOARD:
 			inputs_ui.input_type = InputsUI.InputType.CONTROLLER
 			
 var can_play_audio:bool = true
+var fov:int:
+	set(value):
+		fov = value
+		%Camera3D.fov = value
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -926,6 +930,8 @@ func load_settings() -> void:
 		controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
 	if settings_data.deadzone:
 		controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
+	if settings_data.fov:
+		fov = settings_data.fov
 
 
 func _on_footstep_timer_timeout() -> void:

@@ -54,6 +54,12 @@ var rendering_method:String = "forward_plus":
 				%RendererButton.selected = 2
 		set_renderer_for_next_launch()
 
+var fov:int:
+	set(value):
+		fov = value
+		%FovValue.text = str(value)
+		%FovSlider.value = value
+
 var settings_data:Settings
 var player:Player
 var worldEnvironment:WorldEnvironment
@@ -109,6 +115,7 @@ func save_settings() -> void:
 	settings_data.window_mode = window_mode
 	settings_data.bg_music_on = is_bg_audio_on
 	settings_data.rendering_method = rendering_method
+	settings_data.fov = fov
 	var error_code := ResourceSaver.save(settings_data, SETTINGS_PATH)
 	if error_code != OK:
 		push_error("Failed to save game: " + error_string(error_code))
@@ -139,6 +146,8 @@ func load_settings() -> void:
 		if player:
 			player.controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
 		%DeadzoneSpinBox.value = settings_data.deadzone
+	if settings_data.fov:
+		fov = settings_data.fov
 
 
 func apply_preset(preset: QualityPreset):
@@ -287,3 +296,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif tabs.current_tab == 2:
 			%ControllerSensitivitySpinBox.get_line_edit().grab_focus()
 		get_viewport().set_input_as_handled()
+
+
+func _on_fov_slider_value_changed(value: float) -> void:
+	fov = int(value)
+	save_settings()
+	if player:
+		player.fov = fov
