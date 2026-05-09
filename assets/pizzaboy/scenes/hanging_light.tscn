@@ -5,7 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcyx5"]
 emission_enabled = true
 emission = Color(0.99999994, 0.6502628, 0.43421128, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 4.0
 
 [node name="hanging_light" unique_id=1052515792 instance=ExtResource("1_jcyx5")]
 

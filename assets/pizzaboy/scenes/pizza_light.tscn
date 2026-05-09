@@ -5,7 +5,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aphyw"]
 emission_enabled = true
 emission = Color(1, 0.6509804, 0.43529412, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 4.0
 
 [node name="hanging_light" unique_id=1052515792 instance=ExtResource("1_aphyw")]
 
