@@ -104,6 +104,10 @@ func _on_plate_timer_timeout() -> void:
 	plate_dirty.global_position = food_item.rigid_body.global_position
 	food_item.queue_free()
 	
+	var radialProgressBar:Node3D = npc.get_node("RadialProgressBar")
+	if radialProgressBar:
+		radialProgressBar.hide()
+	
 	# remove npc
 	GlobalSignal.remove_customer.emit(npc)
 	npc = null

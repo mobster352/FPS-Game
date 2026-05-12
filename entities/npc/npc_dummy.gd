@@ -33,6 +33,16 @@ var order_total:int
 
 var is_enabled:bool = false
 
+enum NPCState {
+	None,
+	Idle,
+	Walking,
+	Sitting
+}
+var current_state:NPCState
+var next_state:NPCState
+var previous_state:NPCState
+
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
 	if enable:
@@ -46,7 +56,8 @@ func enable_npc(enable:bool) -> void:
 			GlobalSignal.check_for_open_table.connect(_check_for_open_table)
 		if not NavigationServer3D.map_changed.is_connected(_navigation_server_map_changed):
 			NavigationServer3D.map_changed.connect(_navigation_server_map_changed)
-		set_path()
+		next_state = NPCState.Idle
+		target = null
 		show()
 	else:
 		if GlobalSignal.assign_customer_to_table.is_connected(_assign_customer_to_table):
@@ -59,8 +70,8 @@ func enable_npc(enable:bool) -> void:
 			GlobalSignal.check_for_open_table.disconnect(_check_for_open_table)
 		if NavigationServer3D.map_changed.is_connected(_navigation_server_map_changed):
 			NavigationServer3D.map_changed.disconnect(_navigation_server_map_changed)
-		hide()
 		target = null
+		hide()
 
 
 func _ready() -> void:
@@ -85,8 +96,69 @@ func set_path() -> void:
 		target = endPathMarker
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
-
 func _physics_process(delta: float) -> void:
+	if next_state:
+		current_state = next_state
+		next_state = NPCState.None
+	match current_state:
+		NPCState.Idle:
+			idle_state(delta)
+		NPCState.Walking:
+			walking_state(delta)
+		NPCState.Sitting:
+			sitting_state(delta)
+		_:
+			pass
+
+
+func idle_state(_delta:float) -> void:
+	velocity = Vector3.ZERO
+	dummy.idle_animation()
+	if not target:
+		get_target(NPCState.Idle)
+		return
+	if target == GlobalMarker.queue_marker and area_col.disabled:
+		area_col.disabled = false
+		pointer.show()
+		
+		has_order = true
+		order_total = 0
+		random_food = GlobalVar.get_random_food_by_level(player.level)
+		if random_food in [1,2,3]:
+			order_total = 5
+		else:
+			order_total = 10
+		var money_payed:int = randi_range(order_total, order_total+8)
+		GlobalSignal.process_order.emit(self, money_payed, order_total, random_food)
+		%RadialProgressBar.show()
+		%Ding.play()
+	
+	if table and not sitting:
+		get_parent().remove_child(self)
+		table.chair.add_child(self)
+		global_position = table.chair.sitting_marker.global_position
+		look_at(table.global_position)
+		dummy.sit_chair_animation()
+		
+		next_state = NPCState.Sitting
+		previous_state = current_state
+		
+		sitting = true
+		%RadialProgressBar.show()
+	
+	if target == endPathMarker:
+		enable_npc(false)
+	
+	if target == GlobalMarker.queue_marker:
+		var target_pos = player.global_position
+		target_pos.y = global_position.y
+		look_at(target_pos)
+	
+	if target == GlobalMarker.restaurant_marker or target == GlobalMarker.outside_marker \
+	or target == GlobalMarker.queue2_marker or target == GlobalMarker.queue3_marker:
+		get_target(NPCState.Idle)
+	
+func walking_state(delta:float) -> void:
 	if not navigation_ready:
 		return
 	if not navigation_agent.is_navigation_finished():
@@ -104,68 +176,52 @@ func _physics_process(delta: float) -> void:
 			else:
 				_on_navigation_agent_3d_velocity_computed(new_velocity)
 	else:
-		velocity = Vector3.ZERO
-		if target:
-			if target == GlobalMarker.queue_marker and area_col.disabled:
-				area_col.disabled = false
-				pointer.show()
-				
-				has_order = true
-				order_total = 0
-				random_food = GlobalVar.get_random_food_by_level(player.level)
-				if random_food in [1,2,3]:
-					order_total = 5
-				else:
-					order_total = 10
-				var money_payed:int = randi_range(order_total, order_total+8)
-				GlobalSignal.process_order.emit(self, money_payed, order_total, random_food)
-				%RadialProgressBar.show()
-				%Ding.play()
-			if table and not sitting:
-				get_parent().remove_child(self)
-				table.chair.add_child(self)
-				global_position = table.chair.sitting_marker.global_position
-				look_at(table.global_position)
-				dummy.sit_chair_animation()
-				sitting = true
-				%RadialProgressBar.show()
-			if not sitting:
-				dummy.idle_animation()
-			if target == GlobalMarker.outside_marker:
+		next_state = NPCState.Idle
+		previous_state = current_state
+	
+func sitting_state(_delta:float) -> void:
+	if not sitting:
+		get_target(NPCState.Sitting)
+	
+func get_target(_current_state:NPCState) -> void:
+	if not target:
+		set_path()
+	else:
+		if target == GlobalMarker.outside_marker:
+			target = endPathMarker
+			navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+		elif target == GlobalMarker.restaurant_marker:
+			if not GlobalMarker.queue1_npc:
+				GlobalMarker.queue1_npc = self
+				target = GlobalMarker.queue_marker
+			elif not GlobalMarker.queue2_npc:
+				GlobalMarker.queue2_npc = self
+				target = GlobalMarker.queue2_marker
+			elif not GlobalMarker.queue3_npc:
+				GlobalMarker.queue3_npc = self
+				target = GlobalMarker.queue3_marker
+			else:
 				target = endPathMarker
+			navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+		elif target == GlobalMarker.queue2_marker:
+			if not GlobalMarker.queue1_npc:
+				GlobalMarker.queue1_npc = self
+				target = GlobalMarker.queue_marker
+				%RadialProgressBar.show()
+				GlobalMarker.queue2_npc = null
 				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-			elif target == GlobalMarker.restaurant_marker:
-				if not GlobalMarker.queue1_npc:
-					GlobalMarker.queue1_npc = self
-					target = GlobalMarker.queue_marker
-				elif not GlobalMarker.queue2_npc:
-					GlobalMarker.queue2_npc = self
-					target = GlobalMarker.queue2_marker
-				elif not GlobalMarker.queue3_npc:
-					GlobalMarker.queue3_npc = self
-					target = GlobalMarker.queue3_marker
-				else:
-					target = endPathMarker
+		elif target == GlobalMarker.queue3_marker:
+			if not GlobalMarker.queue2_npc:
+				GlobalMarker.queue2_npc = self
+				target = GlobalMarker.queue2_marker
+				GlobalMarker.queue3_npc = null
 				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-			elif target == GlobalMarker.queue2_marker:
-				if not GlobalMarker.queue1_npc:
-					GlobalMarker.queue1_npc = self
-					target = GlobalMarker.queue_marker
-					%RadialProgressBar.show()
-					GlobalMarker.queue2_npc = null
-					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-			elif target == GlobalMarker.queue3_marker:
-				if not GlobalMarker.queue2_npc:
-					GlobalMarker.queue2_npc = self
-					target = GlobalMarker.queue2_marker
-					GlobalMarker.queue3_npc = null
-					navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-			elif target == endPathMarker:
-				enable_npc(false)
-			elif target == GlobalMarker.queue_marker:
-				var target_pos = player.global_position
-				target_pos.y = global_position.y
-				look_at(target_pos)
+		
+	
+	if target:
+		next_state = NPCState.Walking
+		previous_state = _current_state
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -176,21 +232,6 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		in_range = false
 
-
-func interact() -> void:
-	#if not has_order:
-		#has_order = true
-		#var money:int = 0
-		#random_food = randi_range(1,6)
-		#if random_food in [1,2,3]:
-			#money = 5
-		#else:
-			#money = 10
-		#dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
-		#dialogue_box.show()
-		#
-		#GlobalSignal.process_order.emit(self, money+2, money)
-	pass
 
 func _check_for_open_table() -> void:
 	if is_waiting_on_table:
@@ -221,6 +262,9 @@ func _assign_customer_to_table(_table:Table, _npc_dummy:NPC_Dummy) -> void:
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 	pointer.hide()
+	
+	next_state = NPCState.Walking
+	previous_state = current_state
 
 func look_at_target(pos: Vector3, delta: float) -> void:
 	var direction: Vector3 = global_position.direction_to(pos)

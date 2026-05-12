@@ -1436,7 +1436,7 @@ level = NodePath("../../..")
 transform = Transform3D(-0.8148581, 0.49925056, 0.29454237, 0.011704929, -0.49385378, 0.8694663, 0.5795423, 0.71193916, 0.39657703, 13.649979, 5.9260826, -31.085894)
 spot_range = 22.37792
 
-[node name="Walls" parent="Environment/Buildings/pizzeria/Mesh" parent_id_path=PackedInt32Array(32828750, 590317892) index="6" unique_id=763491340 groups=["nav_restaurant"]]
+[node name="Walls" parent="Environment/Buildings/pizzeria/Mesh" parent_id_path=PackedInt32Array(32828750, 342993935) index="6" unique_id=1944140430 groups=["nav_restaurant"]]
 
 [node name="building_H_withoutBase" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="1" unique_id=262033960 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 15)
@@ -1598,7 +1598,7 @@ npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker" index="0" unique_id=1880130272]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.2, 0, -36.229797)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.4985914, 0, -36.229797)
 
 [node name="StartPathMarker2" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=359057266 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.97769, 0, 8.304201)
@@ -1608,7 +1608,7 @@ level_ui = NodePath("../../../UI")
 npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker2" index="0" unique_id=1027319659]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.2, 0, -36.229797)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.0017357, 0, -47.94768)
 
 [node name="Idle" type="Node3D" parent="Entities/NPCs" index="2" unique_id=1741938431]
 
