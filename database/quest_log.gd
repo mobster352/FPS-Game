@@ -38,6 +38,9 @@ func update_quest_text() -> void:
 		hide()
 		
 
+#TODO Refactor update_quest to add / remove quest.
+#Add quests to the log and then remove them when complete
+#Tutorial can stay sequential, but need a way to add sidequests afterwards that can be done in any order
 func update_quest(quest_id:int) -> void:
 	if active_quest_id != quest_id:
 		return

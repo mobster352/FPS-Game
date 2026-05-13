@@ -10,9 +10,13 @@ signal update_markers
 @onready var queue2_marker: Marker3D
 @onready var queue3_marker: Marker3D
 
+@onready var park_marker: Marker3D
+
 var queue1_npc: NPC_Dummy
 var queue2_npc: NPC_Dummy
 var queue3_npc: NPC_Dummy
+
+var park_marker_npc: NPC_Dummy
 
 func _ready() -> void:
 	if not update_markers.is_connected(_update_markers):
@@ -26,3 +30,4 @@ func _update_markers() -> void:
 		queue_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue")
 		queue2_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue2")
 		queue3_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue3")
+		park_marker = get_node("/root/Node/Game/Level/Environment/Markers/ParkMarker")

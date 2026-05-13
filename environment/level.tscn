@@ -86,6 +86,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.686958)
 [node name="RestaurantBackDoorMarker" type="Marker3D" parent="Environment/Markers" unique_id=1532701036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.999018, 0, -8.030544)
 
+[node name="ParkMarker" type="Marker3D" parent="Environment/Markers" unique_id=1069707293]
+transform = Transform3D(0.70868456, 0, 0.70552546, 0, 1, 0, -0.70552546, 0, 0.70868456, -5.79, 0.1, 32.238)
+
+[node name="BenchMarker" type="Marker3D" parent="Environment/Markers/ParkMarker" unique_id=1129343216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.5)
+
 [node name="Boundaries" type="Node3D" parent="Environment" unique_id=264896408]
 
 [node name="Sounds" type="Node3D" parent="Environment" unique_id=900747152]

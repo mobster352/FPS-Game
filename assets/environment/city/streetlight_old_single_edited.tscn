@@ -13,10 +13,10 @@ data = PackedVector3Array(-0.02, 0.56, -0.02, 0.04, 0.55, -0.04, 0.02, 0.56, -0.
 
 [node name="streetlight_old_single_edited" unique_id=1246394435 instance=ExtResource("1_fsdp7")]
 
-[node name="streetlight_old_single" parent="." index="0" unique_id=1290994668]
+[node name="streetlight_old_single" parent="." index="0" unique_id=1424779703]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="streetlight_old_single_light" parent="streetlight_old_single" index="0" unique_id=168081421]
+[node name="streetlight_old_single_light" parent="streetlight_old_single" index="0" unique_id=881708527]
 surface_material_override/0 = SubResource("StandardMaterial3D_os6yk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="streetlight_old_single/streetlight_old_single_light" index="0" unique_id=1530775031]

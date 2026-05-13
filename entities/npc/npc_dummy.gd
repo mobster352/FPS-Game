@@ -43,6 +43,17 @@ var current_state:NPCState
 var next_state:NPCState
 var previous_state:NPCState
 
+enum NpcChoices {
+	Random,
+	Pizza_Shop,
+	Park
+}
+var npc_choices:Array[NpcChoices] = [
+	NpcChoices.Random,
+	NpcChoices.Pizza_Shop,
+	NpcChoices.Park
+]
+
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
 	if enable:
@@ -59,6 +70,7 @@ func enable_npc(enable:bool) -> void:
 		next_state = NPCState.Idle
 		target = null
 		show()
+		set_physics_process(true)
 	else:
 		if GlobalSignal.assign_customer_to_table.is_connected(_assign_customer_to_table):
 			GlobalSignal.assign_customer_to_table.disconnect(_assign_customer_to_table)
@@ -72,6 +84,7 @@ func enable_npc(enable:bool) -> void:
 			NavigationServer3D.map_changed.disconnect(_navigation_server_map_changed)
 		target = null
 		hide()
+		set_physics_process(false)
 
 
 func _ready() -> void:
@@ -89,11 +102,24 @@ func set_path() -> void:
 	if target:
 		return
 	navigation_ready = true
-	var walk_in_store = randi_range(0, walk_in_store_odds)
-	if walk_in_store == 0:
-		target = GlobalMarker.restaurant_marker
-	else:
-		target = endPathMarker
+	
+	var random_choice = npc_choices.pick_random()
+	match random_choice:
+		NpcChoices.Random:
+			target = endPathMarker
+		NpcChoices.Pizza_Shop:
+			var walk_in_store = randi_range(0, walk_in_store_odds)
+			if walk_in_store == 0:
+				target = GlobalMarker.restaurant_marker
+			else:
+				target = endPathMarker
+		NpcChoices.Park:
+			if GlobalMarker.park_marker_npc:
+				target = endPathMarker
+			else:
+				target = GlobalMarker.park_marker
+				GlobalMarker.park_marker_npc = self
+	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
 func _physics_process(delta: float) -> void:
@@ -157,6 +183,15 @@ func idle_state(_delta:float) -> void:
 	if target == GlobalMarker.restaurant_marker or target == GlobalMarker.outside_marker \
 	or target == GlobalMarker.queue2_marker or target == GlobalMarker.queue3_marker:
 		get_target(NPCState.Idle)
+		
+	if target == GlobalMarker.park_marker:
+		var bench_marker = GlobalMarker.park_marker.get_child(0) as Marker3D
+		global_position = bench_marker.global_position
+		look_at(GlobalMarker.park_marker.global_position)
+		dummy.sit_chair_animation()
+		next_state = NPCState.Sitting
+		previous_state = current_state
+		sitting = true
 	
 func walking_state(delta:float) -> void:
 	if not navigation_ready:
@@ -224,7 +259,9 @@ func get_target(_current_state:NPCState) -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("here: ", body)
 	if body.is_in_group("player"):
+		print("in range")
 		in_range = true
 
 
@@ -310,3 +347,7 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 		GlobalSignal.remove_order_from_register.emit()
 		await get_tree().create_timer(1).timeout
 		GlobalMarker.queue1_npc = null
+
+
+func interact() -> void:
+	print("here")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://34cxhmcvug2m" path="res://entities/npc/npc_dummy.gd" id="1_wfx4m"]
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="3_k0m3b"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="4_kfvlc"]
+[ext_resource type="Script" uid="uid://ca88v61n8pibv" path="res://entities/npc/npc_dummy_interactable.gd" id="5_k0m3b"]
 [ext_resource type="PackedScene" uid="uid://clejiqu3onixq" path="res://components/radial_progress_bar.tscn" id="5_p43ok"]
 [ext_resource type="AudioStream" uid="uid://b0bc1n16saeec" path="res://assets/audio/ding_03_amped.ogg" id="6_p43ok"]
 
@@ -23,7 +24,7 @@ speed = 2.0
 area_col = NodePath("Area3D/CollisionShape3D")
 navigation_agent = NodePath("NavigationAgent3D")
 pointer = NodePath("Pointer")
-walk_in_store_odds = 0
+walk_in_store_odds = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=929231383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2341309, 0)
@@ -34,7 +35,6 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2144675704]
 shape = SubResource("SphereShape3D_svb3k")
-disabled = true
 
 [node name="DialogueBox" parent="." unique_id=1504824731 instance=ExtResource("3_k0m3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8827615, -0.43405917)
@@ -58,6 +58,11 @@ unique_name_in_owner = true
 stream = ExtResource("6_p43ok")
 attenuation_model = 3
 volume_db = -10.0
+
+[node name="Interactable" type="Node3D" parent="." unique_id=529806694 node_paths=PackedStringArray("npc_dummy")]
+script = ExtResource("5_k0m3b")
+npc_dummy = NodePath("..")
+metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
