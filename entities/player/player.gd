@@ -138,7 +138,6 @@ func _ready():
 	# set up player data
 	if ResourceLoader.exists(GlobalVar.get_save_slot()) and not is_test:
 		load_player_data()
-		%QuestLog.hide()
 	else:
 		playerData = PlayerData.new()
 		playerData.day = 1
@@ -146,7 +145,7 @@ func _ready():
 		playerData.store_font_size = 72
 		playerData.level = 0
 		playerData.xp = 0
-		%QuestLog.show()
+		%QuestLog.add_quest(QuestResource.QuestIds.BUY_INGREDIENTS)
 	
 	starting_money = money
 	

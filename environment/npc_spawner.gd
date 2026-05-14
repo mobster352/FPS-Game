@@ -17,7 +17,7 @@ var npcs_node:Node3D
 var npcs:Dictionary[String, NPC_Dummy]
 
 func _ready() -> void:
-	GlobalSignal.open_store.connect(_open_store)
+	#GlobalSignal.open_store.connect(_open_store)
 	GlobalSignal.close_store.connect(_close_store)
 	
 	npcs_node = get_parent()
@@ -29,9 +29,11 @@ func _ready() -> void:
 		npc_dummy.enable_npc(false)
 		npcs_node.call_deferred("add_child", npc_dummy)
 		npcs.set(skin, npc_dummy)
-	
-func _open_store() -> void:
+		
 	npcSpawnTimer.start()
+	
+#func _open_store() -> void:
+	#npcSpawnTimer.start()
 	
 func _close_store() -> void:
 	npcSpawnTimer.stop()

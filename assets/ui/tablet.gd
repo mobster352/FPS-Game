@@ -34,9 +34,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("open_tablet"):
 		is_tablet_open = not is_tablet_open
 		if is_tablet_open:
-			if is_instance_valid(quest_log):
-				if player.playerData.day == 1 and quest_log.active_quest_id < Quest.QuestIds.BUY_TABLE:
-					return
 			show_tablet()
 		else:
 			hide_tablet()
@@ -47,8 +44,7 @@ func show_tablet() -> void:
 	GlobalSignal.freeze_player_camera.emit(true)
 	is_tablet_open = true
 	if is_instance_valid(quest_log):
-		if quest_log.active_quest_id == Quest.QuestIds.BUY_TABLE:
-			quest_log.update_quest_objective(Quest.QuestObjs.OPEN_TABLET)
+		quest_log.update_quest_objective(QuestResource.QuestIds.BUY_TABLE, QuestResource.QuestObjs.OPEN_TABLET)
 	$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
 
 func hide_tablet() -> void:
@@ -82,8 +78,7 @@ func _on_purchase_table_button_pressed(enum_name:String) -> void:
 	player.tables_node.add_child(table)
 	placement_system.setup_object_preview.emit(table_outline_node_path, table, table_node_path, -25)
 	if is_instance_valid(quest_log):
-		if quest_log.active_quest_id == Quest.QuestIds.BUY_TABLE:
-			quest_log.update_quest_objective(Quest.QuestObjs.BUY_TABLE)
+		quest_log.update_quest_objective(QuestResource.QuestIds.BUY_TABLE, QuestResource.QuestObjs.BUY_TABLE)
 
 
 func _on_close_tablet_button_pressed() -> void:

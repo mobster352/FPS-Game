@@ -1,4 +1,4 @@
-class_name Quest
+class_name QuestResource
 extends Resource
 
 class QuestData:
@@ -14,6 +14,12 @@ class QuestData:
 			objectives.append(quest_objective.create_quest_objective(obj_id))
 		return self
 		
+	func get_quest_objective(quest_objective_id:QuestObjs) -> QuestObjective:
+		for quest_obj:QuestObjective in objectives:
+			if quest_obj.id == quest_objective_id:
+				return quest_obj
+		return null
+		
 class QuestObjective:
 	var id:int
 	var name:String
@@ -27,6 +33,7 @@ class QuestObjective:
 
 
 enum QuestIds {
+	NONE,
 	#OPEN_COMPUTER,
 	BUY_INGREDIENTS,
 	MOVE_PRODUCTS,

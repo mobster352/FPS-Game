@@ -93,8 +93,7 @@ func interact(player: Player) -> void:
 			refill_pizza_slices()
 			held_obj.queue_free()
 			if is_instance_valid(quest_log):
-				if quest_log.active_quest_id == Quest.QuestIds.PLACE_PIZZA:
-					quest_log.update_quest_objective(Quest.QuestObjs.PLACE_PIZZA_COUNTER)
+				quest_log.update_quest_objective(QuestResource.QuestIds.PLACE_PIZZA, QuestResource.QuestObjs.PLACE_PIZZA_COUNTER)
 			return
 		player.drop_item()
 	var obj = get_slice()

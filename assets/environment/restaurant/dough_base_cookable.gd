@@ -28,14 +28,12 @@ func cook(player: Player) -> void:
 				var tomato_sauce = preload("res://assets/kaykit/restaurant/food_ingredient_tomato_sauce.gltf").instantiate()
 				update_mesh(tomato_sauce, held_item)
 				if is_instance_valid(quest_log):
-					if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
-						quest_log.update_quest_objective(Quest.QuestObjs.ADD_TOMATO)
+					quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, QuestResource.QuestObjs.ADD_TOMATO)
 			elif held_item.get_meta("name") == "food_ingredient_cheese_mesh":
 				var cheese = preload("res://assets/kaykit/restaurant/food_ingredient_cheese_grated.gltf").instantiate()
 				update_mesh(cheese, held_item)
 				if is_instance_valid(quest_log):
-					if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
-						quest_log.update_quest_objective(Quest.QuestObjs.ADD_CHEESE)
+					quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, QuestResource.QuestObjs.ADD_CHEESE)
 			elif held_item.get_meta("name") == "food_ingredient_pepperoni_mesh":
 				var pepperoni = preload("res://assets/kaykit/restaurant/food_ingredient_pepperoni_slices.gltf").instantiate()
 				update_mesh(pepperoni, held_item)

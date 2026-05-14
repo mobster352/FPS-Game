@@ -1,76 +1,107 @@
 class_name QuestLog
 extends Control
 
-const quest_objective_scene:PackedScene = preload("uid://ds2eh5sxwh0wb")
+const quest_scene:PackedScene = preload("uid://b3utve62uqxuv")
 
-var quests_data:Array[Quest.QuestData]
-
-var active_quest_id:int:
-	set(value):
-		active_quest_id = value
-		#await get_tree().create_timer(1.0).timeout
-		update_quest_text()
+var active_quests:Array[Quest]
 
 func _ready() -> void:
-	for id:int in Quest.QuestIds.values():
-		var quest_data:Quest.QuestData = Quest.QuestData.new()
-		quest_data = quest_data.create_quest_data(id)
-		quests_data.append(quest_data)
-	
-	active_quest_id = Quest.QuestIds.BUY_INGREDIENTS
+	pass
+	#add_quest(QuestResource.QuestIds.BUY_INGREDIENTS)
+	#await get_tree().create_timer(2).timeout
+	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_ROLLING_PIN)
+	#await get_tree().create_timer(2).timeout
+	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_DOUGH)
+	#await get_tree().create_timer(2).timeout
+	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_TOMATO)
+	#await get_tree().create_timer(2).timeout
+	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_CHEESE)
 
 
-func update_quest_text() -> void:
-	if quests_data.size() > active_quest_id:
-		show()
-		var quest_data:Quest.QuestData = get_quest_data_by_id(active_quest_id)
-		if not quest_data:
-			hide()
-			return
-		%Title.text = quest_data.name
-		for child in %ObjectivesList.get_children():
-			child.queue_free()
-		for obj in quest_data.objectives:
-			var label = quest_objective_scene.instantiate() as Label
-			label.text = obj.name
-			%ObjectivesList.add_child(label)
-	else:
-		hide()
-		
+func add_quest(quest_id:QuestResource.QuestIds) -> void:
+	var new_quest = quest_scene.instantiate() as Quest
+	new_quest.quest_id = quest_id
+	%Quests.add_child(new_quest)
+	active_quests.append(new_quest)
 
-#TODO Refactor update_quest to add / remove quest.
-#Add quests to the log and then remove them when complete
-#Tutorial can stay sequential, but need a way to add sidequests afterwards that can be done in any order
-func update_quest(quest_id:int) -> void:
-	if active_quest_id != quest_id:
+
+func remove_quest(quest_id:QuestResource.QuestIds) -> void:
+	var index:int = 0
+	for quest:Quest in active_quests:
+		if quest.quest_id == quest_id:
+			active_quests.remove_at(index)
+			break
+		index += 1
+	for quest:Quest in %Quests.get_children():
+		if quest.quest_id == quest_id:
+			%Quests.remove_child(quest)
+			break
+
+
+func is_on_quest(quest_id:QuestResource.QuestIds) -> bool:
+	for quest:Quest in active_quests:
+		if quest.quest_id == quest_id:
+			return true
+	return false
+
+
+func print_active_quests() -> void:
+	print("Printing Active Quests...")
+	for quest:Quest in active_quests:
+		print(quest.quest_data.name)
+	print("End Print")
+
+
+func update_quest_objective(quest_id:QuestResource.QuestIds, quest_objective:QuestResource.QuestObjs) -> void:
+	if not is_on_quest(quest_id):
 		return
-	active_quest_id += 1
-
-
-func get_quest_data_by_id(quest_id:int) -> Quest.QuestData:
-	for quest_data:Quest.QuestData in quests_data:
-		if quest_data.id == quest_id:
-			return quest_data
-	return null
-
-
-func update_quest_objective(quest_objective_id:int) -> void:
-	var quest_data:Quest.QuestData = get_quest_data_by_id(active_quest_id)
-	if not quest_data:
+	var this_quest:Quest
+	for quest:Quest in active_quests:
+		if quest.quest_id == quest_id:
+			for quest_obj:QuestResource.QuestObjective in quest.quest_data.objectives:
+				if quest_obj.id == quest_objective and not quest_obj.status:
+					quest_obj.status = true
+					this_quest = quest
+	if not this_quest:
 		return
-	for obj:Quest.QuestObjective in quest_data.objectives:
-		if not obj:
-			continue
-		if obj.id != quest_objective_id:
-			continue
-		if obj.status:
-			continue
-		for child:Label in %ObjectivesList.get_children():
-			if not child:
-				continue
-			if child.text == obj.name:
-				child.free()
-				if %ObjectivesList.get_child_count() <= 0:
-					update_quest(active_quest_id)
-				GlobalSignal.add_xp.emit(5)
-				obj.status = true
+	for quest:Quest in %Quests.get_children():
+		if quest.quest_id == quest_id:
+			for quest_obj_label:RichTextLabel in quest.quest_objectives.get_children():
+				var quest_obj:QuestResource.QuestObjective = quest.quest_data.get_quest_objective(quest_objective)
+				if not quest_obj:
+					continue
+				var parsed_text = quest_obj_label.get_parsed_text()
+				if parsed_text == quest_obj.name:
+					quest_obj_label.text = "[font_size=14][color=green][s]%s[/s][/color][/font_size]" % quest_obj.name
+	var is_quest_finished:bool = true
+	for quest_obj:QuestResource.QuestObjective in this_quest.quest_data.objectives:
+		if not quest_obj.status:
+			is_quest_finished = false
+			break
+	if is_quest_finished:
+		remove_quest(this_quest.quest_id)
+		GlobalSignal.add_xp.emit(5)
+		var next_quest:QuestResource.QuestIds = get_next_quest(this_quest.quest_id)
+		if next_quest != QuestResource.QuestIds.NONE:
+			add_quest(next_quest)
+
+func get_next_quest(quest_id:QuestResource.QuestIds) -> QuestResource.QuestIds:
+	match quest_id:
+		QuestResource.QuestIds.BUY_INGREDIENTS:
+			return QuestResource.QuestIds.MOVE_PRODUCTS
+		QuestResource.QuestIds.MOVE_PRODUCTS:
+			return QuestResource.QuestIds.MAKE_PIZZA
+		QuestResource.QuestIds.MAKE_PIZZA:
+			return QuestResource.QuestIds.PLACE_PIZZA
+		QuestResource.QuestIds.PLACE_PIZZA:
+			return QuestResource.QuestIds.BUY_TABLE
+		QuestResource.QuestIds.BUY_TABLE:
+			return QuestResource.QuestIds.CHANGE_STORE_NAME
+		QuestResource.QuestIds.CHANGE_STORE_NAME:
+			return QuestResource.QuestIds.OPEN_PIZZERIA
+		QuestResource.QuestIds.OPEN_PIZZERIA:
+			return QuestResource.QuestIds.SERVE_CUSTOMERS
+		QuestResource.QuestIds.SERVE_CUSTOMERS:
+			return QuestResource.QuestIds.CLOSE_PIZZERIA
+		_:
+			return QuestResource.QuestIds.NONE

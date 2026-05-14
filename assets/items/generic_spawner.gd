@@ -85,8 +85,7 @@ func interact(player: Player) -> void:
 				obj.get_parent().remove_child(obj)
 			obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
 			if is_instance_valid(quest_log) and item_type == GlobalVar.StoreItem.Dough:
-				if quest_log.active_quest_id == Quest.QuestIds.MAKE_PIZZA:
-					quest_log.update_quest_objective(Quest.QuestObjs.PICK_UP_DOUGH)
+				quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, QuestResource.QuestObjs.PICK_UP_DOUGH)
 			obj.queue_free()
 
 func reticle_color() -> Color:
@@ -102,6 +101,5 @@ func interact2(player: Player) -> void:
 		get_parent().remove_child(self)
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)), player)
 	if is_instance_valid(quest_log):
-			if quest_log.active_quest_id == Quest.QuestIds.MOVE_PRODUCTS:
-				quest_log.update_quest_objective(Quest.QuestObjs.PICK_UP_PRODUCTS)
+			quest_log.update_quest_objective(QuestResource.QuestIds.MOVE_PRODUCTS, QuestResource.QuestObjs.PICK_UP_PRODUCTS)
 	item.queue_free()

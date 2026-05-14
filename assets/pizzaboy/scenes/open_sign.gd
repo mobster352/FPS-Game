@@ -29,19 +29,17 @@ func _ready() -> void:
 func interact() -> void:
 	if not is_sign_on:
 		if is_instance_valid(quest_log):
-			if player.playerData.day == 1 and quest_log.active_quest_id != Quest.QuestIds.OPEN_PIZZERIA:
+			if player.playerData.day == 1 and not quest_log.is_on_quest(QuestResource.QuestIds.OPEN_PIZZERIA):
 				return
 		open_store()
 		level.can_advance_time = is_sign_on
 		GlobalSignal.open_store.emit()
 		if is_instance_valid(quest_log):
-			if quest_log.active_quest_id == Quest.QuestIds.OPEN_PIZZERIA:
-				quest_log.update_quest_objective(Quest.QuestObjs.OPEN_PIZZERIA)
+			quest_log.update_quest_objective(QuestResource.QuestIds.OPEN_PIZZERIA, QuestResource.QuestObjs.OPEN_PIZZERIA)
 	elif level.time_of_day >= 22:
 		GlobalSignal.next_day.emit(false)
 		if is_instance_valid(quest_log):
-			if quest_log.active_quest_id == Quest.QuestIds.CLOSE_PIZZERIA:
-				quest_log.update_quest_objective(Quest.QuestObjs.CLOSE_PIZZERIA)
+			quest_log.update_quest_objective(QuestResource.QuestIds.CLOSE_PIZZERIA, QuestResource.QuestObjs.CLOSE_PIZZERIA)
 
 func open_store() -> void:
 	is_sign_on = not is_sign_on

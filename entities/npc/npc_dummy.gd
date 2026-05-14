@@ -54,6 +54,8 @@ var npc_choices:Array[NpcChoices] = [
 	NpcChoices.Park
 ]
 
+var is_store_open:bool = false
+
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
 	if enable:
@@ -92,6 +94,7 @@ func _ready() -> void:
 	assert(dummy, "Dummy scene is incorrect")
 	add_child(dummy)
 	player = get_tree().get_first_node_in_group("player")
+	GlobalSignal.open_store.connect(_open_store)
 
 
 func _navigation_server_map_changed(_map_rid: RID) -> void:
@@ -108,17 +111,23 @@ func set_path() -> void:
 		NpcChoices.Random:
 			target = endPathMarker
 		NpcChoices.Pizza_Shop:
-			var walk_in_store = randi_range(0, walk_in_store_odds)
-			if walk_in_store == 0:
-				target = GlobalMarker.restaurant_marker
-			else:
+			if not is_store_open:
 				target = endPathMarker
+			else:
+				var walk_in_store = randi_range(0, walk_in_store_odds)
+				if walk_in_store == 0:
+					target = GlobalMarker.restaurant_marker
+				else:
+					target = endPathMarker
 		NpcChoices.Park:
-			if GlobalMarker.park_marker_npc:
+			if not is_store_open:
 				target = endPathMarker
 			else:
-				target = GlobalMarker.park_marker
-				GlobalMarker.park_marker_npc = self
+				if GlobalMarker.park_marker_npc:
+					target = endPathMarker
+				else:
+					target = GlobalMarker.park_marker
+					GlobalMarker.park_marker_npc = self
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
@@ -143,8 +152,7 @@ func idle_state(_delta:float) -> void:
 	if not target:
 		get_target(NPCState.Idle)
 		return
-	if target == GlobalMarker.queue_marker and area_col.disabled:
-		area_col.disabled = false
+	if target == GlobalMarker.queue_marker and not has_order:
 		pointer.show()
 		
 		has_order = true
@@ -259,9 +267,7 @@ func get_target(_current_state:NPCState) -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("here: ", body)
 	if body.is_in_group("player"):
-		print("in range")
 		in_range = true
 
 
@@ -350,4 +356,8 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 
 func interact() -> void:
-	print("here")
+	pass
+
+
+func _open_store() -> void:
+	is_store_open = true

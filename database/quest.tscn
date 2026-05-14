@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b3utve62uqxuv"]
+
+[ext_resource type="Script" uid="uid://qc08gn7jmkm" path="res://database/quest.gd" id="1_ke4ck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8pnxk"]
+font_color = Color(0, 0.99607843, 0.6156863, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Quest" type="Control" unique_id=2069187256 node_paths=PackedStringArray("quest_objectives")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ke4ck")
+quest_objectives = NodePath("MarginContainer/VBoxContainer/Objectives")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=575933576]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1152.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=853684248]
+layout_mode = 2
+
+[node name="QuestName" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1454496723]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quest Name"
+label_settings = SubResource("LabelSettings_8pnxk")
+horizontal_alignment = 2
+
+[node name="Objectives" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1611958668]
+unique_name_in_owner = true
+layout_mode = 2

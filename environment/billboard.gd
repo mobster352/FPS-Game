@@ -22,8 +22,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 func show_billboard_ui() -> void:
 	if is_instance_valid(quest_log):
-		if quest_log.active_quest_id == Quest.QuestIds.CHANGE_STORE_NAME:
-			quest_log.update_quest_objective(Quest.QuestObjs.CHANGE_STORE_NAME)
+		quest_log.update_quest_objective(QuestResource.QuestIds.CHANGE_STORE_NAME, QuestResource.QuestObjs.CHANGE_STORE_NAME)
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	billboard_ui.show()
