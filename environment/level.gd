@@ -19,8 +19,6 @@ class_name Level
 # Internal state
 var time_of_day := 0.0 # 0–24
 
-var quest_log:QuestLog
-
 const SUNRISE := 6.0
 const SUNSET  := 18.0
 const MAX_ELEVATION := PI / 2.0  # 90°
@@ -38,7 +36,6 @@ func _ready():
 		GlobalSignal.init_player.emit(player)
 	GlobalMarker._ready()
 	level_ui.show_clock = show_clock
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 	#sky_shader = world_environment.environment.sky.sky_material
 	#sky_shader.set_shader_parameter("stars_intensity", 0.0)
 	sky = world_environment.environment.sky.sky_material
@@ -53,8 +50,7 @@ func _process(delta):
 	update_environment()
 		#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
 	if time_of_day >= 22:
-		if is_instance_valid(quest_log):
-			quest_log.update_quest_objective(QuestIds.SERVE_CUSTOMERS, QuestObjs.SERVE_CUSTOMERS)
+		GlobalSignal.update_quest_objective.emit(QuestIds.SERVE_CUSTOMERS, QuestObjs.SERVE_CUSTOMERS)
 
 func advance_time(delta: float):
 	var seconds_per_day = day_length_minutes * 60.0

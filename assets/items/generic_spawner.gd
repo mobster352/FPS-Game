@@ -1,11 +1,9 @@
 extends ObjectSpawner
 class_name GenericSpawner
 
-var quest_log:QuestLog
 
 func _ready() -> void:
 	super()
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 	%PizzaLabel.text = item_text + " (" + str(object_array.size()) + "/8)"
 	
 func _physics_process(_delta: float) -> void:
@@ -84,8 +82,8 @@ func interact(player: Player) -> void:
 			if obj.get_parent():
 				obj.get_parent().remove_child(obj)
 			obj.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
-			if is_instance_valid(quest_log) and item_type == GlobalVar.StoreItem.Dough:
-				quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.PICK_UP_DOUGH)
+			if item_type == GlobalVar.StoreItem.Dough:
+				GlobalSignal.update_quest_objective.emit(QuestIds.MAKE_PIZZA, QuestObjs.PICK_UP_DOUGH)
 			obj.queue_free()
 
 func reticle_color() -> Color:
@@ -100,6 +98,5 @@ func interact2(player: Player) -> void:
 	if get_parent():
 		get_parent().remove_child(self)
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(-15),deg_to_rad(0),deg_to_rad(0)), player)
-	if is_instance_valid(quest_log):
-			quest_log.update_quest_objective(QuestIds.MOVE_PRODUCTS, QuestObjs.PICK_UP_PRODUCTS)
+	GlobalSignal.update_quest_objective.emit(QuestIds.MOVE_PRODUCTS, QuestObjs.PICK_UP_PRODUCTS)
 	item.queue_free()

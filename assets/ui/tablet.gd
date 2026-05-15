@@ -15,14 +15,12 @@ var is_tablet_open := false
 var placement_system: PlacementSystem
 var player:Player
 
-var quest_log:QuestLog
 var order_list: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	placement_system = get_tree().get_first_node_in_group("placement_system")
 	player = get_tree().get_first_node_in_group("player")
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 	
 	GlobalSignal.add_order.connect(_add_order)
 	GlobalSignal.remove_order_from_list.connect(_remove_order_from_list)
@@ -43,8 +41,7 @@ func show_tablet() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GlobalSignal.freeze_player_camera.emit(true)
 	is_tablet_open = true
-	if is_instance_valid(quest_log):
-		quest_log.update_quest_objective(QuestIds.BUY_TABLE, QuestObjs.OPEN_TABLET)
+	GlobalSignal.update_quest_objective.emit(QuestIds.BUY_TABLE, QuestObjs.OPEN_TABLET)
 	$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
 
 func hide_tablet() -> void:

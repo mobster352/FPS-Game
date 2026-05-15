@@ -23,13 +23,11 @@ var item_shape: Shape3D
 var is_placing := false
 var money:int
 
-var quest_log:QuestLog
 var is_table:bool = false
 
 func _ready() -> void:
 	objects = get_tree().get_nodes_in_group("placement")
 	setup_object_preview.connect(_setup_object_preview)
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func _process(_delta: float) -> void:
 	var build_input = Input.is_action_just_pressed("build")
@@ -169,8 +167,8 @@ func confirm_placement() -> bool:
 	GlobalSignal.check_for_open_table.emit()
 	
 	
-	if is_instance_valid(quest_log) and is_table:
-		quest_log.update_quest_objective(QuestIds.BUY_TABLE, QuestObjs.BUY_TABLE)
+	if is_table:
+		GlobalSignal.update_quest_objective.emit(QuestIds.BUY_TABLE, QuestObjs.BUY_TABLE)
 	
 	return true
 

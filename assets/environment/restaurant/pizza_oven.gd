@@ -15,10 +15,6 @@ var interact_door := false
 var elapsed := 0.0
 var is_locked := false
 
-var quest_log:QuestLog
-
-func _ready() -> void:
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 func _process(delta: float) -> void:
 	if elapsed >= 1.0:
@@ -67,8 +63,7 @@ func add_pizza_to_oven(mesh:MeshInstance3D) -> void:
 			pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
 		elif toppings.has("food_ingredient_cheese_mesh") and toppings.has("food_ingredient_tomato_mesh") and not toppings.has("food_ingredient_pepperoni_mesh") and not toppings.has("food_ingredient_mushroom_mesh"):
 			pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-			if is_instance_valid(quest_log):
-				quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
+			GlobalSignal.update_quest_objective.emit(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
 		else:
 			pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 		mesh.set_surface_override_material(0, null)
@@ -87,8 +82,7 @@ func add_pizza_to_oven(mesh:MeshInstance3D) -> void:
 			pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
 		elif toppings.has("food_ingredient_cheese_mesh") and toppings.has("food_ingredient_tomato_mesh") and not toppings.has("food_ingredient_pepperoni_mesh") and not toppings.has("food_ingredient_mushroom_mesh"):
 			pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-			if is_instance_valid(quest_log):
-				quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
+			GlobalSignal.update_quest_objective.emit(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
 		else:
 			pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 		mesh.set_surface_override_material(0, null)
@@ -115,8 +109,7 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
 					elif item.mesh.get_meta("toppings").has("food_ingredient_cheese_mesh") and item.mesh.get_meta("toppings").has("food_ingredient_tomato_mesh") and not item.mesh.get_meta("toppings").has("food_ingredient_pepperoni_mesh") and not item.mesh.get_meta("toppings").has("food_ingredient_mushroom_mesh"):
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-						if is_instance_valid(quest_log):
-							quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
+						GlobalSignal.update_quest_objective.emit(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
 					else:
 						pizza_slot_top.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot_top.add_child(mesh)
@@ -133,8 +126,7 @@ func _on_pizza_area_body_entered(body: Node3D) -> void:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.MUSHROOM)
 					elif item.mesh.get_meta("toppings").has("food_ingredient_cheese_mesh") and item.mesh.get_meta("toppings").has("food_ingredient_tomato_mesh") and not item.mesh.get_meta("toppings").has("food_ingredient_pepperoni_mesh") and not item.mesh.get_meta("toppings").has("food_ingredient_mushroom_mesh"):
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.CHEESE)
-						if is_instance_valid(quest_log):
-							quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
+						GlobalSignal.update_quest_objective.emit(QuestIds.MAKE_PIZZA, QuestObjs.PLACE_PIZZA_OVEN)
 					else:
 						pizza_slot_bottom.set_meta("pizza", GlobalVar.PIZZA_TYPE.NONE)
 				pizza_slot_bottom.add_child(mesh)

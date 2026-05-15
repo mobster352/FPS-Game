@@ -124,3 +124,6 @@ signal pause_game(is_paused:bool)
 
 @warning_ignore("unused_signal")
 signal spawn_new_level
+
+@warning_ignore("unused_signal")
+signal update_quest_objective(quest_id:StringName, quest_objective_id:StringName)

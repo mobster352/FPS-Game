@@ -9,6 +9,7 @@ var quests_db:Array[QuestResource]
 
 func _ready() -> void:
 	load_quests("res://database/quests")
+	GlobalSignal.update_quest_objective.connect(_update_quest_objective)
 
 
 func get_quest_resource_from_db(quest_id:StringName) -> QuestResource:
@@ -63,7 +64,7 @@ func print_active_quests() -> void:
 	print("End Print")
 
 
-func update_quest_objective(quest_id:StringName, quest_objective_id:StringName) -> void:
+func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName) -> void:
 	if not is_on_quest(quest_id):
 		return
 	var this_quest:Quest

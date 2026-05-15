@@ -121,26 +121,22 @@ func _order_inventory_items(order_items: Array[Dictionary]) -> void:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(preload(rolling_pin_item).instantiate())
-				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_ROLLING_PIN)
+				GlobalSignal.update_quest_objective.emit(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_ROLLING_PIN)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Dough:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Dough))
-				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_DOUGH)
+				GlobalSignal.update_quest_objective.emit(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_DOUGH)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Tomato:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Tomato))
-				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_TOMATO)
+				GlobalSignal.update_quest_objective.emit(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_TOMATO)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Cheese:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Cheese))
-				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_CHEESE)
+				GlobalSignal.update_quest_objective.emit(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_CHEESE)
 			if store_item.get("store_item") == GlobalVar.StoreItem.Pepperoni:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
@@ -154,8 +150,7 @@ func _order_inventory_items(order_items: Array[Dictionary]) -> void:
 					var stack = preload(pizza_box_item).instantiate() as PizzaBoxStack
 					stack.num_pizza_boxes = store_item.get("quantity")
 					order_spawn.add_child(stack)
-				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_PIZZA_BOXES)
+				GlobalSignal.update_quest_objective.emit(QuestIds.BUY_INGREDIENTS, QuestObjs.BUY_PIZZA_BOXES)
 
 
 func get_crate_item(order_item: GlobalVar.StoreItem) -> Item:
