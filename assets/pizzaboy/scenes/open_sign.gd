@@ -35,11 +35,11 @@ func interact() -> void:
 		level.can_advance_time = is_sign_on
 		GlobalSignal.open_store.emit()
 		if is_instance_valid(quest_log):
-			quest_log.update_quest_objective(QuestResource.QuestIds.OPEN_PIZZERIA, QuestResource.QuestObjs.OPEN_PIZZERIA)
+			quest_log.update_quest_objective(QuestResource.QuestIds.OPEN_PIZZERIA, "Open Pizzeria")
 	elif level.time_of_day >= 22:
 		GlobalSignal.next_day.emit(false)
 		if is_instance_valid(quest_log):
-			quest_log.update_quest_objective(QuestResource.QuestIds.CLOSE_PIZZERIA, QuestResource.QuestObjs.CLOSE_PIZZERIA)
+			quest_log.update_quest_objective(QuestResource.QuestIds.CLOSE_PIZZERIA, "Close Pizzeria")
 
 func open_store() -> void:
 	is_sign_on = not is_sign_on

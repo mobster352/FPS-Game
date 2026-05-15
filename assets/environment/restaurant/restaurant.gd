@@ -122,25 +122,25 @@ func _order_inventory_items(order_items: Array[Dictionary]) -> void:
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(preload(rolling_pin_item).instantiate())
 				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_ROLLING_PIN)
+					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, "Buy Rolling Pin")
 			if store_item.get("store_item") == GlobalVar.StoreItem.Dough:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Dough))
 				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_DOUGH)
+					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, "Buy Dough")
 			if store_item.get("store_item") == GlobalVar.StoreItem.Tomato:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Tomato))
 				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_TOMATO)
+					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, "Buy Tomato")
 			if store_item.get("store_item") == GlobalVar.StoreItem.Cheese:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):
 						order_spawn.add_child(get_crate_item(GlobalVar.StoreItem.Cheese))
 				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_CHEESE)
+					quest_log.update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, "Buy Cheese")
 			if store_item.get("store_item") == GlobalVar.StoreItem.Pepperoni:
 				if store_item.has("quantity"):
 					for q in range(store_item.get("quantity")):

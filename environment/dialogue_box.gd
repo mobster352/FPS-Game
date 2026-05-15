@@ -2,18 +2,37 @@ extends Node3D
 class_name DialogueBox
 
 @export var text: StringName
-@onready var label = $CSGBox3D/SubViewport/Control/MarginContainer/Label
+
+@onready var canvas_layer: CanvasLayer = %CanvasLayer
+@onready var label = %Label
 @onready var display_timer = $Timers/DisplayTimer
+
+
+func _ready() -> void:
+	set_process(false)
+
+func _process(_delta: float) -> void:
+	if not visible:
+		return
+	if Input.is_action_just_pressed("interact"):
+		hide()
 
 
 func _on_visibility_changed() -> void:
 	if visible:
 		label.text = text
-		display_timer.start()
+		canvas_layer.show()
+		GlobalSignal.freeze_player_camera.emit(true)
+		set_process(true)
+	else:
+		canvas_layer.hide()
+		GlobalSignal.freeze_player_camera.emit(false)
+		set_process(false)
 
 
 func _on_display_timer_timeout() -> void:
 	hide()
+	canvas_layer.hide()
 
 func get_order_text() -> StringName:
 	return "I want a "

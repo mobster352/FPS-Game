@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://duiku7ud420r0"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_8428e"]
+
+[resource]
+script = ExtResource("1_8428e")
+id = 5
+quest_title = "Buy Table"
+quest_objectives = Array[String](["Open Tablet", "Buy Table"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

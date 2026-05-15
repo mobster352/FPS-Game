@@ -55,6 +55,9 @@ var npc_choices:Array[NpcChoices] = [
 ]
 
 var is_store_open:bool = false
+var has_quest:bool = false
+
+var quest_log:QuestLog
 
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
@@ -95,6 +98,7 @@ func _ready() -> void:
 	add_child(dummy)
 	player = get_tree().get_first_node_in_group("player")
 	GlobalSignal.open_store.connect(_open_store)
+	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 
 func _navigation_server_map_changed(_map_rid: RID) -> void:
@@ -120,14 +124,11 @@ func set_path() -> void:
 				else:
 					target = endPathMarker
 		NpcChoices.Park:
-			if not is_store_open:
+			if GlobalMarker.park_marker_npc:
 				target = endPathMarker
 			else:
-				if GlobalMarker.park_marker_npc:
-					target = endPathMarker
-				else:
-					target = GlobalMarker.park_marker
-					GlobalMarker.park_marker_npc = self
+				target = GlobalMarker.park_marker
+				GlobalMarker.park_marker_npc = self
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
@@ -356,7 +357,15 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 
 func interact() -> void:
-	pass
+	if has_quest:
+		dialogue_box.text = "Quest detes"
+		dialogue_box.show()
+		return
+	has_quest = true
+	dialogue_box.text = "I need ..."
+	dialogue_box.show()
+	if quest_log:
+		quest_log.add_quest(QuestResource.QuestIds.FIND_ITEM)
 
 
 func _open_store() -> void:

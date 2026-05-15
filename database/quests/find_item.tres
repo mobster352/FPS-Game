@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://kub25ccgmr81"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_pcvqx"]
+
+[resource]
+script = ExtResource("1_pcvqx")
+id = 10
+quest_title = "Find Item"
+quest_objectives = Array[String](["Find and bring a dough ball"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

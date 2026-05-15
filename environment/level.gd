@@ -54,7 +54,7 @@ func _process(delta):
 		#print("Time:", time_of_day, " SunFactor:", get_sun_factor())
 	if time_of_day >= 22:
 		if is_instance_valid(quest_log):
-			quest_log.update_quest_objective(QuestResource.QuestIds.SERVE_CUSTOMERS, QuestResource.QuestObjs.SERVER_CUSTOMERS)
+			quest_log.update_quest_objective(QuestResource.QuestIds.SERVE_CUSTOMERS, "Serve Customers")
 
 func advance_time(delta: float):
 	var seconds_per_day = day_length_minutes * 60.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://dj7yrwe4340o"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_ti417"]
+
+[resource]
+script = ExtResource("1_ti417")
+id = 9
+quest_title = "Close Pizzeria"
+quest_objectives = Array[String](["Close Pizzeria"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

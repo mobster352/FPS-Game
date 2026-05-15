@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://b7wko31hbp14q"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_ecm4i"]
+
+[resource]
+script = ExtResource("1_ecm4i")
+id = 3
+quest_title = "Make your first Pizza"
+quest_objectives = Array[String](["Pick Up a dough ball", "Roll out the dough ball into a pizza base", "Add a tomato to the pizza", "Add cheese to the pizza", "Place pizza into the oven", "Remove pizza from the oven"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

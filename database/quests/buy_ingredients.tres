@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://5xej8qjjks54"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_tr2nm"]
+
+[resource]
+script = ExtResource("1_tr2nm")
+id = 1
+quest_title = "Buy Ingredients from Computer"
+quest_objectives = Array[String](["Buy Rolling Pin", "Buy Dough", "Buy Tomato", "Buy Cheese"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

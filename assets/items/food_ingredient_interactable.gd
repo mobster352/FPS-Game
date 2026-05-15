@@ -23,7 +23,7 @@ func interact(player: Player) -> void:
 		get_parent().remove_child(self)
 	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
 	if is_instance_valid(quest_log) and item.has_meta("food_id") and item.get_meta("food_id") == GlobalVar.PIZZA_TYPE.CHEESE_PIE:
-		quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, QuestResource.QuestObjs.REMOVE_PIZZA_OVEN)
+		quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, "Remove pizza from the oven")
 	item.queue_free()
 	
 func reticle_color() -> Color:

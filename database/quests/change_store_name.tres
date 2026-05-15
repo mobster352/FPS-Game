@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://cqa0sb6f5dpys"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_u1kxa"]
+
+[resource]
+script = ExtResource("1_u1kxa")
+id = 6
+quest_title = "Change Store Name"
+quest_objectives = Array[String](["Click on the Store Sign"])
+metadata/_custom_type_script = "uid://cgnmchw6f783c"
