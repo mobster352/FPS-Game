@@ -4,7 +4,17 @@
 
 [resource]
 script = ExtResource("1_tr2nm")
-id = 1
-quest_title = "Buy Ingredients from Computer"
-quest_objectives = Array[String](["Buy Rolling Pin", "Buy Dough", "Buy Tomato", "Buy Cheese"])
+quest_id = &"BUY_INGREDIENTS"
+quest_title = &"Buy Ingredients from Computer"
+quest_objectives = Array[Dictionary]([{
+&"BUY_ROLLING_PIN": "Buy Rolling Pin"
+}, {
+&"BUY_DOUGH": "Buy Dough"
+}, {
+&"BUY_TOMATO": "Buy Tomato"
+}, {
+&"BUY_CHEESE": "Buy Cheese"
+}, {
+&"BUY_PIZZA_BOXES": "Buy Pizza Boxes"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

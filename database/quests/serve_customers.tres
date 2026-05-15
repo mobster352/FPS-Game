@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_produ")
-id = 8
-quest_title = "Serve Customers"
-quest_objectives = Array[String]([""])
+quest_id = &"SERVE_CUSTOMERS"
+quest_title = &"Serve Customers"
+quest_objectives = Array[Dictionary]([{
+&"SERVE_CUSTOMERS": "Serve Customers"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

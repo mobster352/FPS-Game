@@ -358,6 +358,7 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 func interact() -> void:
 	if has_quest:
+		#TODO: add interaction logic, when holding item, give item, complete quest objective
 		dialogue_box.text = "Quest detes"
 		dialogue_box.show()
 		return
@@ -365,7 +366,7 @@ func interact() -> void:
 	dialogue_box.text = "I need ..."
 	dialogue_box.show()
 	if quest_log:
-		quest_log.add_quest(QuestResource.QuestIds.FIND_ITEM)
+		quest_log.add_quest(QuestIds.FIND_ITEM)
 
 
 func _open_store() -> void:

@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_i5ttm")
-id = 4
-quest_title = "Refill Pizza Slices"
-quest_objectives = Array[String](["Place pizza on the counter"])
+quest_id = &"PLACE_PIZZA"
+quest_title = &"Refill Pizza Slices"
+quest_objectives = Array[Dictionary]([{
+&"PLACE_PIZZA_COUNTER": "Place pizza on the counter"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_u1kxa")
-id = 6
-quest_title = "Change Store Name"
-quest_objectives = Array[String](["Click on the Store Sign"])
+quest_id = &"CHANGE_STORE_NAME"
+quest_title = &"Change Store Name"
+quest_objectives = Array[Dictionary]([{
+&"CHANGE_STORE_NAME": "Click on the Store Sign"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

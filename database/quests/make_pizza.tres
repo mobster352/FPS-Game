@@ -4,7 +4,19 @@
 
 [resource]
 script = ExtResource("1_ecm4i")
-id = 3
-quest_title = "Make your first Pizza"
-quest_objectives = Array[String](["Pick Up a dough ball", "Roll out the dough ball into a pizza base", "Add a tomato to the pizza", "Add cheese to the pizza", "Place pizza into the oven", "Remove pizza from the oven"])
+quest_id = &"MAKE_PIZZA"
+quest_title = &"Make your first Pizza"
+quest_objectives = Array[Dictionary]([{
+&"PICK_UP_DOUGH": "Pick Up a dough ball"
+}, {
+&"ROLL_DOUGH": "Roll out the dough ball into a pizza base"
+}, {
+&"ADD_TOMATO": "Add a tomato to the pizza"
+}, {
+&"ADD_CHEESE": "Add cheese to the pizza"
+}, {
+&"PLACE_PIZZA_OVEN": "Place pizza into the oven"
+}, {
+&"REMOVE_PIZZA_OVEN": "Remove pizza from the oven"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_eirrb")
-id = 2
-quest_title = "Pick Up Products"
-quest_objectives = Array[String](["Pick Up Products"])
+quest_id = &"MOVE_PRODUCTS"
+quest_title = &"Pick Up Products"
+quest_objectives = Array[Dictionary]([{
+&"PICK_UP_PRODUCTS": "Pick Up Products"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

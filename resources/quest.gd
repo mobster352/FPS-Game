@@ -1,25 +1,10 @@
 class_name QuestResource
 extends Resource
 
-enum QuestIds {
-	NONE,
-	BUY_INGREDIENTS,
-	MOVE_PRODUCTS,
-	MAKE_PIZZA,
-	PLACE_PIZZA,
-	BUY_TABLE,
-	CHANGE_STORE_NAME,
-	OPEN_PIZZERIA,
-	SERVE_CUSTOMERS,
-	CLOSE_PIZZERIA,
-	FIND_ITEM
-}
 
-@export var id:QuestIds
-@export var quest_title:String
-#TODO: I want to add an ID for the objectives, should it be an int [0-n] or an enum [BUY_PRODUCTS-...]
-#Right now, it's just a string match, which feels wrong
-@export var quest_objectives:Array[String]
+@export var quest_id:StringName
+@export var quest_title:StringName
+@export var quest_objectives:Array[Dictionary]
 
 #class QuestData:
 	#var id:int
@@ -52,7 +37,19 @@ enum QuestIds {
 		#return self
 #
 #
-
+#enum QuestIds {
+	#NONE,
+	#BUY_INGREDIENTS,
+	#MOVE_PRODUCTS,
+	#MAKE_PIZZA,
+	#PLACE_PIZZA,
+	#BUY_TABLE,
+	#CHANGE_STORE_NAME,
+	#OPEN_PIZZERIA,
+	#SERVE_CUSTOMERS,
+	#CLOSE_PIZZERIA,
+	#FIND_ITEM
+#}
 #
 #const QUEST_TITLES = {
 	#QuestIds.BUY_INGREDIENTS: "Buy Ingredients from Computer",

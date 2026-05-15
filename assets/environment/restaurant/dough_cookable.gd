@@ -24,7 +24,7 @@ func cook(player: Player) -> void:
 				dough_base.global_position = item.rigid_body.global_position
 				item.queue_free()
 				if is_instance_valid(quest_log):
-					quest_log.update_quest_objective(QuestResource.QuestIds.MAKE_PIZZA, "Roll out the dough ball into a pizza base")
+					quest_log.update_quest_objective(QuestIds.MAKE_PIZZA, QuestObjs.ROLL_DOUGH)
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN

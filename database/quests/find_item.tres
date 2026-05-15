@@ -4,7 +4,9 @@
 
 [resource]
 script = ExtResource("1_pcvqx")
-id = 10
-quest_title = "Find Item"
-quest_objectives = Array[String](["Find and bring a dough ball"])
+quest_id = &"FIND_ITEM"
+quest_title = &"Find Item"
+quest_objectives = Array[Dictionary]([{
+&"BRING_DOUGH": "Find and bring a dough ball"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

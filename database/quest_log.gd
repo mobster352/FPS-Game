@@ -8,31 +8,26 @@ var active_quests:Array[Quest]
 var quests_db:Array[QuestResource]
 
 func _ready() -> void:
-	load_quests("res://database/quests/")
-	#add_quest(QuestResource.QuestIds.BUY_INGREDIENTS)
-	#await get_tree().create_timer(2).timeout
-	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_ROLLING_PIN)
-	#await get_tree().create_timer(2).timeout
-	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_DOUGH)
-	#await get_tree().create_timer(2).timeout
-	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_TOMATO)
-	#await get_tree().create_timer(2).timeout
-	#update_quest_objective(QuestResource.QuestIds.BUY_INGREDIENTS, QuestResource.QuestObjs.BUY_CHEESE)
+	load_quests("res://database/quests")
 
 
-func get_quest_resource_from_db(quest_id:QuestResource.QuestIds) -> QuestResource:
+func get_quest_resource_from_db(quest_id:StringName) -> QuestResource:
 	for quest:QuestResource in quests_db:
-		if quest.id == quest_id:
+		if quest.quest_id == quest_id:
 			return quest
 	return null
 
 
-func add_quest(quest_id:QuestResource.QuestIds) -> void:
+func add_quest(quest_id:StringName) -> void:
 	if is_on_quest(quest_id):
 		return
 		
 	var quest_resource:QuestResource = get_quest_resource_from_db(quest_id)
-		
+	
+	if not quest_resource:
+		push_error("Quest not found during add_quest: ", quest_id)
+		return
+	
 	var new_quest = quest_scene.instantiate() as Quest
 	new_quest.quest_id = quest_id
 	new_quest.quest_name = quest_resource.quest_title
@@ -41,7 +36,7 @@ func add_quest(quest_id:QuestResource.QuestIds) -> void:
 	active_quests.append(new_quest)
 
 
-func remove_quest(quest_id:QuestResource.QuestIds) -> void:
+func remove_quest(quest_id:StringName) -> void:
 	var index:int = 0
 	for quest:Quest in active_quests:
 		if quest.quest_id == quest_id:
@@ -54,7 +49,7 @@ func remove_quest(quest_id:QuestResource.QuestIds) -> void:
 			break
 
 
-func is_on_quest(quest_id:QuestResource.QuestIds) -> bool:
+func is_on_quest(quest_id:StringName) -> bool:
 	for quest:Quest in active_quests:
 		if quest.quest_id == quest_id:
 			return true
@@ -64,18 +59,18 @@ func is_on_quest(quest_id:QuestResource.QuestIds) -> bool:
 func print_active_quests() -> void:
 	print("Printing Active Quests...")
 	for quest:Quest in active_quests:
-		print(quest.quest_data.name)
+		print(quest.quest_data.quest_name)
 	print("End Print")
 
 
-func update_quest_objective(quest_id:QuestResource.QuestIds, quest_objective:String) -> void:
+func update_quest_objective(quest_id:StringName, quest_objective_id:StringName) -> void:
 	if not is_on_quest(quest_id):
 		return
 	var this_quest:Quest
 	for quest:Quest in active_quests:
 		if quest.quest_id == quest_id:
 			for quest_obj:Quest.QuestObjective in quest.quest_data.objectives:
-				if quest_obj.name == quest_objective and not quest_obj.status:
+				if quest_obj.obj_id == quest_objective_id and not quest_obj.status:
 					quest_obj.status = true
 					this_quest = quest
 	if not this_quest:
@@ -83,12 +78,12 @@ func update_quest_objective(quest_id:QuestResource.QuestIds, quest_objective:Str
 	for quest:Quest in %Quests.get_children():
 		if quest.quest_id == quest_id:
 			for quest_obj_label:RichTextLabel in quest.quest_objectives_vbox.get_children():
-				var quest_obj:Quest.QuestObjective = quest.quest_data.get_quest_objective(quest_objective)
+				var quest_obj:Quest.QuestObjective = quest.quest_data.get_quest_objective(quest_objective_id)
 				if not quest_obj:
 					continue
 				var parsed_text = quest_obj_label.get_parsed_text()
-				if parsed_text == quest_obj.name:
-					quest_obj_label.text = "[font_size=14][outline_color=black][outline_size=3][color=green][s]%s[/s][/color][/outline_size][/outline_color][/font_size]" % quest_obj.name
+				if parsed_text == quest_obj.obj_name:
+					quest_obj_label.text = "[font_size=14][outline_color=black][outline_size=3][color=green][s]%s[/s][/color][/outline_size][/outline_color][/font_size]" % quest_obj.obj_name
 	var is_quest_finished:bool = true
 	for quest_obj:Quest.QuestObjective in this_quest.quest_data.objectives:
 		if not quest_obj.status:
@@ -97,42 +92,37 @@ func update_quest_objective(quest_id:QuestResource.QuestIds, quest_objective:Str
 	if is_quest_finished:
 		remove_quest(this_quest.quest_id)
 		GlobalSignal.add_xp.emit(5)
-		var next_quest:QuestResource.QuestIds = get_next_quest(this_quest.quest_id)
-		if next_quest != QuestResource.QuestIds.NONE:
+		var next_quest:StringName = get_next_quest(this_quest.quest_id)
+		if next_quest != "":
 			add_quest(next_quest)
 
-func get_next_quest(quest_id:QuestResource.QuestIds) -> QuestResource.QuestIds:
+func get_next_quest(quest_id:StringName) -> StringName:
 	match quest_id:
-		QuestResource.QuestIds.BUY_INGREDIENTS:
-			return QuestResource.QuestIds.MOVE_PRODUCTS
-		QuestResource.QuestIds.MOVE_PRODUCTS:
-			return QuestResource.QuestIds.MAKE_PIZZA
-		QuestResource.QuestIds.MAKE_PIZZA:
-			return QuestResource.QuestIds.PLACE_PIZZA
-		QuestResource.QuestIds.PLACE_PIZZA:
-			return QuestResource.QuestIds.BUY_TABLE
-		QuestResource.QuestIds.BUY_TABLE:
-			return QuestResource.QuestIds.CHANGE_STORE_NAME
-		QuestResource.QuestIds.CHANGE_STORE_NAME:
-			return QuestResource.QuestIds.OPEN_PIZZERIA
-		QuestResource.QuestIds.OPEN_PIZZERIA:
-			return QuestResource.QuestIds.SERVE_CUSTOMERS
-		QuestResource.QuestIds.SERVE_CUSTOMERS:
-			return QuestResource.QuestIds.CLOSE_PIZZERIA
+		QuestIds.BUY_INGREDIENTS:
+			return QuestIds.MOVE_PRODUCTS
+		QuestIds.MOVE_PRODUCTS:
+			return QuestIds.MAKE_PIZZA
+		QuestIds.MAKE_PIZZA:
+			return QuestIds.PLACE_PIZZA
+		QuestIds.PLACE_PIZZA:
+			return QuestIds.BUY_TABLE
+		QuestIds.BUY_TABLE:
+			return QuestIds.CHANGE_STORE_NAME
+		QuestIds.CHANGE_STORE_NAME:
+			return QuestIds.OPEN_PIZZERIA
+		QuestIds.OPEN_PIZZERIA:
+			return QuestIds.SERVE_CUSTOMERS
+		QuestIds.SERVE_CUSTOMERS:
+			return QuestIds.CLOSE_PIZZERIA
 		_:
-			return QuestResource.QuestIds.NONE
+			return ""
 
 
 func load_quests(path: String) -> void:
-	var dir = DirAccess.open(path)
-	dir.list_dir_begin()
-	var ent_name = dir.get_next()
-	while ent_name != "":
-		var ent_path: String = path + "/" + ent_name
-		if dir.current_is_dir():
-			load_quests(ent_path)
-		elif ent_name.ends_with(".tres"):
+	var dir = ResourceLoader.list_directory(path)
+	for ent_name in dir:
+		if ent_name.ends_with(".tres"):
+			var ent_path: String = path + "/" + ent_name
 			var quest = load(ent_path)
-			#print("Loaded quest " + ent_path)
+			#print("Loaded quest: " + ent_path)
 			quests_db.append(quest)
-		ent_name = dir.get_next()

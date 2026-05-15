@@ -4,7 +4,11 @@
 
 [resource]
 script = ExtResource("1_8428e")
-id = 5
-quest_title = "Buy Table"
-quest_objectives = Array[String](["Open Tablet", "Buy Table"])
+quest_id = &"BUY_TABLE"
+quest_title = &"Buy Table"
+quest_objectives = Array[Dictionary]([{
+&"OPEN_TABLET": "Open Tablet"
+}, {
+&"BUY_TABLE": "Buy Table"
+}])
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

@@ -145,7 +145,7 @@ func _ready():
 		playerData.store_font_size = 72
 		playerData.level = 0
 		playerData.xp = 0
-		%QuestLog.add_quest(QuestResource.QuestIds.BUY_INGREDIENTS)
+		%QuestLog.add_quest(QuestIds.BUY_INGREDIENTS)
 	
 	starting_money = money
 	
