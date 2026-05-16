@@ -7,32 +7,38 @@ var active_quests:Array[Quest]
 
 var quests_db:Array[QuestResource]
 
+var player:Player
+
 func _ready() -> void:
-	load_quests("res://database/quests")
+	player = get_tree().get_first_node_in_group("player")
+	GlobalSignal.add_quest.connect(_add_quest)
 	GlobalSignal.update_quest_objective.connect(_update_quest_objective)
+	load_quests("res://database/quests")
 
 
-func get_quest_resource_from_db(quest_id:StringName) -> QuestResource:
+func get_quest_resource_from_db(quest_id:StringName,  item_mesh_name="") -> QuestDecorator:
 	for quest:QuestResource in quests_db:
 		if quest.quest_id == quest_id:
-			return quest
+			match quest.quest_type:
+				Quest.QuestType.None:
+					return QuestDecorator.new(quest)
+				Quest.QuestType.Fetch:
+					return FetchQuest.new(quest, item_mesh_name)
 	return null
 
 
-func add_quest(quest_id:StringName) -> void:
+func _add_quest(quest_id:StringName, item_mesh_name="") -> void:
 	if is_on_quest(quest_id):
 		return
 		
-	var quest_resource:QuestResource = get_quest_resource_from_db(quest_id)
+	var quest_decorator:QuestDecorator = get_quest_resource_from_db(quest_id, item_mesh_name)
 	
-	if not quest_resource:
+	if not quest_decorator:
 		push_error("Quest not found during add_quest: ", quest_id)
 		return
 	
 	var new_quest = quest_scene.instantiate() as Quest
-	new_quest.quest_id = quest_id
-	new_quest.quest_name = quest_resource.quest_title
-	new_quest.quest_objectives = quest_resource.quest_objectives
+	new_quest.quest_decorator = quest_decorator
 	%Quests.add_child(new_quest)
 	active_quests.append(new_quest)
 
@@ -40,19 +46,19 @@ func add_quest(quest_id:StringName) -> void:
 func remove_quest(quest_id:StringName) -> void:
 	var index:int = 0
 	for quest:Quest in active_quests:
-		if quest.quest_id == quest_id:
+		if quest.quest_decorator.wrapped_quest.quest_id == quest_id:
 			active_quests.remove_at(index)
 			break
 		index += 1
 	for quest:Quest in %Quests.get_children():
-		if quest.quest_id == quest_id:
+		if quest.quest_decorator.wrapped_quest.quest_id == quest_id:
 			%Quests.remove_child(quest)
 			break
 
 
 func is_on_quest(quest_id:StringName) -> bool:
 	for quest:Quest in active_quests:
-		if quest.quest_id == quest_id:
+		if quest.quest_decorator.wrapped_quest.quest_id == quest_id:
 			return true
 	return false
 
@@ -60,24 +66,41 @@ func is_on_quest(quest_id:StringName) -> bool:
 func print_active_quests() -> void:
 	print("Printing Active Quests...")
 	for quest:Quest in active_quests:
-		print(quest.quest_data.quest_name)
+		print(quest.quest_data.quest_decorator.wrapped_quest.quest_title)
 	print("End Print")
 
 
 func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName) -> void:
 	if not is_on_quest(quest_id):
 		return
+	
 	var this_quest:Quest
 	for quest:Quest in active_quests:
-		if quest.quest_id == quest_id:
+		if quest.quest_decorator.wrapped_quest.quest_id == quest_id:
+			var quest_decorator = quest.quest_decorator
+			if quest_decorator is FetchQuest:
+				var item = quest_decorator.item
+				if not player:
+					return
+				if not player.has_held_object():
+					return
+				if player.get_held_object_mesh_name() != item:
+					return
+				player.delete_held_object()
+			elif quest_decorator is QuestDecorator:
+				pass
+			else:
+				return
 			for quest_obj:Quest.QuestObjective in quest.quest_data.objectives:
 				if quest_obj.obj_id == quest_objective_id and not quest_obj.status:
 					quest_obj.status = true
 					this_quest = quest
+					break
+			break
 	if not this_quest:
 		return
 	for quest:Quest in %Quests.get_children():
-		if quest.quest_id == quest_id:
+		if quest.quest_decorator.wrapped_quest.quest_id == quest_id:
 			for quest_obj_label:RichTextLabel in quest.quest_objectives_vbox.get_children():
 				var quest_obj:Quest.QuestObjective = quest.quest_data.get_quest_objective(quest_objective_id)
 				if not quest_obj:
@@ -91,11 +114,11 @@ func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName)
 			is_quest_finished = false
 			break
 	if is_quest_finished:
-		remove_quest(this_quest.quest_id)
+		remove_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
 		GlobalSignal.add_xp.emit(5)
-		var next_quest:StringName = get_next_quest(this_quest.quest_id)
+		var next_quest:StringName = get_next_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
 		if next_quest != "":
-			add_quest(next_quest)
+			_add_quest(next_quest)
 
 func get_next_quest(quest_id:StringName) -> StringName:
 	match quest_id:

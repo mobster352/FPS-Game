@@ -57,8 +57,6 @@ var npc_choices:Array[NpcChoices] = [
 var is_store_open:bool = false
 var has_quest:bool = false
 
-var quest_log:QuestLog
-
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
 	if enable:
@@ -98,7 +96,6 @@ func _ready() -> void:
 	add_child(dummy)
 	player = get_tree().get_first_node_in_group("player")
 	GlobalSignal.open_store.connect(_open_store)
-	quest_log = get_tree().get_first_node_in_group("quest_log")
 
 
 func _navigation_server_map_changed(_map_rid: RID) -> void:
@@ -358,15 +355,14 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 func interact() -> void:
 	if has_quest:
-		#TODO: add interaction logic, when holding item, give item, complete quest objective
 		dialogue_box.text = "Quest detes"
 		dialogue_box.show()
+		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_DOUGH, QuestObjs.BRING_DOUGH)
 		return
 	has_quest = true
 	dialogue_box.text = "I need ..."
 	dialogue_box.show()
-	if quest_log:
-		quest_log.add_quest(QuestIds.FIND_ITEM)
+	GlobalSignal.add_quest.emit(QuestIds.FIND_DOUGH, QuestItems.DOUGH)
 
 
 func _open_store() -> void:

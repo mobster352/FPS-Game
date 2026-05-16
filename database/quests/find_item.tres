@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://kub25ccgmr81"]
 
-[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest.gd" id="1_pcvqx"]
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_pcvqx"]
 
 [resource]
 script = ExtResource("1_pcvqx")
-quest_id = &"FIND_ITEM"
-quest_title = &"Find Item"
+quest_id = &"FIND_DOUGH"
+quest_title = &"Find Dough"
 quest_objectives = Array[Dictionary]([{
 &"BRING_DOUGH": "Find and bring a dough ball"
 }])
+quest_type = 1
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

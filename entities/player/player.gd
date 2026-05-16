@@ -145,7 +145,7 @@ func _ready():
 		playerData.store_font_size = 72
 		playerData.level = 0
 		playerData.xp = 0
-		%QuestLog.add_quest(QuestIds.BUY_INGREDIENTS)
+		GlobalSignal.add_quest.emit(QuestIds.BUY_INGREDIENTS)
 	
 	starting_money = money
 	
@@ -775,6 +775,11 @@ func get_held_object() -> Node3D:
 	if has_held_object():
 		return item_slot.get_child(0)
 	return null
+
+
+func delete_held_object() -> void:
+	if has_held_object():
+		get_held_object().queue_free()
 
 
 func get_held_object_mesh_name() -> String:
