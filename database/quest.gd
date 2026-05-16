@@ -31,10 +31,26 @@ class QuestData:
 		quest_decorator = _quest_decorator
 		
 		for obj in quest_decorator.wrapped_quest.quest_objectives:
-			var obj_key:StringName = obj.keys().get(0)
-			var obj_value:String = obj.values().get(0)
-			var quest_objective:QuestObjective = QuestObjective.new(obj_key, obj_value)
-			objectives.append(quest_objective)
+			if quest_decorator.wrapped_quest.quest_type == QuestType.None:
+				var obj_key:StringName = obj.keys().get(0)
+				var obj_value:String = obj.values().get(0)
+				var quest_objective:QuestObjective = QuestObjective.new(obj_key, obj_value)
+				objectives.append(quest_objective)
+			elif quest_decorator.wrapped_quest.quest_type == QuestType.Fetch:
+				if quest_decorator is FetchQuest:
+					var obj_key:StringName
+					match quest_decorator.item:
+						QuestItems.DOUGH:
+							obj_key = QuestObjs.BRING_DOUGH
+						QuestItems.TOMATO:
+							obj_key = QuestObjs.BRING_TOMATO
+						_:
+							continue
+					if not obj_key:
+						continue
+					var obj_value = quest_decorator.wrapped_quest.quest_objectives.get(0).get(obj_key)
+					var quest_objective:QuestObjective = QuestObjective.new(obj_key, obj_value)
+					objectives.append(quest_objective)
 		
 	func get_quest_objective(quest_objective:StringName) -> QuestObjective:
 		for quest_obj:QuestObjective in objectives:

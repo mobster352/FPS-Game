@@ -25,7 +25,7 @@ shape = SubResource("BoxShape3D_l7j4t")
 
 [node name="food_ingredient_tomato" parent="body" index="1" unique_id=1289685152 instance=ExtResource("2_tsbu5")]
 
-[node name="food_ingredient_tomato" parent="body/food_ingredient_tomato" index="0"]
+[node name="food_ingredient_tomato" parent="body/food_ingredient_tomato" index="0" unique_id=2069324791]
 metadata/name = &"food_ingredient_tomato_mesh"
 
 [node name="Interactable" type="Node3D" parent="body" index="4" unique_id=1010139950 node_paths=PackedStringArray("item")]

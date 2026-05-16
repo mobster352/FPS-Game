@@ -357,12 +357,12 @@ func interact() -> void:
 	if has_quest:
 		dialogue_box.text = "Quest detes"
 		dialogue_box.show()
-		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_DOUGH, QuestObjs.BRING_DOUGH)
+		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_ITEM, QuestObjs.BRING_TOMATO)
 		return
 	has_quest = true
 	dialogue_box.text = "I need ..."
 	dialogue_box.show()
-	GlobalSignal.add_quest.emit(QuestIds.FIND_DOUGH, QuestItems.DOUGH)
+	GlobalSignal.add_quest.emit(QuestIds.FIND_ITEM, QuestItems.TOMATO)
 
 
 func _open_store() -> void:
