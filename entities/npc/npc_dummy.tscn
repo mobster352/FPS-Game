@@ -38,7 +38,6 @@ shape = SubResource("SphereShape3D_svb3k")
 
 [node name="DialogueBox" parent="." unique_id=1504824731 instance=ExtResource("3_k0m3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.883, 0)
-visible = false
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1964510146]
 target_desired_distance = 0.1

@@ -129,6 +129,18 @@ func set_path() -> void:
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
+
+#func _process(_delta: float) -> void:
+	#var camera = get_viewport().get_camera_3d()
+	#if camera:
+		#var distance = global_transform.origin.distance_to(camera.global_transform.origin)
+		#
+		#if distance < 2.0:
+			#visible = false
+		#else:
+			#visible = true
+
+
 func _physics_process(delta: float) -> void:
 	if next_state:
 		current_state = next_state

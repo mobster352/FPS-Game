@@ -53,7 +53,7 @@ var weapon: Weapon
 
 @export var tables_node: Node3D
 
-var invert := 1
+var invert := -1
 
 var items_in_range: Array[Item]
 
@@ -124,7 +124,14 @@ var can_play_audio:bool = true
 var fov:int:
 	set(value):
 		fov = value
-		%Camera3D.fov = value
+		first_person_camera.fov = value
+		third_person_camera.fov = value
+
+@onready var pointer:Marker3D = $PlayerSkin/pointer
+@onready var third_person_camera: Camera3D = %ThirdPersonCamera
+@onready var first_person_camera: Camera3D = %FirstPersonCamera
+@onready var spring_arm_3d: SpringArm3D = %SpringArm3D
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -173,6 +180,7 @@ func _process(_delta: float) -> void:
 			_process_shot()
 			_process_draw_weapon()
 			_process_crouch()
+			#_process_switch_pov()
 
 
 func _physics_process(delta: float) -> void:
@@ -185,6 +193,21 @@ func _physics_process(delta: float) -> void:
 				_physics_logic()
 				_process_drop_item()
 			_process_controller_turning(delta)
+
+
+func _process_switch_pov() -> void:
+	if Input.is_action_just_pressed("switch_pov"):
+		if camera == first_person_camera:
+			camera = third_person_camera
+			third_person_camera.current = true
+			pointer_slot = pointer
+			pointer_slot.rotation.x = first_person_camera.rotation.x
+		else:
+			camera = first_person_camera
+			first_person_camera.current = true
+			pointer_slot = first_person_camera
+			pointer_slot.rotation.x = pointer.rotation.x
+
 
 func _process_controller_turning(delta:float) -> void:
 	# Map these actions in Input Map:
@@ -254,23 +277,42 @@ func _process_movement() -> void:
 var pitch := 0.0  # store vertical rotation manually
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
-		# Horizontal (yaw)
-		rotate_y(-event.relative.x * mouse_sensitivity)
+		if camera == %FirstPersonCamera:
+			# Horizontal (yaw)
+			rotate_y(-event.relative.x * mouse_sensitivity)
 
-		# Vertical (pitch)
-		var vertical_change = -event.relative.y * mouse_sensitivity * invert
-		pitch += vertical_change
+			# Vertical (pitch)
+			var vertical_change = -event.relative.y * mouse_sensitivity
+			pitch += vertical_change
 
-		# Clamp BEFORE applying
-		pitch = clamp(pitch, deg_to_rad(-90), deg_to_rad(90))
+			# Clamp BEFORE applying
+			pitch = clamp(pitch, deg_to_rad(-70), deg_to_rad(70))
 
-		# Apply rotation
-		pointer_slot.rotation.x = pitch
+			# Apply rotation
+			pointer_slot.rotation.x = pitch
 
-		if OS.has_feature("web"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
-		current_input_device = InputDevice.MOUSE_KEYBOARD
+			if OS.has_feature("web"):
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+			current_input_device = InputDevice.MOUSE_KEYBOARD
+		else:
+			# Horizontal (yaw)
+			rotate_y(-event.relative.x * mouse_sensitivity)
+
+			# Vertical (pitch)
+			var vertical_change = -event.relative.y * mouse_sensitivity * invert
+			pitch += vertical_change
+
+			# Clamp BEFORE applying
+			pitch = clamp(pitch, deg_to_rad(-55), deg_to_rad(55))
+
+			# Apply rotation
+			pointer_slot.rotation.x = pitch
+
+			if OS.has_feature("web"):
+				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+			current_input_device = InputDevice.MOUSE_KEYBOARD
 
 
 func _process_shot() -> void:

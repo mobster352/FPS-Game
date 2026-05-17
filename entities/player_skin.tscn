@@ -31,7 +31,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ksru8")
 
 [node name="PlayerDummy" parent="." unique_id=2144942684 instance=ExtResource("2_d30u1")]
 
-[node name="Skeleton3D" parent="PlayerDummy/Rig" index="0"]
+[node name="Skeleton3D" parent="PlayerDummy/Rig" parent_id_path=PackedInt32Array(2144942684, 2028074997) index="0" unique_id=492075426]
 bones/1/position = Vector3(0, 0.36816868, 0)
 bones/4/rotation = Quaternion(-0.55055547, -0.056947764, -0.64043915, 0.5324316)
 bones/5/rotation = Quaternion(2.403246e-08, -3.5706105e-08, -0.5119872, 0.8589931)
@@ -51,16 +51,17 @@ bones/21/rotation = Quaternion(-0.6507289, 0.11235001, -0.023946382, 0.7505704)
 bones/38/position = Vector3(0.5208407, 0.77161384, -0.057637356)
 bones/40/position = Vector3(-0.5108437, 0.7716138, 0.059736915)
 
-[node name="head" parent="PlayerDummy/Rig/Skeleton3D" index="0"]
+[node name="head" parent="PlayerDummy/Rig/Skeleton3D" index="0" unique_id=1929788963]
 transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2039307, 1.5463912e-15)
 
-[node name="chest" parent="PlayerDummy/Rig/Skeleton3D" index="1"]
+[node name="chest" parent="PlayerDummy/Rig/Skeleton3D" index="1" unique_id=1128264264]
 transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.9351342, 1.0572674e-15)
 
 [node name="hand_slot_r" parent="PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
 transform = Transform3D(0.0026577516, -0.16135268, -0.9868932, -0.9999382, -0.011057796, -0.00088475016, -0.010770288, 0.9868346, -0.1613721, -0.4903556, 0.6246189, 0.10753179)
 
 [node name="pointer" type="Marker3D" parent="." unique_id=809353639]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85434, 0)
 
 [editable path="PlayerDummy"]
