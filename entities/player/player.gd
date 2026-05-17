@@ -833,6 +833,7 @@ func get_held_object_mesh_name() -> String:
 
 func _freeze_player_camera(freeze:bool) -> void:
 	freeze_camera = freeze
+	itemRaycast.enabled = not freeze
 
 
 func _next_day(submit:bool) -> void:

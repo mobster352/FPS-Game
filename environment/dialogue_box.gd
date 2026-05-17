@@ -1,7 +1,8 @@
 extends Node3D
 class_name DialogueBox
 
-@export var text: StringName
+@export var dialogue_id: StringName
+var current_index:int = 0
 
 @onready var canvas_layer: CanvasLayer = %CanvasLayer
 @onready var label = %Label
@@ -20,7 +21,7 @@ func _process(_delta: float) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		label.text = text
+		label.text = DialogueManager.get_dialogue_by_id(dialogue_id, current_index)
 		canvas_layer.show()
 		GlobalSignal.freeze_player_camera.emit(true)
 		set_process(true)

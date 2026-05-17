@@ -56,6 +56,7 @@ var npc_choices:Array[NpcChoices] = [
 
 var is_store_open:bool = false
 var has_quest:bool = false
+var is_quest_complete:bool = false
 
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
@@ -366,15 +367,23 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 
 func interact() -> void:
-	if has_quest:
-		dialogue_box.text = "Quest detes"
+	if is_quest_complete:
+		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
 		dialogue_box.show()
-		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_ITEM, QuestObjs.BRING_TOMATO)
+	elif has_quest:
+		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_ITEM, QuestObjs.BRING_DOUGH)
+		if player.get_held_object_mesh_name() == QuestItems.DOUGH:
+			is_quest_complete = true
+			dialogue_box.current_index += 1
+		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
+		dialogue_box.show()
 		return
-	has_quest = true
-	dialogue_box.text = "I need ..."
-	dialogue_box.show()
-	GlobalSignal.add_quest.emit(QuestIds.FIND_ITEM, QuestItems.TOMATO)
+	else:
+		has_quest = true
+		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
+		dialogue_box.show()
+		dialogue_box.current_index += 1
+		GlobalSignal.add_quest.emit(QuestIds.FIND_ITEM, QuestItems.DOUGH)
 
 
 func _open_store() -> void:

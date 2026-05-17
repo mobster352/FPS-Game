@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://kr5q65w326pk"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_4hma0"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_jwets"]
+
+[sub_resource type="Resource" id="Resource_pfsun"]
+script = ExtResource("1_4hma0")
+text = "I need you to find a dough and bring it to me."
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_il2n0"]
+script = ExtResource("1_4hma0")
+text = "Have you found the dough?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_qq51p"]
+script = ExtResource("1_4hma0")
+text = "Thanks for bringing me the dough."
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_jwets")
+id = &"FIND_ITEM_DOUGH"
+lines = Dictionary[int, ExtResource("1_4hma0")]({
+0: SubResource("Resource_pfsun"),
+1: SubResource("Resource_il2n0"),
+2: SubResource("Resource_qq51p")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"
