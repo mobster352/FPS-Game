@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://bve14dahjon6h"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_tnyso"]
+[ext_resource type="Resource" uid="uid://kub25ccgmr81" path="res://database/quests/find_item.tres" id="2_0p8iy"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_26jyt"]
+[ext_resource type="Resource" uid="uid://do7totbl8mm4k" path="res://resources/dialogue/find_item_tomato_dialogue.tres" id="2_bh3vm"]
+
+[resource]
+script = ExtResource("2_26jyt")
+quest_resource = ExtResource("2_0p8iy")
+dialogue_dict = Dictionary[StringName, ExtResource("1_tnyso")]({
+&"BRING_TOMATO": ExtResource("2_bh3vm")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

@@ -15,6 +15,8 @@ var dummy: Dummy
 @export var walk_in_store_odds := 16
 
 @onready var initial_parent = get_parent()
+@onready var quest_repeat_timer: Timer = %QuestRepeatTimer
+
 
 var target: Marker3D:
 	set(value):
@@ -57,6 +59,8 @@ var npc_choices:Array[NpcChoices] = [
 var is_store_open:bool = false
 var has_quest:bool = false
 var is_quest_complete:bool = false
+
+var quest:Quest
 
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
@@ -127,6 +131,8 @@ func set_path() -> void:
 			else:
 				target = GlobalMarker.park_marker
 				GlobalMarker.park_marker_npc = self
+				quest = ResourceManager.get_random_fetch_quest()
+				dialogue_box.dialogue_id = quest.dialogue_id
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 
@@ -367,24 +373,29 @@ func _on_radial_progress_bar_radial_timeout() -> void:
 
 
 func interact() -> void:
-	if is_quest_complete:
-		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
-		dialogue_box.show()
-	elif has_quest:
-		GlobalSignal.update_quest_objective.emit(QuestIds.FIND_ITEM, QuestObjs.BRING_DOUGH)
-		if player.get_held_object_mesh_name() == QuestItems.DOUGH:
-			is_quest_complete = true
+	if not is_quest_complete:
+		if has_quest:
+			if player.get_held_object_mesh_name() == quest.quest_item_id:
+				is_quest_complete = true
+				dialogue_box.current_index += 1
+				GlobalSignal.update_quest_objective.emit(quest.quest_id, quest.quest_objective_id)
+				quest_repeat_timer.start()
+		else:
+			dialogue_box.show()
+			has_quest = true
 			dialogue_box.current_index += 1
-		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
-		dialogue_box.show()
-		return
-	else:
-		has_quest = true
-		dialogue_box.dialogue_id = DialogueIds.FIND_ITEM_DOUGH
-		dialogue_box.show()
-		dialogue_box.current_index += 1
-		GlobalSignal.add_quest.emit(QuestIds.FIND_ITEM, QuestItems.DOUGH)
+			GlobalSignal.add_quest.emit(quest.quest_id, quest.quest_objective_id)
+			return
+	dialogue_box.show()
 
 
 func _open_store() -> void:
 	is_store_open = true
+
+
+func _on_quest_repeat_timer_timeout() -> void:
+	quest = ResourceManager.get_random_fetch_quest()
+	dialogue_box.dialogue_id = quest.dialogue_id
+	has_quest = false
+	is_quest_complete = false
+	dialogue_box.current_index = 0

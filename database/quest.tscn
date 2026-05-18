@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b3utve62uqxuv"]
 
-[ext_resource type="Script" uid="uid://qc08gn7jmkm" path="res://database/quest.gd" id="1_ke4ck"]
+[ext_resource type="Script" uid="uid://qc08gn7jmkm" path="res://database/quest_control.gd" id="1_ke4ck"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8pnxk"]
 font_size = 18

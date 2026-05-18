@@ -29,7 +29,7 @@ GlobalVar="*res://scripts/global_var.gd"
 GlobalMarker="*res://environment/global_markers.gd"
 BackgroundMusic="*res://scripts/background_music.gd"
 steamworks="*uid://73div2ppmo5a"
-DialogueManager="*uid://c6xox7ek6xhx1"
+ResourceManager="*uid://ba3pb20nau5j7"
 
 [display]
 

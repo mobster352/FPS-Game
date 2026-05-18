@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		label.text = DialogueManager.get_dialogue_by_id(dialogue_id, current_index)
+		label.text = ResourceManager.get_dialogue_by_id(dialogue_id, current_index)
 		canvas_layer.show()
 		GlobalSignal.freeze_player_camera.emit(true)
 		set_process(true)

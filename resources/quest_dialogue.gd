@@ -1,8 +1,5 @@
 class_name QuestDialogue
-extends DialogueBase
+extends Resource
 
-@export var quest_id:StringName
-
-func _init(dialogue:Dialogue, _quest_id:StringName) -> void:
-	super(dialogue)
-	quest_id = _quest_id
+@export var quest_resource:QuestResource
+@export var dialogue_dict:Dictionary[StringName, DialogueResource]

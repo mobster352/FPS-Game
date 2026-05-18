@@ -63,7 +63,15 @@ script = ExtResource("5_k0m3b")
 npc_dummy = NodePath("..")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
 
+[node name="Timers" type="Node" parent="." unique_id=1870658647]
+
+[node name="QuestRepeatTimer" type="Timer" parent="Timers" unique_id=1953913043]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="radial_timeout" from="RadialProgressBar" to="." method="_on_radial_progress_bar_radial_timeout"]
+[connection signal="timeout" from="Timers/QuestRepeatTimer" to="." method="_on_quest_repeat_timer_timeout"]
