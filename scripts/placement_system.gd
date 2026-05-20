@@ -76,6 +76,15 @@ func _process(_delta: float) -> void:
 					_toggle_build_highlight(mesh.get_active_material(0))
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and preview_instance and is_placing:
+		if event.is_pressed():
+			if event.is_action_pressed("rotate_preview_left"):
+				preview_instance.rotate_y(deg_to_rad(10))
+			elif event.is_action_pressed("rotate_preview_right"):
+				preview_instance.rotate_y(deg_to_rad(-10))
+
+
 func _toggle_build_highlight(material: StandardMaterial3D) -> void:
 	if not material:
 		return
@@ -99,6 +108,7 @@ func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path
 
 
 func start_placement():
+	preview_instance.global_rotation = Vector3.ZERO
 	preview_instance.show()
 	
 	place_scene = load(place_scene_path)
@@ -153,7 +163,7 @@ func update_preview():
 		else:
 			can_place = true
 		preview_instance.global_position = down_hit.position
-		preview_instance.global_rotation.y = player.camera.global_rotation.y
+		#preview_instance.global_rotation.y = player.camera.global_rotation.y
 		#var in_nav_region = is_position_in_nav_region(preview_instance.global_position)
 		#if not in_nav_region:
 			#can_place = false

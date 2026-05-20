@@ -601,7 +601,6 @@ func update_preview():
 		else:
 			can_place = true
 		preview_instance.global_position = down_hit.position
-		#preview_instance.global_rotation.y = camera.global_rotation.y
 	else:
 		can_place = false
 
