@@ -314,6 +314,15 @@ func _input(event: InputEvent) -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 			current_input_device = InputDevice.MOUSE_KEYBOARD
+	
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and preview_instance and is_placing:
+		if event.is_pressed():
+			if event.is_action_pressed("rotate_preview_left"):
+				preview_instance.rotate_y(deg_to_rad(10))
+			elif event.is_action_pressed("rotate_preview_right"):
+				preview_instance.rotate_y(deg_to_rad(-10))
 
 
 func _process_shot() -> void:
@@ -546,6 +555,7 @@ func setup_placement_pizzabox_stack(preview_scene_uuid: String, _place_scene_pat
 	item_shape = collision_shape_preview_instance.shape
 
 func start_placement():
+	preview_instance.global_rotation = Vector3.ZERO
 	preview_instance.show()
 	
 	place_scene = load(place_scene_path)
@@ -591,7 +601,7 @@ func update_preview():
 		else:
 			can_place = true
 		preview_instance.global_position = down_hit.position
-		preview_instance.global_rotation.y = camera.global_rotation.y
+		#preview_instance.global_rotation.y = camera.global_rotation.y
 	else:
 		can_place = false
 
