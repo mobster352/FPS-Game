@@ -157,7 +157,7 @@ func update_preview():
 
 	var intersect_hit = space_state.get_rest_info(intersect_query)
 
-	if down_hit and down_hit.position.y < 4.0:
+	if down_hit:# and down_hit.position.y < 4.0:
 		if intersect_hit:
 			can_place = false
 		else:

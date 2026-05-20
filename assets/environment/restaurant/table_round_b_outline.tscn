@@ -87,7 +87,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_acjxj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yebo"]
-size = Vector3(3.0005493, 1.2026367, 4.439209)
+size = Vector3(4.114395, 1.2026367, 5.7332764)
 
 [node name="table_round_b_outline" type="Node3D" unique_id=664228126]
 
@@ -107,5 +107,5 @@ mesh = SubResource("ArrayMesh_nuaha")
 skeleton = NodePath("")
 
 [node name="collider" type="CollisionShape3D" parent="." unique_id=77313790]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003753662, 0.60131836, 0.73083496)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0046157837, 0.60131836, 0.72247314)
 shape = SubResource("BoxShape3D_0yebo")
