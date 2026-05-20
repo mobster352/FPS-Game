@@ -9,7 +9,7 @@ const MAX_STACK_SIZE:int = 10
 @onready var pizzabox_open = load("uid://bxflb6heaetxd")
 var pizza_boxes: Node3D
 @onready var this_body
-@onready var preview_scene = load("uid://7t2skrh4o8jq")
+@onready var preview_scene_uuid = "uid://7t2skrh4o8jq"
 
 const BOX_SPACING = 0.3
 var in_range := false
@@ -167,7 +167,7 @@ func pickup(_new_pos: Vector3, _new_rotation: Vector3, player: Player) -> void:
 		player.item_slot.add_child(pizza_boxes)
 		pizza_boxes.position = Vector3(-2.0,-1.0,1.0)
 		set_z_scale_children(true, pizza_boxes)
-		player.setup_placement_pizzabox_stack(preview_scene, "uid://dp8cybb476vqi", num_pizza_boxes)
+		player.setup_placement_pizzabox_stack(preview_scene_uuid, "uid://dp8cybb476vqi", num_pizza_boxes)
 		queue_free()
 
 func set_z_scale_children(value: bool, node: Node3D) -> void:

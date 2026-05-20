@@ -34,12 +34,12 @@ func delete_slot() -> void:
 
 
 func _on_button_pressed() -> void:
-	var foreground:ColorRect = get_node("/root/Node/CanvasLayer/Foreground")
+	var foreground:ColorRect = get_node("/root/Game/CanvasLayer/Foreground")
 	var tween = create_tween()
 	tween.tween_property(foreground, "color:a", 1.0, 0)
 	await tween.finished
 	GlobalVar.save_slot = save_slot
-	get_node("/root/Node/CanvasLayer/LoadGameMenu").hide()
+	get_node("/root/Game/CanvasLayer/LoadGameMenu").hide()
 	GlobalSignal.spawn_new_level.emit()
 
 

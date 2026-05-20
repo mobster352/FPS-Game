@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://7t2skrh4o8jq"]
 
 [ext_resource type="Script" uid="uid://bc5b3lbe1h3rh" path="res://assets/items/pizzabox_stack.gd" id="1_dmy8n"]
+[ext_resource type="PackedScene" uid="uid://cpulw2n2h8hsx" path="res://assets/kaykit/restaurant/pizzabox_open.gltf" id="2_81hlr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_81hlr"]
+load_path = "res://.godot/imported/restaurantbits_extra.png-2db7618ff223cc19f921eb568700df02.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h44gn"]
+albedo_texture = SubResource("CompressedTexture2D_81hlr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vxxyl"]
+load_path = "res://.godot/imported/restaurantbits_extra.png-2db7618ff223cc19f921eb568700df02.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5svib"]
+albedo_texture = SubResource("CompressedTexture2D_vxxyl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmy8n"]
 size = Vector3(1.9985352, 0.31145477, 1)
@@ -13,7 +26,97 @@ unique_name_in_owner = true
 metadata/place = true
 metadata/pizzaboxes = false
 
+[node name="pizzabox_open" parent="PizzaBoxes" unique_id=2128160338 instance=ExtResource("2_81hlr")]
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open2" parent="PizzaBoxes" unique_id=1957884133 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28452855, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open2" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open2/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open3" parent="PizzaBoxes" unique_id=1002298931 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open3" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open3/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open4" parent="PizzaBoxes" unique_id=1419230548 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.855, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open4" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open4/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open5" parent="PizzaBoxes" unique_id=549092650 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open5" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open5/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open6" parent="PizzaBoxes" unique_id=1018225136 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.425, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open6" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open6/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open7" parent="PizzaBoxes" unique_id=1615099814 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open7" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open7/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open8" parent="PizzaBoxes" unique_id=268430070 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.995, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open8" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open8/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
+[node name="pizzabox_open9" parent="PizzaBoxes" unique_id=1402739892 instance=ExtResource("2_81hlr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28, 0)
+
+[node name="pizzabox_open" parent="PizzaBoxes/pizzabox_open9" index="0" unique_id=1627318908]
+material_override = SubResource("StandardMaterial3D_h44gn")
+
+[node name="pizzabox_lid" parent="PizzaBoxes/pizzabox_open9/pizzabox_open" index="0" unique_id=1657326887]
+material_override = SubResource("StandardMaterial3D_5svib")
+
 [node name="collider" type="CollisionShape3D" parent="." unique_id=456974624]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012207031, 0.14548874, 0)
 shape = SubResource("BoxShape3D_dmy8n")
+
+[editable path="PizzaBoxes/pizzabox_open"]
+[editable path="PizzaBoxes/pizzabox_open2"]
+[editable path="PizzaBoxes/pizzabox_open3"]
+[editable path="PizzaBoxes/pizzabox_open4"]
+[editable path="PizzaBoxes/pizzabox_open5"]
+[editable path="PizzaBoxes/pizzabox_open6"]
+[editable path="PizzaBoxes/pizzabox_open7"]
+[editable path="PizzaBoxes/pizzabox_open8"]
+[editable path="PizzaBoxes/pizzabox_open9"]

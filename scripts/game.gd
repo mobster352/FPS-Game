@@ -12,7 +12,7 @@ func _spawn_new_level() -> void:
 	if level_node:
 		level_node.name = "Level"
 		add_child(level_node)
-		var foreground:ColorRect = get_node("/root/Node/CanvasLayer/Foreground")
+		var foreground:ColorRect = get_node("/root/Game/CanvasLayer/Foreground")
 		var tween = create_tween()
 		tween.tween_property(foreground, "color:a", 0.0, 0.5)
 		#await tween.finished

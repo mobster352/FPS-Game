@@ -12,8 +12,8 @@ func _on_button_pressed() -> void:
 	GlobalSignal.next_day.emit(true)
 
 func _change_scene() -> void:
-	var old_level:Node3D = get_node("/root/Node/Game/Level")
-	var foreground:ColorRect = get_node("/root/Node/CanvasLayer/Foreground")
+	var old_level:Node3D = get_node("/root/Game/GameLevel/Level")
+	var foreground:ColorRect = get_node("/root/Game/CanvasLayer/Foreground")
 	var tween = create_tween()
 	tween.tween_property(foreground, "color:a", 1.0, 0.5)
 	await tween.finished

@@ -42,8 +42,8 @@ func _on_resume_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	get_node("/root/Node/CanvasLayer/MainMenu").show()
-	get_node("/root/Node/Game/Level").queue_free()
+	get_node("/root/Game/CanvasLayer/MainMenu").show()
+	get_node("/root/Game/GameLevel/Level").queue_free()
 
 
 func _on_options_pressed() -> void:

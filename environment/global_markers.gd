@@ -24,10 +24,10 @@ func _ready() -> void:
 
 
 func _update_markers() -> void:
-	if has_node("/root/Node/Game/Level/Environment/Markers"):
-		outside_marker = get_node("/root/Node/Game/Level/Environment/Markers/Outside")
-		restaurant_marker = get_node("/root/Node/Game/Level/Environment/Markers/RestaurantMarker")
-		queue_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue")
-		queue2_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue2")
-		queue3_marker = get_node("/root/Node/Game/Level/Environment/Markers/Queue3")
-		park_marker = get_node("/root/Node/Game/Level/Environment/Markers/ParkMarker")
+	if has_node("/root/Game/GameLevel/Level/Environment/Markers"):
+		outside_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Outside")
+		restaurant_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/RestaurantMarker")
+		queue_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Queue")
+		queue2_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Queue2")
+		queue3_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Queue3")
+		park_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/ParkMarker")

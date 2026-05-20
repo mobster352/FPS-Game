@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://bo2h1isbtcscp" path="res://scripts/game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cg1kpd2f5ylo7" path="res://assets/ui/load_game_menu.tscn" id="2_e2o6t"]
 
-[node name="Node" type="Node" unique_id=1694434302]
+[node name="Game" type="Node" unique_id=1694434302]
 
-[node name="Game" type="Node3D" parent="." unique_id=431558590]
+[node name="GameLevel" type="Node3D" parent="." unique_id=431558590]
 script = ExtResource("1_feb5d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=445357097]

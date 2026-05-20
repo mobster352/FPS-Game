@@ -25,9 +25,28 @@ var money:int
 
 var is_table:bool = false
 
+var preview_objects_uuids:Array[String] = [
+	"uid://bgb0ai3o1lbah",
+	"uid://b24sn63vi5kcs",
+	"uid://ftktew0563fj",
+	"uid://u3r87twoyihh",
+	"uid://bnutiphxtceau",
+	"uid://etwcw4esf47g",
+	"uid://7t2skrh4o8jq"
+]
+@onready var preview_object_nodes: Node3D = %PreviewObjects
+var preview_objects:Dictionary[String,Node3D]
+
+
 func _ready() -> void:
 	objects = get_tree().get_nodes_in_group("placement")
 	setup_object_preview.connect(_setup_object_preview)
+	
+	for uuid:String in preview_objects_uuids:
+		var obj:Node3D = load(uuid).instantiate()
+		obj.hide()
+		preview_object_nodes.add_child(obj)
+		preview_objects.set(uuid, obj)
 
 func _process(_delta: float) -> void:
 	var build_input = Input.is_action_just_pressed("build")
@@ -71,7 +90,7 @@ func _toggle_build_highlight(material: StandardMaterial3D) -> void:
 func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path: StringName, _money:int) -> void:
 	if preview_instance:
 		return
-	preview_instance = load(uuid).instantiate()
+	preview_instance = preview_objects.get(uuid)
 	original_obj = _original_obj
 	place_scene_path = new_obj_path
 	toggle_build = true
@@ -80,7 +99,7 @@ func _setup_object_preview(uuid: StringName, _original_obj: Node3D, new_obj_path
 
 
 func start_placement():
-	get_tree().current_scene.add_child(preview_instance)
+	preview_instance.show()
 	
 	place_scene = load(place_scene_path)
 	
@@ -89,7 +108,7 @@ func start_placement():
 	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
 	item_shape = collision_shape_preview_instance.shape
 
-	_make_preview_material(preview_instance)
+	#_make_preview_material(preview_instance)
 	
 	original_obj_parent = original_obj.get_parent()
 	if original_obj is Table:
@@ -175,20 +194,21 @@ func confirm_placement() -> bool:
 
 func cancel_placement():
 	if preview_instance:
-		preview_instance.queue_free()
+		#preview_instance.queue_free()
+		preview_instance.hide()
 		preview_instance = null
 		place_scene_path = ""
 		toggle_build = false
 
 
-func _make_preview_material(root: Node):
-	for child in root.get_children(true):
-		if child is MeshInstance3D:
-			var mat = StandardMaterial3D.new()
-			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			mat.albedo_color = Color(0, 1, 0, 0.35)
-			mat.no_depth_test = true
-			child.material_override = mat
+#func _make_preview_material(root: Node):
+	#for child in root.get_children(true):
+		#if child is MeshInstance3D:
+			#var mat = StandardMaterial3D.new()
+			#mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			#mat.albedo_color = Color(0, 1, 0, 0.35)
+			#mat.no_depth_test = true
+			#child.material_override = mat
 
 
 func _update_preview_color(valid: bool):

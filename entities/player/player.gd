@@ -160,6 +160,7 @@ func _ready():
 	load_settings()
 	player_loaded.emit(self)
 	GlobalSignal.init_player.emit(self)
+	item_type = GlobalVar.StoreItem.None
 
 
 func _process(_delta: float) -> void:
@@ -406,9 +407,11 @@ func _handle_item_raycast(target: Node3D) -> void:
 				elif drop_input:
 					is_placing = false
 					drop_input = false
-					get_tree().current_scene.remove_child(preview_instance)
+					preview_instance.hide()
 				return
 			else:
+				if preview_instance:
+					update_preview()
 				if interact and not target.has_node("Interactable"):
 					start_placement()
 					inputs_ui.update_actions.emit(inputs_ui.InputAction.Confirm)
@@ -418,7 +421,7 @@ func _handle_item_raycast(target: Node3D) -> void:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.OnlyPlacement)
 					else:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
-			#return
+
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -525,27 +528,30 @@ func _process_drop_item() -> void:
 			drop_item()
 
 
-func setup_placement(preview_scene: PackedScene, _place_scene_path: StringName, _item_type: GlobalVar.StoreItem) -> void:
-	preview_instance = preview_scene.instantiate()
+func setup_placement(preview_scene_uuid: String, _place_scene_path: StringName, _item_type: GlobalVar.StoreItem) -> void:
+	preview_instance = placement_system.preview_objects.get(preview_scene_uuid)
 	place_scene_path = _place_scene_path
 	item_type = _item_type
-
-func setup_placement_pizzabox_stack(preview_scene: PackedScene, _place_scene_path: StringName, num_stack: int) -> void:
-	preview_instance = preview_scene.instantiate() as PizzaBoxStack
-	place_scene_path = _place_scene_path
-	preview_instance.num_pizza_boxes = num_stack
-	num_pizza_boxes = num_stack
-
-func start_placement():
-	get_tree().current_scene.add_child(preview_instance)
-	
-	place_scene = load(place_scene_path)
-	place_scene_item_type = item_type
 	
 	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
 	item_shape = collision_shape_preview_instance.shape
 
-	_make_preview_material(preview_instance)
+func setup_placement_pizzabox_stack(preview_scene_uuid: String, _place_scene_path: StringName, num_stack: int) -> void:
+	preview_instance = placement_system.preview_objects.get(preview_scene_uuid) as PizzaBoxStack
+	place_scene_path = _place_scene_path
+	preview_instance.num_pizza_boxes = num_stack
+	num_pizza_boxes = num_stack
+	
+	var collision_shape_preview_instance = preview_instance.get_node("collider") as CollisionShape3D
+	item_shape = collision_shape_preview_instance.shape
+
+func start_placement():
+	preview_instance.show()
+	
+	place_scene = load(place_scene_path)
+	place_scene_item_type = item_type
+
+	#_make_preview_material(preview_instance)
 
 
 func update_preview():
@@ -636,7 +642,7 @@ func confirm_placement() -> bool:
 
 func cancel_placement(remove_held_obj: bool):
 	if preview_instance:
-		preview_instance.queue_free()
+		preview_instance.hide()
 		preview_instance = null
 		place_scene_item_type = GlobalVar.StoreItem.None
 		if has_held_object() and remove_held_obj:
@@ -648,14 +654,14 @@ func cancel_placement(remove_held_obj: bool):
 		item_type = GlobalVar.StoreItem.None
 
 
-func _make_preview_material(root: Node):
-	for child in root.get_children(true):
-		if child is MeshInstance3D:
-			var mat = StandardMaterial3D.new()
-			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			mat.albedo_color = Color(0, 1, 0, 0.35)
-			mat.no_depth_test = true
-			child.material_override = mat
+#func _make_preview_material(root: Node):
+	#for child in root.get_children(true):
+		#if child is MeshInstance3D:
+			#var mat = StandardMaterial3D.new()
+			#mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			#mat.albedo_color = Color(0, 1, 0, 0.35)
+			#mat.no_depth_test = true
+			#child.material_override = mat
 
 
 func _update_preview_color(valid: bool):
