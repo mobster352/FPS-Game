@@ -1,13 +1,15 @@
 extends Node3D
 class_name DialogueBox
 
+signal end_dialogue(npc:NPC_Dummy)
+
 @export var dialogue_id: StringName
 var current_index:int = 0
 
 @onready var canvas_layer: CanvasLayer = %CanvasLayer
 @onready var label = %Label
 @onready var display_timer = $Timers/DisplayTimer
-
+var npc:NPC_Dummy
 
 func _ready() -> void:
 	set_process(false)
@@ -29,6 +31,12 @@ func _on_visibility_changed() -> void:
 		canvas_layer.hide()
 		GlobalSignal.freeze_player_camera.emit(false)
 		set_process(false)
+		end_dialogue.emit(npc)
+
+
+func enable(_npc:NPC_Dummy=null) -> void:
+	npc = _npc
+	show()
 
 
 func _on_display_timer_timeout() -> void:

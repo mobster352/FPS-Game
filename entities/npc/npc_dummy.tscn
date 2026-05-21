@@ -72,6 +72,7 @@ one_shot = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="end_dialogue" from="DialogueBox" to="." method="_on_dialogue_box_end_dialogue"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="radial_timeout" from="RadialProgressBar" to="." method="_on_radial_progress_bar_radial_timeout"]
 [connection signal="timeout" from="Timers/QuestRepeatTimer" to="." method="_on_quest_repeat_timer_timeout"]

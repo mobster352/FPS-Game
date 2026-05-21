@@ -382,18 +382,14 @@ func interact() -> void:
 				is_quest_complete = true
 				dialogue_box.current_index += 1
 				GlobalSignal.update_quest_objective.emit(quest.quest_id, quest.quest_objective_id)
-				#quest_repeat_timer.start()
-				sitting = false
-				dummy.sit_chair_stand_up()
-				await get_tree().create_timer(0.5).timeout
-				GlobalMarker.park_marker_npc = null
-				
 		else:
+			dialogue_box.enable()
 			dialogue_box.show()
 			has_quest = true
 			dialogue_box.current_index += 1
 			GlobalSignal.add_quest.emit(quest.quest_id, quest.quest_objective_id)
 			return
+	dialogue_box.enable(self)
 	dialogue_box.show()
 
 
@@ -407,3 +403,14 @@ func _on_quest_repeat_timer_timeout() -> void:
 	has_quest = false
 	is_quest_complete = false
 	dialogue_box.current_index = 0
+
+
+func _on_dialogue_box_end_dialogue(npc: NPC_Dummy) -> void:
+	if npc == self and is_quest_complete:
+		await get_tree().create_timer(3.0).timeout
+		has_quest = false
+		is_quest_complete = false
+		dialogue_box.current_index = 0
+		sitting = false
+		dummy.sit_chair_stand_up()
+		GlobalMarker.park_marker_npc = null
