@@ -26,6 +26,9 @@
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
 [ext_resource type="PackedScene" uid="uid://chpxpw23sr103" path="res://assets/kaykit/characters/character_assets/spellbook_closed.tscn" id="24_rt760"]
 [ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="25_oj5bk"]
+[ext_resource type="PackedScene" uid="uid://23ccnbtvgx1w" path="res://assets/kaykit/characters/character_assets/sword_1_handed.tscn" id="26_6b0uu"]
+[ext_resource type="PackedScene" uid="uid://cgcjf3hk4t4r1" path="res://assets/kaykit/characters/character_assets/dagger.tscn" id="27_3ogk7"]
+[ext_resource type="PackedScene" uid="uid://ca5w8wrqv4v8g" path="res://assets/kaykit/characters/character_assets/axe_2_handed.tscn" id="28_p8jrx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
 size = Vector3(120.17102, 0.8843994, 136.86133)
@@ -1690,6 +1693,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 20.817955)
 
 [node name="Coin_A" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="1" unique_id=248323887 instance=ExtResource("25_oj5bk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17172909, 20.088926)
+
+[node name="sword_1handed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="2" unique_id=2091968208 instance=ExtResource("26_6b0uu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1395628, 0.4429568, 21.462719)
+
+[node name="dagger" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="3" unique_id=1323727573 instance=ExtResource("27_3ogk7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3225665, 0.32850802, 20.26361)
+
+[node name="axe_2handed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="4" unique_id=1527793825 instance=ExtResource("28_p8jrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2739785, 0.5813515, 21.471148)
 
 [node name="PlacementSystem" parent="." index="6" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")

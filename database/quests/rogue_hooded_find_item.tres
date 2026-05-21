@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://dn5khhb7xln0c"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_6ah2e"]
+
+[resource]
+script = ExtResource("1_6ah2e")
+quest_id = &"ROGUE_FIND_ITEM"
+quest_title = &"Find Item"
+quest_objectives = Array[Dictionary]([{
+&"BRING_DAGGER": "Find the dagger"
+}])
+quest_type = 1
+npc_type = 5
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

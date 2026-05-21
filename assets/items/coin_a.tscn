@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://dpndx244uxnbh"]
+[gd_scene format=4 uid="uid://dpndx244uxnbh"]
 
 [ext_resource type="PackedScene" uid="uid://cnv1awokbjf51" path="res://assets/kaykit/misc/Coin_A.gltf" id="1_vd16q"]
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="2_hvsjc"]
-[ext_resource type="Texture2D" uid="uid://dc8ip7ta33dki" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="3_7ob58"]
+[ext_resource type="Texture2D" uid="uid://cjh6cmqiwpwkn" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="3_7ob58"]
 [ext_resource type="Material" uid="uid://b6rk7v1mrkar8" path="res://assets/items/prototype_material.tres" id="3_i1qav"]
 [ext_resource type="Script" uid="uid://jrl3vfpw3675" path="res://assets/items/coin_interactable.gd" id="5_r2yfp"]
 
@@ -54,7 +54,7 @@ shadow_mesh = SubResource("ArrayMesh_i1qav")
 [sub_resource type="SphereShape3D" id="SphereShape3D_vd16q"]
 radius = 1.5
 
-[node name="Coin_A" node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["items"] instance=ExtResource("1_vd16q")]
+[node name="Coin_A" unique_id=1246627592 node_paths=PackedStringArray("mesh", "rigid_body", "area", "meshInstanceArray") groups=["items"] instance=ExtResource("1_vd16q")]
 script = ExtResource("2_hvsjc")
 mesh = NodePath("body/Coin_A2")
 rigid_body = NodePath("body")
@@ -62,7 +62,7 @@ area = NodePath("body/Area3D")
 meshInstanceArray = [NodePath("body/Coin_A2")]
 albedo_texture = ExtResource("3_7ob58")
 
-[node name="body" type="RigidBody3D" parent="." index="0"]
+[node name="body" type="RigidBody3D" parent="." index="0" unique_id=1323794941]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 collision_layer = 8
 collision_mask = 13
@@ -70,29 +70,29 @@ physics_material_override = SubResource("PhysicsMaterial_hvsjc")
 can_sleep = false
 angular_damp = 5.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body" index="0" unique_id=1919457840]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_hvsjc")
 
-[node name="Coin_A2" type="MeshInstance3D" parent="body" index="1"]
+[node name="Coin_A2" type="MeshInstance3D" parent="body" index="1" unique_id=1218189637]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ka23m")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_i1qav")
 metadata/name = &"coin_a_mesh"
 
-[node name="Area3D" type="Area3D" parent="body" index="2"]
+[node name="Area3D" type="Area3D" parent="body" index="2" unique_id=472091193]
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" index="0" unique_id=1467988375]
 shape = SubResource("SphereShape3D_vd16q")
 
-[node name="Interactable" type="Node3D" parent="body" index="3" node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="3" unique_id=2035612471 node_paths=PackedStringArray("item")]
 script = ExtResource("5_r2yfp")
 item = NodePath("../..")
 
-[node name="Coin_A" parent="." index="1"]
+[node name="Coin_A" parent="." index="1" unique_id=1817802892]
 visible = false
 mesh = SubResource("ArrayMesh_ka23m")
 

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://bc8ppol4xu5y2"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_n5lvx"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_xd658"]
+
+[sub_resource type="Resource" id="Resource_n5lvx"]
+script = ExtResource("1_n5lvx")
+text = "Can you find the dagger?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_xd658"]
+script = ExtResource("1_n5lvx")
+text = "Have you found the dagger?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_ddnr2"]
+script = ExtResource("1_n5lvx")
+text = "Thanks for bringing the dagger"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_xd658")
+id = &"ROGUE_FIND_ITEM_DAGGER"
+lines = Dictionary[int, ExtResource("1_n5lvx")]({
+0: SubResource("Resource_n5lvx"),
+1: SubResource("Resource_xd658"),
+2: SubResource("Resource_ddnr2")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://dq23854fvmxm"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_yy623"]
+
+[resource]
+script = ExtResource("1_yy623")
+quest_id = &"BARBARIAN_FIND_ITEM"
+quest_title = &"Find Item"
+quest_objectives = Array[Dictionary]([{
+&"BRING_AXE_2H": "Find the Axe"
+}])
+quest_type = 1
+npc_type = 7
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

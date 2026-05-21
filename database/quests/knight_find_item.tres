@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://bnfigugx51b20"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_gtf6k"]
+
+[resource]
+script = ExtResource("1_gtf6k")
+quest_id = &"KNIGHT_FIND_ITEM"
+quest_title = &"Find Item"
+quest_objectives = Array[Dictionary]([{
+&"BRING_SWORD_1H": "Find the sword"
+}])
+quest_type = 1
+npc_type = 3
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

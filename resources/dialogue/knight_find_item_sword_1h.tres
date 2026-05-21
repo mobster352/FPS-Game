@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://bb0v6bqunmbqx"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_iikq6"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_auidh"]
+
+[sub_resource type="Resource" id="Resource_iikq6"]
+script = ExtResource("1_iikq6")
+text = "Can you find the sword?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_auidh"]
+script = ExtResource("1_iikq6")
+text = "Have you found the sword?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_bicue"]
+script = ExtResource("1_iikq6")
+text = "Thanks for bringing the sword."
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_auidh")
+id = &"KNIGHT_FIND_ITEM_SWORD_1H"
+lines = Dictionary[int, ExtResource("1_iikq6")]({
+0: SubResource("Resource_iikq6"),
+1: SubResource("Resource_auidh"),
+2: SubResource("Resource_bicue")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

@@ -98,6 +98,18 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"name": "spellbook_closed_mesh",
 		"item": "uid://chpxpw23sr103"
+	},
+	{
+		"name": "sword_1handed_mesh",
+		"item": "uid://23ccnbtvgx1w"
+	},
+	{
+		"name": "dagger_mesh",
+		"item": "uid://cgcjf3hk4t4r1"
+	},
+	{
+		"name": "axe_2handed_mesh",
+		"item": "uid://ca5w8wrqv4v8g"
 	}
 ]
 

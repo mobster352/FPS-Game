@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuestObjectiveItem" format=3 uid="uid://hxulxn3qib21"]
+
+[ext_resource type="Script" uid="uid://3ws4fdhfqsxt" path="res://resources/quest_objective_item.gd" id="1_sajgi"]
+
+[resource]
+script = ExtResource("1_sajgi")
+quest_objective_id = &"BRING_AXE_2H"
+quest_item_id = &"axe_2handed_mesh"
+metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

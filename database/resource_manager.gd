@@ -7,6 +7,11 @@ var quest_objective_items:Array
 
 var fetch_quests:Dictionary[String, FetchQuest]
 var mage_npc_fetch_quests:Dictionary[String, FetchQuest]
+var knight_npc_fetch_quests:Dictionary[String, FetchQuest]
+var rogue_npc_fetch_quests:Dictionary[String, FetchQuest]
+var rogue_hooded_npc_fetch_quests:Dictionary[String, FetchQuest]
+var barbarian_npc_fetch_quests:Dictionary[String, FetchQuest]
+var dummy_npc_fetch_quests:Dictionary[String, FetchQuest]
 
 func _ready() -> void:
 	dialogue_db = load_resource("res://resources/dialogue")
@@ -59,6 +64,21 @@ func create_fetch_quests() -> void:
 						GlobalVar.NpcType.Mage:
 							if not mage_npc_fetch_quests.has(quest_objective_id):
 								mage_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Knight:
+							if not knight_npc_fetch_quests.has(quest_objective_id):
+								knight_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Rogue:
+							if not rogue_npc_fetch_quests.has(quest_objective_id):
+								rogue_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Rogue_Hooded:
+							if not rogue_hooded_npc_fetch_quests.has(quest_objective_id):
+								rogue_hooded_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Barbarian:
+							if not barbarian_npc_fetch_quests.has(quest_objective_id):
+								barbarian_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Default:
+							if not dummy_npc_fetch_quests.has(quest_objective_id):
+								dummy_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
 
 
 func get_random_fetch_quest(skin_uuid:String) -> Quest:
@@ -75,6 +95,21 @@ func get_random_fetch_quest(skin_uuid:String) -> Quest:
 		GlobalVar.NpcType.Mage:
 			random_quest_objective_id = mage_npc_fetch_quests.keys().pick_random()
 			fetch_quest = mage_npc_fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Knight:
+			random_quest_objective_id = knight_npc_fetch_quests.keys().pick_random()
+			fetch_quest = knight_npc_fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Rogue:
+			random_quest_objective_id = rogue_npc_fetch_quests.keys().pick_random()
+			fetch_quest = rogue_npc_fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Rogue_Hooded:
+			random_quest_objective_id = rogue_hooded_npc_fetch_quests.keys().pick_random()
+			fetch_quest = rogue_hooded_npc_fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Barbarian:
+			random_quest_objective_id = barbarian_npc_fetch_quests.keys().pick_random()
+			fetch_quest = barbarian_npc_fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Default:
+			random_quest_objective_id = dummy_npc_fetch_quests.keys().pick_random()
+			fetch_quest = dummy_npc_fetch_quests.get(random_quest_objective_id)
 		_:
 			random_quest_objective_id = fetch_quests.keys().pick_random()
 			fetch_quest = fetch_quests.get(random_quest_objective_id)
@@ -99,6 +134,16 @@ func get_fetch_quest(quest_objective_id:StringName) -> FetchQuest:
 		return fetch_quests.get(quest_objective_id)
 	if mage_npc_fetch_quests.has(quest_objective_id):
 		return mage_npc_fetch_quests.get(quest_objective_id)
+	if knight_npc_fetch_quests.has(quest_objective_id):
+		return knight_npc_fetch_quests.get(quest_objective_id)
+	if rogue_npc_fetch_quests.has(quest_objective_id):
+		return rogue_npc_fetch_quests.get(quest_objective_id)
+	if rogue_hooded_npc_fetch_quests.has(quest_objective_id):
+		return rogue_hooded_npc_fetch_quests.get(quest_objective_id)
+	if barbarian_npc_fetch_quests.has(quest_objective_id):
+		return barbarian_npc_fetch_quests.get(quest_objective_id)
+	if dummy_npc_fetch_quests.has(quest_objective_id):
+		return dummy_npc_fetch_quests.get(quest_objective_id)
 	push_error("Quest objective id not found: ", quest_objective_id)
 	return null
 

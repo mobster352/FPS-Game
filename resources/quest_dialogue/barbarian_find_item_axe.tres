@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://4mcedwaw1a2h"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_k7q5t"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_31q3p"]
+[ext_resource type="Resource" uid="uid://wisk3xywqeg4" path="res://resources/dialogue/barbarian_find_item_axe.tres" id="2_j5f35"]
+[ext_resource type="Resource" uid="uid://dq23854fvmxm" path="res://database/quests/barbarian_find_item.tres" id="3_a2l35"]
+
+[resource]
+script = ExtResource("2_31q3p")
+quest_resource = ExtResource("3_a2l35")
+dialogue_dict = Dictionary[StringName, ExtResource("1_k7q5t")]({
+&"BRING_AXE_2H": ExtResource("2_j5f35")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

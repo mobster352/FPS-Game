@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://kord25antpg4"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_y6s1g"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_74vw6"]
+[ext_resource type="Resource" uid="uid://bnfigugx51b20" path="res://database/quests/knight_find_item.tres" id="2_lwg6w"]
+[ext_resource type="Resource" uid="uid://bb0v6bqunmbqx" path="res://resources/dialogue/knight_find_item_sword_1h.tres" id="2_skvrv"]
+
+[resource]
+script = ExtResource("2_74vw6")
+quest_resource = ExtResource("2_lwg6w")
+dialogue_dict = Dictionary[StringName, ExtResource("1_y6s1g")]({
+&"BRING_SWORD_1H": ExtResource("2_skvrv")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

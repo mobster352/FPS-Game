@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://b8py5ihiki1p4"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_itpke"]
+[ext_resource type="Resource" uid="uid://bdfxjstd4ji43" path="res://resources/dialogue/dummy_find_item_coin.tres" id="2_7g7ef"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_olfpf"]
+[ext_resource type="Resource" uid="uid://cgxqb6cq0bqlu" path="res://database/quests/dummy_find_item.tres" id="3_4p273"]
+
+[resource]
+script = ExtResource("2_olfpf")
+quest_resource = ExtResource("3_4p273")
+dialogue_dict = Dictionary[StringName, ExtResource("1_itpke")]({
+&"BRING_COIN": ExtResource("2_7g7ef")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

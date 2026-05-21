@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuestObjectiveItem" format=3 uid="uid://c4q4kbuhylmp0"]
+
+[ext_resource type="Script" uid="uid://3ws4fdhfqsxt" path="res://resources/quest_objective_item.gd" id="1_w66hw"]
+
+[resource]
+script = ExtResource("1_w66hw")
+quest_objective_id = &"BRING_COIN"
+quest_item_id = &"coin_a_mesh"
+metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

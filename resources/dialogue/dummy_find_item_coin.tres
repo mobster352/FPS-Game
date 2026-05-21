@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://bdfxjstd4ji43"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_7x3b7"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_ot7k0"]
+
+[sub_resource type="Resource" id="Resource_7x3b7"]
+script = ExtResource("1_7x3b7")
+text = "Can you find a coin and bring it to me?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_ot7k0"]
+script = ExtResource("1_7x3b7")
+text = "Have you found the coin?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_es0ep"]
+script = ExtResource("1_7x3b7")
+text = "Thanks for bringing me the coin."
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_ot7k0")
+id = &"DUMMY_FIND_ITEM_COIN"
+lines = Dictionary[int, ExtResource("1_7x3b7")]({
+0: SubResource("Resource_7x3b7"),
+1: SubResource("Resource_ot7k0"),
+2: SubResource("Resource_es0ep")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

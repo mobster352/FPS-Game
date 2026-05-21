@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://beixquag17nxi"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_5355l"]
+[ext_resource type="Resource" uid="uid://bc8ppol4xu5y2" path="res://resources/dialogue/rogue_find_item_dagger.tres" id="2_hi721"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_t4bi5"]
+[ext_resource type="Resource" uid="uid://wd0ie6dno58m" path="res://database/quests/rogue_find_item.tres" id="3_pyp6c"]
+
+[resource]
+script = ExtResource("2_t4bi5")
+quest_resource = ExtResource("3_pyp6c")
+dialogue_dict = Dictionary[StringName, ExtResource("1_5355l")]({
+&"BRING_DAGGER": ExtResource("2_hi721")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

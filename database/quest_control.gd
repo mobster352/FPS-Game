@@ -41,6 +41,14 @@ class QuestData:
 							obj_key = QuestObjs.BRING_TOMATO
 						QuestItems.SPELLBOOK:
 							obj_key = QuestObjs.BRING_SPELLBOOK
+						QuestItems.COIN:
+							obj_key = QuestObjs.BRING_COIN
+						QuestItems.SWORD_1H:
+							obj_key = QuestObjs.BRING_SWORD_1H
+						QuestItems.DAGGER:
+							obj_key = QuestObjs.BRING_DAGGER
+						QuestItems.AXE_2H:
+							obj_key = QuestObjs.BRING_AXE_2H
 						_:
 							continue
 					if not obj_key:
