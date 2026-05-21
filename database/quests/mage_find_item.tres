@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://dor4t57k15b81"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_uwpvb"]
+
+[resource]
+script = ExtResource("1_uwpvb")
+quest_id = &"MAGE_FIND_ITEM"
+quest_title = &"Find Item"
+quest_objectives = Array[Dictionary]([{
+&"BRING_SPELLBOOK": "Find the spellbook"
+}])
+quest_type = 1
+npc_type = 6
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

@@ -4,15 +4,6 @@ extends Marker3D
 @export var level_ui:Level_UI
 @export var npcSpawnTimer:Timer
 
-var skins:Array[String] = [
-	"uid://bbedpve12ikmy",
-	"uid://bxx4vua8kbs4h",
-	"uid://vttdfwcbjkgk",
-	"uid://bygykan821e7t",
-	"uid://cwafteu2fqaol",
-	"uid://btlcpec1pk0f4"
-]
-
 var npcs_node:Node3D
 var npcs:Dictionary[String, NPC_Dummy]
 
@@ -22,7 +13,7 @@ func _ready() -> void:
 	
 	npcs_node = get_parent()
 	
-	for skin:String in skins:
+	for skin:String in GlobalVar.npc_skins.keys():
 		var npc_dummy:NPC_Dummy = preload("uid://dxnl4jurpfddl").instantiate()
 		npc_dummy.dummy_scene = load(skin)
 		npc_dummy.level_ui = level_ui
@@ -43,10 +34,12 @@ func _on_npc_spawn_timer_timeout() -> void:
 	var stagger_chance = randi_range(0,3)
 	if stagger_chance == 0:
 		return
-	var random_npc = skins.pick_random()
+	var random_npc = GlobalVar.npc_skins.keys().pick_random()
+	#var random_npc = "uid://bygykan821e7t"
 	var npc:NPC_Dummy = npcs.get(random_npc)
 	if npc.is_enabled:
 		return
 	npc.endPathMarker = endPathMarker
 	npc.transform = transform
+	npc.skin_uuid = random_npc
 	npc.enable_npc(true)

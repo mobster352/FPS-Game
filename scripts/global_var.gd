@@ -94,6 +94,10 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"name": "coin_a_mesh",
 		"item": "res://assets/items/coin_a.tscn"
+	},
+	{
+		"name": "spellbook_closed_mesh",
+		"item": "uid://chpxpw23sr103"
 	}
 ]
 
@@ -109,6 +113,25 @@ var food_items: Array[Food] = [
 var show_tips := true
 
 var save_slot := 1
+
+enum NpcType {
+	None,
+	Any,
+	Default,
+	Knight,
+	Rogue,
+	Rogue_Hooded,
+	Mage,
+	Barbarian
+}
+var npc_skins:Dictionary[String, NpcType] = {
+	"uid://bbedpve12ikmy": NpcType.Knight,
+	"uid://bxx4vua8kbs4h": NpcType.Rogue,
+	"uid://vttdfwcbjkgk": NpcType.Rogue_Hooded,
+	"uid://bygykan821e7t": NpcType.Mage,
+	"uid://cwafteu2fqaol": NpcType.Barbarian,
+	"uid://btlcpec1pk0f4": NpcType.Default
+}
 
 func get_random_food_by_level(level:int) -> int:
 	match level:

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://5cph4kgjopwj"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_pfugl"]
+[ext_resource type="Resource" uid="uid://hgvfhhbmhyqg" path="res://resources/dialogue/mage_find_item_spellbook.tres" id="2_6dvil"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="2_6ox5s"]
+[ext_resource type="Resource" uid="uid://dor4t57k15b81" path="res://database/quests/mage_find_item.tres" id="2_iy22y"]
+
+[resource]
+script = ExtResource("2_6ox5s")
+quest_resource = ExtResource("2_iy22y")
+dialogue_dict = Dictionary[StringName, ExtResource("1_pfugl")]({
+&"BRING_SPELLBOOK": ExtResource("2_6dvil")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

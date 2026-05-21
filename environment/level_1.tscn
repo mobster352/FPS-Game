@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
+[ext_resource type="PackedScene" uid="uid://chpxpw23sr103" path="res://assets/kaykit/characters/character_assets/spellbook_closed.tscn" id="24_rt760"]
+[ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="25_oj5bk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
 size = Vector3(120.17102, 0.8843994, 136.86133)
@@ -1682,6 +1684,12 @@ curve = SubResource("Curve3D_kv32d")
 [node name="PathFollow3D" type="PathFollow3D" parent="Entities/ReturnCarPath" index="0" unique_id=640778589]
 transform = Transform3D(-0.9999919, 0, 0.0040316624, 0, 1, 0, -0.0040316624, 0, -0.9999919, 8.644927, 0, -13.9648)
 use_model_front = true
+
+[node name="spellbook_closed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="0" unique_id=1833217168 instance=ExtResource("24_rt760")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 20.817955)
+
+[node name="Coin_A" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="1" unique_id=248323887 instance=ExtResource("25_oj5bk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17172909, 20.088926)
 
 [node name="PlacementSystem" parent="." index="6" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")

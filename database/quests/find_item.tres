@@ -11,4 +11,5 @@ quest_objectives = Array[Dictionary]([{
 &"BRING_TOMATO": "Find and bring a tomato"
 }])
 quest_type = 1
+npc_type = 1
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

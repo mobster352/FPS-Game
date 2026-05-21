@@ -61,6 +61,7 @@ var has_quest:bool = false
 var is_quest_complete:bool = false
 
 var quest:Quest
+var skin_uuid:String
 
 func enable_npc(enable:bool) -> void:
 	is_enabled = enable
@@ -131,7 +132,7 @@ func set_path() -> void:
 			else:
 				target = GlobalMarker.park_marker
 				GlobalMarker.park_marker_npc = self
-				quest = ResourceManager.get_random_fetch_quest()
+				quest = ResourceManager.get_random_fetch_quest(skin_uuid)
 				dialogue_box.dialogue_id = quest.dialogue_id
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
@@ -276,7 +277,9 @@ func get_target(_current_state:NPCState) -> void:
 				target = GlobalMarker.queue2_marker
 				GlobalMarker.queue3_npc = null
 				navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-		
+		elif target == GlobalMarker.park_marker:
+			target = endPathMarker
+			navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 	
 	if target:
 		next_state = NPCState.Walking
@@ -379,7 +382,12 @@ func interact() -> void:
 				is_quest_complete = true
 				dialogue_box.current_index += 1
 				GlobalSignal.update_quest_objective.emit(quest.quest_id, quest.quest_objective_id)
-				quest_repeat_timer.start()
+				#quest_repeat_timer.start()
+				sitting = false
+				dummy.sit_chair_stand_up()
+				await get_tree().create_timer(0.5).timeout
+				GlobalMarker.park_marker_npc = null
+				
 		else:
 			dialogue_box.show()
 			has_quest = true
@@ -394,7 +402,7 @@ func _open_store() -> void:
 
 
 func _on_quest_repeat_timer_timeout() -> void:
-	quest = ResourceManager.get_random_fetch_quest()
+	quest = ResourceManager.get_random_fetch_quest(skin_uuid)
 	dialogue_box.dialogue_id = quest.dialogue_id
 	has_quest = false
 	is_quest_complete = false

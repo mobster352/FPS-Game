@@ -6,6 +6,7 @@ var quest_dialogue_db:Array
 var quest_objective_items:Array
 
 var fetch_quests:Dictionary[String, FetchQuest]
+var mage_npc_fetch_quests:Dictionary[String, FetchQuest]
 
 func _ready() -> void:
 	dialogue_db = load_resource("res://resources/dialogue")
@@ -13,6 +14,7 @@ func _ready() -> void:
 	quest_dialogue_db = load_resource("res://resources/quest_dialogue")
 	quest_objective_items = load_resource("res://resources/quest_objective_items")
 	create_fetch_quests()
+
 
 func get_dialogue_by_id(dialogue_id:StringName, index:int) -> String:
 	for dialogue_resource:DialogueResource in dialogue_db:
@@ -50,13 +52,42 @@ func create_fetch_quests() -> void:
 				if quest_objective.has(quest_objective_item.quest_objective_id):
 					var quest_objective_id:StringName = quest_objective_item.quest_objective_id
 					var quest_item_id:StringName = quest_objective_item.quest_item_id
-					if not fetch_quests.has(quest_objective_id):
-						fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+					match quest_resource.npc_type:
+						GlobalVar.NpcType.Any:
+							if not fetch_quests.has(quest_objective_id):
+								fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+						GlobalVar.NpcType.Mage:
+							if not mage_npc_fetch_quests.has(quest_objective_id):
+								mage_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
 
 
-func get_random_fetch_quest() -> Quest:
-	var quest_objective_id:StringName = fetch_quests.keys().pick_random()
-	var fetch_quest:FetchQuest = fetch_quests.get(quest_objective_id)
+func get_random_fetch_quest(skin_uuid:String) -> Quest:
+	if not GlobalVar.npc_skins.has(skin_uuid):
+		push_error("NPC Skin not found: ", skin_uuid)
+		return
+	var npc_type:GlobalVar.NpcType = GlobalVar.npc_skins.get(skin_uuid)
+	var random_quest_objective_id:StringName
+	var fetch_quest:FetchQuest
+	match npc_type:
+		GlobalVar.NpcType.Any:
+			random_quest_objective_id = fetch_quests.keys().pick_random()
+			fetch_quest = fetch_quests.get(random_quest_objective_id)
+		GlobalVar.NpcType.Mage:
+			random_quest_objective_id = mage_npc_fetch_quests.keys().pick_random()
+			fetch_quest = mage_npc_fetch_quests.get(random_quest_objective_id)
+		_:
+			random_quest_objective_id = fetch_quests.keys().pick_random()
+			fetch_quest = fetch_quests.get(random_quest_objective_id)
+	if not random_quest_objective_id:
+		push_error("Quest objective id not found: ", random_quest_objective_id)
+		return
+	if not fetch_quest:
+		push_error("Fetch Quest not found: ", fetch_quest)
+		return
+	return get_quest_from_fetch_quest(random_quest_objective_id, fetch_quest)
+
+
+func get_quest_from_fetch_quest(quest_objective_id:StringName, fetch_quest:FetchQuest) -> Quest:
 	var quest_id:StringName = fetch_quest.wrapped_quest.quest_id
 	var quest_item_id:StringName = fetch_quest.item
 	var quest:Quest = Quest.new(quest_id, quest_objective_id, quest_item_id)
@@ -64,10 +95,12 @@ func get_random_fetch_quest() -> Quest:
 
 
 func get_fetch_quest(quest_objective_id:StringName) -> FetchQuest:
-	if not fetch_quests.has(quest_objective_id):
-		push_error("Quest objective id not found: ", quest_objective_id)
-		return null
-	return fetch_quests.get(quest_objective_id)
+	if fetch_quests.has(quest_objective_id):
+		return fetch_quests.get(quest_objective_id)
+	if mage_npc_fetch_quests.has(quest_objective_id):
+		return mage_npc_fetch_quests.get(quest_objective_id)
+	push_error("Quest objective id not found: ", quest_objective_id)
+	return null
 
 
 func load_resource(path: String) -> Array:

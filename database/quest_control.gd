@@ -39,6 +39,8 @@ class QuestData:
 							obj_key = QuestObjs.BRING_DOUGH
 						QuestItems.TOMATO:
 							obj_key = QuestObjs.BRING_TOMATO
+						QuestItems.SPELLBOOK:
+							obj_key = QuestObjs.BRING_SPELLBOOK
 						_:
 							continue
 					if not obj_key:
