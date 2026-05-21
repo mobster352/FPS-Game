@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_sajgi")
 quest_objective_id = &"BRING_AXE_2H"
-quest_item_id = &"axe_2handed_mesh"
+quest_item_mesh = &"axe_2handed_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

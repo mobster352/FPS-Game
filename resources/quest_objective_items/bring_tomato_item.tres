@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_2v1bk")
 quest_objective_id = &"BRING_TOMATO"
-quest_item_id = &"food_ingredient_tomato_mesh"
+quest_item_mesh = &"food_ingredient_tomato_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

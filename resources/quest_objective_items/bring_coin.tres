@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_w66hw")
 quest_objective_id = &"BRING_COIN"
-quest_item_id = &"coin_a_mesh"
+quest_item_mesh = &"coin_a_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

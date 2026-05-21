@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_wf2gn")
 quest_objective_id = &"BRING_SWORD_1H"
-quest_item_id = &"sword_1handed_mesh"
+quest_item_mesh = &"sword_1handed_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

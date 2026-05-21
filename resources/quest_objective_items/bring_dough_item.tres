@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_pbgno")
 quest_objective_id = &"BRING_DOUGH"
-quest_item_id = &"dough_mesh"
+quest_item_mesh = &"dough_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

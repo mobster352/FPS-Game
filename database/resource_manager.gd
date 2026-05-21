@@ -56,29 +56,29 @@ func create_fetch_quests() -> void:
 			for quest_objective_item:QuestObjectiveItem in quest_objective_items:
 				if quest_objective.has(quest_objective_item.quest_objective_id):
 					var quest_objective_id:StringName = quest_objective_item.quest_objective_id
-					var quest_item_id:StringName = quest_objective_item.quest_item_id
+					var quest_item_mesh:StringName = quest_objective_item.quest_item_mesh
 					match quest_resource.npc_type:
 						GlobalVar.NpcType.Any:
 							if not fetch_quests.has(quest_objective_id):
-								fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Mage:
 							if not mage_npc_fetch_quests.has(quest_objective_id):
-								mage_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								mage_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Knight:
 							if not knight_npc_fetch_quests.has(quest_objective_id):
-								knight_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								knight_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Rogue:
 							if not rogue_npc_fetch_quests.has(quest_objective_id):
-								rogue_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								rogue_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Rogue_Hooded:
 							if not rogue_hooded_npc_fetch_quests.has(quest_objective_id):
-								rogue_hooded_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								rogue_hooded_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Barbarian:
 							if not barbarian_npc_fetch_quests.has(quest_objective_id):
-								barbarian_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								barbarian_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 						GlobalVar.NpcType.Default:
 							if not dummy_npc_fetch_quests.has(quest_objective_id):
-								dummy_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_id))
+								dummy_npc_fetch_quests.set(quest_objective_id, FetchQuest.new(quest_resource, quest_item_mesh))
 
 
 func get_random_fetch_quest(skin_uuid:String) -> Quest:

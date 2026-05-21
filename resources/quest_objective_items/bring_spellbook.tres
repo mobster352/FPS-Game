@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_pilja")
 quest_objective_id = &"BRING_SPELLBOOK"
-quest_item_id = &"spellbook_closed_mesh"
+quest_item_mesh = &"spellbook_closed_mesh"
 metadata/_custom_type_script = "uid://3ws4fdhfqsxt"
