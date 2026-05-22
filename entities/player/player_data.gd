@@ -10,3 +10,4 @@ extends Resource
 @export var tables: Array[TableResource]
 @export var level: int = 0
 @export var xp:int = 0
+@export var npc_data:Dictionary[StringName, bool]

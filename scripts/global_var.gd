@@ -136,13 +136,13 @@ enum NpcType {
 	Mage,
 	Barbarian
 }
-var npc_skins:Dictionary[String, NpcType] = {
+var npc_skins:Dictionary[StringName, NpcType] = {
 	"uid://bbedpve12ikmy": NpcType.Knight,
 	"uid://bxx4vua8kbs4h": NpcType.Rogue,
 	"uid://vttdfwcbjkgk": NpcType.Rogue_Hooded,
 	"uid://bygykan821e7t": NpcType.Mage,
 	"uid://cwafteu2fqaol": NpcType.Barbarian,
-	"uid://btlcpec1pk0f4": NpcType.Default
+	#"uid://btlcpec1pk0f4": NpcType.Default
 }
 
 func get_random_food_by_level(level:int) -> int:

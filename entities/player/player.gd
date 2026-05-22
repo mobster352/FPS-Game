@@ -131,7 +131,7 @@ var fov:int:
 @onready var third_person_camera: Camera3D = %ThirdPersonCamera
 @onready var first_person_camera: Camera3D = %FirstPersonCamera
 @onready var spring_arm_3d: SpringArm3D = %SpringArm3D
-
+@export var npc_setup:NPCSetup
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -924,6 +924,13 @@ func save_player_data() -> void:
 	playerData.level = level
 	playerData.xp = xp
 	
+	for uuid:StringName in npc_setup.npcs.keys():
+		var npc_dummy:NPC_Dummy = npc_setup.npcs.get(uuid)
+		if npc_dummy.dummy.weapon.visible:
+			playerData.npc_data.set(uuid, false)
+		else:
+			playerData.npc_data.set(uuid, true)
+	
 	save_game()
 
 
@@ -964,6 +971,8 @@ func load_player_data() -> void:
 		
 	level = playerData.level
 	xp = playerData.xp
+	
+	npc_setup.npc_data = playerData.npc_data
 
 
 func save_game() -> void:

@@ -40,11 +40,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			if obj is PizzaBox:
 				if obj.get_meta("food_id") == drive_thru_menu.food_id:
 					money = randi_range(10,15)
-					dialogue_box.text = dialogue_box.get_good_order_delivered_text()
+					dialogue_box.dialogue_id = &"GOOD_ORDER"
 					GlobalSignal.add_xp.emit(10)
 				else:
 					money = randi_range(1,3)
-					dialogue_box.text = dialogue_box.get_bad_order_delivered_text()
+					dialogue_box.dialogue_id = &"BAD_ORDER"
 				dialogue_box.show()
 				food_item = obj as Item
 				food_item.disabled = true
@@ -92,8 +92,8 @@ func interact(_player: Player) -> void:
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()
 		has_order = true
-		dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
-		dialogue_box.show()
+		#dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
+		#dialogue_box.show()
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN

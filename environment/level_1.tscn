@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://chvm4t08rq0e2" path="res://assets/environment/city/park_road_tsplit_decorated.tscn" id="18_yan4v"]
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
+[ext_resource type="Script" uid="uid://ciay3taglysqo" path="res://environment/npc_setup.gd" id="21_8wgsp"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
 [ext_resource type="PackedScene" uid="uid://chpxpw23sr103" path="res://assets/kaykit/characters/character_assets/spellbook_closed.tscn" id="24_rt760"]
 [ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="25_oj5bk"]
@@ -1601,33 +1602,36 @@ unit_size = 100.0
 autoplay = true
 max_distance = 50.0
 
-[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "tables_node", "items_marker", "order_spawn_marker") instance=ExtResource("3_pk1qf")]
+[node name="Player" parent="Entities/Players" parent_id_path=PackedInt32Array(966853027) index="0" unique_id=824039100 node_paths=PackedStringArray("placement_system", "tables_node", "items_marker", "order_spawn_marker", "npc_setup") instance=ExtResource("3_pk1qf")]
 transform = Transform3D(-0.65, 0, -5.6824803e-08, 0, 0.65, 0, 5.6824803e-08, 0, -0.65, -3.1293485, 0, 27.284481)
 placement_system = NodePath("../../../PlacementSystem")
 tables_node = NodePath("../../Tables")
 money = 100
 items_marker = NodePath("../../Items")
 order_spawn_marker = NodePath("../../../Environment/Buildings/pizzeria/Objects/OrderSpawn")
+npc_setup = NodePath("../../NPCs")
 
-[node name="NPCs" type="Node3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="1" unique_id=2018062379]
+[node name="NPCs" type="Node3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="1" unique_id=2018062379 node_paths=PackedStringArray("level_ui")]
+script = ExtResource("21_8wgsp")
+level_ui = NodePath("../../UI")
 
-[node name="StartPathMarker" type="Marker3D" parent="Entities/NPCs" index="0" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
+[node name="StartPathMarker" type="Marker3D" parent="Entities/NPCs" index="0" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup")]
 transform = Transform3D(1.1924875e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924875e-08, 8.2, 0, 7.335)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("EndPathMarker")
-level_ui = NodePath("../../../UI")
 npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
+npc_setup = NodePath("..")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker" index="0" unique_id=1880130272]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.4985914, 0, -36.229797)
 
-[node name="StartPathMarker2" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=359057266 node_paths=PackedStringArray("endPathMarker", "level_ui", "npcSpawnTimer")]
+[node name="StartPathMarker2" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=359057266 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.97769, 0, 8.304201)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("EndPathMarker")
-level_ui = NodePath("../../../UI")
 npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
+npc_setup = NodePath("..")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker2" index="0" unique_id=1027319659]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.0017357, 0, -47.94768)

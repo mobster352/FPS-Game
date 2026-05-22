@@ -98,6 +98,7 @@ func enable_npc(enable:bool) -> void:
 
 func _ready() -> void:
 	dummy = dummy_scene.instantiate() as Dummy
+	
 	assert(dummy, "Dummy scene is incorrect")
 	add_child(dummy)
 	player = get_tree().get_first_node_in_group("player")
@@ -127,7 +128,9 @@ func set_path() -> void:
 				else:
 					target = endPathMarker
 		NpcChoices.Park:
-			if GlobalMarker.park_marker_npc:
+			if dummy.weapon.visible:
+				target = endPathMarker
+			elif GlobalMarker.park_marker_npc:
 				target = endPathMarker
 			else:
 				target = GlobalMarker.park_marker
@@ -348,12 +351,23 @@ func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 		await get_tree().create_timer(0.5).timeout
 		GlobalSignal.check_for_open_table.emit()
 		_leave_restaurant()
+		if not dummy.weapon.visible:
+			return
+		var random_drop_chance:int = randi_range(0, 3)
+		if random_drop_chance != 0:
+			return
+		dummy.weapon.hide()
+		var item = GlobalVar.get_item_from_mesh(dummy.weapon_mesh)
+		if not item:
+			return
+		item.global_transform = global_transform
+		get_parent().add_child(item)
 
 
 func _leave_restaurant() -> void:
 	target = GlobalMarker.outside_marker
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-	area_col.disabled = true
+	#area_col.disabled = true
 	table = null
 	sitting = false
 
@@ -382,6 +396,8 @@ func interact() -> void:
 				is_quest_complete = true
 				dialogue_box.current_index += 1
 				GlobalSignal.update_quest_objective.emit(quest.quest_id, quest.quest_objective_id)
+				if not dummy.weapon.visible:
+					dummy.weapon.show()
 		else:
 			dialogue_box.enable()
 			dialogue_box.show()

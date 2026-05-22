@@ -1,7 +1,7 @@
 extends Node3D
 class_name DialogueBox
 
-signal end_dialogue(npc:NPC_Dummy)
+signal end_dialogue(npc:Node3D)
 
 @export var dialogue_id: StringName
 var current_index:int = 0
@@ -9,7 +9,7 @@ var current_index:int = 0
 @onready var canvas_layer: CanvasLayer = %CanvasLayer
 @onready var label = %Label
 @onready var display_timer = $Timers/DisplayTimer
-var npc:NPC_Dummy
+var npc:Node3D
 
 func _ready() -> void:
 	set_process(false)
@@ -34,7 +34,7 @@ func _on_visibility_changed() -> void:
 		end_dialogue.emit(npc)
 
 
-func enable(_npc:NPC_Dummy=null) -> void:
+func enable(_npc:Node3D=null) -> void:
 	npc = _npc
 	show()
 

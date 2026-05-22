@@ -14,6 +14,8 @@ enum Animations {
 @export var physical_bones: PhysicalBoneSimulator3D
 
 @export var initial_animation: Animations
+@export var weapon:Node3D
+var weapon_mesh:StringName
 
 var is_ragdoll := false
 
@@ -23,6 +25,8 @@ func _ready() -> void:
 	if initial_animation:
 		if initial_animation == Animations.IDLE:
 			sit_chair_animation()
+	if weapon and weapon.has_meta("mesh"):
+		weapon_mesh = weapon.get_meta("mesh")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

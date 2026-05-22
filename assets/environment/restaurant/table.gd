@@ -81,12 +81,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				money = randi_range(10,15)
 			else:
 				money = randi_range(6,10)
-			dialogue_box.text = dialogue_box.get_good_order_delivered_text()
+			dialogue_box.dialogue_id = &"GOOD_ORDER"
 			GlobalSignal.add_xp.emit(10)
 			player.increment_customers_satisfied()
 		else:
 			money = randi_range(1,3)
-			dialogue_box.text = dialogue_box.get_bad_order_delivered_text()
+			dialogue_box.dialogue_id = &"BAD_ORDER"
 		dialogue_box.show()
 		area_col.set_deferred("disabled", true)
 		food_item = obj as Item
