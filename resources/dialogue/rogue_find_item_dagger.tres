@@ -5,17 +5,17 @@
 
 [sub_resource type="Resource" id="Resource_n5lvx"]
 script = ExtResource("1_n5lvx")
-text = "Can you find the dagger?"
+text = "Have you seen my Dagger anywhere?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_xd658"]
 script = ExtResource("1_n5lvx")
-text = "Have you found the dagger?"
+text = "Oh, where could my Dagger be?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_ddnr2"]
 script = ExtResource("1_n5lvx")
-text = "Thanks for bringing the dagger"
+text = "Now that I have my Dagger, I can...Nevermind"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [resource]

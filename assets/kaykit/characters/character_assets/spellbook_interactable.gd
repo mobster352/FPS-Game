@@ -14,7 +14,7 @@ func interact(player: Player) -> void:
 		player.drop_item()
 	if get_parent():
 		get_parent().remove_child(self)
-	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(10),deg_to_rad(130),deg_to_rad(0)), player)
+	item.pickup(Vector3.ZERO, Vector3(deg_to_rad(0),deg_to_rad(-125),deg_to_rad(0)), player)
 	item.queue_free()
 	
 func interact2(player: Player) -> void:

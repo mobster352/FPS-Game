@@ -1,12 +1,14 @@
 extends Node3D
 
 @export var pointer: CSGBox3D
+@export var pointer_ui: Control
 
 const SPEED = 0.5 # Pixels per second
 var direction = -1 # -1 for up, 1 for down
 
 func _ready() -> void:
-	GlobalSignal.add_order.connect(_add_order)
+	#GlobalSignal.add_order.connect(_add_order)
+	pass
 
 func _process(delta):
 	#hide()
@@ -18,25 +20,32 @@ func _process(delta):
 	elif pointer.position.y > 0.5: # If near bottom boundary
 		direction = -1
 	
-func _add_order(_table_id:int, food_id: int) -> void:
-	if get_parent() is Pizza:
-		var pizza = get_parent() as Pizza
-		match food_id:
-			GlobalVar.PIZZA_TYPE.PEPPERONI:
-				if pizza.pizza_type == food_id:
-					show()
-			GlobalVar.PIZZA_TYPE.CHEESE:
-				if pizza.pizza_type == food_id:
-					show()
-			GlobalVar.PIZZA_TYPE.MUSHROOM:
-				if pizza.pizza_type == food_id:
-					show()
-			GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
-				if pizza.pizza_type == food_id:
-					show()
-			GlobalVar.PIZZA_TYPE.CHEESE_PIE:
-				if pizza.pizza_type == food_id:
-					show()
-			GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
-				if pizza.pizza_type == food_id:
-					show()
+#func _add_order(_table_id:int, food_id: int) -> void:
+	#if get_parent() is Pizza:
+		#var pizza = get_parent() as Pizza
+		#match food_id:
+			#GlobalVar.PIZZA_TYPE.PEPPERONI:
+				#if pizza.pizza_type == food_id:
+					#show()
+			#GlobalVar.PIZZA_TYPE.CHEESE:
+				#if pizza.pizza_type == food_id:
+					#show()
+			#GlobalVar.PIZZA_TYPE.MUSHROOM:
+				#if pizza.pizza_type == food_id:
+					#show()
+			#GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
+				#if pizza.pizza_type == food_id:
+					#show()
+			#GlobalVar.PIZZA_TYPE.CHEESE_PIE:
+				#if pizza.pizza_type == food_id:
+					#show()
+			#GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				#if pizza.pizza_type == food_id:
+					#show()
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		pointer_ui.show()
+	else:
+		pointer_ui.hide()

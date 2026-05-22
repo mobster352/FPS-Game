@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ebc4v13v0xiy"]
+[gd_scene format=3 uid="uid://ebc4v13v0xiy"]
 
 [ext_resource type="Script" uid="uid://b241wxpakthli" path="res://assets/ui/pointer.gd" id="1_2hrlv"]
 [ext_resource type="Texture2D" uid="uid://cepkh1qbco7i1" path="res://assets/ui/SlimSlider_Green_Pointer.png" id="1_8vad7"]
@@ -14,20 +14,21 @@ shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_8vad7")
 billboard_mode = 1
 
-[node name="Pointer" type="Node3D" node_paths=PackedStringArray("pointer")]
+[node name="Pointer" type="Node3D" unique_id=797638073 node_paths=PackedStringArray("pointer", "pointer_ui")]
 script = ExtResource("1_2hrlv")
 pointer = NodePath("CSGBox3D")
+pointer_ui = NodePath("CSGBox3D/SubViewport/Pointer")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=886575833]
 size = Vector3(1, 1, 0)
 material = SubResource("StandardMaterial3D_2hrlv")
 
-[node name="SubViewport" type="SubViewport" parent="CSGBox3D"]
+[node name="SubViewport" type="SubViewport" parent="CSGBox3D" unique_id=486622276]
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Pointer" type="Control" parent="CSGBox3D/SubViewport"]
+[node name="Pointer" type="Control" parent="CSGBox3D/SubViewport" unique_id=2048297810]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_la473")
 
-[node name="MarginContainer" type="MarginContainer" parent="CSGBox3D/SubViewport/Pointer"]
+[node name="MarginContainer" type="MarginContainer" parent="CSGBox3D/SubViewport/Pointer" unique_id=1936453594]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,6 +51,8 @@ offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CSGBox3D/SubViewport/Pointer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="CSGBox3D/SubViewport/Pointer/MarginContainer" unique_id=875306650]
 layout_mode = 2
 texture = ExtResource("1_8vad7")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

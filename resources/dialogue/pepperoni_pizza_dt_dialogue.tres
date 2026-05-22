@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://ddxgx3vjtm4ar"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_scmkc"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_a0ewx"]
+
+[sub_resource type="Resource" id="Resource_scmkc"]
+script = ExtResource("1_scmkc")
+text = "Can I get a Pepperoni pizza?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_a0ewx")
+id = &"PEPPERONI_PIZZA_DT"
+lines = Dictionary[int, ExtResource("1_scmkc")]({
+0: SubResource("Resource_scmkc")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

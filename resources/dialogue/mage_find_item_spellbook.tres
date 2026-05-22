@@ -5,17 +5,17 @@
 
 [sub_resource type="Resource" id="Resource_0qd1e"]
 script = ExtResource("1_0qd1e")
-text = "Can you find my spellbook for me?"
+text = "My Spellbook is missing, have you seen it anywhere?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_bapgd"]
 script = ExtResource("1_0qd1e")
-text = "Have you found my spellbook?"
+text = "I still can't find my Spellbook."
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_myjxy"]
 script = ExtResource("1_0qd1e")
-text = "Thanks for finding my spellbook for me."
+text = "Thanks for finding my Spellbook. Now I can practice for the upcoming raid."
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [resource]

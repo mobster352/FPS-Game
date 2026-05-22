@@ -122,6 +122,38 @@ func get_random_fetch_quest(skin_uuid:String) -> Quest:
 	return get_quest_from_fetch_quest(random_quest_objective_id, fetch_quest)
 
 
+func get_weapon_fetch_quest_for_character(skin_uuid:StringName) -> Quest:
+	if not GlobalVar.npc_skins.has(skin_uuid):
+		push_error("NPC Skin not found: ", skin_uuid)
+		return
+	var npc_type:GlobalVar.NpcType = GlobalVar.npc_skins.get(skin_uuid)
+	var quest_objective_id:StringName
+	var fetch_quest:FetchQuest
+	match npc_type:
+		GlobalVar.NpcType.Mage:
+			quest_objective_id = QuestObjs.BRING_SPELLBOOK
+			fetch_quest = mage_npc_fetch_quests.get(quest_objective_id)
+		GlobalVar.NpcType.Knight:
+			quest_objective_id = QuestObjs.BRING_SWORD_1H
+			fetch_quest = knight_npc_fetch_quests.get(quest_objective_id)
+		GlobalVar.NpcType.Rogue:
+			quest_objective_id = QuestObjs.BRING_DAGGER
+			fetch_quest = rogue_npc_fetch_quests.get(quest_objective_id)
+		GlobalVar.NpcType.Rogue_Hooded:
+			quest_objective_id = QuestObjs.BRING_DAGGER
+			fetch_quest = rogue_hooded_npc_fetch_quests.get(quest_objective_id)
+		GlobalVar.NpcType.Barbarian:
+			quest_objective_id = QuestObjs.BRING_AXE_2H
+			fetch_quest = barbarian_npc_fetch_quests.get(quest_objective_id)
+		GlobalVar.NpcType.Default:
+			quest_objective_id = QuestObjs.BRING_COIN
+			fetch_quest = dummy_npc_fetch_quests.get(quest_objective_id)
+	if not fetch_quest:
+		push_error("Fetch Quest not found: ", fetch_quest)
+		return
+	return get_quest_from_fetch_quest(quest_objective_id, fetch_quest)
+
+
 func get_quest_from_fetch_quest(quest_objective_id:StringName, fetch_quest:FetchQuest) -> Quest:
 	var quest_id:StringName = fetch_quest.wrapped_quest.quest_id
 	var quest_item_id:StringName = fetch_quest.item

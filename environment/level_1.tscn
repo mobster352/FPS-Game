@@ -25,11 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
 [ext_resource type="Script" uid="uid://ciay3taglysqo" path="res://environment/npc_setup.gd" id="21_8wgsp"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
-[ext_resource type="PackedScene" uid="uid://chpxpw23sr103" path="res://assets/kaykit/characters/character_assets/spellbook_closed.tscn" id="24_rt760"]
-[ext_resource type="PackedScene" uid="uid://dpndx244uxnbh" path="res://assets/items/coin_a.tscn" id="25_oj5bk"]
-[ext_resource type="PackedScene" uid="uid://23ccnbtvgx1w" path="res://assets/kaykit/characters/character_assets/sword_1_handed.tscn" id="26_6b0uu"]
-[ext_resource type="PackedScene" uid="uid://cgcjf3hk4t4r1" path="res://assets/kaykit/characters/character_assets/dagger.tscn" id="27_3ogk7"]
-[ext_resource type="PackedScene" uid="uid://ca5w8wrqv4v8g" path="res://assets/kaykit/characters/character_assets/axe_2_handed.tscn" id="28_p8jrx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
 size = Vector3(120.17102, 0.8843994, 136.86133)
@@ -1615,23 +1610,25 @@ npc_setup = NodePath("../../NPCs")
 script = ExtResource("21_8wgsp")
 level_ui = NodePath("../../UI")
 
-[node name="StartPathMarker" type="Marker3D" parent="Entities/NPCs" index="0" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup")]
+[node name="StartPathMarker" type="Marker3D" parent="Entities/NPCs" index="0" unique_id=373901496 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup", "items_marker")]
 transform = Transform3D(1.1924875e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924875e-08, 8.2, 0, 7.335)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("EndPathMarker")
 npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
 npc_setup = NodePath("..")
+items_marker = NodePath("../../Items")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker" index="0" unique_id=1880130272]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6.4985914, 0, -36.229797)
 
-[node name="StartPathMarker2" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=359057266 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup")]
+[node name="StartPathMarker2" type="Marker3D" parent="Entities/NPCs" index="1" unique_id=359057266 node_paths=PackedStringArray("endPathMarker", "npcSpawnTimer", "npc_setup", "items_marker")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.97769, 0, 8.304201)
 script = ExtResource("13_kv32d")
 endPathMarker = NodePath("EndPathMarker")
 npcSpawnTimer = NodePath("../../Timers/NpcSpawnTimer")
 npc_setup = NodePath("..")
+items_marker = NodePath("../../Items")
 
 [node name="EndPathMarker" type="Marker3D" parent="Entities/NPCs/StartPathMarker2" index="0" unique_id=1027319659]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.0017357, 0, -47.94768)
@@ -1691,21 +1688,6 @@ curve = SubResource("Curve3D_kv32d")
 [node name="PathFollow3D" type="PathFollow3D" parent="Entities/ReturnCarPath" index="0" unique_id=640778589]
 transform = Transform3D(-0.9999919, 0, 0.0040316624, 0, 1, 0, -0.0040316624, 0, -0.9999919, 8.644927, 0, -13.9648)
 use_model_front = true
-
-[node name="spellbook_closed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="0" unique_id=1833217168 instance=ExtResource("24_rt760")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 20.817955)
-
-[node name="Coin_A" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="1" unique_id=248323887 instance=ExtResource("25_oj5bk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17172909, 20.088926)
-
-[node name="sword_1handed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="2" unique_id=2091968208 instance=ExtResource("26_6b0uu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1395628, 0.4429568, 21.462719)
-
-[node name="dagger" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="3" unique_id=1323727573 instance=ExtResource("27_3ogk7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3225665, 0.32850802, 20.26361)
-
-[node name="axe_2handed" parent="Entities/Items" parent_id_path=PackedInt32Array(1373334443) index="4" unique_id=1527793825 instance=ExtResource("28_p8jrx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2739785, 0.5813515, 21.471148)
 
 [node name="PlacementSystem" parent="." index="6" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")

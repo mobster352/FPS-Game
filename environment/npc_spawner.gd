@@ -3,6 +3,7 @@ extends Marker3D
 @export var endPathMarker:Marker3D
 @export var npcSpawnTimer:Timer
 @export var npc_setup:NPCSetup
+@export var items_marker:Marker3D
 
 func _ready() -> void:
 	#GlobalSignal.open_store.connect(_open_store)
@@ -28,4 +29,5 @@ func _on_npc_spawn_timer_timeout() -> void:
 	npc.endPathMarker = endPathMarker
 	npc.transform = transform
 	npc.skin_uuid = random_npc
+	npc.items_marker = items_marker
 	npc.enable_npc(true)

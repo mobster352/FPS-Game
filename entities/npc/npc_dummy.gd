@@ -13,6 +13,7 @@ var dummy: Dummy
 
 @export var level_ui: Level_UI
 @export var walk_in_store_odds := 16
+@export var items_marker:Marker3D
 
 @onready var initial_parent = get_parent()
 @onready var quest_repeat_timer: Timer = %QuestRepeatTimer
@@ -122,23 +123,28 @@ func set_path() -> void:
 			if not is_store_open:
 				target = endPathMarker
 			else:
-				var walk_in_store = randi_range(0, walk_in_store_odds)
-				if walk_in_store == 0:
-					target = GlobalMarker.restaurant_marker
-				else:
-					target = endPathMarker
+				check_walk_in_store()
 		NpcChoices.Park:
-			if dummy.weapon.visible:
-				target = endPathMarker
-			elif GlobalMarker.park_marker_npc:
-				target = endPathMarker
+			if dummy.weapon.visible or GlobalMarker.park_marker_npc:
+				if not is_store_open:
+					target = endPathMarker
+				else:
+					check_walk_in_store()
 			else:
 				target = GlobalMarker.park_marker
 				GlobalMarker.park_marker_npc = self
-				quest = ResourceManager.get_random_fetch_quest(skin_uuid)
+				quest = ResourceManager.get_weapon_fetch_quest_for_character(skin_uuid)
 				dialogue_box.dialogue_id = quest.dialogue_id
 	
 	navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
+
+
+func check_walk_in_store() -> void:
+	var walk_in_store = randi_range(0, walk_in_store_odds)
+	if walk_in_store == 0:
+		target = GlobalMarker.restaurant_marker
+	else:
+		target = endPathMarker
 
 
 #func _process(_delta: float) -> void:
@@ -216,7 +222,9 @@ func idle_state(_delta:float) -> void:
 	if target == GlobalMarker.park_marker:
 		var bench_marker = GlobalMarker.park_marker.get_child(0) as Marker3D
 		global_position = bench_marker.global_position
-		look_at(GlobalMarker.park_marker.global_position)
+		var target_pos = GlobalMarker.park_marker.global_position
+		target_pos.y = global_position.y
+		look_at(target_pos)
 		dummy.sit_chair_animation()
 		next_state = NPCState.Sitting
 		previous_state = current_state
@@ -242,6 +250,8 @@ func walking_state(delta:float) -> void:
 	else:
 		next_state = NPCState.Idle
 		previous_state = current_state
+		if target == GlobalMarker.park_marker:
+			pointer.show()
 	
 func sitting_state(_delta:float) -> void:
 	if not sitting:
@@ -361,7 +371,7 @@ func _remove_customer(_npc_dummy:NPC_Dummy) -> void:
 		if not item:
 			return
 		item.global_transform = global_transform
-		get_parent().add_child(item)
+		items_marker.add_child(item)
 
 
 func _leave_restaurant() -> void:
@@ -404,6 +414,7 @@ func interact() -> void:
 			has_quest = true
 			dialogue_box.current_index += 1
 			GlobalSignal.add_quest.emit(quest.quest_id, quest.quest_objective_id)
+			pointer.hide()
 			return
 	dialogue_box.enable(self)
 	dialogue_box.show()

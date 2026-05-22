@@ -5,17 +5,17 @@
 
 [sub_resource type="Resource" id="Resource_iikq6"]
 script = ExtResource("1_iikq6")
-text = "Can you find the sword?"
+text = "Can you help me find my Sword? I swear I just had it on me."
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_auidh"]
 script = ExtResource("1_iikq6")
-text = "Have you found the sword?"
+text = "Have you found my Sword?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_bicue"]
 script = ExtResource("1_iikq6")
-text = "Thanks for bringing the sword."
+text = "Now I can get back to adventuring. Thanks stranger."
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [resource]

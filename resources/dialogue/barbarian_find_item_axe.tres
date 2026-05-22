@@ -5,17 +5,17 @@
 
 [sub_resource type="Resource" id="Resource_7t5kj"]
 script = ExtResource("1_7t5kj")
-text = "Can you find the axe?"
+text = "I lost my Axe recently, can you help me find it?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_th1vb"]
 script = ExtResource("1_7t5kj")
-text = "Have you found the axe?"
+text = "Have you found my Axe?"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [sub_resource type="Resource" id="Resource_xq1ul"]
 script = ExtResource("1_7t5kj")
-text = "Thanks for bringing the axe"
+text = "Thank you for finding my Axe!"
 metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
 
 [resource]

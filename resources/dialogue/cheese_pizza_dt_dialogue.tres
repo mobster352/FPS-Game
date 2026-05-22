@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://dcvekaue885je"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_m23su"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_1mgkb"]
+
+[sub_resource type="Resource" id="Resource_m23su"]
+script = ExtResource("1_m23su")
+text = "Can I get a Cheese pizza?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_1mgkb")
+id = &"CHEESE_PIZZA_DT"
+lines = Dictionary[int, ExtResource("1_m23su")]({
+0: SubResource("Resource_m23su")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

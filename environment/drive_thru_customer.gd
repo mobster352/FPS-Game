@@ -92,8 +92,14 @@ func interact(_player: Player) -> void:
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()
 		has_order = true
-		#dialogue_box.text = dialogue_box.get_order_text() + GlobalVar.get_food(random_food).food_name
-		#dialogue_box.show()
+		match random_food:
+			GlobalVar.PIZZA_TYPE.CHEESE_PIE:
+				dialogue_box.dialogue_id = &"CHEESE_PIZZA_DT"
+			GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
+				dialogue_box.dialogue_id = &"PEPPERONI_PIZZA_DT"
+			GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				dialogue_box.dialogue_id = &"MUSHROOM_PIZZA_DT"
+		dialogue_box.show()
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN
