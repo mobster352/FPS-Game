@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://no86l4i83ss1"]
+
+[ext_resource type="Script" uid="uid://cquybc0gxn013" path="res://components/thank_you_for_playing_demo.gd" id="1_1dtxt"]
+[ext_resource type="Texture2D" uid="uid://cx0n3swrl0pdt" path="res://assets/ui/pizza_boy_tyfp_demo (1).png" id="2_clh02"]
+
+[node name="ThankYouForPlayingDemo" type="Control" unique_id=1711654069]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1dtxt")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=778653253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2" unique_id=1614252050]
+layout_mode = 2
+texture = ExtResource("2_clh02")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=207078782]
+layout_mode = 1
+offset_left = 696.0
+offset_top = 80.0
+offset_right = 738.0
+offset_bottom = 111.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="CloseButton" type="Button" parent="MarginContainer" unique_id=1292692354]
+layout_mode = 2
+text = "X"
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1277521087]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 312.0
+offset_right = 632.0
+offset_bottom = 368.0
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer3" unique_id=905977001]
+layout_mode = 2
+underline = 2
+uri = "https://store.steampowered.com/app/4633340/Pizza_Boy?snr=1_25_4__318"
+
+[node name="MarginContainer4" type="MarginContainer" parent="." unique_id=1111241682]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 536.0
+offset_right = 688.0
+offset_bottom = 568.0
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer4" unique_id=886010414]
+layout_mode = 2
+underline = 2
+uri = "https://discord.gg/GBZvgFyDx9"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/CloseButton" to="." method="_on_close_button_pressed"]

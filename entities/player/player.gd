@@ -161,6 +161,9 @@ func _ready():
 	player_loaded.emit(self)
 	GlobalSignal.init_player.emit(self)
 	item_type = GlobalVar.StoreItem.None
+	
+	if GlobalVar.is_demo and playerData.day == 4:
+		%ThankYouForPlayingDemo.show()
 
 
 func _process(_delta: float) -> void:
@@ -906,7 +909,12 @@ func save_player_data() -> void:
 				playerData.items.append(item_resource)
 	
 	playerData.save_date = Time.get_datetime_dict_from_system()
-	playerData.day += 1
+	
+	if GlobalVar.is_demo:
+		if playerData.day < 4:
+			playerData.day += 1
+	else:
+		playerData.day += 1
 	
 	playerData.tables.clear()
 	for table:Table in tables_node.get_children():

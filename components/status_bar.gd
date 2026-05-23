@@ -12,6 +12,7 @@ func _ready() -> void:
 	GlobalSignal.set_time_visibility.connect(_set_time_visibility)
 	GlobalSignal.update_time.connect(_update_time)
 	GlobalSignal.add_xp.connect(_add_xp)
+	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		_update_money(player.money)
@@ -85,3 +86,10 @@ func _add_xp(value:int) -> void:
 		player.xp += value
 	%LevelProgressBar.value = player.xp
 	_update_xp_floating_text(value)
+
+
+func _freeze_player_camera(is_freeze:bool) -> void:
+	if is_freeze:
+		hide()
+	else:
+		show()

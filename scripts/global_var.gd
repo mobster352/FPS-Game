@@ -25,6 +25,8 @@ enum StoreItem {
 	PizzaBox
 }
 
+var is_demo:bool = true
+
 var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"name": "dough_mesh",
