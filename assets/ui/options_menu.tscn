@@ -500,7 +500,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 56.0
-offset_top = 8.0
+offset_top = 15.0
 offset_right = 192.0
 offset_bottom = 39.0
 grow_horizontal = 2
@@ -508,6 +508,43 @@ grow_horizontal = 2
 [node name="BackgroundAudioCheckBox" type="CheckBox" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3" unique_id=1490644582]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="BackgroundAudio2" type="Control" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer" unique_id=1451663109]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2" unique_id=26748422]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -142.0
+offset_top = 6.0
+offset_right = 3.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="BackgroundMusicLabel" type="Label" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2/MarginContainer4" unique_id=1685264806]
+layout_mode = 2
+text = "Background Music Audio Level"
+label_settings = ExtResource("4_08tyc")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2" unique_id=1395687673]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 56.0
+offset_top = 17.0
+offset_right = 192.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="BackgroundMusicHSlider" type="HSlider" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2/MarginContainer3" unique_id=326217496]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -19.0
+max_value = -1.0
+value = -10.0
 
 [node name="Control" type="Control" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer" unique_id=1324927487]
 layout_mode = 2
@@ -631,6 +668,7 @@ volume_db = -5.0
 [connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/ControllerSensitivitySpinBox" to="." method="_on_controller_sensitivity_spin_box_value_changed"]
 [connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
 [connection signal="pressed" from="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
+[connection signal="value_changed" from="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2/MarginContainer3/BackgroundMusicHSlider" to="." method="_on_background_music_h_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/BackButton/TextureButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="pressed" from="Settings/BackButton/TextureButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GraphicsRestartPopup/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

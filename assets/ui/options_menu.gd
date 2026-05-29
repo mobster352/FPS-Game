@@ -59,6 +59,12 @@ var fov:int:
 		fov = value
 		%FovValue.text = str(value)
 		%FovSlider.value = value
+		
+var bg_music_audio_level:float:
+	set(value):
+		bg_music_audio_level = value
+		%BackgroundMusicHSlider.value = value
+		BackgroundMusic.bg_music_node.volume_db = value
 
 var settings_data:Settings
 var player:Player
@@ -116,6 +122,7 @@ func save_settings() -> void:
 	settings_data.bg_music_on = is_bg_audio_on
 	settings_data.rendering_method = rendering_method
 	settings_data.fov = fov
+	settings_data.bg_music_audio_level = bg_music_audio_level
 	var error_code := ResourceSaver.save(settings_data, SETTINGS_PATH)
 	if error_code != OK:
 		push_error("Failed to save game: " + error_string(error_code))
@@ -137,17 +144,19 @@ func load_settings() -> void:
 	if settings_data.mouse_sensitivity:
 		if player:
 			player.mouse_sensitivity = Settings.update_mouse_sensitivity(settings_data.mouse_sensitivity)
-		%MouseSensitivitySpinBox.value = settings_data.mouse_sensitivity
+		%MouseSensitivitySpinBox.set_value_no_signal(settings_data.mouse_sensitivity)
 	if settings_data.controller_sensitivity:
 		if player:
 			player.controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
-		%ControllerSensitivitySpinBox.value = settings_data.controller_sensitivity
+		%ControllerSensitivitySpinBox.set_value_no_signal(settings_data.controller_sensitivity)
 	if settings_data.deadzone:
 		if player:
 			player.controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
-		%DeadzoneSpinBox.value = settings_data.deadzone
+		%DeadzoneSpinBox.set_value_no_signal(settings_data.deadzone)
 	if settings_data.fov:
 		fov = settings_data.fov
+	if settings_data.bg_music_audio_level:
+		bg_music_audio_level = settings_data.bg_music_audio_level
 
 
 func apply_preset(preset: QualityPreset):
@@ -303,3 +312,8 @@ func _on_fov_slider_value_changed(value: float) -> void:
 	save_settings()
 	if player:
 		player.fov = fov
+
+
+func _on_background_music_h_slider_value_changed(value: float) -> void:
+	bg_music_audio_level = value
+	save_settings()
