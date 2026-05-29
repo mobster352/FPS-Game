@@ -91,7 +91,7 @@ func update_environment():
 	
 	if not sky:
 		return
-	set_night_sky(f)
+	#set_night_sky(f)
 
 func get_sun_factor() -> float:
 	# Based on sun angle, not time

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://68jcexu6pnr4" path="res://assets/environment/misc/chair_a.tscn" id="6_0dng7"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="7_5lbjd"]
 [ext_resource type="PackedScene" uid="uid://cdw02022aurw2" path="res://assets/pizzaboy/scenes/hanging_light.tscn" id="8_kdyam"]
+[ext_resource type="PackedScene" uid="uid://7moovv5gedfc" path="res://components/reaction.tscn" id="9_dgaop"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqk40"]
 albedo_texture = ExtResource("3_dgaop")
@@ -88,6 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_nm6bs")
 
 [node name="hanging_light" parent="." index="7" unique_id=330979996 instance=ExtResource("8_kdyam")]
+
+[node name="Reaction" parent="." index="8" unique_id=1099139206 instance=ExtResource("9_dgaop")]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="timeout" from="Timers/PlateTimer" to="." method="_on_plate_timer_timeout"]

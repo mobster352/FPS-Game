@@ -36,8 +36,8 @@ func _update_money_floating_text(money:int) -> void:
 	%MoneyIncrement.position = money_increment_start_pos
 	%MoneyIncrement.show()
 	var tween = create_tween()
-	tween.tween_property(%MoneyIncrement, "position", %MoneyIncrement.position + Vector2(0, %MoneyIncrement.position.y - 100), 2.0)
-	await get_tree().create_timer(1).timeout
+	tween.tween_property(%MoneyIncrement, "position:y", %MoneyIncrement.position.y - 40, 2.0)
+	await tween.finished
 	%MoneyIncrement.hide()
 	
 func _update_xp_floating_text(xp:int) -> void:
@@ -50,8 +50,8 @@ func _update_xp_floating_text(xp:int) -> void:
 	%LevelIncrement.position = xp_increment_start_pos
 	%LevelIncrement.show()
 	var tween = create_tween()
-	tween.tween_property(%LevelIncrement, "position", %LevelIncrement.position + Vector2(0, %LevelIncrement.position.y - 100), 2.0)
-	await get_tree().create_timer(1).timeout
+	tween.tween_property(%LevelIncrement, "position:y", %LevelIncrement.position.y - 40, 2.0)
+	await tween.finished
 	%LevelIncrement.hide()
 
 

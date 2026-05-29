@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_d8lpq"]
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="4_f7sqe"]
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="5_2w7nu"]
+[ext_resource type="PackedScene" uid="uid://7moovv5gedfc" path="res://components/reaction.tscn" id="6_2w7nu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f7sqe"]
 size = Vector3(2.0552368, 3.0355835, 4.696228)
@@ -12,12 +13,11 @@ size = Vector3(2.0552368, 3.0355835, 4.696228)
 [sub_resource type="SphereShape3D" id="SphereShape3D_roemc"]
 radius = 2.764011
 
-[node name="DriveThruCustomer" type="StaticBody3D" unique_id=58984675 node_paths=PackedStringArray("drive_thru_menu", "dialogue_box", "pointer")]
+[node name="DriveThruCustomer" type="StaticBody3D" unique_id=58984675 node_paths=PackedStringArray("drive_thru_menu", "pointer")]
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("1_2q675")
 drive_thru_menu = NodePath("DriveThruMenu")
-dialogue_box = NodePath("DialogueBox")
 pointer = NodePath("Pointer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=960809265]
@@ -43,7 +43,10 @@ script = ExtResource("4_f7sqe")
 
 [node name="DialogueBox" parent="." unique_id=790149930 instance=ExtResource("5_2w7nu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5560074, 2.7607057, -0.15580845)
-visible = false
+
+[node name="Reaction" parent="." unique_id=1099139206 instance=ExtResource("6_2w7nu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3132824, 1.5, 0.008824527)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

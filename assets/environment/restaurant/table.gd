@@ -6,12 +6,14 @@ class_name Table
 @export var plate_timer: Timer
 @export var chair: Chair
 @export var is_empty := true
-@export var dialogue_box: DialogueBox
+#@export var dialogue_box: DialogueBox
 @export var npc: NPC_Dummy
 @export var pointer: Node3D
 
 @onready var placement_system: PlacementSystem
 @onready var player: Player
+@onready var reaction: Reaction = %Reaction
+
 
 var player_in_range:bool
 
@@ -81,13 +83,13 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				money = randi_range(10,15)
 			else:
 				money = randi_range(6,10)
-			dialogue_box.dialogue_id = &"GOOD_ORDER"
+			reaction.good_order = true
 			GlobalSignal.add_xp.emit(10)
 			player.increment_customers_satisfied()
 		else:
 			money = randi_range(1,3)
-			dialogue_box.dialogue_id = &"BAD_ORDER"
-		dialogue_box.show()
+			reaction.good_order = false
+		reaction.show()
 		area_col.set_deferred("disabled", true)
 		food_item = obj as Item
 		food_item.disabled = true
@@ -111,7 +113,7 @@ func _on_plate_timer_timeout() -> void:
 	# remove npc
 	GlobalSignal.remove_customer.emit(npc)
 	npc = null
-	dialogue_box = null
+	#dialogue_box = null
 	GlobalSignal.table_empty.emit(table_id)
 	
 	area_col.set_deferred("disabled", false)

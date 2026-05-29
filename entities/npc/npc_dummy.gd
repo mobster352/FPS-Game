@@ -332,7 +332,7 @@ func _assign_customer_to_table(_table:Table, _npc_dummy:NPC_Dummy) -> void:
 	GlobalSignal.check_restaurant_food.emit(random_food)
 	
 	table.npc = self
-	table.dialogue_box = dialogue_box
+	#table.dialogue_box = dialogue_box
 	target = table.chair.sitting_marker
 	GlobalMarker.queue1_npc = null
 	

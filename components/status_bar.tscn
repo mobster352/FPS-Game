@@ -155,7 +155,7 @@ anchor_right = 0.697
 anchor_bottom = 1.023
 offset_left = 0.06399536
 offset_right = -0.104003906
-offset_bottom = 0.020999908
+offset_bottom = 0.021011353
 text = "+0"
 label_settings = SubResource("LabelSettings_rewvx")
 

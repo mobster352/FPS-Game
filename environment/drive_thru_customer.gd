@@ -2,7 +2,7 @@ extends Interactable
 class_name DriveThruCustomer
 
 @export var drive_thru_menu: DriveThruMenu
-@export var dialogue_box: DialogueBox
+#@export var dialogue_box: DialogueBox
 @export var pointer: Node3D
 #@export var area_col: CollisionShape3D
 #@export var customer_collider: CollisionShape3D
@@ -12,6 +12,8 @@ class_name DriveThruCustomer
 @export var return_car_path:PathFollow3D
 @export var drive_thru_spawn:DriveThruSpawn
 @export var level:Level
+
+@onready var reaction: Reaction = %Reaction
 
 var in_range := false
 var has_order := false
@@ -40,12 +42,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			if obj is PizzaBox:
 				if obj.get_meta("food_id") == drive_thru_menu.food_id:
 					money = randi_range(10,15)
-					dialogue_box.dialogue_id = &"GOOD_ORDER"
+					reaction.good_order = true
 					GlobalSignal.add_xp.emit(10)
 				else:
 					money = randi_range(1,3)
-					dialogue_box.dialogue_id = &"BAD_ORDER"
-				dialogue_box.show()
+					reaction.good_order = false
+				reaction.show()
 				food_item = obj as Item
 				food_item.disabled = true
 				food_item.shrink_and_free(money, 0.5)
@@ -53,7 +55,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 				GlobalSignal.check_restaurant_food.emit(obj.get_meta("food_id"))
 				#area_col.set_deferred("disabled", true)
 				await get_tree().create_timer(2).timeout
-				dialogue_box.hide()
+				#dialogue_box.hide()
 				#customer_collider.set_deferred("disabled", true)
 				timer.wait_time = randf_range(15,60)
 				timer.start()
@@ -92,14 +94,14 @@ func interact(_player: Player) -> void:
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()
 		has_order = true
-		match random_food:
-			GlobalVar.PIZZA_TYPE.CHEESE_PIE:
-				dialogue_box.dialogue_id = &"CHEESE_PIZZA_DT"
-			GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
-				dialogue_box.dialogue_id = &"PEPPERONI_PIZZA_DT"
-			GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
-				dialogue_box.dialogue_id = &"MUSHROOM_PIZZA_DT"
-		dialogue_box.show()
+		#match random_food:
+			#GlobalVar.PIZZA_TYPE.CHEESE_PIE:
+				#dialogue_box.dialogue_id = &"CHEESE_PIZZA_DT"
+			#GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
+				#dialogue_box.dialogue_id = &"PEPPERONI_PIZZA_DT"
+			#GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				#dialogue_box.dialogue_id = &"MUSHROOM_PIZZA_DT"
+		#dialogue_box.show()
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN

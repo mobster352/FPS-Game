@@ -11,7 +11,6 @@ var npc_dummy:NPC_Dummy
 var change:int:
 	set(value):
 		change = value
-		%ChangeValue.text = format_money(value)
 var total:int = 0
 var money_payed:int = 0
 var player:Player
@@ -68,6 +67,8 @@ func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_f
 	total = _total
 	money_payed = _money_payed
 	change = money_payed - total
+	
+	%ChangeValue.text = format_money(change)
 	
 	%MarginContainer.show()
 	
