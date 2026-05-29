@@ -2,7 +2,7 @@ extends Interactable
 class_name DriveThruCustomer
 
 @export var drive_thru_menu: DriveThruMenu
-#@export var dialogue_box: DialogueBox
+@export var dialogue_box: DialogueBox
 @export var pointer: Node3D
 #@export var area_col: CollisionShape3D
 #@export var customer_collider: CollisionShape3D
@@ -94,14 +94,14 @@ func interact(_player: Player) -> void:
 		GlobalSignal.check_restaurant_food.emit(random_food)
 		pointer.hide()
 		has_order = true
-		#match random_food:
-			#GlobalVar.PIZZA_TYPE.CHEESE_PIE:
-				#dialogue_box.dialogue_id = &"CHEESE_PIZZA_DT"
-			#GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
-				#dialogue_box.dialogue_id = &"PEPPERONI_PIZZA_DT"
-			#GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
-				#dialogue_box.dialogue_id = &"MUSHROOM_PIZZA_DT"
-		#dialogue_box.show()
+		match random_food:
+			GlobalVar.PIZZA_TYPE.CHEESE_PIE:
+				dialogue_box.dialogue_id = &"CHEESE_PIZZA_DT"
+			GlobalVar.PIZZA_TYPE.PEPPERONI_PIE:
+				dialogue_box.dialogue_id = &"PEPPERONI_PIZZA_DT"
+			GlobalVar.PIZZA_TYPE.MUSHROOM_PIE:
+				dialogue_box.dialogue_id = &"MUSHROOM_PIZZA_DT"
+		dialogue_box.show()
 	
 func reticle_color() -> Color:
 	return RETICLE_GREEN
