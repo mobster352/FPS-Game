@@ -260,23 +260,20 @@ number_required = 0
 [node name="cashregister_cashdrawer" parent="Objects" index="0" unique_id=804449852 instance=ExtResource("3_h4bo3")]
 transform = Transform3D(2.920608e-07, 0, 1.5, 0, 1.5, 0, -1.5, 0, 2.920608e-07, -1.773129, 0.99800503, -15.184542)
 
-[node name="Monitor" parent="Objects" index="1" unique_id=111431306 instance=ExtResource("4_jsuam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30550963, 1.8989038, -29.314686)
+[node name="kitchentable_B_large" parent="Objects" index="1" unique_id=1955155942 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 0.75, 0, 8.742278e-08, 0, -1, 6.8465595, 0, -21.963118)
 
-[node name="kitchentable_B_large" parent="Objects" index="2" unique_id=1955155942 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 0.75, 0, 8.742278e-08, 0, -1, -0.25522158, 0, -28.329912)
+[node name="kitchentable_B_large3" parent="Objects" index="2" unique_id=735539177 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
+transform = Transform3D(-2, 0, -1.5099579e-07, 0, 0.75, 0, 3.0199158e-07, 0, -1, 2.2349548, 0, -21.959213)
 
-[node name="kitchentable_B_large3" parent="Objects" index="3" unique_id=735539177 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
-transform = Transform3D(3.8941437e-07, 0, -1, 0, 0.75, 0, 2, 0, 1.9470718e-07, -2.7673416, 0, -26.340899)
-
-[node name="kitchentable_B_large2" parent="Objects" index="4" unique_id=1056281176 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
-transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 2.9631543, 0, -28.314877)
+[node name="kitchentable_B_large2" parent="Objects" index="3" unique_id=1056281176 groups=["nav_back_restaurant"] instance=ExtResource("5_hnx3c")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 3.527088, 0, -28.314877)
 
 [node name="pizza_oven" parent="Objects/kitchentable_B_large2" index="1" unique_id=1242572807 instance=ExtResource("6_7b4fi")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.019834518, 0.9906155, -0.00662899)
 
-[node name="kitchentable_B4" parent="Objects" index="5" unique_id=532985510 groups=["nav_back_restaurant"] instance=ExtResource("7_evv48")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 5.7119555, 0, -28.286816)
+[node name="kitchentable_B4" parent="Objects" index="4" unique_id=532985510 groups=["nav_back_restaurant"] instance=ExtResource("7_evv48")]
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -2.6967378, 0, -25.785254)
 
 [node name="Computer" parent="Objects/kitchentable_B4" index="2" unique_id=81864904 instance=ExtResource("8_je3yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)
@@ -284,7 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)
 [node name="OrderUI" parent="Objects/kitchentable_B4/Computer" index="2" unique_id=710377329]
 visible = false
 
-[node name="premade_pizzas" type="Node3D" parent="Objects" index="6" unique_id=456323005]
+[node name="premade_pizzas" type="Node3D" parent="Objects" index="5" unique_id=456323005]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.056773e-08, 0, -14.96789)
 
 [node name="Marker3D" type="Marker3D" parent="Objects/premade_pizzas" index="0" unique_id=2101130646]
@@ -320,19 +317,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5127187, 1, 0)
 transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.509958e-07, 1, 4.371139e-08, 0, 1.539, 0)
 spot_range = 1.75
 
-[node name="kitchencounter_sink" parent="Objects" index="7" unique_id=967959218 groups=["nav_back_restaurant"] instance=ExtResource("12_gorm1")]
+[node name="kitchencounter_sink" parent="Objects" index="6" unique_id=967959218 groups=["nav_back_restaurant"] instance=ExtResource("12_gorm1")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8.025117, 0, -28.345146)
 
-[node name="Weaponrack" parent="Objects" index="8" unique_id=2074414256 instance=ExtResource("13_o86q3")]
+[node name="Weaponrack" parent="Objects" index="7" unique_id=2074414256 instance=ExtResource("13_o86q3")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -4.509869, 0, -25.451675)
 
-[node name="open_sign" parent="Objects" index="9" unique_id=1130325679 node_paths=PackedStringArray("restaurant") instance=ExtResource("14_hhfk7")]
+[node name="open_sign" parent="Objects" index="8" unique_id=1130325679 node_paths=PackedStringArray("restaurant") instance=ExtResource("14_hhfk7")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3589168, 1.9347057, -0.071912855)
 restaurant = NodePath("../..")
 
-[node name="OrderSpawn" type="Marker3D" parent="Objects" index="10" unique_id=1562046605]
+[node name="OrderSpawn" type="Marker3D" parent="Objects" index="9" unique_id=1562046605]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.298079, 100, -35.506065)
+
+[node name="Monitors" type="Node3D" parent="Objects" index="10" unique_id=292784400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.166495, 0, -22.143991)
+
+[node name="Monitor" parent="Objects/Monitors" index="0" unique_id=111431306 instance=ExtResource("4_jsuam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045965195, 2.2090251, 0.27510643)
+
+[node name="Monitor2" parent="Objects/Monitors" index="1" unique_id=1279932330 instance=ExtResource("4_jsuam")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.045965195, 2.2090251, 0.18002701)
 
 [node name="Windows" type="Node3D" parent="." index="5" unique_id=1540345239]
 
@@ -372,12 +378,14 @@ shape = SubResource("ConcavePolygonShape3D_m5ajk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/RoofBoarder/StaticBody3D" index="0" unique_id=919398167]
 shape = SubResource("ConcavePolygonShape3D_bbid8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/WallCounter" parent_id_path=PackedInt32Array(1074828498) index="0" unique_id=2052322319]
+[node name="WallCounter" parent="Mesh" parent_id_path=PackedInt32Array(342993935) index="5" unique_id=1074828498 groups=["nav_restaurant"]]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/WallCounter" index="0" unique_id=2052322319]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/WallCounter/StaticBody3D" index="0" unique_id=58424944]
 shape = SubResource("ConcavePolygonShape3D_j3633")
 
-[node name="Walls" parent="Mesh" parent_id_path=PackedInt32Array(342993935) index="6" unique_id=1944140430]
+[node name="Walls" parent="Mesh" parent_id_path=PackedInt32Array(342993935) index="6" unique_id=1944140430 groups=["nav_restaurant"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009112358, 0.0020754337, -0.0002565384)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Mesh/Walls" index="0" unique_id=608421998]
@@ -385,7 +393,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009112358, 0.0020754337, -
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Walls/StaticBody3D" index="0" unique_id=369204737]
 shape = SubResource("ConcavePolygonShape3D_rhlgd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/WallStorage" parent_id_path=PackedInt32Array(299219924) index="0" unique_id=2101550119]
+[node name="WallStorage" parent="Mesh" parent_id_path=PackedInt32Array(342993935) index="7" unique_id=299219924 groups=["nav_restaurant"]]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/WallStorage" index="0" unique_id=2101550119]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/WallStorage/StaticBody3D" index="0" unique_id=1206460208]
 shape = SubResource("ConcavePolygonShape3D_efxkk")
