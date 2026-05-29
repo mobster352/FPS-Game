@@ -112,8 +112,8 @@ func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName)
 			break
 	if is_quest_finished:
 		remove_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
-		player.update_money(5)
-		GlobalSignal.add_xp.emit(5)
+		player.update_money(this_quest.quest_reward_money)
+		GlobalSignal.add_xp.emit(this_quest.quest_reward_xp)
 		var next_quest:StringName = get_next_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
 		if next_quest != "":
 			_add_quest(next_quest)

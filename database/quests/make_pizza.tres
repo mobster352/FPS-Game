@@ -19,4 +19,6 @@ quest_objectives = Array[Dictionary]([{
 }, {
 &"REMOVE_PIZZA_OVEN": "Remove pizza from the oven"
 }])
+quest_reward_money = 5
+quest_reward_xp = 10
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

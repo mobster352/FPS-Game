@@ -9,4 +9,6 @@ quest_title = &"Pick Up Products"
 quest_objectives = Array[Dictionary]([{
 &"PICK_UP_PRODUCTS": "Pick Up Products"
 }])
+quest_reward_money = 5
+quest_reward_xp = 10
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

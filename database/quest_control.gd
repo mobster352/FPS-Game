@@ -7,10 +7,14 @@ const quest_objective_scene:PackedScene = preload("uid://ds2eh5sxwh0wb")
 @export var quest_objectives_vbox:VBoxContainer
 
 var quest_data:QuestData
+var quest_reward_money:int = 0
+var quest_reward_xp:int = 0
 
 func _ready() -> void:
 	quest_data = QuestData.new(quest_decorator)
 	%QuestName.text = quest_data.quest_decorator.wrapped_quest.quest_title
+	quest_reward_money = quest_data.quest_decorator.wrapped_quest.quest_reward_money
+	quest_reward_xp = quest_data.quest_decorator.wrapped_quest.quest_reward_xp
 	for quest_obj:QuestObjective in quest_data.objectives:
 		var label = quest_objective_scene.instantiate() as RichTextLabel
 		label.bbcode_enabled = true

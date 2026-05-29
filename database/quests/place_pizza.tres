@@ -9,4 +9,6 @@ quest_title = &"Refill Pizza Slices"
 quest_objectives = Array[Dictionary]([{
 &"PLACE_PIZZA_COUNTER": "Place pizza on the counter"
 }])
+quest_reward_money = 5
+quest_reward_xp = 10
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

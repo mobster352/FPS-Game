@@ -9,4 +9,6 @@ quest_title = &"Open Pizzeria"
 quest_objectives = Array[Dictionary]([{
 &"OPEN_PIZZERIA": "Open Pizzeria"
 }])
+quest_reward_money = 5
+quest_reward_xp = 10
 metadata/_custom_type_script = "uid://cgnmchw6f783c"

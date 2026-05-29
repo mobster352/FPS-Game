@@ -237,6 +237,31 @@ focus_neighbor_top = NodePath("../../HBoxContainer3/PurchaseTableButton")
 focus_neighbor_bottom = NodePath("../../HBoxContainer/PurchaseTableButton")
 text = "BUY"
 
+[node name="Jobs" type="Control" parent="MarginContainer/TabContainer" unique_id=1012117610]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Jobs" unique_id=775425681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Jobs/ScrollContainer" unique_id=1458452398]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="JobsVBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Jobs/ScrollContainer/MarginContainer" unique_id=158308567]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
 [connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_A"]]
 [connection signal="pressed" from="MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2/PurchaseTableButton" to="." method="_on_purchase_table_button_pressed" binds= ["Table_Round_B"]]

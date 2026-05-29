@@ -9,4 +9,6 @@ quest_title = &"Change Store Name"
 quest_objectives = Array[Dictionary]([{
 &"CHANGE_STORE_NAME": "Click on the Store Sign"
 }])
+quest_reward_money = 5
+quest_reward_xp = 10
 metadata/_custom_type_script = "uid://cgnmchw6f783c"
