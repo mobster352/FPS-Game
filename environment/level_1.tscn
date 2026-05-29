@@ -77,7 +77,7 @@ point_count = 4
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
-day_length_minutes = 8.0
+day_length_minutes = 10.0
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
 
