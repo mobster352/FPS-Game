@@ -101,13 +101,11 @@ func interact_item(has_held_object:bool, has_count:bool) -> void:
 
 func combine_stack() -> void:
 	cook_input.hide()
-	cook_input.hide()
 	left_input.action = ActionInput.Action.Combine
 	left_input.show()
 	right_input.hide()
 	
 func put_back() -> void:
-	cook_input.hide()
 	cook_input.hide()
 	left_input.action = ActionInput.Action.PutBack
 	left_input.show()

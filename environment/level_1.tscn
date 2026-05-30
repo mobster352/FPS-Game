@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cdsfoefd6ifbk" path="res://assets/environment/city/building_f_without_base.tscn" id="18_k65s8"]
 [ext_resource type="PackedScene" uid="uid://chvm4t08rq0e2" path="res://assets/environment/city/park_road_tsplit_decorated.tscn" id="18_yan4v"]
 [ext_resource type="PackedScene" uid="uid://dqm80sila2avm" path="res://assets/pizzaboy/scenes/pizzeria.tscn" id="19_42juk"]
+[ext_resource type="PackedScene" uid="uid://dqt4mcuftuc2k" path="res://environment/apartment.tscn" id="19_oj5bk"]
 [ext_resource type="PackedScene" uid="uid://cbm8dpfb06vou" path="res://assets/environment/city/road_straight_crossing.tscn" id="20_wlmb3"]
 [ext_resource type="Script" uid="uid://ciay3taglysqo" path="res://environment/npc_setup.gd" id="21_8wgsp"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
@@ -1455,7 +1456,7 @@ spot_range = 22.37792
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 15)
 
 [node name="building_H_withoutBase21" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="2" unique_id=1813936756 instance=ExtResource("17_yan4v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -0.38804993, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, -0.38804993, 5)
 
 [node name="building_H_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="3" unique_id=142445101 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 25)
@@ -1536,7 +1537,7 @@ transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -4.9
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 5.0000076, -0.38804993, -41.999992)
 
 [node name="building_H_withoutBase28" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="29" unique_id=1705094445 instance=ExtResource("17_yan4v")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 25.000002, -0.38804993, -12.999989)
+transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 75, -0.38804993, -12.999989)
 
 [node name="building_H_withoutBase31" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="30" unique_id=747001793 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 25.000004, -0.38804993, -22.999989)
@@ -1545,10 +1546,10 @@ transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 25
 transform = Transform3D(0.5820376, 0, -0.81316185, 0, 1, 0, 0.81316185, 0, 0.5820376, 23.04032, -0.38804993, -32.373356)
 
 [node name="building_H_withoutBase29" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="32" unique_id=592144650 instance=ExtResource("17_yan4v")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 25, -0.38804993, -2.999988)
+transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 75, -0.38804993, -2.999977)
 
 [node name="building_F_withoutBase" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="33" unique_id=2022823624 instance=ExtResource("18_k65s8")]
-transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 35.716293, -0.49950013, 5.5447254)
+transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 85.71629, -0.49950013, 5.5447254)
 
 [node name="building_F_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="34" unique_id=641912473 instance=ExtResource("18_k65s8")]
 transform = Transform3D(-0.68967, 0, -0.7241237, 0, 1, 0, 0.7241237, 0, -0.68967, 36.46943, -0.49950013, 75.2874)
@@ -1564,6 +1565,9 @@ transform = Transform3D(0.6338804, 0, 0.77343106, 0, 1, 0, -0.77343106, 0, 0.633
 
 [node name="building_F_withoutBase6" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="38" unique_id=1455171657 instance=ExtResource("18_k65s8")]
 transform = Transform3D(0.81628895, 0, -0.5776439, 0, 1, 0, 0.5776439, 0, 0.81628895, 15.532628, -0.4995, -39.42299)
+
+[node name="Apartment" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="39" unique_id=40677564 instance=ExtResource("19_oj5bk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24.840462, 0, -6.5088925)
 
 [node name="RestaurantMarker" parent="Environment/Markers" parent_id_path=PackedInt32Array(1146535934) index="0" unique_id=805240976]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.994053, 4.7683716e-07, 2.2089767)
