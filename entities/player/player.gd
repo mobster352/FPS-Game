@@ -178,9 +178,6 @@ func _process(_delta: float) -> void:
 		sell_input = Input.is_action_just_pressed("sell")
 		_process_rayCast()
 		if not freeze_camera:
-			if Input.is_action_just_pressed("sprint"):
-				is_sprinting = not is_sprinting
-			_process_movement()
 			_process_shot()
 			_process_draw_weapon()
 			_process_crouch()
@@ -192,6 +189,10 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
 		if not freeze_camera:
+			if Input.is_action_just_pressed("sprint"):
+				is_sprinting = not is_sprinting
+			_process_movement()
+			_process_camera()
 			if not is_cashier:
 				_process_jump()
 				_physics_logic()
@@ -279,46 +280,43 @@ func _process_movement() -> void:
 	move_and_slide()
 
 var pitch := 0.0  # store vertical rotation manually
+var mouse_input: Vector2 = Vector2.ZERO
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
-		if camera == %FirstPersonCamera:
-			# Horizontal (yaw)
-			rotate_y(-event.relative.x * mouse_sensitivity)
+		mouse_input += event.relative
 
-			# Vertical (pitch)
-			var vertical_change = -event.relative.y * mouse_sensitivity
-			pitch += vertical_change
 
-			# Clamp BEFORE applying
-			pitch = clamp(pitch, deg_to_rad(-70), deg_to_rad(70))
+func _process_camera() -> void:
+	if camera == %FirstPersonCamera:
+		# Horizontal (yaw)
+		rotate_y(-mouse_input.x * mouse_sensitivity)
+		# Vertical (pitch)
+		var vertical_change = -mouse_input.y * mouse_sensitivity
+		pitch += vertical_change
+		# Clamp BEFORE applying
+		pitch = clamp(pitch, deg_to_rad(-70), deg_to_rad(70))
+		# Apply rotation
+		pointer_slot.rotation.x = pitch
+		if OS.has_feature("web"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		current_input_device = InputDevice.MOUSE_KEYBOARD
+		mouse_input = Vector2.ZERO
+	else:
+		# Horizontal (yaw)
+		rotate_y(-mouse_input.x * mouse_sensitivity)
+		# Vertical (pitch)
+		var vertical_change = -mouse_input.y * mouse_sensitivity * invert
+		pitch += vertical_change
+		# Clamp BEFORE applying
+		pitch = clamp(pitch, deg_to_rad(-55), deg_to_rad(55))
+		# Apply rotation
+		pointer_slot.rotation.x = pitch
+		if OS.has_feature("web"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		current_input_device = InputDevice.MOUSE_KEYBOARD
+		mouse_input = Vector2.ZERO
 
-			# Apply rotation
-			pointer_slot.rotation.x = pitch
 
-			if OS.has_feature("web"):
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			
-			current_input_device = InputDevice.MOUSE_KEYBOARD
-		else:
-			# Horizontal (yaw)
-			rotate_y(-event.relative.x * mouse_sensitivity)
-
-			# Vertical (pitch)
-			var vertical_change = -event.relative.y * mouse_sensitivity * invert
-			pitch += vertical_change
-
-			# Clamp BEFORE applying
-			pitch = clamp(pitch, deg_to_rad(-55), deg_to_rad(55))
-
-			# Apply rotation
-			pointer_slot.rotation.x = pitch
-
-			if OS.has_feature("web"):
-				Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			
-			current_input_device = InputDevice.MOUSE_KEYBOARD
-	
-	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and preview_instance and is_placing:
 		if event.is_pressed():
