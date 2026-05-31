@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ba1j54egm4o"]
+
+[ext_resource type="PackedScene" uid="uid://bp53i281n00in" path="res://assets/kaykit/city/car_taxi_edited.glb" id="1_6g2dm"]
+[ext_resource type="Script" uid="uid://dl3s2pts1foil" path="res://components/traffic_car.gd" id="1_uxebb"]
+[ext_resource type="AudioStream" uid="uid://mglg0d3d7eje" path="res://assets/audio/universfield-double-car-horn-352443.mp3" id="3_p7x5t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxebb"]
+size = Vector3(2.0469818, 1.8373413, 4.7302246)
+
+[node name="TrafficCar" type="Node3D" unique_id=1629516041]
+script = ExtResource("1_uxebb")
+
+[node name="body" type="StaticBody3D" parent="." unique_id=1954977867 groups=["traffic"]]
+collision_layer = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body" unique_id=346311453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019813538, 0.9161682, -0.0357666)
+shape = SubResource("BoxShape3D_uxebb")
+
+[node name="car_taxi_edited" parent="body" unique_id=1191792262 instance=ExtResource("1_6g2dm")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.6763029, 0)
+
+[node name="FrontCheck" type="RayCast3D" parent="body" unique_id=155021604]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+target_position = Vector3(0, 0, 6)
+collision_mask = 290
+hit_from_inside = true
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="Honk" type="AudioStreamPlayer3D" parent="body" unique_id=146695057]
+unique_name_in_owner = true
+stream = ExtResource("3_p7x5t")
+attenuation_model = 3
+volume_db = -10.0

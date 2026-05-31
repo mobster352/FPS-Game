@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dyerpcqr0dhve"]
 
 [ext_resource type="Script" uid="uid://drqxxnnvrlx6m" path="res://environment/drive_thru_customer.gd" id="1_2q675"]
-[ext_resource type="PackedScene" uid="uid://dfqntysow7vqc" path="res://assets/environment/city/car_taxi_edited.tscn" id="2_roemc"]
 [ext_resource type="PackedScene" uid="uid://ebc4v13v0xiy" path="res://assets/ui/pointer.tscn" id="3_d8lpq"]
 [ext_resource type="Script" uid="uid://cx41kwrcwutc1" path="res://environment/drive_thru_menu.gd" id="4_f7sqe"]
 [ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="5_2w7nu"]
@@ -14,8 +13,8 @@ size = Vector3(2.0552368, 3.0355835, 4.696228)
 radius = 2.764011
 
 [node name="DriveThruCustomer" type="StaticBody3D" unique_id=58984675 node_paths=PackedStringArray("drive_thru_menu", "dialogue_box", "pointer")]
-collision_layer = 32
-collision_mask = 32
+collision_layer = 512
+collision_mask = 512
 script = ExtResource("1_2q675")
 drive_thru_menu = NodePath("DriveThruMenu")
 dialogue_box = NodePath("DialogueBox")
@@ -24,9 +23,6 @@ pointer = NodePath("Pointer")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=960809265]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006011963, 1.4850769, -0.044525146)
 shape = SubResource("BoxShape3D_f7sqe")
-
-[node name="car_taxi_edited" parent="." unique_id=1627127432 instance=ExtResource("2_roemc")]
-unique_name_in_owner = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1025795307]
 collision_mask = 10
@@ -40,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4403276, 0)
 visible = false
 
 [node name="DriveThruMenu" type="Node3D" parent="." unique_id=751788780]
+visible = false
 script = ExtResource("4_f7sqe")
 
 [node name="DialogueBox" parent="." unique_id=790149930 instance=ExtResource("5_2w7nu")]
@@ -51,3 +48,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3132824, 1.5, 0.008824527)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="visibility_changed" from="DriveThruMenu" to="." method="_on_drive_thru_menu_visibility_changed"]

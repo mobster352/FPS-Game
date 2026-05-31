@@ -51,6 +51,7 @@ quest_log=""
 cash_register=""
 nav_restaurant=""
 world_environment=""
+traffic=""
 
 [gui]
 
@@ -277,6 +278,7 @@ rotate_preview_right={
 3d_physics/layer_7="Static"
 3d_physics/layer_8="Movable"
 3d_physics/layer_9="Cars"
+3d_physics/layer_10="DriveThru"
 
 [physics]
 

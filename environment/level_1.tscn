@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://ciay3taglysqo" path="res://environment/npc_setup.gd" id="21_8wgsp"]
 [ext_resource type="ArrayOccluder3D" uid="uid://crakd5h28jtbm" path="res://environment/level_1.occ" id="24_42juk"]
 [ext_resource type="PackedScene" uid="uid://ggyvvfnh6m5c" path="res://entities/npc/delivery_guy.tscn" id="27_3ogk7"]
+[ext_resource type="PackedScene" uid="uid://c0p7cutwd4iwh" path="res://components/traffic_manager.tscn" id="27_p8jrx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k65s8"]
 size = Vector3(120.17102, 0.8843994, 136.86133)
@@ -55,10 +56,18 @@ geometry_source_group_name = &"nav_park"
 cell_size = 0.1
 cell_height = 0.01
 
+[sub_resource type="Curve3D" id="Curve3D_3ogk7"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 31.5, 0, 0.2, 0, 0, 0, 0, 0, 0, -25.5, 0, 0.2, 0, 0, 0, 0, 0, 0, -25.5, 0, -46.338, 0, 0, 0, 0, 0, 0, 31.5, 0, -46.5),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [sub_resource type="Curve3D" id="Curve3D_kcloa"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8.196758, 0, -1.6574411, 0, 0, 0, 0, 0, 0, -34.548054, 0, -1.4708503, 0, 0, 0, 0, 0, 0, -34.489098, 0, 51.533176, 0, 0, 0, 0, 0, 0, 28.217598, 0, 51.6272, 0, 0, 0, 0, 0, 0, 28.110487, 0, -1.5803164),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.014412, 0, -1.6574411, 0, 0, 0, 0, 0, 0, -34.548054, 0, -1.4708503, 0, 0, 0, 0, 0, 0, -34.489098, 0, 51.533176, 0, 0, 0, 0, 0, 0, 28.217598, 0, 51.6272, 0, 0, 0, 0, 0, 0, 28.110487, 0, -1.5803164),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -76,6 +85,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ogk7"]
+radius = 3.2562265
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
@@ -1858,6 +1870,13 @@ level_ui = NodePath("../../UI")
 wait_time = 5.0
 one_shot = true
 
+[node name="DriveThruCustomer" parent="Entities/DriveThruSpawn" index="1" unique_id=58984675 node_paths=PackedStringArray("timer", "drive_thru_spawn", "level") instance=ExtResource("10_kv32d")]
+transform = Transform3D(-4.371139e-08, 0, -0.99999976, 0, 0.99999976, 0, 1, 0, -4.417704e-08, -2.43289, -0.21391463, -16.620584)
+collision_mask = 256
+timer = NodePath("../Timers/DriveThruTimer")
+drive_thru_spawn = NodePath("..")
+level = NodePath("../../..")
+
 [node name="Timers" type="Node" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="3" unique_id=2112135972]
 
 [node name="NpcSpawnTimer" type="Timer" parent="Entities/Timers" index="0" unique_id=47648875]
@@ -1867,49 +1886,47 @@ wait_time = 5.0
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.58403, 0, -32.703342)
 
-[node name="CarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="5" unique_id=356334893]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
-curve = SubResource("Curve3D_kcloa")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Entities/CarPath" index="0" unique_id=959317914]
-unique_name_in_owner = true
-transform = Transform3D(-0.99996424, 0, -0.0020130181, 0, 0.99999356, 0, 0.002013008, 0, -0.9999692, 28.200277, 0, 43.023335)
-progress = 167.06065
-use_model_front = true
-
-[node name="DriveThruCustomer" parent="Entities/CarPath/PathFollow3D" index="0" unique_id=1622733246 node_paths=PackedStringArray("timer", "car_path", "drive_thru_path", "return_car_path", "drive_thru_spawn", "level") instance=ExtResource("10_kv32d")]
-transform = Transform3D(1, 0, -4.656613e-10, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, -0.062230222, 0)
-collision_mask = 256
-timer = NodePath("../../../DriveThruSpawn/Timers/DriveThruTimer")
-car_path = NodePath("..")
-drive_thru_path = NodePath("../../../DriveThruPath/PathFollow3D")
-return_car_path = NodePath("../../../ReturnCarPath/PathFollow3D")
-drive_thru_spawn = NodePath("../../../DriveThruSpawn")
-level = NodePath("../../../..")
-
-[node name="DriveThruPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="6" unique_id=1231579220]
-curve = SubResource("Curve3D_e0ycv")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Entities/DriveThruPath" index="0" unique_id=572758490]
-transform = Transform3D(-0.9999191, 0, -0.007936931, 0, 0.99999815, 0, 0.007936931, 0, -0.9999191, 8.949913, 0, 12.908689)
-use_model_front = true
-loop = false
-
-[node name="ReturnCarPath" type="Path3D" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=1062064984]
-curve = SubResource("Curve3D_kv32d")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Entities/ReturnCarPath" index="0" unique_id=640778589]
-transform = Transform3D(-0.9999919, 0, 0.0040316624, 0, 1, 0, -0.0040316624, 0, -0.9999919, 8.644927, 0, -13.9648)
-use_model_front = true
-
-[node name="DeliveryGuy" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="10" unique_id=1396744581 instance=ExtResource("27_3ogk7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91194725, 0, 5.484304)
+[node name="DeliveryGuy" parent="Entities" parent_id_path=PackedInt32Array(1326860625) index="7" unique_id=1396744581 instance=ExtResource("27_3ogk7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21.981106, 0, -9.105365)
 
 [node name="PlacementSystem" parent="." index="6" unique_id=1020658662 node_paths=PackedStringArray("player", "restaurant_nav_region")]
 player = NodePath("../Entities/Players/Player")
 restaurant_nav_region = NodePath("../Environment/Floor/NavRestaurant")
 
-[node name="UI" parent="." index="7" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
+[node name="TrafficManager" parent="." index="7" unique_id=409893040 node_paths=PackedStringArray("lane_path_01", "lane_path_02", "drive_thru_path", "return_path", "level") instance=ExtResource("27_p8jrx")]
+lane_path_01 = NodePath("RoadNetwork/Lane_01")
+lane_path_02 = NodePath("RoadNetwork/Lane_02")
+drive_thru_path = NodePath("RoadNetwork/DriveThruPath")
+return_path = NodePath("RoadNetwork/ReturnCarPath")
+level = NodePath("..")
+
+[node name="RoadNetwork" type="Node3D" parent="TrafficManager" index="3" unique_id=1885789716]
+
+[node name="Lane_01" type="Path3D" parent="TrafficManager/RoadNetwork" index="0" unique_id=1042973710]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 16.55883)
+curve = SubResource("Curve3D_3ogk7")
+
+[node name="Lane_02" type="Path3D" parent="TrafficManager/RoadNetwork" index="1" unique_id=806957066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+curve = SubResource("Curve3D_kcloa")
+
+[node name="DriveThruPath" type="Path3D" parent="TrafficManager/RoadNetwork" index="2" unique_id=1231579220]
+curve = SubResource("Curve3D_e0ycv")
+
+[node name="ReturnCarPath" type="Path3D" parent="TrafficManager/RoadNetwork" index="3" unique_id=1062064984]
+curve = SubResource("Curve3D_kv32d")
+
+[node name="Areas" type="Node3D" parent="TrafficManager" index="4" unique_id=747828824]
+
+[node name="DriveThruEnterArea" type="Area3D" parent="TrafficManager/Areas" index="0" unique_id=714277245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.975785, 0, 14.972068)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TrafficManager/Areas/DriveThruEnterArea" index="0" unique_id=469694422]
+shape = SubResource("SphereShape3D_3ogk7")
+
+[node name="UI" parent="." index="8" unique_id=1491319236 node_paths=PackedStringArray("next_day_ui")]
 next_day_ui = NodePath("NextDay")
 
 [node name="NextDay" parent="UI" index="1" unique_id=1019455502 instance=ExtResource("11_0rppq")]
@@ -1920,6 +1937,7 @@ layout_mode = 0
 [connection signal="timeout" from="Entities/DriveThruSpawn/Timers/DriveThruTimer" to="Entities/DriveThruSpawn" method="_on_drive_thru_timer_timeout"]
 [connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/NPCs/StartPathMarker" method="_on_npc_spawn_timer_timeout"]
 [connection signal="timeout" from="Entities/Timers/NpcSpawnTimer" to="Entities/NPCs/StartPathMarker2" method="_on_npc_spawn_timer_timeout"]
+[connection signal="body_entered" from="TrafficManager/Areas/DriveThruEnterArea" to="TrafficManager" method="_on_drive_thru_enter_area_body_entered"]
 [connection signal="visibility_changed" from="UI/NextDay" to="UI/NextDay" method="_on_visibility_changed"]
 
 [editable path="Environment/Buildings/pizzeria"]

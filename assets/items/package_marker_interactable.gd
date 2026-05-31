@@ -54,6 +54,7 @@ func interact(player: Player) -> void:
 	package.is_disabled = true
 	package.room_number = int(player.get_held_object().get_child(0).text)
 	add_child(package)
+	package.room_label.no_depth_test = false
 	
 	player.get_held_object().queue_free()
 	

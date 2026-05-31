@@ -12,3 +12,7 @@ var is_disabled:bool = false
 func _ready() -> void:
 	super()
 	room_label.text = str(room_number)
+
+func pickup(new_pos: Vector3, new_rotation: Vector3, _player) -> void:
+	super(new_pos, new_rotation, _player)
+	room_label.no_depth_test = true
