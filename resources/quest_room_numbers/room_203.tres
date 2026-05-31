@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestRoomNumber" format=3 uid="uid://cahed8eol7m58"]
+
+[ext_resource type="Script" uid="uid://bp3qgqle6w0ar" path="res://resources/quest_room_number.gd" id="1_ahhvr"]
+
+[resource]
+script = ExtResource("1_ahhvr")
+quest_objective_id = &"DELIVER_PACKAGE_203"
+quest_item_mesh = &"package_mesh"
+room_number = 203
+metadata/_custom_type_script = "uid://bp3qgqle6w0ar"

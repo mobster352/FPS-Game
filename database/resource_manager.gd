@@ -4,6 +4,7 @@ var dialogue_db:Array
 var quests_db:Array
 var quest_dialogue_db:Array
 var quest_objective_items:Array
+var quest_room_numbers:Array
 
 var fetch_quests:Dictionary[String, FetchQuest]
 var mage_npc_fetch_quests:Dictionary[String, FetchQuest]
@@ -13,12 +14,19 @@ var rogue_hooded_npc_fetch_quests:Dictionary[String, FetchQuest]
 var barbarian_npc_fetch_quests:Dictionary[String, FetchQuest]
 var dummy_npc_fetch_quests:Dictionary[String, FetchQuest]
 
+var delivery_quests:Dictionary[String, DeliveryQuest]
+
 func _ready() -> void:
 	dialogue_db = load_resource("res://resources/dialogue")
 	quests_db = load_resource("res://database/quests")
 	quest_dialogue_db = load_resource("res://resources/quest_dialogue")
 	quest_objective_items = load_resource("res://resources/quest_objective_items")
+	quest_room_numbers = load_resource("res://resources/quest_room_numbers")
 	create_fetch_quests()
+	create_delivery_quests()
+	
+	#for q:QuestResource in quests_db:
+		#print(q.quest_id)
 
 
 func get_dialogue_by_id(dialogue_id:StringName, index:int) -> String:
@@ -46,6 +54,19 @@ func get_dialogue_id_for_quest(quest_id:StringName, quest_objective_id:StringNam
 			var dialogue_resource:DialogueResource = quest_dialogue.dialogue_dict.get(quest_objective_id)
 			return dialogue_resource.id
 	return ""
+
+
+func create_delivery_quests() -> void:
+	for quest_resource:QuestResource in quests_db:
+		if quest_resource.quest_type != Quest.QuestType.Delivery:
+			continue
+		for quest_objective:Dictionary in quest_resource.quest_objectives:
+			for quest_room_number:QuestRoomNumber in quest_room_numbers:
+				if quest_objective.has(quest_room_number.quest_objective_id):
+					var quest_objective_id:StringName = quest_room_number.quest_objective_id
+					var quest_item_mesh:StringName = quest_room_number.quest_item_mesh
+					var room_number:int = quest_room_number.room_number
+					delivery_quests.set(quest_objective_id, DeliveryQuest.new(quest_resource, room_number, quest_item_mesh))
 
 
 func create_fetch_quests() -> void:
@@ -152,6 +173,19 @@ func get_weapon_fetch_quest_for_character(skin_uuid:StringName) -> Quest:
 		push_error("Fetch Quest not found: ", fetch_quest)
 		return
 	return get_quest_from_fetch_quest(quest_objective_id, fetch_quest)
+
+
+func get_random_delivery_quest() -> Array:
+	var random_delivery_quest:StringName = delivery_quests.keys().pick_random()
+	var delivery_quest:DeliveryQuest = delivery_quests.get(random_delivery_quest)
+	return [Quest.new(delivery_quest.wrapped_quest.quest_id, random_delivery_quest, QuestItems.PACKAGE), delivery_quest.room_number]
+
+
+func get_delivery_quest(quest_objective_id:StringName) -> DeliveryQuest:
+	if delivery_quests.has(quest_objective_id):
+		return delivery_quests.get(quest_objective_id)
+	push_error("Quest objective id not found: ", quest_objective_id)
+	return null
 
 
 func get_quest_from_fetch_quest(quest_objective_id:StringName, fetch_quest:FetchQuest) -> Quest:

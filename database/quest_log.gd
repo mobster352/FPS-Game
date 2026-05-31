@@ -21,6 +21,8 @@ func get_quest_resource_from_db(quest_id:StringName, quest_objective_id:StringNa
 					return QuestDecorator.new(quest)
 				Quest.QuestType.Fetch:
 					return ResourceManager.get_fetch_quest(quest_objective_id)
+				Quest.QuestType.Delivery:
+					return ResourceManager.get_delivery_quest(quest_objective_id)
 	return null
 
 
@@ -67,7 +69,7 @@ func print_active_quests() -> void:
 	print("End Print")
 
 
-func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName) -> void:
+func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName, obj_passed:bool = true) -> void:
 	if not is_on_quest(quest_id):
 		return
 	
@@ -112,8 +114,9 @@ func _update_quest_objective(quest_id:StringName, quest_objective_id:StringName)
 			break
 	if is_quest_finished:
 		remove_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
-		player.update_money(this_quest.quest_reward_money)
-		GlobalSignal.add_xp.emit(this_quest.quest_reward_xp)
+		if obj_passed:
+			player.update_money(this_quest.quest_reward_money)
+			GlobalSignal.add_xp.emit(this_quest.quest_reward_xp)
 		var next_quest:StringName = get_next_quest(this_quest.quest_decorator.wrapped_quest.quest_id)
 		if next_quest != "":
 			_add_quest(next_quest)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuestObjectiveItem" format=3 uid="uid://dcr3lwbujb4y2"]
+
+[ext_resource type="Script" uid="uid://3ws4fdhfqsxt" path="res://resources/quest_objective_item.gd" id="1_fbwti"]
+
+[resource]
+script = ExtResource("1_fbwti")
+quest_objective_id = &"DELIVER_PACKAGE_201"
+quest_item_mesh = &"package_mesh"
+metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

@@ -8,7 +8,8 @@ var dialogue_id:StringName
 
 enum QuestType {
 	None,
-	Fetch
+	Fetch,
+	Delivery
 }
 
 func _init(_quest_id:StringName, _quest_objective_id:StringName, _quest_item_id:StringName) -> void:

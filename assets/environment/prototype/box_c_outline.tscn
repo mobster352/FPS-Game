@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://la746nus7fdj"]
+
+[ext_resource type="PackedScene" uid="uid://bsayrqqarcg6j" path="res://assets/environment/prototype/Box_C.gltf" id="1_uhwih"]
+[ext_resource type="Texture2D" uid="uid://cjh6cmqiwpwkn" path="res://assets/kaykit/prototype/prototypebits_texture.png" id="2_jgl3n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwvlg"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.4862745)
+albedo_texture = ExtResource("2_jgl3n")
+
+[node name="Box_C_Outline" unique_id=1067077851 instance=ExtResource("1_uhwih")]
+
+[node name="Box_C" parent="." index="0" unique_id=665551687]
+surface_material_override/0 = SubResource("StandardMaterial3D_uwvlg")

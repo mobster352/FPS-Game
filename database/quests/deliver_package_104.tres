@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="QuestResource" format=3 uid="uid://daesn10gfvmlv"]
+
+[ext_resource type="Script" uid="uid://cgnmchw6f783c" path="res://resources/quest_resource.gd" id="1_3fuak"]
+
+[resource]
+script = ExtResource("1_3fuak")
+quest_id = &"DELIVER_PACKAGE_104"
+quest_title = &"Deliver Package"
+quest_objectives = Array[Dictionary]([{
+&"DELIVER_PACKAGE_104": "Deliver Package to Room 104"
+}])
+quest_type = 2
+npc_type = 1
+quest_reward_money = 10
+quest_reward_xp = 10
+metadata/_custom_type_script = "uid://cgnmchw6f783c"

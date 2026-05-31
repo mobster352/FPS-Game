@@ -129,4 +129,7 @@ signal spawn_new_level
 signal add_quest(quest_id:StringName)
 
 @warning_ignore("unused_signal")
-signal update_quest_objective(quest_id:StringName, quest_objective_id:StringName)
+signal update_quest_objective(quest_id:StringName, quest_objective_id:StringName, obj_passed:bool)
+
+@warning_ignore("unused_signal")
+signal update_quest_ready(quest_id:StringName, quest_objective_id:StringName)

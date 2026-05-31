@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://buy6m45kacr7i"]
+
+[ext_resource type="Script" uid="uid://bqupqd4gh6w8f" path="res://resources/dialogue_line.gd" id="1_56y08"]
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="2_n4hm0"]
+
+[sub_resource type="Resource" id="Resource_128a7"]
+script = ExtResource("1_56y08")
+text = "Can you deliver this package to room 102?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_8qjee"]
+script = ExtResource("1_56y08")
+text = "Have you delivered the package to room 102?"
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[sub_resource type="Resource" id="Resource_w8j1f"]
+script = ExtResource("1_56y08")
+text = "I'll have more packages to deliver later."
+metadata/_custom_type_script = "uid://bqupqd4gh6w8f"
+
+[resource]
+script = ExtResource("2_n4hm0")
+id = &"DELIVER_PACKAGE_102"
+lines = Dictionary[int, ExtResource("1_56y08")]({
+0: SubResource("Resource_128a7"),
+1: SubResource("Resource_8qjee"),
+2: SubResource("Resource_w8j1f")
+})
+metadata/_custom_type_script = "uid://m8v6w6w434km"

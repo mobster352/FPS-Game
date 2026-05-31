@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="QuestDialogue" format=3 uid="uid://cta4sr3lwo8ty"]
+
+[ext_resource type="Script" uid="uid://m8v6w6w434km" path="res://resources/dialogue_resource.gd" id="1_p7ygn"]
+[ext_resource type="Resource" uid="uid://bj7q2845cbu2a" path="res://resources/dialogue/deliver_package_204_dialogue.tres" id="2_p7ygn"]
+[ext_resource type="Resource" uid="uid://cehjhtf6j6t1" path="res://database/quests/deliver_package_204.tres" id="3_580c1"]
+[ext_resource type="Script" uid="uid://cklkf52c28geg" path="res://resources/quest_dialogue.gd" id="4_kfjgj"]
+
+[resource]
+script = ExtResource("4_kfjgj")
+quest_resource = ExtResource("3_580c1")
+dialogue_dict = Dictionary[StringName, ExtResource("1_p7ygn")]({
+&"DELIVER_PACKAGE_204": ExtResource("2_p7ygn")
+})
+metadata/_custom_type_script = "uid://cklkf52c28geg"

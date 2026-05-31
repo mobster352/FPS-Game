@@ -719,6 +719,7 @@ func drop_item() -> void:
 					item.position = camera.global_position + forward
 
 				item.mesh = child_mesh.duplicate()
+				item.mesh.rotation = Vector3.ZERO
 
 				if item.has_node("body/mesh"):
 					var mesh_node = item.get_node("body/mesh")
@@ -732,8 +733,6 @@ func drop_item() -> void:
 						var cookable = item.get_node("body/Cookable") as Cookable
 						cookable.toppings = item.mesh.get_meta("toppings")
 					
-				item.mesh.rotation = Vector3.ZERO
-				
 				items_marker.add_child(item)
 				
 				item.meshInstanceArray.append(item.mesh)
@@ -743,16 +742,11 @@ func drop_item() -> void:
 					if c is RigidBody3D:
 						c.freeze = false
 						c.apply_central_impulse(forward * (throw_strength / c.mass))
-						#c.apply_impulse(forward * (throw_strength / c.mass), camera.global_position + forward)
-						if item is PizzaBox:
+						if item.has_meta("count"):
+							c.look_at(camera.global_position - Vector3(0,1,0))
+						else:
 							c.look_at(camera.global_position)
 							c.rotate(Vector3.UP, deg_to_rad(180))
-						elif not item.has_meta("count"):
-							c.look_at(camera.global_position)
-							c.rotate(Vector3.UP, deg_to_rad(130))
-							c.rotate(Vector3.RIGHT, deg_to_rad(-20))
-						else:
-							c.look_at(camera.global_position - Vector3(0,1,0))
 				
 				if child_mesh.has_meta("food_id"):
 					item.set_meta("food_id", child_mesh.get_meta("food_id"))
@@ -765,10 +759,10 @@ func drop_item() -> void:
 				elif item.has_meta("plate_dirty"):
 					item.pointer.show()
 					GlobalSignal.toggle_pointer.emit("sink", false)
-			#if child_mesh.has_meta("pizzaboxes"):
-				#var item = preload("uid://dp8cybb476vqi").instantiate() as PizzaBoxStack
-				#item.num_pizza_boxes = num_pizza_boxes
-				#items_marker.add_child(item)
+					
+				if item is Package:
+					item.room_number = int(child_mesh.get_child(0).text)
+					
 			item_slot.remove_child(child_mesh)
 			child_mesh.queue_free()
 

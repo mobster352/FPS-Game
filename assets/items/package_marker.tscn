@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cxld05ibrhlgw"]
+
+[ext_resource type="Script" uid="uid://ce4vqcplcntp" path="res://assets/items/package_marker_interactable.gd" id="1_k3shn"]
+[ext_resource type="Script" uid="uid://bowjsvggsmkd6" path="res://assets/items/package_marker.gd" id="1_m8pp6"]
+[ext_resource type="PackedScene" uid="uid://la746nus7fdj" path="res://assets/environment/prototype/box_c_outline.tscn" id="2_m8pp6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k3shn"]
+size = Vector3(0.79541016, 0.39752197, 0.59484863)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xk0vo"]
+radius = 2.0
+
+[node name="PackageMarker" type="StaticBody3D" unique_id=4126402]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_m8pp6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=253761282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001220703, 0.20272827, -0.0014038086)
+shape = SubResource("BoxShape3D_k3shn")
+
+[node name="Interactable" type="Node3D" parent="." unique_id=299212964 node_paths=PackedStringArray("package_marker")]
+script = ExtResource("1_k3shn")
+package_marker = NodePath("..")
+metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
+
+[node name="Box_C_Outline" parent="Interactable" unique_id=1067077851 instance=ExtResource("2_m8pp6")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1008233576]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1677996864]
+shape = SubResource("SphereShape3D_xk0vo")
+
+[connection signal="body_entered" from="Area3D" to="Interactable" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Interactable" method="_on_area_3d_body_exited"]

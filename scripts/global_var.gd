@@ -112,6 +112,10 @@ var mesh_to_item_array: Array[Dictionary] = [
 	{
 		"name": "axe_2handed_mesh",
 		"item": "uid://ca5w8wrqv4v8g"
+	},
+	{
+		"name": "package_mesh",
+		"item": "uid://chvbwj2atdffs"
 	}
 ]
 
