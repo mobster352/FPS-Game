@@ -7,6 +7,19 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_uxebb"]
 size = Vector3(2.0469818, 1.8373413, 4.7302246)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p7x5t"]
+load_path = "res://.godot/imported/citybits_texture.png-28884ed99d30fe884ef93927456d5b08.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdij5"]
+albedo_texture = SubResource("CompressedTexture2D_p7x5t")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_38e8m"]
+albedo_texture = SubResource("CompressedTexture2D_p7x5t")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
 [node name="TrafficCar" type="Node3D" unique_id=1629516041]
 script = ExtResource("1_uxebb")
 
@@ -19,6 +32,12 @@ shape = SubResource("BoxShape3D_uxebb")
 
 [node name="car_taxi_edited" parent="body" unique_id=1191792262 instance=ExtResource("1_6g2dm")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.6763029, 0)
+
+[node name="car_taxi_headlight_left" parent="body/car_taxi_edited/car_taxi" parent_id_path=PackedInt32Array(1191792262, 1936808745) index="0" unique_id=403778048]
+surface_material_override/0 = SubResource("StandardMaterial3D_cdij5")
+
+[node name="car_taxi_headlight_right" parent="body/car_taxi_edited/car_taxi" parent_id_path=PackedInt32Array(1191792262, 1936808745) index="1" unique_id=1281028239]
+surface_material_override/0 = SubResource("StandardMaterial3D_38e8m")
 
 [node name="FrontCheck" type="RayCast3D" parent="body" unique_id=155021604]
 unique_name_in_owner = true
@@ -33,3 +52,13 @@ unique_name_in_owner = true
 stream = ExtResource("3_p7x5t")
 attenuation_model = 3
 volume_db = -10.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="body" unique_id=230551965]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.70058596, 0.62291235, 2.3366706)
+spot_range = 10.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="body" unique_id=350459345]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.6994425, 0.62307566, 2.336405)
+spot_range = 10.0
+
+[editable path="body/car_taxi_edited"]

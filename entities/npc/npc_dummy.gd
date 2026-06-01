@@ -380,6 +380,7 @@ func _leave_restaurant() -> void:
 	#area_col.disabled = true
 	table = null
 	sitting = false
+	pointer.hide()
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:

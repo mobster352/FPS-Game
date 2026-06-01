@@ -3,7 +3,9 @@ class_name Level
 
 @export var sun_pivot: Node3D
 @export var sun: DirectionalLight3D
-@export var world_environment: WorldEnvironment
+@onready var sub_viewport: SubViewport = $SubViewport
+@onready var world_environment: WorldEnvironment = %WorldEnvironment
+@onready var color_rect: ColorRect = %ColorRect
 
 # Time settings
 @export_range(0.0, 24.0) var start_time := 6.0 # 6 AM
@@ -23,7 +25,7 @@ const SUNRISE := 6.0
 const SUNSET  := 18.0
 const MAX_ELEVATION := PI / 2.0  # 90°
 #var sky_shader:ShaderMaterial
-var sky:ProceduralSkyMaterial
+var sky:Sky
 
 func _ready():
 	time_of_day = start_time
@@ -38,7 +40,16 @@ func _ready():
 	level_ui.show_clock = show_clock
 	#sky_shader = world_environment.environment.sky.sky_material
 	#sky_shader.set_shader_parameter("stars_intensity", 0.0)
-	sky = world_environment.environment.sky.sky_material
+	#sky = world_environment.environment.sky.sky_material
+	
+	sky = Sky.new()
+	var pano := PanoramaSkyMaterial.new()
+
+	pano.panorama = sub_viewport.get_texture()
+	sky.sky_material = pano
+
+	world_environment.environment.sky = sky
+	world_environment.environment.background_mode = Environment.BG_SKY
 	
 	GlobalMarker.update_markers.emit()
 
@@ -91,15 +102,25 @@ func update_environment():
 	
 	if not sky:
 		return
-	#set_night_sky(f)
+	set_night_sky(f)
 
 func get_sun_factor() -> float:
 	# Based on sun angle, not time
 	var sun_dir := sun.global_transform.basis.z
-	var height := sun_dir.y
+	var moon_dir := -sun_dir
+	
+	var shader_material:ShaderMaterial = color_rect.material
+	shader_material.set_shader_parameter("sun_direction", sun_dir)
+	shader_material.set_shader_parameter("moon_direction", moon_dir)
+	
+	var sun_height := clampf(sun_dir.y, 0.0, 1.0)
+	var moon_height := clampf(moon_dir.y, 0.0, 1.0)
+
+	shader_material.set_shader_parameter("sun_intensity", sun_height * 1.6)
+	shader_material.set_shader_parameter("moon_intensity", moon_height * 0.8)
 
 	# Fade between -0.1 and +0.2 (below → above horizon)
-	return smoothstep(-0.1, 0.2, height)
+	return smoothstep(-0.1, 0.2, sun_height)
 
 
 func update_sun_light():
@@ -132,5 +153,7 @@ func update_sun_light():
 
 
 func set_night_sky(f:float) -> void:
-	sky.sky_top_color = Color("#071a40").lerp(Color("#5996ff"), f)
-	sky.sky_horizon_color = Color("#071a40").lerp(Color("#0054f7"), f)
+	var shader_material:ShaderMaterial = color_rect.material
+	shader_material.set_shader_parameter("sky_horizon_color", lerp(Vector3(0.2, 0.2, 0.35), Vector3(0.72, 0.88, 1.0), f))
+	shader_material.set_shader_parameter("sky_mid_color", lerp(Vector3(0.2, 0.2, 0.35), Vector3(0.38, 0.68, 1.0), f))
+	shader_material.set_shader_parameter("sky_top_color", lerp(Vector3(0.2, 0.2, 0.35), Vector3(0.18, 0.48, 0.95), f))

@@ -91,7 +91,7 @@ radius = 3.2562265
 
 [node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
-day_length_minutes = 10.0
+day_length_minutes = 12.0
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
 
@@ -1516,6 +1516,11 @@ end_position = Vector3(-4.023, 0, 7.471)
 [node name="park_road_junction_decorated_C" parent="Environment/Floor/Park" index="0" unique_id=624967816 instance=ExtResource("14_0xg88")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 35)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/Floor/Park/park_road_junction_decorated_C" index="1" unique_id=1117661004]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 5.7616014, -0.09039307)
+light_energy = 0.5
+spot_range = 8.2402
+
 [node name="park_wall_straight_decorated" parent="Environment/Floor/Park" index="1" unique_id=399177305 instance=ExtResource("15_8bsvg")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 25)
 
@@ -1635,16 +1640,70 @@ end_position = Vector3(0, 0, 13)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.9257154, 0, -26.878717)
 
 [node name="streetlight_edited" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="1" unique_id=521656018 instance=ExtResource("15_wlmb3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.213977, 0, 10.164655)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.213977, 0, 9.664655)
 
 [node name="streetlight_edited6" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="2" unique_id=1102726661 instance=ExtResource("15_wlmb3")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.213977, 0, 19.848618)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 4.213977, 0, 20.348618)
 
-[node name="streetlight_edited2" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="3" unique_id=32698394 instance=ExtResource("15_wlmb3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.692455, 0, 10.164655)
+[node name="streetlight_edited4" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="3" unique_id=2115610751 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -19.786022, 0, 9.664655)
 
-[node name="streetlight_edited3" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="4" unique_id=1782066370 instance=ExtResource("15_wlmb3")]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 21.692455, 0, 19.850489)
+[node name="streetlight_edited7" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="4" unique_id=1152020721 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -19.786022, 0, 20.348618)
+
+[node name="streetlight_edited5" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="5" unique_id=1361938015 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.628006, 0, 26.006636)
+
+[node name="streetlight_edited8" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="6" unique_id=724745413 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -27.94404, 0, 26.006636)
+
+[node name="streetlight_edited9" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="7" unique_id=1271368500 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.628006, 0, 43.006638)
+
+[node name="streetlight_edited10" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="8" unique_id=214498727 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -27.94404, 0, 43.006638)
+
+[node name="streetlight_edited11" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="9" unique_id=626904142 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.628006, 0, 55.006638)
+
+[node name="streetlight_edited12" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="10" unique_id=344093194 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -27.94404, 0, 55.006638)
+
+[node name="streetlight_edited13" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="11" unique_id=1266226643 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17.786022, 0, 60.164654)
+
+[node name="streetlight_edited14" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="12" unique_id=1147963274 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -17.786022, 0, 69.84862)
+
+[node name="streetlight_edited15" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="13" unique_id=637337467 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.7860222, 0, 60.164654)
+
+[node name="streetlight_edited16" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="14" unique_id=291870049 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.7860222, 0, 69.84862)
+
+[node name="streetlight_edited17" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="15" unique_id=189494413 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.213978, 0, 60.164654)
+
+[node name="streetlight_edited18" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="16" unique_id=2096928580 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 16.213978, 0, 69.84862)
+
+[node name="streetlight_edited19" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="17" unique_id=1159751557 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 22.371994, 0, 53.006638)
+
+[node name="streetlight_edited20" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="18" unique_id=1424973171 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 32.055958, 0, 53.006638)
+
+[node name="streetlight_edited21" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="19" unique_id=124610888 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 22.371994, 0, 33.006638)
+
+[node name="streetlight_edited22" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="20" unique_id=974139579 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 32.055958, 0, 33.006638)
+
+[node name="streetlight_edited2" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="21" unique_id=32698394 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.692455, 0, 9.664655)
+
+[node name="streetlight_edited3" parent="Environment/Decoration" parent_id_path=PackedInt32Array(1405859375) index="22" unique_id=1782066370 instance=ExtResource("15_wlmb3")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 21.692455, 0, 20.350489)
 
 [node name="pizzeria" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="0" unique_id=32828750 node_paths=PackedStringArray("level") instance=ExtResource("19_42juk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.965, 0, 4)
@@ -1660,137 +1719,130 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 37, 
 [node name="building_H_withoutBase39" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="2" unique_id=632677964 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 47, -0.49950013, 17)
 
-[node name="building_H_withoutBase21" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="3" unique_id=1813936756 instance=ExtResource("17_yan4v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78, -0.38804993, 5)
-
-[node name="building_H_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="4" unique_id=142445101 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="3" unique_id=142445101 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 25)
 
-[node name="building_H_withoutBase3" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="5" unique_id=1510581954 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase3" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="4" unique_id=1510581954 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 35)
 
-[node name="building_H_withoutBase4" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="6" unique_id=1803311521 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase4" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="5" unique_id=1803311521 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 45)
 
-[node name="building_H_withoutBase5" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="7" unique_id=1368224030 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase5" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="6" unique_id=1368224030 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 55)
 
-[node name="building_H_withoutBase6" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="8" unique_id=576248061 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase6" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="7" unique_id=576248061 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37, -0.49950013, 65)
 
-[node name="building_H_withoutBase7" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="9" unique_id=1379944993 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase7" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="8" unique_id=1379944993 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 27, -0.49950013, 75)
 
-[node name="building_H_withoutBase8" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="10" unique_id=500472105 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase8" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="9" unique_id=500472105 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 17, -0.49950013, 75)
 
-[node name="building_H_withoutBase9" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="11" unique_id=734401135 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase9" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="10" unique_id=734401135 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 7, -0.49950013, 75)
 
-[node name="building_H_withoutBase10" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="12" unique_id=1710459478 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase10" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="11" unique_id=1710459478 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, -0.49950013, 75)
 
-[node name="building_H_withoutBase11" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="13" unique_id=388299889 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase11" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="12" unique_id=388299889 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -13, -0.49950013, 75)
 
-[node name="building_H_withoutBase12" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="14" unique_id=604594977 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase12" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="13" unique_id=604594977 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -23, -0.49950013, 75)
 
-[node name="building_H_withoutBase13" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="15" unique_id=1370018470 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase13" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="14" unique_id=1370018470 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -33, -0.49950013, 75)
 
-[node name="building_H_withoutBase14" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="16" unique_id=1145563142 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase14" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="15" unique_id=1145563142 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 65)
 
-[node name="building_H_withoutBase15" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="17" unique_id=1326688484 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase15" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="16" unique_id=1326688484 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 55)
 
-[node name="building_H_withoutBase16" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="18" unique_id=1367418227 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase16" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="17" unique_id=1367418227 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 45)
 
-[node name="building_H_withoutBase17" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="19" unique_id=59373921 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase17" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="18" unique_id=59373921 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 35)
 
-[node name="building_H_withoutBase18" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="20" unique_id=1375043399 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase18" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="19" unique_id=1375043399 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 25)
 
-[node name="building_H_withoutBase19" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="21" unique_id=1382713588 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase19" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="20" unique_id=1382713588 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -43, -0.49950013, 15)
 
-[node name="building_H_withoutBase20" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="22" unique_id=686285103 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase20" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="21" unique_id=686285103 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -36, -0.38804993, -1)
 
-[node name="building_H_withoutBase22" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="23" unique_id=388216829 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase22" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="22" unique_id=388216829 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -35.999992, -0.38804993, -19)
 
-[node name="building_H_withoutBase30" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="24" unique_id=237235861 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase30" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="23" unique_id=237235861 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -35.999992, -0.38804993, -9)
 
-[node name="building_H_withoutBase23" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="25" unique_id=978790581 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase23" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="24" unique_id=978790581 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -35.999992, -0.38804993, -29)
 
-[node name="building_H_withoutBase24" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="26" unique_id=1972312693 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase24" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="25" unique_id=1972312693 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -24.999994, -0.38804993, -42)
 
-[node name="building_H_withoutBase25" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="27" unique_id=459301583 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase25" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="26" unique_id=459301583 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -14.999992, -0.38804993, -41.999996)
 
-[node name="building_H_withoutBase26" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="28" unique_id=1877139304 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase26" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="27" unique_id=1877139304 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -4.9999924, -0.38804993, -41.999992)
 
-[node name="building_H_withoutBase27" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="29" unique_id=379640591 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase27" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="28" unique_id=379640591 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 5.0000076, -0.38804993, -41.999992)
 
-[node name="building_H_withoutBase28" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="30" unique_id=1705094445 instance=ExtResource("17_yan4v")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 75, -0.38804993, -12.999989)
-
-[node name="building_H_withoutBase31" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="31" unique_id=747001793 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase31" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="29" unique_id=747001793 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 28.795202, -0.38804993, -24.064457)
 
-[node name="building_H_withoutBase33" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="32" unique_id=628131500 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase33" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="30" unique_id=628131500 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 38.795204, -0.38804993, -24.064457)
 
-[node name="building_H_withoutBase34" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="33" unique_id=1189850562 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase34" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="31" unique_id=1189850562 instance=ExtResource("17_yan4v")]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 48.795204, -0.38804993, -24.064457)
 
-[node name="building_H_withoutBase35" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="34" unique_id=163834655 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase35" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="32" unique_id=163834655 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 56.795204, -0.38804993, -17.064457)
 
-[node name="building_H_withoutBase36" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="35" unique_id=869565166 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase36" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="33" unique_id=869565166 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 56.795204, -0.38804993, -7.064457)
 
-[node name="building_H_withoutBase37" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="36" unique_id=1965286435 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase37" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="34" unique_id=1965286435 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 56.795204, -0.38804993, 2.935543)
 
-[node name="building_H_withoutBase32" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="37" unique_id=292954455 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase32" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="35" unique_id=292954455 instance=ExtResource("17_yan4v")]
 transform = Transform3D(0.5820376, 0, -0.81316185, 0, 1, 0, 0.81316185, 0, 0.5820376, 23.396624, -0.38804993, -32.08651)
 
-[node name="building_H_withoutBase38" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="38" unique_id=913312971 instance=ExtResource("17_yan4v")]
+[node name="building_H_withoutBase38" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="36" unique_id=913312971 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-0.6348117, 0, -0.77266693, 0, 1, 0, 0.77266693, 0, -0.6348117, 56.04039, -0.38804993, 13.415794)
 
-[node name="building_H_withoutBase29" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="39" unique_id=592144650 instance=ExtResource("17_yan4v")]
-transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 75, -0.38804993, -2.999977)
-
-[node name="building_F_withoutBase" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="40" unique_id=2022823624 instance=ExtResource("18_k65s8")]
-transform = Transform3D(0.70710677, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, 0.70710677, 85.71629, -0.49950013, 5.5447254)
-
-[node name="building_F_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="41" unique_id=641912473 instance=ExtResource("18_k65s8")]
+[node name="building_F_withoutBase2" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="37" unique_id=641912473 instance=ExtResource("18_k65s8")]
 transform = Transform3D(-0.68967, 0, -0.7241237, 0, 1, 0, 0.7241237, 0, -0.68967, 36.46943, -0.49950013, 75.2874)
 
-[node name="building_F_withoutBase3" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="42" unique_id=1157600323 instance=ExtResource("18_k65s8")]
+[node name="building_F_withoutBase3" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="38" unique_id=1157600323 instance=ExtResource("18_k65s8")]
 transform = Transform3D(-0.6127554, 0, 0.7902726, 0, 1, 0, -0.7902726, 0, -0.6127554, -42.18002, -0.49950024, 73.76673)
 
-[node name="building_F_withoutBase4" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="43" unique_id=911009333 instance=ExtResource("18_k65s8")]
+[node name="building_F_withoutBase4" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="39" unique_id=911009333 instance=ExtResource("18_k65s8")]
 transform = Transform3D(0.45660108, 0, 0.88967156, 0, 1, 0, -0.88967156, 0, 0.45660108, -45.900517, -0.4995, 4.792757)
 
-[node name="building_F_withoutBase5" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="44" unique_id=286307147 instance=ExtResource("18_k65s8")]
+[node name="building_F_withoutBase5" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="40" unique_id=286307147 instance=ExtResource("18_k65s8")]
 transform = Transform3D(0.6338804, 0, 0.77343106, 0, 1, 0, -0.77343106, 0, 0.6338804, -34.695557, -0.4995, -39.01944)
 
-[node name="building_F_withoutBase6" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="45" unique_id=1455171657 instance=ExtResource("18_k65s8")]
+[node name="building_F_withoutBase6" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="41" unique_id=1455171657 instance=ExtResource("18_k65s8")]
 transform = Transform3D(0.81628895, 0, -0.5776439, 0, 1, 0, 0.5776439, 0, 0.81628895, 15.532628, -0.4995, -39.42299)
 
-[node name="Apartment" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="46" unique_id=40677564 instance=ExtResource("19_oj5bk")]
+[node name="Apartment" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="42" unique_id=40677564 instance=ExtResource("19_oj5bk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24.840462, 0, -6.5088925)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Environment/Buildings/Apartment" index="7" unique_id=1093580987]
+transform = Transform3D(0.9608259, -0.27710047, -0.0053730905, -0.0880863, -0.3236997, 0.94205064, -0.26278192, -0.9046736, -0.33542782, -0.07880783, 5.927614, 2.5676498)
+light_energy = 2.0
+spot_range = 14.677625
 
 [node name="RestaurantMarker" parent="Environment/Markers" parent_id_path=PackedInt32Array(1146535934) index="0" unique_id=805240976]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.994053, 4.7683716e-07, 2.2089767)

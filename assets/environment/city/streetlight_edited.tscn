@@ -13,15 +13,20 @@ data = PackedVector3Array(0, 0, 0.0301, -0.0213, 0.2126, 0.0213, 0, 0.2126, 0.03
 
 [node name="streetlight_edited" unique_id=521656018 instance=ExtResource("1_ibsn4")]
 
-[node name="streetlight" parent="." index="0" unique_id=702033735]
+[node name="streetlight" parent="." index="0" unique_id=1152313702]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="streetlight_light" parent="streetlight" index="0" unique_id=1755153186]
+[node name="streetlight_light" parent="streetlight" index="0" unique_id=474626154]
 surface_material_override/0 = SubResource("StandardMaterial3D_dadh4")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="streetlight/streetlight_light" index="0" unique_id=1086962063]
 transform = Transform3D(0.9723414, 0, 0.23356415, -0.23356415, -4.371139e-08, 0.9723414, 1.0209414e-08, -1, -4.2502393e-08, -0.1993289, 0.90056705, -3.936504e-08)
+visible = false
 spot_range = 8.844251
+
+[node name="OmniLight3D" type="OmniLight3D" parent="streetlight/streetlight_light" index="1" unique_id=144853129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19589257, 0.7939286, 0)
+omni_range = 6.6074886
 
 [node name="StaticBody3D" type="StaticBody3D" parent="streetlight" index="1" unique_id=1907233709]
 

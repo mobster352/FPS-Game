@@ -4,8 +4,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sasq1"]
 
-[node name="BasicPlayer" type="CharacterBody3D" unique_id=139113775]
+[node name="BasicPlayer" type="CharacterBody3D" unique_id=139113775 node_paths=PackedStringArray("pointer_slot")]
 script = ExtResource("1_bfykc")
+pointer_slot = NodePath("Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=272532315]
 shape = SubResource("CapsuleShape3D_sasq1")

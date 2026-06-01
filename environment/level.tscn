@@ -4,22 +4,17 @@
 [ext_resource type="Script" uid="uid://s371qejq0t8l" path="res://scripts/game_state.gd" id="2_alcuw"]
 [ext_resource type="Script" uid="uid://ck0h1lvamaf0i" path="res://environment/level_ui.gd" id="2_vfqff"]
 [ext_resource type="PackedScene" uid="uid://diebiq40t0g7k" path="res://components/placement_system.tscn" id="3_3dj58"]
+[ext_resource type="Material" uid="uid://chcv751i8bp8i" path="res://environment/sky_with_clouds.tres" id="3_ntmsj"]
 [ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="5_xafsa"]
 [ext_resource type="PackedScene" uid="uid://baakymstnrcvv" path="res://components/status_bar.tscn" id="6_78a7o"]
+[ext_resource type="Shader" uid="uid://cfv8xnar027e7" path="res://environment/sky_shader.gdshader" id="8_ntmsj"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_78a7o"]
-sky_top_color = Color(0.34901962, 0.5882353, 1, 1)
-sky_horizon_color = Color(0, 0.32941177, 0.96862745, 1)
-sky_curve = 0.05490331
-sky_cover_modulate = Color(5.77569e-06, 0.9183319, 0.91936356, 1)
-sun_angle_max = 10.0
-
-[sub_resource type="Sky" id="Sky_vfqff"]
-sky_material = SubResource("ProceduralSkyMaterial_78a7o")
+[sub_resource type="Sky" id="Sky_xut55"]
+sky_material = ExtResource("3_ntmsj")
 
 [sub_resource type="Environment" id="Environment_vfqff"]
 background_mode = 2
-sky = SubResource("Sky_vfqff")
+sky = SubResource("Sky_xut55")
 tonemap_mode = 2
 ssr_enabled = true
 ssao_enabled = true
@@ -30,12 +25,32 @@ volumetric_fog_density = 0.03
 volumetric_fog_albedo = Color(0.09239707, 0.09239706, 0.09239706, 1)
 volumetric_fog_sky_affect = 0.25
 
-[node name="Level" type="Node3D" unique_id=1263719789 node_paths=PackedStringArray("sun_pivot", "sun", "world_environment", "level_ui")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ntmsj"]
+shader = ExtResource("8_ntmsj")
+shader_parameter/cloud_coverage = 0.48
+shader_parameter/cloud_softness = 0.35
+shader_parameter/cloud_scale = 2.2
+shader_parameter/cloud_speed = 0.03
+shader_parameter/cloud_brightness = 0.85
+shader_parameter/sky_horizon_color = Vector3(0, 0, 0)
+shader_parameter/sky_mid_color = Vector3(0, 0, 0)
+shader_parameter/sky_top_color = Vector3(0, 0, 0)
+shader_parameter/sun_direction = Vector3(0.35, 0.45, 0.25)
+shader_parameter/sun_color = Vector3(1, 0.86, 0.55)
+shader_parameter/sun_size = 0.035
+shader_parameter/sun_glow_size = 0.22
+shader_parameter/sun_intensity = 1.4
+shader_parameter/moon_direction = Vector3(-0.35, -0.45, -0.25)
+shader_parameter/moon_color = Vector3(0.72, 0.78, 1)
+shader_parameter/moon_size = 0.028
+shader_parameter/moon_glow_size = 0.18
+shader_parameter/moon_intensity = 0.8
+
+[node name="Level" type="Node3D" unique_id=1263719789 node_paths=PackedStringArray("sun_pivot", "sun", "level_ui")]
 process_mode = 1
 script = ExtResource("1_vfqff")
 sun_pivot = NodePath("SunPivot")
 sun = NodePath("SunPivot/DirectionalLight3D")
-world_environment = NodePath("WorldEnvironment")
 day_length_minutes = 40.0
 level_ui = NodePath("UI")
 
@@ -43,6 +58,7 @@ level_ui = NodePath("UI")
 script = ExtResource("2_alcuw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=237411449 groups=["world_environment"]]
+unique_name_in_owner = true
 environment = SubResource("Environment_vfqff")
 
 [node name="SunPivot" type="Node3D" parent="." unique_id=938495831]
@@ -130,5 +146,19 @@ layout_mode = 1
 [node name="ClockTimer" type="Timer" parent="Timers" unique_id=1175787207]
 wait_time = 0.05
 autostart = true
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=838347712]
+unique_name_in_owner = true
+size = Vector2i(4096, 2048)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport" unique_id=1983696982]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ntmsj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3949666, 0.48710847, 0.9999983, 1)
 
 [connection signal="timeout" from="Timers/ClockTimer" to="UI" method="_on_clock_timer_timeout"]
