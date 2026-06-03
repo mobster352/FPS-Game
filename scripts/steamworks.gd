@@ -1,12 +1,13 @@
 extends Node
 
 var achievements: Dictionary[String, bool] = {
-	"TEST_ACHIEVEMENT": false
+	"1000_DOLLARS": false
 	}
 var statistics: Dictionary[String, int] = {
-	"TEST_STAT": 0
+	"FIRST_DELIVERY_STAT": 0
 	}
 
+var is_steam_active:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,10 +21,14 @@ func initialize_steam() -> void:
 	if initialize_response['status'] > Steam.STEAM_API_INIT_RESULT_OK:
 		#print("Failed to initialize Steam")
 		return
-		
+	
 	#print("Steam App Id: %s" % Steam.getAppID())
 	load_steam_stats()
 	load_steam_achievements()
+	is_steam_active = true
+	#reset_statistics()
+	#reset_achievement("1000_DOLLARS")
+	#reset_achievement("FIRST_DELIVERY")
 
 
 func load_steam_stats() -> void:

@@ -68,6 +68,8 @@ var starting_money: int
 	set(value):
 		money = value
 		GlobalSignal.update_money.emit(value)
+		if money >= 1000 and steamworks.is_steam_active:
+			steamworks.set_achievement("1000_DOLLARS")
 		
 		
 var spawn_position: Vector3
@@ -152,7 +154,7 @@ func _ready():
 		playerData.store_font_size = 72
 		playerData.level = 0
 		playerData.xp = 0
-		GlobalSignal.add_quest.emit(QuestIds.BUY_INGREDIENTS)
+		GlobalSignal.add_quest.emit(QuestIds.BUY_INGREDIENTS, "")
 	
 	starting_money = money
 	

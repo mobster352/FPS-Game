@@ -46,6 +46,8 @@ func interact(player: Player) -> void:
 	var obj_passed:bool
 	if delivery_quest.room_number == package_marker.room_number:
 		obj_passed = true
+		if steamworks.is_steam_active:
+			steamworks.set_statistic("FIRST_DELIVERY_STAT")
 	else:
 		obj_passed = false
 	GlobalSignal.update_quest_objective.emit(quest_id, quest_objective_id, obj_passed)
