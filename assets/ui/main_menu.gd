@@ -5,11 +5,22 @@ signal show_load_game_menu
 @export var menu_audio: AudioStreamPlayer
 @export var main_menu: Control
 @export var options_menu: Control
+@onready var bg_texture: TextureRect = %BgTexture
+
+const BG_TEX_01:StringName = "uid://m0im0ucr4f4q"
+const BG_TEX_02:StringName = "uid://dw7l4rby32olm"
+const BG_TEX_03:StringName = "uid://3a1ije2qj36k"
+
+var bg_tex_arr:Array
 
 func _ready() -> void:
 	if OS.has_feature("dedicated_server"):
 		get_tree().call_deferred("change_scene_to_file","uid://b10ibkxnixdiq")
 	%StartGameButton.grab_focus()
+	bg_tex_arr.append(BG_TEX_01)
+	bg_tex_arr.append(BG_TEX_02)
+	bg_tex_arr.append(BG_TEX_03)
+	bg_texture.texture = load(bg_tex_arr.pick_random())
 
 
 func _on_exit_button_pressed() -> void:
@@ -52,3 +63,8 @@ func _on_discord_texture_mouse_exited() -> void:
 
 func _on_load_game_menu_show_main_menu() -> void:
 	show()
+
+
+func _on_bg_timer_timeout() -> void:
+	var random_tex:StringName = bg_tex_arr.pick_random()
+	bg_texture.texture = load(random_tex)

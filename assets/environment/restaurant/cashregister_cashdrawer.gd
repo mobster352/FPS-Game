@@ -54,14 +54,14 @@ func _remove_order_from_register() -> void:
 	_clear_money()
 	change = -1000
 	%MarginContainer.hide()
-	%OrderValue.text = ""
+	#%OrderValue.text = ""
 	%ReceivedValue.text = ""
 	%TotalValue.text = ""
 	%ChangeValue.text = ""
 
 
 
-func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_food:int) -> void:
+func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, _random_food:int) -> void:
 	_clear_money()
 	
 	total = _total
@@ -72,13 +72,13 @@ func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, random_f
 	
 	%MarginContainer.show()
 	
-	var order_food:StringName = "Invalid Food"
-	for food in GlobalVar.food_items:
-		if random_food == food.food_id:
-			order_food = food.food_name
-			break
-	
-	%OrderValue.text = order_food
+	#var order_food:StringName = "Invalid Food"
+	#for food in GlobalVar.food_items:
+		#if random_food == food.food_id:
+			#order_food = food.food_name
+			#break
+	#
+	#%OrderValue.text = order_food
 	%ReceivedValue.text = format_money(money_payed)
 	%TotalValue.text = format_money(total)
 	

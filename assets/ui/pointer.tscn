@@ -44,15 +44,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -58.5
-offset_right = 70.0
-offset_bottom = 58.5
+offset_left = -144.0
+offset_top = -108.0
+offset_right = -4.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 
 [node name="TextureRect" type="TextureRect" parent="CSGBox3D/SubViewport/Pointer/MarginContainer" unique_id=875306650]
 layout_mode = 2
 texture = ExtResource("1_8vad7")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
-uniform float cloud_coverage : hint_range(0.0, 1.0) = 0.55;
-uniform float cloud_softness : hint_range(0.01, 0.5) = 0.22;
-uniform float cloud_scale : hint_range(0.5, 12.0) = 3.0;
-uniform float cloud_speed : hint_range(0.0, 1.0) = 0.025;
+uniform float cloud_coverage : hint_range(0.0, 1.0) = 0.48;
+uniform float cloud_softness : hint_range(0.01, 0.5) = 0.35;
+uniform float cloud_scale : hint_range(0.5, 12.0) = 2.2;
+uniform float cloud_speed : hint_range(0.0, 1.0) = 0.03;
 uniform float cloud_brightness : hint_range(0.0, 1.5) = 0.85;
 
 uniform vec3 sky_horizon_color = vec3(0.72, 0.88, 1.0);

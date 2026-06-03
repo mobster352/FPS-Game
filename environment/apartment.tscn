@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dm0m08u0gweqs" path="res://environment/primitive_stairs.tscn" id="5_7l66d"]
 [ext_resource type="PackedScene" uid="uid://pxtiqwohdhbv" path="res://environment/wall_window_open.tscn" id="6_r70c6"]
 [ext_resource type="PackedScene" uid="uid://c1apxqra2i8td" path="res://assets/pizzaboy/scenes/ceiling_light.tscn" id="7_74oyr"]
+[ext_resource type="PackedScene" uid="uid://dnwcv3k704iie" path="res://assets/kaykit/prototype/wall_window_closed.tscn" id="9_xe10e"]
 
 [node name="Apartment" type="Node3D" unique_id=40677564]
 
@@ -540,16 +541,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3.6000004, -4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3.6000004, 0)
 
 [node name="Doors" type="Node3D" parent="." unique_id=568013060]
-
-[node name="Door_A" parent="Doors" unique_id=329432222 instance=ExtResource("2_csj1d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 1.9)
-is_locked = false
-number_required = 0
-
-[node name="Door_A2" parent="Doors" unique_id=987141807 instance=ExtResource("2_csj1d")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.8, 0, -22.1)
-is_locked = false
-number_required = 0
 
 [node name="Rooms" type="Node3D" parent="." unique_id=145552389]
 
@@ -1164,9 +1155,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 4
 
 [node name="Windows" type="Node3D" parent="." unique_id=1859754813]
 
-[node name="Wall_Window_Open" parent="Windows" unique_id=531463182 instance=ExtResource("6_r70c6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -4)
-
 [node name="Wall_Window_Open11" parent="Windows" unique_id=1389441007 instance=ExtResource("6_r70c6")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0, 2)
 
@@ -1176,32 +1164,35 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 8
 [node name="Wall_Window_Open10" parent="Windows" unique_id=1629167868 instance=ExtResource("6_r70c6")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 8, 2)
 
-[node name="Wall_Window_Open2" parent="Windows" unique_id=397778369 instance=ExtResource("6_r70c6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -16)
-
-[node name="Wall_Window_Open6" parent="Windows" unique_id=722422861 instance=ExtResource("6_r70c6")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10, 0, -16)
-
-[node name="Wall_Window_Open7" parent="Windows" unique_id=132487148 instance=ExtResource("6_r70c6")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10, 0, -4)
-
-[node name="Wall_Window_Open8" parent="Windows" unique_id=850546963 instance=ExtResource("6_r70c6")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10, 8, -16)
-
-[node name="Wall_Window_Open9" parent="Windows" unique_id=713087573 instance=ExtResource("6_r70c6")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10, 8, -4)
-
-[node name="Wall_Window_Open4" parent="Windows" unique_id=927871545 instance=ExtResource("6_r70c6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 8, -4)
-
-[node name="Wall_Window_Open5" parent="Windows" unique_id=1609560914 instance=ExtResource("6_r70c6")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 8, -16)
-
 [node name="Wall_Window_Open12" parent="Windows" unique_id=2002980206 instance=ExtResource("6_r70c6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -22)
 
 [node name="Wall_Window_Open13" parent="Windows" unique_id=348203231 instance=ExtResource("6_r70c6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -22)
+
+[node name="Wall_Window_Closed" parent="Windows" unique_id=938683032 instance=ExtResource("9_xe10e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -4)
+
+[node name="Wall_Window_Closed2" parent="Windows" unique_id=679797023 instance=ExtResource("9_xe10e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -16)
+
+[node name="Wall_Window_Closed3" parent="Windows" unique_id=1034789645 instance=ExtResource("9_xe10e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 8, -4)
+
+[node name="Wall_Window_Closed4" parent="Windows" unique_id=229173523 instance=ExtResource("9_xe10e")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 8, -16)
+
+[node name="Wall_Window_Closed5" parent="Windows" unique_id=1769114756 instance=ExtResource("9_xe10e")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -9.999999, 0, -16)
+
+[node name="Wall_Window_Closed6" parent="Windows" unique_id=402598471 instance=ExtResource("9_xe10e")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.000001, 0, -4)
+
+[node name="Wall_Window_Closed7" parent="Windows" unique_id=315905641 instance=ExtResource("9_xe10e")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -9.999999, 8, -16)
+
+[node name="Wall_Window_Closed8" parent="Windows" unique_id=1201465088 instance=ExtResource("9_xe10e")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.000001, 8, -4)
 
 [node name="Lights" type="Node3D" parent="." unique_id=1699200059]
 

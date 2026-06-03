@@ -3,9 +3,9 @@ extends Interactable
 @export var npc_dummy: NPC_Dummy
 
 func can_interact(player: Player) -> bool:
-	if npc_dummy.in_range and npc_dummy.target == GlobalMarker.park_marker and npc_dummy.sitting:
+	if npc_dummy.in_range and npc_dummy.target == GlobalMarker.weapon_quest_marker:
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.Interact, player.has_held_object())
-	return npc_dummy.in_range and npc_dummy.target == GlobalMarker.park_marker and npc_dummy.sitting
+	return npc_dummy.in_range and npc_dummy.target == GlobalMarker.weapon_quest_marker
 	
 func interact(_player: Player) -> void:
 	npc_dummy.interact()

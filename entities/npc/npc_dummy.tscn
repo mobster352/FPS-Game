@@ -12,7 +12,7 @@ radius = 0.47802734
 height = 2.4682617
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_svb3k"]
-radius = 2.4835818
+radius = 3.5265417
 
 [node name="NpcDummy" type="CharacterBody3D" unique_id=966389076 node_paths=PackedStringArray("dialogue_box", "area_col", "navigation_agent", "pointer")]
 collision_layer = 32
@@ -44,7 +44,7 @@ target_desired_distance = 0.1
 navigation_layers = 3
 
 [node name="Pointer" parent="." unique_id=164535982 instance=ExtResource("4_kfvlc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6577318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.658, 0)
 visible = false
 
 [node name="RadialProgressBar" parent="." unique_id=1885023224 instance=ExtResource("5_p43ok")]

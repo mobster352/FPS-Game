@@ -125,14 +125,14 @@ func set_path() -> void:
 			else:
 				check_walk_in_store()
 		NpcChoices.Park:
-			if dummy.weapon.visible or GlobalMarker.park_marker_npc:
+			if dummy.weapon.visible or GlobalMarker.weapon_quest_marker_npc:
 				if not is_store_open:
 					target = endPathMarker
 				else:
 					check_walk_in_store()
 			else:
-				target = GlobalMarker.park_marker
-				GlobalMarker.park_marker_npc = self
+				target = GlobalMarker.weapon_quest_marker
+				GlobalMarker.weapon_quest_marker_npc = self
 				quest = ResourceManager.get_weapon_fetch_quest_for_character(skin_uuid)
 				dialogue_box.dialogue_id = quest.dialogue_id
 	
@@ -179,9 +179,7 @@ func idle_state(_delta:float) -> void:
 	if not target:
 		get_target(NPCState.Idle)
 		return
-	if target == GlobalMarker.queue_marker and not has_order:
-		pointer.show()
-		
+	if target == GlobalMarker.queue_marker and not has_order:		
 		has_order = true
 		order_total = 0
 		random_food = GlobalVar.get_random_food_by_level(player.level)
@@ -229,6 +227,11 @@ func idle_state(_delta:float) -> void:
 		next_state = NPCState.Sitting
 		previous_state = current_state
 		sitting = true
+		
+	if target == GlobalMarker.weapon_quest_marker:
+		var target_pos = player.global_position
+		target_pos.y = global_position.y
+		look_at(target_pos)
 	
 func walking_state(delta:float) -> void:
 	if not navigation_ready:
@@ -251,6 +254,8 @@ func walking_state(delta:float) -> void:
 		next_state = NPCState.Idle
 		previous_state = current_state
 		if target == GlobalMarker.park_marker:
+			pointer.show()
+		if target == GlobalMarker.weapon_quest_marker:
 			pointer.show()
 	
 func sitting_state(_delta:float) -> void:
@@ -293,7 +298,9 @@ func get_target(_current_state:NPCState) -> void:
 		elif target == GlobalMarker.park_marker:
 			target = endPathMarker
 			navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
-	
+		elif target == GlobalMarker.weapon_quest_marker:
+			target = endPathMarker
+			navigation_agent.set_target_position(NavigationServer3D.map_get_closest_point(navigation_agent.get_navigation_map(), target.global_position))
 	if target:
 		next_state = NPCState.Walking
 		previous_state = _current_state
@@ -435,10 +442,9 @@ func _on_quest_repeat_timer_timeout() -> void:
 
 func _on_dialogue_box_end_dialogue(npc: NPC_Dummy) -> void:
 	if npc == self and is_quest_complete:
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		has_quest = false
 		is_quest_complete = false
 		dialogue_box.current_index = 0
-		sitting = false
-		dummy.sit_chair_stand_up()
-		GlobalMarker.park_marker_npc = null
+		get_target(NPCState.Idle)
+		GlobalMarker.weapon_quest_marker_npc = null

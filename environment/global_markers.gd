@@ -12,6 +12,10 @@ signal update_markers
 
 @onready var park_marker: Marker3D
 
+@onready var weapon_quest_marker: Marker3D
+
+var weapon_quest_marker_npc: NPC_Dummy
+
 var queue1_npc: NPC_Dummy
 var queue2_npc: NPC_Dummy
 var queue3_npc: NPC_Dummy
@@ -31,3 +35,4 @@ func _update_markers() -> void:
 		queue2_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Queue2")
 		queue3_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/Queue3")
 		park_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/ParkMarker")
+		weapon_quest_marker = get_node("/root/Game/GameLevel/Level/Environment/Markers/WeaponQuestMarker")

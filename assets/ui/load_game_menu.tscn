@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cmu22kl0anlb2" path="res://assets/ui/background.png" id="2_64wec"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="2_e2d8f"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="3_38oqv"]
+[ext_resource type="Texture2D" uid="uid://m0im0ucr4f4q" path="res://assets/environment/misc/background1.png" id="3_e2d8f"]
 [ext_resource type="LabelSettings" uid="uid://s6pl6aep0dkr" path="res://assets/ui/controls.tres" id="4_5viaj"]
 
 [node name="LoadGameMenu" type="Control" unique_id=208226146]
@@ -23,8 +24,16 @@ offset_right = 1400.0
 offset_bottom = 648.0
 
 [node name="TextureRect" type="TextureRect" parent="Background" unique_id=2030654402]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_64wec")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BgTexture" type="TextureRect" parent="Background" unique_id=1222854319]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_e2d8f")
 expand_mode = 1
 stretch_mode = 4
 
@@ -151,6 +160,12 @@ focus_neighbor_top = NodePath("../../Slots/HBoxContainer/SaveSlot3/PanelContaine
 focus_neighbor_right = NodePath("../../DeleteSlot1/DeleteButtonSlot1")
 text = "Delete"
 
+[node name="Timers" type="Node" parent="." unique_id=435740576]
+
+[node name="BgTimer" type="Timer" parent="Timers" unique_id=134543394]
+wait_time = 10.0
+autostart = true
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="." to="Slots/HBoxContainer/SaveSlot" method="_on_load_game_menu_visibility_changed"]
 [connection signal="visibility_changed" from="." to="Slots/HBoxContainer/SaveSlot2" method="_on_load_game_menu_visibility_changed"]
@@ -159,6 +174,7 @@ text = "Delete"
 [connection signal="pressed" from="DeleteSlot1/DeleteButtonSlot1" to="." method="_on_delete_button_slot_1_pressed"]
 [connection signal="pressed" from="DeleteSlot2/DeleteButtonSlot2" to="." method="_on_delete_button_slot_2_pressed"]
 [connection signal="pressed" from="DeleteSlot3/DeleteButtonSlot3" to="." method="_on_delete_button_slot_3_pressed"]
+[connection signal="timeout" from="Timers/BgTimer" to="." method="_on_bg_timer_timeout"]
 
 [editable path="Slots/HBoxContainer/SaveSlot"]
 [editable path="Slots/HBoxContainer/SaveSlot2"]
