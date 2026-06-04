@@ -20,7 +20,8 @@ config/version="0.01"
 run/main_scene="uid://c85j0g7glmkou"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+boot_splash/image="uid://dqqo2bh00khbh"
+config/icon="uid://uj81tanyn7cb"
 
 [autoload]
 
