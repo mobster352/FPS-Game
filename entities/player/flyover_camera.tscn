@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c23lsfegk2dq"]
+
+[ext_resource type="Script" uid="uid://blml18ec5ken1" path="res://scripts/flyover_camera.gd" id="1_bxb37"]
+
+[node name="FlyoverCamera" type="Camera3D" unique_id=134777236]
+script = ExtResource("1_bxb37")
