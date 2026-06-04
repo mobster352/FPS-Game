@@ -21,7 +21,7 @@ run/main_scene="uid://c85j0g7glmkou"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 boot_splash/image="uid://dqqo2bh00khbh"
-config/icon="uid://uj81tanyn7cb"
+config/icon="uid://djnw2xoosqicr"
 
 [autoload]
 

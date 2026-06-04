@@ -68,8 +68,6 @@ var starting_money: int
 	set(value):
 		money = value
 		GlobalSignal.update_money.emit(value)
-		if money >= 1000 and steamworks.is_steam_active:
-			steamworks.set_achievement("1000_DOLLARS")
 		
 		
 var spawn_position: Vector3
@@ -147,6 +145,8 @@ func _ready():
 	# set up player data
 	if ResourceLoader.exists(GlobalVar.get_save_slot()) and not is_test:
 		load_player_data()
+		if steamworks.is_steam_active:
+			steamworks.set_money_stat(money)
 	else:
 		playerData = PlayerData.new()
 		playerData.day = 1
@@ -155,6 +155,8 @@ func _ready():
 		playerData.level = 0
 		playerData.xp = 0
 		GlobalSignal.add_quest.emit(QuestIds.BUY_INGREDIENTS, "")
+		if steamworks.is_steam_active:
+			steamworks.set_money_stat(100)
 	
 	starting_money = money
 	
@@ -791,6 +793,8 @@ func take_damage(value: int) -> void:
 
 
 func update_money(_money:int) -> void:
+	if steamworks.is_steam_active:
+		steamworks.set_statistic("MONEY_STAT", _money)
 	money += _money
 	GlobalSignal.update_money_floating_text.emit(_money)
 

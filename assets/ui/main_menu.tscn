@@ -234,6 +234,17 @@ anchor_bottom = 1.0
 offset_right = -0.030006409
 uri = "https://discord.gg/GBZvgFyDx9"
 
+[node name="Steam" type="MarginContainer" parent="Main" unique_id=948490451]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Main/Steam" unique_id=339989725]
+layout_mode = 2
+text = "STEAM INITIALIZED"
+
 [node name="OptionsMenu" parent="." unique_id=737911688 node_paths=PackedStringArray("callback_menu") instance=ExtResource("8_jci6o")]
 visible = false
 layout_mode = 1

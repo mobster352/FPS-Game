@@ -1,10 +1,17 @@
 extends Node
 
 var achievements: Dictionary[String, bool] = {
-	"1000_DOLLARS": false
+	"1000_DOLLARS": false,
+	"FIRST_DELIVERY": false,
+	"FINISHED_DEMO": false,
+	"10000_DOLLARS": false,
+	"100000_DOLLARS": false,
+	"10_DELIVERIES": false,
+	"100_DELIVERIES": false
 	}
 var statistics: Dictionary[String, int] = {
-	"FIRST_DELIVERY_STAT": 0
+	"NUM_DELIVERIES_STAT": 0,
+	"MONEY_STAT": 0
 	}
 
 var is_steam_active:bool = false
@@ -15,7 +22,8 @@ func _ready() -> void:
 
 
 func initialize_steam() -> void:
-	var initialize_response: Dictionary = Steam.steamInitEx()
+	#Demo App ID
+	var initialize_response: Dictionary = Steam.steamInitEx(4633460, true)
 	#print("Did Steam initialize?: %s " % initialize_response)
 	
 	if initialize_response['status'] > Steam.STEAM_API_INIT_RESULT_OK:
@@ -38,6 +46,7 @@ func load_steam_stats() -> void:
 
 		# Store the value in our dictionary
 		statistics[this_stat] = stat_value
+		print(this_stat, ": ", statistics[this_stat])
 	#print("Steam statistics loaded")
 
 
@@ -82,13 +91,26 @@ func set_statistic(this_stat: String, new_value: int = 1) -> void:
 		return
 	# Set our local version
 	statistics[this_stat] += new_value
+	print(this_stat, ": ", statistics[this_stat])
 
 	# Set Steam's version
-	if not Steam.setStatInt(this_stat, new_value):
+	if not Steam.setStatInt(this_stat, statistics[this_stat]):
 		#print("Failed to set stat %s to: %s" % [this_stat, new_value])
 		return
 
 	#print("Set statistics %s succesfully: %s" % [this_stat, new_value])
+	store_steam_data()
+
+
+func set_money_stat(new_value: int = 100):
+	if not statistics.has("MONEY_STAT"):
+		return
+		
+	statistics["MONEY_STAT"] = new_value
+	
+	if not Steam.setStatInt("MONEY_STAT", statistics["MONEY_STAT"]):
+		return
+
 	store_steam_data()
 
 
