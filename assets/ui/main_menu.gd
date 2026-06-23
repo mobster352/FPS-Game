@@ -22,10 +22,10 @@ func _ready() -> void:
 	bg_tex_arr.append(BG_TEX_02)
 	bg_tex_arr.append(BG_TEX_03)
 	bg_texture.texture = load(bg_tex_arr.pick_random())
-	if steamworks.is_steam_active:
-		steam.show()
-	else:
-		steam.hide()
+	#if steamworks.is_steam_active:
+		#steam.show()
+	#else:
+		#steam.hide()
 
 
 func _on_exit_button_pressed() -> void:

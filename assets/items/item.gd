@@ -153,6 +153,7 @@ func pickup(new_pos: Vector3, new_rotation: Vector3, _player) -> void:
 	elif has_meta("plate_dirty"):
 		pointer.hide()
 		GlobalSignal.toggle_pointer.emit("sink", true)
+		
 
 
 func shrink_and_free(money:int, delay := 1.0) -> void:

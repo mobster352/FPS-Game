@@ -79,6 +79,7 @@ shape = SubResource("SphereShape3D_ifnxj")
 mesh = SubResource("ArrayMesh_xp428")
 skeleton = NodePath("")
 metadata/name = &"package_mesh"
+metadata/starting_pos = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RoomLabel" type="Label3D" parent="body/Box_C/Box_C" unique_id=1521412202]
 unique_name_in_owner = true
@@ -92,5 +93,12 @@ script = ExtResource("4_unds5")
 package = NodePath("../..")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
 
+[node name="Timers" type="Node" parent="." unique_id=579604944]
+
+[node name="Timer" type="Timer" parent="Timers" unique_id=282359013]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="body/Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]

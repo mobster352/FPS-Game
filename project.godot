@@ -309,3 +309,5 @@ occlusion_culling/use_occlusion_culling=true
 
 initialization/app_id=4633460
 initialization/embed_callbacks=true
+multiplayer_peer/max_channels=4
+initialization/initialize_on_startup=false

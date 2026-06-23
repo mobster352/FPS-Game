@@ -31,6 +31,7 @@ func interact(_player:Player) -> void:
 			pointer.hide()
 			var new_package:Package = PACKAGE.instantiate()
 			new_package.room_number = room_number
+			new_package.starting_pos = package_spawn.global_transform
 			package_spawn.add_child(new_package)
 			return
 	dialogue_box.enable(self)

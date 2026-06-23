@@ -27,10 +27,10 @@ func initialize_steam() -> void:
 	#print("Did Steam initialize?: %s " % initialize_response)
 	
 	if initialize_response['status'] > Steam.STEAM_API_INIT_RESULT_OK:
-		#print("Failed to initialize Steam")
+		print("Failed to initialize Steam")
 		return
 	
-	#print("Steam App Id: %s" % Steam.getAppID())
+	print("Steam App Id: %s" % Steam.getAppID())
 	load_steam_stats()
 	load_steam_achievements()
 	is_steam_active = true

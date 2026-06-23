@@ -765,6 +765,8 @@ func drop_item() -> void:
 				if item is Package:
 					item.room_number = int(child_mesh.get_child(0).text)
 					item.room_label.no_depth_test = false
+					item.starting_pos = child_mesh.get_meta("starting_pos")
+					item.timer.start()
 					
 			item_slot.remove_child(child_mesh)
 			child_mesh.queue_free()
