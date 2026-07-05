@@ -108,17 +108,14 @@ var xp:int = 0
 @onready var tablet:Tablet = %Tablet
 var is_sprinting:bool = false
 
-enum InputDevice {
-	MOUSE_KEYBOARD,
-	CONTROLLER
-}
-var current_input_device := InputDevice.MOUSE_KEYBOARD:
+var current_input_device := GlobalVar.InputDevice.MOUSE_KEYBOARD:
 	set(value):
 		current_input_device = value
-		if value == InputDevice.MOUSE_KEYBOARD:
+		if value == GlobalVar.InputDevice.MOUSE_KEYBOARD:
 			inputs_ui.input_type = InputsUI.InputType.MOUSE
-		elif value == InputDevice.CONTROLLER:
+		elif value == GlobalVar.InputDevice.CONTROLLER:
 			inputs_ui.input_type = InputsUI.InputType.CONTROLLER
+		GlobalSignal.update_input_device.emit(value)
 			
 var can_play_audio:bool = true
 var fov:int:
@@ -196,7 +193,8 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("sprint"):
 				is_sprinting = not is_sprinting
 			_process_movement()
-			_process_camera()
+			if current_input_device == GlobalVar.InputDevice.MOUSE_KEYBOARD:
+				_process_camera()
 			if not is_cashier:
 				_process_jump()
 				_physics_logic()
@@ -237,7 +235,7 @@ func _process_controller_turning(delta:float) -> void:
 		)
 		pointer_slot.rotation.x = pitch
 		
-		current_input_device = InputDevice.CONTROLLER
+		current_input_device = GlobalVar.InputDevice.CONTROLLER
 	else:
 		# Optional: snap tiny values to zero if you want extra stability
 		look = Vector2.ZERO
@@ -288,6 +286,7 @@ var mouse_input: Vector2 = Vector2.ZERO
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
 		mouse_input += event.relative
+		current_input_device = GlobalVar.InputDevice.MOUSE_KEYBOARD
 
 
 func _process_camera() -> void:
@@ -303,7 +302,6 @@ func _process_camera() -> void:
 		pointer_slot.rotation.x = pitch
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		current_input_device = InputDevice.MOUSE_KEYBOARD
 		mouse_input = Vector2.ZERO
 	else:
 		# Horizontal (yaw)
@@ -317,7 +315,6 @@ func _process_camera() -> void:
 		pointer_slot.rotation.x = pitch
 		if OS.has_feature("web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		current_input_device = InputDevice.MOUSE_KEYBOARD
 		mouse_input = Vector2.ZERO
 
 

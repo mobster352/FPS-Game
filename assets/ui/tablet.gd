@@ -10,6 +10,8 @@ enum TabletStoreItems {
 
 @export var order_vbox:VBoxContainer
 @export var tabs:TabContainer
+@onready var tables: Control = %Tables
+@onready var purchase_table_button: Button = %PurchaseTableButton
 
 var is_tablet_open := false
 var placement_system: PlacementSystem
@@ -111,3 +113,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		tabs.current_tab = wrapi(tabs.current_tab - 1, 0, tabs.get_tab_count())
 		$MarginContainer/TabContainer/Tables/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseTableButton.grab_focus()
 		get_viewport().set_input_as_handled()
+
+
+func _on_tables_visibility_changed() -> void:
+	if tables.visible:
+		purchase_table_button.call_deferred("grab_focus")

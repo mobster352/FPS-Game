@@ -258,7 +258,7 @@ func _on_cancel_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		%QualityPresetButton.grab_focus()
+		%QualityPresetButton.call_deferred("grab_focus")
 
 
 func _on_mouse_sensitivity_spin_box_value_changed(value: float) -> void:
@@ -290,21 +290,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("tab_left"):
 		tabs.current_tab = wrapi(tabs.current_tab - 1, 0, tabs.get_tab_count())
 		if tabs.current_tab == 0:
-			%QualityPresetButton.grab_focus()
+			%QualityPresetButton.call_deferred("grab_focus")
 		elif tabs.current_tab == 1:
-			%MouseSensitivitySpinBox.get_line_edit().grab_focus()
+			%MouseSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
 		elif tabs.current_tab == 2:
-			%ControllerSensitivitySpinBox.get_line_edit().grab_focus()
-		get_viewport().set_input_as_handled()
+			%ControllerSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+		elif tabs.current_tab == 3:
+			%BackgroundAudioCheckBox.call_deferred("grab_focus")
+		#get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("tab_right"):
 		tabs.current_tab = wrapi(tabs.current_tab + 1, 0, tabs.get_tab_count())
 		if tabs.current_tab == 0:
-			%QualityPresetButton.grab_focus()
+			%QualityPresetButton.call_deferred("grab_focus")
 		elif tabs.current_tab == 1:
-			%MouseSensitivitySpinBox.get_line_edit().grab_focus()
+			%MouseSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
 		elif tabs.current_tab == 2:
-			%ControllerSensitivitySpinBox.get_line_edit().grab_focus()
-		get_viewport().set_input_as_handled()
+			%ControllerSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+		elif tabs.current_tab == 3:
+			%BackgroundAudioCheckBox.call_deferred("grab_focus")
+		#get_viewport().set_input_as_handled()
 
 
 func _on_fov_slider_value_changed(value: float) -> void:

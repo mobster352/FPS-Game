@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="6_q6mfq"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="8_jci6o"]
 [ext_resource type="Texture2D" uid="uid://bo48425onffjr" path="res://assets/ui/discord2.png" id="10_efjyj"]
+[ext_resource type="Texture2D" uid="uid://dlji3vj0cat63" path="res://assets/ui/steam-icon-14883.png" id="12_eqiyk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82vaf"]
 font_size = 88
@@ -215,9 +216,10 @@ anchor_left = 11.000001
 anchor_top = 3.2
 anchor_right = 12.943001
 anchor_bottom = 5.2000003
-offset_left = -3.0517578e-05
-offset_right = -0.0056762695
-offset_bottom = -1.5258789e-05
+offset_left = 616.0
+offset_top = 424.0
+offset_right = 615.9943
+offset_bottom = 424.0
 
 [node name="DiscordTexture" type="TextureRect" parent="Main/Discord" unique_id=1170171647]
 unique_name_in_owner = true
@@ -232,6 +234,7 @@ anchors_preset = -1
 anchor_right = 1.0300001
 anchor_bottom = 1.0
 offset_right = -0.030006409
+focus_mode = 2
 uri = "https://discord.gg/GBZvgFyDx9"
 
 [node name="Steam" type="MarginContainer" parent="Main" unique_id=948490451]
@@ -244,6 +247,26 @@ offset_bottom = 40.0
 [node name="Label" type="Label" parent="Main/Steam" unique_id=339989725]
 layout_mode = 2
 text = "STEAM INITIALIZED"
+
+[node name="SteamPage" type="MarginContainer" parent="Main" unique_id=80484013]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 552.0
+offset_right = 1024.0
+offset_bottom = 632.0
+
+[node name="SteamPageTexture" type="TextureRect" parent="Main/SteamPage" unique_id=273598853]
+layout_mode = 2
+texture = ExtResource("12_eqiyk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LinkButton" type="LinkButton" parent="Main/SteamPage/SteamPageTexture" unique_id=1235186874]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+focus_mode = 2
+uri = "https://store.steampowered.com/app/4633340/Pizza_Boy/"
 
 [node name="OptionsMenu" parent="." unique_id=737911688 node_paths=PackedStringArray("callback_menu") instance=ExtResource("8_jci6o")]
 visible = false

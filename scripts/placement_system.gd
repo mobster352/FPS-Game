@@ -3,6 +3,8 @@ class_name PlacementSystem
 
 signal setup_object_preview(uuid: StringName, original_obj: Node3D, new_obj_path: StringName, _money:int)
 
+const CONTROLLER_ROT_SPEED:float = 10.0
+
 #@export var camera: Camera3D
 @export var max_distance := 5.0
 @export var player: Player
@@ -76,13 +78,21 @@ func _process(_delta: float) -> void:
 					_toggle_build_highlight(mesh.get_active_material(0))
 
 
+func _physics_process(delta: float) -> void:
+	if preview_instance and is_placing:
+		if Input.is_action_pressed("rotate_preview_left"):
+			preview_instance.rotate_y(deg_to_rad(-10 * CONTROLLER_ROT_SPEED * delta))
+		if Input.is_action_pressed("rotate_preview_right"):
+			preview_instance.rotate_y(deg_to_rad(10 * CONTROLLER_ROT_SPEED * delta))
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and preview_instance and is_placing:
 		if event.is_pressed():
 			if event.is_action_pressed("rotate_preview_left"):
-				preview_instance.rotate_y(deg_to_rad(10))
-			elif event.is_action_pressed("rotate_preview_right"):
 				preview_instance.rotate_y(deg_to_rad(-10))
+			elif event.is_action_pressed("rotate_preview_right"):
+				preview_instance.rotate_y(deg_to_rad(10))
 
 
 func _toggle_build_highlight(material: StandardMaterial3D) -> void:

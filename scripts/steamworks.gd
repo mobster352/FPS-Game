@@ -30,7 +30,7 @@ func initialize_steam() -> void:
 		print("Failed to initialize Steam")
 		return
 	
-	print("Steam App Id: %s" % Steam.getAppID())
+	#print("Steam App Id: %s" % Steam.getAppID())
 	load_steam_stats()
 	load_steam_achievements()
 	is_steam_active = true
@@ -46,7 +46,7 @@ func load_steam_stats() -> void:
 
 		# Store the value in our dictionary
 		statistics[this_stat] = stat_value
-		print(this_stat, ": ", statistics[this_stat])
+		#print(this_stat, ": ", statistics[this_stat])
 	#print("Steam statistics loaded")
 
 
@@ -91,7 +91,7 @@ func set_statistic(this_stat: String, new_value: int = 1) -> void:
 		return
 	# Set our local version
 	statistics[this_stat] += new_value
-	print(this_stat, ": ", statistics[this_stat])
+	#print(this_stat, ": ", statistics[this_stat])
 
 	# Set Steam's version
 	if not Steam.setStatInt(this_stat, statistics[this_stat]):

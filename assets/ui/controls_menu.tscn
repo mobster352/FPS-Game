@@ -105,18 +105,6 @@ layout_mode = 2
 text = "WASD"
 label_settings = ExtResource("4_gq8hv")
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Movement" unique_id=1442176343]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
-
 [node name="Interact" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1770410152]
 layout_mode = 2
 
@@ -154,18 +142,6 @@ layout_mode = 2
 text = "Left Click"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
-
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Interact" unique_id=189998082]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
 
 [node name="Drop Item" type="Control" parent="MarginContainer/VBoxContainer" unique_id=286091159]
 layout_mode = 2
@@ -205,18 +181,6 @@ text = "Right Click"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Drop Item" unique_id=1295468113]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
-
 [node name="Crouch" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1775615189]
 layout_mode = 2
 
@@ -254,18 +218,6 @@ layout_mode = 2
 text = "C"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
-
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Crouch" unique_id=1610407926]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
 
 [node name="Weapon" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1552874833]
 layout_mode = 2
@@ -305,18 +257,6 @@ text = "1"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Weapon" unique_id=186485516]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
-
 [node name="Use Item" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1968840591]
 layout_mode = 2
 
@@ -354,18 +294,6 @@ layout_mode = 2
 text = "E"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
-
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Use Item" unique_id=902396864]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
 
 [node name="Build" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1485371638]
 layout_mode = 2
@@ -405,21 +333,8 @@ text = "B"
 label_settings = ExtResource("4_gq8hv")
 vertical_alignment = 1
 
-[node name="Ellipses" type="Label" parent="MarginContainer/VBoxContainer/Build" unique_id=1825984684]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.499
-anchor_right = 0.499
-offset_left = -39.455994
-offset_top = 43.0
-offset_right = 39.544006
-offset_bottom = 88.0
-text = "........."
-label_settings = ExtResource("4_gq8hv")
-
 [node name="BackButton" parent="." unique_id=1078114944 node_paths=PackedStringArray("label", "button") instance=ExtResource("5_kgv88")]
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.36800003
 anchor_top = 0.59300005
 anchor_right = 0.48400003

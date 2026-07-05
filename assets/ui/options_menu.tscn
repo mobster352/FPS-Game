@@ -73,6 +73,7 @@ offset_top = -0.23200989
 offset_right = 0.447937
 offset_bottom = 0.18395996
 current_tab = 0
+tab_focus_mode = 0
 
 [node name="Display" type="MarginContainer" parent="Settings/TabContainer" unique_id=53946973]
 layout_mode = 2
@@ -120,7 +121,6 @@ grow_horizontal = 2
 [node name="QualityPresetButton" type="OptionButton" parent="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer3" unique_id=780926498]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../../../../../BackButton/TextureButton")
 focus_neighbor_bottom = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
 theme_override_font_sizes/font_size = 14
 alignment = 1
@@ -214,6 +214,7 @@ grow_horizontal = 2
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../GraphicsMode/MarginContainer3/RendererButton")
+focus_neighbor_bottom = NodePath("../../../FOV/MarginContainer3/FovSlider")
 theme_override_font_sizes/font_size = 14
 alignment = 1
 selected = 0
@@ -293,6 +294,8 @@ grow_horizontal = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../../WindowSize/MarginContainer3/WindowSizeButton")
+focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
 min_value = 60.0
 max_value = 90.0
 value = 75.0
@@ -360,6 +363,7 @@ grow_horizontal = 2
 [node name="MouseSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=465813656]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
 focus_mode = 2
 min_value = 1.0
 max_value = 10.0
@@ -415,6 +419,7 @@ grow_horizontal = 2
 [node name="ControllerSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=1453407682]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../Deadzone/MarginContainer3/DeadzoneSpinBox")
 focus_mode = 2
 min_value = 1.0
 max_value = 10.0
@@ -453,6 +458,8 @@ grow_horizontal = 2
 [node name="DeadzoneSpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3" unique_id=737334563]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../Sensitivity/MarginContainer3/ControllerSensitivitySpinBox")
+focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
 focus_mode = 2
 min_value = 1.0
 max_value = 9.0
@@ -508,6 +515,7 @@ grow_horizontal = 2
 [node name="BackgroundAudioCheckBox" type="CheckBox" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3" unique_id=1490644582]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../BackgroundAudio2/MarginContainer3/BackgroundMusicHSlider")
 
 [node name="BackgroundAudio2" type="Control" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer" unique_id=1451663109]
 layout_mode = 2
@@ -542,6 +550,8 @@ grow_horizontal = 2
 [node name="BackgroundMusicHSlider" type="HSlider" parent="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2/MarginContainer3" unique_id=326217496]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../../BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox")
+focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
 min_value = -19.0
 max_value = -1.0
 value = -10.0
@@ -568,7 +578,6 @@ label = NodePath("TextureButton/Label")
 button = NodePath("TextureButton")
 
 [node name="TextureButton" parent="Settings/BackButton" index="0" unique_id=2147143867]
-focus_neighbor_bottom = NodePath("../../TabContainer/Display/ScrollContainer/VBoxContainer/QualityPreset/MarginContainer3/QualityPresetButton")
 texture_pressed = ExtResource("9_m37hy")
 texture_focused = ExtResource("9_m37hy")
 

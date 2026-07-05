@@ -25,6 +25,11 @@ enum StoreItem {
 	PizzaBox
 }
 
+enum InputDevice {
+	MOUSE_KEYBOARD,
+	CONTROLLER
+}
+
 var is_demo:bool = true
 
 var mesh_to_item_array: Array[Dictionary] = [

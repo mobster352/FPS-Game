@@ -139,3 +139,6 @@ signal update_drive_thru_menu(show_menu:bool, traffic_car:TrafficCar)
 
 @warning_ignore("unused_signal")
 signal leave_drive_thru(traffic_car:TrafficCar)
+
+@warning_ignore("unused_signal")
+signal update_input_device(input_device: GlobalVar.InputDevice)
