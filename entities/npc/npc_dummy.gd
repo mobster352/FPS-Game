@@ -141,8 +141,10 @@ func set_path() -> void:
 
 func check_walk_in_store() -> void:
 	var walk_in_store = randi_range(0, walk_in_store_odds)
-	if walk_in_store == 0:
+	if walk_in_store == 0 or GlobalVar.force_customer_walk_in:
 		target = GlobalMarker.restaurant_marker
+		GlobalVar.force_customer_walk_in = false
+		GlobalVar.time_since_customer_walked_in = 0.0
 	else:
 		target = endPathMarker
 

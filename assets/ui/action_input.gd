@@ -74,7 +74,7 @@ func update_input_textures(input_type:InputsUI.InputType) -> void:
 		if input_type == InputsUI.InputType.MOUSE:
 			texture_rect.texture = load("res://assets/ui/tile_0077.png")
 		elif input_type == InputsUI.InputType.CONTROLLER:
-			texture_rect.texture = load("res://assets/ui/tile_0008.png")
+			texture_rect.texture = load("res://assets/ui/tile_0010.png")
 	elif input_button == InputButton.RIGHT:
 		if input_type == InputsUI.InputType.MOUSE:
 			texture_rect.texture = load("res://assets/ui/tile_0078.png")

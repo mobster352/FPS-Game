@@ -159,13 +159,13 @@ var npc_skins:Dictionary[StringName, NpcType] = {
 func get_random_food_by_level(level:int) -> int:
 	match level:
 		1:
-			return [PIZZA_TYPE.CHEESE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+			return [PIZZA_TYPE.CHEESE].pick_random()
 		2:
-			return [PIZZA_TYPE.CHEESE_PIE].pick_random()
+			return [PIZZA_TYPE.CHEESE].pick_random()
 		3:
-			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE].pick_random()
 		_:
-			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM, PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE].pick_random()
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM].pick_random()
 
 
 func get_random_food_by_level_for_drive_thru(level:int) -> int:
@@ -225,3 +225,11 @@ func get_pizza_type_from_name(mesh_name:String) -> PIZZA_TYPE:
 			return PIZZA_TYPE.MUSHROOM_PIE
 		_:
 			return PIZZA_TYPE.NONE
+
+var force_customer_walk_in:bool = false
+var time_since_customer_walked_in:float = 60.0
+func _process(delta: float) -> void:
+	if !force_customer_walk_in:
+		time_since_customer_walked_in += delta
+		if time_since_customer_walked_in >= 60.0:
+			force_customer_walk_in = true
