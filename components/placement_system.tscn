@@ -1,9 +1,85 @@
 [gd_scene format=3 uid="uid://diebiq40t0g7k"]
 
 [ext_resource type="Script" uid="uid://klhrvmolkwq6" path="res://scripts/placement_system.gd" id="1_h8snn"]
+[ext_resource type="Texture2D" uid="uid://cbmjgso2p5rdv" path="res://assets/ui/FreeUI.png" id="2_3pd0c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3pd0c"]
+font_size = 32
 
 [node name="PlacementSystem" type="Node3D" unique_id=1020658662 groups=["placement_system"]]
 script = ExtResource("1_h8snn")
 
 [node name="PreviewObjects" type="Node3D" parent="." unique_id=554128651]
 unique_name_in_owner = true
+
+[node name="EditOverlay" type="Control" parent="." unique_id=552142366]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="EditOverlay" unique_id=1291092892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1120.0
+offset_bottom = -616.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3pd0c")
+region_rect = Rect2(36, 132, 8, 9)
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="EditOverlay" unique_id=5528149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1120.0
+offset_bottom = -616.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3pd0c")
+region_rect = Rect2(52, 132, 8, 9)
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="EditOverlay" unique_id=660576152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 616.0
+offset_right = -1120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3pd0c")
+region_rect = Rect2(36, 148, 8, 9)
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="EditOverlay" unique_id=1952718905]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1120.0
+offset_top = 616.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3pd0c")
+region_rect = Rect2(52, 148, 8, 9)
+
+[node name="Label" type="Label" parent="EditOverlay" unique_id=1923884480]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 64.0
+offset_right = 76.0
+offset_bottom = 108.66667
+grow_horizontal = 2
+text = "Edit Mode"
+label_settings = SubResource("LabelSettings_3pd0c")

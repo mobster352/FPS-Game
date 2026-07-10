@@ -10,6 +10,7 @@ const CONTROLLER_ROT_SPEED:float = 10.0
 @export var player: Player
 @export var highlight_color: Color = Color(0,0,5,0.35)
 @export var restaurant_nav_region: NavigationRegion3D
+@onready var edit_overlay: Control = %EditOverlay
 
 var toggle_build:bool = false
 var objects:Array[Node]
@@ -56,6 +57,10 @@ func _process(_delta: float) -> void:
 	var drop_input = Input.is_action_just_pressed("drop")
 	if build_input:
 		toggle_build = not toggle_build
+	if toggle_build:
+		edit_overlay.show()
+	else:
+		edit_overlay.hide()
 	if toggle_build and preview_instance:
 		update_preview()
 		if is_placing:

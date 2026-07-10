@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b63p3w5y50lmp"]
 
 [ext_resource type="Script" uid="uid://b4s4t0bmn5pvy" path="res://assets/ui/help_input.gd" id="1_3dsjc"]
+[ext_resource type="Texture2D" uid="uid://o5b60ux2sbsf" path="res://assets/ui/tile_0189.png" id="2_wp7lh"]
+[ext_resource type="Texture2D" uid="uid://bogakgeebs3ki" path="res://assets/ui/tile_0190.png" id="3_idfc0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyonb"]
 font_size = 24
@@ -34,15 +36,35 @@ label_settings = SubResource("LabelSettings_qyonb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ActionTexture" type="MarginContainer" parent="." unique_id=737620618]
+[node name="Margin1" type="MarginContainer" parent="." unique_id=737620618]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 56.0
-offset_bottom = 42.0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="HelpButton" type="Label" parent="ActionTexture" unique_id=521480652]
+[node name="HelpButton" type="Label" parent="Margin1" unique_id=521480652]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "TAB"
 vertical_alignment = 1
+
+[node name="ActionTextureRect" type="TextureRect" parent="Margin1" unique_id=1123153938]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_wp7lh")
+stretch_mode = 5
+
+[node name="Margin2" type="MarginContainer" parent="." unique_id=522254337]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 40.0
+
+[node name="ActionTextureRect2" type="TextureRect" parent="Margin2" unique_id=1273861733]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_idfc0")
+stretch_mode = 5
