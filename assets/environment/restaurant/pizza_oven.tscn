@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dofjl6kd14dep" path="res://assets/environment/restaurant/pizza_oven.gd" id="1_ret6o"]
 [ext_resource type="Script" uid="uid://ivrk5udk6ppx" path="res://assets/environment/restaurant/pizza_oven_interactable.gd" id="3_0co8r"]
 [ext_resource type="AudioStream" uid="uid://d2m0dw11loprw" path="res://assets/audio/enginehum3.ogg" id="4_4rdd7"]
+[ext_resource type="Script" uid="uid://7y14l85h0067" path="res://assets/environment/restaurant/pizza_oven_door_interactable.gd" id="4_q0sd4"]
 [ext_resource type="AudioStream" uid="uid://oenvmdx2mhu5" path="res://assets/audio/sd_0_point_bell.wav" id="5_uvbxi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ll4l8"]
@@ -119,8 +120,11 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_0co8r")
 
 [node name="Interactable" type="Node3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D" unique_id=1037671597 node_paths=PackedStringArray("pizza_oven")]
-script = ExtResource("3_0co8r")
+script = ExtResource("4_q0sd4")
 pizza_oven = NodePath("../../../..")
+
+[node name="AimAssistPoint" type="Marker3D" parent="pizza_oven_mesh/pizza_oven_door_mesh/StaticBody3D/Interactable" unique_id=1730351883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6930649, 0)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=368584359]
 collision_mask = 2

@@ -2,6 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://rkt7u0p0ns70" path="res://assets/ui/action_input.tscn" id="1_p5iri"]
 [ext_resource type="Script" uid="uid://boqhih07x2u5i" path="res://assets/ui/inputs_ui.gd" id="1_wn4ag"]
+[ext_resource type="Script" uid="uid://kkgs5h45lhd6" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="3_000aa"]
+
+[sub_resource type="Texture2D" id="Texture2D_wn4ag"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_000aa")
+path = "interact"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
+
+[sub_resource type="Texture2D" id="Texture2D_htl47"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_000aa")
+path = "drop"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
+
+[sub_resource type="Texture2D" id="Texture2D_a7o65"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("3_000aa")
+path = "cook"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
 
 [node name="InputsUI" type="Control" unique_id=414961565 node_paths=PackedStringArray("left_input", "right_input", "cook_input")]
 layout_mode = 3
@@ -30,6 +52,7 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 0
 action = 1
+controller_icon_texture = SubResource("Texture2D_wn4ag")
 
 [node name="RightInput" parent="." unique_id=603884551 instance=ExtResource("1_p5iri")]
 layout_mode = 1
@@ -46,6 +69,7 @@ grow_horizontal = 2
 grow_vertical = 0
 action = 2
 input_button = 1
+controller_icon_texture = SubResource("Texture2D_htl47")
 
 [node name="CookInput" parent="." unique_id=172012745 instance=ExtResource("1_p5iri")]
 layout_mode = 1
@@ -62,3 +86,4 @@ grow_horizontal = 2
 grow_vertical = 0
 action = 6
 input_button = 2
+controller_icon_texture = SubResource("Texture2D_a7o65")

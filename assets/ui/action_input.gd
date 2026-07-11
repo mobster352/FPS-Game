@@ -8,6 +8,7 @@ class_name ActionInput
 			label.text = get_text_from_action()
 
 @export var input_button:InputButton
+@export var controller_icon_texture:ControllerIconTexture
 
 @onready var label: Label = %Label
 @onready var texture_rect: TextureRect = %TextureRect
@@ -37,6 +38,7 @@ enum InputButton {
 
 func _ready() -> void:
 	label.text = get_text_from_action()
+	texture_rect.texture = controller_icon_texture
 
 func get_text_from_action() -> StringName:
 	if action == Action.PickUp:
@@ -67,21 +69,3 @@ func get_text_from_action() -> StringName:
 		return "Combine"
 	else:
 		return "N/A"
-
-
-func update_input_textures(input_type:InputsUI.InputType) -> void:
-	if input_button == InputButton.LEFT:
-		if input_type == InputsUI.InputType.MOUSE:
-			texture_rect.texture = load("res://assets/ui/tile_0077.png")
-		elif input_type == InputsUI.InputType.CONTROLLER:
-			texture_rect.texture = load("res://assets/ui/tile_0010.png")
-	elif input_button == InputButton.RIGHT:
-		if input_type == InputsUI.InputType.MOUSE:
-			texture_rect.texture = load("res://assets/ui/tile_0078.png")
-		elif input_type == InputsUI.InputType.CONTROLLER:
-			texture_rect.texture = load("res://assets/ui/tile_0009.png")
-	elif input_button == InputButton.COOK:
-		if input_type == InputsUI.InputType.MOUSE:
-			texture_rect.texture = load("res://assets/ui/tile_0087.png")
-		elif input_type == InputsUI.InputType.CONTROLLER:
-			texture_rect.texture = load("res://assets/ui/tile_0011.png")

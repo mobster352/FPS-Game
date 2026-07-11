@@ -25,12 +25,15 @@ shape = SubResource("BoxShape3D_4pmc5")
 
 [node name="mesh" parent="body" index="1" unique_id=1832440319 instance=ExtResource("3_24odq")]
 
-[node name="food_pizza_cheese_plated" parent="body/mesh" index="0"]
+[node name="food_pizza_cheese_plated" parent="body/mesh" index="0" unique_id=2113191368]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 metadata/name = &"food_ingredient_cheese_pizza_mesh"
 
 [node name="Interactable" type="Node3D" parent="body" index="4" unique_id=2066596214 node_paths=PackedStringArray("item")]
 script = ExtResource("4_faxge")
 item = NodePath("../..")
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" index="0" unique_id=1020354187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 
 [editable path="body/mesh"]

@@ -3,11 +3,19 @@
 [ext_resource type="Script" uid="uid://b4s4t0bmn5pvy" path="res://assets/ui/help_input.gd" id="1_3dsjc"]
 [ext_resource type="Texture2D" uid="uid://o5b60ux2sbsf" path="res://assets/ui/tile_0189.png" id="2_wp7lh"]
 [ext_resource type="Texture2D" uid="uid://bogakgeebs3ki" path="res://assets/ui/tile_0190.png" id="3_idfc0"]
+[ext_resource type="Script" uid="uid://kkgs5h45lhd6" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="4_idfc0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyonb"]
 font_size = 24
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Texture2D" id="Texture2D_epgb7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_idfc0")
+path = "move_left"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
 
 [node name="HelpInput" type="Control" unique_id=954455668]
 layout_mode = 3
@@ -37,6 +45,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Margin1" type="MarginContainer" parent="." unique_id=737620618]
+visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -57,6 +66,7 @@ texture = ExtResource("2_wp7lh")
 stretch_mode = 5
 
 [node name="Margin2" type="MarginContainer" parent="." unique_id=522254337]
+visible = false
 layout_mode = 0
 offset_left = 40.0
 offset_top = 8.0
@@ -67,4 +77,16 @@ offset_bottom = 40.0
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_idfc0")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=705412062]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 48.0
+
+[node name="InputTextureRect" type="TextureRect" parent="MarginContainer" unique_id=1302432775]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("Texture2D_epgb7")
+expand_mode = 1
 stretch_mode = 5

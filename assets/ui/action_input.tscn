@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://rkt7u0p0ns70"]
 
 [ext_resource type="Script" uid="uid://cilrrcx35o3m6" path="res://assets/ui/action_input.gd" id="1_oqpxc"]
-[ext_resource type="Texture2D" uid="uid://dft8ql16fuhsg" path="res://assets/ui/tile_0077.png" id="2_vjob7"]
+[ext_resource type="Script" uid="uid://kkgs5h45lhd6" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="2_oqpxc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyonb"]
 font_size = 24
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Texture2D" id="Texture2D_vjob7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("2_oqpxc")
+path = "interact"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
 
 [node name="ActionInput" type="Control" unique_id=475522520]
 layout_mode = 3
@@ -18,15 +25,15 @@ script = ExtResource("1_oqpxc")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=885202279]
 layout_mode = 0
 offset_right = 152.0
-offset_bottom = 48.0
+offset_bottom = 53.333336
 color = Color(0.47843137, 0.47843137, 0.47843137, 0.48235294)
 
 [node name="Action" type="MarginContainer" parent="." unique_id=1116166666]
 layout_mode = 0
 offset_left = 42.0
-offset_top = 6.0
-offset_right = 128.0
-offset_bottom = 40.0
+offset_top = 9.166668
+offset_right = 129.0
+offset_bottom = 42.666668
 
 [node name="Label" type="Label" parent="Action" unique_id=2036163357]
 unique_name_in_owner = true
@@ -38,12 +45,12 @@ vertical_alignment = 1
 
 [node name="ActionTexture" type="MarginContainer" parent="." unique_id=1843174133]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 53.333336
 
 [node name="TextureRect" type="TextureRect" parent="ActionTexture" unique_id=235541005]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_vjob7")
+texture = SubResource("Texture2D_vjob7")
+expand_mode = 1
+stretch_mode = 5

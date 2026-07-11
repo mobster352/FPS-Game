@@ -17,18 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://chcdq3vwq1hwn" path="res://assets/ui/inputs_ui.tscn" id="16_yqrof"]
 [ext_resource type="PackedScene" uid="uid://dys1xor47kxw" path="res://assets/ui/tablet.tscn" id="17_3wlsy"]
 [ext_resource type="PackedScene" uid="uid://b63p3w5y50lmp" path="res://assets/ui/help_input.tscn" id="18_b2kln"]
-[ext_resource type="Texture2D" uid="uid://o5b60ux2sbsf" path="res://assets/ui/tile_0189.png" id="19_2soq1"]
 [ext_resource type="AudioStream" uid="uid://bboxb8c85upj3" path="res://assets/audio/boots/0.ogg" id="19_mtric"]
 [ext_resource type="PackedScene" uid="uid://cxasxexs7hgvc" path="res://database/quest_log.tscn" id="19_we0b7"]
 [ext_resource type="PackedScene" uid="uid://no86l4i83ss1" path="res://components/thank_you_for_playing_demo.tscn" id="19_wq0jh"]
-[ext_resource type="Texture2D" uid="uid://bogakgeebs3ki" path="res://assets/ui/tile_0190.png" id="20_8q4fm"]
 [ext_resource type="AudioStream" uid="uid://bbcxjv82dtt2d" path="res://assets/audio/boots/1.ogg" id="20_qpopc"]
-[ext_resource type="Texture2D" uid="uid://rgkf0egi8bfq" path="res://assets/ui/tile_0616.png" id="21_np63p"]
 [ext_resource type="AudioStream" uid="uid://7ntasp53a6tj" path="res://assets/audio/boots/2.ogg" id="21_wq0jh"]
-[ext_resource type="Texture2D" uid="uid://cf2enguo4u5ox" path="res://assets/ui/tile_0159.png" id="22_0eo6o"]
+[ext_resource type="Script" uid="uid://kkgs5h45lhd6" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="22_8q4fm"]
 [ext_resource type="AudioStream" uid="uid://v43d13ds0bd8" path="res://assets/audio/boots/3.ogg" id="22_gt4e4"]
 [ext_resource type="AudioStream" uid="uid://djhf0e0t6wt7h" path="res://assets/audio/boots/4.ogg" id="23_24ehl"]
-[ext_resource type="Texture2D" uid="uid://c1mc500rkcs3l" path="res://assets/ui/tile_0038.png" id="23_ttr27"]
 [ext_resource type="AudioStream" uid="uid://bg6nwn01e5gjj" path="res://assets/audio/boots/5.ogg" id="24_bwdx1"]
 [ext_resource type="AudioStream" uid="uid://c2hg1hdclt23v" path="res://assets/audio/boots/6.ogg" id="25_vewsg"]
 [ext_resource type="AudioStream" uid="uid://edr2pjb1dexx" path="res://assets/audio/boots/7.ogg" id="26_2soq1"]
@@ -224,6 +220,20 @@ bind/40/name = &"handIK.r"
 bind/40/bone = -1
 bind/40/pose = Transform3D(-2.842171e-14, 7.549795e-08, -1, -1, 3.7892514e-15, 8.526513e-14, 2.1457808e-21, 1, 7.549795e-08, 1.3201894e-09, -0.71318156, -1.1067611)
 
+[sub_resource type="Texture2D" id="Texture2D_np63p"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("22_8q4fm")
+path = "open_tablet"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
+
+[sub_resource type="Texture2D" id="Texture2D_0eo6o"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("22_8q4fm")
+path = "build"
+metadata/_custom_type_script = "uid://kkgs5h45lhd6"
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_np63p"]
 random_pitch = 1.122462
 random_volume_offset_db = 0.5
@@ -279,27 +289,27 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 visible = false
 
 [node name="Skeleton3D" parent="PlayerSkin/PlayerDummy/Rig" parent_id_path=PackedInt32Array(1872728600, 2144942684, 2028074997) index="0" unique_id=492075426]
-bones/1/position = Vector3(0, 0.3853026, 0)
-bones/4/rotation = Quaternion(-0.5576686, -0.05919743, -0.6409309, 0.52412695)
-bones/5/rotation = Quaternion(2.7763829e-08, -3.241811e-08, -0.50346655, 0.8640148)
-bones/7/rotation = Quaternion(-0.32152626, -0.32957417, 0.14811222, 0.8752512)
-bones/8/rotation = Quaternion(0.0002294393, 0.00022941889, -0.70626426, 0.7079482)
-bones/9/rotation = Quaternion(-0.61601555, 0.079242714, 0.6155726, 0.48509383)
-bones/10/rotation = Quaternion(2.0725738e-08, 4.9771266e-08, 0.52635425, 0.8502654)
-bones/12/rotation = Quaternion(-0.32000938, 0.30519375, -0.2299427, 0.8669356)
-bones/13/rotation = Quaternion(0.00071626005, 0.00084364583, 0.7063637, 0.7078483)
-bones/15/rotation = Quaternion(0.9928555, 0.08317109, 0.07558623, 0.040091284)
-bones/16/rotation = Quaternion(0.27152666, 6.6590054e-08, -1.8574283e-07, 0.96243095)
-bones/17/rotation = Quaternion(-0.5570343, -0.20695506, 0.055478785, 0.80237436)
-bones/18/rotation = Quaternion(4.905548e-05, 0.9202016, -0.391445, -1.1047653e-05)
-bones/19/rotation = Quaternion(0.99569374, -0.030722098, 0.03093485, 0.08181175)
-bones/20/rotation = Quaternion(0.33254573, -6.2960815e-08, 2.313123e-07, 0.9430872)
-bones/21/rotation = Quaternion(-0.5901973, 0.11403835, -0.013584726, 0.7990481)
-bones/38/position = Vector3(0.5208407, 0.7851517, -0.057637352)
-bones/40/position = Vector3(-0.5108437, 0.7851516, 0.05973692)
+bones/1/position = Vector3(0, 0.38002628, 0)
+bones/4/rotation = Quaternion(-0.5558301, -0.058041103, -0.6389341, 0.5286278)
+bones/5/rotation = Quaternion(3.5927286e-08, -2.3434591e-08, -0.5094299, 0.8605122)
+bones/7/rotation = Quaternion(-0.32178405, -0.3327995, 0.14955764, 0.87368876)
+bones/8/rotation = Quaternion(0.00041738944, 0.0004173823, -0.70557314, 0.70863694)
+bones/9/rotation = Quaternion(-0.6142, 0.078256786, 0.6140108, 0.48951507)
+bones/10/rotation = Quaternion(2.836617e-08, 7.252054e-08, 0.532058, 0.84670794)
+bones/12/rotation = Quaternion(-0.32046872, 0.30870655, -0.23152637, 0.86509866)
+bones/13/rotation = Quaternion(0.001337232, 0.0015750589, 0.70571804, 0.7084898)
+bones/15/rotation = Quaternion(0.9918886, 0.08314206, 0.07680576, 0.057838786)
+bones/16/rotation = Quaternion(0.31798726, 6.234965e-08, -2.2330558e-07, 0.948095)
+bones/17/rotation = Quaternion(-0.58119607, -0.20498845, 0.063127816, 0.7849878)
+bones/18/rotation = Quaternion(2.1824791e-05, 0.92017716, -0.39150244, -4.885993e-06)
+bones/19/rotation = Quaternion(0.99432826, -0.031625237, 0.03053089, 0.09684565)
+bones/20/rotation = Quaternion(0.37139425, -6.184141e-08, 2.559152e-07, 0.92847526)
+bones/21/rotation = Quaternion(-0.6109658, 0.113583595, -0.017023517, 0.78328145)
+bones/38/position = Vector3(0.5208407, 0.78243816, -0.057637352)
+bones/40/position = Vector3(-0.5108437, 0.78243804, 0.05973692)
 
 [node name="head" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="0" unique_id=1929788963]
-transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2210646, 1.5463912e-15)
+transform = Transform3D(0.9997204, -1.4014344e-09, 0.023646597, 1.3934143e-09, 0.99999994, 3.5568645e-10, -0.023646597, -3.2263747e-10, 0.9997204, -4.303854e-09, 1.2157882, 1.5463912e-15)
 
 [node name="Dummy_Helmet" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/head" index="0" unique_id=267887540]
 layers = 2
@@ -319,7 +329,7 @@ mesh = SubResource("ArrayMesh_4wqy2")
 skin = SubResource("Skin_v0bos")
 
 [node name="chest" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="1" unique_id=1128264264]
-transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.95226806, 1.0572674e-15)
+transform = Transform3D(0.9962748, -5.1496163e-09, 0.08623532, 5.130434e-09, 0.99999994, 4.440771e-10, -0.08623532, 1.8196805e-15, 0.9962748, -2.9196552e-09, 0.94699174, 1.0572674e-15)
 
 [node name="Dummy_TargetOnHisBack" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D/chest" index="0" unique_id=1923593367]
 layers = 2
@@ -343,7 +353,7 @@ layers = 2
 layers = 2
 
 [node name="hand_slot_r" parent="PlayerSkin/PlayerDummy/Rig/Skeleton3D" index="8" unique_id=1814573589]
-transform = Transform3D(0.00049433985, -0.15207544, -0.9883685, -0.99999744, -0.002098766, -0.00017685317, -0.002047654, 0.98836637, -0.15207604, -0.49082807, 0.63815045, 0.107129425)
+transform = Transform3D(0.00092820916, -0.15396293, -0.98807603, -0.99999195, -0.003920583, -0.00032817468, -0.0038234289, 0.98806846, -0.15396547, -0.49066052, 0.63555825, 0.107486054)
 
 [node name="pointer" parent="PlayerSkin" index="2" unique_id=809353639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.141051, 0.3403611)
@@ -379,6 +389,11 @@ visible = false
 target_position = Vector3(0, 0, 1000)
 collision_mask = 617
 hit_from_inside = true
+
+[node name="AimAssistRaycast" type="RayCast3D" parent="PlayerSkin/pointer/FirstPersonCamera" unique_id=548803961]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.33)
+target_position = Vector3(0, 0, -1)
 
 [node name="ItemSlot" type="Node3D" parent="PlayerSkin/pointer/FirstPersonCamera" unique_id=1454555565]
 transform = Transform3D(-0.97499996, 0, -1.472211e-07, 0, 0.97499996, 0, 1.472211e-07, 0, -0.97499996, 0.364, -0.512, -1.5)
@@ -555,15 +570,12 @@ theme_override_constants/v_separation = 54
 [node name="Tablet" parent="UI/HelpButtons/GridContainer" unique_id=523227284 instance=ExtResource("18_b2kln")]
 layout_mode = 2
 help_text = "Tablet"
-action_texture_mk = ExtResource("19_2soq1")
-action_texture_mk_2 = ExtResource("20_8q4fm")
-action_texture_ctr = ExtResource("21_np63p")
+controller_icon_texture = SubResource("Texture2D_np63p")
 
 [node name="Edit" parent="UI/HelpButtons/GridContainer" unique_id=2064283851 instance=ExtResource("18_b2kln")]
 layout_mode = 2
 help_text = "Edit"
-action_texture_mk = ExtResource("22_0eo6o")
-action_texture_ctr = ExtResource("23_ttr27")
+controller_icon_texture = SubResource("Texture2D_0eo6o")
 
 [node name="ThankYouForPlayingDemo" parent="UI" unique_id=864063458 instance=ExtResource("19_wq0jh")]
 unique_name_in_owner = true

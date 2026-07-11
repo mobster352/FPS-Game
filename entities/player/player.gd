@@ -129,6 +129,7 @@ var fov:int:
 @onready var first_person_camera: Camera3D = %FirstPersonCamera
 @onready var spring_arm_3d: SpringArm3D = %SpringArm3D
 @export var npc_setup:NPCSetup
+@onready var aim_assist_raycast: RayCast3D = %AimAssistRaycast
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -177,7 +178,7 @@ func _process(_delta: float) -> void:
 		interact = Input.is_action_just_pressed("interact")
 		drop_input = Input.is_action_just_pressed("drop")
 		sell_input = Input.is_action_just_pressed("sell")
-		_process_rayCast()
+		#_process_rayCast()
 		if not freeze_camera:
 			_process_shot()
 			_process_draw_weapon()
@@ -200,6 +201,7 @@ func _physics_process(delta: float) -> void:
 				_physics_logic()
 				_process_drop_item()
 			_process_controller_turning(delta)
+			_process_rayCast(delta)
 
 
 func _process_switch_pov() -> void:
@@ -215,7 +217,7 @@ func _process_switch_pov() -> void:
 			pointer_slot = first_person_camera
 			pointer_slot.rotation.x = pointer.rotation.x
 
-
+var is_looking:bool = false
 func _process_controller_turning(delta:float) -> void:
 	# Map these actions in Input Map:
 	# look_left, look_right, look_up, look_down
@@ -223,6 +225,7 @@ func _process_controller_turning(delta:float) -> void:
 
 	# Small manual threshold to avoid tiny drift still affecting look/device switching
 	if look.length() > controller_deadzone:
+		is_looking = true
 		#current_input_device = InputDevice.CONTROLLER
 
 		rotate_y(-look.x * controller_sensitivity * delta)
@@ -237,6 +240,7 @@ func _process_controller_turning(delta:float) -> void:
 		
 		current_input_device = GlobalVar.InputDevice.CONTROLLER
 	else:
+		is_looking = false
 		# Optional: snap tiny values to zero if you want extra stability
 		look = Vector2.ZERO
 
@@ -367,7 +371,7 @@ func shoot() -> void:
 	weapon.shoot_animation()
 
 
-func _process_rayCast() -> void:
+func _process_rayCast(delta: float) -> void:
 	reticle.color = RETICLE_WHITE
 	
 	var ray: RayCast3D
@@ -390,7 +394,7 @@ func _process_rayCast() -> void:
 			if placement_system.toggle_build:
 				_handle_build_raycast(target)
 				return
-		_handle_item_raycast(target)
+		_handle_item_raycast(target, delta)
 
 
 func _handle_weapon_raycast(target: Node3D) -> void:
@@ -398,7 +402,7 @@ func _handle_weapon_raycast(target: Node3D) -> void:
 		reticle.color = RETICLE_RED
 
 
-func _handle_item_raycast(target: Node3D) -> void:
+func _handle_item_raycast(target: Node3D, delta: float) -> void:
 	can_place = false
 	
 	inputs_ui.update_actions.emit(inputs_ui.InputAction.None, has_held_object())
@@ -442,13 +446,27 @@ func _handle_item_raycast(target: Node3D) -> void:
 
 	if interactable:
 		if interactable.can_interact(self):
-			#reticle.color = interactable.reticle_color()
+			# aim assist logic
+			if current_input_device == GlobalVar.InputDevice.CONTROLLER:
+				var aim_assist_point = interactable.get_node_or_null("AimAssistPoint") as Node3D
+				var target_pos:Vector3
+				if aim_assist_point:
+					target_pos = aim_assist_point.global_position
+				else:
+					target_pos = target.global_position
+				aim_assist_raycast.look_at(target_pos)
+				rotation.y = lerp_angle(rotation.y, aim_assist_raycast.rotation.y + rotation.y, delta * 1.0)
+				pitch = lerp_angle(pitch, aim_assist_raycast.rotation.x + pitch, delta * 1.0)
+				pointer_slot.rotation.x = pitch
 			if interact:
 				interactable.interact(self)
 				interact = false
 			if drop_input:
 				interactable.interact2(self)
 				drop_input = false
+				
+	else:
+		aim_assist_raycast.rotation = Vector3.ZERO
 
 	var cook_input := Input.is_action_just_pressed("cook")
 	
