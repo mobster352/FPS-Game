@@ -5,6 +5,7 @@ extends Node3D
 @export var drive_thru_path: Path3D
 @export var return_path: Path3D
 @export var level:Level
+@onready var drive_thru_enter_area: Area3D = %DriveThruEnterArea
 
 @onready var car_spawner: CarSpawner = %CarSpawner
 
@@ -21,13 +22,14 @@ func _ready() -> void:
 	GlobalSignal.open_store.connect(_open_store)
 	GlobalSignal.leave_drive_thru.connect(_leave_drive_thru)
 	
+	var initial_progress_ratio_array:Array[float] = [0.1, 0.4, 0.8]
 	for i:int in range(3):
-		spawn_car(lane_path_01)
-		spawn_car(lane_path_02)
+		spawn_car(lane_path_01, initial_progress_ratio_array[i])
+		spawn_car(lane_path_02, initial_progress_ratio_array[i])
 
 
-func spawn_car(lane:Path3D) -> void:
-	var random_progress_ratio:float = randf_range(0.0, 1.0)
+func spawn_car(lane:Path3D, initial_progress_ratio:float) -> void:
+	var random_progress_ratio:float = initial_progress_ratio
 	var traffic_car:TrafficCar
 	traffic_car = car_spawner.spawn_car_on_lane(lane, CAR_SCENE, random_progress_ratio)
 	traffic_car.return_to_original_path.connect(_return_to_original_path)
@@ -36,11 +38,12 @@ func spawn_car(lane:Path3D) -> void:
 
 func _on_drive_thru_enter_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("traffic"):
+		drive_thru_enter_area.set_deferred("monitoring", false)
 		var traffic_car:TrafficCar = body.get_parent()
 		if traffic_car.is_area_disabled:
 			return
 		traffic_car.is_area_disabled = true
-		var drive_thru_chance = randi_range(0, 10)
+		var drive_thru_chance = randi_range(0, 9)
 		#var drive_thru_chance = 0
 		if level.time_of_day < 22 and drive_thru_chance == 0 and is_store_open and number_cars_in_drive_thru < 3:
 			traffic_car.path_follow.reparent(drive_thru_path)
@@ -48,6 +51,8 @@ func _on_drive_thru_enter_area_body_entered(body: Node3D) -> void:
 			traffic_car.is_path_drive_thru = true
 			traffic_car.path_follow.loop = false
 			number_cars_in_drive_thru += 1
+		await get_tree().create_timer(3.0).timeout
+		drive_thru_enter_area.set_deferred("monitoring", true)
 
 
 func _open_store() -> void:

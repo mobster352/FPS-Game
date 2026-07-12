@@ -168,7 +168,7 @@ func _ready():
 		%ThankYouForPlayingDemo.show()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_alive:
 		if Input.is_action_just_pressed("pause"):
 			tablet.hide_tablet()
@@ -178,7 +178,7 @@ func _process(_delta: float) -> void:
 		interact = Input.is_action_just_pressed("interact")
 		drop_input = Input.is_action_just_pressed("drop")
 		sell_input = Input.is_action_just_pressed("sell")
-		#_process_rayCast()
+		_process_rayCast(delta)
 		if not freeze_camera:
 			_process_shot()
 			_process_draw_weapon()
@@ -201,7 +201,7 @@ func _physics_process(delta: float) -> void:
 				_physics_logic()
 				_process_drop_item()
 			_process_controller_turning(delta)
-			_process_rayCast(delta)
+			#_process_rayCast(delta)
 
 
 func _process_switch_pov() -> void:
