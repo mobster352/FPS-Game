@@ -21,7 +21,7 @@ func _ready() -> void:
 	quest_ids.append(QuestIds.DELIVER_PACKAGE_203)
 	quest_ids.append(QuestIds.DELIVER_PACKAGE_204)
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if box_c_outline.visible:
 		box_c_outline.hide()
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="1_co8mh"]
 [ext_resource type="Texture2D" uid="uid://ch43nft7045y7" path="res://assets/kaykit/characters/character_assets/knight_texture.png" id="1_q1fj6"]
 [ext_resource type="Script" uid="uid://ek47qgxsaxaa" path="res://assets/kaykit/characters/character_assets/sword_1h_interactable.gd" id="2_co8mh"]
+[ext_resource type="Texture2D" uid="uid://2ep4sm8ggxfy" path="res://assets/kaykit/characters/knight_texture.png" id="3_gge5a"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gge5a"]
 points = PackedVector3Array(-0.25171867, 0.18683136, -0.035215802, -0.25171867, 0.18683136, 0.035202987, -0.15695322, 1.1987095, -1.4901161e-08, -0.22264346, 0.17901158, -0.06531674, -0.09086873, -0.30390263, -0.036072545, -0.09909849, -0.3085945, -1.2807548e-05, -0.22264346, 0.17901158, 0.06531671, -0.09086873, -0.30390263, 0.036059722, -0.20440987, 0.24713045, 0.06531671, -4.568696e-05, 1.1987095, 0.04784947, -0.11610009, 1.2840319, -1.4901161e-08, -4.568696e-05, 1.1987095, -0.047862288, -0.20440987, 0.24713045, -0.06531674, -0.07105817, 0.15103418, -0.06531674, -4.568696e-05, -0.3045977, -0.044997968, -0.0389276, -0.29034835, -0.044997968, -0.05247961, -0.34230638, -0.036072545, -0.05721049, -0.3504737, -1.2807548e-05, -0.05247961, -0.34230638, 0.036059722, -0.07105817, 0.15103418, 0.06531671, -0.0389276, -0.29034835, 0.044985145, -4.568696e-05, -0.3045977, 0.044985145, 0.20436779, 0.24713045, 0.06531671, 0.15691113, 1.1987095, -1.4901161e-08, 0.11605802, 1.2840319, -1.4901161e-08, -4.568696e-05, 1.2840319, 0.035382003, -4.568696e-05, 1.4094957, -1.4901161e-08, -4.568696e-05, 1.2840319, -0.035394825, 0.20436779, 0.24713045, -0.06531674, 0.0710161, 0.15103418, -0.06531674, 0.03883624, -0.29034835, -0.044997968, 0.05238825, -0.34230638, -0.036072545, -4.568696e-05, -0.35638195, -0.036072545, 0.22260138, 0.17901158, -0.06531674, -4.568696e-05, -0.3657657, -1.2807548e-05, -4.568696e-05, -0.35638195, 0.036059722, 0.0710161, 0.15103418, 0.06531671, 0.05238825, -0.34230638, 0.036059722, 0.03883624, -0.29034835, 0.044985145, 0.22260138, 0.17901158, 0.06531671, 0.25172588, 0.18683136, -0.035215802, 0.25172588, 0.18683136, 0.035202987, 0.09077737, -0.30390263, -0.036072545, 0.057168424, -0.3504737, -1.2807548e-05, 0.09077737, -0.30390263, 0.036059722, 0.09900713, -0.3085945, -1.2807548e-05)
@@ -47,6 +48,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gbkeg")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5sqr"]
+albedo_texture = ExtResource("3_gge5a")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_b5sqr"]
 radius = 1.5
 
@@ -69,6 +73,7 @@ shape = SubResource("ConvexPolygonShape3D_gge5a")
 [node name="sword_1handed" type="MeshInstance3D" parent="body" unique_id=1200164240]
 mesh = SubResource("ArrayMesh_dqmrq")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_b5sqr")
 metadata/name = &"sword_1handed_mesh"
 
 [node name="Area3D" type="Area3D" parent="body" unique_id=1085907599]
@@ -78,10 +83,14 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" unique_id=461344439]
 shape = SubResource("SphereShape3D_b5sqr")
 
-[node name="Interactable" type="Node3D" parent="body" unique_id=871534058 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" unique_id=871534058 node_paths=PackedStringArray("item", "mesh") groups=["interactables"]]
 script = ExtResource("2_co8mh")
 item = NodePath("../..")
+mesh = NodePath("../sword_1handed")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" unique_id=1914276030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39609465, 0)
 
 [connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="body/Area3D" to="." method="_on_area_3d_body_exited"]

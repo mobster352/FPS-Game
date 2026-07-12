@@ -23,6 +23,7 @@ mouse_filter = 2
 script = ExtResource("1_oqpxc")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=885202279]
+visible = false
 layout_mode = 0
 offset_right = 152.0
 offset_bottom = 53.333336

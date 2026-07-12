@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bpl381t362jki"]
+
+[ext_resource type="PackedScene" uid="uid://d02a0we1pu600" path="res://assets/pizzaboy/cash_20.glb" id="1_yi3ti"]
+[ext_resource type="Texture2D" uid="uid://dvpdi5mf8xc30" path="res://assets/pizzaboy/cash_20_cash_20.png" id="2_siyd6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ys6rv"]
+albedo_texture = ExtResource("2_siyd6")
+
+[node name="cash_20" unique_id=156449294 instance=ExtResource("1_yi3ti")]
+
+[node name="Cash" parent="." index="0" unique_id=535642949]
+surface_material_override/0 = SubResource("StandardMaterial3D_ys6rv")

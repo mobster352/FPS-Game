@@ -2065,5 +2065,4 @@ layout_mode = 0
 
 [editable path="Environment/Buildings/pizzeria"]
 [editable path="Environment/Buildings/pizzeria/Objects/kitchentable_B4/Computer"]
-[editable path="Environment/Buildings/pizzeria/Objects/kitchentable_B4/Computer/monitor"]
 [editable path="Environment/Buildings/pizzeria/Objects/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]

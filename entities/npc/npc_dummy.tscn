@@ -63,6 +63,9 @@ script = ExtResource("5_k0m3b")
 npc_dummy = NodePath("..")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
 
+[node name="AimAssistPoint" type="Marker3D" parent="Interactable" unique_id=1144431217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5256264, 0)
+
 [node name="Timers" type="Node" parent="." unique_id=1870658647]
 
 [node name="QuestRepeatTimer" type="Timer" parent="Timers" unique_id=1953913043]

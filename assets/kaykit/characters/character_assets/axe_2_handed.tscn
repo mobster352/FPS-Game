@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://62q1qmspfaeu" path="res://assets/items/item.gd" id="1_nbokg"]
 [ext_resource type="Texture2D" uid="uid://chgh7tpf4kmdu" path="res://assets/kaykit/characters/character_assets/barbarian_texture.png" id="1_w7hxn"]
 [ext_resource type="Script" uid="uid://d2hp426xomekk" path="res://assets/kaykit/characters/character_assets/axe_2handed_interactable.gd" id="2_nbokg"]
+[ext_resource type="Texture2D" uid="uid://cju5k3vbs14to" path="res://assets/kaykit/characters/barbarian_texture.png" id="3_iuump"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iuump"]
 points = PackedVector3Array(-0.61977434, 0.9187311, -2.4452806e-05, -0.38001826, 1.007191, 0.09520377, -0.5793701, 1.1137141, -2.4452806e-05, -0.38001826, 1.007191, -0.09522706, -0.38001826, 0.798365, -0.09522706, -0.5927169, 0.637483, -2.4452806e-05, -0.38001826, 0.798365, 0.09520377, -0.04270959, 1.1397117, 0.13090153, -0.3103725, 1.1645278, 0.07690641, -0.4614334, 1.2504554, -2.4452806e-05, -0.3103725, 1.1645278, -0.07692971, -0.04270959, 1.1397117, -0.1308992, -0.04270959, 0.6952182, -0.1308992, -0.02802819, -0.4130615, -0.070061795, -0.52501243, 0.6195885, -0.022447683, -0.080687165, -0.403439, -0.024267167, -0.080687165, -0.403439, 0.024218246, -0.02802819, -0.4130615, 0.0700385, -0.52501243, 0.6195885, 0.022424385, -0.04270959, 0.6952182, 0.13090153, 0.042588234, 1.1397117, 0.13090153, -0.032153547, 1.2676746, 0.06209427, 0, 1.2916466, 2.6792288e-05, -0.024266839, 1.2675058, -0.05863236, 0.032396197, 1.2676746, -0.061810054, 0.042588234, 1.1397117, -0.1308992, 0.042588234, 0.6952182, -0.1308992, 0.027906835, -0.4231905, -0.070061795, 0, -0.43298185, -2.4452806e-05, 0.027906835, -0.4231905, 0.0700385, 0.042588234, 0.6952182, 0.13090153, 0.31025118, 1.1645278, 0.07690641, 0.02426678, 1.2675058, 0.058660313, 0.37989688, 1.007191, 0.09520377, 0.46131206, 1.2504554, -2.4452806e-05, 0.31025118, 1.1645278, -0.07692971, 0.37989688, 1.007191, -0.09522706, 0.37989688, 0.798365, -0.09522706, 0.52489114, 0.6195885, -0.022447683, 0.59259546, 0.637483, -2.4452806e-05, 0.08056581, -0.43281302, -0.024267167, 0.08056581, -0.43281302, 0.024218246, 0.52489114, 0.6195885, 0.022424385, 0.37989688, 0.798365, 0.09520377, 0.5792488, 1.1137141, -2.4452806e-05, 0.61977434, 0.9187311, -2.4452806e-05)
@@ -47,6 +48,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p3ab2")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0n2l4"]
+albedo_texture = ExtResource("3_iuump")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_0n2l4"]
 radius = 1.5
 
@@ -69,6 +73,7 @@ shape = SubResource("ConvexPolygonShape3D_iuump")
 [node name="axe_2handed" type="MeshInstance3D" parent="body" unique_id=2091616965]
 mesh = SubResource("ArrayMesh_mgpgf")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_0n2l4")
 metadata/name = &"axe_2handed_mesh"
 
 [node name="Area3D" type="Area3D" parent="body" unique_id=536329240]
@@ -78,10 +83,14 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" unique_id=1390213650]
 shape = SubResource("SphereShape3D_0n2l4")
 
-[node name="Interactable" type="Node3D" parent="body" unique_id=470937526 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" unique_id=470937526 node_paths=PackedStringArray("item", "mesh") groups=["interactables"]]
 script = ExtResource("2_nbokg")
 item = NodePath("../..")
+mesh = NodePath("../axe_2handed")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" unique_id=2112782629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3595319, 0)
 
 [connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="body/Area3D" to="." method="_on_area_3d_body_exited"]

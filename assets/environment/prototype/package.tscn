@@ -48,6 +48,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f23w7")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unds5"]
+albedo_texture = ExtResource("2_unds5")
+stencil_flags = 2
+
 [node name="Package" type="Node3D" unique_id=1912859932 node_paths=PackedStringArray("mesh", "rigid_body", "collider", "area", "meshInstanceArray")]
 script = ExtResource("1_unds5")
 mesh = NodePath("body/Box_C/Box_C")
@@ -76,8 +80,10 @@ shape = SubResource("SphereShape3D_ifnxj")
 [node name="Box_C" type="Node3D" parent="body" unique_id=1067077851]
 
 [node name="Box_C" type="MeshInstance3D" parent="body/Box_C" unique_id=665551687]
+unique_name_in_owner = true
 mesh = SubResource("ArrayMesh_xp428")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_unds5")
 metadata/name = &"package_mesh"
 metadata/starting_pos = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
@@ -88,10 +94,14 @@ double_sided = false
 no_depth_test = true
 text = "101"
 
-[node name="Interactable" type="Node3D" parent="body" unique_id=1841244610 node_paths=PackedStringArray("package")]
+[node name="Interactable" type="Node3D" parent="body" unique_id=1841244610 node_paths=PackedStringArray("package", "mesh") groups=["interactables"]]
 script = ExtResource("4_unds5")
 package = NodePath("../..")
+mesh = NodePath("../Box_C/Box_C")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" unique_id=291307492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 
 [node name="Timers" type="Node" parent="." unique_id=579604944]
 

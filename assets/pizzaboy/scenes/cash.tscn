@@ -27,7 +27,7 @@ can_sleep = false
 transform = Transform3D(8.9407e-09, 0, -0.050000012, 0, 0.050000012, 0, 0.050000012, 0, 8.9407e-09, -0.0009155289, 1.1444092e-05, 0.0018127449)
 shape = SubResource("BoxShape3D_blk1q")
 
-[node name="Interactable" type="Node3D" parent="body" unique_id=121168292 node_paths=PackedStringArray("cash")]
+[node name="Interactable" type="Node3D" parent="body" unique_id=121168292 node_paths=PackedStringArray("cash") groups=["interactables"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14990234, 0.11224365, 0.00012207031)
 script = ExtResource("2_blk1q")
 cash = NodePath("../..")

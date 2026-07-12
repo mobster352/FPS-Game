@@ -49,6 +49,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wy3v7")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3mpl"]
+albedo_texture = ExtResource("3_r8nlq")
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_opoi4"]
 radius = 3.0704765
 
@@ -75,6 +78,7 @@ shape = SubResource("ConvexPolygonShape3D_n7hu3")
 [node name="spellbook_closed" type="MeshInstance3D" parent="body" index="1" unique_id=2119168406]
 mesh = SubResource("ArrayMesh_bbor8")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_m3mpl")
 metadata/name = &"spellbook_closed_mesh"
 
 [node name="Area3D" type="Area3D" parent="body" index="2" unique_id=325722161]
@@ -84,10 +88,14 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D" index="0" unique_id=145718155]
 shape = SubResource("SphereShape3D_opoi4")
 
-[node name="Interactable" type="Node3D" parent="body" index="3" unique_id=1666186709 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="3" unique_id=1666186709 node_paths=PackedStringArray("item", "mesh") groups=["interactables"]]
 script = ExtResource("5_3jrvn")
 item = NodePath("../..")
+mesh = NodePath("../spellbook_closed")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" index="0" unique_id=2103527605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.022030741, 0)
 
 [connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="body/Area3D" to="." method="_on_area_3d_body_exited"]

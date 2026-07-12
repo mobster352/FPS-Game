@@ -1,13 +1,19 @@
 extends Interactable
 
 @export var weapon_rack: WeaponRack
+@export var mesh:MeshInstance3D
 
 func can_interact(player: Player) -> bool:
 	if weapon_rack.in_range:
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.Interact)
+		if not surface_material_override:
+			surface_material_override = mesh.get_surface_override_material(0)
+			stencil_outline_thickness = 0.02
+		enable_stencil()
 	return weapon_rack.in_range
 	
 func interact(player: Player) -> void:
+	disable_stencil()
 	weapon_rack.interact(player, weapon_rack.WeaponType.Pistol)
 	
 func reticle_color() -> Color:

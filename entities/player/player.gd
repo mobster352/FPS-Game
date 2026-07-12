@@ -437,6 +437,8 @@ func _handle_item_raycast(target: Node3D, delta: float) -> void:
 					else:
 						inputs_ui.update_actions.emit(inputs_ui.InputAction.PrePlacement)
 
+	for interactable:Interactable in get_tree().get_nodes_in_group("interactables"):
+		interactable.disable_stencil()
 	
 	var interactable := target as Interactable
 	if not interactable:
@@ -448,16 +450,20 @@ func _handle_item_raycast(target: Node3D, delta: float) -> void:
 		if interactable.can_interact(self):
 			# aim assist logic
 			if current_input_device == GlobalVar.InputDevice.CONTROLLER:
-				var aim_assist_point = interactable.get_node_or_null("AimAssistPoint") as Node3D
-				var target_pos:Vector3
-				if aim_assist_point:
-					target_pos = aim_assist_point.global_position
+				var cash_register = interactable.has_meta("is_cash_register")
+				if cash_register and is_cashier:
+					pass
 				else:
-					target_pos = target.global_position
-				aim_assist_raycast.look_at(target_pos)
-				rotation.y = lerp_angle(rotation.y, aim_assist_raycast.rotation.y + rotation.y, delta * 1.0)
-				pitch = lerp_angle(pitch, aim_assist_raycast.rotation.x + pitch, delta * 1.0)
-				pointer_slot.rotation.x = pitch
+					var aim_assist_point = interactable.get_node_or_null("AimAssistPoint") as Node3D
+					var target_pos:Vector3
+					if aim_assist_point:
+						target_pos = aim_assist_point.global_position
+					else:
+						target_pos = target.global_position
+					aim_assist_raycast.look_at(target_pos)
+					rotation.y = lerp_angle(rotation.y, aim_assist_raycast.rotation.y + rotation.y, delta * 1.0)
+					pitch = lerp_angle(pitch, aim_assist_raycast.rotation.x + pitch, delta * 1.0)
+					pointer_slot.rotation.x = pitch
 			if interact:
 				interactable.interact(self)
 				interact = false

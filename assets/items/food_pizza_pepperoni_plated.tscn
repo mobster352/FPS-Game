@@ -26,11 +26,14 @@ shape = SubResource("BoxShape3D_t44bs")
 
 [node name="mesh" parent="body" index="1" unique_id=578530438 instance=ExtResource("3_1801u")]
 
-[node name="food_pizza_pepperoni_plated" parent="body/mesh" index="0"]
+[node name="food_pizza_pepperoni_plated" parent="body/mesh" index="0" unique_id=2141701908]
 metadata/name = &"food_ingredient_pepperoni_pizza_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=924127156 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=924127156 node_paths=PackedStringArray("item") groups=["interactables"]]
 script = ExtResource("4_f31uj")
 item = NodePath("../..")
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" index="0" unique_id=771501532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 
 [editable path="body/mesh"]

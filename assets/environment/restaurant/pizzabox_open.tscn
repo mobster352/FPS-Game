@@ -47,6 +47,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_mermk")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mermk"]
+albedo_texture = ExtResource("3_mermk")
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_853ym"]
 _surfaces = [{
 "aabb": AABB(-1, -0.24999991, -1.8626451e-09, 2, 0.29999992, 2.05),
@@ -108,6 +111,7 @@ shape = SubResource("BoxShape3D_elc2u")
 [node name="pizzabox_open" type="MeshInstance3D" parent="body" index="3" unique_id=1591627680]
 mesh = SubResource("ArrayMesh_355ny")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_mermk")
 metadata/name = &"pizza_box_open_mesh"
 
 [node name="pizzabox_lid" type="MeshInstance3D" parent="body/pizzabox_open" index="0" unique_id=132406032]
@@ -122,9 +126,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -1)
 script = ExtResource("3_506v3")
 pizza_box = NodePath("../..")
 
-[node name="Interactable" type="Node3D" parent="body" index="5" unique_id=2128795781 node_paths=PackedStringArray("pizza_box")]
+[node name="Interactable" type="Node3D" parent="body" index="5" unique_id=2128795781 node_paths=PackedStringArray("pizza_box", "mesh") groups=["interactables"]]
 script = ExtResource("2_pppke")
 pizza_box = NodePath("../..")
+mesh = NodePath("../pizzabox_open")
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" index="0" unique_id=778089864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 
 [node name="PizzaDetectionArea" type="Area3D" parent="body" index="6" unique_id=1485434534]
 collision_mask = 8

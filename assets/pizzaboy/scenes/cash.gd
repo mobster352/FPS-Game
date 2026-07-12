@@ -9,11 +9,11 @@ enum CashDenom {
 	FIFTY
 }
 
-const cash_1 = preload("uid://dkwk5g43c4yoe")
-const cash_5 = preload("uid://sr7mofog7xv1")
-const cash_10 = preload("uid://byr851ffeqrcs")
-const cash_20 = preload("uid://d02a0we1pu600")
-const cash_50 = preload("uid://odlj4snushh2")
+const cash_1 = preload("uid://cbpovmj5lp7e8")
+const cash_5 = preload("uid://2lnbb3wmudmx")
+const cash_10 = preload("uid://b7jc1rvdgcivx")
+const cash_20 = preload("uid://bpl381t362jki")
+const cash_50 = preload("uid://cc7pvyps3magt")
 
 @export var cash_denom:CashDenom
 @export var in_register:bool

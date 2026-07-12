@@ -29,7 +29,7 @@ shape = SubResource("BoxShape3D_4pmc5")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 metadata/name = &"food_ingredient_cheese_pizza_mesh"
 
-[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=2066596214 node_paths=PackedStringArray("item")]
+[node name="Interactable" type="Node3D" parent="body" index="4" unique_id=2066596214 node_paths=PackedStringArray("item") groups=["interactables"]]
 script = ExtResource("4_faxge")
 item = NodePath("../..")
 

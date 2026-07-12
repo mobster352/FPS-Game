@@ -1,15 +1,22 @@
 extends Interactable
 
 @export var package:Package
+@export var mesh:MeshInstance3D
 
 func can_interact(player: Player) -> bool:
-	if package.in_range and not package.is_disabled:
+	var result:bool = package.in_range and not package.is_disabled
+	if result:
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object())
-	return package.in_range
+		if not surface_material_override:
+			surface_material_override = mesh.get_surface_override_material(0)
+			stencil_outline_thickness = 0.02
+		enable_stencil()
+	return result
 	
 func interact(player: Player) -> void:
 	if package.disabled:
 		return
+	disable_stencil()
 	if player.has_held_object():
 		player.drop_item()
 	if get_parent():

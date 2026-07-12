@@ -81,7 +81,7 @@ collision_mask = 9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035629272, 0.20000839, -0.00089263916)
 shape = SubResource("BoxShape3D_wl83s")
 
-[node name="Interactable" parent="body" index="3" unique_id=770698474 node_paths=PackedStringArray("item", "mesh") groups=["thief_target"] instance=ExtResource("3_ytnlp")]
+[node name="Interactable" parent="body" index="3" unique_id=770698474 node_paths=PackedStringArray("item", "mesh") groups=["interactables", "thief_target"] instance=ExtResource("3_ytnlp")]
 script = ExtResource("4_0wkgb")
 item = NodePath("../..")
 mesh = NodePath("crate2")
@@ -97,6 +97,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_ytnlp")
 metadata/name = &"crate_mesh"
+
+[node name="AimAssistPoint" type="Marker3D" parent="body/Interactable" index="2" unique_id=91704435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27392164, 0)
 
 [node name="PizzaLabel" parent="body" index="4" unique_id=2100755056 instance=ExtResource("6_ytnlp")]
 unique_name_in_owner = true

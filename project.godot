@@ -58,6 +58,7 @@ cash_register=""
 nav_restaurant=""
 world_environment=""
 traffic=""
+interactables=""
 
 [gui]
 
