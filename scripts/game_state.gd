@@ -4,14 +4,18 @@ class_name GameState
 const THIEF_SPAWNER = preload("uid://b5focl0l18uhf")
 
 @onready var restaurant_back_door_marker: Marker3D
+@onready var level: Level = $".."
 
 var thief_nodes: Array[Node]
 var thief_targets: Array[Node]
+var player:Player
 
 func _ready() -> void:
 	restaurant_back_door_marker = $"../Environment/Markers/RestaurantBackDoorMarker"
 	GlobalSignal.level_up.connect(_level_up)
-	
+	player = get_tree().get_first_node_in_group("player")
+	GlobalVar.slice_of_the_day = GlobalVar.get_random_slice_by_level(player.level)
+
 
 func get_random_time() -> float:
 	return randf_range(10, 60)
@@ -35,7 +39,8 @@ func _level_up(value:int) -> void:
 		create_thief_spawner()
 
 
-func _on_player_player_loaded(player:Player) -> void:
+func _on_player_player_loaded(_player:Player) -> void:
+	player = _player
 	if player.level >= 3:
 		create_thief_spawner()
 

@@ -13,6 +13,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	%PizzaLabel.hide()
+	pass
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

@@ -144,15 +144,18 @@ func load_settings() -> void:
 	if settings_data.mouse_sensitivity:
 		if player:
 			player.mouse_sensitivity = Settings.update_mouse_sensitivity(settings_data.mouse_sensitivity)
-		%MouseSensitivitySpinBox.set_value_no_signal(settings_data.mouse_sensitivity)
+		%MouseSensitivitySlider.value = settings_data.mouse_sensitivity
+		%MouseSensitivityValue.text = str(settings_data.mouse_sensitivity)
 	if settings_data.controller_sensitivity:
 		if player:
 			player.controller_sensitivity = Settings.update_controller_sensitivity(settings_data.controller_sensitivity)
-		%ControllerSensitivitySpinBox.set_value_no_signal(settings_data.controller_sensitivity)
+		%ControllerSensitivitySlider.value = settings_data.controller_sensitivity
+		%ControllerSensitivityValue.text = str(settings_data.controller_sensitivity)
 	if settings_data.deadzone:
 		if player:
 			player.controller_deadzone = Settings.update_deadzone(settings_data.deadzone)
-		%DeadzoneSpinBox.set_value_no_signal(settings_data.deadzone)
+		%DeadzoneSlider.value = settings_data.deadzone
+		%DeadzoneValue.text = str(settings_data.deadzone)
 	if settings_data.fov:
 		fov = settings_data.fov
 	if settings_data.bg_music_audio_level:
@@ -259,31 +262,12 @@ func _on_cancel_button_pressed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		%QualityPresetButton.call_deferred("grab_focus")
-
-
-func _on_mouse_sensitivity_spin_box_value_changed(value: float) -> void:
-	settings_data.mouse_sensitivity = value
-	save_settings()
-	if player:
-		player.mouse_sensitivity = Settings.update_mouse_sensitivity(value)
+		if ResourceLoader.exists(SETTINGS_PATH):
+			load_settings()
 
 
 func _init_player(_player:Player) -> void:
 	player = _player
-
-
-func _on_controller_sensitivity_spin_box_value_changed(value: float) -> void:
-	settings_data.controller_sensitivity = value
-	save_settings()
-	if player:
-		player.controller_sensitivity = Settings.update_controller_sensitivity(value)
-
-
-func _on_deadzone_spin_box_value_changed(value: float) -> void:
-	settings_data.deadzone = value
-	save_settings()
-	if player:
-		player.controller_deadzone = Settings.update_deadzone(value)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -292,9 +276,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tabs.current_tab == 0:
 			%QualityPresetButton.call_deferred("grab_focus")
 		elif tabs.current_tab == 1:
-			%MouseSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+			%MouseSensitivitySlider.call_deferred("grab_focus")
 		elif tabs.current_tab == 2:
-			%ControllerSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+			%ControllerSensitivitySlider.call_deferred("grab_focus")
 		elif tabs.current_tab == 3:
 			%BackgroundAudioCheckBox.call_deferred("grab_focus")
 		#get_viewport().set_input_as_handled()
@@ -303,9 +287,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tabs.current_tab == 0:
 			%QualityPresetButton.call_deferred("grab_focus")
 		elif tabs.current_tab == 1:
-			%MouseSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+			%MouseSensitivitySlider.call_deferred("grab_focus")
 		elif tabs.current_tab == 2:
-			%ControllerSensitivitySpinBox.get_line_edit().call_deferred("grab_focus")
+			%ControllerSensitivitySlider.call_deferred("grab_focus")
 		elif tabs.current_tab == 3:
 			%BackgroundAudioCheckBox.call_deferred("grab_focus")
 		#get_viewport().set_input_as_handled()
@@ -321,3 +305,27 @@ func _on_fov_slider_value_changed(value: float) -> void:
 func _on_background_music_h_slider_value_changed(value: float) -> void:
 	bg_music_audio_level = value
 	save_settings()
+
+
+func _on_mouse_sensitivity_slider_value_changed(value: float) -> void:
+	settings_data.mouse_sensitivity = value
+	save_settings()
+	if player:
+		player.mouse_sensitivity = Settings.update_mouse_sensitivity(value)
+	%MouseSensitivityValue.text = str(value)
+
+
+func _on_controller_sensitivity_slider_value_changed(value: float) -> void:
+	settings_data.controller_sensitivity = value
+	save_settings()
+	if player:
+		player.controller_sensitivity = Settings.update_controller_sensitivity(value)
+	%ControllerSensitivityValue.text = str(value)
+
+
+func _on_deadzone_slider_value_changed(value: float) -> void:
+	settings_data.deadzone = value
+	save_settings()
+	if player:
+		player.controller_deadzone = Settings.update_deadzone(value)
+	%DeadzoneValue.text = str(value)

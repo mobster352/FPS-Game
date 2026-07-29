@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://3qqp6fwhrt1p"]
+
+[ext_resource type="PackedScene" uid="uid://csjrxmctsxanw" path="res://assets/environment/restaurant/monitor_ingredient.tscn" id="1_6g6oy"]
+[ext_resource type="Texture2D" uid="uid://cy4of0wxkpuxe" path="res://assets/kaykit/restaurant/textures/whole_cheese_pizza.png" id="2_mpjy6"]
+
+[node name="MonitorOrderCooked" type="Control" unique_id=968836556]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CookedTexture" parent="." unique_id=1839143140 instance=ExtResource("1_6g6oy")]
+custom_minimum_size = Vector2(75, 50)
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("2_mpjy6")
+stretch_mode = 6

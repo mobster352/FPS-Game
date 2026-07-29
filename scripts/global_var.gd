@@ -4,6 +4,7 @@ const SAVE_SLOT_1 := "user://save_slot_1.tres"
 const SAVE_SLOT_2 := "user://save_slot_2.tres"
 const SAVE_SLOT_3 := "user://save_slot_3.tres"
 
+#food_id
 enum PIZZA_TYPE {
 	NONE,
 	PEPPERONI,
@@ -125,12 +126,13 @@ var mesh_to_item_array: Array[Dictionary] = [
 ]
 
 var food_items: Array[Food] = [
-	Food.new(PIZZA_TYPE.PEPPERONI,"Pepperoni Pizza Slice"),
-	Food.new(PIZZA_TYPE.CHEESE,"Cheese Pizza Slice"),
-	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice"),
-	Food.new(PIZZA_TYPE.PEPPERONI_PIE, "Pepperoni Pizza"),
-	Food.new(PIZZA_TYPE.CHEESE_PIE, "Cheese Pizza"),
-	Food.new(PIZZA_TYPE.MUSHROOM_PIE, "Mushroom Pizza")
+	Food.new(PIZZA_TYPE.PEPPERONI,"Pepperoni Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://bgudwc767qkkw"], "uid://cseaxawpmam36"),
+	Food.new(PIZZA_TYPE.CHEESE,"Cheese Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx"], "uid://c2osof6vauqdh"),
+	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://clgt1vp0t555g"], "uid://b0un28s5ytrwu"),
+	
+	Food.new(PIZZA_TYPE.PEPPERONI_PIE, "Pepperoni Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://bgudwc767qkkw"], "uid://dtk3hl0r672fw"),
+	Food.new(PIZZA_TYPE.CHEESE_PIE, "Cheese Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx"], "uid://cy4of0wxkpuxe"),
+	Food.new(PIZZA_TYPE.MUSHROOM_PIE, "Mushroom Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://clgt1vp0t555g"], "uid://ceboasx34ho1v")
 ]
 
 var show_tips := true
@@ -156,16 +158,18 @@ var npc_skins:Dictionary[StringName, NpcType] = {
 	#"uid://btlcpec1pk0f4": NpcType.Default
 }
 
+var slice_of_the_day: GlobalVar.PIZZA_TYPE
+
 func get_random_food_by_level(level:int) -> int:
 	match level:
 		1:
-			return [PIZZA_TYPE.CHEESE].pick_random()
+			return [PIZZA_TYPE.CHEESE_PIE, slice_of_the_day].pick_random()
 		2:
-			return [PIZZA_TYPE.CHEESE].pick_random()
+			return [PIZZA_TYPE.CHEESE_PIE, slice_of_the_day].pick_random()
 		3:
-			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE].pick_random()
+			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, slice_of_the_day].pick_random()
 		_:
-			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM].pick_random()
+			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE, slice_of_the_day].pick_random()
 
 
 func get_random_food_by_level_for_drive_thru(level:int) -> int:
@@ -178,6 +182,18 @@ func get_random_food_by_level_for_drive_thru(level:int) -> int:
 			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE].pick_random()
 		_:
 			return [PIZZA_TYPE.PEPPERONI_PIE, PIZZA_TYPE.CHEESE_PIE, PIZZA_TYPE.MUSHROOM_PIE].pick_random()
+
+
+func get_random_slice_by_level(level:int) -> PIZZA_TYPE:
+	match level:
+		1:
+			return [PIZZA_TYPE.CHEESE].pick_random()
+		2:
+			return [PIZZA_TYPE.CHEESE].pick_random()
+		3:
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE].pick_random()
+		_:
+			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM].pick_random()
 
 
 func get_food(food_id:int) -> Food:

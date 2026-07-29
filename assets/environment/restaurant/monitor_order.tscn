@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ddonkbdmc5uhv"]
 
+[ext_resource type="PackedScene" uid="uid://csjrxmctsxanw" path="res://assets/environment/restaurant/monitor_ingredient.tscn" id="1_ees3v"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_edcdb"]
 font_size = 24
 outline_size = 3
@@ -12,11 +14,33 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 43.5
 grow_horizontal = 2
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="." unique_id=2018814824]
+[node name="GridContainer" type="GridContainer" parent="." unique_id=318355235]
 layout_mode = 2
-text = "Table 1: Pep"
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Label" type="Label" parent="GridContainer" unique_id=1873434517]
+layout_mode = 2
+text = "1"
 label_settings = SubResource("LabelSettings_edcdb")
+
+[node name="CookedTexture" parent="GridContainer" unique_id=1839143140 instance=ExtResource("1_ees3v")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer" unique_id=1710776841]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="MonitorIngredient" parent="GridContainer/HBoxContainer" unique_id=1521011103 instance=ExtResource("1_ees3v")]
+layout_mode = 2
+
+[node name="MonitorIngredient2" parent="GridContainer/HBoxContainer" unique_id=1998414854 instance=ExtResource("1_ees3v")]
+layout_mode = 2
+
+[node name="MonitorIngredient3" parent="GridContainer/HBoxContainer" unique_id=659945418 instance=ExtResource("1_ees3v")]
+layout_mode = 2

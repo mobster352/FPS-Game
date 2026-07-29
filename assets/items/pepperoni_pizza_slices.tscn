@@ -21,22 +21,22 @@ whole_pizza_type = 4
 
 [node name="food_pizza_pepperoni_plated_slices" parent="." unique_id=190591517 instance=ExtResource("1_8uwgv")]
 
-[node name="food_pizza_pepperoni_plated_slices_001" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="0" unique_id=998212556]
+[node name="food_pizza_pepperoni_plated_slices_001" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="0" unique_id=143344202]
 visible = false
 
-[node name="food_pizza_pepperoni_plated_slices_002" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="1" unique_id=338809407]
+[node name="food_pizza_pepperoni_plated_slices_002" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="1" unique_id=919959854]
 visible = false
 
-[node name="food_pizza_pepperoni_plated_slices_003" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="2" unique_id=1375095145]
+[node name="food_pizza_pepperoni_plated_slices_003" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="2" unique_id=1626273848]
 visible = false
 
-[node name="food_pizza_pepperoni_plated_slices_004" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="3" unique_id=1894591683]
+[node name="food_pizza_pepperoni_plated_slices_004" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="3" unique_id=406104124]
 visible = false
 
-[node name="food_pizza_pepperoni_plated_slices_005" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="4" unique_id=536827530]
+[node name="food_pizza_pepperoni_plated_slices_005" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="4" unique_id=1430303425]
 visible = false
 
-[node name="food_pizza_pepperoni_plated_slices_006" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 1332006074) index="5" unique_id=1663190463]
+[node name="food_pizza_pepperoni_plated_slices_006" parent="food_pizza_pepperoni_plated_slices/food_pizza_pepperoni_plated_slices" parent_id_path=PackedInt32Array(190591517, 305277951) index="5" unique_id=808484901]
 visible = false
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1491329412]

@@ -12,9 +12,16 @@ resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_0x8q3")
 stencil_flags = 2
 
-[node name="Monitor" type="Node3D" unique_id=111431306 node_paths=PackedStringArray("v_box")]
+[sub_resource type="LabelSettings" id="LabelSettings_xxql2"]
+font_size = 24
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Monitor" type="Node3D" unique_id=111431306 node_paths=PackedStringArray("grid_container")]
 script = ExtResource("1_0x8q3")
-v_box = NodePath("CSGMesh3D/SubViewport/GUI/VBoxContainer")
+grid_container = NodePath("CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=887691759]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -33,7 +40,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CSGMesh3D/SubViewport/GUI" unique_id=1117283094]
+[node name="MarginContainer" type="MarginContainer" parent="CSGMesh3D/SubViewport/GUI" unique_id=439459270]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+
+[node name="GridContainer" type="GridContainer" parent="CSGMesh3D/SubViewport/GUI/MarginContainer" unique_id=1506952065]
+layout_mode = 2
+theme_override_constants/h_separation = 110
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="Table" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=212563383]
+layout_mode = 2
+text = "Table"
+label_settings = SubResource("LabelSettings_xxql2")
+
+[node name="Order" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=2134946640]
+layout_mode = 2
+text = "Order"
+label_settings = SubResource("LabelSettings_xxql2")
+
+[node name="Ingredients" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=1200209559]
+layout_mode = 2
+text = "Ingredients"
+label_settings = SubResource("LabelSettings_xxql2")

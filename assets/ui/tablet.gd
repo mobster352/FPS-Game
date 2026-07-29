@@ -8,7 +8,12 @@ enum TabletStoreItems {
 	Table_Round_B_Tablecloth_Red
 }
 
-@export var order_vbox:VBoxContainer
+const monitor_order_table = preload("uid://c06pjdmf0upgb")
+const monitor_order_cooked = preload("uid://3qqp6fwhrt1p")
+const monitor_order_ingredients = preload("uid://spry8ppndki4")
+const monitor_ingredient = preload("uid://csjrxmctsxanw")
+
+@export var grid_container:GridContainer
 @export var tabs:TabContainer
 @onready var tables: Control = %Tables
 @onready var purchase_table_button: Button = %PurchaseTableButton
@@ -82,24 +87,44 @@ func _on_close_tablet_button_pressed() -> void:
 	hide_tablet()
 
 func _add_order(table_id:int, food_id: int) -> void:
-	var monitor_order = preload("res://assets/environment/restaurant/monitor_order.tscn").instantiate() as MarginContainer
-	var child = monitor_order.get_child(0) as Label
+	var monitor_order_table_instance = monitor_order_table.instantiate() as Control
+	var label:Label = monitor_order_table_instance.get_child(0) as Label
+	
+	var monitor_order_cooked_instance = monitor_order_cooked.instantiate() as Control
+	var cooked_texture:TextureRect = monitor_order_cooked_instance.get_child(0) as TextureRect
+	
+	var monitor_order_ingredients_instance = monitor_order_ingredients.instantiate() as Control
+	var hbox:HBoxContainer = monitor_order_ingredients_instance.get_child(0) as HBoxContainer
 	
 	var food = GlobalVar.get_food(food_id) as Food
 	if table_id == 0:
-		child.text = "Drive-Thru: " + food.food_name
+		label.text = "Drive-Thru"
+		cooked_texture.texture = load(food.cooked_texture)
+		for ingredient in food.ingredients:
+			var new_ingredient = monitor_ingredient.instantiate() as TextureRect
+			new_ingredient.texture = load(ingredient)
+			hbox.add_child(new_ingredient)
 	else:
-		child.text = "Table " + str(table_id) + ": " + food.food_name
+		label.text = str(table_id)
+		cooked_texture.texture = load(food.cooked_texture)
+		for ingredient in food.ingredients:
+			var new_ingredient = monitor_ingredient.instantiate() as TextureRect
+			new_ingredient.texture = load(ingredient)
+			hbox.add_child(new_ingredient)
 	
-	order_vbox.add_child(monitor_order)
-	var order = {"table_id": table_id, "food_id": food_id, "monitor_order": monitor_order}
+	grid_container.add_child(monitor_order_table_instance)
+	grid_container.add_child(monitor_order_cooked_instance)
+	grid_container.add_child(monitor_order_ingredients_instance)
+	var order = {"table_id": table_id, "food_id": food_id, "monitor_order_table": monitor_order_table_instance, "monitor_order_cooked": monitor_order_cooked_instance, "monitor_order_ingredients": monitor_order_ingredients_instance}
 	order_list.append(order)
 
 func _remove_order_from_list(table_id: int) -> void:
 	var i = 0
 	for order in order_list:
 		if order.table_id == table_id:
-			order_vbox.remove_child(order.monitor_order)
+			grid_container.remove_child(order.monitor_order_table)
+			grid_container.remove_child(order.monitor_order_cooked)
+			grid_container.remove_child(order.monitor_order_ingredients)
 			order_list.remove_at(i)
 		i += 1
 

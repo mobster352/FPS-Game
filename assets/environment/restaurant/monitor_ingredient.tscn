@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csjrxmctsxanw"]
+
+[ext_resource type="Texture2D" uid="uid://ck65yw2kspsmo" path="res://assets/kaykit/restaurant/textures/tomato.png" id="1_jx3pk"]
+
+[node name="MonitorIngredient" type="TextureRect" unique_id=1839143140]
+custom_minimum_size = Vector2(50, 50)
+texture = ExtResource("1_jx3pk")
+expand_mode = 1
+stretch_mode = 5

@@ -2,6 +2,12 @@ extends Cookable
 
 @export var item: Item
 
+var valid_toppings:Array = [
+	"food_ingredient_tomato_mesh",
+	"food_ingredient_cheese_mesh",
+	"food_ingredient_pepperoni_mesh",
+	"food_ingredient_mushroom_mesh"
+]
 
 func can_cook(player:Player) -> bool:
 	if player.item_slot.get_child_count() == 1:
@@ -16,9 +22,7 @@ func cook(player: Player) -> void:
 		if held_item.has_meta("name"):
 			if toppings.has(held_item.get_meta("name")):
 				return
-			if toppings.has("food_ingredient_pepperoni_mesh") and held_item.get_meta("name") == "food_ingredient_mushroom_mesh":
-				return
-			if toppings.has("food_ingredient_mushroom_mesh") and held_item.get_meta("name") == "food_ingredient_pepperoni_mesh":
+			if not valid_toppings.has(held_item.get_meta("name")):
 				return
 			if held_item.get_meta("name") == "food_ingredient_tomato_mesh":
 				var tomato_sauce = preload("res://assets/kaykit/restaurant/food_ingredient_tomato_sauce.gltf").instantiate()

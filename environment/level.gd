@@ -17,6 +17,7 @@ class_name Level
 @export var player: Player
 @export var can_advance_time := true
 @export var show_clock := true
+@export var game_state: GameState
 
 # Internal state
 var time_of_day := 0.0 # 0–24

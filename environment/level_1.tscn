@@ -95,11 +95,12 @@ point_count = 4
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ogk7"]
 radius = 3.2562265
 
-[node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player") instance=ExtResource("1_xqm7o")]
+[node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player", "game_state") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
 day_length_minutes = 12.0
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
+game_state = NodePath("GameState")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="." index="0" unique_id=509094633]
 visible = false

@@ -470,7 +470,6 @@ func _handle_item_raycast(target: Node3D, delta: float) -> void:
 			if drop_input:
 				interactable.interact2(self)
 				drop_input = false
-				
 	else:
 		aim_assist_raycast.rotation = Vector3.ZERO
 

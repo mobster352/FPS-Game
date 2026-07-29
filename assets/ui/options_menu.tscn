@@ -354,20 +354,31 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 104.0
-offset_top = 9.0
+offset_left = 64.0
+offset_top = 17.0
 offset_right = 190.5
-offset_bottom = 40.0
+offset_bottom = 33.0
 grow_horizontal = 2
 
-[node name="MouseSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=465813656]
+[node name="MouseSensitivitySlider" type="HSlider" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=246908955]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
-focus_mode = 2
 min_value = 1.0
-max_value = 10.0
+max_value = 9.0
 value = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity" unique_id=2078121925]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 9.000002
+offset_right = 451.0
+offset_bottom = 39.333336
+
+[node name="MouseSensitivityValue" type="Label" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer" unique_id=1892355821]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5"
 
 [node name="Control" type="Control" parent="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer" unique_id=1180119995]
 layout_mode = 2
@@ -410,20 +421,32 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 104.0
-offset_top = 9.0
+offset_left = 64.0
+offset_top = 17.0
 offset_right = 190.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
-[node name="ControllerSensitivitySpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=1453407682]
+[node name="ControllerSensitivitySlider" type="HSlider" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3" unique_id=122647875]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../../Deadzone/MarginContainer3/DeadzoneSpinBox")
-focus_mode = 2
+focus_neighbor_bottom = NodePath("../../../Deadzone/MarginContainer3/DeadzoneSlider")
 min_value = 1.0
-max_value = 10.0
+max_value = 9.0
 value = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity" unique_id=1454357504]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 9.000002
+offset_right = 451.0
+offset_bottom = 39.333336
+
+[node name="ControllerSensitivityValue" type="Label" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer" unique_id=734235587]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5"
 
 [node name="Deadzone" type="Control" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer" unique_id=1528602872]
 layout_mode = 2
@@ -449,21 +472,43 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 104.0
-offset_top = 9.0
+offset_left = 64.0
+offset_top = 17.0
 offset_right = 190.5
 offset_bottom = 40.0
 grow_horizontal = 2
 
 [node name="DeadzoneSpinBox" type="SpinBox" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3" unique_id=737334563]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../Sensitivity/MarginContainer3/ControllerSensitivitySpinBox")
 focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
 focus_mode = 2
 min_value = 1.0
 max_value = 9.0
 value = 5.0
+
+[node name="DeadzoneSlider" type="HSlider" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3" unique_id=1140773659]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Sensitivity/MarginContainer3/ControllerSensitivitySlider")
+focus_neighbor_bottom = NodePath("../../../../../../../BackButton/TextureButton")
+min_value = 1.0
+max_value = 9.0
+value = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone" unique_id=631816289]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 9.000002
+offset_right = 451.0
+offset_bottom = 39.333336
+
+[node name="DeadzoneValue" type="Label" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer" unique_id=1174305845]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "5"
 
 [node name="Control" type="Control" parent="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer" unique_id=1584832899]
 layout_mode = 2
@@ -673,9 +718,10 @@ volume_db = -5.0
 [connection signal="item_selected" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/WindowSize/MarginContainer3/WindowSizeButton" to="." method="_on_window_size_button_item_selected"]
 [connection signal="pressed" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/ShowTips/MarginContainer3/ShowTipsCheckBox" to="." method="_on_show_tips_check_box_pressed"]
 [connection signal="value_changed" from="Settings/TabContainer/Display/ScrollContainer/VBoxContainer/FOV/MarginContainer3/FovSlider" to="." method="_on_fov_slider_value_changed"]
-[connection signal="value_changed" from="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/MouseSensitivitySpinBox" to="." method="_on_mouse_sensitivity_spin_box_value_changed"]
-[connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/ControllerSensitivitySpinBox" to="." method="_on_controller_sensitivity_spin_box_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Mouse/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/MouseSensitivitySlider" to="." method="_on_mouse_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Sensitivity/MarginContainer3/ControllerSensitivitySlider" to="." method="_on_controller_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/Controller/ScrollContainer/VBoxContainer/Deadzone/MarginContainer3/DeadzoneSlider" to="." method="_on_deadzone_slider_value_changed"]
 [connection signal="pressed" from="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio/MarginContainer3/BackgroundAudioCheckBox" to="." method="_on_background_audio_check_box_pressed"]
 [connection signal="value_changed" from="Settings/TabContainer/Audio/ScrollContainer/VBoxContainer/BackgroundAudio2/MarginContainer3/BackgroundMusicHSlider" to="." method="_on_background_music_h_slider_value_changed"]
 [connection signal="mouse_entered" from="Settings/BackButton/TextureButton" to="." method="_on_back_button_mouse_entered"]

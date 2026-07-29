@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dfvx6wuo5ybkj"]
+
+[ext_resource type="Script" uid="uid://by8p5dvi0vaq0" path="res://assets/items/pizza_slice_spawner.gd" id="1_l2wfa"]
+
+[node name="PizzaSliceSpawner" type="Node3D" unique_id=1541964092]
+script = ExtResource("1_l2wfa")
+
+[node name="slices" type="Node3D" parent="." unique_id=958475802]
+unique_name_in_owner = true

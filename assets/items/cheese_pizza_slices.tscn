@@ -21,22 +21,22 @@ whole_pizza_type = 5
 
 [node name="food_pizza_cheese_plated_slices" parent="." unique_id=220244127 instance=ExtResource("1_tmb4q")]
 
-[node name="food_pizza_cheese_plated_slices_1" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="0" unique_id=923512283]
+[node name="food_pizza_cheese_plated_slices_1" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="0" unique_id=1806975938]
 visible = false
 
-[node name="food_pizza_cheese_plated_slices_2" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="1" unique_id=430576387]
+[node name="food_pizza_cheese_plated_slices_2" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="1" unique_id=1381486680]
 visible = false
 
-[node name="food_pizza_cheese_plated_slices_3" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="2" unique_id=908095680]
+[node name="food_pizza_cheese_plated_slices_3" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="2" unique_id=127112072]
 visible = false
 
-[node name="food_pizza_cheese_plated_slices_4" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="3" unique_id=632448618]
+[node name="food_pizza_cheese_plated_slices_4" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="3" unique_id=1289315039]
 visible = false
 
-[node name="food_pizza_cheese_plated_slices_5" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="4" unique_id=1432217602]
+[node name="food_pizza_cheese_plated_slices_5" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="4" unique_id=175363687]
 visible = false
 
-[node name="food_pizza_cheese_plated_slices_6" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1264725549) index="5" unique_id=1404787709]
+[node name="food_pizza_cheese_plated_slices_6" parent="food_pizza_cheese_plated_slices/food_pizza_cheese_plated_slices" parent_id_path=PackedInt32Array(220244127, 1986588631) index="5" unique_id=1812927993]
 visible = false
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1475096145]

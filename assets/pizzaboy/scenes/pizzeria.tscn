@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d0btk5enc20p3" path="res://assets/pizzaboy/scenes/pizza_light.tscn" id="14_bbid8"]
 [ext_resource type="PackedScene" uid="uid://cqij78q72clbr" path="res://assets/pizzaboy/scenes/open_sign.tscn" id="14_hhfk7"]
 [ext_resource type="PackedScene" uid="uid://blk0xp6tetjqx" path="res://assets/pizzaboy/scenes/store_window.tscn" id="18_j0tbr"]
+[ext_resource type="PackedScene" uid="uid://dfvx6wuo5ybkj" path="res://assets/items/pizza_slice_spawner.tscn" id="18_j3633"]
 [ext_resource type="Texture2D" uid="uid://bk8sxleo75msr" path="res://assets/pizzaboy/counterBake.png" id="23_8ohxw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vspil"]
@@ -349,7 +350,8 @@ visible = false
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.056773e-08, 0, -14.96789)
 
 [node name="Marker3D" type="Marker3D" parent="Objects/premade_pizzas" index="0" unique_id=2101130646]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67372656, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67372656, 6.5841565, 0)
+visible = false
 
 [node name="Cheese_Pizza_Slices" parent="Objects/premade_pizzas/Marker3D" index="0" unique_id=1652629305 instance=ExtResource("9_ptnne")]
 
@@ -360,7 +362,8 @@ transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.5
 spot_range = 1.75
 
 [node name="Marker3D2" type="Marker3D" parent="Objects/premade_pizzas" index="1" unique_id=450132944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1223857, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1223857, 6.5841565, 0)
+visible = false
 
 [node name="Pepperoni_Pizza_Slices" parent="Objects/premade_pizzas/Marker3D2" index="0" unique_id=696625637 instance=ExtResource("10_gorm1")]
 
@@ -371,7 +374,8 @@ transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.5
 spot_range = 1.75
 
 [node name="Marker3D3" type="Marker3D" parent="Objects/premade_pizzas" index="2" unique_id=1118948871]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5127187, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5127187, 6.5841565, 0)
+visible = false
 
 [node name="Mushroom_Pizza_Slices" parent="Objects/premade_pizzas/Marker3D3" index="0" unique_id=68276855 instance=ExtResource("11_o86q3")]
 
@@ -380,6 +384,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5127187, 1, 0)
 [node name="SpotLight3D3" type="SpotLight3D" parent="Objects/premade_pizzas/Marker3D3/Mushroom_Pizza_Slices/hanging_light" index="1" unique_id=65755539]
 transform = Transform3D(-1, 1.509958e-07, 6.600236e-15, 0, -4.371139e-08, 1, 1.509958e-07, 1, 4.371139e-08, 0, 1.539, 0)
 spot_range = 1.75
+
+[node name="Marker3D4" type="Marker3D" parent="Objects/premade_pizzas" index="3" unique_id=100373424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67372656, 1, 0)
+
+[node name="PizzaSliceSpawner" parent="Objects/premade_pizzas/Marker3D4" index="0" unique_id=1541964092 node_paths=PackedStringArray("pizzeria") instance=ExtResource("18_j3633")]
+pizzeria = NodePath("../../../..")
 
 [node name="kitchencounter_sink" parent="Objects" index="6" unique_id=967959218 groups=["nav_back_restaurant"] instance=ExtResource("12_gorm1")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8.025117, 0, -28.345146)
@@ -475,5 +485,4 @@ shape = SubResource("ConcavePolygonShape3D_efxkk")
 [connection signal="init_open_sign" from="Objects/open_sign" to="." method="_on_open_sign_init_open_sign"]
 
 [editable path="Objects/kitchentable_B4/Computer"]
-[editable path="Objects/kitchentable_B4/Computer/monitor"]
 [editable path="Objects/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]

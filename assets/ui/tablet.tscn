@@ -34,7 +34,14 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="Tablet" type="Control" unique_id=1200652761 node_paths=PackedStringArray("order_vbox", "tabs")]
+[sub_resource type="LabelSettings" id="LabelSettings_43c17"]
+font_size = 24
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Tablet" type="Control" unique_id=1200652761 node_paths=PackedStringArray("grid_container", "tabs")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fysnc")
-order_vbox = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/OrderVBoxContainer")
+grid_container = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer")
 tabs = NodePath("MarginContainer/TabContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
@@ -96,35 +103,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_oq8je")
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_p1abc")
 current_tab = 0
 
-[node name="Orders" type="Control" parent="MarginContainer/TabContainer" unique_id=1144617593]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Orders" unique_id=1111150729]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="OrderVBoxContainer" type="VBoxContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=484179309]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Tables" type="Control" parent="MarginContainer/TabContainer" unique_id=202527504]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Tables" unique_id=1157536191]
 layout_mode = 1
@@ -238,6 +220,49 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../../HBoxContainer3/PurchaseTableButton")
 focus_neighbor_bottom = NodePath("../../HBoxContainer/PurchaseTableButton")
 text = "BUY"
+
+[node name="Orders" type="Control" parent="MarginContainer/TabContainer" unique_id=1144617593]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TabContainer/Orders" unique_id=1111150729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=1711287257]
+layout_mode = 2
+theme_override_constants/h_separation = 110
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="Table" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=1995654266]
+layout_mode = 2
+text = "Table"
+label_settings = SubResource("LabelSettings_43c17")
+
+[node name="Order" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=1532973460]
+layout_mode = 2
+text = "Order"
+label_settings = SubResource("LabelSettings_43c17")
+
+[node name="Ingredients" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=998990316]
+layout_mode = 2
+text = "Ingredients"
+label_settings = SubResource("LabelSettings_43c17")
 
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
 [connection signal="visibility_changed" from="MarginContainer/TabContainer/Tables" to="." method="_on_tables_visibility_changed"]
