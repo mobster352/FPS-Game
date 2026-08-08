@@ -24,6 +24,7 @@ const SPRINT_SPEED = 8.0
 
 @export var shotRaycast: RayCast3D
 @export var itemRaycast: RayCast3D
+var initial_item_raycast:RayCast3D
 
 @export var reticle: ColorRect
 
@@ -166,6 +167,8 @@ func _ready():
 	
 	if GlobalVar.is_demo and playerData.day == 4:
 		%ThankYouForPlayingDemo.show()
+		
+	initial_item_raycast = itemRaycast
 
 
 func _process(delta: float) -> void:
@@ -200,7 +203,8 @@ func _physics_process(delta: float) -> void:
 				_process_jump()
 				_physics_logic()
 				_process_drop_item()
-			_process_controller_turning(delta)
+			if camera.current:
+				_process_controller_turning(delta)
 			#_process_rayCast(delta)
 
 
@@ -266,6 +270,7 @@ func _process_movement() -> void:
 			%FootstepTimer.wait_time = 0.40
 		if is_cashier:
 			is_cashier = false
+			GlobalSignal.update_is_cashier.emit(false)
 		player_skin.walk_animation()
 		if not is_on_floor():
 			%Footsteps.playing = false
@@ -288,13 +293,13 @@ func _process_movement() -> void:
 var pitch := 0.0  # store vertical rotation manually
 var mouse_input: Vector2 = Vector2.ZERO
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive and not freeze_camera:
+	if event is InputEventMouseMotion and is_alive and not freeze_camera and camera.current:
 		mouse_input += event.relative
 		current_input_device = GlobalVar.InputDevice.MOUSE_KEYBOARD
 
 
 func _process_camera() -> void:
-	if camera == %FirstPersonCamera:
+	if camera == %FirstPersonCamera and camera.current:
 		# Horizontal (yaw)
 		rotate_y(-mouse_input.x * mouse_sensitivity)
 		# Vertical (pitch)

@@ -142,3 +142,6 @@ signal leave_drive_thru(traffic_car:TrafficCar)
 
 @warning_ignore("unused_signal")
 signal update_input_device(input_device: GlobalVar.InputDevice)
+
+@warning_ignore("unused_signal")
+signal update_is_cashier(value:bool)
