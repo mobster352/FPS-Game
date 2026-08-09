@@ -23,7 +23,7 @@ func _ready() -> void:
 
 func initialize_steam() -> void:
 	#Demo App ID
-	var initialize_response: Dictionary = Steam.steamInitEx(4633460, true)
+	var initialize_response: Dictionary = Steam.steamInitEx(4633340, true)
 	#print("Did Steam initialize?: %s " % initialize_response)
 	
 	if initialize_response['status'] > Steam.STEAM_API_INIT_RESULT_OK:
