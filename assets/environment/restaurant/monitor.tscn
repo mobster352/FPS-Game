@@ -21,7 +21,7 @@ shadow_color = Color(0, 0, 0, 1)
 
 [node name="Monitor" type="Node3D" unique_id=111431306 node_paths=PackedStringArray("grid_container")]
 script = ExtResource("1_0x8q3")
-grid_container = NodePath("CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer")
+grid_container = NodePath("CSGMesh3D/SubViewport/GUI/MarginContainer2/GridContainer")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=887691759]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -31,6 +31,11 @@ material = SubResource("StandardMaterial3D_atatw")
 [node name="SubViewport" type="SubViewport" parent="CSGMesh3D" unique_id=1861911867]
 transparent_bg = true
 size = Vector2i(2106, 577)
+
+[node name="ScreenBackground" type="ColorRect" parent="CSGMesh3D/SubViewport" unique_id=403877578]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.09301273, 0.33048862, 0.9999961, 1)
 
 [node name="GUI" type="Control" parent="CSGMesh3D/SubViewport" unique_id=1864853102]
 layout_mode = 3
@@ -42,27 +47,42 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CSGMesh3D/SubViewport/GUI" unique_id=439459270]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 512.0
+offset_bottom = 75.0
 theme_override_constants/margin_left = 10
 
-[node name="GridContainer" type="GridContainer" parent="CSGMesh3D/SubViewport/GUI/MarginContainer" unique_id=1506952065]
+[node name="GridContainer2" type="GridContainer" parent="CSGMesh3D/SubViewport/GUI/MarginContainer" unique_id=663378306]
 layout_mode = 2
-theme_override_constants/h_separation = 110
-theme_override_constants/v_separation = 50
+theme_override_constants/h_separation = 90
 columns = 3
 
-[node name="Table" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=212563383]
+[node name="Table" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer2" unique_id=230384502]
 layout_mode = 2
 text = "Table"
 label_settings = SubResource("LabelSettings_xxql2")
 
-[node name="Order" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=2134946640]
+[node name="Order" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer2" unique_id=325979891]
 layout_mode = 2
 text = "Order"
 label_settings = SubResource("LabelSettings_xxql2")
 
-[node name="Ingredients" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer" unique_id=1200209559]
+[node name="Ingredients" type="Label" parent="CSGMesh3D/SubViewport/GUI/MarginContainer/GridContainer2" unique_id=886241903]
 layout_mode = 2
 text = "Ingredients"
 label_settings = SubResource("LabelSettings_xxql2")
+
+[node name="HSeparator" type="HSeparator" parent="CSGMesh3D/SubViewport/GUI/MarginContainer" unique_id=1845099923]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="MarginContainer2" type="MarginContainer" parent="CSGMesh3D/SubViewport/GUI" unique_id=277107957]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 576.0
+offset_bottom = 256.0
+
+[node name="GridContainer" type="GridContainer" parent="CSGMesh3D/SubViewport/GUI/MarginContainer2" unique_id=1506952065]
+layout_mode = 2
+theme_override_constants/h_separation = 155
+theme_override_constants/v_separation = 55
+columns = 3

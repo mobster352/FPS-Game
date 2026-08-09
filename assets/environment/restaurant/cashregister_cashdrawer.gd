@@ -5,6 +5,8 @@ const drawer_closed_position = Vector3(0.18, 0.055, 0.0)
 const drawer_open_position = Vector3(0.30, 0.055, 0.0)
 
 @export var cashier_marker:Marker3D
+@export var order_screen: Control
+@export var order_texture: TextureRect
 
 var is_open:bool
 var npc_dummy:NPC_Dummy
@@ -17,7 +19,7 @@ var player:Player
 var in_range:bool = false
 
 func _ready() -> void:
-	%MarginContainer.hide()
+	order_screen.hide()
 	set_register_visibility(false)
 	change = 0
 	GlobalSignal.process_order.connect(_process_order)
@@ -28,7 +30,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-	if is_open and player.is_cashier and change == 0 and %MarginContainer.visible:
+	if is_open and player.is_cashier and change == 0 and order_screen.visible:
 		%ConfirmTransaction.show()
 	else:
 		%ConfirmTransaction.hide()
@@ -53,7 +55,7 @@ func _clear_money() -> void:
 func _remove_order_from_register() -> void:
 	_clear_money()
 	change = -1000
-	%MarginContainer.hide()
+	order_screen.hide()
 	#%OrderValue.text = ""
 	%ReceivedValue.text = ""
 	%TotalValue.text = ""
@@ -70,7 +72,7 @@ func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, _random_
 	
 	%ChangeValue.text = format_money(change)
 	
-	%MarginContainer.show()
+	order_screen.show()
 	
 	#var order_food:StringName = "Invalid Food"
 	#for food in GlobalVar.food_items:
@@ -81,6 +83,7 @@ func _process_order(_npc_dummy:NPC_Dummy, _money_payed:int, _total:int, _random_
 	#%OrderValue.text = order_food
 	%ReceivedValue.text = format_money(money_payed)
 	%TotalValue.text = format_money(total)
+	order_texture.texture = load(GlobalVar.get_food(_random_food).cooked_texture)
 	
 	npc_dummy = _npc_dummy
 

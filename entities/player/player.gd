@@ -203,8 +203,7 @@ func _physics_process(delta: float) -> void:
 				_process_jump()
 				_physics_logic()
 				_process_drop_item()
-			if camera.current:
-				_process_controller_turning(delta)
+			_process_controller_turning(delta)
 			#_process_rayCast(delta)
 
 
@@ -293,13 +292,13 @@ func _process_movement() -> void:
 var pitch := 0.0  # store vertical rotation manually
 var mouse_input: Vector2 = Vector2.ZERO
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and is_alive and not freeze_camera and camera.current:
+	if event is InputEventMouseMotion and is_alive and not freeze_camera:
 		mouse_input += event.relative
 		current_input_device = GlobalVar.InputDevice.MOUSE_KEYBOARD
 
 
 func _process_camera() -> void:
-	if camera == %FirstPersonCamera and camera.current:
+	if camera == %FirstPersonCamera:
 		# Horizontal (yaw)
 		rotate_y(-mouse_input.x * mouse_sensitivity)
 		# Vertical (pitch)

@@ -10,4 +10,6 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=889042910]
 layout_mode = 0
-theme_override_constants/separation = 0
+offset_right = 375.0
+offset_bottom = 75.0
+theme_override_constants/separation = -10

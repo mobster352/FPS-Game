@@ -80,7 +80,7 @@ albedo_color = Color(0, 0, 0, 1)
 viewport_path = NodePath("cash_register/SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhqdx"]
-font_size = 85
+font_size = 60
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
 
@@ -166,10 +166,12 @@ script = ExtResource("4_1srf5")
 path = "complete_transaction"
 metadata/_custom_type_script = "uid://kkgs5h45lhd6"
 
-[node name="cashregister_cashdrawer" type="Node3D" unique_id=804449852 node_paths=PackedStringArray("cashier_marker") groups=["cash_register"]]
+[node name="cashregister_cashdrawer" type="Node3D" unique_id=804449852 node_paths=PackedStringArray("cashier_marker", "order_screen", "order_texture") groups=["cash_register"]]
 transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, 0, 0, 0)
 script = ExtResource("1_f3ljx")
 cashier_marker = NodePath("CashierMarker")
+order_screen = NodePath("cash_register/SubViewport/OrderScreen")
+order_texture = NodePath("cash_register/SubViewport/OrderScreen/OrderTexture")
 
 [node name="CashierMarker" type="Marker3D" parent="." unique_id=377179097]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.9659914, -0.6653367, -0.0022705193)
@@ -190,54 +192,87 @@ texture = SubResource("ViewportTexture_38y2f")
 handle_input_locally = false
 snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 2
-size = Vector2i(1088, 562)
-size_2d_override = Vector2i(1088, 562)
+size = Vector2i(1088, 576)
+size_2d_override = Vector2i(1088, 576)
 size_2d_override_stretch = true
 
-[node name="MarginContainer" type="MarginContainer" parent="cash_register/SubViewport" unique_id=1182022733]
+[node name="ScreenBackground" type="ColorRect" parent="cash_register/SubViewport" unique_id=2087489169]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.09301273, 0.33048862, 0.9999961, 1)
+
+[node name="OrderScreen" type="Control" parent="cash_register/SubViewport" unique_id=1125516047]
 unique_name_in_owner = true
-offset_left = 64.0
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1088.0
-offset_bottom = 660.0
+offset_bottom = 576.0
+
+[node name="Order" type="Label" parent="cash_register/SubViewport/OrderScreen" unique_id=1643561505]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 24.0
+offset_right = 572.0
+offset_bottom = 107.75
+size_flags_horizontal = 3
+text = "Order:"
+label_settings = SubResource("LabelSettings_nhqdx")
+
+[node name="OrderTexture" type="TextureRect" parent="cash_register/SubViewport/OrderScreen" unique_id=998115366]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 616.0
+offset_right = 766.0
+offset_bottom = 150.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="cash_register/SubViewport/OrderScreen" unique_id=1182022733]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 105.0
+offset_right = 1024.0
+offset_bottom = 524.0
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 
-[node name="GridContainer" type="GridContainer" parent="cash_register/SubViewport/MarginContainer" unique_id=682297616]
+[node name="GridContainer" type="GridContainer" parent="cash_register/SubViewport/OrderScreen/MarginContainer" unique_id=682297616]
 layout_mode = 2
 theme_override_constants/v_separation = 70
 columns = 2
 
-[node name="Received" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1600558177]
+[node name="Received" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=1600558177]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Received:"
 label_settings = SubResource("LabelSettings_nhqdx")
 
-[node name="ReceivedValue" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1036077376]
+[node name="ReceivedValue" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=1036077376]
 unique_name_in_owner = true
 layout_mode = 2
 text = "$100"
 label_settings = SubResource("LabelSettings_nhqdx")
 horizontal_alignment = 2
 
-[node name="Total" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=1316323791]
+[node name="Total" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=1316323791]
 layout_mode = 2
 text = "Total:"
 label_settings = SubResource("LabelSettings_nhqdx")
 
-[node name="TotalValue" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=863074362]
+[node name="TotalValue" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=863074362]
 unique_name_in_owner = true
 layout_mode = 2
 text = "$12"
 label_settings = SubResource("LabelSettings_nhqdx")
 horizontal_alignment = 2
 
-[node name="Change" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=91371005]
+[node name="Change" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=91371005]
 layout_mode = 2
 text = "Change:"
 label_settings = SubResource("LabelSettings_nhqdx")
 
-[node name="ChangeValue" type="Label" parent="cash_register/SubViewport/MarginContainer/GridContainer" unique_id=805830004]
+[node name="ChangeValue" type="Label" parent="cash_register/SubViewport/OrderScreen/MarginContainer/GridContainer" unique_id=805830004]
 unique_name_in_owner = true
 layout_mode = 2
 text = "$88"

@@ -49,7 +49,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fysnc")
-grid_container = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer")
+grid_container = NodePath("MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer2/GridContainer")
 tabs = NodePath("MarginContainer/TabContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=661349212]
@@ -89,10 +89,10 @@ anchor_left = 0.208
 anchor_top = 0.19800001
 anchor_right = 0.79200006
 anchor_bottom = 0.77800006
-offset_left = 0.3840027
-offset_top = -0.3040161
-offset_right = -0.3840332
-offset_bottom = -0.14404297
+offset_left = -23.615997
+offset_top = -8.304016
+offset_right = 23.615967
+offset_bottom = 7.855957
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
@@ -236,33 +236,58 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3nbh5")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1127604812]
+[node name="Control" type="Control" parent="MarginContainer/TabContainer/Orders/ScrollContainer" unique_id=1501415195]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control" unique_id=1127604812]
+layout_mode = 0
+offset_right = 652.0
+offset_bottom = 98.0
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer" unique_id=1711287257]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer" unique_id=1213823439]
 layout_mode = 2
-theme_override_constants/h_separation = 110
-theme_override_constants/v_separation = 50
+theme_override_constants/h_separation = 100
 columns = 3
 
-[node name="Table" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=1995654266]
+[node name="Table" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer/GridContainer" unique_id=1531739395]
 layout_mode = 2
 text = "Table"
 label_settings = SubResource("LabelSettings_43c17")
 
-[node name="Order" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=1532973460]
+[node name="Order" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer/GridContainer" unique_id=1708295487]
 layout_mode = 2
 text = "Order"
 label_settings = SubResource("LabelSettings_43c17")
 
-[node name="Ingredients" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/MarginContainer/GridContainer" unique_id=998990316]
+[node name="Ingredients" type="Label" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer/GridContainer" unique_id=928837461]
 layout_mode = 2
 text = "Ingredients"
 label_settings = SubResource("LabelSettings_43c17")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer" unique_id=1700879727]
+layout_mode = 2
+theme_override_constants/separation = 78
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control" unique_id=1665498143]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 56.0
+offset_right = 648.0
+offset_bottom = 134.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Orders/ScrollContainer/Control/MarginContainer2" unique_id=454679776]
+layout_mode = 2
+theme_override_constants/h_separation = 155
+theme_override_constants/v_separation = 55
+columns = 3
 
 [connection signal="pressed" from="CloseTabletButton" to="." method="_on_close_tablet_button_pressed"]
 [connection signal="visibility_changed" from="MarginContainer/TabContainer/Tables" to="." method="_on_tables_visibility_changed"]

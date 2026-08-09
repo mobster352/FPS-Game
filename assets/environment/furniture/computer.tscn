@@ -155,7 +155,14 @@ mouse_filter = 1
 script = ExtResource("5_lbyxt")
 rolling_pin_button = NodePath("ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin/Background/Button")
 
+[node name="ScreenBackground" type="ColorRect" parent="OrderUI" unique_id=533332378]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.09301273, 0.33048862, 0.9999961, 1)
+
 [node name="ColorRect" type="ColorRect" parent="OrderUI" unique_id=333594051]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
