@@ -31,7 +31,7 @@ enum InputDevice {
 	CONTROLLER
 }
 
-var is_demo:bool = true
+var is_demo:bool = false
 
 var mesh_to_item_array: Array[Dictionary] = [
 	{

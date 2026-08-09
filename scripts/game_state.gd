@@ -13,8 +13,6 @@ var player:Player
 func _ready() -> void:
 	restaurant_back_door_marker = $"../Environment/Markers/RestaurantBackDoorMarker"
 	GlobalSignal.level_up.connect(_level_up)
-	player = get_tree().get_first_node_in_group("player")
-	GlobalVar.slice_of_the_day = GlobalVar.get_random_slice_by_level(player.level)
 
 
 func get_random_time() -> float:
@@ -43,6 +41,8 @@ func _on_player_player_loaded(_player:Player) -> void:
 	player = _player
 	if player.level >= 3:
 		create_thief_spawner()
+	GlobalVar.slice_of_the_day = GlobalVar.get_random_slice_by_level(player.level)
+	GlobalSignal.slice_of_the_day_ready.emit()
 
 
 func create_thief_spawner() -> void:

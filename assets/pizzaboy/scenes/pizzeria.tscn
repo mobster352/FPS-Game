@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cqij78q72clbr" path="res://assets/pizzaboy/scenes/open_sign.tscn" id="14_hhfk7"]
 [ext_resource type="PackedScene" uid="uid://blk0xp6tetjqx" path="res://assets/pizzaboy/scenes/store_window.tscn" id="18_j0tbr"]
 [ext_resource type="PackedScene" uid="uid://dfvx6wuo5ybkj" path="res://assets/items/pizza_slice_spawner.tscn" id="18_j3633"]
+[ext_resource type="PackedScene" uid="uid://csjrxmctsxanw" path="res://assets/environment/restaurant/monitor_ingredient.tscn" id="19_rhlgd"]
 [ext_resource type="Texture2D" uid="uid://bk8sxleo75msr" path="res://assets/pizzaboy/counterBake.png" id="23_8ohxw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vspil"]
@@ -73,6 +74,13 @@ size = Vector3(3.6362457, 1.0097961, 0.36895752)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wxjwm"]
 radius = 5.149076
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rhlgd"]
+viewport_path = NodePath("Objects/premade_pizzas/SliceOfTheDay/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5ajk"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_rhlgd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxkk"]
 albedo_color = Color(0, 0, 0, 1)
@@ -343,6 +351,9 @@ transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -2
 [node name="Computer" parent="Objects/kitchentable_B4" index="2" unique_id=81864904 instance=ExtResource("8_je3yo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)
 
+[node name="monitor" parent="Objects/kitchentable_B4/Computer/monitor" parent_id_path=PackedInt32Array(81864904, 1700634387) index="0" unique_id=1147996090]
+surface_material_override/0 = null
+
 [node name="OrderUI" parent="Objects/kitchentable_B4/Computer" index="2" unique_id=710377329]
 visible = false
 
@@ -388,8 +399,71 @@ spot_range = 1.75
 [node name="Marker3D4" type="Marker3D" parent="Objects/premade_pizzas" index="3" unique_id=100373424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.67372656, 1, 0)
 
-[node name="PizzaSliceSpawner" parent="Objects/premade_pizzas/Marker3D4" index="0" unique_id=1541964092 node_paths=PackedStringArray("pizzeria") instance=ExtResource("18_j3633")]
-pizzeria = NodePath("../../../..")
+[node name="PizzaSliceSpawner" parent="Objects/premade_pizzas/Marker3D4" index="0" unique_id=1541964092 node_paths=PackedStringArray("order_texture", "ingredients_h_box") instance=ExtResource("18_j3633")]
+order_texture = NodePath("../../SliceOfTheDay/SubViewport/Control/OrderTexture")
+ingredients_h_box = NodePath("../../SliceOfTheDay/SubViewport/Control/IngredientsHBox")
+
+[node name="Label3D2" type="Label3D" parent="Objects/premade_pizzas/Marker3D4" index="1" unique_id=2052272107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, -0.13689005, 0.7986593)
+text = "Slice of the Day"
+font_size = 16
+outline_size = 3
+
+[node name="SliceOfTheDay" type="CSGBox3D" parent="Objects/premade_pizzas" index="4" unique_id=190664902]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 3.8460226, 1.9377922, 3.0908146)
+size = Vector3(2.0116272, 1.2072754, 0.31140137)
+material = SubResource("StandardMaterial3D_m5ajk")
+
+[node name="Label3D" type="Label3D" parent="Objects/premade_pizzas/SliceOfTheDay" index="0" unique_id=437389450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4044851, 0.16279602)
+text = "Slice of the Day"
+font_size = 16
+outline_size = 3
+
+[node name="SubViewport" type="SubViewport" parent="Objects/premade_pizzas/SliceOfTheDay" index="1" unique_id=1516828004]
+size = Vector2i(1024, 512)
+
+[node name="Control" type="Control" parent="Objects/premade_pizzas/SliceOfTheDay/SubViewport" index="0" unique_id=677622515]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1024.0
+offset_right = 1024.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(-1, 1)
+
+[node name="OrderTexture" parent="Objects/premade_pizzas/SliceOfTheDay/SubViewport/Control" index="0" unique_id=1839143140 instance=ExtResource("19_rhlgd")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -132.0
+offset_right = 88.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IngredientsHBox" type="HBoxContainer" parent="Objects/premade_pizzas/SliceOfTheDay/SubViewport/Control" index="1" unique_id=1592713304]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 60.0
+offset_right = 199.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [node name="kitchencounter_sink" parent="Objects" index="6" unique_id=967959218 groups=["nav_back_restaurant"] instance=ExtResource("12_gorm1")]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 8.025117, 0, -28.345146)

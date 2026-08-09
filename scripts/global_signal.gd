@@ -145,3 +145,6 @@ signal update_input_device(input_device: GlobalVar.InputDevice)
 
 @warning_ignore("unused_signal")
 signal update_is_cashier(value:bool)
+
+@warning_ignore("unused_signal")
+signal slice_of_the_day_ready()

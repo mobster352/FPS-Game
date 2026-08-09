@@ -75,7 +75,7 @@ func _toggle_pointer_by_food(food_id:int, value:bool) -> void:
 func can_interact(player: Player) -> bool:
 	if in_range:
 		player.inputs_ui.update_actions.emit(player.inputs_ui.InputAction.InteractItem, player.has_held_object())
-		%PizzaLabel.show()
+		#%PizzaLabel.show()
 	return in_range
 	
 func interact(player: Player) -> void:
