@@ -62,6 +62,13 @@ geometry_source_group_name = &"nav_park"
 cell_size = 0.1
 cell_height = 0.01
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_qskbn"]
+viewport_path = NodePath("Objects/premade_pizzas/SliceOfTheDay/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egcyo"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_qskbn")
+
 [sub_resource type="Curve3D" id="Curve3D_3ogk7"]
 closed = true
 _data = {
@@ -1779,6 +1786,9 @@ surface_material_override/0 = null
 [node name="SpotLight3D2" parent="Environment/Buildings/pizzeria/Lights/Outside" parent_id_path=PackedInt32Array(32828750, 804881794) index="1" unique_id=828971180]
 transform = Transform3D(-0.8148581, 0.49925056, 0.29454237, 0.011704929, -0.49385378, 0.8694663, 0.5795423, 0.71193916, 0.39657703, 13.649979, 5.9260826, -31.085894)
 spot_range = 22.37792
+
+[node name="SliceOfTheDay" parent="Environment/Buildings/pizzeria/Objects/premade_pizzas" parent_id_path=PackedInt32Array(32828750, 456323005) index="4" unique_id=190664902]
+material = SubResource("StandardMaterial3D_egcyo")
 
 [node name="building_H_withoutBase" parent="Environment/Buildings" parent_id_path=PackedInt32Array(1328818616) index="1" unique_id=262033960 instance=ExtResource("17_yan4v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 37, -0.49950013, 17)

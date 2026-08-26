@@ -131,6 +131,7 @@ var fov:int:
 @onready var spring_arm_3d: SpringArm3D = %SpringArm3D
 @export var npc_setup:NPCSetup
 @onready var aim_assist_raycast: RayCast3D = %AimAssistRaycast
+@onready var shape_cast_3d: ShapeCast3D = %ShapeCast3D
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -178,6 +179,7 @@ func _process(delta: float) -> void:
 			GlobalSignal.pause_game.emit(true)
 			pause_menu.show()
 			get_tree().paused = true
+			return
 		interact = Input.is_action_just_pressed("interact")
 		drop_input = Input.is_action_just_pressed("drop")
 		sell_input = Input.is_action_just_pressed("sell")
@@ -295,6 +297,16 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_alive and not freeze_camera:
 		mouse_input += event.relative
 		current_input_device = GlobalVar.InputDevice.MOUSE_KEYBOARD
+	if event is InputEventMouse:
+		if Input.is_action_just_pressed("interact"):
+			if shape_cast_3d.is_colliding():
+				var collided = shape_cast_3d.get_collider(0)
+				if collided is PCStatic:
+					if collided.is_using:
+						return
+					_freeze_player_camera(true)
+					collided.toggle_use()
+					reticle.hide()
 
 
 func _process_camera() -> void:

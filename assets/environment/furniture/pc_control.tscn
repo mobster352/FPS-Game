@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cxfo4igjw7kbo"]
+
+[ext_resource type="Texture2D" uid="uid://bt6gm5dvplu6i" path="res://assets/environment/furniture/pc_background_sample.jpg" id="1_fi63y"]
+[ext_resource type="Script" uid="uid://b1q3nwlofnx54" path="res://assets/environment/furniture/pc_control.gd" id="1_qvsvh"]
+[ext_resource type="Theme" uid="uid://sx8r7eylidoh" path="res://Themes/Classic311/Classic311.tres" id="1_sfq7g"]
+[ext_resource type="Texture2D" uid="uid://dr2gbkssflvhm" path="res://assets/environment/furniture/mouse_cursor_filled.png" id="2_fi63y"]
+
+[node name="PCControl" type="Control" unique_id=1795315681]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sfq7g")
+script = ExtResource("1_qvsvh")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1082637020]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fi63y")
+
+[node name="MouseCursor" type="Sprite2D" parent="." unique_id=2136294219]
+top_level = true
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_fi63y")
+offset = Vector2(256, 256)
+
+[node name="Button" type="Button" parent="." unique_id=822031284]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -15.5
+offset_right = 19.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=927754992]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -92.0
+offset_right = 96.0
+offset_bottom = -61.666626
+grow_horizontal = 2
+grow_vertical = 2

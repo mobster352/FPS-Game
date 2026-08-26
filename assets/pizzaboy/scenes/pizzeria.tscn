@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dfvx6wuo5ybkj" path="res://assets/items/pizza_slice_spawner.tscn" id="18_j3633"]
 [ext_resource type="PackedScene" uid="uid://csjrxmctsxanw" path="res://assets/environment/restaurant/monitor_ingredient.tscn" id="19_rhlgd"]
 [ext_resource type="Texture2D" uid="uid://bk8sxleo75msr" path="res://assets/pizzaboy/counterBake.png" id="23_8ohxw"]
+[ext_resource type="PackedScene" uid="uid://b2ie2c1pyok0" path="res://assets/environment/furniture/pc_scene.tscn" id="26_rhlgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vspil"]
 resource_name = "restaurant"
@@ -553,6 +554,9 @@ shape = SubResource("ConcavePolygonShape3D_rhlgd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/WallStorage/StaticBody3D" index="0" unique_id=1206460208]
 shape = SubResource("ConcavePolygonShape3D_efxkk")
+
+[node name="PCScene" parent="." index="8" unique_id=623259633 instance=ExtResource("26_rhlgd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.746239, 1.0043908, -15.09474)
 
 [connection signal="body_entered" from="Billboard/Area3D" to="Billboard" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Billboard/Area3D" to="Billboard" method="_on_area_3d_body_exited"]

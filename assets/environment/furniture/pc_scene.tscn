@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b2ie2c1pyok0"]
+
+[ext_resource type="Script" uid="uid://bktrgku2oocw7" path="res://assets/environment/furniture/pc_scene.gd" id="1_0sv4w"]
+[ext_resource type="PackedScene" uid="uid://b4kdyglt32tdp" path="res://assets/kaykit/furniture/monitor.gltf" id="1_w4aim"]
+[ext_resource type="PackedScene" uid="uid://cxfo4igjw7kbo" path="res://assets/environment/furniture/pc_control.tscn" id="2_ievp0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w4aim"]
+size = Vector3(1.4926147, 0.892334, 0.26489258)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w4aim"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ievp0"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_w4aim")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_w4aim")
+
+[sub_resource type="QuadMesh" id="QuadMesh_w4aim"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ievp0")
+size = Vector2(0.8, 0.6)
+
+[node name="PCScene" type="StaticBody3D" unique_id=623259633]
+collision_layer = 8
+script = ExtResource("1_0sv4w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=353108749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00064086914, 0.65393066, 0.10070801)
+shape = SubResource("BoxShape3D_w4aim")
+
+[node name="monitor" parent="." unique_id=1064714481 instance=ExtResource("1_w4aim")]
+
+[node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=1813216113]
+transform = Transform3D(1.6677091, 0, 0, 0, 1.2512032, 0.18061416, 0, -0.22869082, 0.9881683, -0.0018838048, 0.6560998, 0.14024876)
+mesh = SubResource("QuadMesh_w4aim")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1150419765]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.97991425, 0.19941925, 0, -0.19941925, 0.97991425, 0, 0.7018587, 0.3895676)
+projection = 1
+size = 0.79082537
+near = 0.1
+far = 1.0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=222327643]
+size = Vector2i(960, 540)
+
+[node name="PCControl" parent="SubViewport" unique_id=1795315681 instance=ExtResource("2_ievp0")]
