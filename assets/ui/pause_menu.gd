@@ -5,6 +5,7 @@ class_name PauseMenu
 @export var controls_menu: Control
 @export var timer: Timer
 @export var menu_audio: AudioStreamPlayer
+@export var player:Player
 
 var can_pause := false
 

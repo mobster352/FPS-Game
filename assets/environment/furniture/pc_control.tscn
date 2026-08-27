@@ -4,6 +4,42 @@
 [ext_resource type="Script" uid="uid://b1q3nwlofnx54" path="res://assets/environment/furniture/pc_control.gd" id="1_qvsvh"]
 [ext_resource type="Theme" uid="uid://sx8r7eylidoh" path="res://Themes/Classic311/Classic311.tres" id="1_sfq7g"]
 [ext_resource type="Texture2D" uid="uid://dr2gbkssflvhm" path="res://assets/environment/furniture/mouse_cursor_filled.png" id="2_fi63y"]
+[ext_resource type="Texture2D" uid="uid://w2fhara2gi5l" path="res://assets/ui/Icon_Small_Blank_Shop.png" id="5_kyl4v"]
+[ext_resource type="Texture2D" uid="uid://0q5j8k7kw7q7" path="res://Themes/Classic311/Styles/Window/close.png" id="6_gitvi"]
+[ext_resource type="Texture2D" uid="uid://cvufgs1nxnk7b" path="res://Themes/Classic311/Styles/Window/close_pressed.png" id="7_f1fic"]
+[ext_resource type="Texture2D" uid="uid://i1dmp18q0afm" path="res://Themes/Classic311/Styles/Window/close_highlight.png" id="8_hwss5"]
+[ext_resource type="PackedScene" uid="uid://b5p2c8ul2we3e" path="res://assets/environment/furniture/store_item.tscn" id="9_kyl4v"]
+[ext_resource type="Texture2D" uid="uid://c0p2tti64l1aq" path="res://assets/kaykit/restaurant/textures/rollingpin.png" id="10_k2uss"]
+[ext_resource type="Texture2D" uid="uid://kkeq2ldyfqbi" path="res://assets/kaykit/restaurant/textures/dough.png" id="11_fre5p"]
+[ext_resource type="Texture2D" uid="uid://ck65yw2kspsmo" path="res://assets/kaykit/restaurant/textures/tomato.png" id="12_a8psa"]
+[ext_resource type="Texture2D" uid="uid://bmy584xa04imx" path="res://assets/kaykit/restaurant/textures/cheese.png" id="13_m5cte"]
+[ext_resource type="Texture2D" uid="uid://bgudwc767qkkw" path="res://assets/kaykit/restaurant/textures/pepperoni.png" id="14_yruk2"]
+[ext_resource type="Texture2D" uid="uid://clgt1vp0t555g" path="res://assets/kaykit/restaurant/textures/mushroom.png" id="15_uukkb"]
+[ext_resource type="Texture2D" uid="uid://bxv056whrhahw" path="res://assets/kaykit/restaurant/textures/pizzabox.png" id="16_pmnim"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_plhd0"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_jlfgs"]
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bx7xt"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_ylvgs"]
+variation_embolden = 0.15
+
+[sub_resource type="LabelSettings" id="LabelSettings_kyl4v"]
+font = SubResource("FontVariation_ylvgs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
 
 [node name="PCControl" type="Control" unique_id=1795315681]
 layout_mode = 3
@@ -31,31 +67,363 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_fi63y")
 offset = Vector2(256, 256)
 
-[node name="Button" type="Button" parent="." unique_id=822031284]
+[node name="ShopButton" type="TextureButton" parent="." unique_id=2118839963]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -15.5
-offset_right = 19.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "test"
+anchors_preset = -1
+anchor_left = 0.16700001
+anchor_top = 0.19800001
+anchor_right = 0.22200002
+anchor_bottom = 0.296
+offset_left = -0.38401794
+offset_top = -0.3040161
+offset_right = 0.25598145
+offset_bottom = 0.19200134
+texture_normal = ExtResource("5_kyl4v")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="LineEdit" type="LineEdit" parent="." unique_id=927754992]
+[node name="ShopControl" type="Control" parent="." unique_id=1482220345]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -92.0
-offset_right = 96.0
-offset_bottom = -61.666626
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ShopBackgroundPanel" type="Panel" parent="ShopControl" unique_id=1634024898]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.09900001
+anchor_right = 0.94400007
+anchor_bottom = 0.92600006
+offset_left = -0.51200104
+offset_top = -0.15200806
+offset_right = 0.5119629
+offset_bottom = -0.048034668
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShopWindowTitleColorRect" type="ColorRect" parent="ShopControl" unique_id=1618086017]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.09900001
+anchor_right = 0.91
+anchor_bottom = 0.16000001
+offset_left = -0.51200104
+offset_top = -0.15200806
+offset_right = -0.32006836
+offset_bottom = 0.31999207
+grow_horizontal = 2
+color = Color(0, 0.35686275, 0.7372549, 1)
+
+[node name="ShopWindowTitle" type="Label" parent="ShopControl/ShopWindowTitleColorRect" unique_id=1599073268]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46300003
+anchor_right = 0.537
+anchor_bottom = 1.0
+offset_left = 0.17196655
+offset_right = -0.17199707
+grow_horizontal = 2
+text = "Shop"
+label_settings = SubResource("LabelSettings_plhd0")
+
+[node name="ShopCloseButton" type="TextureButton" parent="ShopControl/ShopWindowTitleColorRect" unique_id=1542305078]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.041
+anchor_bottom = 1.0
+offset_right = -0.34399414
+texture_normal = ExtResource("6_gitvi")
+texture_pressed = ExtResource("7_f1fic")
+texture_hover = ExtResource("8_hwss5")
+stretch_mode = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopControl" unique_id=495963836]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062000003
+anchor_top = 0.16000001
+anchor_right = 0.76400006
+anchor_bottom = 0.91400003
+offset_left = 0.5759964
+offset_top = 0.31999207
+offset_right = -0.12805176
+offset_bottom = -0.2720337
+
+[node name="MarginContainer" type="MarginContainer" parent="ShopControl/ScrollContainer" unique_id=177110699]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopControl/ScrollContainer/MarginContainer" unique_id=1632068669]
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer" unique_id=2073422593]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RollingPin" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=12460798 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+text = &"Rolling Pin"
+texture = ExtResource("10_k2uss")
+store_item = 1
+
+[node name="Dough" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1264213732 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+text = &"Dough"
+texture = ExtResource("11_fre5p")
+store_item = 2
+price = 10
+
+[node name="Tomato" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1017461245 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+text = &"Tomato"
+texture = ExtResource("12_a8psa")
+store_item = 3
+price = 10
+
+[node name="Cheese" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1337524704 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+text = &"Cheese"
+texture = ExtResource("13_m5cte")
+store_item = 4
+price = 10
+
+[node name="Control" type="Control" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=828862210]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer" unique_id=112036545]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Pepperoni" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1231945714 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+level_required = 3
+text = &"Pepperoni"
+texture = ExtResource("14_yruk2")
+store_item = 5
+price = 10
+
+[node name="Mushroom" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2026882770 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+level_required = 4
+text = &"Mushroom"
+texture = ExtResource("15_uukkb")
+store_item = 6
+price = 10
+
+[node name="PizzaBox" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1698209224 instance=ExtResource("9_kyl4v")]
+layout_mode = 2
+text = &"Pizza Box"
+texture = ExtResource("16_pmnim")
+store_item = 7
+price = 1
+
+[node name="Control" type="Control" parent="ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=764171990]
+layout_mode = 2
+
+[node name="CartPanel" type="Panel" parent="ShopControl" unique_id=863899986]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.771
+anchor_top = 0.19600001
+anchor_right = 0.93700004
+anchor_bottom = 0.24700001
+offset_left = -0.1920166
+offset_top = -7.008003
+offset_right = 0.57592773
+offset_bottom = -0.055999756
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="ShopControl/CartPanel" unique_id=1930046790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3254902, 0.3254902, 0.3254902, 0.4509804)
+
+[node name="CartTotal" type="Label" parent="ShopControl/CartPanel" unique_id=1733559793]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.975
+text = "$10"
+label_settings = SubResource("LabelSettings_jlfgs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CartItems" type="Panel" parent="ShopControl" unique_id=467476167]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.771
+anchor_top = 0.259
+anchor_right = 0.93700004
+anchor_bottom = 0.83000004
+offset_left = -0.1920166
+offset_top = 0.16799927
+offset_right = 0.57592773
+offset_bottom = 0.15997314
+
+[node name="Label" type="Label" parent="ShopControl/CartItems" unique_id=1416968392]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042000003
+anchor_top = 0.022000002
+anchor_right = 0.95800006
+anchor_bottom = 0.08400001
+offset_left = -0.06400108
+offset_top = -0.14000034
+offset_right = 0.06399536
+offset_bottom = -0.08000183
+text = "Cart Summary"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopControl/CartItems" unique_id=947215176]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042000003
+anchor_top = 0.09200001
+anchor_right = 0.95800006
+anchor_bottom = 0.67
+offset_left = -0.06400108
+offset_top = -0.040000916
+offset_right = 0.06399536
+offset_bottom = 0.099990845
+
+[node name="CartVBox" type="VBoxContainer" parent="ShopControl/CartItems/ScrollContainer" unique_id=634380428]
+layout_mode = 2
+
+[node name="BalanceLabel" type="Label" parent="ShopControl/CartItems" unique_id=422514002]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.67300004
+anchor_right = 0.349
+anchor_bottom = 0.735
+offset_left = 6.0
+offset_top = -0.010009766
+offset_right = -0.008003235
+offset_bottom = 0.049987793
+text = "Balance"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="Balance" type="Label" parent="ShopControl/CartItems" unique_id=740718181]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74
+anchor_top = 0.67300004
+anchor_right = 0.97900003
+anchor_bottom = 0.735
+offset_left = -0.08000183
+offset_top = -0.010009766
+offset_right = 0.03199768
+offset_bottom = 0.049987793
+text = "$1000"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="TotalLabel" type="Label" parent="ShopControl/CartItems" unique_id=1249948972]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.73800004
+anchor_right = 0.24000001
+anchor_bottom = 0.8
+offset_left = 6.0
+offset_top = -0.060028076
+offset_right = -0.08000183
+text = "Total"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="TotalPrice" type="Label" parent="ShopControl/CartItems" unique_id=642780724]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.73800004
+anchor_right = 0.97900003
+anchor_bottom = 0.8
+offset_left = -2.0000153
+offset_top = -0.060028076
+offset_right = 0.03199768
+text = "$1000"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="RemainingLabel" type="Label" parent="ShopControl/CartItems" unique_id=644663578]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.031000001
+anchor_top = 0.80300003
+anchor_right = 0.46400002
+anchor_bottom = 0.86500007
+offset_left = 0.04799986
+offset_top = -0.11001587
+offset_right = -0.088005066
+offset_bottom = -0.05001831
+text = "Remaining"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="RemainingMoney" type="Label" parent="ShopControl/CartItems" unique_id=912241060]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.74
+anchor_top = 0.80300003
+anchor_right = 0.97900003
+anchor_bottom = 0.86500007
+offset_left = -0.08000183
+offset_top = -0.11001587
+offset_right = 0.03199768
+offset_bottom = -0.05001831
+text = "$2000"
+label_settings = SubResource("LabelSettings_bx7xt")
+
+[node name="PurchaseButton" type="Button" parent="ShopControl/CartItems" unique_id=1793332280]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.41700003
+anchor_top = 0.88900006
+anchor_right = 0.83300006
+anchor_bottom = 0.97
+offset_left = -0.06400299
+offset_top = -0.9300232
+offset_right = 0.06399536
+offset_bottom = 0.099975586
+text = "Purchase"
+
+[node name="TaskbarPanel" type="Panel" parent="." unique_id=629638807]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.938
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.17596436
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeValue" type="Label" parent="TaskbarPanel" unique_id=8303086]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87500006
+anchor_right = 0.96800005
+anchor_bottom = 0.837
+offset_left = -6.1035156e-05
+offset_top = 2.0
+offset_right = -0.1361084
+offset_bottom = 2.0200005
+grow_horizontal = 2
+grow_vertical = 2
+text = "10:34 pm"
+label_settings = SubResource("LabelSettings_kyl4v")
+
+[connection signal="pressed" from="ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="ShopControl/ShopWindowTitleColorRect/ShopCloseButton" to="." method="_on_shop_close_button_pressed"]
+[connection signal="pressed" from="ShopControl/CartItems/PurchaseButton" to="." method="_on_purchase_button_pressed"]

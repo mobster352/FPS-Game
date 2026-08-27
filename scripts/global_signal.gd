@@ -148,3 +148,6 @@ signal update_is_cashier(value:bool)
 
 @warning_ignore("unused_signal")
 signal slice_of_the_day_ready()
+
+@warning_ignore("unused_signal")
+signal set_status_bar_visibility(visible:bool)

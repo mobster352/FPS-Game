@@ -5,6 +5,7 @@ class_name UI
 @export var hp_bar: TextureProgressBar
 @export var damage_overlay: ColorRect
 @export var hp: Control
+@onready var help_buttons: MarginContainer = %HelpButtons
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

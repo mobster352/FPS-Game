@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ch56d05su0fc" path="res://components/status_bar.gd" id="1_ap4so"]
 
-[sub_resource type="FontVariation" id="FontVariation_ylvgs"]
+[sub_resource type="FontVariation" id="FontVariation_ap4so"]
 variation_embolden = 0.15
 
 [sub_resource type="LabelSettings" id="LabelSettings_w4bhi"]
-font = SubResource("FontVariation_ylvgs")
+font = SubResource("FontVariation_ap4so")
 font_size = 24
 font_color = Color(0.8819366, 0.8819366, 0.88193655, 1)
 outline_size = 2
@@ -14,6 +14,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ap4so"]
 bg_color = Color(0, 0.6531362, 0.5593084, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_ylvgs"]
+variation_embolden = 0.15
 
 [sub_resource type="LabelSettings" id="LabelSettings_rewvx"]
 font = SubResource("FontVariation_ylvgs")

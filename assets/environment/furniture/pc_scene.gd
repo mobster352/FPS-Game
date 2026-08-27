@@ -9,6 +9,14 @@ var is_using:bool = false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	
+func _process(_delta: float) -> void:
+	if !is_using:
+		return
+	if not player.freeze_camera:
+		player._freeze_player_camera(true)
+		player.ui.hide()
+		GlobalSignal.set_status_bar_visibility.emit(false)
 
 func toggle_use() -> void:
 	is_using = !is_using
@@ -17,16 +25,14 @@ func toggle_use() -> void:
 func _input(event: InputEvent) -> void:
 	if !is_using:
 		return
-	if not player.freeze_camera:
-		player._freeze_player_camera(true)
-	if event is InputEventKey:
-		if Input.is_action_just_pressed("exit_pc"):
-			toggle_use()
-			player._freeze_player_camera(false)
-			player.camera.current = true
-			player.reticle.show()
-		else:
-			sub_viewport.push_input(event)
+	#if event is InputEventKey:
+		#if Input.is_action_just_pressed("exit_pc"):
+			#toggle_use()
+			#player._freeze_player_camera(false)
+			#player.camera.current = true
+			#player.reticle.show()
+		#else:
+			#sub_viewport.push_input(event)
 	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_MIDDLE:
 			var mouse_event = InputEventMouseButton.new()
@@ -35,6 +41,15 @@ func _input(event: InputEvent) -> void:
 			mouse_event.position = pc_control.pc_mouse_pos
 			mouse_event.global_position = pc_control.pc_mouse_pos
 			sub_viewport.push_input(mouse_event)
+		elif Input.is_action_just_pressed("exit_pc"):
+			toggle_use()
+			player._freeze_player_camera(false)
+			player.camera.current = true
+			player.reticle.show()
+			player.ui.show()
+			GlobalSignal.set_status_bar_visibility.emit(true)
+		else:
+			sub_viewport.push_input(event)
 	elif event is InputEventMouseMotion:
 		pc_control.pc_mouse_pos += event.relative
 		pc_control.pc_mouse_pos.x = clamp(pc_control.pc_mouse_pos.x, 0.0, sub_viewport.size.x - 10.0)

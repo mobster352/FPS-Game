@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bktrgku2oocw7" path="res://assets/environment/furniture/pc_scene.gd" id="1_0sv4w"]
 [ext_resource type="PackedScene" uid="uid://b4kdyglt32tdp" path="res://assets/kaykit/furniture/monitor.gltf" id="1_w4aim"]
 [ext_resource type="PackedScene" uid="uid://cxfo4igjw7kbo" path="res://assets/environment/furniture/pc_control.tscn" id="2_ievp0"]
+[ext_resource type="Script" uid="uid://cab3k5auv4mmh" path="res://assets/environment/furniture/computer.gd" id="2_ylla5"]
+[ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_bo3go"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w4aim"]
 size = Vector3(1.4926147, 0.892334, 0.26489258)
@@ -29,7 +31,18 @@ script = ExtResource("1_0sv4w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00064086914, 0.65393066, 0.10070801)
 shape = SubResource("BoxShape3D_w4aim")
 
-[node name="monitor" parent="." unique_id=1064714481 instance=ExtResource("1_w4aim")]
+[node name="Computer" type="Node3D" parent="." unique_id=926998111 node_paths=PackedStringArray("cart_total_label", "cart_vbox", "cart_items", "total_price_label", "remaining_money_label", "balance_label", "hover_audio", "shop_control")]
+script = ExtResource("2_ylla5")
+cart_total_label = NodePath("../SubViewport/PCControl/ShopControl/CartPanel/CartTotal")
+cart_vbox = NodePath("../SubViewport/PCControl/ShopControl/CartItems/ScrollContainer/CartVBox")
+cart_items = NodePath("../SubViewport/PCControl/ShopControl/CartItems")
+total_price_label = NodePath("../SubViewport/PCControl/ShopControl/CartItems/TotalPrice")
+remaining_money_label = NodePath("../SubViewport/PCControl/ShopControl/CartItems/RemainingMoney")
+balance_label = NodePath("../SubViewport/PCControl/ShopControl/CartItems/Balance")
+hover_audio = NodePath("../Audio/HoverAudio")
+shop_control = NodePath("../SubViewport/PCControl/ShopControl")
+
+[node name="monitor" parent="Computer" unique_id=1064714481 instance=ExtResource("1_w4aim")]
 
 [node name="ScreenMesh" type="MeshInstance3D" parent="." unique_id=1813216113]
 transform = Transform3D(1.6677091, 0, 0, 0, 1.2512032, 0.18061416, 0, -0.22869082, 0.9881683, -0.0018838048, 0.6560998, 0.14024876)
@@ -46,4 +59,36 @@ far = 1.0
 [node name="SubViewport" type="SubViewport" parent="." unique_id=222327643]
 size = Vector2i(960, 540)
 
-[node name="PCControl" parent="SubViewport" unique_id=1795315681 instance=ExtResource("2_ievp0")]
+[node name="PCControl" parent="SubViewport" unique_id=1795315681 node_paths=PackedStringArray("computer") instance=ExtResource("2_ievp0")]
+computer = NodePath("../../Computer")
+
+[node name="RollingPin" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1795315681, 2073422593) index="0" unique_id=12460798 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Dough" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1795315681, 2073422593) index="1" unique_id=1264213732 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Tomato" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1795315681, 2073422593) index="2" unique_id=1017461245 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Cheese" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(1795315681, 2073422593) index="3" unique_id=1337524704 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Pepperoni" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" parent_id_path=PackedInt32Array(1795315681, 112036545) index="0" unique_id=1231945714 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Mushroom" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" parent_id_path=PackedInt32Array(1795315681, 112036545) index="1" unique_id=2026882770 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="PizzaBox" parent="SubViewport/PCControl/ShopControl/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer2" parent_id_path=PackedInt32Array(1795315681, 112036545) index="2" unique_id=1698209224 node_paths=PackedStringArray("computer")]
+computer = NodePath("../../../../../../../../Computer")
+
+[node name="Audio" type="Node" parent="." unique_id=1127434869]
+
+[node name="HoverAudio" type="AudioStreamPlayer" parent="Audio" unique_id=1295578785]
+stream = ExtResource("5_bo3go")
+volume_db = -5.0
+
+[connection signal="visibility_changed" from="SubViewport/PCControl/ShopControl" to="Computer" method="_on_shop_control_visibility_changed"]
+
+[editable path="SubViewport/PCControl"]

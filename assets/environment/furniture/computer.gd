@@ -12,6 +12,7 @@ signal decrement_store_item(store_item: GlobalVar.StoreItem, price: int, quantit
 @export var remaining_money_label: Label
 @export var balance_label: Label
 @export var hover_audio: AudioStreamPlayer
+@export var shop_control: Control
 
 var in_range := false
 var player: Player
@@ -29,30 +30,31 @@ var cart_total := 0:
 var order_items: Array[Dictionary]
 
 func _ready() -> void:
-	%OrderUI.hide()
+	#%OrderUI.hide()
+	player = get_tree().get_first_node_in_group("player")
 	increment_store_item.connect(_increment_store_item)
 	decrement_store_item.connect(_decrement_store_item)
-	balance_label.text = "$0"
-	total_price_label.text = "$0"
-	remaining_money_label.text = "$0"
 	cart_total = 0
+	if player:
+		remaining_money_label.text = "$" + str(player.money - cart_total)
+		balance_label.text = "$" + str(player.money)
 	GlobalSignal.pause_game.connect(_pause_game)
 	
 #func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed("pause") and use:
 		#_on_home_button_pressed()
 	
-func interact(_player: Player) -> void:
-	#get_tree().paused = true
-	
-	player = _player
-	%OrderUI.show()
-	player.freeze_camera = true
-	player.reticle.hide()
-	player.ui.hide()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	balance_label.text = "$" + str(player.money)
-	use = true
+#func interact(_player: Player) -> void:
+	##get_tree().paused = true
+	#
+	#player = _player
+	##%OrderUI.show()
+	#player.freeze_camera = true
+	#player.reticle.hide()
+	#player.ui.hide()
+	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	#balance_label.text = "$" + str(player.money)
+	#use = true
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -65,14 +67,14 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 		in_range = false
 
 
-func _on_home_button_pressed() -> void:
-	#get_tree().paused = false
-	%OrderUI.hide()
-	player.freeze_camera = false
-	player.reticle.show()
-	player.ui.show()
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	use = false
+#func _on_home_button_pressed() -> void:
+	##get_tree().paused = false
+	##%OrderUI.hide()
+	#player.freeze_camera = false
+	#player.reticle.show()
+	#player.ui.show()
+	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#use = false
 
 
 func _on_cart_button_pressed() -> void:
@@ -111,7 +113,7 @@ func _on_purchase_button_pressed() -> void:
 				update_store_item_to_cart_vbox(store_item.get("store_item"), 0)
 		GlobalSignal.order_inventory_items.emit(order_items)
 		order_items.clear()
-		_on_home_button_pressed()
+		#_on_home_button_pressed()
 
 
 func _on_mouse_entered() -> void:
@@ -172,5 +174,13 @@ func update_store_item_to_cart_vbox(_store_item: GlobalVar.StoreItem, _quantity:
 
 
 func _pause_game(_is_paused:bool) -> void:
-	if %OrderUI.visible:
-		_on_home_button_pressed()
+	#if %OrderUI.visible:
+		#_on_home_button_pressed()
+	pass
+
+
+func _on_shop_control_visibility_changed() -> void:
+	if shop_control.visible:
+		if player:
+			remaining_money_label.text = "$" + str(player.money - cart_total)
+			balance_label.text = "$" + str(player.money)

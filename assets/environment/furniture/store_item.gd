@@ -9,7 +9,6 @@ extends Panel
 @export var store_item: GlobalVar.StoreItem
 @export var price: int
 
-@export var item_name: Label
 @export var item_icon: TextureRect
 @export var background: ColorRect
 @export var item_price: Label
@@ -37,7 +36,6 @@ var player:Player
 var is_locked:bool
 
 func _ready() -> void:
-	item_name.text = text
 	item_icon.texture = texture
 	item_price.text = "$" + str(price)
 	GlobalSignal.order_inventory_items.connect(_order_inventory_items)

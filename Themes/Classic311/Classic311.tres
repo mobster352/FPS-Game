@@ -89,7 +89,6 @@ bg_color = Color(0, 0.356863, 0.737255, 1)
 [sub_resource type="StyleBoxEmpty" id="9"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptf4s"]
-bg_color = Color(0.75, 0.75, 0.75, 1)
 
 [sub_resource type="StyleBoxTexture" id="21"]
 content_margin_left = 10.0

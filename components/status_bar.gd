@@ -13,6 +13,7 @@ func _ready() -> void:
 	GlobalSignal.update_time.connect(_update_time)
 	GlobalSignal.add_xp.connect(_add_xp)
 	GlobalSignal.freeze_player_camera.connect(_freeze_player_camera)
+	GlobalSignal.set_status_bar_visibility.connect(_set_status_bar_visibility)
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		_update_money(player.money)
@@ -93,3 +94,7 @@ func _freeze_player_camera(is_freeze:bool) -> void:
 		hide()
 	else:
 		show()
+
+
+func _set_status_bar_visibility(_visible:bool) -> void:
+	visible = _visible

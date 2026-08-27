@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cu7ac2pi1yr7i" path="res://assets/pizzaboy/scenes/wall_light.tscn" id="6_j0tbr"]
 [ext_resource type="PackedScene" uid="uid://c1apxqra2i8td" path="res://assets/pizzaboy/scenes/ceiling_light.tscn" id="7_bbid8"]
 [ext_resource type="PackedScene" uid="uid://c474lmnv4l5" path="res://assets/environment/restaurant/kitchentable_b.tscn" id="7_evv48"]
-[ext_resource type="PackedScene" uid="uid://c1l5ndj6w6wqw" path="res://assets/environment/furniture/computer.tscn" id="8_je3yo"]
 [ext_resource type="PackedScene" uid="uid://m5kwuf2m6rpm" path="res://assets/items/cheese_pizza_slices.tscn" id="9_ptnne"]
 [ext_resource type="PackedScene" uid="uid://ccohvau3gp3bh" path="res://assets/items/pepperoni_pizza_slices.tscn" id="10_gorm1"]
 [ext_resource type="PackedScene" uid="uid://bwkvya8vm82gh" path="res://assets/items/mushroom_pizza_slices.tscn" id="11_o86q3"]
@@ -349,14 +348,8 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0
 [node name="kitchentable_B4" parent="Objects" index="4" unique_id=532985510 groups=["nav_back_restaurant"] instance=ExtResource("7_evv48")]
 transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -2.6967378, 0, -25.785254)
 
-[node name="Computer" parent="Objects/kitchentable_B4" index="2" unique_id=81864904 instance=ExtResource("8_je3yo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0071864, 0)
-
-[node name="monitor" parent="Objects/kitchentable_B4/Computer/monitor" parent_id_path=PackedInt32Array(81864904, 1700634387) index="0" unique_id=1147996090]
-surface_material_override/0 = null
-
-[node name="OrderUI" parent="Objects/kitchentable_B4/Computer" index="2" unique_id=710377329]
-visible = false
+[node name="PCScene" parent="Objects/kitchentable_B4" index="2" unique_id=623259633 instance=ExtResource("26_rhlgd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="premade_pizzas" type="Node3D" parent="Objects" index="5" unique_id=456323005]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.056773e-08, 0, -14.96789)
@@ -555,12 +548,6 @@ shape = SubResource("ConcavePolygonShape3D_rhlgd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/WallStorage/StaticBody3D" index="0" unique_id=1206460208]
 shape = SubResource("ConcavePolygonShape3D_efxkk")
 
-[node name="PCScene" parent="." index="8" unique_id=623259633 instance=ExtResource("26_rhlgd")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.746239, 1.0043908, -15.09474)
-
 [connection signal="body_entered" from="Billboard/Area3D" to="Billboard" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Billboard/Area3D" to="Billboard" method="_on_area_3d_body_exited"]
 [connection signal="init_open_sign" from="Objects/open_sign" to="." method="_on_open_sign_init_open_sign"]
-
-[editable path="Objects/kitchentable_B4/Computer"]
-[editable path="Objects/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]

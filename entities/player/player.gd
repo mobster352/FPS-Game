@@ -175,6 +175,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if is_alive:
 		if Input.is_action_just_pressed("pause"):
+			ui.show()
+			GlobalSignal.set_status_bar_visibility.emit(false)
 			tablet.hide_tablet()
 			GlobalSignal.pause_game.emit(true)
 			pause_menu.show()
@@ -307,6 +309,8 @@ func _input(event: InputEvent) -> void:
 					_freeze_player_camera(true)
 					collided.toggle_use()
 					reticle.hide()
+					ui.hide()
+					GlobalSignal.set_status_bar_visibility.emit(false)
 
 
 func _process_camera() -> void:
