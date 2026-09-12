@@ -20,6 +20,7 @@ var has_order := false
 var is_store_open: bool = false
 
 var food_item: Item
+var player:Player
 
 func _ready() -> void:
 	GlobalSignal.pickup_food.connect(_pickup_food)
@@ -31,6 +32,7 @@ func _ready() -> void:
 	#%car_taxi_edited.current_path = car_path
 	drive_thru_spawn.drive_thru_menu = drive_thru_menu
 	#%car_taxi_edited.level = level
+	player = get_tree().get_first_node_in_group("player")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -44,9 +46,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 					money = randi_range(10,15)
 					reaction.good_order = true
 					GlobalSignal.add_xp.emit(10)
+					player.increment_customers_satisfied()
 				else:
 					money = randi_range(1,3)
 					reaction.good_order = false
+				player.increment_customers_served()
 				reaction.show()
 				food_item = obj as Item
 				food_item.disabled = true

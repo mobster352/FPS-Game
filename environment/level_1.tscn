@@ -102,9 +102,10 @@ point_count = 4
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ogk7"]
 radius = 3.2562265
 
-[node name="Level" unique_id=1263719789 node_paths=PackedStringArray("player", "game_state") instance=ExtResource("1_xqm7o")]
+[node name="Level" unique_id=1263719789 node_paths=PackedStringArray("restaurant", "player", "game_state") instance=ExtResource("1_xqm7o")]
 start_time = 10.0
 day_length_minutes = 12.0
+restaurant = NodePath("Environment/Buildings/pizzeria")
 player = NodePath("Entities/Players/Player")
 can_advance_time = false
 game_state = NodePath("GameState")
@@ -2076,5 +2077,3 @@ layout_mode = 0
 [connection signal="visibility_changed" from="UI/NextDay" to="UI/NextDay" method="_on_visibility_changed"]
 
 [editable path="Environment/Buildings/pizzeria"]
-[editable path="Environment/Buildings/pizzeria/Objects/kitchentable_B4/Computer"]
-[editable path="Environment/Buildings/pizzeria/Objects/kitchentable_B4/Computer/OrderUI/ScrollContainer/MarginContainer/HBoxContainer/VBoxContainer/RollingPin"]

@@ -7,7 +7,7 @@ signal show_load_game_menu
 @export var options_menu: Control
 @onready var bg_texture: TextureRect = %BgTexture
 @onready var steam: MarginContainer = %Steam
-@onready var start_game_button: TextureButton = %StartGameButton
+@onready var start_game_button: Button = %StartGameButton
 
 const BG_TEX_01:StringName = "uid://m0im0ucr4f4q"
 const BG_TEX_02:StringName = "uid://dw7l4rby32olm"

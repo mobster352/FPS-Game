@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://w7i8t1diden8"]
 
+[ext_resource type="Theme" uid="uid://f13dvw2wi8e" path="res://Themes/custom/new_theme.tres" id="1_dhub8"]
 [ext_resource type="Script" uid="uid://hh3wew55nmhp" path="res://assets/ui/pause_menu.gd" id="1_u2vh8"]
 [ext_resource type="Texture2D" uid="uid://cns7bajkyywpf" path="res://assets/ui/Box_WhiteOutline_Rounded.png" id="2_7yrvd"]
 [ext_resource type="PackedScene" uid="uid://dotla25fifw5p" path="res://assets/ui/title.tscn" id="3_36egr"]
-[ext_resource type="PackedScene" uid="uid://bvmhtta3vxr36" path="res://assets/ui/button_large_round.tscn" id="4_kh5xo"]
+[ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="5_qhhon"]
 [ext_resource type="Texture2D" uid="uid://0ckhh08qilld" path="res://assets/ui/ButtonText_Large_Orange_Round.png" id="5_yhety"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="6_r37c0"]
 [ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="7_dhub8"]
+[ext_resource type="LabelSettings" uid="uid://ude03xnlv0t8" path="res://assets/ui/button_large_label.tres" id="8_sgnj0"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="8_yhety"]
 
 [node name="PauseMenu" type="Control" unique_id=145716167 node_paths=PackedStringArray("timer", "menu_audio")]
@@ -17,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_dhub8")
 script = ExtResource("1_u2vh8")
 timer = NodePath("Timers/Timer")
 menu_audio = NodePath("Audio/MenuAudio")
@@ -74,57 +77,85 @@ theme_override_constants/margin_right = 50
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Resume" parent="MarginContainer3/VBoxContainer" unique_id=1836022642 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
+[node name="Resume" type="MarginContainer" parent="MarginContainer3/VBoxContainer" unique_id=1836022642 node_paths=PackedStringArray("label", "button")]
 layout_mode = 2
+script = ExtResource("5_qhhon")
 button_label = &"RESUME"
 normal_texture = ExtResource("5_yhety")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
-button = NodePath("TextureButton")
+button = NodePath("")
 
-[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Resume" index="0"]
+[node name="TextureButton" type="Button" parent="MarginContainer3/VBoxContainer/Resume" unique_id=1979990480]
+layout_mode = 2
 focus_neighbor_top = NodePath("../../Exit/TextureButton")
 focus_neighbor_bottom = NodePath("../../Controls/TextureButton")
-texture_focused = ExtResource("6_r37c0")
 
-[node name="Controls" parent="MarginContainer3/VBoxContainer" unique_id=1438112760 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
+[node name="Label" type="Label" parent="MarginContainer3/VBoxContainer/Resume" unique_id=692638056]
 layout_mode = 2
+label_settings = ExtResource("8_sgnj0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="MarginContainer" parent="MarginContainer3/VBoxContainer" unique_id=1438112760 node_paths=PackedStringArray("label", "button")]
+layout_mode = 2
+script = ExtResource("5_qhhon")
 button_label = &"CONTROLS"
 normal_texture = ExtResource("5_yhety")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
-button = NodePath("TextureButton")
+button = NodePath("")
 
-[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Controls" index="0"]
+[node name="TextureButton" type="Button" parent="MarginContainer3/VBoxContainer/Controls" unique_id=64474578]
+layout_mode = 2
 focus_neighbor_top = NodePath("../../Resume/TextureButton")
 focus_neighbor_bottom = NodePath("../../Options/TextureButton")
-texture_focused = ExtResource("6_r37c0")
 
-[node name="Options" parent="MarginContainer3/VBoxContainer" unique_id=784365126 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
+[node name="Label" type="Label" parent="MarginContainer3/VBoxContainer/Controls" unique_id=290117146]
 layout_mode = 2
+label_settings = ExtResource("8_sgnj0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="MarginContainer" parent="MarginContainer3/VBoxContainer" unique_id=784365126 node_paths=PackedStringArray("label", "button")]
+layout_mode = 2
+script = ExtResource("5_qhhon")
 button_label = &"OPTIONS"
 normal_texture = ExtResource("5_yhety")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
-button = NodePath("TextureButton")
+button = NodePath("")
 
-[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Options" index="0"]
+[node name="TextureButton" type="Button" parent="MarginContainer3/VBoxContainer/Options" unique_id=981819115]
+layout_mode = 2
 focus_neighbor_top = NodePath("../../Controls/TextureButton")
 focus_neighbor_bottom = NodePath("../../Exit/TextureButton")
-texture_focused = ExtResource("6_r37c0")
 
-[node name="Exit" parent="MarginContainer3/VBoxContainer" unique_id=1541462004 node_paths=PackedStringArray("label", "button") instance=ExtResource("4_kh5xo")]
+[node name="Label" type="Label" parent="MarginContainer3/VBoxContainer/Options" unique_id=1922028804]
 layout_mode = 2
+label_settings = ExtResource("8_sgnj0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="MarginContainer" parent="MarginContainer3/VBoxContainer" unique_id=1541462004 node_paths=PackedStringArray("label", "button")]
+layout_mode = 2
+script = ExtResource("5_qhhon")
 button_label = &"EXIT"
 normal_texture = ExtResource("7_dhub8")
 pressed_texture = ExtResource("6_r37c0")
 label = NodePath("Label")
-button = NodePath("TextureButton")
+button = NodePath("")
 
-[node name="TextureButton" parent="MarginContainer3/VBoxContainer/Exit" index="0"]
+[node name="TextureButton" type="Button" parent="MarginContainer3/VBoxContainer/Exit" unique_id=1953954611]
+layout_mode = 2
 focus_neighbor_top = NodePath("../../Options/TextureButton")
 focus_neighbor_bottom = NodePath("../../Resume/TextureButton")
-texture_focused = ExtResource("6_r37c0")
+
+[node name="Label" type="Label" parent="MarginContainer3/VBoxContainer/Exit" unique_id=735065271]
+layout_mode = 2
+label_settings = ExtResource("8_sgnj0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timers" type="Node" parent="." unique_id=1558302306]
 
@@ -148,8 +179,3 @@ volume_db = -5.0
 [connection signal="mouse_entered" from="MarginContainer3/VBoxContainer/Exit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Exit/TextureButton" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
-
-[editable path="MarginContainer3/VBoxContainer/Resume"]
-[editable path="MarginContainer3/VBoxContainer/Controls"]
-[editable path="MarginContainer3/VBoxContainer/Options"]
-[editable path="MarginContainer3/VBoxContainer/Exit"]

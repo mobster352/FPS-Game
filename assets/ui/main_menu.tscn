@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bdjhxs02iqaue"]
 
+[ext_resource type="Theme" uid="uid://f13dvw2wi8e" path="res://Themes/custom/new_theme.tres" id="1_eqiyk"]
 [ext_resource type="Script" uid="uid://b87kbof4pkax1" path="res://assets/ui/main_menu.gd" id="1_pdggx"]
 [ext_resource type="Texture2D" uid="uid://cmu22kl0anlb2" path="res://assets/ui/background.png" id="2_eqiyk"]
 [ext_resource type="PackedScene" uid="uid://s1f1tpvoh76h" path="res://components/debug_tools.tscn" id="2_n4sa1"]
@@ -9,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://r0bvb77tspkd" path="res://assets/ui/pizza_boy_logo_tp.png" id="4_ijjh2"]
 [ext_resource type="AudioStream" uid="uid://ej14tnd0jnjk" path="res://assets/audio/Menu Selection Click.wav" id="5_82vaf"]
 [ext_resource type="Texture2D" uid="uid://dvdmlffc11x4u" path="res://assets/ui/ButtonText_Large_Round.png" id="5_pdggx"]
-[ext_resource type="Texture2D" uid="uid://cgekk7dnh4rdi" path="res://assets/ui/ButtonText_Large_Red_Round.png" id="6_58nof"]
-[ext_resource type="Script" uid="uid://c5hjatqlolqjs" path="res://assets/ui/button.gd" id="6_q6mfq"]
 [ext_resource type="PackedScene" uid="uid://f8w2c515y7jy" path="res://assets/ui/options_menu.tscn" id="8_jci6o"]
 [ext_resource type="Texture2D" uid="uid://bo48425onffjr" path="res://assets/ui/discord2.png" id="10_efjyj"]
 [ext_resource type="Texture2D" uid="uid://dlji3vj0cat63" path="res://assets/ui/steam-icon-14883.png" id="12_eqiyk"]
@@ -27,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_eqiyk")
 script = ExtResource("1_pdggx")
 menu_audio = NodePath("Audio/MenuAudio")
 main_menu = NodePath("Main")
@@ -97,16 +97,11 @@ offset_bottom = 303.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGameButton" type="TextureButton" parent="Main/StartGame" unique_id=947225438]
+[node name="StartGameButton" type="Button" parent="Main/StartGame" unique_id=1863907333]
 unique_name_in_owner = true
 layout_mode = 2
-focus_neighbor_top = NodePath("../../Quit/TextureButton")
+focus_neighbor_top = NodePath("../../Quit/QuitButton")
 focus_neighbor_bottom = NodePath("../../Settings/SettingsButton")
-texture_normal = ExtResource("4_58nof")
-texture_hover = ExtResource("5_pdggx")
-texture_focused = ExtResource("5_pdggx")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Label" type="Label" parent="Main/StartGame" unique_id=936076518]
 layout_mode = 2
@@ -114,7 +109,7 @@ text = "Start Game"
 label_settings = ExtResource("4_7la27")
 horizontal_alignment = 1
 
-[node name="Settings" type="MarginContainer" parent="Main" unique_id=40219817 node_paths=PackedStringArray("label", "button")]
+[node name="Settings" type="MarginContainer" parent="Main" unique_id=40219817]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,23 +122,11 @@ offset_right = 316.0
 offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_q6mfq")
-button_label = &"Settings"
-normal_texture = ExtResource("4_58nof")
-pressed_texture = ExtResource("5_pdggx")
-label = NodePath("Label")
-button = NodePath("SettingsButton")
 
-[node name="SettingsButton" type="TextureButton" parent="Main/Settings" unique_id=733303456]
+[node name="SettingsButton" type="Button" parent="Main/Settings" unique_id=1830182922]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../StartGame/StartGameButton")
-focus_neighbor_bottom = NodePath("../../Quit/TextureButton")
-texture_normal = ExtResource("4_58nof")
-texture_pressed = ExtResource("5_pdggx")
-texture_hover = ExtResource("5_pdggx")
-texture_focused = ExtResource("5_pdggx")
-ignore_texture_size = true
-stretch_mode = 0
+focus_neighbor_bottom = NodePath("../../Quit/QuitButton")
 
 [node name="Label" type="Label" parent="Main/Settings" unique_id=1869557153]
 layout_mode = 2
@@ -166,15 +149,10 @@ offset_bottom = 495.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="Main/Quit" unique_id=86759321]
+[node name="QuitButton" type="Button" parent="Main/Quit" unique_id=785524979]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../Settings/SettingsButton")
 focus_neighbor_bottom = NodePath("../../StartGame/StartGameButton")
-texture_normal = ExtResource("6_58nof")
-texture_hover = ExtResource("5_pdggx")
-texture_focused = ExtResource("5_pdggx")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="Label" type="Label" parent="Main/Quit" unique_id=1177831239]
 layout_mode = 2
@@ -288,9 +266,10 @@ autostart = true
 [connection signal="visibility_changed" from="Main" to="." method="_on_main_visibility_changed"]
 [connection signal="mouse_entered" from="Main/StartGame/StartGameButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/StartGame/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="mouse_entered" from="Main/Settings/SettingsButton" to="." method="_on_texture_button_mouse_entered"]
 [connection signal="pressed" from="Main/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="mouse_entered" from="Main/Quit/TextureButton" to="." method="_on_texture_button_mouse_entered"]
-[connection signal="pressed" from="Main/Quit/TextureButton" to="." method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="Main/Quit/QuitButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="pressed" from="Main/Quit/QuitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Main/Multiplayer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="mouse_entered" from="Main/Discord/DiscordTexture/LinkButton" to="." method="_on_discord_texture_mouse_entered"]
 [connection signal="mouse_exited" from="Main/Discord/DiscordTexture/LinkButton" to="." method="_on_discord_texture_mouse_exited"]

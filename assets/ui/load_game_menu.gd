@@ -2,6 +2,7 @@ extends Control
 
 signal show_main_menu
 
+@export var menu_audio: AudioStreamPlayer
 @onready var bg_texture: TextureRect = %BgTexture
 
 const BG_TEX_01:StringName = "uid://m0im0ucr4f4q"
@@ -64,3 +65,7 @@ func _on_main_menu_show_load_game_menu() -> void:
 func _on_bg_timer_timeout() -> void:
 	var random_tex:StringName = bg_tex_arr.pick_random()
 	bg_texture.texture = load(random_tex)
+
+
+func _on_button_mouse_entered() -> void:
+	menu_audio.play()

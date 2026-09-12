@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://cxov5jn44btmt"]
+
+[ext_resource type="Theme" uid="uid://f13dvw2wi8e" path="res://Themes/custom/new_theme.tres" id="1_211po"]
+[ext_resource type="Texture2D" uid="uid://cmu22kl0anlb2" path="res://assets/ui/background.png" id="2_8adx2"]
+[ext_resource type="Texture2D" uid="uid://r0bvb77tspkd" path="res://assets/ui/pizza_boy_logo_tp.png" id="2_iqqt8"]
+[ext_resource type="Texture2D" uid="uid://m0im0ucr4f4q" path="res://assets/environment/misc/background1.png" id="3_mlw83"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5uf5"]
+font_size = 88
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ThemeSetup" type="Control" unique_id=87648807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_211po")
+
+[node name="Background" type="MarginContainer" parent="." unique_id=1812099233]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=455704001]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_8adx2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="BgTexture" type="TextureRect" parent="Background" unique_id=176102041]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_mlw83")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1109886599]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.090277776
+anchor_top = 0.037037037
+anchor_right = 0.31944445
+anchor_bottom = 0.4074074
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=866572521]
+visible = false
+layout_mode = 2
+text = "Pizza Boy"
+label_settings = SubResource("LabelSettings_v5uf5")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2" unique_id=707313092]
+layout_mode = 2
+texture = ExtResource("2_iqqt8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="." unique_id=1487240143]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11100001
+anchor_top = 0.44430867
+anchor_right = 0.333
+anchor_bottom = 0.55565435
+offset_left = 0.12799072
+offset_top = 0.08798218
+offset_right = 0.3840027
+offset_bottom = -0.06402588
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="." unique_id=802460869]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11100001
+anchor_top = 0.59300005
+anchor_right = 0.333
+anchor_bottom = 0.70400006
+offset_left = 0.12799072
+offset_top = -0.2640381
+offset_right = 0.3840027
+offset_bottom = -0.19204712
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="." unique_id=474628507]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11100001
+anchor_top = 0.74100006
+anchor_right = 0.333
+anchor_bottom = 0.8523457
+offset_left = 0.12799072
+offset_top = -0.16802979
+offset_right = 0.3840027
+offset_bottom = -0.32000732
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+metadata/_edit_use_anchors_ = true
