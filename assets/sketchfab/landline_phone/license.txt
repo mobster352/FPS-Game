@@ -1,0 +1,11 @@
+Model Information:
+* title:	Landline phone
+* source:	https://sketchfab.com/3d-models/landline-phone-85d3fe01f51642d6b3130e602d6633fa
+* author:	alixor22 (https://sketchfab.com/alixor22)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Landline phone" (https://sketchfab.com/3d-models/landline-phone-85d3fe01f51642d6b3130e602d6633fa) by alixor22 (https://sketchfab.com/alixor22) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

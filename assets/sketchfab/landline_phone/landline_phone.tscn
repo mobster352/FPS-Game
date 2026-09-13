@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://degkwvsl8gr5b"]
+
+[ext_resource type="PackedScene" uid="uid://qxagcophp3bu" path="res://assets/sketchfab/landline_phone/landline_phone.gltf" id="1_b614r"]
+[ext_resource type="AudioStream" uid="uid://d1f7rpqiih1c3" path="res://assets/sketchfab/landline_phone/doorbell-old-tring.ogg" id="2_mkv6n"]
+
+[node name="LandlinePhone" type="Node3D" unique_id=1811159836]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Sketchfab_Scene" parent="." unique_id=798101080 instance=ExtResource("1_b614r")]
+
+[node name="RingAudio" type="AudioStreamPlayer3D" parent="Sketchfab_Scene" unique_id=447444028]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)
+stream = ExtResource("2_mkv6n")
+max_db = 0.0

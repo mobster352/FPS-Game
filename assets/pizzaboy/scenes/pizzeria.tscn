@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bhw184635c3p3" path="res://assets/environment/prototype/weaponrack.tscn" id="13_o86q3"]
 [ext_resource type="PackedScene" uid="uid://d0btk5enc20p3" path="res://assets/pizzaboy/scenes/pizza_light.tscn" id="14_bbid8"]
 [ext_resource type="PackedScene" uid="uid://cqij78q72clbr" path="res://assets/pizzaboy/scenes/open_sign.tscn" id="14_hhfk7"]
+[ext_resource type="PackedScene" uid="uid://degkwvsl8gr5b" path="res://assets/sketchfab/landline_phone/landline_phone.tscn" id="14_rhlgd"]
 [ext_resource type="PackedScene" uid="uid://blk0xp6tetjqx" path="res://assets/pizzaboy/scenes/store_window.tscn" id="18_j0tbr"]
 [ext_resource type="PackedScene" uid="uid://dfvx6wuo5ybkj" path="res://assets/items/pizza_slice_spawner.tscn" id="18_j3633"]
 [ext_resource type="PackedScene" uid="uid://csjrxmctsxanw" path="res://assets/environment/restaurant/monitor_ingredient.tscn" id="19_rhlgd"]
@@ -350,6 +351,9 @@ transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -2
 
 [node name="PCScene" parent="Objects/kitchentable_B4" index="2" unique_id=623259633 instance=ExtResource("26_rhlgd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="LandlinePhone" parent="Objects/kitchentable_B4" index="3" unique_id=1811159836 instance=ExtResource("14_rhlgd")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.6814537, 1.0190159, 0.6049254)
 
 [node name="premade_pizzas" type="Node3D" parent="Objects" index="5" unique_id=456323005]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.056773e-08, 0, -14.96789)
