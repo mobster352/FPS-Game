@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://qmbhokhmsd04" path="res://assets/environment/prototype/floor.tscn" id="1_csj1d"]
 [ext_resource type="PackedScene" uid="uid://otk1cl8ngm85" path="res://assets/environment/prototype/door_a.tscn" id="2_csj1d"]
+[ext_resource type="PackedScene" uid="uid://dywaumx2rvh34" path="res://assets/sketchfab/landline_phone/pizza_delivery_marker.tscn" id="3_75eax"]
 [ext_resource type="PackedScene" uid="uid://cu7ac2pi1yr7i" path="res://assets/pizzaboy/scenes/wall_light.tscn" id="3_j7xs2"]
 [ext_resource type="PackedScene" uid="uid://cghb3y2r3vfpb" path="res://assets/environment/prototype/wall_doorway.tscn" id="3_xiiax"]
 [ext_resource type="PackedScene" uid="uid://0nkm1q5qtcrl" path="res://assets/environment/prototype/wall.tscn" id="4_7l66d"]
@@ -548,11 +549,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3.6000004, 0)
 
 [node name="Door_A3" parent="Rooms/101" unique_id=498640133 instance=ExtResource("2_csj1d")]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 6, 0, -4.8)
-number_required = 0
+script = null
 
 [node name="Label3D" type="Label3D" parent="Rooms/101/Door_A3" unique_id=1370236076]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.79999995, 1.8, 0.1500001)
 text = "101"
+
+[node name="PizzaDeliveryMarker" parent="Rooms/101/Door_A3" unique_id=1695727010 instance=ExtResource("3_75eax")]
+room_number = 101
 
 [node name="wall_light2" parent="Rooms/101" unique_id=514009543 instance=ExtResource("3_j7xs2")]
 transform = Transform3D(3.774895e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, 3.774895e-08, 5.8133407, 0.90000004, -2.6000001)

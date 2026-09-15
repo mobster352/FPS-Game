@@ -23,6 +23,8 @@ func get_quest_resource_from_db(quest_id:StringName, quest_objective_id:StringNa
 					return ResourceManager.get_fetch_quest(quest_objective_id)
 				Quest.QuestType.Delivery:
 					return ResourceManager.get_delivery_quest(quest_objective_id)
+				Quest.QuestType.PizzaDelivery:
+					return ResourceManager.get_pizza_delivery_quest(quest_objective_id)
 	return null
 
 

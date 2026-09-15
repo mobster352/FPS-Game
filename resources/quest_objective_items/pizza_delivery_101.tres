@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="QuestObjectiveItem" format=3 uid="uid://ln8rye8a34lx"]
+
+[ext_resource type="Script" uid="uid://3ws4fdhfqsxt" path="res://resources/quest_objective_item.gd" id="1_jnjg6"]
+
+[resource]
+script = ExtResource("1_jnjg6")
+quest_objective_id = &"PIZZA_DELIVERY_101"
+quest_item_mesh = &"pizza_box_open_mesh"
+metadata/_custom_type_script = "uid://3ws4fdhfqsxt"

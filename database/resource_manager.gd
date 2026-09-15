@@ -5,6 +5,7 @@ var quests_db:Array
 var quest_dialogue_db:Array
 var quest_objective_items:Array
 var quest_room_numbers:Array
+var pizza_delivery_room_numbers:Array
 
 var fetch_quests:Dictionary[String, FetchQuest]
 var mage_npc_fetch_quests:Dictionary[String, FetchQuest]
@@ -15,6 +16,7 @@ var barbarian_npc_fetch_quests:Dictionary[String, FetchQuest]
 var dummy_npc_fetch_quests:Dictionary[String, FetchQuest]
 
 var delivery_quests:Dictionary[String, DeliveryQuest]
+var pizza_delivery_quests:Dictionary[String, PizzaDeliveryQuest]
 
 func _ready() -> void:
 	dialogue_db = load_resource("res://resources/dialogue")
@@ -22,8 +24,10 @@ func _ready() -> void:
 	quest_dialogue_db = load_resource("res://resources/quest_dialogue")
 	quest_objective_items = load_resource("res://resources/quest_objective_items")
 	quest_room_numbers = load_resource("res://resources/quest_room_numbers")
+	pizza_delivery_room_numbers = load_resource("res://resources/pizza_delivery_room_number/")
 	create_fetch_quests()
 	create_delivery_quests()
+	create_pizza_delivery_quests()
 	
 	#for q:QuestResource in quests_db:
 		#print(q.quest_id)
@@ -67,6 +71,19 @@ func create_delivery_quests() -> void:
 					var quest_item_mesh:StringName = quest_room_number.quest_item_mesh
 					var room_number:int = quest_room_number.room_number
 					delivery_quests.set(quest_objective_id, DeliveryQuest.new(quest_resource, room_number, quest_item_mesh))
+					
+
+func create_pizza_delivery_quests() -> void:
+	for quest_resource:QuestResource in quests_db:
+		if quest_resource.quest_type != Quest.QuestType.PizzaDelivery:
+			continue
+		for quest_objective:Dictionary in quest_resource.quest_objectives:
+			for quest_room_number:QuestRoomNumber in pizza_delivery_room_numbers:
+				if quest_objective.has(quest_room_number.quest_objective_id):
+					var quest_objective_id:StringName = quest_room_number.quest_objective_id
+					var quest_item_mesh:StringName = quest_room_number.quest_item_mesh
+					var room_number:int = quest_room_number.room_number
+					pizza_delivery_quests.set(quest_objective_id, PizzaDeliveryQuest.new(quest_resource, room_number, quest_item_mesh, GlobalVar.get_food(5)))
 
 
 func create_fetch_quests() -> void:
@@ -184,7 +201,20 @@ func get_random_delivery_quest() -> Array:
 func get_delivery_quest(quest_objective_id:StringName) -> DeliveryQuest:
 	if delivery_quests.has(quest_objective_id):
 		return delivery_quests.get(quest_objective_id)
-	push_error("Quest objective id not found: ", quest_objective_id)
+	push_error("Package Delivery Quest objective id not found: ", quest_objective_id)
+	return null
+	
+	
+func get_random_pizza_delivery_quest() -> Array:
+	var random_delivery_quest:StringName = pizza_delivery_quests.keys().pick_random()
+	var delivery_quest:PizzaDeliveryQuest = pizza_delivery_quests.get(random_delivery_quest)
+	return [Quest.new(delivery_quest.wrapped_quest.quest_id, random_delivery_quest, QuestItems.PIZZA), delivery_quest.room_number]
+
+
+func get_pizza_delivery_quest(quest_objective_id:StringName) -> PizzaDeliveryQuest:
+	if pizza_delivery_quests.has(quest_objective_id):
+		return pizza_delivery_quests.get(quest_objective_id)
+	push_error("Pizza Delivery Quest objective id not found: ", quest_objective_id)
 	return null
 
 
