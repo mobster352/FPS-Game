@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://degkwvsl8gr5b"]
 
 [ext_resource type="PackedScene" uid="uid://qxagcophp3bu" path="res://assets/sketchfab/landline_phone/landline_phone.gltf" id="1_b614r"]
+[ext_resource type="Script" uid="uid://m45uy4k2tcx5" path="res://assets/sketchfab/landline_phone/landline_phone.gd" id="1_kviqw"]
 [ext_resource type="AudioStream" uid="uid://d1f7rpqiih1c3" path="res://assets/sketchfab/landline_phone/doorbell-old-tring.ogg" id="2_mkv6n"]
 [ext_resource type="Script" uid="uid://cbyst1lmei3yf" path="res://assets/sketchfab/landline_phone/phone_interactable.gd" id="3_652g4"]
+[ext_resource type="PackedScene" uid="uid://c6vlhijuot8ks" path="res://environment/dialogue_box.tscn" id="4_cxeap"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_652g4"]
 size = Vector3(0.23931885, 0.060546875, 0.21826172)
@@ -14,6 +16,7 @@ radius = 2.0
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 collision_layer = 64
 collision_mask = 0
+script = ExtResource("1_kviqw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=833585582]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029937744, 0.03125, -0.010986328)
@@ -22,12 +25,14 @@ shape = SubResource("BoxShape3D_652g4")
 [node name="Sketchfab_Scene" parent="." unique_id=798101080 instance=ExtResource("1_b614r")]
 
 [node name="RingAudio" type="AudioStreamPlayer3D" parent="Sketchfab_Scene" unique_id=447444028]
+unique_name_in_owner = true
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0)
 stream = ExtResource("2_mkv6n")
 max_db = 0.0
 
-[node name="Interactable" type="Node3D" parent="." unique_id=422403662]
+[node name="Interactable" type="Node3D" parent="." unique_id=422403662 node_paths=PackedStringArray("landline_phone")]
 script = ExtResource("3_652g4")
+landline_phone = NodePath("..")
 metadata/_custom_type_script = "uid://cbmfhh2mp4bxu"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1069429333]
@@ -37,5 +42,10 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=36004149]
 shape = SubResource("SphereShape3D_cxeap")
 
+[node name="DialogueBox" parent="." unique_id=1606368833 instance=ExtResource("4_cxeap")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.883, 0)
+
 [connection signal="body_entered" from="Area3D" to="Interactable" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Interactable" method="_on_area_3d_body_exited"]
+[connection signal="end_dialogue" from="DialogueBox" to="Interactable" method="_on_dialogue_box_end_dialogue"]

@@ -83,7 +83,7 @@ func create_pizza_delivery_quests() -> void:
 					var quest_objective_id:StringName = quest_room_number.quest_objective_id
 					var quest_item_mesh:StringName = quest_room_number.quest_item_mesh
 					var room_number:int = quest_room_number.room_number
-					pizza_delivery_quests.set(quest_objective_id, PizzaDeliveryQuest.new(quest_resource, room_number, quest_item_mesh, GlobalVar.get_food(5)))
+					pizza_delivery_quests.set(quest_objective_id, PizzaDeliveryQuest.new(quest_resource, room_number, quest_item_mesh))
 
 
 func create_fetch_quests() -> void:
@@ -208,7 +208,8 @@ func get_delivery_quest(quest_objective_id:StringName) -> DeliveryQuest:
 func get_random_pizza_delivery_quest() -> Array:
 	var random_delivery_quest:StringName = pizza_delivery_quests.keys().pick_random()
 	var delivery_quest:PizzaDeliveryQuest = pizza_delivery_quests.get(random_delivery_quest)
-	return [Quest.new(delivery_quest.wrapped_quest.quest_id, random_delivery_quest, QuestItems.PIZZA), delivery_quest.room_number]
+	delivery_quest.order = GlobalVar.get_random_food_pizza()
+	return [Quest.new(delivery_quest.wrapped_quest.quest_id, random_delivery_quest, QuestItems.PIZZA), delivery_quest.room_number, delivery_quest.order]
 
 
 func get_pizza_delivery_quest(quest_objective_id:StringName) -> PizzaDeliveryQuest:

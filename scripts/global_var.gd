@@ -125,15 +125,19 @@ var mesh_to_item_array: Array[Dictionary] = [
 	}
 ]
 
-var food_items: Array[Food] = [
+var food_slices: Array[Food] = [
 	Food.new(PIZZA_TYPE.PEPPERONI,"Pepperoni Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://bgudwc767qkkw"], "uid://cseaxawpmam36"),
 	Food.new(PIZZA_TYPE.CHEESE,"Cheese Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx"], "uid://c2osof6vauqdh"),
-	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://clgt1vp0t555g"], "uid://b0un28s5ytrwu"),
-	
+	Food.new(PIZZA_TYPE.MUSHROOM,"Mushroom Pizza Slice", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://clgt1vp0t555g"], "uid://b0un28s5ytrwu")
+]
+
+var food_pizza: Array[Food] = [
 	Food.new(PIZZA_TYPE.PEPPERONI_PIE, "Pepperoni Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://bgudwc767qkkw"], "uid://dtk3hl0r672fw"),
 	Food.new(PIZZA_TYPE.CHEESE_PIE, "Cheese Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx"], "uid://cy4of0wxkpuxe"),
 	Food.new(PIZZA_TYPE.MUSHROOM_PIE, "Mushroom Pizza", ["uid://kkeq2ldyfqbi", "uid://ck65yw2kspsmo", "uid://bmy584xa04imx", "uid://clgt1vp0t555g"], "uid://ceboasx34ho1v")
 ]
+
+var food_items: Array[Food] = food_slices + food_pizza
 
 var show_tips := true
 
@@ -194,6 +198,10 @@ func get_random_slice_by_level(level:int) -> PIZZA_TYPE:
 			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE].pick_random()
 		_:
 			return [PIZZA_TYPE.PEPPERONI, PIZZA_TYPE.CHEESE, PIZZA_TYPE.MUSHROOM].pick_random()
+
+
+func get_random_food_pizza() -> Food:
+	return food_pizza.pick_random()
 
 
 func get_food(food_id:int) -> Food:
